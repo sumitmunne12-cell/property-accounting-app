@@ -7,6 +7,7 @@ const STORAGE_KEYS = {
   SELECTED_PROPERTY: '@rp_selected_property_v1',
   ACTIVE_SOFTWARE: '@rp_active_software_v1',
   EXCEPTION_RESOLUTIONS: '@rp_exception_resolutions_v1',
+  CLOSE_PROGRESS: '@rp_close_progress_v1',
 };
 
 export const getCompletedTasks = async () => {
@@ -115,4 +116,24 @@ export const saveActiveSoftware = async (software) => {
   } catch (e) {
     console.error('Error saving active software', e);
   }
+};
+
+// Month-end close progress: { [period 'YYYY-MM']: { [taskId]: ISO timestamp signed off } }
+export const getCloseProgress = async () => {
+  try {
+    const json = await AsyncStorage.getItem(STORAGE_KEYS.CLOSE_PROGRESS);
+    return json ? JSON.parse(json) : {};
+  } catch (e) {
+    console.error('Error reading close progress', e);
+    return {};
+  }
+};
+
+export const saveCloseProgress = async (progress) => {
+  try {
+    await AsyncStorage.setItem(STORAGE_KEYS.CLOSE_PROGRESS, JSON.stringify(progress));
+  } catch (e) {
+    console.error('Error saving close progress', e);
+  }
+  return progress;
 };

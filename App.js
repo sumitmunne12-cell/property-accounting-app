@@ -39,9 +39,12 @@ import MasteryModal from './src/components/MasteryModal';
 import RealPageExplorer from './src/components/RealPageExplorer';
 import CommandSearch from './src/components/CommandSearch';
 import YardiAndTools from './src/components/YardiAndTools';
+import CloseCockpit from './src/components/CloseCockpit';
+import ScreenSopModal from './src/components/ScreenSopModal';
+import { MODULE_FILE_TO_ID } from './src/utils/screenIndex';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('tasks'); // 'tasks' | 'explorer' | 'search' | 'tools'
+  const [activeTab, setActiveTab] = useState('tasks'); // 'tasks' | 'close' | 'explorer' | 'search' | 'tools'
   const [selectedPhase, setSelectedPhase] = useState('All');
   const [selectedPriority, setSelectedPriority] = useState('All');
   const [selectedProperty, setSelectedProperty] = useState('All Properties');
@@ -55,6 +58,22 @@ export default function App() {
   // Modals
   const [selectedTaskForMastery, setSelectedTaskForMastery] = useState(null);
   const [propertyPickerVisible, setPropertyPickerVisible] = useState(false);
+  // Click-by-click SOP modal for any catalog screen (close tasks, playbooks, Rosetta, glossary)
+  const [sopScreen, setSopScreen] = useState(null); // { id, context }
+  // Deep link into the RP Explorer: { moduleId, screenId, nonce }
+  const [explorerFocus, setExplorerFocus] = useState(null);
+
+  const openScreen = (screenId, context) => setSopScreen({ id: screenId, context });
+  const openInExplorer = (moduleId, screenId) => {
+    setSopScreen(null);
+    setExplorerFocus({ moduleId, screenId, nonce: Date.now() });
+    setActiveTab('explorer');
+  };
+  const openModule = (moduleFile) => {
+    const moduleId = MODULE_FILE_TO_ID[moduleFile] || moduleFile;
+    setExplorerFocus({ moduleId, screenId: null, nonce: Date.now() });
+    setActiveTab('explorer');
+  };
 
   useEffect(() => {
     loadInitialData();
@@ -214,22 +233,17 @@ export default function App() {
             </View>
           )}
 
-          {/* TAB 2: REALPAGE SYSTEM TWIN EXPLORER */}
-          {activeTab === 'explorer' && (
-            <RealPageExplorer
-              onSelectScreen={(screen) => {
-                // Future drilldown if needed
-              }}
-            />
-          )}
+          {/* TAB 2: MONTH-END CLOSE COCKPIT */}
+          {activeTab === 'close' && <CloseCockpit onOpenScreen={openScreen} />}
+
+          {/* TAB 3: REALPAGE SYSTEM TWIN EXPLORER */}
+          {activeTab === 'explorer' && <RealPageExplorer focus={explorerFocus} />}
 
           {/* TAB 3: COMMAND SEARCH & EXCEPTION TRIAGE */}
           {activeTab === 'search' && (
             <CommandSearch
               onSelectTask={(task) => setSelectedTaskForMastery(task)}
-              onSelectScreen={(screen) => {
-                setActiveTab('explorer');
-              }}
+              onOpenScreen={openScreen}
             />
           )}
 
@@ -239,6 +253,8 @@ export default function App() {
               bookmarkedIds={bookmarkedIds}
               taskNotes={taskNotes}
               onSelectTask={(task) => setSelectedTaskForMastery(task)}
+              onOpenScreen={openScreen}
+              onOpenModule={openModule}
             />
           )}
         </View>
@@ -259,6 +275,23 @@ export default function App() {
             />
             <Text style={[styles.navLabel, activeTab === 'tasks' && styles.navLabelActive]}>
               Daily Hub
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.navItem}
+            onPress={() => {
+              triggerHaptic('light');
+              setActiveTab('close');
+            }}
+          >
+            <Ionicons
+              name={activeTab === 'close' ? 'lock-closed' : 'lock-closed-outline'}
+              size={22}
+              color={activeTab === 'close' ? COLORS.primaryLight : COLORS.textMuted}
+            />
+            <Text style={[styles.navLabel, activeTab === 'close' && styles.navLabelActive]}>
+              Close
             </Text>
           </TouchableOpacity>
 
@@ -313,6 +346,14 @@ export default function App() {
             </Text>
           </TouchableOpacity>
         </View>
+
+        {/* CLICK-BY-CLICK SCREEN SOP MODAL */}
+        <ScreenSopModal
+          screenId={sopScreen ? sopScreen.id : null}
+          contextLabel={sopScreen ? sopScreen.context : null}
+          onClose={() => setSopScreen(null)}
+          onOpenInExplorer={openInExplorer}
+        />
 
         {/* 5-POINT MASTERY DEEP DIVE MODAL */}
         <MasteryModal

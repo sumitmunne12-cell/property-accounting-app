@@ -23,6 +23,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import rp_parse as P  # noqa: E402
 import rp_kb as K     # noqa: E402
+import rp_glossary as G  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MD_DIR = os.path.join(ROOT, 'manuals_markdown')
@@ -556,6 +557,10 @@ def build_screen(node, content, ctx, nav, texts_for_topic):
     used = purpose.lower()
     for p in paras:
         for s in sentence_split(p):
+            words = s.split()
+            caps = sum(1 for w in words if w[:1].isupper())
+            if caps > 0.5 * len(words):  # concatenated headings, not a sentence
+                continue
             if USE_RX.search(s) and s.lower()[:60] not in used and 40 < len(s) < 300:
                 why.append(s)
                 break
@@ -954,7 +959,7 @@ def build_module(module, reserved_ids=()):
             target = kids[:20]
         coverage.append({'manual': h.manual, 'title': h.title, 'page': h.page, 'level': h.level, 'status': st, 'target': target})
 
-    return submodules, coverage, records
+    return submodules, coverage, records, manuals
 
 
 # ---------------------------------------------------------------------------
@@ -1016,15 +1021,39 @@ def write_js(module, submodules):
     return path, n_screens
 
 
+GLOSSARY_JS = os.path.join(ROOT, 'src', 'data', 'glossaryData.js')
+GLOSS_START = '// <generated:realpage-glossary>'
+GLOSS_END = '// </generated:realpage-glossary>'
+
+
+def write_glossary(terms, entries):
+    src = open(GLOSSARY_JS, encoding='utf-8').read()
+    a = src.index(GLOSS_START)
+    b = src.index(GLOSS_END)
+    d = lambda v: json.dumps(v, ensure_ascii=False)
+    body = [GLOSS_START + ' — written by scripts/build_realpage_modules.py; do not hand-edit this block',
+            'export const REALPAGE_GLOSSARY_TERMS = [']
+    for i, t in enumerate(terms):
+        body.append('  ' + d(t) + (',' if i < len(terms) - 1 else ''))
+    body.append('];')
+    body.append(f'export const REALPAGE_GLOSSARY_STATS = {{ entries: {entries}, uniqueTerms: {len(terms)} }};')
+    body.append('')
+    with open(GLOSSARY_JS, 'w', encoding='utf-8') as f:
+        f.write(src[:a] + '\n'.join(body) + src[b:])
+
+
 def main():
     curated = load_curated()
     os.makedirs(REPORT_DIR, exist_ok=True)
     summary = OrderedDict()
     all_cov = OrderedDict()
+    module_manuals = OrderedDict()
+    screens_by_module = OrderedDict()
     for module in MODULES:
         cur = curated.get(module['code'])
         reserved = [x['id'] for x in cur['screens']] if cur else []
-        submodules, coverage, records = build_module(module, reserved)
+        submodules, coverage, records, manuals = build_module(module, reserved)
+        module_manuals[module['file']] = manuals
         if cur:
             for scr in cur['screens']:
                 for k in ('id', 'name', 'navigation', 'purpose', 'whyRecordsAreHere', 'keyFieldsAndFilters',
@@ -1034,12 +1063,17 @@ def main():
             submodules.insert(0, OrderedDict([('id', cur['id']), ('title', cur['title']), ('manual', 'Curated mastery workflows'), ('screens', cur['screens'])]))
         for s in submodules:
             s.pop('manual', None)
+        screens_by_module[module['file']] = [x for sm in submodules for x in sm['screens']]
         path, n = write_js(module, submodules)
         st = Counter(c['status'] for c in coverage)
         summary[module['file']] = {'checklist_items': len(coverage), 'screens': n, 'submodules': len(submodules),
                                    'status_counts': dict(st), 'bytes': os.path.getsize(path)}
         all_cov[module['file']] = coverage
         print(f"{module['file']}: {n} screens in {len(submodules)} submodules; {dict(st)}; {os.path.getsize(path)/1e6:.2f} MB")
+    terms, entries = G.build_glossary(module_manuals, screens_by_module)
+    write_glossary(terms, entries)
+    summary['glossary'] = {'entries': entries, 'unique_terms': len(terms)}
+    print(f"glossary: {entries} manual glossary entries -> {len(terms)} unique terms")
     with open(os.path.join(REPORT_DIR, 'coverage_summary.json'), 'w') as f:
         json.dump(summary, f, indent=2)
     with open(os.path.join(REPORT_DIR, 'coverage_report.json'), 'w') as f:

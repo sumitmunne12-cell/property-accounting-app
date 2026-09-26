@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -11,13 +11,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../theme/colors';
 import { REALPAGE_MODULES } from '../data/realPageModulesData';
 import { triggerHaptic } from '../utils/haptics';
+import { searchScreens, getScreenEntry } from '../utils/screenIndex';
+import useDebouncedValue from '../utils/useDebouncedValue';
+import ScreenDetail from './ScreenDetail';
 
 const MAX_FILTER_RESULTS = 100;
 
-// SOP steps are stored as "1. Do X" — the badge already shows the number.
-const stripStepNumber = (step) => step.replace(/^\s*(Step\s*)?\d+[.:)]\s*/i, '');
-
-function ScreenCard({ screen, color, isExpanded, onToggle }) {
+function ScreenCard({ screen, color, isExpanded, onToggle, badge }) {
   return (
     <View style={[styles.screenCard, isExpanded && styles.screenCardActive]}>
       <TouchableOpacity style={styles.screenHeader} onPress={onToggle} activeOpacity={0.7}>
@@ -26,6 +26,7 @@ function ScreenCard({ screen, color, isExpanded, onToggle }) {
             <Ionicons name="desktop-outline" size={16} color={color} />
           </View>
           <View style={styles.screenHeaderText}>
+            {badge ? <Text style={styles.focusBadge}>{badge}</Text> : null}
             <Text style={styles.screenName}>{screen.name}</Text>
             <Text style={styles.screenBreadcrumbQuick} numberOfLines={1}>
               {screen.navigation.join('  ›  ')}
@@ -35,121 +36,40 @@ function ScreenCard({ screen, color, isExpanded, onToggle }) {
         <Ionicons name={isExpanded ? 'chevron-up' : 'chevron-down'} size={18} color={COLORS.textSecondary} />
       </TouchableOpacity>
 
-      {/* Expanded Screen Deep Dive Guide */}
       {isExpanded && (
         <View style={styles.screenDetails}>
-          {/* Exact Breadcrumbs Box */}
-          <View style={styles.detailSection}>
-            <Text style={styles.sectionLabel}>EXACT NAVIGATION PATH</Text>
-            <View style={styles.breadcrumbBox}>
-              {screen.navigation.map((step, idx) => (
-                <View key={idx} style={styles.breadcrumbStep}>
-                  <Text style={styles.breadcrumbStepText}>
-                    {idx > 0 && '  ›  '}
-                    {step}
-                  </Text>
-                </View>
-              ))}
-            </View>
-          </View>
-
-          {/* Screen Purpose */}
-          <View style={styles.detailSection}>
-            <Text style={styles.sectionLabel}>SCREEN & REPORT PURPOSE</Text>
-            <Text style={styles.purposeText}>{screen.purpose}</Text>
-          </View>
-
-          {/* Why Records Are Here */}
-          <View style={styles.detailSection}>
-            <Text style={[styles.sectionLabel, { color: COLORS.danger }]}>WHY RECORDS ARE HERE (ROOT CAUSE)</Text>
-            {Array.isArray(screen.whyRecordsAreHere) ? (
-              screen.whyRecordsAreHere.map((reason, idx) => (
-                <View key={idx} style={styles.bulletRow}>
-                  <View style={[styles.bulletDot, { backgroundColor: COLORS.danger }]} />
-                  <Text style={styles.bulletText}>{reason}</Text>
-                </View>
-              ))
-            ) : (
-              <Text style={styles.bodyText}>{screen.whyRecordsAreHere}</Text>
-            )}
-          </View>
-
-          {/* Key Fields & Filters */}
-          {screen.keyFieldsAndFilters && (
-            <View style={styles.detailSection}>
-              <Text style={[styles.sectionLabel, { color: COLORS.warning }]}>KEY FIELDS, BUTTONS & FILTERS</Text>
-              {screen.keyFieldsAndFilters.map((field, idx) => (
-                <View key={idx} style={styles.fieldItem}>
-                  <Text style={styles.fieldName}>{field.name}:</Text>
-                  <Text style={styles.fieldDesc}>{field.description}</Text>
-                </View>
-              ))}
-            </View>
-          )}
-
-          {/* Step-by-Step SOP */}
-          <View style={styles.detailSection}>
-            <Text style={[styles.sectionLabel, { color: COLORS.primaryLight }]}>ACCOUNTANT STEP-BY-STEP ACTION SOP</Text>
-            {screen.accountantActionSOP.map((step, idx) => (
-              <View key={idx} style={styles.sopRow}>
-                <View style={styles.sopNumBadge}>
-                  <Text style={styles.sopNumText}>{idx + 1}</Text>
-                </View>
-                <Text style={styles.sopStepText}>{stripStepNumber(step)}</Text>
-              </View>
-            ))}
-          </View>
-
-          {/* GL Impact */}
-          <View style={styles.glSection}>
-            <Text style={styles.glSectionLabel}>DOWNSTREAM GL ACCOUNTING IMPACT</Text>
-            <Text style={styles.glSectionFormula}>{screen.glAccountingImpact}</Text>
-          </View>
-
-          {/* What Happens Next */}
-          {screen.whatHappensNext ? (
-            <View style={styles.detailSection}>
-              <Text style={[styles.sectionLabel, { color: COLORS.info }]}>WHAT HAPPENS NEXT</Text>
-              <Text style={styles.bodyText}>{screen.whatHappensNext}</Text>
-            </View>
-          ) : null}
-
-          {/* Yardi Equivalent */}
-          {screen.yardiEquivalent ? (
-            <View style={styles.yardiBox}>
-              <Text style={styles.yardiLabel}>YARDI VOYAGER EQUIVALENT</Text>
-              <Text style={styles.bodyText}>{screen.yardiEquivalent}</Text>
-            </View>
-          ) : null}
-
-          {/* Manual Citation */}
-          {screen.pdfManualSource ? (
-            <View style={styles.sourceRow}>
-              <Ionicons name="document-text-outline" size={13} color={COLORS.textMuted} />
-              <Text style={styles.sourceText}>{screen.pdfManualSource}</Text>
-            </View>
-          ) : null}
-
-          {/* Pro Tip */}
-          {screen.proTips && (
-            <View style={styles.tipBox}>
-              <Ionicons name="sparkles" size={15} color={COLORS.gold} />
-              <Text style={styles.tipText}>{screen.proTips}</Text>
-            </View>
-          )}
+          <ScreenDetail screen={screen} />
         </View>
       )}
     </View>
   );
 }
 
-export default function RealPageExplorer({ onSelectScreen }) {
+// `focus` = { moduleId, screenId?, nonce } lets other tabs deep-link into a module or screen.
+export default function RealPageExplorer({ focus }) {
   const [selectedModuleId, setSelectedModuleId] = useState('ap');
   const [expandedScreenId, setExpandedScreenId] = useState('scr_ap_exception_queue');
   const [expandedSubmoduleId, setExpandedSubmoduleId] = useState(null);
+  const [pinnedScreenId, setPinnedScreenId] = useState(null);
   const [showLegend, setShowLegend] = useState(false);
   const [showFullDesc, setShowFullDesc] = useState(false);
   const [filterText, setFilterText] = useState('');
+  const debouncedFilter = useDebouncedValue(filterText, 150);
+
+  useEffect(() => {
+    if (!focus || !focus.moduleId) return;
+    setSelectedModuleId(focus.moduleId);
+    setFilterText('');
+    const entry = focus.screenId ? getScreenEntry(focus.screenId) : null;
+    if (entry) {
+      setExpandedSubmoduleId(entry.submoduleId);
+      setExpandedScreenId(entry.screen.id);
+      setPinnedScreenId(entry.screen.id);
+    } else {
+      setExpandedSubmoduleId(null);
+      setPinnedScreenId(null);
+    }
+  }, [focus]);
 
   const selectedModule = REALPAGE_MODULES.find((m) => m.id === selectedModuleId) || REALPAGE_MODULES[0];
   const openSubmoduleId = expandedSubmoduleId ?? selectedModule.submodules[0]?.id;
@@ -158,23 +78,13 @@ export default function RealPageExplorer({ onSelectScreen }) {
     [selectedModule]
   );
 
-  const normalizedFilter = filterText.trim().toLowerCase();
-  const filteredScreens = useMemo(() => {
-    if (!normalizedFilter) return [];
-    const out = [];
-    for (const sub of selectedModule.submodules) {
-      for (const scr of sub.screens) {
-        if (
-          scr.name.toLowerCase().includes(normalizedFilter) ||
-          scr.navigation.some((n) => n.toLowerCase().includes(normalizedFilter)) ||
-          scr.purpose.toLowerCase().includes(normalizedFilter)
-        ) {
-          out.push(scr);
-        }
-      }
-    }
-    return out;
-  }, [selectedModule, normalizedFilter]);
+  const filtered = useMemo(
+    () => searchScreens(debouncedFilter, { moduleId: selectedModule.id, limit: MAX_FILTER_RESULTS }),
+    [selectedModule, debouncedFilter]
+  );
+  const isFiltering = debouncedFilter.trim().length > 0;
+  const pinnedEntry = pinnedScreenId ? getScreenEntry(pinnedScreenId) : null;
+  const showPinned = pinnedEntry && pinnedEntry.moduleId === selectedModule.id && !isFiltering;
 
   const toggleScreen = (id) => {
     triggerHaptic('light');
@@ -199,6 +109,7 @@ export default function RealPageExplorer({ onSelectScreen }) {
                   triggerHaptic('light');
                   setSelectedModuleId(mod.id);
                   setExpandedSubmoduleId(null);
+                  setPinnedScreenId(null);
                   setFilterText('');
                   // Expand first screen of selected module
                   const firstScreen = mod.submodules[0]?.screens[0];
@@ -247,11 +158,12 @@ export default function RealPageExplorer({ onSelectScreen }) {
           <Ionicons name="search" size={14} color={COLORS.textSecondary} />
           <TextInput
             style={styles.filterInput}
-            placeholder={`Filter ${moduleScreenCount} ${selectedModule.shortCode} screens, reports & buttons...`}
+            placeholder={`Fuzzy-search ${moduleScreenCount} ${selectedModule.shortCode} screens, reports & buttons...`}
             placeholderTextColor={COLORS.textMuted}
             value={filterText}
             onChangeText={setFilterText}
             autoCapitalize="none"
+            autoCorrect={false}
           />
           {filterText.length > 0 && (
             <TouchableOpacity onPress={() => setFilterText('')}>
@@ -262,20 +174,32 @@ export default function RealPageExplorer({ onSelectScreen }) {
       </View>
 
       {/* Screens & Menus Accordion List */}
-      <ScrollView style={styles.screensScroll} contentContainerStyle={styles.screensBody}>
-        {normalizedFilter ? (
+      <ScrollView style={styles.screensScroll} contentContainerStyle={styles.screensBody} keyboardShouldPersistTaps="handled">
+        {showPinned && (
+          <View style={styles.submoduleGroup}>
+            <ScreenCard
+              screen={pinnedEntry.screen}
+              color={selectedModule.color}
+              isExpanded={pinnedEntry.screen.id === expandedScreenId}
+              onToggle={() => toggleScreen(pinnedEntry.screen.id)}
+              badge={`OPENED FROM LINK · ${pinnedEntry.submoduleTitle}`}
+            />
+          </View>
+        )}
+        {isFiltering ? (
           <View style={styles.submoduleGroup}>
             <Text style={styles.filterSummary}>
-              {filteredScreens.length} matching screens
-              {filteredScreens.length > MAX_FILTER_RESULTS ? ` (showing first ${MAX_FILTER_RESULTS})` : ''}
+              {filtered.total} matching screens
+              {filtered.total > MAX_FILTER_RESULTS ? ` (best ${MAX_FILTER_RESULTS} shown)` : ''}
             </Text>
-            {filteredScreens.slice(0, MAX_FILTER_RESULTS).map((screen) => (
+            {filtered.results.map((entry) => (
               <ScreenCard
-                key={screen.id}
-                screen={screen}
+                key={entry.screen.id}
+                screen={entry.screen}
                 color={selectedModule.color}
-                isExpanded={screen.id === expandedScreenId}
-                onToggle={() => toggleScreen(screen.id)}
+                isExpanded={entry.screen.id === expandedScreenId}
+                onToggle={() => toggleScreen(entry.screen.id)}
+                badge={entry.submoduleTitle}
               />
             ))}
           </View>
@@ -484,6 +408,13 @@ const styles = StyleSheet.create({
   screenHeaderText: {
     flex: 1,
   },
+  focusBadge: {
+    fontSize: 9,
+    fontWeight: '700',
+    color: COLORS.gold,
+    letterSpacing: 0.4,
+    marginBottom: 2,
+  },
   screenName: {
     fontSize: 14,
     fontWeight: '600',
@@ -500,163 +431,5 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: COLORS.border,
     backgroundColor: COLORS.surfaceInput,
-  },
-  detailSection: {
-    marginTop: 12,
-  },
-  sectionLabel: {
-    fontSize: 10,
-    fontWeight: '700',
-    color: COLORS.textSecondary,
-    letterSpacing: 0.5,
-    marginBottom: 6,
-  },
-  breadcrumbBox: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    backgroundColor: COLORS.surface,
-    padding: 8,
-    borderRadius: 6,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-  },
-  breadcrumbStep: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  breadcrumbStepText: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: COLORS.info,
-  },
-  purposeText: {
-    fontSize: 13,
-    color: COLORS.text,
-    lineHeight: 19,
-  },
-  bulletRow: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginBottom: 6,
-  },
-  bulletDot: {
-    width: 5,
-    height: 5,
-    borderRadius: 2.5,
-    marginTop: 6,
-    marginRight: 8,
-  },
-  bulletText: {
-    fontSize: 12,
-    color: COLORS.textSecondary,
-    lineHeight: 18,
-    flex: 1,
-  },
-  bodyText: {
-    fontSize: 12,
-    color: COLORS.textSecondary,
-    lineHeight: 18,
-  },
-  fieldItem: {
-    marginBottom: 6,
-  },
-  fieldName: {
-    fontSize: 12,
-    fontWeight: '700',
-    color: COLORS.warning,
-  },
-  fieldDesc: {
-    fontSize: 12,
-    color: COLORS.textSecondary,
-    lineHeight: 17,
-  },
-  sopRow: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginBottom: 6,
-  },
-  sopNumBadge: {
-    width: 18,
-    height: 18,
-    borderRadius: 9,
-    backgroundColor: COLORS.primaryDark,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 8,
-    marginTop: 1,
-  },
-  sopNumText: {
-    fontSize: 10,
-    color: '#FFFFFF',
-    fontWeight: '700',
-  },
-  sopStepText: {
-    fontSize: 12,
-    color: COLORS.text,
-    lineHeight: 18,
-    flex: 1,
-  },
-  glSection: {
-    backgroundColor: COLORS.surface,
-    padding: 10,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: COLORS.success,
-    marginTop: 12,
-  },
-  glSectionLabel: {
-    fontSize: 10,
-    fontWeight: '700',
-    color: COLORS.success,
-    marginBottom: 4,
-  },
-  glSectionFormula: {
-    fontSize: 12,
-    color: '#FFFFFF',
-    fontWeight: '600',
-  },
-  yardiBox: {
-    backgroundColor: `${COLORS.yardi}15`,
-    padding: 10,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: `${COLORS.yardi}40`,
-    marginTop: 12,
-  },
-  yardiLabel: {
-    fontSize: 10,
-    fontWeight: '700',
-    color: COLORS.yardi,
-    marginBottom: 4,
-    letterSpacing: 0.5,
-  },
-  sourceRow: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginTop: 10,
-  },
-  sourceText: {
-    fontSize: 11,
-    color: COLORS.textMuted,
-    marginLeft: 6,
-    flex: 1,
-    lineHeight: 16,
-  },
-  tipBox: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    backgroundColor: `${COLORS.gold}15`,
-    padding: 10,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: `${COLORS.gold}40`,
-    marginTop: 10,
-  },
-  tipText: {
-    fontSize: 11,
-    color: COLORS.text,
-    lineHeight: 17,
-    marginLeft: 8,
-    flex: 1,
   },
 });

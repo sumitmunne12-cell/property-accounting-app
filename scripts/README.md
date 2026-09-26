@@ -5,10 +5,16 @@
 re-run the builder.
 
 ```bash
-python3 scripts/build_realpage_modules.py   # regenerate all 9 module files + coverage report
-node scripts/validate_modules.mjs           # ES-module syntax, schema, 10 fields per screen, unique ids, no placeholders
-python3 scripts/audit_quality.py            # optional: how much content is manual-derived vs. fallback
+npm run build:modules   # regenerate the 9 module files, the RealPage glossary block and the coverage report
+npm run check           # ESLint + module/cross-link validation + unit tests
+python3 scripts/audit_quality.py   # optional: how much content is manual-derived vs. fallback
 ```
+
+`npm run check` runs:
+
+- `npm run lint`: ESLint (React, hooks and Node rules) over the app and the tooling.
+- `npm run validate`: `validate_modules.mjs` checks ES-module syntax, schema, the 10 fields per screen, unique ids and placeholder text. `validate_app_data.mjs` checks that every `screenId` used by the Close Cockpit, exception playbooks, Rosetta Stone and glossary exists, that module references are valid, that adjusting entries balance and that every diagnostic-wizard path ends in a verdict.
+- `npm test`: `scripts/test/app.test.mjs` runs Node unit tests for fuzzy search, close sequencing, playbooks and the glossary.
 
 ## Inputs
 
@@ -17,7 +23,8 @@ python3 scripts/audit_quality.py            # optional: how much content is manu
 | `manuals_markdown/0N_*.md` | Source manuals; every bookmark heading is one checklist item (`0N_*_checklist.json`). |
 | `scripts/rp_parse.py` | Splits each manual into topics. It re-segments bodies on the in-text title, because the converter puts every bookmark heading at the top of its page. It then extracts navigation callouts, numbered/lettered procedures, field/button tables and prose. |
 | `scripts/rp_kb.py` | Multifamily accounting knowledge base. Each topic (A/P invoice, payment, bank rec, accrual, draw, depreciation…) has a DR/CR pattern, a Yardi Voyager equivalent, reasons records appear, the downstream workflow and a control check. Screen actions are classified as create, post, reverse, report, setup and so on. |
-| `scripts/curated_screens.json` | Hand-authored mastery workflows. Each module's first "Mastery Playbook" submodule comes from here. |
+| `scripts/curated_screens.json` | Hand-authored mastery workflows. Each module's first "Mastery Playbook" submodule comes from here, including the 4 budgeting showcase screens. |
+| `scripts/rp_glossary.py` | Extracts every "Glossary of Terms" entry from the manuals, dedupes terms repeated across manuals, and cross-references each term to modules and related screens. The result is written into the generated block of `src/data/glossaryData.js`. |
 
 ## How each screen field is filled
 
@@ -44,3 +51,14 @@ python3 scripts/audit_quality.py            # optional: how much content is manu
 - `container` / `layout-container`: a heading with no text of its own, whose children are screens. This includes the Quick Steps "QS Header".
 
 `scripts/output/coverage_summary.json` holds the per-module totals.
+
+## Hand-written app data (validated against the generated catalog)
+
+| File | Content |
+| --- | --- |
+| `src/data/glossaryData.js` | Curated US multifamily acronyms (edit freely), followed by the generated RealPage glossary block. |
+| `src/data/rosettaStoneData.js` | 50 RealPage ↔ Yardi Voyager operations. The RealPage side links to a catalog screen. |
+| `src/data/closePlaybookData.js` | The 7-phase month-end close. Every task links to a catalog screen. |
+| `src/data/exceptionsPlaybookData.js` | 15 exception triage playbooks, each with a diagnostic wizard and balanced adjusting entries. |
+
+Screen ids are derived from manual topic titles, so they only change when the manuals or the builder change. Run `npm run validate` after a rebuild; it names any link that broke.

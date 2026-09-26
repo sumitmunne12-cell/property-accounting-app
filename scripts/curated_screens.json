@@ -815,5 +815,260 @@
     "proTips": "Always check that the Bank Rec Summary schedule in the MOR matches the Balance Sheet Cash line to the exact penny."
    }
   ]
+ },
+ "budgeting": {
+  "id": "budgeting_curated",
+  "title": "Mastery Playbook — Curated Budgeting Workflows",
+  "screens": [
+   {
+    "id": "scr_budget_model_creation",
+    "name": "Budget Model Creation (Annual Operating Budget Build)",
+    "navigation": [
+     "Applications",
+     "Forecasting & Planning",
+     "All",
+     "Periodic Tasks",
+     "Working Budgets",
+     "Add"
+    ],
+    "purpose": "Builds the next fiscal year's property operating budget as a Working Budget in Forecasting & Planning. You seed it from the current G/L budget or a prior working budget, pick the fiscal months and properties, then refine it account by account (grow-by %/$ calculations, itemization rows, payroll publishing). Nothing becomes the official budget until you publish it to a G/L budget that reports and budget checks use. In institutional multifamily this is the Q3/Q4 cycle: the property submits, the asset manager reviews and the owner approves, all before January 1.",
+    "whyRecordsAreHere": [
+     "Owner/asset-manager calendar requires a draft operating budget per property (typically submitted Sept–Oct, approved by Dec 15).",
+     "New acquisition or lease-up property needs a first-year budget before the first owner report.",
+     "Budget seeded from the prior year's G/L budget and actuals so every revenue and expense account is carried forward.",
+     "Payroll plan (positions, wages, taxes, benefits) must be built separately and published into the working budget's payroll accounts."
+    ],
+    "keyFieldsAndFilters": [
+     {
+      "name": "Budget",
+      "description": "Unique name for the working budget (e.g. FY2027 Operating - Draft v1). Use a naming convention with fiscal year and version."
+     },
+     {
+      "name": "Creation method",
+      "description": "Create a new budget; Create a budget from working budget and reporting period range; or Create a budget from G/L budget and reporting period range (seed from the current year)."
+     },
+     {
+      "name": "Source year / Create for year",
+      "description": "Year the seed data comes from and the fiscal year being budgeted."
+     },
+     {
+      "name": "Start fiscal month / End fiscal month",
+      "description": "Reporting periods that bound the budget (normally the 12 months of the fiscal year)."
+     },
+     {
+      "name": "Accounts",
+      "description": "All accounts, or Select account group to limit the budget to an account group (e.g. the owner reporting P&L group)."
+     },
+     {
+      "name": "Property",
+      "description": "Multi-select of the properties (locations) the working budget covers."
+     },
+     {
+      "name": "Status",
+      "description": "Working (default) until published; changes to Published after Publish."
+     },
+     {
+      "name": "Grow by / Compute amount",
+      "description": "Account-level calculation that grows each period by a dollar amount or a percentage from a starting amount."
+     }
+    ],
+    "accountantActionSOP": [
+     "1. Confirm the chart of accounts and the owner's budget account group are current (Applications > General Ledger > Account Groups) before you create the budget.",
+     "2. Open Forecasting & Planning > All tab; in Periodic tasks click the Add (+) icon next to Working budgets.",
+     "3. Type the Budget name using the convention FY{year} Operating – {Property} – v1.",
+     "4. Choose Create a budget from G/L budget and reporting period range, then select the current-year G/L budget as the seed, the Source year, and the Create for year.",
+     "5. Set Start fiscal month and End fiscal month to the 12 fiscal periods of the budget year.",
+     "6. Select Accounts: pick the owner's reporting account group so only reportable P&L lines are budgeted.",
+     "7. Select the Property (or properties) and click Save; status shows Working.",
+     "8. Open Budget details and work each account: use Grow by % for inflation-driven lines (utilities +4%, insurance +12%), Amount for contract-driven lines, and itemization rows for multi-component lines (e.g. contract services).",
+     "9. Build revenue from the rent roll: GPR = units × market rent × 12, less loss-to-lease, vacancy (budgeted occupancy), concessions and bad debt; attach the revenue build worksheet as an account comment.",
+     "10. Build payroll in the Payroll workbench (positions, raises effective dates, taxes, benefits, workers comp) and publish the payroll to this working budget.",
+     "11. Export the working budget to Excel for asset-manager review; import the reviewed version back with Importing Data into a Working Budget.",
+     "12. Control check: total budgeted NOI must reconcile to the approved budget memo; budgeted units × months must match the rent roll unit count before submission."
+    ],
+    "glAccountingImpact": "No GL impact — a working budget is planning data stored outside the actual ledger. Only after it is published to a G/L budget does it feed budget-vs-actual (BVA) reports, dashboards and budget checks on purchase orders and A/P invoices.",
+    "whatHappensNext": "The draft goes to the asset manager or owner for review. Revisions are made in the same working budget, then it is published (Publishing a Working Budget) to the official G/L budget used by BVA reports, the Budget Report and the Prevent/Warn budget checks.",
+    "yardiEquivalent": "Yardi Voyager: Budgeting & Forecasting / Forecast IQ budget workflow (property budget model with revenue, payroll and expense driver sheets), or Financials > Budget > Budget Import for spreadsheet-built budgets; approval via the budget workflow before posting to the budget book.",
+    "pdfManualSource": "RP Accounting Forecasting & Planning User Guide.pdf, Pages 168-171 (Working Budgets List, Adding a Working Budget), 181-195 (working budget account details, Calculating the Budget Increase), 215-216 (Copying Records from a Previous Year); RP Accounting Forecasting & Planning QS.pdf, Pages 1-2",
+    "proTips": "Seed from the current G/L budget, not from actuals only — actuals carry one-time items (insurance claims, legal settlements) that should not recur. Document every material assumption in the account comment; the asset manager's first question is always 'what drives this line?'."
+   },
+   {
+    "id": "scr_budget_reforecast_revisions",
+    "name": "Budget Re-forecast & Revisions (Mid-Year Reforecast)",
+    "navigation": [
+     "Applications",
+     "Forecasting & Planning",
+     "All",
+     "Periodic Tasks",
+     "Working Budgets",
+     "View",
+     "Duplicate"
+    ],
+    "purpose": "Produces a mid-year reforecast (e.g. 6+6 or 9+3) or a formal budget revision without overwriting the approved original budget. You duplicate the approved working budget, advance year-to-date actuals into the elapsed months, re-project the remaining months, and publish the result to a separate G/L budget (e.g. FY2026 Reforecast Q2). That way BVA can compare actuals to both the original budget and the reforecast.",
+    "whyRecordsAreHere": [
+     "Owner or asset manager requests a quarterly reforecast after material variances (insurance renewal, tax reassessment, occupancy shift).",
+     "Loan covenant or distribution planning needs a current full-year NOI projection.",
+     "An approved budget revision (e.g. added capital project or staffing change) must be tracked separately from the original budget.",
+     "Year-to-date actuals must replace budget in closed months so the full-year projection is accurate."
+    ],
+    "keyFieldsAndFilters": [
+     {
+      "name": "Duplicate",
+      "description": "Copies an existing working budget (all accounts, properties and itemizations) under a new name."
+     },
+     {
+      "name": "Advance Actuals",
+      "description": "Replaces budget amounts in elapsed periods with year-to-date actual G/L balances (Advancing Year-to-Date Actuals)."
+     },
+     {
+      "name": "Compare with budget / actuals",
+      "description": "Workbench comparison of the working budget against another budget or actuals."
+     },
+     {
+      "name": "Publish to",
+      "description": "G/L budget the reforecast is published as; use a distinct budget name so the original approved budget is preserved."
+     },
+     {
+      "name": "Property list (publish)",
+      "description": "Clear a property to exclude it from this publish while its reforecast is still in progress."
+     },
+     {
+      "name": "Publish history",
+      "description": "Shows each publish event of a working budget (who/when) for version audit."
+     }
+    ],
+    "accountantActionSOP": [
+     "1. Close the last month in scope (all accruals posted) so year-to-date actuals are final before reforecasting.",
+     "2. Open Forecasting & Planning > All > Working budgets, click View on the approved budget, then Duplicate it; name the copy FY{year} Reforecast Q{n}.",
+     "3. In the duplicate, open Advance Actuals and advance year-to-date actuals through the last closed month.",
+     "4. Re-project the remaining months account by account using Calculating the Budget Increase or itemization rows; record the reason in Adding a Comment to an Account's Budget Details.",
+     "5. Use Comparing the Working Budget with Another Budget or with Actuals in the workbench to review the reforecast against the original budget; explain every line that moves by more than the owner threshold.",
+     "6. Obtain asset-manager approval of the reforecast package (exported to Excel/PDF).",
+     "7. Publish the working budget to a NEW G/L budget name (never publish over the original approved budget).",
+     "8. Check the publish history and the Budgets list to confirm both the original budget and the reforecast exist.",
+     "9. Control check: reforecast full-year NOI = YTD actual NOI + remaining-months projected NOI; tie YTD actual NOI to the closed-period income statement."
+    ],
+    "glAccountingImpact": "No GL impact — reforecasts and revisions are budget data. Advancing actuals reads posted G/L balances but posts nothing; publishing creates or updates a G/L budget used only for reporting and budget checks.",
+    "whatHappensNext": "Owner reports can show Actual vs Original Budget and Actual vs Reforecast side by side. Budget checks and BVA use whichever budget is set as the reporting budget, so confirm with the controller before changing any default budget selection.",
+    "yardiEquivalent": "Yardi Voyager: Forecast IQ reforecast (copy budget version, roll actuals into closed periods, re-project remaining periods) or Financials > Budget with a separate budget book/version (e.g. 'Reforecast') imported alongside the original budget.",
+    "pdfManualSource": "RP Accounting Forecasting & Planning User Guide.pdf, Pages 23-24 (Comparing the Working Budget), 174-180 (Publish History, Duplicating a Working Budget, Advance Actuals), 188-190 (Publishing a Working Budget), 195 (Adding a Comment)",
+    "proTips": "Never publish a reforecast over the approved budget. Institutional owners measure the property team against the original budget for bonuses and against the reforecast for cash planning, so both must survive."
+   },
+   {
+    "id": "scr_budget_gl_comparison",
+    "name": "GL Budget Comparison (Budget vs Actual Review)",
+    "navigation": [
+     "Applications",
+     "General Ledger",
+     "Reports",
+     "Financial Statements",
+     "Income Statement Budget Comparison"
+    ],
+    "purpose": "Runs the monthly budget-vs-actual (BVA) review that institutional owners require: actual MTD/YTD against the published budget by account, with dollar and percentage variances. You use the Income Statement Budget Comparison financial report and the Budget Variance Analysis workflow to capture variance explanations. It is the core of the owner reporting package, alongside the T-12 and balance sheet.",
+    "whyRecordsAreHere": [
+     "Month-end owner package requires BVA with written explanations for every line over the variance threshold.",
+     "Asset managers use BVA to challenge operating performance and approve reforecasts.",
+     "Variances often expose accounting errors (miscoding, missing accruals, double-posted invoices) before the package is released.",
+     "Budget Variance Analysis periods track which properties have completed their variance notes."
+    ],
+    "keyFieldsAndFilters": [
+     {
+      "name": "Reporting period",
+      "description": "Current Month / Year to Date (or custom reporting period) for MTD and YTD columns."
+     },
+     {
+      "name": "Budget",
+      "description": "The published G/L budget to compare with (original or reforecast)."
+     },
+     {
+      "name": "Reporting book",
+      "description": "Accrual (typical for owner reporting) vs Cash; include adjustment books when required."
+     },
+     {
+      "name": "Location / location group",
+      "description": "Property or portfolio; Include subs for child locations."
+     },
+     {
+      "name": "Variance columns",
+      "description": "Actual − Budget in dollars and percent; set the sign convention so favorable/unfavorable is clear for revenue vs expense."
+     },
+     {
+      "name": "Budget Variance Analysis notes",
+      "description": "Per-account explanations entered in the BVA period; can be excluded from reports."
+     }
+    ],
+    "accountantActionSOP": [
+     "1. Confirm the period is soft-closed (Phase 6 of the close): accruals, prepaids, depreciation and management fees are posted.",
+     "2. Open General Ledger > Reports > Financial Statements and run the Income Statement Budget Comparison for the property, selecting the published budget and Accrual book.",
+     "3. Export to Excel and flag every account where |variance| exceeds the owner threshold (for example ±10% AND ±$5,000; configure per owner).",
+     "4. Drill into each flagged account (click the amount → GL detail) to confirm the variance is operational, not a posting error; fix miscodes with reclass JEs before commenting.",
+     "5. Open General Ledger > Budget Variance Analysis > Periods, open the property's period and enter the variance note for each flagged account (cause, timing vs permanent, expected recovery).",
+     "6. Re-run the report after corrections and attach the final BVA with notes to the close work papers.",
+     "7. Control check: report total revenue, total expense and NOI must tie to the income statement and trial balance for the same period and book."
+    ],
+    "glAccountingImpact": "No GL impact — read-only comparison of posted actuals with budget amounts. If the review finds a miscode, the correcting reclass is a separate journal entry (e.g. DR 6110 Repairs & Maintenance / CR 6120 Turnover), which you can create from the Budget Variance Report (Creating a Journal Entry from a Budget Variance Report).",
+    "whatHappensNext": "Variance notes and the BVA report go into the monthly owner package. Recurring or permanent variances feed the next reforecast, and unexplained variances hold the package until resolved.",
+    "yardiEquivalent": "Yardi Voyager: Analytics > Financial Analytics > Budget Comparison (Income Statement Budget Comparison / 12-Month Budget vs Actual) with variance commentary in the owner report package (Report Packet).",
+    "pdfManualSource": "RP Accounting General Ledger User Guide.pdf, Pages 623-645 (Budget Variance Analysis, Viewing Budget Variance Reports, Creating a Journal Entry from a Budget Variance Report); RP Accounting Forecasting & Planning User Guide.pdf, Pages 145-151 (Budget Report)",
+    "proTips": "Explain variances in operational terms ('3 unbudgeted HVAC compressor replacements, $7,450, one-time') and state whether they are timing or permanent. 'Over budget' is not an explanation, and owners reject it."
+   },
+   {
+    "id": "scr_budget_variance_threshold_locking",
+    "name": "Variance Threshold Locking (Budget Checks: Prevent / Warn)",
+    "navigation": [
+     "Applications",
+     "Company",
+     "All",
+     "Approvals",
+     "Approval Configuration",
+     "Budget check"
+    ],
+    "purpose": "Configures spend control against the published budget: when an A/P invoice or purchase order would exceed the budgeted amount for its G/L account, RealPage either warns the user or prevents the transaction. The budget-check duration can be the current month or the current year. Combined with Approval Policy Manager budget checks, this locks spending to the approved budget and forces over-budget items through an escalated approval.",
+    "whyRecordsAreHere": [
+     "Owner requires hard controls so property teams cannot commit spend beyond the approved budget without escalation.",
+     "Repeated unfavorable R&M or turnover variances call for Warn (or Prevent) at PO entry.",
+     "Approval policies need a budget-check step so over-budget invoices route to the regional manager or asset manager.",
+     "Emergency spend may require an authorized bypass, which must be restricted and auditable."
+    ],
+    "keyFieldsAndFilters": [
+     {
+      "name": "Enable preventing or warning (A/P invoice)",
+      "description": "Check box in A/P Invoice Approvals; choose Warn (message only) or Prevent (blocks saving/posting)."
+     },
+     {
+      "name": "Enable preventing or warning (Purchase order)",
+      "description": "Same control applied to purchase orders so the check happens at commitment, before the vendor is engaged."
+     },
+     {
+      "name": "Default duration",
+      "description": "Current month (budget for the posting month) or Current year (annual budget for the account)."
+     },
+     {
+      "name": "Budget check in approvals",
+      "description": "Setting Up a Budget Check As Part of Approvals routes over-budget transactions to additional approvers."
+     },
+     {
+      "name": "Bypass permission",
+      "description": "Bypassing Budget Checks / the Prevent or Warn setting, restricted to specific roles for emergencies."
+     }
+    ],
+    "accountantActionSOP": [
+     "1. Confirm the correct budget is published and designated for budget checks; the check compares against published budget amounts only.",
+     "2. Open Applications > Company > All tab > Approvals > Approval Configuration.",
+     "3. In A/P Invoice Approvals select 'Enable preventing or warning a user when adding an AP Invoice that exceeds the budget' and choose Warn or Prevent per owner policy.",
+     "4. In Purchase orders select the equivalent option so over-budget commitments are caught at PO entry.",
+     "5. In Budget check set Default duration: Current year for annual-controlled accounts, Current month for owners that manage to monthly budgets.",
+     "6. Click Save, then set up the budget check step in the approval policy (Setting Up a Budget Check As Part of Approvals) so over-budget items route to the asset manager.",
+     "7. Restrict the bypass permission to controller-level roles and review bypass usage monthly.",
+     "8. Test with a sample PO over budget in a test property to confirm the Warn/Prevent message and the approval routing.",
+     "9. Control check: document the threshold configuration and any owner-approved exceptions in the close binder; review it after every budget publish or reforecast."
+    ],
+    "glAccountingImpact": "No GL impact — configuration only. It controls whether over-budget A/P invoices and POs can be saved or posted. When they post, invoices still record DR 6xxx Operating Expense / CR 2010 Accounts Payable; the control affects authorization, not the entry.",
+    "whatHappensNext": "Over-budget transactions show a warning or are blocked at entry. Approval routing escalates them, and BVA variances shrink because unauthorized overruns are stopped before commitment.",
+    "yardiEquivalent": "Yardi Voyager: Procure to Pay / PAYscan budget checks (PO and invoice workflow 'Over Budget' step with Warn/Stop settings by GL account and period) configured in workflow setup.",
+    "pdfManualSource": "RP Accounting General Ledger User Guide.pdf, Pages 597-600 (Setting Up a Budget Check As Part of Approvals, Setting a System Action When a Transaction Exceeds the Budget, Bypassing Budget Checks); RP Accounting Forecasting & Planning User Guide.pdf, Pages 166-167; RP Accounting Approval Policy Manager User Guide.pdf, Pages 36-46",
+    "proTips": "Start with Warn for 1–2 months so site teams learn the control, then move chronic overrun accounts (R&M, turnover, contract services) to Prevent. Keep utilities and taxes on Warn; you cannot refuse to pay them."
+   }
+  ]
  }
 }

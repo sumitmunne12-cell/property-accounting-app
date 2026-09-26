@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -10,30 +10,25 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../theme/colors';
 import { ALL_TASKS } from '../data/tasksData';
-import { EXCEPTION_PLAYBOOKS } from '../data/exceptionsPlaybookData';
-import { REALPAGE_MODULES } from '../data/realPageModulesData';
+import { EXCEPTION_PLAYBOOKS, EXCEPTION_CODE_NOTE } from '../data/exceptionsPlaybookData';
 import { GLOSSARY_TERMS } from '../data/glossaryData';
 import { PDF_CATALOG } from '../data/pdfCatalogData';
 import { triggerHaptic } from '../utils/haptics';
+import { searchScreens, SCREEN_COUNT } from '../utils/screenIndex';
+import useDebouncedValue from '../utils/useDebouncedValue';
+import ExceptionTriageWizard from './ExceptionTriageWizard';
 
-// Flattened once: the nine module files hold several thousand screens.
-const ALL_SCREENS = [];
-REALPAGE_MODULES.forEach((mod) => {
-  mod.submodules.forEach((sub) => {
-    sub.screens.forEach((scr) => {
-      ALL_SCREENS.push({ ...scr, moduleTitle: mod.title, moduleColor: mod.color });
-    });
-  });
-});
 const MAX_SCREEN_RESULTS = 50;
+const MAX_GLOSSARY_RESULTS = 40;
 
-export default function CommandSearch({ onSelectTask, onSelectScreen }) {
+export default function CommandSearch({ onSelectTask, onOpenScreen }) {
   const [searchQuery, setSearchQuery] = useState('');
+  const debouncedQuery = useDebouncedValue(searchQuery, 150);
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('All'); // 'All' | 'Manuals' | 'Exceptions' | 'Tasks' | 'Screens' | 'Glossary'
   const [expandedExceptionId, setExpandedExceptionId] = useState('ex_po_variance');
   const [expandedManualId, setExpandedManualId] = useState(null);
 
-  const normalizedQuery = searchQuery.trim().toLowerCase();
+  const normalizedQuery = debouncedQuery.trim().toLowerCase();
 
   // Filter Tasks
   const filteredTasks = ALL_TASKS.filter((t) => {
@@ -53,9 +48,10 @@ export default function CommandSearch({ onSelectTask, onSelectScreen }) {
       ex.title.toLowerCase().includes(normalizedQuery) ||
       ex.code.toLowerCase().includes(normalizedQuery) ||
       ex.symptom.toLowerCase().includes(normalizedQuery) ||
-      ex.whatTheReportIsFor.toLowerCase().includes(normalizedQuery)
+      ex.rootCause.some((c) => c.toLowerCase().includes(normalizedQuery))
     );
   });
+
 
   // Filter 57 PDF Manuals
   const filteredManuals = PDF_CATALOG.filter((doc) => {
@@ -68,24 +64,24 @@ export default function CommandSearch({ onSelectTask, onSelectScreen }) {
     );
   });
 
-  // Filter Screens (ALL_SCREENS is flattened once at module load — thousands of entries)
-  const filteredScreens = ALL_SCREENS.filter((scr) => {
-    if (!normalizedQuery) return false;
-    return (
-      scr.name.toLowerCase().includes(normalizedQuery) ||
-      scr.purpose.toLowerCase().includes(normalizedQuery) ||
-      scr.navigation.some((n) => n.toLowerCase().includes(normalizedQuery))
-    );
-  });
+  // Fuzzy screen search over the full catalog (index built once in utils/screenIndex)
+  const screenSearch = useMemo(
+    () => searchScreens(debouncedQuery, { limit: MAX_SCREEN_RESULTS }),
+    [debouncedQuery]
+  );
+  const filteredScreens = screenSearch.results;
 
   // Filter Glossary
-  const filteredGlossary = GLOSSARY_TERMS.filter((g) => {
-    if (!normalizedQuery) return false;
-    return (
-      g.term.toLowerCase().includes(normalizedQuery) ||
-      g.definition.toLowerCase().includes(normalizedQuery)
+  const filteredGlossary = useMemo(() => {
+    if (!normalizedQuery) return [];
+    return GLOSSARY_TERMS.filter(
+      (g) =>
+        g.term.toLowerCase().includes(normalizedQuery) ||
+        (g.acronym && g.acronym.toLowerCase() === normalizedQuery) ||
+        g.definition.toLowerCase().includes(normalizedQuery)
     );
-  });
+  }, [normalizedQuery]);
+
 
   const categories = ['All', 'Manuals (57)', 'Exceptions', 'Tasks', 'Screens', 'Glossary'];
 
@@ -97,11 +93,12 @@ export default function CommandSearch({ onSelectTask, onSelectScreen }) {
           <Ionicons name="search" size={18} color={COLORS.textSecondary} style={styles.searchIcon} />
           <TextInput
             style={styles.searchInput}
-            placeholder="Search all 57 manuals, exceptions, tasks, screens..."
+            placeholder={`Fuzzy-search ${SCREEN_COUNT} screens, 57 manuals, exceptions, terms...`}
             placeholderTextColor={COLORS.textMuted}
             value={searchQuery}
             onChangeText={(text) => setSearchQuery(text)}
             autoCapitalize="none"
+            autoCorrect={false}
           />
           {searchQuery.length > 0 && (
             <TouchableOpacity
@@ -215,6 +212,7 @@ export default function CommandSearch({ onSelectTask, onSelectScreen }) {
                 <Text style={styles.countBadgeText}>{filteredExceptions.length}</Text>
               </View>
             </View>
+            <Text style={styles.codeNote}>{EXCEPTION_CODE_NOTE}</Text>
 
             {filteredExceptions.map((ex) => {
               const isExpanded = expandedExceptionId === ex.id;
@@ -244,60 +242,10 @@ export default function CommandSearch({ onSelectTask, onSelectScreen }) {
                     />
                   </TouchableOpacity>
 
-                  {/* Expanded Playbook Details */}
+                  {/* Expanded Playbook: interactive diagnostic wizard */}
                   {isExpanded && (
                     <View style={styles.exceptionBody}>
-                      {/* Nav Path */}
-                      <View style={styles.detailBlock}>
-                        <Text style={styles.detailLabel}>EXACT REALPAGE NAVIGATION</Text>
-                        <View style={styles.breadcrumbPill}>
-                          <Ionicons name="compass-outline" size={13} color={COLORS.info} style={{ marginRight: 6 }} />
-                          <Text style={styles.breadcrumbText}>{ex.navigation.realpage.join('  ›  ')}</Text>
-                        </View>
-                      </View>
-
-                      {/* What It's For */}
-                      <View style={styles.detailBlock}>
-                        <Text style={styles.detailLabel}>WHAT THIS REPORT / QUEUE IS FOR</Text>
-                        <Text style={styles.detailText}>{ex.whatTheReportIsFor}</Text>
-                      </View>
-
-                      {/* Why It Happens */}
-                      <View style={styles.detailBlock}>
-                        <Text style={[styles.detailLabel, { color: COLORS.danger }]}>WHY RECORDS ARE HERE (ROOT CAUSE)</Text>
-                        {ex.whyItHappens.map((cause, i) => (
-                          <View key={i} style={styles.bulletRow}>
-                            <View style={[styles.bulletDot, { backgroundColor: COLORS.danger }]} />
-                            <Text style={styles.bulletText}>{cause}</Text>
-                          </View>
-                        ))}
-                      </View>
-
-                      {/* Resolution SOP */}
-                      <View style={styles.detailBlock}>
-                        <Text style={[styles.detailLabel, { color: COLORS.primaryLight }]}>STEP-BY-STEP RESOLUTION SOP</Text>
-                        {ex.resolutionSOP.map((step, i) => (
-                          <View key={i} style={styles.sopStep}>
-                            <View style={styles.sopBadge}>
-                              <Text style={styles.sopNum}>{i + 1}</Text>
-                            </View>
-                            <Text style={styles.sopText}>{step}</Text>
-                          </View>
-                        ))}
-                      </View>
-
-                      {/* GL Impact */}
-                      <View style={styles.glImpactCard}>
-                        <Text style={styles.glImpactTitle}>DOWNSTREAM GL IMPACT & NEXT STEP</Text>
-                        <Text style={styles.glImpactFormula}>{ex.downstreamImpact.glPosting}</Text>
-                        <Text style={styles.glNextStep}>Next: {ex.downstreamImpact.workflowNextStep}</Text>
-                      </View>
-
-                      {/* Pro Tip */}
-                      <View style={styles.proTipBox}>
-                        <Ionicons name="sparkles" size={14} color={COLORS.gold} />
-                        <Text style={styles.proTipText}>{ex.proTip}</Text>
-                      </View>
+                      <ExceptionTriageWizard playbook={ex} onOpenScreen={onOpenScreen} />
                     </View>
                   )}
                 </View>
@@ -345,25 +293,33 @@ export default function CommandSearch({ onSelectTask, onSelectScreen }) {
               <Ionicons name="desktop-outline" size={18} color={COLORS.info} />
               <Text style={styles.sectionTitle}>Matching RealPage Screens</Text>
               <View style={[styles.countBadge, { backgroundColor: `${COLORS.info}30` }]}>
-                <Text style={[styles.countBadgeText, { color: COLORS.info }]}>{filteredScreens.length}</Text>
+                <Text style={[styles.countBadgeText, { color: COLORS.info }]}>{screenSearch.total}</Text>
               </View>
             </View>
 
-            {filteredScreens.length > MAX_SCREEN_RESULTS && (
+            {screenSearch.total > MAX_SCREEN_RESULTS && (
               <Text style={styles.screenResultBreadcrumbs}>
-                Showing the first {MAX_SCREEN_RESULTS} of {filteredScreens.length} matches — refine your search.
+                Showing the best {MAX_SCREEN_RESULTS} of {screenSearch.total} matches — refine your search.
               </Text>
             )}
-            {filteredScreens.slice(0, MAX_SCREEN_RESULTS).map((scr) => (
-              <View key={scr.id} style={styles.screenResultCard}>
-                <Text style={[styles.screenResultModule, { color: scr.moduleColor }]}>{scr.moduleTitle}</Text>
-                <Text style={styles.screenResultName}>{scr.name}</Text>
-                <Text style={styles.screenResultBreadcrumbs}>{scr.navigation.join('  ›  ')}</Text>
-                <Text style={styles.screenResultPurpose} numberOfLines={2}>{scr.purpose}</Text>
-                {scr.pdfManualSource ? (
-                  <Text style={styles.screenResultBreadcrumbs} numberOfLines={1}>{scr.pdfManualSource}</Text>
-                ) : null}
-              </View>
+            {filteredScreens.map((entry) => (
+              <TouchableOpacity
+                key={entry.screen.id}
+                style={styles.screenResultCard}
+                activeOpacity={0.7}
+                onPress={() => {
+                  triggerHaptic('light');
+                  onOpenScreen(entry.screen.id, 'SEARCH RESULT');
+                }}
+              >
+                <Text style={[styles.screenResultModule, { color: entry.moduleColor }]}>
+                  {entry.moduleTitle} › {entry.submoduleTitle}
+                </Text>
+                <Text style={styles.screenResultName}>{entry.screen.name}</Text>
+                <Text style={styles.screenResultBreadcrumbs}>{entry.screen.navigation.join('  ›  ')}</Text>
+                <Text style={styles.screenResultPurpose} numberOfLines={2}>{entry.screen.purpose}</Text>
+                <Text style={styles.screenResultBreadcrumbs} numberOfLines={1}>{entry.screen.pdfManualSource}</Text>
+              </TouchableOpacity>
             ))}
           </View>
         )}
@@ -379,11 +335,16 @@ export default function CommandSearch({ onSelectTask, onSelectScreen }) {
               </View>
             </View>
 
-            {filteredGlossary.map((g, idx) => (
-              <View key={idx} style={styles.glossaryResultCard}>
+            {filteredGlossary.slice(0, MAX_GLOSSARY_RESULTS).map((g) => (
+              <View key={g.term} style={styles.glossaryResultCard}>
                 <Text style={styles.glossaryTerm}>{g.term}</Text>
                 <Text style={styles.glossaryDef}>{g.definition}</Text>
-                <Text style={styles.glossaryContext}>Context: {g.context}</Text>
+                <Text style={styles.glossaryContext}>{g.context}</Text>
+                {(g.relatedScreenIds || []).length > 0 && (
+                  <TouchableOpacity onPress={() => onOpenScreen(g.relatedScreenIds[0], `TERM · ${g.term.toUpperCase()}`)}>
+                    <Text style={styles.glossaryLink}>Open related screen SOP ›</Text>
+                  </TouchableOpacity>
+                )}
               </View>
             ))}
           </View>
@@ -816,6 +777,18 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: COLORS.textSecondary,
     lineHeight: 16,
+  },
+  codeNote: {
+    fontSize: 11,
+    color: COLORS.textMuted,
+    marginBottom: 10,
+    lineHeight: 16,
+  },
+  glossaryLink: {
+    fontSize: 12,
+    color: COLORS.info,
+    fontWeight: '600',
+    marginTop: 6,
   },
   glossaryResultCard: {
     backgroundColor: COLORS.surface,
