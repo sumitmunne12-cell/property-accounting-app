@@ -8,8 +8,10 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../theme/colors';
 import { triggerHaptic } from '../utils/haptics';
+import { SegmentedToggle } from './ui';
 
 export default function HeaderBar({
+  hideBrand = false,
   selectedProperty,
   onOpenPropertyPicker,
   activeSoftware,
@@ -23,37 +25,40 @@ export default function HeaderBar({
     <View style={styles.container}>
       {/* Top row: Branding & Software Switcher */}
       <View style={styles.topRow}>
-        <View style={styles.brandContainer}>
-          <View style={styles.logoBadge}>
-            <Ionicons name="business" size={18} color="#FFFFFF" />
+        {hideBrand ? (
+          <Text style={styles.deskTitle}>Command Center</Text>
+        ) : (
+          <View style={styles.brandContainer}>
+            <View style={styles.logoBadge}>
+              <Ionicons name="business" size={18} color="#FFFFFF" />
+            </View>
+            <View style={styles.brandText}>
+              <Text style={styles.brandTitle} numberOfLines={1}>
+                RealPage Master
+              </Text>
+              <Text style={styles.brandSubtitle} numberOfLines={1}>
+                US Offshore Property Accounting
+              </Text>
+            </View>
           </View>
-          <View>
-            <Text style={styles.brandTitle}>RealPage Master</Text>
-            <Text style={styles.brandSubtitle}>US Offshore Property Accounting</Text>
-          </View>
-        </View>
+        )}
 
-        {/* Software toggle pill */}
-        <TouchableOpacity
-          style={[
-            styles.softwareToggle,
-            activeSoftware === 'yardi' ? styles.softwareToggleYardi : styles.softwareToggleRP,
-          ]}
-          onPress={() => {
-            triggerHaptic('medium');
-            onToggleSoftware(activeSoftware === 'realpage' ? 'yardi' : 'realpage');
-          }}
-          activeOpacity={0.8}
-        >
-          <Ionicons
-            name={activeSoftware === 'yardi' ? 'layers' : 'cube'}
-            size={14}
-            color="#FFFFFF"
+        {/* Two-way platform toggle */}
+        <View style={styles.platformToggle}>
+          <SegmentedToggle
+            accent={activeSoftware === 'yardi' ? COLORS.yardi : COLORS.info}
+            value={activeSoftware}
+            onChange={(key) => {
+              if (key === activeSoftware) return;
+              triggerHaptic('medium');
+              onToggleSoftware(key);
+            }}
+            options={[
+              { key: 'realpage', label: 'RealPage' },
+              { key: 'yardi', label: 'Yardi' },
+            ]}
           />
-          <Text style={styles.softwareToggleText}>
-            {activeSoftware === 'yardi' ? 'Yardi Voyager' : 'RealPage Suite'}
-          </Text>
-        </TouchableOpacity>
+        </View>
       </View>
 
       {/* Bottom row: Property Selector & Shift Completion Bar */}
@@ -90,7 +95,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.surface,
     paddingHorizontal: 16,
-    paddingTop: 12,
+    paddingTop: 10,
     paddingBottom: 12,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.border,
@@ -104,18 +109,24 @@ const styles = StyleSheet.create({
   brandContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    flexShrink: 1,
+  },
+  brandText: {
+    flexShrink: 1,
   },
   logoBadge: {
     width: 32,
     height: 32,
     borderRadius: 8,
     backgroundColor: COLORS.primaryDark,
+    borderWidth: 1,
+    borderColor: `${COLORS.primaryLight}55`,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 10,
+    marginRight: 9,
   },
   brandTitle: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '700',
     color: COLORS.text,
     letterSpacing: 0.2,
@@ -125,24 +136,15 @@ const styles = StyleSheet.create({
     color: COLORS.textSecondary,
     fontWeight: '400',
   },
-  softwareToggle: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 16,
+  platformToggle: {
+    width: 162,
+    marginLeft: 8,
   },
-  softwareToggleRP: {
-    backgroundColor: COLORS.infoDark,
-  },
-  softwareToggleYardi: {
-    backgroundColor: COLORS.yardi,
-  },
-  softwareToggleText: {
-    color: '#FFFFFF',
-    fontSize: 11,
-    fontWeight: '600',
-    marginLeft: 4,
+  deskTitle: {
+    fontSize: 15,
+    fontWeight: '800',
+    color: COLORS.text,
+    letterSpacing: -0.2,
   },
   bottomRow: {
     flexDirection: 'row',

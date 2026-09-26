@@ -9,7 +9,13 @@ import {
   editDistance,
   normalize,
   getScreenEntry,
+  getScreenById,
+  loadScreenById,
+  ALL_SCREEN_ENTRIES,
+  MODULES,
+  getSubmoduleEntries,
 } from '../../src/utils/screenIndex.js';
+import { loadModule, isModuleLoaded, MODULE_IDS } from '../../src/data/moduleLoader.js';
 import {
   phaseStatuses,
   nextTask,
@@ -23,7 +29,6 @@ import {
 import { CLOSE_PHASES } from '../../src/data/closePlaybookData.js';
 import { EXCEPTION_PLAYBOOKS, entryTotals } from '../../src/data/exceptionsPlaybookData.js';
 import { GLOSSARY_TERMS, ACRONYM_TERMS } from '../../src/data/glossaryData.js';
-import { ALL_SCREEN_ENTRIES, getScreenById } from '../../src/utils/screenIndex.js';
 import { ALL_TASKS } from '../../src/data/tasksData.js';
 import { TASK_GUARDRAILS } from '../../src/data/taskGuardrails.js';
 
@@ -46,14 +51,14 @@ test('editDistance is bounded', () => {
 test('fuzzy search tolerates typos and ranks name matches first', () => {
   const { results } = searchScreens('positve pay file');
   assert.ok(results.length > 0);
-  assert.match(results[0].screen.name, /Positive Pay/i);
+  assert.match(results[0].name, /Positive Pay/i);
 });
 
 test('search understands A/P style tokens and module filters', () => {
   const { results } = searchScreens('a/p invoice', { moduleId: 'ap' });
   assert.ok(results.length > 0);
   assert.ok(results.every((e) => e.moduleId === 'ap'));
-  assert.match(results[0].screen.name, /A\/P Invoice/);
+  assert.match(results[0].name, /A\/P Invoice/);
 });
 
 test('empty query returns nothing; limit is respected', () => {
@@ -143,23 +148,60 @@ test('glossary: acronyms, cross-references and uniqueness', () => {
   assert.ok(GLOSSARY_TERMS.every((t) => t.modules && t.modules.length));
 });
 
-test('every catalog screen carries a complete regulatory guardrail', () => {
-  const fields = ['governingAuthority', 'regulationCode', 'plainEnglishRule', 'auditRisk'];
-  for (const e of ALL_SCREEN_ENTRIES) {
-    const g = e.screen.regulatoryGuardrail;
-    assert.ok(g, e.screen.id);
-    for (const f of fields) assert.ok(typeof g[f] === 'string' && g[f].length > 2, `${e.screen.id}.${f}`);
+test('boot index is lightweight: no module detail is loaded until requested', () => {
+  assert.equal(MODULE_IDS.length, 9);
+  assert.ok(MODULE_IDS.every((id) => !isModuleLoaded(id)), 'a module was loaded at import time');
+  assert.equal(getScreenById('scr_cash_bank_reconciliation_new'), null);
+  const e = getScreenEntry('scr_cash_bank_reconciliation_new');
+  for (const k of ['id', 'name', 'nav', 'moduleId', 'category', 'authority']) assert.ok(e[k], k);
+  assert.equal(MODULES.reduce((n, m) => n + m.screenCount, 0), SCREEN_COUNT);
+});
+
+test('lazy loading pulls in one module and resolves full screen detail', async () => {
+  const [a, b] = await Promise.all([loadScreenById('scr_cash_bank_reconciliation_new'), loadScreenById('scr_cash_bank_reconciliation_new')]);
+  assert.equal(a, b);
+  assert.ok(a.accountantActionSOP.length > 0);
+  assert.ok(isModuleLoaded('cash'));
+  assert.ok(!isModuleLoaded('gl'), 'loading cash must not load other modules');
+  assert.equal(getScreenById('scr_cash_bank_reconciliation_new'), a);
+  assert.equal(await loadScreenById('scr_does_not_exist'), null);
+});
+
+test('search index and manifest match the module files exactly', async () => {
+  for (const mod of MODULES) {
+    const full = await loadModule(mod.id);
+    assert.equal(full.submodules.length, mod.submodules.length, mod.id);
+    full.submodules.forEach((sub, i) => {
+      const entries = getSubmoduleEntries(mod.submodules[i].id);
+      assert.equal(entries.length, sub.screens.length, sub.id);
+      sub.screens.forEach((scr, j) => {
+        const e = entries[j];
+        assert.equal(e.id, scr.id);
+        assert.equal(e.name, scr.name);
+        assert.equal(e.category, sub.title);
+        assert.equal(e.authority, scr.regulatoryGuardrail.governingAuthority);
+      });
+    });
   }
 });
 
-test('guardrails map to the right regulation for key screens', () => {
-  const auth = (id) => getScreenById(id).regulatoryGuardrail;
-  assert.match(auth('scr_gl_security_deposits_multifamily').governingAuthority, /State Property Code/);
-  assert.match(auth('scr_cash_escheatment_workbench').regulationCode, /Unclaimed Property/);
-  assert.match(auth('scr_ap_guide_to_vendor_1099s').regulationCode, /§ 6041/);
-  assert.match(auth('scr_fixed_assets_post_depreciation').regulationCode, /§ 168/);
-  assert.match(auth('scr_cash_bank_reconciliation_new').regulationCode, /4-406/);
-  assert.match(auth('scr_jobcost_retainage_register_report').governingAuthority, /Lien/);
+test('every catalog screen carries a complete regulatory guardrail', async () => {
+  const fields = ['governingAuthority', 'regulationCode', 'plainEnglishRule', 'auditRisk'];
+  for (const e of ALL_SCREEN_ENTRIES) {
+    const g = (await loadScreenById(e.id)).regulatoryGuardrail;
+    assert.ok(g, e.id);
+    for (const f of fields) assert.ok(typeof g[f] === 'string' && g[f].length > 2, `${e.id}.${f}`);
+  }
+});
+
+test('guardrails map to the right regulation for key screens', async () => {
+  const auth = async (id) => (await loadScreenById(id)).regulatoryGuardrail;
+  assert.match((await auth('scr_gl_security_deposits_multifamily')).governingAuthority, /State Property Code/);
+  assert.match((await auth('scr_cash_escheatment_workbench')).regulationCode, /Unclaimed Property/);
+  assert.match((await auth('scr_ap_guide_to_vendor_1099s')).regulationCode, /§ 6041/);
+  assert.match((await auth('scr_fixed_assets_post_depreciation')).regulationCode, /§ 168/);
+  assert.match((await auth('scr_cash_bank_reconciliation_new')).regulationCode, /4-406/);
+  assert.match((await auth('scr_jobcost_retainage_register_report')).governingAuthority, /Lien/);
 });
 
 test('every Daily Hub task has a guardrail for the MasteryModal Legal tab', () => {

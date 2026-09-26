@@ -5,9 +5,7 @@ import { COLORS } from '../theme/colors';
 import { entryTotals } from '../data/exceptionsPlaybookData';
 import { getScreenEntry } from '../utils/screenIndex';
 import { triggerHaptic } from '../utils/haptics';
-
-const money = (n) =>
-  n ? `$${Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '';
+import { JournalTable } from './Ledger';
 
 function DiagnosticWizard({ nodes }) {
   const [path, setPath] = useState([]); // [{ nodeId, label }]
@@ -74,35 +72,7 @@ function DiagnosticWizard({ nodes }) {
   );
 }
 
-function EntryTable({ entry }) {
-  const totals = entryTotals(entry);
-  const balanced = Math.abs(totals.debit - totals.credit) < 0.005;
-  return (
-    <View style={styles.entryBox}>
-      <Text style={styles.entryLabel}>{entry.label}</Text>
-      <View style={styles.entryHeaderRow}>
-        <Text style={[styles.entryCell, styles.entryAccount, styles.entryHead]}>Account</Text>
-        <Text style={[styles.entryCell, styles.entryAmt, styles.entryHead]}>DR</Text>
-        <Text style={[styles.entryCell, styles.entryAmt, styles.entryHead]}>CR</Text>
-      </View>
-      {entry.lines.map((l, i) => (
-        <View key={i} style={styles.entryRow}>
-          <Text style={[styles.entryCell, styles.entryAccount, l.credit ? styles.creditIndent : null]}>{l.account}</Text>
-          <Text style={[styles.entryCell, styles.entryAmt]}>{money(l.debit)}</Text>
-          <Text style={[styles.entryCell, styles.entryAmt]}>{money(l.credit)}</Text>
-        </View>
-      ))}
-      <View style={[styles.entryRow, styles.entryTotalRow]}>
-        <Text style={[styles.entryCell, styles.entryAccount, styles.entryHead]}>
-          {balanced ? 'Balanced' : 'OUT OF BALANCE'}
-        </Text>
-        <Text style={[styles.entryCell, styles.entryAmt, styles.entryHead]}>{money(totals.debit)}</Text>
-        <Text style={[styles.entryCell, styles.entryAmt, styles.entryHead]}>{money(totals.credit)}</Text>
-      </View>
-      {entry.memo ? <Text style={styles.entryMemo}>Memo: {entry.memo}</Text> : null}
-    </View>
-  );
-}
+const EntryTable = ({ entry }) => <JournalTable entry={entry} totals={entryTotals(entry)} />;
 
 export default function ExceptionTriageWizard({ playbook, onOpenScreen }) {
   const report = getScreenEntry(playbook.diagnosticReport.screenId);
@@ -142,7 +112,7 @@ export default function ExceptionTriageWizard({ playbook, onOpenScreen }) {
           >
             <Ionicons name="document-text-outline" size={14} color={COLORS.info} />
             <Text style={styles.linkBtnText} numberOfLines={1}>
-              Open SOP: {report.screen.name}
+              Open SOP: {report.name}
             </Text>
           </TouchableOpacity>
         ) : null}
@@ -187,7 +157,7 @@ export default function ExceptionTriageWizard({ playbook, onOpenScreen }) {
               return (
                 <TouchableOpacity key={id} style={styles.chip} onPress={() => onOpenScreen(id, playbook.code)}>
                   <Text style={styles.chipText} numberOfLines={1}>
-                    {e.screen.name}
+                    {e.name}
                   </Text>
                 </TouchableOpacity>
               );
@@ -282,24 +252,6 @@ const styles = StyleSheet.create({
   },
   sopNum: { fontSize: 10, color: '#FFFFFF', fontWeight: '700' },
   sopText: { fontSize: 12, color: COLORS.text, lineHeight: 18, flex: 1 },
-  entryBox: {
-    backgroundColor: COLORS.surface,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: `${COLORS.success}60`,
-    padding: 10,
-    marginBottom: 8,
-  },
-  entryLabel: { fontSize: 12, color: COLORS.text, fontWeight: '600', marginBottom: 6 },
-  entryHeaderRow: { flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: COLORS.border, paddingBottom: 4 },
-  entryRow: { flexDirection: 'row', paddingVertical: 3 },
-  entryTotalRow: { borderTopWidth: 1, borderTopColor: COLORS.border, marginTop: 2, paddingTop: 5 },
-  entryCell: { fontSize: 11, color: COLORS.textSecondary },
-  entryHead: { fontWeight: '700', color: COLORS.text },
-  entryAccount: { flex: 1 },
-  creditIndent: { paddingLeft: 14 },
-  entryAmt: { width: 82, textAlign: 'right' },
-  entryMemo: { fontSize: 11, color: COLORS.textMuted, marginTop: 6, fontStyle: 'italic' },
   navText: { fontSize: 12, color: COLORS.info, lineHeight: 18 },
   chipRow: { flexDirection: 'row', flexWrap: 'wrap' },
   chip: {

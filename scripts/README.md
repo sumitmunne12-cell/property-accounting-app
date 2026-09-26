@@ -5,7 +5,7 @@
 re-run the builder.
 
 ```bash
-npm run build:modules   # regenerate the 9 module files, the RealPage glossary block and the coverage report
+npm run build:modules   # regenerate the 9 module files, the search index + manifest, the RealPage glossary block and the coverage report
 npm run check           # ESLint + module/cross-link validation + unit tests
 python3 scripts/audit_quality.py   # optional: how much content is manual-derived vs. fallback
 ```
@@ -14,7 +14,7 @@ python3 scripts/audit_quality.py   # optional: how much content is manual-derive
 
 - `npm run lint`: ESLint (React, hooks and Node rules) over the app and the tooling.
 - `npm run validate`: `validate_modules.mjs` checks ES-module syntax, schema, the 10 fields per screen, unique ids and placeholder text. `validate_app_data.mjs` checks that every `screenId` used by the Close Cockpit, exception playbooks, Rosetta Stone and glossary exists, that module references are valid, that adjusting entries balance and that every diagnostic-wizard path ends in a verdict.
-- `npm test`: `scripts/test/app.test.mjs` runs Node unit tests for fuzzy search, close sequencing, playbooks and the glossary.
+- `npm test`: `scripts/test/app.test.mjs` runs Node unit tests for fuzzy search, lazy module loading, index/module consistency, close sequencing, playbooks and the glossary.
 
 ## Inputs
 
@@ -41,6 +41,19 @@ python3 scripts/audit_quality.py   # optional: how much content is manual-derive
 | `yardiEquivalent` | The Yardi Voyager screen or workflow from the knowledge base, with the reporting equivalent added for report screens. |
 | `regulatoryGuardrail` | The governing authority, regulation code, plain-English rule and audit risk for the screen's topic (`rp_guardrails.py`). Screens that edit, reverse or delete posted records also get the record-retention rule. |
 | `pdfManualSource` | Manual file name and page range. Identical topics in other manuals of the same module are listed as "also documented in". |
+
+## How the app loads the catalog
+
+The nine module files hold about 28 MB of screen detail, too much to parse at launch on a 3 GB phone. The builder therefore also writes two small files:
+
+| File | Content |
+| --- | --- |
+| `src/data/searchIndex.json` | One compact entry per screen: `{ id, name, nav, moduleId, category, authority }` (about 1.8 MB, 175 KB gzipped). `nav` is the navigation path without the leading "Applications" and the trailing screen name. |
+| `src/data/moduleManifest.json` | Module titles, colors, icons, descriptions, GL legend and each submodule's id, title and screen count. The index is written in manifest order, so the counts map every entry to its submodule. |
+
+`src/utils/screenIndex.js` builds the fuzzy search, the Explorer lists and every cross-link check from these two files. `src/data/moduleLoader.js` imports a module file with `import()` only when a screen in it is opened (`useScreenDetail` / `LazyScreenDetail`). On web, Metro emits each module as its own chunk. On iOS and Android (Hermes), the module stays in the bundle but its factory does not run, so its objects are not allocated, until it is loaded.
+
+Never import the module files statically from app code: that pulls all 28 MB back into the startup path. The unit tests fail if any module is loaded at import time or if the index drifts from the module files.
 
 ## Coverage accounting
 

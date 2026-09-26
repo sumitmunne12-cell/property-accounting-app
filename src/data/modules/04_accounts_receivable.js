@@ -9,7 +9,7 @@ export const arModule = {
   "title": "Accounts Receivable (AR)",
   "shortCode": "AR",
   "icon": "cash-outline",
-  "color": "#F472B6",
+  "color": "#2DD4BF",
   "description": "Complete RealPage Accounts Receivable: customers, billing (A/R invoices, recurring and quick entry, intercompany bill-backs), payments and deposits, adjustments, subledger close, account maintenance, PEX import, A/R setup (terms, taxes, territories, templates) and all A/R reports and charts.",
   "glAccountLegend": "GL examples use an illustrative multifamily chart of accounts: 1110 Operating Cash, 1115 Security Deposit Trust Cash, 1120 Petty Cash, 1130 Undeposited Funds, 1210 Resident/Tenant A/R, 1215 Allowance for Doubtful Accounts, 1230 Due From Affiliates, 1250 Input VAT/Tax Recoverable, 1310 Prepaid Expenses, 1330 Tax & Insurance Escrow, 1340 Replacement Reserve Escrow, 1410 Construction in Progress, 1520 Buildings, 1530 Building Improvements, 1540 FF&E, 1590 Accumulated Depreciation, 2010 Accounts Payable, 2015 Retainage Payable, 2020 Accrued Expenses, 2110 Resident Security Deposits, 2120 Prepaid Rent, 2130 Due To Affiliates, 2140 Credit Card Payable, 2150 Employee Reimbursements Payable, 2160 Sales Tax/VAT Payable, 2170 Unclaimed Property Payable, 2210 Mortgage/Construction Loan Payable, 3010 Partners' Capital, 3020 Distributions, 3100 Retained Earnings, 4010 Gross Potential Rent, 4040 Concessions, 4050 Bad Debt, 4100 Other Income (late/NSF/fees), 4110 Utility Reimbursement, 6010 Payroll, 6110 Repairs & Maintenance, 6210 Utilities, 6310 Marketing, 6410 Administrative, 6420 Bank Charges, 6510 Management Fees, 6610 Insurance, 6620 Real Estate Taxes, 7010 Interest Expense, 7110 Depreciation Expense. Map to each owner's chart of accounts.",
   "submodules": [

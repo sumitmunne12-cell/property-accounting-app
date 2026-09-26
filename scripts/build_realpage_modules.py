@@ -34,31 +34,31 @@ CURATED_PATH = os.path.join(ROOT, 'scripts', 'curated_screens.json')
 
 MODULES = [
     dict(file='01_general_ledger', export='glModule', code='gl', id='gl', title='General Ledger (GL)', shortCode='GL',
-         icon='book-outline', color='#818CF8', area='General Ledger',
+         icon='book-outline', color='#10B981', area='General Ledger',
          description='Complete RealPage General Ledger: G/L workbench, accounting methods, chart of accounts, statistical accounts, account groups, journals and journal entries (standard, adjusting, GAAP, tax, user-defined books, statistical), recurring entries, JE approvals, prepaids, accruals, books open/close, budgets and BVA, allocations, GL setup, GL/financial reports, management fees and the full data-import reference.'),
     dict(file='02_accounts_payable', export='apModule', code='ap', id='ap', title='Accounts Payable (AP)', shortCode='AP',
          icon='receipt-outline', color='#38BDF8', area='Accounts Payable',
          description='Complete RealPage Accounts Payable and Spend: approval workbench, vendors, A/P invoices and invoice research, payments (checks, ACH/EFT, manual, partial), adjustments and advances, periodic tasks (reclasses, subledger close, fees, recurring invoices, expense reports, assets, bids/contracts, Full Service, scanning), A/P setup, A/P reports and charts, Spend Management (POs, contracts, catalogs), AI Finance Agent and the Approval Policy Manager.'),
     dict(file='03_cash_management', export='cashModule', code='cash', id='cash', title='Cash Management', shortCode='Cash',
-         icon='wallet-outline', color='#10B981', area='Cash Management',
+         icon='wallet-outline', color='#F59E0B', area='Cash Management',
          description='Complete RealPage Cash Management: bank accounts, bank feeds and matching rules, bank reconciliations, deposits and undeposited funds, other receipts, bank transfers and owner distributions, credit card and PC card programs, petty cash, available cash, escheatment, Positive Pay and electronic payment (ACH) configuration, plus cash reports.'),
     dict(file='04_accounts_receivable', export='arModule', code='ar', id='ar', title='Accounts Receivable (AR)', shortCode='AR',
-         icon='cash-outline', color='#F472B6', area='Accounts Receivable',
+         icon='cash-outline', color='#2DD4BF', area='Accounts Receivable',
          description='Complete RealPage Accounts Receivable: customers, billing (A/R invoices, recurring and quick entry, intercompany bill-backs), payments and deposits, adjustments, subledger close, account maintenance, PEX import, A/R setup (terms, taxes, territories, templates) and all A/R reports and charts.'),
     dict(file='05_financial_close', export='closeModule', code='close', id='close', title='Financial Close Management', shortCode='Close',
-         icon='lock-closed-outline', color='#F59E0B', area='Financial Close Management',
+         icon='lock-closed-outline', color='#8B5CF6', area='Financial Close Management',
          description='Complete RealPage Financial Close Management: close checklists and monthly checklists, task generation, workbench and console, work-paper configurations and packages (generate, upload, submit, approve/decline, regenerate) and close reports.'),
     dict(file='06_jobcost_capex_reserves', export='jobcostModule', code='jobcost', id='job_cost', title='Job Cost, CapEx & Replacement Reserves', shortCode='Capex',
          icon='construct-outline', color='#FB923C', area='Job Cost & Reserves',
          description='Complete RealPage Job Cost & Reserves and Replacement Reserves: jobs, cost codes, job budgets and budget change orders, commitments and contracts, permits, draw models and funding sources, draws and draw receipts, reserve accounts and schedules, and job cost/reserve reports.'),
     dict(file='07_fixed_assets', export='fixedAssetsModule', code='fixed_assets', id='fixed_assets', title='Fixed Assets', shortCode='Assets',
-         icon='business-outline', color='#A78BFA', area='Fixed Assets',
+         icon='business-outline', color='#34D399', area='Fixed Assets',
          description='Complete RealPage Fixed Assets: asset classes and books, adding/importing/activating assets, transfers and reclasses, disposals, depreciation batches and posting, and asset information/reconciliation reports.'),
     dict(file='08_budgeting_forecasting', export='budgetingModule', code='budgeting', id='budgeting', title='Budgeting & Forecasting', shortCode='Budget',
-         icon='layers-outline', color='#6366F1', area='Forecasting & Planning',
+         icon='layers-outline', color='#818CF8', area='Forecasting & Planning',
          description='Complete RealPage Forecasting & Planning: workbench, working budgets, budget import/export, spreadsheet entry, payroll planning (positions, employees, taxes, benefits, workers comp), publishing, comparisons with actuals and budget reports.'),
     dict(file='09_reporting_admin', export='reportingAdminModule', code='reporting', id='reporting', title='Reporting & Administration', shortCode='Reports',
-         icon='bar-chart-outline', color='#22D3EE', area='Reports',
+         icon='bar-chart-outline', color='#60A5FA', area='Reports',
          description='Complete RealPage reporting and administration: Accounting Reports and Report Center, Financial Report Writer, Custom Report Wizard, Reporting Portal, Dashboards, Investor Tracking, Financial Suite basics, Company application (entities, users, roles, permissions, configuration), Service Provider setup, Time & Resources, Value Added Tax, Platform (Customization) Services and the Mobile App.'),
 ]
 
@@ -1023,6 +1023,55 @@ def write_js(module, submodules):
     return path, n_screens
 
 
+SEARCH_INDEX_JSON = os.path.join(ROOT, 'src', 'data', 'searchIndex.json')
+MANIFEST_JSON = os.path.join(ROOT, 'src', 'data', 'moduleManifest.json')
+# Order of the module tabs in the app.
+APP_MODULE_ORDER = ['ap', 'ar', 'gl', 'cash', 'close', 'job_cost', 'fixed_assets', 'budgeting', 'reporting']
+
+
+def compact_nav(nav, name):
+    """Navigation without the implied 'Applications' root and without a trailing element that just
+    repeats the screen name (the app re-adds both when displaying the breadcrumb)."""
+    parts = list(nav)
+    if parts and parts[0] == 'Applications':
+        parts = parts[1:]
+    if len(parts) > 1 and parts[-1].strip().lower() == name.strip().lower():
+        parts = parts[:-1]
+    return ' > '.join(parts)
+
+
+def write_search_index(built):
+    """Compact boot-time index + module manifest so the app can search and list every screen
+    without loading the 28 MB of module detail (modules are imported on demand)."""
+    by_id = {m['id']: (m, subs) for m, subs in built}
+    index = []
+    manifest = []
+    for mid in APP_MODULE_ORDER:
+        module, submodules = by_id[mid]
+        subs = []
+        for sm in submodules:
+            for scr in sm['screens']:
+                index.append(OrderedDict([
+                    ('id', scr['id']),
+                    ('name', scr['name']),
+                    ('nav', compact_nav(scr['navigation'], scr['name'])),
+                    ('moduleId', mid),
+                    ('category', sm['title']),
+                    ('authority', scr['regulatoryGuardrail']['governingAuthority']),
+                ]))
+            subs.append(OrderedDict([('id', sm['id']), ('title', sm['title']), ('count', len(sm['screens']))]))
+        manifest.append(OrderedDict([
+            ('id', mid), ('file', module['file']), ('title', module['title']), ('shortCode', module['shortCode']),
+            ('icon', module['icon']), ('color', module['color']), ('description', module['description']),
+            ('glAccountLegend', K.COA_LEGEND), ('screenCount', sum(x['count'] for x in subs)), ('submodules', subs),
+        ]))
+    with open(SEARCH_INDEX_JSON, 'w', encoding='utf-8') as f:
+        json.dump(index, f, ensure_ascii=False, separators=(',', ':'))
+    with open(MANIFEST_JSON, 'w', encoding='utf-8') as f:
+        json.dump(manifest, f, ensure_ascii=False, indent=1)
+    return len(index), os.path.getsize(SEARCH_INDEX_JSON)
+
+
 TASKS_JS = os.path.join(ROOT, 'src', 'data', 'tasksData.js')
 TASK_GUARDRAILS_JS = os.path.join(ROOT, 'src', 'data', 'taskGuardrails.js')
 TASK_MODULE = {'GL': 'gl', 'AP': 'ap', 'Cash Management': 'cash', 'Approvals': 'ap', 'Reporting Portal': 'reporting'}
@@ -1114,6 +1163,7 @@ def main():
     all_cov = OrderedDict()
     module_manuals = OrderedDict()
     screens_by_module = OrderedDict()
+    built = []
     for module in MODULES:
         cur = curated.get(module['code'])
         reserved = [x['id'] for x in cur['screens']] if cur else []
@@ -1134,11 +1184,14 @@ def main():
             s.pop('manual', None)
         screens_by_module[module['file']] = [x for sm in submodules for x in sm['screens']]
         path, n = write_js(module, submodules)
+        built.append((module, submodules))
         st = Counter(c['status'] for c in coverage)
         summary[module['file']] = {'checklist_items': len(coverage), 'screens': n, 'submodules': len(submodules),
                                    'status_counts': dict(st), 'bytes': os.path.getsize(path)}
         all_cov[module['file']] = coverage
         print(f"{module['file']}: {n} screens in {len(submodules)} submodules; {dict(st)}; {os.path.getsize(path)/1e6:.2f} MB")
+    n_idx, idx_bytes = write_search_index(built)
+    print(f"search index: {n_idx} screens, {idx_bytes / 1e6:.2f} MB")
     n_tasks = write_task_guardrails()
     print(f"task guardrails: {n_tasks} Daily Hub tasks")
     terms, entries = G.build_glossary(module_manuals, screens_by_module)

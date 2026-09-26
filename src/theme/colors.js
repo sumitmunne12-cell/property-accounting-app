@@ -1,55 +1,93 @@
+// Executive dark theme: zinc/slate surfaces, hairline borders and one accent per accounting
+// domain. Every color is a 6-digit hex so components can append an alpha suffix
+// (e.g. `${COLORS.gold}40`).
+
+// Domain accents: one hue per area of the ledger, used for module tabs, chips and gauges.
+export const ACCENTS = {
+  emerald: '#10B981', // General Ledger / Fixed Assets (balance sheet, assets)
+  sky: '#38BDF8', // Accounts Payable / spend
+  amber: '#F59E0B', // Cash / warnings
+  violet: '#8B5CF6', // Financial close / period end
+  rose: '#F43F5E', // Exceptions / audit risk
+};
+
 export const COLORS = {
-  // Backgrounds
-  background: '#0B0F19',
-  surface: '#151C2C',
-  surfaceLight: '#1E293B',
-  surfaceHighlight: '#26344F',
-  surfaceInput: '#131927',
-  
+  // Backgrounds (zinc scale, darkest to lightest)
+  background: '#09090B',
+  surface: '#111114',
+  surfaceLight: '#18181C',
+  surfaceHighlight: '#232329',
+  surfaceInput: '#0D0D10',
+  surfaceRaised: '#1C1C21',
+
   // Borders
-  border: '#222F46',
-  borderLight: '#334155',
-  borderFocus: '#6366F1',
-  
+  border: '#232329',
+  borderLight: '#2F2F37',
+  borderFocus: '#8B5CF6',
+
   // Text
-  text: '#F8FAFC',
-  textSecondary: '#94A3B8',
-  textMuted: '#64748B',
-  textInverse: '#0F172A',
-  
-  // Accents
-  primary: '#6366F1',       // Royal Indigo
-  primaryDark: '#4F46E5',
-  primaryLight: '#818CF8',
-  primarySoft: 'rgba(99, 102, 241, 0.15)',
-  
-  success: '#10B981',       // Emerald (Balanced, Complete)
+  text: '#F4F4F5',
+  textSecondary: '#A1A1AA',
+  textMuted: '#71717A',
+  textInverse: '#09090B',
+
+  // Brand / interactive
+  primary: '#7C6CF6',
+  primaryDark: '#5B4BDB',
+  primaryLight: '#A99CFB',
+  primarySoft: 'rgba(124, 108, 246, 0.14)',
+
+  // Semantic (mapped onto the domain accents)
+  success: ACCENTS.emerald,
   successDark: '#059669',
-  successSoft: 'rgba(16, 185, 129, 0.15)',
-  
-  warning: '#F59E0B',       // Amber (Exceptions, Holds)
+  successSoft: 'rgba(16, 185, 129, 0.14)',
+
+  warning: ACCENTS.amber,
   warningDark: '#D97706',
-  warningSoft: 'rgba(245, 158, 11, 0.15)',
-  
-  danger: '#EF4444',        // Rose/Red (Urgent, Overdue)
-  dangerDark: '#DC2626',
-  dangerSoft: 'rgba(239, 68, 68, 0.15)',
-  
-  info: '#0EA5E9',          // Sky (RealPage System)
+  warningSoft: 'rgba(245, 158, 11, 0.14)',
+
+  danger: ACCENTS.rose,
+  dangerDark: '#E11D48',
+  dangerSoft: 'rgba(244, 63, 94, 0.14)',
+
+  info: ACCENTS.sky,
   infoDark: '#0284C7',
-  infoSoft: 'rgba(14, 165, 233, 0.15)',
-  
-  yardi: '#8B5CF6',         // Violet (Yardi Voyager)
-  yardiSoft: 'rgba(139, 92, 246, 0.15)',
-  
-  gold: '#FBBF24',
-  goldSoft: 'rgba(251, 191, 36, 0.15)',
-  
-  // Badges & Statuses
+  infoSoft: 'rgba(56, 189, 248, 0.14)',
+
+  close: ACCENTS.violet,
+  closeSoft: 'rgba(139, 92, 246, 0.14)',
+
+  yardi: '#C084FC', // Yardi Voyager side of every comparison
+  yardiSoft: 'rgba(192, 132, 252, 0.14)',
+
+  // Legal & audit guardrails
+  gold: '#E3B341',
+  goldSoft: 'rgba(227, 179, 65, 0.14)',
+  crimson: '#BE123C',
+  guardrailSurface: '#15110C',
+
+  // Accounting tables
+  debit: '#34D399',
+  credit: '#FBBF24',
+
+  // Badges & statuses
   badgeDaily: '#38BDF8',
-  badgeWeekly: '#818CF8',
+  badgeWeekly: '#A99CFB',
   badgePreAME: '#F472B6',
   badgePostAME: '#F59E0B',
   badgeReview: '#34D399',
-  badgeReporting: '#A78BFA',
+  badgeReporting: '#C084FC',
+};
+
+// Accent per RealPage module id (matches the generated module colors).
+export const MODULE_ACCENTS = {
+  gl: ACCENTS.emerald,
+  fixed_assets: '#34D399',
+  ap: ACCENTS.sky,
+  cash: ACCENTS.amber,
+  close: ACCENTS.violet,
+  ar: '#2DD4BF',
+  job_cost: '#FB923C',
+  budgeting: '#818CF8',
+  reporting: '#60A5FA',
 };

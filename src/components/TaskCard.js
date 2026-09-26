@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {
   StyleSheet,
   View,
@@ -9,7 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../theme/colors';
 import { triggerHaptic } from '../utils/haptics';
 
-export default function TaskCard({
+function TaskCard({
   task,
   isCompleted,
   isBookmarked,
@@ -181,6 +181,9 @@ export default function TaskCard({
     </TouchableOpacity>
   );
 }
+
+// Memoized: the Daily Hub list re-renders only the cards whose props changed.
+export default memo(TaskCard);
 
 const styles = StyleSheet.create({
   card: {

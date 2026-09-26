@@ -1,60 +1,93 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import {
   StyleSheet,
   View,
   Text,
   ScrollView,
+  FlatList,
   TextInput,
   TouchableOpacity,
+  Platform,
+  useWindowDimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../theme/colors';
-import { REALPAGE_MODULES } from '../data/realPageModulesData';
+import { LAYOUT, RADII } from '../theme/layout';
 import { triggerHaptic } from '../utils/haptics';
-import { searchScreens, getScreenEntry } from '../utils/screenIndex';
+import { MODULES, getModuleMeta, getScreenEntry, getSubmoduleEntries, searchScreens } from '../utils/screenIndex';
 import useDebouncedValue from '../utils/useDebouncedValue';
-import ScreenDetail from './ScreenDetail';
+import { LazyScreenDetail } from './ScreenDetail';
 
 const MAX_FILTER_RESULTS = 100;
+// Master/detail split once the content column is wide enough for both panes.
+const SPLIT_MIN = 900;
 
-function ScreenCard({ screen, color, isExpanded, onToggle, badge }) {
+// One catalog row. Only the lightweight index entry is needed to render it; the module's full
+// detail is imported the first time a row is expanded (or selected on desktop).
+const ScreenRow = memo(function ScreenRow({ entry, color, expanded, selected, inline, onToggle, badge }) {
   return (
-    <View style={[styles.screenCard, isExpanded && styles.screenCardActive]}>
-      <TouchableOpacity style={styles.screenHeader} onPress={onToggle} activeOpacity={0.7}>
-        <View style={styles.screenHeaderLeft}>
-          <View style={[styles.screenIconCircle, { backgroundColor: `${color}20` }]}>
-            <Ionicons name="desktop-outline" size={16} color={color} />
-          </View>
-          <View style={styles.screenHeaderText}>
-            {badge ? <Text style={styles.focusBadge}>{badge}</Text> : null}
-            <Text style={styles.screenName}>{screen.name}</Text>
-            <Text style={styles.screenBreadcrumbQuick} numberOfLines={1}>
-              {screen.navigation.join('  ›  ')}
+    <View style={[styles.screenCard, (expanded || selected) && { borderColor: `${color}88` }]}>
+      <TouchableOpacity style={styles.screenHeader} onPress={() => onToggle(entry.id)} activeOpacity={0.7}>
+        <View style={[styles.screenIcon, { backgroundColor: `${color}1A`, borderColor: `${color}40` }]}>
+          <Ionicons name="desktop-outline" size={15} color={color} />
+        </View>
+        <View style={styles.screenHeaderText}>
+          {badge ? (
+            <Text style={styles.rowBadge} numberOfLines={1}>
+              {badge}
             </Text>
-          </View>
+          ) : null}
+          <Text style={styles.screenName} numberOfLines={2}>
+            {entry.name}
+          </Text>
+          <Text style={styles.screenNav} numberOfLines={1}>
+            {entry.nav.replace(/ > /g, '  ›  ')}
+          </Text>
         </View>
-        <Ionicons name={isExpanded ? 'chevron-up' : 'chevron-down'} size={18} color={COLORS.textSecondary} />
+        <Ionicons
+          name={inline ? (expanded ? 'chevron-up' : 'chevron-down') : 'chevron-forward'}
+          size={17}
+          color={selected || expanded ? color : COLORS.textMuted}
+        />
       </TouchableOpacity>
-
-      {isExpanded && (
+      {inline && expanded ? (
         <View style={styles.screenDetails}>
-          <ScreenDetail screen={screen} />
+          <LazyScreenDetail screenId={entry.id} />
         </View>
-      )}
+      ) : null}
     </View>
   );
-}
+});
+
+const SubmoduleHeader = memo(function SubmoduleHeader({ sub, open, color, onToggle }) {
+  return (
+    <TouchableOpacity style={styles.submoduleHeader} onPress={() => onToggle(sub.id)} activeOpacity={0.7}>
+      <Ionicons name={open ? 'folder-open-outline' : 'folder-outline'} size={14} color={color} />
+      <Text style={styles.submoduleTitle} numberOfLines={2}>
+        {sub.title}
+      </Text>
+      <View style={styles.countPill}>
+        <Text style={styles.countPillText}>{sub.count}</Text>
+      </View>
+      <Ionicons name={open ? 'chevron-up' : 'chevron-down'} size={14} color={COLORS.textMuted} />
+    </TouchableOpacity>
+  );
+});
 
 // `focus` = { moduleId, screenId?, nonce } lets other tabs deep-link into a module or screen.
 export default function RealPageExplorer({ focus }) {
+  const { width } = useWindowDimensions();
   const [selectedModuleId, setSelectedModuleId] = useState('ap');
-  const [expandedScreenId, setExpandedScreenId] = useState('scr_ap_exception_queue');
+  const [expandedScreenId, setExpandedScreenId] = useState(null);
   const [expandedSubmoduleId, setExpandedSubmoduleId] = useState(null);
   const [pinnedScreenId, setPinnedScreenId] = useState(null);
   const [showLegend, setShowLegend] = useState(false);
   const [showFullDesc, setShowFullDesc] = useState(false);
   const [filterText, setFilterText] = useState('');
   const debouncedFilter = useDebouncedValue(filterText, 150);
+
+  const contentWidth = width >= LAYOUT.DESKTOP_MIN ? Math.min(width - LAYOUT.SIDEBAR_WIDTH, LAYOUT.CONTENT_MAX) : width;
+  const split = contentWidth >= SPLIT_MIN;
 
   useEffect(() => {
     if (!focus || !focus.moduleId) return;
@@ -63,102 +96,150 @@ export default function RealPageExplorer({ focus }) {
     const entry = focus.screenId ? getScreenEntry(focus.screenId) : null;
     if (entry) {
       setExpandedSubmoduleId(entry.submoduleId);
-      setExpandedScreenId(entry.screen.id);
-      setPinnedScreenId(entry.screen.id);
+      setExpandedScreenId(entry.id);
+      setPinnedScreenId(entry.id);
     } else {
       setExpandedSubmoduleId(null);
+      setExpandedScreenId(null);
       setPinnedScreenId(null);
     }
   }, [focus]);
 
-  const selectedModule = REALPAGE_MODULES.find((m) => m.id === selectedModuleId) || REALPAGE_MODULES[0];
-  const openSubmoduleId = expandedSubmoduleId ?? selectedModule.submodules[0]?.id;
-  const moduleScreenCount = useMemo(
-    () => selectedModule.submodules.reduce((n, sub) => n + sub.screens.length, 0),
-    [selectedModule]
-  );
+  const mod = getModuleMeta(selectedModuleId) || MODULES[0];
+  const openSubmoduleId = expandedSubmoduleId ?? mod.submodules[0]?.id;
+  const isFiltering = debouncedFilter.trim().length > 0;
 
   const filtered = useMemo(
-    () => searchScreens(debouncedFilter, { moduleId: selectedModule.id, limit: MAX_FILTER_RESULTS }),
-    [selectedModule, debouncedFilter]
+    () => (isFiltering ? searchScreens(debouncedFilter, { moduleId: mod.id, limit: MAX_FILTER_RESULTS }) : null),
+    [mod.id, debouncedFilter, isFiltering]
   );
-  const isFiltering = debouncedFilter.trim().length > 0;
-  const pinnedEntry = pinnedScreenId ? getScreenEntry(pinnedScreenId) : null;
-  const showPinned = pinnedEntry && pinnedEntry.moduleId === selectedModule.id && !isFiltering;
 
-  const toggleScreen = (id) => {
+  const pinnedEntry = pinnedScreenId ? getScreenEntry(pinnedScreenId) : null;
+  const showPinned = Boolean(pinnedEntry && pinnedEntry.moduleId === mod.id && !isFiltering);
+
+  // Flattened rows for one virtualized list: submodule headers + the open submodule's screens.
+  const rows = useMemo(() => {
+    const out = [];
+    if (showPinned) out.push({ key: `pin:${pinnedEntry.id}`, type: 'screen', entry: pinnedEntry, badge: `OPENED FROM LINK · ${pinnedEntry.category}` });
+    if (filtered) {
+      out.push({ key: 'summary', type: 'summary', total: filtered.total });
+      for (const e of filtered.results) out.push({ key: e.id, type: 'screen', entry: e, badge: e.category });
+      return out;
+    }
+    for (const sub of mod.submodules) {
+      const open = sub.id === openSubmoduleId;
+      out.push({ key: `sub:${sub.id}`, type: 'sub', sub, open });
+      if (open) for (const e of getSubmoduleEntries(sub.id)) out.push({ key: e.id, type: 'screen', entry: e });
+    }
+    return out;
+  }, [mod, openSubmoduleId, filtered, showPinned, pinnedEntry]);
+
+  const toggleScreen = useCallback(
+    (id) => {
+      triggerHaptic('light');
+      setExpandedScreenId((cur) => (split ? id : cur === id ? null : id));
+    },
+    [split]
+  );
+  const toggleSubmodule = useCallback(
+    (id) => {
+      triggerHaptic('light');
+      setExpandedSubmoduleId(openSubmoduleId === id ? '' : id);
+    },
+    [openSubmoduleId]
+  );
+
+  const selectModule = (m) => {
     triggerHaptic('light');
-    setExpandedScreenId(expandedScreenId === id ? null : id);
+    setSelectedModuleId(m.id);
+    setExpandedSubmoduleId(null);
+    setExpandedScreenId(null);
+    setPinnedScreenId(null);
+    setFilterText('');
   };
+
+  const renderRow = ({ item }) => {
+    if (item.type === 'sub') {
+      return <SubmoduleHeader sub={item.sub} open={item.open} color={mod.color} onToggle={toggleSubmodule} />;
+    }
+    if (item.type === 'summary') {
+      return (
+        <Text style={styles.filterSummary}>
+          {item.total} matching screens{item.total > MAX_FILTER_RESULTS ? ` (best ${MAX_FILTER_RESULTS} shown)` : ''}
+        </Text>
+      );
+    }
+    const id = item.entry.id;
+    return (
+      <ScreenRow
+        entry={item.entry}
+        color={mod.color}
+        badge={item.badge}
+        inline={!split}
+        expanded={!split && id === expandedScreenId}
+        selected={split && id === expandedScreenId}
+        onToggle={toggleScreen}
+      />
+    );
+  };
+
+  const banner = (
+    <View style={styles.moduleBanner}>
+      <View style={styles.moduleBannerTop}>
+        <View style={[styles.moduleBadge, { backgroundColor: `${mod.color}1A`, borderColor: `${mod.color}55` }]}>
+          <Ionicons name={mod.icon} size={16} color={mod.color} />
+        </View>
+        <View style={styles.flex}>
+          <Text style={styles.moduleTitle}>{mod.title}</Text>
+          <Text style={styles.moduleCount}>
+            {mod.screenCount.toLocaleString()} screens · {mod.submodules.length} menus
+          </Text>
+        </View>
+      </View>
+      <TouchableOpacity onPress={() => setShowFullDesc(!showFullDesc)} activeOpacity={0.8}>
+        <Text style={styles.moduleDesc} numberOfLines={showFullDesc ? undefined : 2}>
+          {mod.description}
+        </Text>
+      </TouchableOpacity>
+      {mod.glAccountLegend ? (
+        <TouchableOpacity onPress={() => setShowLegend(!showLegend)} activeOpacity={0.7}>
+          <Text style={styles.legendToggle}>
+            {showLegend ? 'Hide' : 'Show'} GL account legend (illustrative multifamily chart of accounts)
+          </Text>
+          {showLegend && <Text style={styles.legendText}>{mod.glAccountLegend}</Text>}
+        </TouchableOpacity>
+      ) : null}
+    </View>
+  );
+
+  const selectedEntry = split && expandedScreenId ? getScreenEntry(expandedScreenId) : null;
 
   return (
     <View style={styles.container}>
-      {/* Module Selector Top Bar */}
       <View style={styles.moduleSelectorBar}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.moduleScroll}>
-          {REALPAGE_MODULES.map((mod) => {
-            const isSelected = mod.id === selectedModuleId;
+          {MODULES.map((m) => {
+            const on = m.id === mod.id;
             return (
               <TouchableOpacity
-                key={mod.id}
-                style={[
-                  styles.moduleTab,
-                  isSelected && { backgroundColor: mod.color, borderColor: mod.color },
-                ]}
-                onPress={() => {
-                  triggerHaptic('light');
-                  setSelectedModuleId(mod.id);
-                  setExpandedSubmoduleId(null);
-                  setPinnedScreenId(null);
-                  setFilterText('');
-                  // Expand first screen of selected module
-                  const firstScreen = mod.submodules[0]?.screens[0];
-                  if (firstScreen) setExpandedScreenId(firstScreen.id);
-                }}
+                key={m.id}
+                style={[styles.moduleTab, on && { backgroundColor: `${m.color}1F`, borderColor: `${m.color}99` }]}
+                onPress={() => selectModule(m)}
                 activeOpacity={0.8}
+                accessibilityRole="tab"
+                accessibilityState={{ selected: on }}
               >
-                <Ionicons
-                  name={mod.icon}
-                  size={15}
-                  color={isSelected ? '#FFFFFF' : COLORS.textSecondary}
-                />
-                <Text style={[styles.moduleTabText, isSelected && styles.moduleTabTextActive]}>
-                  {mod.shortCode}
-                </Text>
+                <Ionicons name={m.icon} size={14} color={on ? m.color : COLORS.textMuted} />
+                <Text style={[styles.moduleTabText, on && { color: COLORS.text }]}>{m.shortCode}</Text>
               </TouchableOpacity>
             );
           })}
         </ScrollView>
-      </View>
-
-      {/* Module Header Description */}
-      <View style={styles.moduleBanner}>
-        <View style={styles.moduleBannerTop}>
-          <Text style={[styles.moduleTitle, { color: selectedModule.color }]}>
-            {selectedModule.title}
-          </Text>
-          <Text style={styles.moduleCount}>
-            {moduleScreenCount} screens · {selectedModule.submodules.length} menus
-          </Text>
-        </View>
-        <TouchableOpacity onPress={() => setShowFullDesc(!showFullDesc)} activeOpacity={0.8}>
-          <Text style={styles.moduleDesc} numberOfLines={showFullDesc ? undefined : 2}>
-            {selectedModule.description}
-          </Text>
-        </TouchableOpacity>
-        {selectedModule.glAccountLegend ? (
-          <TouchableOpacity onPress={() => setShowLegend(!showLegend)} activeOpacity={0.7}>
-            <Text style={styles.legendToggle}>
-              {showLegend ? 'Hide' : 'Show'} GL account legend (illustrative multifamily chart of accounts)
-            </Text>
-            {showLegend && <Text style={styles.legendText}>{selectedModule.glAccountLegend}</Text>}
-          </TouchableOpacity>
-        ) : null}
         <View style={styles.filterBox}>
-          <Ionicons name="search" size={14} color={COLORS.textSecondary} />
+          <Ionicons name="search" size={14} color={COLORS.textMuted} />
           <TextInput
             style={styles.filterInput}
-            placeholder={`Fuzzy-search ${moduleScreenCount} ${selectedModule.shortCode} screens, reports & buttons...`}
+            placeholder={`Search ${mod.screenCount.toLocaleString()} ${mod.shortCode} screens, reports & buttons…`}
             placeholderTextColor={COLORS.textMuted}
             value={filterText}
             onChangeText={setFilterText}
@@ -166,270 +247,166 @@ export default function RealPageExplorer({ focus }) {
             autoCorrect={false}
           />
           {filterText.length > 0 && (
-            <TouchableOpacity onPress={() => setFilterText('')}>
+            <TouchableOpacity onPress={() => setFilterText('')} hitSlop={8}>
               <Ionicons name="close-circle" size={16} color={COLORS.textSecondary} />
             </TouchableOpacity>
           )}
         </View>
       </View>
 
-      {/* Screens & Menus Accordion List */}
-      <ScrollView style={styles.screensScroll} contentContainerStyle={styles.screensBody} keyboardShouldPersistTaps="handled">
-        {showPinned && (
-          <View style={styles.submoduleGroup}>
-            <ScreenCard
-              screen={pinnedEntry.screen}
-              color={selectedModule.color}
-              isExpanded={pinnedEntry.screen.id === expandedScreenId}
-              onToggle={() => toggleScreen(pinnedEntry.screen.id)}
-              badge={`OPENED FROM LINK · ${pinnedEntry.submoduleTitle}`}
-            />
-          </View>
-        )}
-        {isFiltering ? (
-          <View style={styles.submoduleGroup}>
-            <Text style={styles.filterSummary}>
-              {filtered.total} matching screens
-              {filtered.total > MAX_FILTER_RESULTS ? ` (best ${MAX_FILTER_RESULTS} shown)` : ''}
-            </Text>
-            {filtered.results.map((entry) => (
-              <ScreenCard
-                key={entry.screen.id}
-                screen={entry.screen}
-                color={selectedModule.color}
-                isExpanded={entry.screen.id === expandedScreenId}
-                onToggle={() => toggleScreen(entry.screen.id)}
-                badge={entry.submoduleTitle}
-              />
-            ))}
-          </View>
-        ) : (
-          selectedModule.submodules.map((submod) => {
-            const isOpen = submod.id === openSubmoduleId;
-            return (
-              <View key={submod.id} style={styles.submoduleGroup}>
-                <TouchableOpacity
-                  style={styles.submoduleHeader}
-                  onPress={() => {
-                    triggerHaptic('light');
-                    setExpandedSubmoduleId(isOpen ? '' : submod.id);
-                  }}
-                  activeOpacity={0.7}
-                >
-                  <Ionicons
-                    name={isOpen ? 'folder-open-outline' : 'folder-outline'}
-                    size={14}
-                    color={selectedModule.color}
-                  />
-                  <Text style={styles.submoduleTitle}>{submod.title}</Text>
-                  <Text style={styles.submoduleCount}>{submod.screens.length}</Text>
-                  <Ionicons
-                    name={isOpen ? 'chevron-up' : 'chevron-down'}
-                    size={14}
-                    color={COLORS.textSecondary}
-                  />
-                </TouchableOpacity>
-
-                {isOpen &&
-                  submod.screens.map((screen) => (
-                    <ScreenCard
-                      key={screen.id}
-                      screen={screen}
-                      color={selectedModule.color}
-                      isExpanded={screen.id === expandedScreenId}
-                      onToggle={() => toggleScreen(screen.id)}
-                    />
-                  ))}
+      <View style={styles.panes}>
+        <FlatList
+          style={split ? styles.masterPane : styles.flex}
+          contentContainerStyle={styles.listBody}
+          data={rows}
+          keyExtractor={(r) => r.key}
+          renderItem={renderRow}
+          extraData={`${expandedScreenId}|${split}`}
+          ListHeaderComponent={banner}
+          keyboardShouldPersistTaps="handled"
+          initialNumToRender={14}
+          maxToRenderPerBatch={12}
+          updateCellsBatchingPeriod={40}
+          windowSize={9}
+          removeClippedSubviews={Platform.OS === 'android'}
+        />
+        {split ? (
+          <ScrollView style={styles.detailPane} contentContainerStyle={styles.detailBody}>
+            {selectedEntry ? (
+              <>
+                <Text style={styles.detailKicker}>{selectedEntry.category}</Text>
+                <Text style={styles.detailTitle}>{selectedEntry.name}</Text>
+                <LazyScreenDetail screenId={selectedEntry.id} />
+              </>
+            ) : (
+              <View style={styles.detailEmpty}>
+                <Ionicons name="desktop-outline" size={34} color={COLORS.textMuted} />
+                <Text style={styles.detailEmptyTitle}>Select a screen</Text>
+                <Text style={styles.detailEmptySub}>
+                  Its navigation path, SOP, GL impact, Yardi equivalent and legal guardrails open here.
+                </Text>
               </View>
-            );
-          })
-        )}
-      </ScrollView>
+            )}
+          </ScrollView>
+        ) : null}
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.background,
-  },
+  flex: { flex: 1 },
+  container: { flex: 1, backgroundColor: COLORS.background },
   moduleSelectorBar: {
     backgroundColor: COLORS.surface,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.border,
+    paddingBottom: 10,
   },
-  moduleScroll: {
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    gap: 8,
-  },
+  moduleScroll: { paddingHorizontal: 12, paddingTop: 10, paddingBottom: 8 },
   moduleTab: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 12,
     paddingVertical: 7,
-    borderRadius: 8,
+    borderRadius: RADII.pill,
     backgroundColor: COLORS.surfaceLight,
     borderWidth: 1,
     borderColor: COLORS.border,
     marginRight: 6,
   },
-  moduleTabText: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: COLORS.textSecondary,
-    marginLeft: 6,
-  },
-  moduleTabTextActive: {
-    color: '#FFFFFF',
-    fontWeight: '700',
-  },
-  moduleBanner: {
-    backgroundColor: COLORS.surfaceLight,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.border,
-  },
-  moduleBannerTop: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 4,
-  },
-  moduleTitle: {
-    fontSize: 16,
-    fontWeight: '700',
-  },
-  moduleDesc: {
-    fontSize: 12,
-    color: COLORS.textSecondary,
-    lineHeight: 18,
-  },
-  moduleCount: {
-    fontSize: 11,
-    color: COLORS.textMuted,
-    marginLeft: 8,
-  },
-  legendToggle: {
-    fontSize: 11,
-    color: COLORS.info,
-    marginTop: 6,
-    fontWeight: '600',
-  },
-  legendText: {
-    fontSize: 11,
-    color: COLORS.textSecondary,
-    lineHeight: 16,
-    marginTop: 4,
-  },
+  moduleTabText: { fontSize: 12, fontWeight: '700', color: COLORS.textSecondary, marginLeft: 6 },
   filterBox: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: COLORS.surfaceInput,
-    borderRadius: 8,
+    borderRadius: RADII.md,
     borderWidth: 1,
     borderColor: COLORS.border,
     paddingHorizontal: 10,
-    marginTop: 10,
+    marginHorizontal: 12,
   },
-  filterInput: {
-    flex: 1,
-    color: COLORS.text,
-    fontSize: 13,
-    paddingVertical: 8,
-    marginLeft: 6,
+  filterInput: { ...Platform.select({ web: { outlineStyle: 'none' }, default: {} }), flex: 1, color: COLORS.text, fontSize: 13, paddingVertical: 9, marginLeft: 6 },
+  panes: { flex: 1, flexDirection: 'row' },
+  masterPane: { width: 380, flexGrow: 0, borderRightWidth: 1, borderRightColor: COLORS.border },
+  listBody: { paddingHorizontal: 12, paddingBottom: 32 },
+  moduleBanner: { paddingVertical: 14, paddingHorizontal: 4 },
+  moduleBannerTop: { flexDirection: 'row', alignItems: 'center', marginBottom: 8 },
+  moduleBadge: {
+    width: 34,
+    height: 34,
+    borderRadius: RADII.md,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 10,
   },
-  filterSummary: {
-    fontSize: 12,
-    color: COLORS.textSecondary,
-    marginBottom: 10,
-  },
-  screensScroll: {
-    flex: 1,
-  },
-  screensBody: {
-    padding: 16,
-    paddingBottom: 30,
-  },
-  submoduleGroup: {
-    marginBottom: 20,
-  },
+  moduleTitle: { fontSize: 17, fontWeight: '800', color: COLORS.text, letterSpacing: -0.2 },
+  moduleCount: { fontSize: 11.5, color: COLORS.textMuted, marginTop: 1 },
+  moduleDesc: { fontSize: 12.5, color: COLORS.textSecondary, lineHeight: 18 },
+  legendToggle: { fontSize: 11.5, color: COLORS.info, marginTop: 8, fontWeight: '600' },
+  legendText: { fontSize: 11.5, color: COLORS.textSecondary, lineHeight: 17, marginTop: 4 },
+  filterSummary: { fontSize: 12, color: COLORS.textSecondary, marginBottom: 10, paddingHorizontal: 4 },
   submoduleHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
+    paddingVertical: 11,
+    paddingHorizontal: 4,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
+    marginBottom: 8,
   },
   submoduleTitle: {
     flex: 1,
-    fontSize: 13,
-    fontWeight: '700',
+    fontSize: 11.5,
+    fontWeight: '800',
     color: COLORS.text,
-    marginLeft: 6,
+    marginLeft: 8,
     textTransform: 'uppercase',
-    letterSpacing: 0.5,
+    letterSpacing: 0.7,
   },
-  submoduleCount: {
-    fontSize: 11,
-    color: COLORS.textMuted,
+  countPill: {
+    paddingHorizontal: 7,
+    paddingVertical: 1,
+    borderRadius: RADII.pill,
+    backgroundColor: COLORS.surfaceHighlight,
     marginHorizontal: 8,
   },
+  countPillText: { fontSize: 10.5, fontWeight: '700', color: COLORS.textSecondary },
   screenCard: {
     backgroundColor: COLORS.surface,
-    borderRadius: 10,
-    marginBottom: 10,
+    borderRadius: RADII.md,
+    marginBottom: 8,
     borderWidth: 1,
     borderColor: COLORS.border,
     overflow: 'hidden',
   },
-  screenCardActive: {
-    borderColor: COLORS.primaryLight,
-  },
-  screenHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: 14,
-  },
-  screenHeaderLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-    marginRight: 10,
-  },
-  screenIconCircle: {
-    width: 32,
-    height: 32,
+  screenHeader: { flexDirection: 'row', alignItems: 'center', padding: 12 },
+  screenIcon: {
+    width: 30,
+    height: 30,
     borderRadius: 8,
+    borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 10,
   },
-  screenHeaderText: {
-    flex: 1,
-  },
-  focusBadge: {
-    fontSize: 9,
-    fontWeight: '700',
-    color: COLORS.gold,
-    letterSpacing: 0.4,
-    marginBottom: 2,
-  },
-  screenName: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: COLORS.text,
-    marginBottom: 2,
-  },
-  screenBreadcrumbQuick: {
-    fontSize: 11,
-    color: COLORS.textSecondary,
-  },
+  screenHeaderText: { flex: 1, marginRight: 8 },
+  rowBadge: { fontSize: 9.5, fontWeight: '800', color: COLORS.gold, letterSpacing: 0.5, marginBottom: 2 },
+  screenName: { fontSize: 13.5, fontWeight: '600', color: COLORS.text, marginBottom: 2 },
+  screenNav: { fontSize: 11, color: COLORS.textMuted },
   screenDetails: {
     paddingHorizontal: 14,
-    paddingBottom: 14,
+    paddingBottom: 16,
     borderTopWidth: 1,
     borderTopColor: COLORS.border,
     backgroundColor: COLORS.surfaceInput,
   },
+  detailPane: { flex: 1 },
+  detailBody: { padding: 24, paddingBottom: 48, maxWidth: LAYOUT.READING_MAX },
+  detailKicker: { fontSize: 10.5, fontWeight: '800', color: COLORS.textMuted, letterSpacing: 0.9, textTransform: 'uppercase' },
+  detailTitle: { fontSize: 22, fontWeight: '800', color: COLORS.text, marginTop: 4, letterSpacing: -0.3 },
+  detailEmpty: { alignItems: 'center', paddingTop: 80, paddingHorizontal: 24 },
+  detailEmptyTitle: { fontSize: 15, fontWeight: '700', color: COLORS.text, marginTop: 10 },
+  detailEmptySub: { fontSize: 12.5, color: COLORS.textMuted, marginTop: 4, textAlign: 'center', maxWidth: 360, lineHeight: 18 },
 });

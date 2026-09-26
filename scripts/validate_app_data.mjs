@@ -5,7 +5,7 @@
 //
 // Usage: node --import ./scripts/test/register.mjs --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/validate_app_data.mjs
 
-import { hasScreen, SCREEN_COUNT, getScreenById } from '../src/utils/screenIndex.js';
+import { hasScreen, SCREEN_COUNT, getScreenEntry } from '../src/utils/screenIndex.js';
 import { CLOSE_PHASES } from '../src/data/closePlaybookData.js';
 import { EXCEPTION_PLAYBOOKS, entryTotals } from '../src/data/exceptionsPlaybookData.js';
 import { ROSETTA_OPERATIONS, ROSETTA_CATEGORIES, ROSETTA_CADENCES } from '../src/data/rosettaStoneData.js';
@@ -137,7 +137,7 @@ console.log(
   `glossary terms:         ${GLOSSARY_TERMS.length} (${MULTIFAMILY_TERMS.length} curated + ${REALPAGE_GLOSSARY_STATS.uniqueTerms} RealPage from ${REALPAGE_GLOSSARY_STATS.entries} entries)`
 );
 console.log(`task guardrails:        ${Object.keys(TASK_GUARDRAILS).length} / ${ALL_TASKS.length} tasks`);
-console.log(`budget showcase screen: ${getScreenById('scr_budget_model_creation')?.name}`);
+console.log(`budget showcase screen: ${getScreenEntry('scr_budget_model_creation')?.name}`);
 if (errors.length) {
   console.error(`\n${errors.length} validation errors:`);
   errors.forEach((e) => console.error('  ' + e));

@@ -15,7 +15,7 @@ We have converted all **57 official RealPage manuals (12,793 pages)** into 9 cle
 Your job is to read each Markdown file and write/update the corresponding JavaScript module file in:
 📂 `02-property-accounting/src/data/modules/`
 
-All 9 files are automatically imported by `02-property-accounting/src/data/modules/index.js` and wired into the live Expo React Native app.
+All 9 files are loaded on demand by `02-property-accounting/src/data/moduleLoader.js` (one lazy chunk per module). Search and lists run on `src/data/searchIndex.json` and `src/data/moduleManifest.json`, which `npm run build:modules` regenerates from the module files.
 
 ---
 

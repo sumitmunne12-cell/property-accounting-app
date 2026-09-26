@@ -178,9 +178,10 @@ def build_glossary(module_manuals, screens_by_module):
     screen_names = {mod: [(s['id'], s['name'].lower()) for s in scr] for mod, scr in screens_by_module.items()}
     out = []
     for key, e in merged.items():
-        # prefer the most frequent definition, then the longest
+        # prefer the most frequent definition, then the longest, then the first seen (deterministic:
+        # iterating a set would let PYTHONHASHSEED pick between tied manual variants)
         defs = e['definitions']
-        best = max(set(defs), key=lambda d: (defs.count(d), len(d)))
+        best = max(dict.fromkeys(defs), key=lambda d: (defs.count(d), len(d)))
         modules = infer_modules(e['term'], best, e['home'])
         mod_for_topic = MODULE_CODE[modules[0]]
         topic = K.match_topic([e['term']], mod_for_topic, '')

@@ -2,6 +2,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../theme/colors';
+import { LAYOUT, RADII } from '../theme/layout';
+import { ProgressRing, GaugeBar } from './ui';
 import { CLOSE_PHASES, CLOSE_ROLES } from '../data/closePlaybookData';
 import { getScreenEntry } from '../utils/screenIndex';
 import { getCloseProgress, saveCloseProgress } from '../utils/storage';
@@ -60,7 +62,7 @@ function TaskRow({ task, signedAt, locked, expanded, onToggleExpand, onToggleDon
           </TouchableOpacity>
           {entry ? (
             <Text style={styles.linkedScreen} numberOfLines={2}>
-              {entry.moduleShortCode} › {entry.screen.name}
+              {entry.moduleShortCode} › {entry.name}
             </Text>
           ) : null}
         </View>
@@ -109,26 +111,68 @@ export default function CloseCockpit({ onOpenScreen }) {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      {/* Period + overall progress */}
+      <View style={styles.column}>
+      {/* Period + overall progress gauge + phase milestones */}
       <View style={styles.header}>
         <View style={styles.periodRow}>
-          <TouchableOpacity onPress={() => setPeriod(shiftPeriod(period, -1))} style={styles.periodBtn}>
-            <Ionicons name="chevron-back" size={18} color={COLORS.text} />
+          <TouchableOpacity onPress={() => setPeriod(shiftPeriod(period, -1))} style={styles.periodBtn} accessibilityLabel="Previous period">
+            <Ionicons name="chevron-back" size={16} color={COLORS.text} />
           </TouchableOpacity>
           <View style={styles.periodCenter}>
-            <Text style={styles.periodLabel}>Month-End Close</Text>
+            <Text style={styles.periodLabel}>MONTH-END CLOSE</Text>
             <Text style={styles.periodValue}>{periodLabel(period)}</Text>
           </View>
-          <TouchableOpacity onPress={() => setPeriod(shiftPeriod(period, 1))} style={styles.periodBtn}>
-            <Ionicons name="chevron-forward" size={18} color={COLORS.text} />
+          <TouchableOpacity onPress={() => setPeriod(shiftPeriod(period, 1))} style={styles.periodBtn} accessibilityLabel="Next period">
+            <Ionicons name="chevron-forward" size={16} color={COLORS.text} />
           </TouchableOpacity>
         </View>
-        <View style={styles.progressTrack}>
-          <View style={[styles.progressFill, { width: `${overall.pct}%` }]} />
+
+        <View style={styles.gaugeRow}>
+          <ProgressRing pct={overall.pct} size={96} segments={48} thickness={3.5} color={overall.pct === 100 ? COLORS.success : COLORS.close}>
+            <Text style={styles.gaugePct}>{overall.pct}%</Text>
+            <Text style={styles.gaugeCaption}>closed</Text>
+          </ProgressRing>
+          <View style={styles.gaugeStats}>
+            <View style={styles.statRow}>
+              <Text style={styles.statValue}>{overall.completed}</Text>
+              <Text style={styles.statLabel}> / {overall.total} tasks signed off</Text>
+            </View>
+            <View style={styles.statRow}>
+              <Text style={styles.statValue}>{statuses.filter((x) => x.complete).length}</Text>
+              <Text style={styles.statLabel}> / {CLOSE_PHASES.length} phases locked</Text>
+            </View>
+            <View style={styles.gaugeBarWrap}>
+              <GaugeBar pct={overall.pct} color={overall.pct === 100 ? COLORS.success : COLORS.close} />
+            </View>
+          </View>
         </View>
-        <Text style={styles.progressText}>
-          {overall.completed} of {overall.total} tasks signed off · {overall.pct}%
-        </Text>
+
+        <View style={styles.milestones}>
+          {CLOSE_PHASES.map((phase, idx) => {
+            const st = statuses[idx];
+            const pct = st.total ? Math.round((st.completed / st.total) * 100) : 0;
+            const color = st.complete ? COLORS.success : st.locked ? COLORS.textMuted : COLORS.close;
+            return (
+              <TouchableOpacity
+                key={phase.id}
+                style={styles.milestone}
+                onPress={() => setExpandedPhaseId(phase.id)}
+                accessibilityLabel={`Phase ${phase.number}: ${pct}% complete`}
+              >
+                <ProgressRing pct={pct} size={34} segments={20} thickness={2.5} color={color}>
+                  {st.complete ? (
+                    <Ionicons name="checkmark" size={13} color={COLORS.success} />
+                  ) : st.locked ? (
+                    <Ionicons name="lock-closed" size={10} color={COLORS.textMuted} />
+                  ) : (
+                    <Text style={[styles.milestoneNum, { color }]}>{phase.number}</Text>
+                  )}
+                </ProgressRing>
+                <Text style={styles.milestoneLabel}>P{phase.number}</Text>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
       </View>
 
       {/* Next action */}
@@ -154,16 +198,24 @@ export default function CloseCockpit({ onOpenScreen }) {
       {CLOSE_PHASES.map((phase, idx) => {
         const st = statuses[idx];
         const isOpen = phase.id === openPhaseId;
-        const icon = st.complete ? 'checkmark-circle' : st.locked ? 'lock-closed' : 'ellipse-outline';
-        const color = st.complete ? COLORS.success : st.locked ? COLORS.textMuted : COLORS.gold;
+        const color = st.complete ? COLORS.success : st.locked ? COLORS.textMuted : COLORS.close;
+        const pct = st.total ? Math.round((st.completed / st.total) * 100) : 0;
         return (
-          <View key={phase.id} style={[styles.phaseCard, isOpen && styles.phaseCardOpen]}>
+          <View key={phase.id} style={[styles.phaseCard, isOpen && styles.phaseCardOpen, !st.locked && !st.complete && styles.phaseCardActive]}>
             <TouchableOpacity
               style={styles.phaseHeader}
               onPress={() => setExpandedPhaseId(isOpen ? '' : phase.id)}
               activeOpacity={0.7}
             >
-              <Ionicons name={icon} size={20} color={color} />
+              <ProgressRing pct={pct} size={40} segments={24} thickness={2.5} color={color}>
+                {st.complete ? (
+                  <Ionicons name="checkmark" size={15} color={COLORS.success} />
+                ) : st.locked ? (
+                  <Ionicons name="lock-closed" size={12} color={COLORS.textMuted} />
+                ) : (
+                  <Text style={[styles.phaseRingPct, { color }]}>{pct}%</Text>
+                )}
+              </ProgressRing>
               <View style={styles.phaseHeaderText}>
                 <Text style={styles.phaseTitle}>
                   Phase {phase.number}: {phase.title}
@@ -211,6 +263,7 @@ export default function CloseCockpit({ onOpenScreen }) {
           <Text style={styles.resetText}>Reset sign-offs for {periodLabel(period)}</Text>
         </TouchableOpacity>
       )}
+      </View>
     </ScrollView>
   );
 }
@@ -218,37 +271,59 @@ export default function CloseCockpit({ onOpenScreen }) {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: COLORS.background },
   content: { padding: 16, paddingBottom: 40 },
+  column: { width: '100%', maxWidth: LAYOUT.READING_MAX, alignSelf: 'center' },
   header: {
     backgroundColor: COLORS.surface,
-    borderRadius: 12,
+    borderRadius: RADII.lg,
     borderWidth: 1,
     borderColor: COLORS.border,
-    padding: 14,
+    padding: 16,
     marginBottom: 12,
   },
   periodRow: { flexDirection: 'row', alignItems: 'center' },
-  periodBtn: { padding: 6 },
-  periodCenter: { flex: 1, alignItems: 'center' },
-  periodLabel: { fontSize: 11, color: COLORS.textSecondary, fontWeight: '600', letterSpacing: 0.5 },
-  periodValue: { fontSize: 18, color: COLORS.text, fontWeight: '700' },
-  progressTrack: {
-    height: 8,
-    borderRadius: 4,
+  periodBtn: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: COLORS.surfaceLight,
-    marginTop: 12,
-    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: COLORS.border,
   },
-  progressFill: { height: 8, borderRadius: 4, backgroundColor: COLORS.success },
-  progressText: { fontSize: 12, color: COLORS.textSecondary, marginTop: 6, textAlign: 'center' },
+  periodCenter: { flex: 1, alignItems: 'center' },
+  periodLabel: { fontSize: 10, color: COLORS.textMuted, fontWeight: '800', letterSpacing: 1.1 },
+  periodValue: { fontSize: 19, color: COLORS.text, fontWeight: '800', letterSpacing: -0.3, marginTop: 1 },
+  gaugeRow: { flexDirection: 'row', alignItems: 'center', marginTop: 16 },
+  gaugePct: { fontSize: 20, fontWeight: '800', color: COLORS.text, letterSpacing: -0.5 },
+  gaugeCaption: { fontSize: 9.5, fontWeight: '700', color: COLORS.textMuted, letterSpacing: 0.8, textTransform: 'uppercase' },
+  gaugeStats: { flex: 1, marginLeft: 18 },
+  statRow: { flexDirection: 'row', alignItems: 'baseline', marginBottom: 4 },
+  statValue: { fontSize: 17, fontWeight: '800', color: COLORS.text },
+  statLabel: { fontSize: 12, color: COLORS.textSecondary },
+  gaugeBarWrap: { flexDirection: 'row', marginTop: 6 },
+  milestones: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 16,
+    paddingTop: 14,
+    borderTopWidth: 1,
+    borderTopColor: COLORS.border,
+  },
+  milestone: { alignItems: 'center' },
+  milestoneNum: { fontSize: 12, fontWeight: '800' },
+  milestoneLabel: { fontSize: 9.5, color: COLORS.textMuted, fontWeight: '700', marginTop: 4, letterSpacing: 0.4 },
   nextCard: {
     backgroundColor: COLORS.surface,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: `${COLORS.gold}80`,
+    borderColor: `${COLORS.close}66`,
+    borderLeftWidth: 3,
+    borderLeftColor: COLORS.close,
     padding: 14,
     marginBottom: 14,
   },
-  nextLabel: { fontSize: 10, fontWeight: '700', color: COLORS.gold, letterSpacing: 0.5 },
+  nextLabel: { fontSize: 10, fontWeight: '800', color: COLORS.close, letterSpacing: 0.9 },
   nextTitle: { fontSize: 15, fontWeight: '700', color: COLORS.text, marginTop: 4 },
   phaseCard: {
     backgroundColor: COLORS.surface,
@@ -258,9 +333,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     overflow: 'hidden',
   },
-  phaseCardOpen: { borderColor: COLORS.primaryLight },
+  phaseCardOpen: { borderColor: COLORS.borderLight },
+  phaseCardActive: { borderColor: `${COLORS.close}88` },
+  phaseRingPct: { fontSize: 9.5, fontWeight: '800' },
   phaseHeader: { flexDirection: 'row', alignItems: 'center', padding: 14 },
-  phaseHeaderText: { flex: 1, marginLeft: 10 },
+  phaseHeaderText: { flex: 1, marginLeft: 12 },
   phaseTitle: { fontSize: 14, fontWeight: '700', color: COLORS.text },
   phaseMeta: { fontSize: 11, color: COLORS.textSecondary, marginTop: 2 },
   phaseBody: {
@@ -318,8 +395,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: COLORS.primaryDark,
-    borderRadius: 8,
+    backgroundColor: COLORS.close,
+    borderRadius: RADII.pill,
     paddingVertical: 9,
     marginTop: 12,
   },

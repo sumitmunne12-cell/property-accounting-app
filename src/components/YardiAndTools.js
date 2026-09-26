@@ -24,6 +24,7 @@ import {
   ROSETTA_DISCLAIMER,
 } from '../data/rosettaStoneData';
 import { getScreenEntry } from '../utils/screenIndex';
+import { Breadcrumbs, SegmentedToggle } from './ui';
 import useDebouncedValue from '../utils/useDebouncedValue';
 import { ALL_TASKS } from '../data/tasksData';
 import { PDF_CATALOG, PDF_CATEGORIES } from '../data/pdfCatalogData';
@@ -66,7 +67,7 @@ function RosettaStone({ onOpenScreen }) {
   const renderSystem = (op, system) => {
     const isRP = system === 'rp';
     const entry = isRP ? getScreenEntry(op.realpage.screenId) : null;
-    const nav = isRP ? (entry ? entry.screen.navigation : []) : op.yardi.navigation;
+    const nav = isRP ? (entry ? entry.navParts : []) : op.yardi.navigation;
     const side = isRP ? op.realpage : op.yardi;
     return (
       <View key={system} style={isRP ? styles.systemBoxRP : styles.systemBoxYardi}>
@@ -76,7 +77,9 @@ function RosettaStone({ onOpenScreen }) {
             {isRP ? 'RealPage' : 'Yardi Voyager'} · {side.name}
           </Text>
         </View>
-        <Text style={styles.systemMenu}>{nav.join('  ›  ')}</Text>
+        <View style={styles.systemCrumbs}>
+          <Breadcrumbs parts={nav} accent={isRP ? COLORS.info : COLORS.yardi} />
+        </View>
         <Text style={styles.systemConcept}>{side.howItWorks}</Text>
         {isRP && entry ? (
           <TouchableOpacity
@@ -107,21 +110,18 @@ function RosettaStone({ onOpenScreen }) {
       </View>
 
       <View style={styles.directionRow}>
-        {[
-          ['rp2y', 'RealPage → Yardi'],
-          ['y2rp', 'Yardi → RealPage'],
-        ].map(([key, label]) => (
-          <TouchableOpacity
-            key={key}
-            style={[styles.directionBtn, direction === key && styles.directionBtnActive]}
-            onPress={() => {
-              triggerHaptic('light');
-              setDirection(key);
-            }}
-          >
-            <Text style={[styles.directionText, direction === key && styles.directionTextActive]}>{label}</Text>
-          </TouchableOpacity>
-        ))}
+        <SegmentedToggle
+          accent={COLORS.yardi}
+          value={direction}
+          onChange={(key) => {
+            triggerHaptic('light');
+            setDirection(key);
+          }}
+          options={[
+            { key: 'rp2y', label: 'RealPage → Yardi', icon: 'cube-outline' },
+            { key: 'y2rp', label: 'Yardi → RealPage', icon: 'layers-outline' },
+          ]}
+        />
       </View>
 
       <View style={styles.searchBarContainer}>
@@ -297,7 +297,7 @@ function GlossaryEncyclopedia({ onOpenScreen, onOpenModule }) {
         return (
           <TouchableOpacity key={id} onPress={() => onOpenScreen(id, `TERM · ${g.term.toUpperCase()}`)}>
             <Text style={styles.relatedScreenLink} numberOfLines={1}>
-              › {e.screen.name} ({e.moduleShortCode})
+              › {e.name} ({e.moduleShortCode})
             </Text>
           </TouchableOpacity>
         );
@@ -694,30 +694,11 @@ const styles = StyleSheet.create({
     lineHeight: 16,
   },
   directionRow: {
-    flexDirection: 'row',
-    marginBottom: 10,
+    marginBottom: 12,
   },
-  directionBtn: {
-    flex: 1,
-    paddingVertical: 8,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    alignItems: 'center',
-    marginRight: 6,
-    backgroundColor: COLORS.surface,
-  },
-  directionBtnActive: {
-    backgroundColor: COLORS.yardi,
-    borderColor: COLORS.yardi,
-  },
-  directionText: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: COLORS.textSecondary,
-  },
-  directionTextActive: {
-    color: '#FFFFFF',
+  systemCrumbs: {
+    marginTop: 6,
+    marginBottom: 2,
   },
   comparisonCardOpen: {
     borderColor: COLORS.yardi,
@@ -1192,12 +1173,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: COLORS.yardi,
     marginLeft: 6,
-  },
-  systemMenu: {
-    fontSize: 11,
-    fontWeight: '600',
-    color: COLORS.text,
-    marginBottom: 4,
   },
   systemConcept: {
     fontSize: 12,

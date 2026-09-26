@@ -1,0 +1,1754 @@
+[
+ {
+  "id": "ap",
+  "file": "02_accounts_payable",
+  "title": "Accounts Payable (AP)",
+  "shortCode": "AP",
+  "icon": "receipt-outline",
+  "color": "#38BDF8",
+  "description": "Complete RealPage Accounts Payable and Spend: approval workbench, vendors, A/P invoices and invoice research, payments (checks, ACH/EFT, manual, partial), adjustments and advances, periodic tasks (reclasses, subledger close, fees, recurring invoices, expense reports, assets, bids/contracts, Full Service, scanning), A/P setup, A/P reports and charts, Spend Management (POs, contracts, catalogs), AI Finance Agent and the Approval Policy Manager.",
+  "glAccountLegend": "GL examples use an illustrative multifamily chart of accounts: 1110 Operating Cash, 1115 Security Deposit Trust Cash, 1120 Petty Cash, 1130 Undeposited Funds, 1210 Resident/Tenant A/R, 1215 Allowance for Doubtful Accounts, 1230 Due From Affiliates, 1250 Input VAT/Tax Recoverable, 1310 Prepaid Expenses, 1330 Tax & Insurance Escrow, 1340 Replacement Reserve Escrow, 1410 Construction in Progress, 1520 Buildings, 1530 Building Improvements, 1540 FF&E, 1590 Accumulated Depreciation, 2010 Accounts Payable, 2015 Retainage Payable, 2020 Accrued Expenses, 2110 Resident Security Deposits, 2120 Prepaid Rent, 2130 Due To Affiliates, 2140 Credit Card Payable, 2150 Employee Reimbursements Payable, 2160 Sales Tax/VAT Payable, 2170 Unclaimed Property Payable, 2210 Mortgage/Construction Loan Payable, 3010 Partners' Capital, 3020 Distributions, 3100 Retained Earnings, 4010 Gross Potential Rent, 4040 Concessions, 4050 Bad Debt, 4100 Other Income (late/NSF/fees), 4110 Utility Reimbursement, 6010 Payroll, 6110 Repairs & Maintenance, 6210 Utilities, 6310 Marketing, 6410 Administrative, 6420 Bank Charges, 6510 Management Fees, 6610 Insurance, 6620 Real Estate Taxes, 7010 Interest Expense, 7110 Depreciation Expense. Map to each owner's chart of accounts.",
+  "screenCount": 2061,
+  "submodules": [
+   {
+    "id": "ap_curated",
+    "title": "Mastery Playbook — Curated AP Workflows",
+    "count": 6
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_using_the_accounts_payable_application",
+    "title": "Using the Accounts Payable Application",
+    "count": 1
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_accounts_payable",
+    "title": "Accounts Payable",
+    "count": 4
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_approval_workbench",
+    "title": "Approval Workbench",
+    "count": 22
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_vendors_suppliers",
+    "title": "Vendors (Suppliers)",
+    "count": 93
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_a_p_invoices",
+    "title": "A/P Invoices",
+    "count": 97
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_invoice_research",
+    "title": "Invoice Research",
+    "count": 6
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_payments",
+    "title": "Payments",
+    "count": 65
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_daily_tasks",
+    "title": "Daily Tasks",
+    "count": 1
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_enter_ap_invoices_section",
+    "title": "Enter AP Invoices Section",
+    "count": 106
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_paying_a_p_invoices",
+    "title": "Paying A/P Invoices",
+    "count": 60
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_a_p_adjustments",
+    "title": "A/P Adjustments",
+    "count": 26
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_a_p_advances",
+    "title": "A/P Advances",
+    "count": 13
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_payment_methods",
+    "title": "Payment Methods",
+    "count": 12
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_banking",
+    "title": "Banking",
+    "count": 6
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_banking_electronic_payments_ach",
+    "title": "Banking › Electronic Payments (ACH)",
+    "count": 24
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_banking_checks",
+    "title": "Banking › Checks",
+    "count": 49
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_checks_setting_up_checks",
+    "title": "Checks › Setting Up Checks",
+    "count": 18
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_checks_voiding_a_check",
+    "title": "Checks › Voiding a Check",
+    "count": 17
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_checks_check_run_list",
+    "title": "Checks › Check Run List",
+    "count": 17
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_checks_resolving_common_check_problems",
+    "title": "Checks › Resolving Common Check Problems",
+    "count": 21
+   },
+   {
+    "id": "ap_ap_daily_tasks_guide_banking_manual_payments",
+    "title": "Banking › Manual Payments",
+    "count": 8
+   },
+   {
+    "id": "ap_ap_periodic_tasks_guide_periodic_tasks_reclassifying_invoices",
+    "title": "Periodic Tasks … Reclassifying Invoices",
+    "count": 6
+   },
+   {
+    "id": "ap_ap_periodic_tasks_guide_a_p_subledger",
+    "title": "A/P Subledger",
+    "count": 18
+   },
+   {
+    "id": "ap_ap_periodic_tasks_guide_fees",
+    "title": "Fees",
+    "count": 44
+   },
+   {
+    "id": "ap_ap_periodic_tasks_guide_recurring_a_p_invoices",
+    "title": "Recurring A/P Invoices",
+    "count": 11
+   },
+   {
+    "id": "ap_ap_periodic_tasks_guide_account_maintenance",
+    "title": "Account Maintenance",
+    "count": 38
+   },
+   {
+    "id": "ap_ap_periodic_tasks_guide_expense_reports",
+    "title": "Expense Reports",
+    "count": 31
+   },
+   {
+    "id": "ap_ap_periodic_tasks_guide_assets",
+    "title": "Assets",
+    "count": 11
+   },
+   {
+    "id": "ap_ap_periodic_tasks_guide_bids_and_contracts",
+    "title": "Bids and Contracts",
+    "count": 25
+   },
+   {
+    "id": "ap_ap_periodic_tasks_guide_full_service",
+    "title": "Full Service",
+    "count": 6
+   },
+   {
+    "id": "ap_ap_periodic_tasks_guide_scanning",
+    "title": "Scanning",
+    "count": 6
+   },
+   {
+    "id": "ap_ap_periodic_tasks_guide_help_and_support",
+    "title": "Help and Support (AP Periodic Tasks Guide)",
+    "count": 9
+   },
+   {
+    "id": "ap_ap_periodic_tasks_guide_appendices",
+    "title": "Appendices (AP Periodic Tasks Guide)",
+    "count": 20
+   },
+   {
+    "id": "ap_ap_setup_guide_configuring_accounts_payable",
+    "title": "Configuring Accounts Payable",
+    "count": 1
+   },
+   {
+    "id": "ap_ap_setup_guide_general_configuration",
+    "title": "General Configuration",
+    "count": 25
+   },
+   {
+    "id": "ap_ap_setup_guide_configuring_the_ai_features_in_accounts",
+    "title": "Configuring the AI Features in Accounts Payable",
+    "count": 4
+   },
+   {
+    "id": "ap_ap_setup_guide_expense_report_configuration",
+    "title": "Expense Report Configuration",
+    "count": 9
+   },
+   {
+    "id": "ap_ap_setup_guide_full_service_configuration",
+    "title": "Full Service Configuration",
+    "count": 4
+   },
+   {
+    "id": "ap_ap_setup_guide_a_p_account_labels",
+    "title": "A/P Account Labels",
+    "count": 10
+   },
+   {
+    "id": "ap_ap_setup_guide_a_p_allocation_templates",
+    "title": "A/P Allocation Templates",
+    "count": 9
+   },
+   {
+    "id": "ap_ap_setup_guide_management_fees_configuration",
+    "title": "Management Fees Configuration",
+    "count": 12
+   },
+   {
+    "id": "ap_ap_setup_guide_vendor_supplier_configuration",
+    "title": "Vendor (Supplier) Configuration",
+    "count": 31
+   },
+   {
+    "id": "ap_ap_setup_guide_tax_configuration",
+    "title": "Tax Configuration",
+    "count": 31
+   },
+   {
+    "id": "ap_ap_setup_guide_loan_types",
+    "title": "Loan Types",
+    "count": 8
+   },
+   {
+    "id": "ap_ap_setup_guide_a_p_terms_configuration",
+    "title": "A/P Terms Configuration",
+    "count": 9
+   },
+   {
+    "id": "ap_ap_setup_guide_asset_configuration",
+    "title": "Asset Configuration",
+    "count": 14
+   },
+   {
+    "id": "ap_ap_setup_guide_contract_types",
+    "title": "Contract Types",
+    "count": 2
+   },
+   {
+    "id": "ap_ap_setup_guide_automatic_payment_configuration",
+    "title": "Automatic Payment Configuration",
+    "count": 10
+   },
+   {
+    "id": "ap_ap_setup_guide_check_configuration",
+    "title": "Check Configuration",
+    "count": 5
+   },
+   {
+    "id": "ap_ap_setup_guide_configuring_g_l_account_overrides_in_a_p",
+    "title": "Configuring G/L Account Overrides in A/P Transactions",
+    "count": 8
+   },
+   {
+    "id": "ap_ap_setup_guide_electronic_payment_method_configuration",
+    "title": "Electronic Payment Method Configuration",
+    "count": 16
+   },
+   {
+    "id": "ap_ap_setup_guide_third_party_payment_services",
+    "title": "Third-Party Payment Services",
+    "count": 2
+   },
+   {
+    "id": "ap_ap_setup_guide_common_tasks",
+    "title": "Common Tasks (AP Setup Guide)",
+    "count": 21
+   },
+   {
+    "id": "ap_ap_setup_guide_currency",
+    "title": "Currency (AP Setup Guide)",
+    "count": 4
+   },
+   {
+    "id": "ap_ap_setup_guide_attachments",
+    "title": "Attachments (AP Setup Guide)",
+    "count": 5
+   },
+   {
+    "id": "ap_ap_setup_guide_importing",
+    "title": "Importing (AP Setup Guide)",
+    "count": 7
+   },
+   {
+    "id": "ap_ap_setup_guide_help_and_support",
+    "title": "Help and Support (AP Setup Guide)",
+    "count": 1
+   },
+   {
+    "id": "ap_ap_reports_guide_working_with_accounts_payable_reports_an",
+    "title": "Working with Accounts Payable Reports and Charts … Reports Workflow",
+    "count": 4
+   },
+   {
+    "id": "ap_ap_reports_guide_vendors_reports",
+    "title": "Vendors Reports",
+    "count": 63
+   },
+   {
+    "id": "ap_ap_reports_guide_a_p_invoices_and_registers",
+    "title": "A/P Invoices & Registers",
+    "count": 1
+   },
+   {
+    "id": "ap_ap_reports_guide_a_p_invoice_register",
+    "title": "A/P Invoice Register",
+    "count": 44
+   },
+   {
+    "id": "ap_ap_reports_guide_working_with_reports",
+    "title": "Working with Reports",
+    "count": 18
+   },
+   {
+    "id": "ap_ap_reports_guide_accounts_payable_charts_vendor_aging_cha",
+    "title": "Accounts Payable Charts … Vendor Aging Chart",
+    "count": 8
+   },
+   {
+    "id": "ap_ap_reports_guide_working_with_charts",
+    "title": "Working with Charts",
+    "count": 8
+   },
+   {
+    "id": "ap_ap_qs_quick_steps_ap_qs",
+    "title": "Quick Steps — AP QS",
+    "count": 20
+   },
+   {
+    "id": "ap_spend_management_guide_introduction_to_realpage_spend_managemen",
+    "title": "Introduction to RealPage Spend Management (Spend Management Guide)",
+    "count": 4
+   },
+   {
+    "id": "ap_spend_management_guide_configuring_spend_management",
+    "title": "Configuring Spend Management",
+    "count": 81
+   },
+   {
+    "id": "ap_spend_management_guide_using_spend_management",
+    "title": "Using Spend Management",
+    "count": 10
+   },
+   {
+    "id": "ap_spend_management_guide_using_spend_management_workbenches",
+    "title": "Using Spend Management › Workbenches",
+    "count": 32
+   },
+   {
+    "id": "ap_spend_management_guide_using_spend_management_a_p_invoices",
+    "title": "Using Spend Management › A/P Invoices",
+    "count": 16
+   },
+   {
+    "id": "ap_spend_management_guide_using_spend_management_purchase_orders",
+    "title": "Using Spend Management › Purchase Orders",
+    "count": 20
+   },
+   {
+    "id": "ap_spend_management_guide_using_spend_management_service_contracts",
+    "title": "Using Spend Management › Service Contracts and Service Orders",
+    "count": 22
+   },
+   {
+    "id": "ap_spend_management_guide_using_spend_management_subcontracts",
+    "title": "Using Spend Management › Subcontracts",
+    "count": 15
+   },
+   {
+    "id": "ap_spend_management_guide_using_spend_management_storefront",
+    "title": "Using Spend Management › Storefront",
+    "count": 32
+   },
+   {
+    "id": "ap_spend_management_guide_using_spend_management_periodic_tasks",
+    "title": "Using Spend Management › Periodic Tasks",
+    "count": 15
+   },
+   {
+    "id": "ap_spend_management_guide_spend_management_reports",
+    "title": "Spend Management Reports",
+    "count": 95
+   },
+   {
+    "id": "ap_spend_management_qs_quick_steps_spend_management_qs",
+    "title": "Quick Steps — Spend Management QS",
+    "count": 14
+   },
+   {
+    "id": "ap_ai_finance_agent_guide_ai_finance_agent",
+    "title": "AI Finance Agent",
+    "count": 1
+   },
+   {
+    "id": "ap_ai_finance_agent_guide_welcome_to_the_finance_agent",
+    "title": "Welcome to the Finance Agent",
+    "count": 9
+   },
+   {
+    "id": "ap_ai_finance_agent_guide_setting_up_the_finance_agent",
+    "title": "Setting Up the Finance Agent",
+    "count": 52
+   },
+   {
+    "id": "ap_ai_finance_agent_guide_using_the_finance_agent",
+    "title": "Using the Finance Agent",
+    "count": 112
+   },
+   {
+    "id": "ap_ai_finance_agent_guide_finance_agent_reports",
+    "title": "Finance Agent Reports",
+    "count": 75
+   },
+   {
+    "id": "ap_ai_finance_agent_guide_appendices",
+    "title": "Appendices (AI Finance Agent Guide)",
+    "count": 12
+   },
+   {
+    "id": "ap_ai_finance_agent_getting_ai_finance_agent_getting_started_guide",
+    "title": "AI Finance Agent Getting Started Guide",
+    "count": 26
+   },
+   {
+    "id": "ap_ai_finance_agent_roles_a_ai_finance_agent_roles_and_rights",
+    "title": "AI Finance Agent Roles and Rights",
+    "count": 1
+   },
+   {
+    "id": "ap_vendor_aging_and_trial_b_vendor_aging_and_trial_balance_quick_hel",
+    "title": "Vendor Aging and Trial Balance Quick Help",
+    "count": 8
+   },
+   {
+    "id": "ap_approval_workbench_quick_approval_workbench_quick_help",
+    "title": "Approval Workbench Quick Help",
+    "count": 5
+   },
+   {
+    "id": "ap_approval_history_quick_h_approval_history_quick_help",
+    "title": "Approval History Quick Help",
+    "count": 2
+   },
+   {
+    "id": "ap_approval_policy_manager_approval_processes",
+    "title": "Approval Processes",
+    "count": 1
+   },
+   {
+    "id": "ap_approval_policy_manager_realpage_accounting_approval_processes",
+    "title": "RealPage Accounting Approval Processes",
+    "count": 11
+   },
+   {
+    "id": "ap_approval_policy_manager_transaction_approvals",
+    "title": "Transaction Approvals",
+    "count": 34
+   },
+   {
+    "id": "ap_approval_policy_manager_vendor_approvals",
+    "title": "Vendor Approvals",
+    "count": 8
+   },
+   {
+    "id": "ap_approval_policy_manager_approval_faqs",
+    "title": "Approval FAQs",
+    "count": 20
+   },
+   {
+    "id": "ap_approval_policy_manager_reports",
+    "title": "Reports (Approval Policy Manager Guide)",
+    "count": 1
+   },
+   {
+    "id": "ap_approval_policy_manager_quick_steps_approval_policy_manager_qs",
+    "title": "Quick Steps — Approval Policy Manager QS",
+    "count": 16
+   }
+  ]
+ },
+ {
+  "id": "ar",
+  "file": "04_accounts_receivable",
+  "title": "Accounts Receivable (AR)",
+  "shortCode": "AR",
+  "icon": "cash-outline",
+  "color": "#2DD4BF",
+  "description": "Complete RealPage Accounts Receivable: customers, billing (A/R invoices, recurring and quick entry, intercompany bill-backs), payments and deposits, adjustments, subledger close, account maintenance, PEX import, A/R setup (terms, taxes, territories, templates) and all A/R reports and charts.",
+  "glAccountLegend": "GL examples use an illustrative multifamily chart of accounts: 1110 Operating Cash, 1115 Security Deposit Trust Cash, 1120 Petty Cash, 1130 Undeposited Funds, 1210 Resident/Tenant A/R, 1215 Allowance for Doubtful Accounts, 1230 Due From Affiliates, 1250 Input VAT/Tax Recoverable, 1310 Prepaid Expenses, 1330 Tax & Insurance Escrow, 1340 Replacement Reserve Escrow, 1410 Construction in Progress, 1520 Buildings, 1530 Building Improvements, 1540 FF&E, 1590 Accumulated Depreciation, 2010 Accounts Payable, 2015 Retainage Payable, 2020 Accrued Expenses, 2110 Resident Security Deposits, 2120 Prepaid Rent, 2130 Due To Affiliates, 2140 Credit Card Payable, 2150 Employee Reimbursements Payable, 2160 Sales Tax/VAT Payable, 2170 Unclaimed Property Payable, 2210 Mortgage/Construction Loan Payable, 3010 Partners' Capital, 3020 Distributions, 3100 Retained Earnings, 4010 Gross Potential Rent, 4040 Concessions, 4050 Bad Debt, 4100 Other Income (late/NSF/fees), 4110 Utility Reimbursement, 6010 Payroll, 6110 Repairs & Maintenance, 6210 Utilities, 6310 Marketing, 6410 Administrative, 6420 Bank Charges, 6510 Management Fees, 6610 Insurance, 6620 Real Estate Taxes, 7010 Interest Expense, 7110 Depreciation Expense. Map to each owner's chart of accounts.",
+  "screenCount": 712,
+  "submodules": [
+   {
+    "id": "ar_curated",
+    "title": "Mastery Playbook — Curated AR Workflows",
+    "count": 2
+   },
+   {
+    "id": "ar_ar_guide_introduction_to_accounts_receivable",
+    "title": "Introduction to Accounts Receivable (AR Guide)",
+    "count": 5
+   },
+   {
+    "id": "ar_ar_guide_customers",
+    "title": "Customers",
+    "count": 61
+   },
+   {
+    "id": "ar_ar_guide_billing",
+    "title": "Billing",
+    "count": 113
+   },
+   {
+    "id": "ar_ar_guide_payments",
+    "title": "Payments",
+    "count": 88
+   },
+   {
+    "id": "ar_ar_guide_subledgers",
+    "title": "Subledgers",
+    "count": 40
+   },
+   {
+    "id": "ar_ar_guide_account_maintenance",
+    "title": "Account Maintenance",
+    "count": 14
+   },
+   {
+    "id": "ar_ar_guide_pex_import",
+    "title": "PEX Import",
+    "count": 4
+   },
+   {
+    "id": "ar_ar_guide_common_tasks",
+    "title": "Common Tasks (AR Guide)",
+    "count": 88
+   },
+   {
+    "id": "ar_ar_guide_appendices",
+    "title": "Appendices (AR Guide)",
+    "count": 6
+   },
+   {
+    "id": "ar_ar_setup_guide_configuring_accounts_receivable",
+    "title": "Configuring Accounts Receivable",
+    "count": 20
+   },
+   {
+    "id": "ar_ar_setup_guide_account_labels",
+    "title": "Account Labels",
+    "count": 10
+   },
+   {
+    "id": "ar_ar_setup_guide_intercompany_bill_backs",
+    "title": "Intercompany Bill-Backs",
+    "count": 7
+   },
+   {
+    "id": "ar_ar_setup_guide_overriding_the_g_l_account_in_a_r_transa",
+    "title": "Overriding the G/L Account in A/R Transactions",
+    "count": 8
+   },
+   {
+    "id": "ar_ar_setup_guide_a_r_terms",
+    "title": "A/R Terms",
+    "count": 9
+   },
+   {
+    "id": "ar_ar_setup_guide_taxes",
+    "title": "Taxes",
+    "count": 40
+   },
+   {
+    "id": "ar_ar_setup_guide_territories_and_territory_groups",
+    "title": "Territories and Territory Groups",
+    "count": 21
+   },
+   {
+    "id": "ar_ar_setup_guide_shipping_methods",
+    "title": "Shipping Methods",
+    "count": 9
+   },
+   {
+    "id": "ar_ar_setup_guide_printed_document_templates",
+    "title": "Printed Document Templates",
+    "count": 23
+   },
+   {
+    "id": "ar_ar_setup_guide_common_tasks",
+    "title": "Common Tasks (AR Setup Guide)",
+    "count": 17
+   },
+   {
+    "id": "ar_ar_reports_guide_introduction_to_accounts_receivable_repo",
+    "title": "Introduction to Accounts Receivable Reports … Customer Aging Report (AR Reports Guide)",
+    "count": 8
+   },
+   {
+    "id": "ar_ar_reports_guide_customer_listing_report",
+    "title": "Customer Listing Report",
+    "count": 5
+   },
+   {
+    "id": "ar_ar_reports_guide_a_r_ledger_report",
+    "title": "A/R Ledger Report",
+    "count": 4
+   },
+   {
+    "id": "ar_ar_reports_guide_sales_register_report",
+    "title": "Sales Register Report",
+    "count": 4
+   },
+   {
+    "id": "ar_ar_reports_guide_deferred_revenue_forecast_report_recurri",
+    "title": "Deferred Revenue Forecast Report … Recurring Transaction Forecast Report",
+    "count": 15
+   },
+   {
+    "id": "ar_ar_reports_guide_receipts_register_report",
+    "title": "Receipts Register Report",
+    "count": 4
+   },
+   {
+    "id": "ar_ar_reports_guide_sales_tax_report",
+    "title": "Sales Tax Report",
+    "count": 3
+   },
+   {
+    "id": "ar_ar_reports_guide_intercompany_billing_report",
+    "title": "Intercompany Billing Report",
+    "count": 4
+   },
+   {
+    "id": "ar_ar_reports_guide_invoices_analysis_report",
+    "title": "Invoices Analysis Report",
+    "count": 4
+   },
+   {
+    "id": "ar_ar_reports_guide_recurring_report",
+    "title": "Recurring Report",
+    "count": 4
+   },
+   {
+    "id": "ar_ar_reports_guide_reclassification_report",
+    "title": "Reclassification Report",
+    "count": 4
+   },
+   {
+    "id": "ar_ar_reports_guide_using_reports",
+    "title": "Using Reports",
+    "count": 27
+   },
+   {
+    "id": "ar_ar_reports_guide_troubleshooting_a_r_reports_invoices_ana",
+    "title": "Troubleshooting A/R Reports … Invoices Analysis Chart",
+    "count": 13
+   },
+   {
+    "id": "ar_ar_reports_guide_working_with_charts",
+    "title": "Working with Charts",
+    "count": 7
+   },
+   {
+    "id": "ar_ar_reports_guide_common_tasks",
+    "title": "Common Tasks (AR Reports Guide)",
+    "count": 11
+   },
+   {
+    "id": "ar_ar_qs_quick_steps_ar_qs",
+    "title": "Quick Steps — AR QS",
+    "count": 10
+   }
+  ]
+ },
+ {
+  "id": "gl",
+  "file": "01_general_ledger",
+  "title": "General Ledger (GL)",
+  "shortCode": "GL",
+  "icon": "book-outline",
+  "color": "#10B981",
+  "description": "Complete RealPage General Ledger: G/L workbench, accounting methods, chart of accounts, statistical accounts, account groups, journals and journal entries (standard, adjusting, GAAP, tax, user-defined books, statistical), recurring entries, JE approvals, prepaids, accruals, books open/close, budgets and BVA, allocations, GL setup, GL/financial reports, management fees and the full data-import reference.",
+  "glAccountLegend": "GL examples use an illustrative multifamily chart of accounts: 1110 Operating Cash, 1115 Security Deposit Trust Cash, 1120 Petty Cash, 1130 Undeposited Funds, 1210 Resident/Tenant A/R, 1215 Allowance for Doubtful Accounts, 1230 Due From Affiliates, 1250 Input VAT/Tax Recoverable, 1310 Prepaid Expenses, 1330 Tax & Insurance Escrow, 1340 Replacement Reserve Escrow, 1410 Construction in Progress, 1520 Buildings, 1530 Building Improvements, 1540 FF&E, 1590 Accumulated Depreciation, 2010 Accounts Payable, 2015 Retainage Payable, 2020 Accrued Expenses, 2110 Resident Security Deposits, 2120 Prepaid Rent, 2130 Due To Affiliates, 2140 Credit Card Payable, 2150 Employee Reimbursements Payable, 2160 Sales Tax/VAT Payable, 2170 Unclaimed Property Payable, 2210 Mortgage/Construction Loan Payable, 3010 Partners' Capital, 3020 Distributions, 3100 Retained Earnings, 4010 Gross Potential Rent, 4040 Concessions, 4050 Bad Debt, 4100 Other Income (late/NSF/fees), 4110 Utility Reimbursement, 6010 Payroll, 6110 Repairs & Maintenance, 6210 Utilities, 6310 Marketing, 6410 Administrative, 6420 Bank Charges, 6510 Management Fees, 6610 Insurance, 6620 Real Estate Taxes, 7010 Interest Expense, 7110 Depreciation Expense. Map to each owner's chart of accounts.",
+  "screenCount": 1201,
+  "submodules": [
+   {
+    "id": "gl_curated",
+    "title": "Mastery Playbook — Curated GL Workflows",
+    "count": 5
+   },
+   {
+    "id": "gl_general_ledger_guide_introduction_to_the_general_ledger",
+    "title": "Introduction to the General Ledger (General Ledger Guide)",
+    "count": 7
+   },
+   {
+    "id": "gl_general_ledger_guide_general_ledger_workbench",
+    "title": "General Ledger Workbench",
+    "count": 24
+   },
+   {
+    "id": "gl_general_ledger_guide_accounting_methods",
+    "title": "Accounting Methods",
+    "count": 6
+   },
+   {
+    "id": "gl_general_ledger_guide_chart_of_accounts",
+    "title": "Chart of Accounts",
+    "count": 5
+   },
+   {
+    "id": "gl_general_ledger_guide_accounts",
+    "title": "Accounts",
+    "count": 19
+   },
+   {
+    "id": "gl_general_ledger_guide_statistical_accounts",
+    "title": "Statistical Accounts",
+    "count": 9
+   },
+   {
+    "id": "gl_general_ledger_guide_account_groups",
+    "title": "Account Groups",
+    "count": 39
+   },
+   {
+    "id": "gl_general_ledger_guide_reporting_account_sets",
+    "title": "Reporting Account Sets",
+    "count": 27
+   },
+   {
+    "id": "gl_general_ledger_guide_journals",
+    "title": "Journals (General Ledger Guide)",
+    "count": 7
+   },
+   {
+    "id": "gl_general_ledger_guide_journal_entries",
+    "title": "Journal Entries",
+    "count": 44
+   },
+   {
+    "id": "gl_general_ledger_guide_adjusting_entries",
+    "title": "Adjusting Entries",
+    "count": 22
+   },
+   {
+    "id": "gl_general_ledger_guide_journal_entries_for_user_defined_books",
+    "title": "Journal Entries for User-Defined Books",
+    "count": 8
+   },
+   {
+    "id": "gl_general_ledger_guide_statistical_journal_entries",
+    "title": "Statistical Journal Entries",
+    "count": 8
+   },
+   {
+    "id": "gl_general_ledger_guide_site_view",
+    "title": "Site View",
+    "count": 3
+   },
+   {
+    "id": "gl_general_ledger_guide_recurring_journal_entries",
+    "title": "Recurring Journal Entries",
+    "count": 8
+   },
+   {
+    "id": "gl_general_ledger_guide_journal_entry_approvals",
+    "title": "Journal Entry Approvals",
+    "count": 15
+   },
+   {
+    "id": "gl_general_ledger_guide_prepaids",
+    "title": "Prepaids",
+    "count": 17
+   },
+   {
+    "id": "gl_general_ledger_guide_accruals",
+    "title": "Accruals",
+    "count": 11
+   },
+   {
+    "id": "gl_general_ledger_guide_books",
+    "title": "Books",
+    "count": 16
+   },
+   {
+    "id": "gl_general_ledger_guide_budgets",
+    "title": "Budgets",
+    "count": 63
+   },
+   {
+    "id": "gl_general_ledger_guide_budget_variance_analysis",
+    "title": "Budget Variance Analysis",
+    "count": 29
+   },
+   {
+    "id": "gl_general_ledger_guide_allocations",
+    "title": "Allocations (General Ledger Guide)",
+    "count": 13
+   },
+   {
+    "id": "gl_general_ledger_guide_common_tasks",
+    "title": "Common Tasks (General Ledger Guide)",
+    "count": 31
+   },
+   {
+    "id": "gl_general_ledger_guide_attachments",
+    "title": "Attachments (General Ledger Guide)",
+    "count": 6
+   },
+   {
+    "id": "gl_general_ledger_guide_help_and_support",
+    "title": "Help and Support (General Ledger Guide)",
+    "count": 9
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_configuring_the_general_ledger",
+    "title": "Configuring the General Ledger",
+    "count": 25
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_journals",
+    "title": "Journals (General Ledger Setup Guide)",
+    "count": 9
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_adjustment_journals",
+    "title": "Adjustment Journals",
+    "count": 5
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_gaap_compliance_adjustment_journals",
+    "title": "GAAP (Compliance) Adjustment Journals",
+    "count": 11
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_statistical_journals",
+    "title": "Statistical Journals",
+    "count": 6
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_setting_up_statistical_data_tracking",
+    "title": "Setting Up Statistical Data Tracking",
+    "count": 6
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_statistical_adjustment_journals",
+    "title": "Statistical Adjustment Journals",
+    "count": 7
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_tax_adjustment_journals",
+    "title": "Tax Adjustment Journals",
+    "count": 10
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_user_defined_books_and_journals",
+    "title": "User-Defined Books and Journals",
+    "count": 11
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_budget_variance_analysis_configuration",
+    "title": "Budget Variance Analysis Configuration",
+    "count": 8
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_accrual_templates",
+    "title": "Accrual Templates",
+    "count": 17
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_allocations",
+    "title": "Allocations (General Ledger Setup Guide)",
+    "count": 19
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_account_title_by_entity",
+    "title": "Account Title by Entity",
+    "count": 7
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_reporting_periods",
+    "title": "Reporting Periods",
+    "count": 10
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_transaction_templates",
+    "title": "Transaction Templates",
+    "count": 13
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_chart_types",
+    "title": "Chart Types",
+    "count": 18
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_account_group_purposes",
+    "title": "Account Group Purposes",
+    "count": 11
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_custom_categories",
+    "title": "Custom Categories",
+    "count": 7
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_segment_rule_set",
+    "title": "Segment Rule Set",
+    "count": 6
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_common_tasks",
+    "title": "Common Tasks (General Ledger Setup Guide)",
+    "count": 35
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_related_accounting_tasks",
+    "title": "Related Accounting Tasks",
+    "count": 19
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_import_preparation",
+    "title": "Import Preparation (General Ledger Setup Guide)",
+    "count": 11
+   },
+   {
+    "id": "gl_general_ledger_setup_gui_resolving_import_errors_help_and_support",
+    "title": "Resolving Import Errors … Help and Support",
+    "count": 4
+   },
+   {
+    "id": "gl_general_ledger_reports_g_general_ledger_reports",
+    "title": "General Ledger Reports",
+    "count": 16
+   },
+   {
+    "id": "gl_general_ledger_reports_g_standard_reports",
+    "title": "Standard Reports",
+    "count": 1
+   },
+   {
+    "id": "gl_general_ledger_reports_g_financial_analytics",
+    "title": "Financial Analytics",
+    "count": 47
+   },
+   {
+    "id": "gl_general_ledger_reports_g_financial_statements",
+    "title": "Financial Statements",
+    "count": 33
+   },
+   {
+    "id": "gl_general_ledger_reports_g_working_with_reports",
+    "title": "Working with Reports",
+    "count": 32
+   },
+   {
+    "id": "gl_general_ledger_reports_g_working_with_financial_reports",
+    "title": "Working with Financial Reports",
+    "count": 100
+   },
+   {
+    "id": "gl_general_ledger_reports_g_working_with_financial_reports_rows_tab",
+    "title": "Working with Financial Reports › Rows Tab",
+    "count": 12
+   },
+   {
+    "id": "gl_general_ledger_reports_g_working_with_financial_reports_columns_t",
+    "title": "Working with Financial Reports › Columns Tab",
+    "count": 12
+   },
+   {
+    "id": "gl_general_ledger_reports_g_financial_charts",
+    "title": "Financial Charts",
+    "count": 17
+   },
+   {
+    "id": "gl_general_ledger_reports_g_working_with_charts",
+    "title": "Working with Charts",
+    "count": 7
+   },
+   {
+    "id": "gl_general_ledger_reports_g_common_tasks",
+    "title": "Common Tasks (General Ledger Reports Guide)",
+    "count": 13
+   },
+   {
+    "id": "gl_general_ledger_reports_g_help_and_support",
+    "title": "Help and Support (General Ledger Reports Guide)",
+    "count": 1
+   },
+   {
+    "id": "gl_gl_qs_quick_steps_gl_qs",
+    "title": "Quick Steps — GL QS",
+    "count": 20
+   },
+   {
+    "id": "gl_management_fees_qs_quick_steps_management_fees_qs",
+    "title": "Quick Steps — Management Fees QS",
+    "count": 10
+   },
+   {
+    "id": "gl_importing_data_into_the_overview",
+    "title": "Overview (Importing Data into the RealPage Financial Suite)",
+    "count": 1
+   },
+   {
+    "id": "gl_importing_data_into_the_import_preparation",
+    "title": "Import Preparation (Importing Data into the RealPage Financial Suite)",
+    "count": 5
+   },
+   {
+    "id": "gl_importing_data_into_the_import_boxes",
+    "title": "Import Boxes",
+    "count": 7
+   },
+   {
+    "id": "gl_importing_data_into_the_import_instructions_by_type_of_data_impo",
+    "title": "Import Instructions by Type of Data … Importing A/R Invoices",
+    "count": 25
+   },
+   {
+    "id": "gl_importing_data_into_the_importing_assets_importing_contracts",
+    "title": "Importing Assets … Importing Contracts",
+    "count": 15
+   },
+   {
+    "id": "gl_importing_data_into_the_importing_customer_records",
+    "title": "Importing Customer Records",
+    "count": 30
+   },
+   {
+    "id": "gl_importing_data_into_the_import_box_for_intercompany_billing_tran",
+    "title": "Import Box for Intercompany Billing Transactions … Importing Locations",
+    "count": 25
+   },
+   {
+    "id": "gl_importing_data_into_the_importing_manual_payments_importing_appr",
+    "title": "Importing Manual Payments … Importing Approved Staff Expenses",
+    "count": 25
+   },
+   {
+    "id": "gl_importing_data_into_the_importing_standard_vendors_resolving_imp",
+    "title": "Importing Standard Vendors … Resolving Import Errors",
+    "count": 21
+   }
+  ]
+ },
+ {
+  "id": "cash",
+  "file": "03_cash_management",
+  "title": "Cash Management",
+  "shortCode": "Cash",
+  "icon": "wallet-outline",
+  "color": "#F59E0B",
+  "description": "Complete RealPage Cash Management: bank accounts, bank feeds and matching rules, bank reconciliations, deposits and undeposited funds, other receipts, bank transfers and owner distributions, credit card and PC card programs, petty cash, available cash, escheatment, Positive Pay and electronic payment (ACH) configuration, plus cash reports.",
+  "glAccountLegend": "GL examples use an illustrative multifamily chart of accounts: 1110 Operating Cash, 1115 Security Deposit Trust Cash, 1120 Petty Cash, 1130 Undeposited Funds, 1210 Resident/Tenant A/R, 1215 Allowance for Doubtful Accounts, 1230 Due From Affiliates, 1250 Input VAT/Tax Recoverable, 1310 Prepaid Expenses, 1330 Tax & Insurance Escrow, 1340 Replacement Reserve Escrow, 1410 Construction in Progress, 1520 Buildings, 1530 Building Improvements, 1540 FF&E, 1590 Accumulated Depreciation, 2010 Accounts Payable, 2015 Retainage Payable, 2020 Accrued Expenses, 2110 Resident Security Deposits, 2120 Prepaid Rent, 2130 Due To Affiliates, 2140 Credit Card Payable, 2150 Employee Reimbursements Payable, 2160 Sales Tax/VAT Payable, 2170 Unclaimed Property Payable, 2210 Mortgage/Construction Loan Payable, 3010 Partners' Capital, 3020 Distributions, 3100 Retained Earnings, 4010 Gross Potential Rent, 4040 Concessions, 4050 Bad Debt, 4100 Other Income (late/NSF/fees), 4110 Utility Reimbursement, 6010 Payroll, 6110 Repairs & Maintenance, 6210 Utilities, 6310 Marketing, 6410 Administrative, 6420 Bank Charges, 6510 Management Fees, 6610 Insurance, 6620 Real Estate Taxes, 7010 Interest Expense, 7110 Depreciation Expense. Map to each owner's chart of accounts.",
+  "screenCount": 406,
+  "submodules": [
+   {
+    "id": "cash_curated",
+    "title": "Mastery Playbook — Curated Cash Workflows",
+    "count": 2
+   },
+   {
+    "id": "cash_cash_management_guide_introduction_to_cash_management",
+    "title": "Introduction to Cash Management (Cash Management Guide)",
+    "count": 4
+   },
+   {
+    "id": "cash_cash_management_guide_using_cash_management",
+    "title": "Using Cash Management",
+    "count": 1
+   },
+   {
+    "id": "cash_cash_management_guide_using_cash_management_escheatment_workbe",
+    "title": "Using Cash Management › Escheatment Workbench",
+    "count": 9
+   },
+   {
+    "id": "cash_cash_management_guide_using_cash_management_search_and_find",
+    "title": "Using Cash Management › Search & Find",
+    "count": 14
+   },
+   {
+    "id": "cash_cash_management_guide_using_cash_management_periodic_tasks",
+    "title": "Using Cash Management › Periodic Tasks",
+    "count": 193
+   },
+   {
+    "id": "cash_cash_management_guide_periodic_tasks_reconcile_bank_account_pa",
+    "title": "Periodic Tasks › Reconcile Bank Account Page",
+    "count": 9
+   },
+   {
+    "id": "cash_cash_management_guide_periodic_tasks_find_match_page",
+    "title": "Periodic Tasks › Find Match Page",
+    "count": 8
+   },
+   {
+    "id": "cash_cash_management_guide_periodic_tasks_print_payment_copies_page",
+    "title": "Periodic Tasks › Print Payment Copies Page",
+    "count": 9
+   },
+   {
+    "id": "cash_cash_management_guide_using_cash_management_reports",
+    "title": "Using Cash Management › Reports",
+    "count": 58
+   },
+   {
+    "id": "cash_cash_management_guide_setting_up_cash_management",
+    "title": "Setting Up Cash Management",
+    "count": 72
+   },
+   {
+    "id": "cash_cash_management_qs_quick_steps_cash_management_qs",
+    "title": "Quick Steps — Cash Management QS",
+    "count": 20
+   },
+   {
+    "id": "cash_bank_reconciliation_quic_bank_reconciliation_quick_help",
+    "title": "Bank Reconciliation Quick Help",
+    "count": 7
+   }
+  ]
+ },
+ {
+  "id": "close",
+  "file": "05_financial_close",
+  "title": "Financial Close Management",
+  "shortCode": "Close",
+  "icon": "lock-closed-outline",
+  "color": "#8B5CF6",
+  "description": "Complete RealPage Financial Close Management: close checklists and monthly checklists, task generation, workbench and console, work-paper configurations and packages (generate, upload, submit, approve/decline, regenerate) and close reports.",
+  "glAccountLegend": "GL examples use an illustrative multifamily chart of accounts: 1110 Operating Cash, 1115 Security Deposit Trust Cash, 1120 Petty Cash, 1130 Undeposited Funds, 1210 Resident/Tenant A/R, 1215 Allowance for Doubtful Accounts, 1230 Due From Affiliates, 1250 Input VAT/Tax Recoverable, 1310 Prepaid Expenses, 1330 Tax & Insurance Escrow, 1340 Replacement Reserve Escrow, 1410 Construction in Progress, 1520 Buildings, 1530 Building Improvements, 1540 FF&E, 1590 Accumulated Depreciation, 2010 Accounts Payable, 2015 Retainage Payable, 2020 Accrued Expenses, 2110 Resident Security Deposits, 2120 Prepaid Rent, 2130 Due To Affiliates, 2140 Credit Card Payable, 2150 Employee Reimbursements Payable, 2160 Sales Tax/VAT Payable, 2170 Unclaimed Property Payable, 2210 Mortgage/Construction Loan Payable, 3010 Partners' Capital, 3020 Distributions, 3100 Retained Earnings, 4010 Gross Potential Rent, 4040 Concessions, 4050 Bad Debt, 4100 Other Income (late/NSF/fees), 4110 Utility Reimbursement, 6010 Payroll, 6110 Repairs & Maintenance, 6210 Utilities, 6310 Marketing, 6410 Administrative, 6420 Bank Charges, 6510 Management Fees, 6610 Insurance, 6620 Real Estate Taxes, 7010 Interest Expense, 7110 Depreciation Expense. Map to each owner's chart of accounts.",
+  "screenCount": 118,
+  "submodules": [
+   {
+    "id": "close_curated",
+    "title": "Mastery Playbook — Curated Close Workflows",
+    "count": 1
+   },
+   {
+    "id": "close_financial_close_manageme_financial_close_management",
+    "title": "Financial Close Management",
+    "count": 61
+   },
+   {
+    "id": "close_financial_close_manageme_financial_close_management_reports",
+    "title": "Financial Close Management Reports",
+    "count": 39
+   },
+   {
+    "id": "close_financial_close_manageme_quick_steps_financial_close_management_q",
+    "title": "Quick Steps — Financial Close Management QS",
+    "count": 17
+   }
+  ]
+ },
+ {
+  "id": "job_cost",
+  "file": "06_jobcost_capex_reserves",
+  "title": "Job Cost, CapEx & Replacement Reserves",
+  "shortCode": "Capex",
+  "icon": "construct-outline",
+  "color": "#FB923C",
+  "description": "Complete RealPage Job Cost & Reserves and Replacement Reserves: jobs, cost codes, job budgets and budget change orders, commitments and contracts, permits, draw models and funding sources, draws and draw receipts, reserve accounts and schedules, and job cost/reserve reports.",
+  "glAccountLegend": "GL examples use an illustrative multifamily chart of accounts: 1110 Operating Cash, 1115 Security Deposit Trust Cash, 1120 Petty Cash, 1130 Undeposited Funds, 1210 Resident/Tenant A/R, 1215 Allowance for Doubtful Accounts, 1230 Due From Affiliates, 1250 Input VAT/Tax Recoverable, 1310 Prepaid Expenses, 1330 Tax & Insurance Escrow, 1340 Replacement Reserve Escrow, 1410 Construction in Progress, 1520 Buildings, 1530 Building Improvements, 1540 FF&E, 1590 Accumulated Depreciation, 2010 Accounts Payable, 2015 Retainage Payable, 2020 Accrued Expenses, 2110 Resident Security Deposits, 2120 Prepaid Rent, 2130 Due To Affiliates, 2140 Credit Card Payable, 2150 Employee Reimbursements Payable, 2160 Sales Tax/VAT Payable, 2170 Unclaimed Property Payable, 2210 Mortgage/Construction Loan Payable, 3010 Partners' Capital, 3020 Distributions, 3100 Retained Earnings, 4010 Gross Potential Rent, 4040 Concessions, 4050 Bad Debt, 4100 Other Income (late/NSF/fees), 4110 Utility Reimbursement, 6010 Payroll, 6110 Repairs & Maintenance, 6210 Utilities, 6310 Marketing, 6410 Administrative, 6420 Bank Charges, 6510 Management Fees, 6610 Insurance, 6620 Real Estate Taxes, 7010 Interest Expense, 7110 Depreciation Expense. Map to each owner's chart of accounts.",
+  "screenCount": 365,
+  "submodules": [
+   {
+    "id": "jobcost_curated",
+    "title": "Mastery Playbook — Curated CapEx & Reserve Workflows",
+    "count": 1
+   },
+   {
+    "id": "jobcost_job_cost_and_reserves_gu_job_cost_and_reserves",
+    "title": "Job Cost & Reserves",
+    "count": 7
+   },
+   {
+    "id": "jobcost_job_cost_and_reserves_gu_job_cost_and_reserves_using_job_cost_and",
+    "title": "Job Cost & Reserves › Using Job Cost & Reserves",
+    "count": 177
+   },
+   {
+    "id": "jobcost_job_cost_and_reserves_gu_using_job_cost_and_reserves_job_informat",
+    "title": "Using Job Cost & Reserves › Job Information Page",
+    "count": 8
+   },
+   {
+    "id": "jobcost_job_cost_and_reserves_gu_using_job_cost_and_reserves_draw_informa",
+    "title": "Using Job Cost & Reserves › Draw Information Page",
+    "count": 10
+   },
+   {
+    "id": "jobcost_job_cost_and_reserves_gu_using_job_cost_and_reserves_purchase_ord",
+    "title": "Using Job Cost & Reserves › Purchase Orders List",
+    "count": 10
+   },
+   {
+    "id": "jobcost_job_cost_and_reserves_gu_using_job_cost_and_reserves_approval_wor",
+    "title": "Using Job Cost & Reserves › Approval Workbench",
+    "count": 15
+   },
+   {
+    "id": "jobcost_job_cost_and_reserves_gu_using_job_cost_and_reserves_lien_release",
+    "title": "Using Job Cost & Reserves › Lien Releases List",
+    "count": 8
+   },
+   {
+    "id": "jobcost_job_cost_and_reserves_gu_job_cost_and_reserves_setting_up_job_cos",
+    "title": "Job Cost & Reserves › Setting Up Job Cost & Reserves",
+    "count": 81
+   },
+   {
+    "id": "jobcost_job_cost_qs_quick_steps_job_cost_qs",
+    "title": "Quick Steps — Job Cost QS",
+    "count": 18
+   },
+   {
+    "id": "jobcost_replacement_reserves_gui_replacement_reserves_guide",
+    "title": "Replacement Reserves Guide",
+    "count": 20
+   },
+   {
+    "id": "jobcost_replacement_reserves_qs_quick_steps_replacement_reserves_qs",
+    "title": "Quick Steps — Replacement Reserves QS",
+    "count": 10
+   }
+  ]
+ },
+ {
+  "id": "fixed_assets",
+  "file": "07_fixed_assets",
+  "title": "Fixed Assets",
+  "shortCode": "Assets",
+  "icon": "business-outline",
+  "color": "#34D399",
+  "description": "Complete RealPage Fixed Assets: asset classes and books, adding/importing/activating assets, transfers and reclasses, disposals, depreciation batches and posting, and asset information/reconciliation reports.",
+  "glAccountLegend": "GL examples use an illustrative multifamily chart of accounts: 1110 Operating Cash, 1115 Security Deposit Trust Cash, 1120 Petty Cash, 1130 Undeposited Funds, 1210 Resident/Tenant A/R, 1215 Allowance for Doubtful Accounts, 1230 Due From Affiliates, 1250 Input VAT/Tax Recoverable, 1310 Prepaid Expenses, 1330 Tax & Insurance Escrow, 1340 Replacement Reserve Escrow, 1410 Construction in Progress, 1520 Buildings, 1530 Building Improvements, 1540 FF&E, 1590 Accumulated Depreciation, 2010 Accounts Payable, 2015 Retainage Payable, 2020 Accrued Expenses, 2110 Resident Security Deposits, 2120 Prepaid Rent, 2130 Due To Affiliates, 2140 Credit Card Payable, 2150 Employee Reimbursements Payable, 2160 Sales Tax/VAT Payable, 2170 Unclaimed Property Payable, 2210 Mortgage/Construction Loan Payable, 3010 Partners' Capital, 3020 Distributions, 3100 Retained Earnings, 4010 Gross Potential Rent, 4040 Concessions, 4050 Bad Debt, 4100 Other Income (late/NSF/fees), 4110 Utility Reimbursement, 6010 Payroll, 6110 Repairs & Maintenance, 6210 Utilities, 6310 Marketing, 6410 Administrative, 6420 Bank Charges, 6510 Management Fees, 6610 Insurance, 6620 Real Estate Taxes, 7010 Interest Expense, 7110 Depreciation Expense. Map to each owner's chart of accounts.",
+  "screenCount": 57,
+  "submodules": [
+   {
+    "id": "fixed_assets_curated",
+    "title": "Mastery Playbook — Curated Fixed Asset Workflows",
+    "count": 1
+   },
+   {
+    "id": "fixed_assets_fixed_assets_guide_fixed_assets",
+    "title": "Fixed Assets",
+    "count": 45
+   },
+   {
+    "id": "fixed_assets_fixed_assets_qs_quick_steps_fixed_assets_qs",
+    "title": "Quick Steps — Fixed Assets QS",
+    "count": 11
+   }
+  ]
+ },
+ {
+  "id": "budgeting",
+  "file": "08_budgeting_forecasting",
+  "title": "Budgeting & Forecasting",
+  "shortCode": "Budget",
+  "icon": "layers-outline",
+  "color": "#818CF8",
+  "description": "Complete RealPage Forecasting & Planning: workbench, working budgets, budget import/export, spreadsheet entry, payroll planning (positions, employees, taxes, benefits, workers comp), publishing, comparisons with actuals and budget reports.",
+  "glAccountLegend": "GL examples use an illustrative multifamily chart of accounts: 1110 Operating Cash, 1115 Security Deposit Trust Cash, 1120 Petty Cash, 1130 Undeposited Funds, 1210 Resident/Tenant A/R, 1215 Allowance for Doubtful Accounts, 1230 Due From Affiliates, 1250 Input VAT/Tax Recoverable, 1310 Prepaid Expenses, 1330 Tax & Insurance Escrow, 1340 Replacement Reserve Escrow, 1410 Construction in Progress, 1520 Buildings, 1530 Building Improvements, 1540 FF&E, 1590 Accumulated Depreciation, 2010 Accounts Payable, 2015 Retainage Payable, 2020 Accrued Expenses, 2110 Resident Security Deposits, 2120 Prepaid Rent, 2130 Due To Affiliates, 2140 Credit Card Payable, 2150 Employee Reimbursements Payable, 2160 Sales Tax/VAT Payable, 2170 Unclaimed Property Payable, 2210 Mortgage/Construction Loan Payable, 3010 Partners' Capital, 3020 Distributions, 3100 Retained Earnings, 4010 Gross Potential Rent, 4040 Concessions, 4050 Bad Debt, 4100 Other Income (late/NSF/fees), 4110 Utility Reimbursement, 6010 Payroll, 6110 Repairs & Maintenance, 6210 Utilities, 6310 Marketing, 6410 Administrative, 6420 Bank Charges, 6510 Management Fees, 6610 Insurance, 6620 Real Estate Taxes, 7010 Interest Expense, 7110 Depreciation Expense. Map to each owner's chart of accounts.",
+  "screenCount": 295,
+  "submodules": [
+   {
+    "id": "budgeting_curated",
+    "title": "Mastery Playbook — Curated Budgeting Workflows",
+    "count": 4
+   },
+   {
+    "id": "budgeting_forecasting_and_planning_introduction_to_forecasting_and_planning",
+    "title": "Introduction to Forecasting & Planning (Forecasting & Planning Guide)",
+    "count": 4
+   },
+   {
+    "id": "budgeting_forecasting_and_planning_using_forecasting_and_planning",
+    "title": "Using Forecasting & Planning",
+    "count": 8
+   },
+   {
+    "id": "budgeting_forecasting_and_planning_using_forecasting_and_planning_forecasti",
+    "title": "Using Forecasting & Planning › Forecasting & Planning Workbench",
+    "count": 16
+   },
+   {
+    "id": "budgeting_forecasting_and_planning_using_forecasting_and_planning_search_an",
+    "title": "Using Forecasting & Planning › Search & Find",
+    "count": 50
+   },
+   {
+    "id": "budgeting_forecasting_and_planning_using_forecasting_and_planning_periodic",
+    "title": "Using Forecasting & Planning › Periodic Tasks",
+    "count": 107
+   },
+   {
+    "id": "budgeting_forecasting_and_planning_using_forecasting_and_planning_reports",
+    "title": "Using Forecasting & Planning › Reports",
+    "count": 29
+   },
+   {
+    "id": "budgeting_forecasting_and_planning_setting_up_forecasting_and_planning",
+    "title": "Setting Up Forecasting & Planning",
+    "count": 52
+   },
+   {
+    "id": "budgeting_forecasting_and_planning_appendices",
+    "title": "Appendices (Forecasting & Planning Guide)",
+    "count": 9
+   },
+   {
+    "id": "budgeting_forecasting_and_planning_quick_steps_forecasting_and_planning_qs",
+    "title": "Quick Steps — Forecasting & Planning QS",
+    "count": 16
+   }
+  ]
+ },
+ {
+  "id": "reporting",
+  "file": "09_reporting_admin",
+  "title": "Reporting & Administration",
+  "shortCode": "Reports",
+  "icon": "bar-chart-outline",
+  "color": "#60A5FA",
+  "description": "Complete RealPage reporting and administration: Accounting Reports and Report Center, Financial Report Writer, Custom Report Wizard, Reporting Portal, Dashboards, Investor Tracking, Financial Suite basics, Company application (entities, users, roles, permissions, configuration), Service Provider setup, Time & Resources, Value Added Tax, Platform (Customization) Services and the Mobile App.",
+  "glAccountLegend": "GL examples use an illustrative multifamily chart of accounts: 1110 Operating Cash, 1115 Security Deposit Trust Cash, 1120 Petty Cash, 1130 Undeposited Funds, 1210 Resident/Tenant A/R, 1215 Allowance for Doubtful Accounts, 1230 Due From Affiliates, 1250 Input VAT/Tax Recoverable, 1310 Prepaid Expenses, 1330 Tax & Insurance Escrow, 1340 Replacement Reserve Escrow, 1410 Construction in Progress, 1520 Buildings, 1530 Building Improvements, 1540 FF&E, 1590 Accumulated Depreciation, 2010 Accounts Payable, 2015 Retainage Payable, 2020 Accrued Expenses, 2110 Resident Security Deposits, 2120 Prepaid Rent, 2130 Due To Affiliates, 2140 Credit Card Payable, 2150 Employee Reimbursements Payable, 2160 Sales Tax/VAT Payable, 2170 Unclaimed Property Payable, 2210 Mortgage/Construction Loan Payable, 3010 Partners' Capital, 3020 Distributions, 3100 Retained Earnings, 4010 Gross Potential Rent, 4040 Concessions, 4050 Bad Debt, 4100 Other Income (late/NSF/fees), 4110 Utility Reimbursement, 6010 Payroll, 6110 Repairs & Maintenance, 6210 Utilities, 6310 Marketing, 6410 Administrative, 6420 Bank Charges, 6510 Management Fees, 6610 Insurance, 6620 Real Estate Taxes, 7010 Interest Expense, 7110 Depreciation Expense. Map to each owner's chart of accounts.",
+  "screenCount": 1892,
+  "submodules": [
+   {
+    "id": "reporting_curated",
+    "title": "Mastery Playbook — Curated Reporting Workflows",
+    "count": 1
+   },
+   {
+    "id": "reporting_reports_guide_reports",
+    "title": "Reports (Reports Guide)",
+    "count": 14
+   },
+   {
+    "id": "reporting_reports_guide_account_receivable_reports",
+    "title": "Account Receivable Reports",
+    "count": 97
+   },
+   {
+    "id": "reporting_reports_guide_account_receivable_reports_custom_report",
+    "title": "Account Receivable Reports › Custom Report Wizard",
+    "count": 19
+   },
+   {
+    "id": "reporting_reports_guide_account_receivable_reports_financial_rep",
+    "title": "Account Receivable Reports › Financial Reports List",
+    "count": 8
+   },
+   {
+    "id": "reporting_reports_guide_account_receivable_reports_rows_tab",
+    "title": "Account Receivable Reports › Rows Tab",
+    "count": 12
+   },
+   {
+    "id": "reporting_reports_guide_account_receivable_reports_columns_tab",
+    "title": "Account Receivable Reports › Columns Tab",
+    "count": 17
+   },
+   {
+    "id": "reporting_reports_guide_account_receivable_reports_format_tab",
+    "title": "Account Receivable Reports › Format Tab",
+    "count": 9
+   },
+   {
+    "id": "reporting_reports_guide_account_receivable_reports_working_with",
+    "title": "Account Receivable Reports › Working with Dimensions",
+    "count": 103
+   },
+   {
+    "id": "reporting_reports_guide_account_receivable_reports_tasks_in_repo",
+    "title": "Account Receivable Reports › Tasks in Reports",
+    "count": 61
+   },
+   {
+    "id": "reporting_reports_guide_account_receivable_reports_appendices",
+    "title": "Account Receivable Reports › Appendices",
+    "count": 13
+   },
+   {
+    "id": "reporting_reporting_portal_guide_introduction_to_reporting_portal",
+    "title": "Introduction to Reporting Portal (Reporting Portal Guide)",
+    "count": 4
+   },
+   {
+    "id": "reporting_reporting_portal_guide_using_the_reporting_portal",
+    "title": "Using the Reporting Portal",
+    "count": 83
+   },
+   {
+    "id": "reporting_reporting_portal_guide_setting_up_the_reporting_portal",
+    "title": "Setting Up the Reporting Portal",
+    "count": 32
+   },
+   {
+    "id": "reporting_reports_using_reports_qs_quick_steps_reports_using_reports_qs",
+    "title": "Quick Steps — Reports–Using Reports QS",
+    "count": 12
+   },
+   {
+    "id": "reporting_reports_financial_report_quick_steps_reports_financial_report_wri",
+    "title": "Quick Steps — Reports–Financial Report Writer QS",
+    "count": 13
+   },
+   {
+    "id": "reporting_reports_setting_up_qs_quick_steps_reports_setting_up_qs",
+    "title": "Quick Steps — Reports–Setting Up QS",
+    "count": 18
+   },
+   {
+    "id": "reporting_reports_custom_report_wi_quick_steps_reports_custom_report_wizard",
+    "title": "Quick Steps — Reports–Custom Report Wizard QS",
+    "count": 9
+   },
+   {
+    "id": "reporting_dashboards_guide_dashboards",
+    "title": "Dashboards",
+    "count": 78
+   },
+   {
+    "id": "reporting_dashboards_quick_steps_quick_steps_dashboards_quick_steps",
+    "title": "Quick Steps — Dashboards Quick Steps",
+    "count": 12
+   },
+   {
+    "id": "reporting_investor_tracking_guide_investor_tracking",
+    "title": "Investor Tracking",
+    "count": 1
+   },
+   {
+    "id": "reporting_investor_tracking_guide_using_investor_tracking",
+    "title": "Using Investor Tracking",
+    "count": 43
+   },
+   {
+    "id": "reporting_investor_tracking_guide_setting_up_investor_tracking",
+    "title": "Setting Up Investor Tracking",
+    "count": 37
+   },
+   {
+    "id": "reporting_investor_tracking_guide_reports",
+    "title": "Reports (Investor Tracking Guide)",
+    "count": 58
+   },
+   {
+    "id": "reporting_getting_started_guide_getting_started_with_realpage_financial",
+    "title": "Getting Started with RealPage Financial Suite (Getting Started Guide)",
+    "count": 1
+   },
+   {
+    "id": "reporting_getting_started_guide_introduction",
+    "title": "Introduction (Getting Started Guide)",
+    "count": 10
+   },
+   {
+    "id": "reporting_getting_started_guide_navigation",
+    "title": "Navigation",
+    "count": 20
+   },
+   {
+    "id": "reporting_getting_started_guide_user_preferences",
+    "title": "User Preferences",
+    "count": 18
+   },
+   {
+    "id": "reporting_getting_started_guide_notifications",
+    "title": "Notifications",
+    "count": 22
+   },
+   {
+    "id": "reporting_getting_started_guide_lists",
+    "title": "Lists",
+    "count": 19
+   },
+   {
+    "id": "reporting_getting_started_guide_workbenches",
+    "title": "Workbenches",
+    "count": 11
+   },
+   {
+    "id": "reporting_getting_started_guide_transactions",
+    "title": "Transactions",
+    "count": 24
+   },
+   {
+    "id": "reporting_getting_started_guide_data_entry",
+    "title": "Data Entry",
+    "count": 15
+   },
+   {
+    "id": "reporting_getting_started_guide_attachments",
+    "title": "Attachments (Getting Started Guide)",
+    "count": 14
+   },
+   {
+    "id": "reporting_getting_started_guide_scanning",
+    "title": "Scanning",
+    "count": 7
+   },
+   {
+    "id": "reporting_getting_started_guide_working_with_dimensions",
+    "title": "Working with Dimensions",
+    "count": 41
+   },
+   {
+    "id": "reporting_getting_started_guide_configuring_currency",
+    "title": "Configuring Currency",
+    "count": 6
+   },
+   {
+    "id": "reporting_getting_started_guide_configuring_transaction_and_base_currenc",
+    "title": "Configuring Transaction and Base Currencies",
+    "count": 8
+   },
+   {
+    "id": "reporting_getting_started_guide_exchange_rates",
+    "title": "Exchange Rates",
+    "count": 3
+   },
+   {
+    "id": "reporting_getting_started_guide_help_and_support",
+    "title": "Help and Support (Getting Started Guide)",
+    "count": 8
+   },
+   {
+    "id": "reporting_basics_qs_quick_steps_basics_qs",
+    "title": "Quick Steps — Basics QS",
+    "count": 21
+   },
+   {
+    "id": "reporting_company_guide_using_the_company_application",
+    "title": "Using the Company Application",
+    "count": 19
+   },
+   {
+    "id": "reporting_company_guide_using_the_company_application_configurat",
+    "title": "Using the Company Application › Configuration",
+    "count": 77
+   },
+   {
+    "id": "reporting_company_guide_using_the_company_application_ledger_sen",
+    "title": "Using the Company Application › Ledger Sentry",
+    "count": 18
+   },
+   {
+    "id": "reporting_company_guide_using_the_company_application_ticket_wor",
+    "title": "Using the Company Application › Ticket Workbench",
+    "count": 9
+   },
+   {
+    "id": "reporting_company_guide_using_the_company_application_close_cale",
+    "title": "Using the Company Application › Close Calendar",
+    "count": 18
+   },
+   {
+    "id": "reporting_company_guide_using_the_company_application_ai_configu",
+    "title": "Using the Company Application › AI Configuration",
+    "count": 8
+   },
+   {
+    "id": "reporting_company_guide_using_the_company_application_settings",
+    "title": "Using the Company Application › Settings",
+    "count": 31
+   },
+   {
+    "id": "reporting_company_guide_using_the_company_application_approvals",
+    "title": "Using the Company Application › Approvals",
+    "count": 52
+   },
+   {
+    "id": "reporting_company_guide_using_the_company_application_storage",
+    "title": "Using the Company Application › Storage",
+    "count": 15
+   },
+   {
+    "id": "reporting_company_guide_using_the_company_application_dimensions",
+    "title": "Using the Company Application › Dimensions",
+    "count": 16
+   },
+   {
+    "id": "reporting_company_guide_using_the_company_application_entities",
+    "title": "Using the Company Application › Entities",
+    "count": 24
+   },
+   {
+    "id": "reporting_company_guide_using_the_company_application_import_dat",
+    "title": "Using the Company Application › Import Data",
+    "count": 17
+   },
+   {
+    "id": "reporting_company_guide_using_the_company_application_segments",
+    "title": "Using the Company Application › Segments",
+    "count": 11
+   },
+   {
+    "id": "reporting_company_guide_using_the_company_application_contracts",
+    "title": "Using the Company Application › Contracts",
+    "count": 14
+   },
+   {
+    "id": "reporting_company_guide_using_the_company_application_more",
+    "title": "Using the Company Application › More",
+    "count": 28
+   },
+   {
+    "id": "reporting_company_guide_using_the_company_application_reports",
+    "title": "Using the Company Application › Reports",
+    "count": 16
+   },
+   {
+    "id": "reporting_company_guide_setting_up_your_company",
+    "title": "Setting Up Your Company",
+    "count": 82
+   },
+   {
+    "id": "reporting_company_qs_quick_steps_company_qs",
+    "title": "Quick Steps — Company QS",
+    "count": 19
+   },
+   {
+    "id": "reporting_service_provider_setup_g_service_provider_setup_guide",
+    "title": "Service Provider Setup Guide",
+    "count": 6
+   },
+   {
+    "id": "reporting_time_and_resources_guide_time_and_resources",
+    "title": "Time & Resources",
+    "count": 1
+   },
+   {
+    "id": "reporting_time_and_resources_guide_introduction_to_time_and_resources",
+    "title": "Introduction to Time & Resources (Time & Resources Guide)",
+    "count": 4
+   },
+   {
+    "id": "reporting_time_and_resources_guide_using_the_time_and_resources_application",
+    "title": "Using the Time & Resources Application",
+    "count": 65
+   },
+   {
+    "id": "reporting_time_and_resources_guide_setting_up_time_and_resources",
+    "title": "Setting Up Time & Resources",
+    "count": 29
+   },
+   {
+    "id": "reporting_time_and_resources_guide_time_and_resources_reports",
+    "title": "Time & Resources Reports",
+    "count": 13
+   },
+   {
+    "id": "reporting_value_added_tax_guide_introduction_to_value_added_taxes",
+    "title": "Introduction to Value Added Taxes (Value Added Tax Guide)",
+    "count": 4
+   },
+   {
+    "id": "reporting_value_added_tax_guide_configuration",
+    "title": "Configuration (Value Added Tax Guide)",
+    "count": 30
+   },
+   {
+    "id": "reporting_value_added_tax_guide_using_realpage_financial_suite_with_vat",
+    "title": "Using RealPage Financial Suite with VAT Taxes",
+    "count": 30
+   },
+   {
+    "id": "reporting_value_added_tax_guide_taxes_application",
+    "title": "Taxes Application",
+    "count": 6
+   },
+   {
+    "id": "reporting_value_added_tax_guide_reports",
+    "title": "Reports (Value Added Tax Guide)",
+    "count": 23
+   },
+   {
+    "id": "reporting_value_added_tax_guide_setup",
+    "title": "Setup (Value Added Tax Guide)",
+    "count": 11
+   },
+   {
+    "id": "reporting_value_added_tax_guide_appendices",
+    "title": "Appendices (Value Added Tax Guide)",
+    "count": 43
+   },
+   {
+    "id": "reporting_platform_customization_s_platform_customization_services",
+    "title": "Platform (Customization) Services",
+    "count": 75
+   },
+   {
+    "id": "reporting_platform_customization_s_quick_steps_platform_customization_servi",
+    "title": "Quick Steps — Platform (Customization) Services QS",
+    "count": 13
+   },
+   {
+    "id": "reporting_mobile_app_guide_getting_started",
+    "title": "Getting Started (Mobile App Guide)",
+    "count": 7
+   },
+   {
+    "id": "reporting_mobile_app_guide_approval_workbench",
+    "title": "Approval Workbench",
+    "count": 26
+   },
+   {
+    "id": "reporting_mobile_app_guide_a_p_invoices",
+    "title": "A/P Invoices",
+    "count": 6
+   },
+   {
+    "id": "reporting_mobile_app_guide_expenses",
+    "title": "Expenses",
+    "count": 6
+   },
+   {
+    "id": "reporting_mobile_app_guide_purchase_orders",
+    "title": "Purchase Orders",
+    "count": 5
+   },
+   {
+    "id": "reporting_mobile_app_guide_storefront",
+    "title": "Storefront",
+    "count": 7
+   },
+   {
+    "id": "reporting_mobile_app_guide_pc_charges",
+    "title": "PC Charges",
+    "count": 6
+   }
+  ]
+ }
+]

@@ -7,13 +7,16 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
-  Platform,
+  useWindowDimensions,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../theme/colors';
+import { LAYOUT } from '../theme/layout';
 import { PDF_CATALOG } from '../data/pdfCatalogData';
 import { TASK_GUARDRAILS } from '../data/taskGuardrails';
 import RegulatoryGuardrailCard from './RegulatoryGuardrailCard';
+import { LedgerText } from './Ledger';
 import { triggerHaptic } from '../utils/haptics';
 
 export default function MasteryModal({
@@ -27,6 +30,10 @@ export default function MasteryModal({
   currentNote = '',
   onSaveNote,
 }) {
+  const insets = useSafeAreaInsets();
+  // Desktop: keep the reading column centered instead of stretching across a wide monitor.
+  const { width } = useWindowDimensions();
+  const gutter = Math.max(0, (width - LAYOUT.READING_MAX) / 2);
   const [activeTab, setActiveTab] = useState('sop'); // 'nav' | 'purpose' | 'root_cause' | 'sop' | 'impact' | 'legal'
   const [softwareToggle, setSoftwareToggle] = useState('realpage'); // 'realpage' | 'yardi'
   const [noteText, setNoteText] = useState('');
@@ -77,9 +84,9 @@ export default function MasteryModal({
       transparent={false}
       onRequestClose={onClose}
     >
-      <View style={styles.container}>
+      <View style={[styles.container, { paddingHorizontal: gutter }]}>
         {/* Modal Top Header */}
-        <View style={styles.header}>
+        <View style={[styles.header, { paddingTop: Math.max(insets.top, 12) + 4, paddingLeft: 16 + insets.left, paddingRight: 16 + insets.right }]}>
           <TouchableOpacity
             style={styles.closeButton}
             onPress={() => {
@@ -481,9 +488,10 @@ export default function MasteryModal({
               {/* General Ledger Impact Box */}
               <View style={styles.glBox}>
                 <Text style={styles.glBoxHeader}>General Ledger Entry (DR / CR)</Text>
-                <Text style={styles.glImpactFormula}>
-                  {task.downstreamImpact?.glImpact || 'No direct GL impact (Staging status).'}
-                </Text>
+                <LedgerText
+                  style={styles.glImpactFormula}
+                  text={task.downstreamImpact?.glImpact || 'No direct GL impact (Staging status).'}
+                />
               </View>
 
               {/* Next Workflow Step */}
@@ -577,7 +585,7 @@ export default function MasteryModal({
         </ScrollView>
 
         {/* Bottom Sticky Action Bar */}
-        <View style={styles.bottomBar}>
+        <View style={[styles.bottomBar, { paddingBottom: Math.max(insets.bottom, 12), paddingLeft: 16 + insets.left, paddingRight: 16 + insets.right }]}>
           <TouchableOpacity
             style={[
               styles.completeActionButton,
@@ -614,7 +622,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
-    paddingTop: Platform.OS === 'ios' ? 48 : 16,
     paddingBottom: 12,
     backgroundColor: COLORS.surface,
     borderBottomWidth: 1,
@@ -1083,7 +1090,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#FFFFFF',
     lineHeight: 22,
-    fontFamily: Platform.OS === 'ios' ? 'Courier' : 'monospace',
   },
   workflowBox: {
     backgroundColor: COLORS.surfaceLight,
