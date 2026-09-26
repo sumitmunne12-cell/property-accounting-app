@@ -16,6 +16,8 @@ import {
   REALPAGE_GLOSSARY_STATS,
   MODULE_FILE_TITLES,
 } from '../src/data/glossaryData.js';
+import { ALL_TASKS } from '../src/data/tasksData.js';
+import { TASK_GUARDRAILS } from '../src/data/taskGuardrails.js';
 
 const errors = [];
 const err = (m) => errors.push(m);
@@ -112,6 +114,15 @@ if (rog && !(rog.modules.includes('02_accounts_payable') && rog.modules.includes
 }
 if (REALPAGE_GLOSSARY_TERMS.length !== REALPAGE_GLOSSARY_STATS.uniqueTerms) err('glossary: stats out of sync');
 
+// ── Task guardrails (MasteryModal Legal tab) ────────────────────────────────
+for (const t of ALL_TASKS) {
+  const g = TASK_GUARDRAILS[t.id];
+  if (!g) err(`task guardrails: ${t.id} missing`);
+  else for (const k of ['governingAuthority', 'regulationCode', 'plainEnglishRule', 'auditRisk']) {
+    if (!g[k]) err(`task guardrails: ${t.id} missing ${k}`);
+  }
+}
+
 // ── Budgeting showcase screens ─────────────────────────────────────────────
 ['scr_budget_model_creation', 'scr_budget_reforecast_revisions', 'scr_budget_gl_comparison', 'scr_budget_variance_threshold_locking'].forEach(
   (id) => checkScreen(id, 'budgeting showcase')
@@ -125,6 +136,7 @@ console.log(`rosetta operations:     ${ROSETTA_OPERATIONS.length}`);
 console.log(
   `glossary terms:         ${GLOSSARY_TERMS.length} (${MULTIFAMILY_TERMS.length} curated + ${REALPAGE_GLOSSARY_STATS.uniqueTerms} RealPage from ${REALPAGE_GLOSSARY_STATS.entries} entries)`
 );
+console.log(`task guardrails:        ${Object.keys(TASK_GUARDRAILS).length} / ${ALL_TASKS.length} tasks`);
 console.log(`budget showcase screen: ${getScreenById('scr_budget_model_creation')?.name}`);
 if (errors.length) {
   console.error(`\n${errors.length} validation errors:`);

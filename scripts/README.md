@@ -24,6 +24,7 @@ python3 scripts/audit_quality.py   # optional: how much content is manual-derive
 | `scripts/rp_parse.py` | Splits each manual into topics. It re-segments bodies on the in-text title, because the converter puts every bookmark heading at the top of its page. It then extracts navigation callouts, numbered/lettered procedures, field/button tables and prose. |
 | `scripts/rp_kb.py` | Multifamily accounting knowledge base. Each topic (A/P invoice, payment, bank rec, accrual, draw, depreciation…) has a DR/CR pattern, a Yardi Voyager equivalent, reasons records appear, the downstream workflow and a control check. Screen actions are classified as create, post, reverse, report, setup and so on. |
 | `scripts/curated_screens.json` | Hand-authored mastery workflows. Each module's first "Mastery Playbook" submodule comes from here, including the 4 budgeting showcase screens. |
+| `scripts/rp_guardrails.py` | US legal, tax and accounting rules (GAAP ASC, IRC/Treasury regs, SOX 404/COSO, UCC, NACHA/FinCEN/OFAC, state landlord-tenant, lien and unclaimed-property law, HUD/agency lender rules) for each knowledge-base topic. It fills every screen's `regulatoryGuardrail` and generates `src/data/taskGuardrails.js` for the Daily Hub tasks. |
 | `scripts/rp_glossary.py` | Extracts every "Glossary of Terms" entry from the manuals, dedupes terms repeated across manuals, and cross-references each term to modules and related screens. The result is written into the generated block of `src/data/glossaryData.js`. |
 
 ## How each screen field is filled
@@ -38,6 +39,7 @@ python3 scripts/audit_quality.py   # optional: how much content is manual-derive
 | `glAccountingImpact` | The knowledge-base posting pattern phrased for the action (posting, draft, reversal, report, setup, master data), plus a quote from the manual when it states the entry. |
 | `whatHappensNext` | The *What's Next?* child, "The system …" sentences from the manual, and the knowledge-base downstream workflow. |
 | `yardiEquivalent` | The Yardi Voyager screen or workflow from the knowledge base, with the reporting equivalent added for report screens. |
+| `regulatoryGuardrail` | The governing authority, regulation code, plain-English rule and audit risk for the screen's topic (`rp_guardrails.py`). Screens that edit, reverse or delete posted records also get the record-retention rule. |
 | `pdfManualSource` | Manual file name and page range. Identical topics in other manuals of the same module are listed as "also documented in". |
 
 ## Coverage accounting

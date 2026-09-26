@@ -467,7 +467,18 @@ topic('bank_feed', r"bank (feed|file|transaction|statement)s?|upload bank|bank t
       ctx="Daily bank matching shortens month-end close for large multifamily portfolios.",
       ctl="Do not exclude bank lines without documented reason; excluded items drop out of the reconciliation.")
 
-topic('deposit', r"deposit(s|ing)?\b(?!.*security)|undeposited|deposit slip|reversing deposits|payment in a deposit",
+topic('security_deposit', r"security deposit|resident deposit|pet deposit|deposit (refund|accounting|audit)|move[- ]out|\bFAS\b",
+      gl="Collection: DR 1115 Security Deposit Cash / CR 2110 Resident Security Deposits. Move-out application: DR 2110 Security Deposits / CR 1210 A/R (charges) and refund DR 2110 / CR 1115 Cash.",
+      rev="Reversal of a deposit refund: DR 1115 Cash / CR 2110 Security Deposits.",
+      yardi='ar_deposit_sec', mods=['ar', 'cash', 'ap', 'gl', 'close', 'reporting'],
+      why=["Resident moved out; deposit must be applied to damages/unpaid rent and the balance refunded within the state deadline.",
+           "Security deposit liability must reconcile to the trust bank account."],
+      next="Refund checks are paid through A/P; remaining balances go to collections.",
+      ctx="State laws impose strict deadlines (often 14–30 days) for deposit disposition letters.",
+      ctl="Security deposit liability (2110) should reconcile to the resident deposit listing monthly.")
+
+
+topic('deposit', r"(?<!security )(?<!resident )(?<!pet )deposit(s|ing)?\b|undeposited|deposit slip|reversing deposits|payment in a deposit",
       gl="Deposit: DR 1110 Operating Cash / CR 1130 Undeposited Funds (receipts previously recorded DR 1130 / CR 1210 A/R or income).",
       rev="Reversing a deposit: DR 1130 Undeposited Funds / CR 1110 Operating Cash (payments return to undeposited funds).",
       yardi='deposit', mods=['cash', 'ar', 'gl', 'reporting', 'close'],
@@ -604,16 +615,6 @@ topic('ar_aging', r"aging|delinquen|customer (listing|ledger)|a/r ledger",
       next="Drives collection actions, allowance/bad-debt estimates and the owner delinquency report.",
       ctx="Delinquency and bad debt are key KPIs in multifamily asset management reports.",
       ctl="A/R aging total must equal the GL A/R control account balance at period end.")
-
-topic('security_deposit', r"security deposit|deposit (refund|accounting)|move[- ]out|\bFAS\b",
-      gl="Collection: DR 1115 Security Deposit Cash / CR 2110 Resident Security Deposits. Move-out application: DR 2110 Security Deposits / CR 1210 A/R (charges) and refund DR 2110 / CR 1115 Cash.",
-      rev="Reversal of a deposit refund: DR 1115 Cash / CR 2110 Security Deposits.",
-      yardi='ar_deposit_sec', mods=['ar', 'cash', 'ap', 'close', 'reporting'],
-      why=["Resident moved out; deposit must be applied to damages/unpaid rent and the balance refunded within the state deadline.",
-           "Security deposit liability must reconcile to the trust bank account."],
-      next="Refund checks are paid through A/P; remaining balances go to collections.",
-      ctx="State laws impose strict deadlines (often 14–30 days) for deposit disposition letters.",
-      ctl="Security deposit liability (2110) should reconcile to the resident deposit listing monthly.")
 
 topic('tax', r"\btax(es)?\b|tax (schedule|authorit|group|code|detail|record|solution)|sales tax|withholding",
       gl="Tax on sales: DR 1210 A/R / CR 2160 Sales Tax Payable; tax on purchases: DR 6xxx Expense (non-recoverable) or 1250 Tax Recoverable / CR 2010 A/P; remittance: DR 2160 / CR 1110 Cash.",

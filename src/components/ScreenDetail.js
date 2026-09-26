@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../theme/colors';
 import { MULTIFAMILY_TERMS } from '../data/glossaryData';
+import RegulatoryGuardrailCard from './RegulatoryGuardrailCard';
 
 // SOP steps are stored as "1. Do X" — the badge already shows the number.
 export const stripStepNumber = (step) => step.replace(/^\s*(Step\s*)?\d+[.:)]\s*/i, '');
@@ -44,6 +45,9 @@ export default function ScreenDetail({ screen }) {
         <Text style={styles.sectionLabel}>SCREEN & REPORT PURPOSE</Text>
         <Text style={styles.purposeText}>{screen.purpose}</Text>
       </View>
+
+      {/* Legal & audit guardrails */}
+      <RegulatoryGuardrailCard guardrail={screen.regulatoryGuardrail} />
 
       {/* One-click acronyms */}
       {acronyms.length > 0 && (

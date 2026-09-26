@@ -23,6 +23,9 @@ import {
 import { CLOSE_PHASES } from '../../src/data/closePlaybookData.js';
 import { EXCEPTION_PLAYBOOKS, entryTotals } from '../../src/data/exceptionsPlaybookData.js';
 import { GLOSSARY_TERMS, ACRONYM_TERMS } from '../../src/data/glossaryData.js';
+import { ALL_SCREEN_ENTRIES, getScreenById } from '../../src/utils/screenIndex.js';
+import { ALL_TASKS } from '../../src/data/tasksData.js';
+import { TASK_GUARDRAILS } from '../../src/data/taskGuardrails.js';
 
 test('screen index covers the full catalog', () => {
   assert.ok(SCREEN_COUNT >= 7100, `expected >= 7100 screens, got ${SCREEN_COUNT}`);
@@ -138,4 +141,31 @@ test('glossary: acronyms, cross-references and uniqueness', () => {
   assert.equal(new Set(names).size, names.length);
   assert.ok(GLOSSARY_TERMS.length > 300);
   assert.ok(GLOSSARY_TERMS.every((t) => t.modules && t.modules.length));
+});
+
+test('every catalog screen carries a complete regulatory guardrail', () => {
+  const fields = ['governingAuthority', 'regulationCode', 'plainEnglishRule', 'auditRisk'];
+  for (const e of ALL_SCREEN_ENTRIES) {
+    const g = e.screen.regulatoryGuardrail;
+    assert.ok(g, e.screen.id);
+    for (const f of fields) assert.ok(typeof g[f] === 'string' && g[f].length > 2, `${e.screen.id}.${f}`);
+  }
+});
+
+test('guardrails map to the right regulation for key screens', () => {
+  const auth = (id) => getScreenById(id).regulatoryGuardrail;
+  assert.match(auth('scr_gl_security_deposits_multifamily').governingAuthority, /State Property Code/);
+  assert.match(auth('scr_cash_escheatment_workbench').regulationCode, /Unclaimed Property/);
+  assert.match(auth('scr_ap_guide_to_vendor_1099s').regulationCode, /§ 6041/);
+  assert.match(auth('scr_fixed_assets_post_depreciation').regulationCode, /§ 168/);
+  assert.match(auth('scr_cash_bank_reconciliation_new').regulationCode, /4-406/);
+  assert.match(auth('scr_jobcost_retainage_register_report').governingAuthority, /Lien/);
+});
+
+test('every Daily Hub task has a guardrail for the MasteryModal Legal tab', () => {
+  for (const t of ALL_TASKS) {
+    assert.ok(TASK_GUARDRAILS[t.id], t.id);
+    assert.ok(TASK_GUARDRAILS[t.id].plainEnglishRule);
+  }
+  assert.match(TASK_GUARDRAILS.task_12639.regulationCode, /ASC 815/);
 });

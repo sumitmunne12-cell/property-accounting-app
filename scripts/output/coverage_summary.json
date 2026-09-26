@@ -9,7 +9,7 @@
       "duplicate": 131,
       "layout-container": 1
     },
-    "bytes": 4335294
+    "bytes": 5056173
   },
   "02_accounts_payable": {
     "checklist_items": 3339,
@@ -23,7 +23,7 @@
       "layout-container": 2,
       "glossary-definition": 296
     },
-    "bytes": 7258464
+    "bytes": 8598128
   },
   "03_cash_management": {
     "checklist_items": 922,
@@ -36,7 +36,7 @@
       "glossary-definition": 304,
       "layout-container": 1
     },
-    "bytes": 1520255
+    "bytes": 1791115
   },
   "04_accounts_receivable": {
     "checklist_items": 999,
@@ -48,7 +48,7 @@
       "duplicate": 110,
       "layout-container": 1
     },
-    "bytes": 2429899
+    "bytes": 2856227
   },
   "05_financial_close": {
     "checklist_items": 466,
@@ -60,7 +60,7 @@
       "glossary-definition": 304,
       "duplicate": 1
     },
-    "bytes": 417284
+    "bytes": 482332
   },
   "06_jobcost_capex_reserves": {
     "checklist_items": 1269,
@@ -73,7 +73,7 @@
       "glossary-definition": 608,
       "layout-container": 2
     },
-    "bytes": 1267732
+    "bytes": 1502299
   },
   "07_fixed_assets": {
     "checklist_items": 73,
@@ -84,7 +84,7 @@
       "merged": 16,
       "layout-container": 1
     },
-    "bytes": 194987
+    "bytes": 235509
   },
   "08_budgeting_forecasting": {
     "checklist_items": 455,
@@ -97,7 +97,7 @@
       "glossary-definition": 72,
       "layout-container": 1
     },
-    "bytes": 1038365
+    "bytes": 1214839
   },
   "09_reporting_admin": {
     "checklist_items": 3391,
@@ -110,7 +110,7 @@
       "duplicate": 334,
       "layout-container": 3
     },
-    "bytes": 6242785
+    "bytes": 7390772
   },
   "glossary": {
     "entries": 2169,

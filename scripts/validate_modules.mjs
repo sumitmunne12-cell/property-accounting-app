@@ -22,7 +22,9 @@ const EXPECTED = {
 const SCREEN_FIELDS = [
   'id', 'name', 'navigation', 'purpose', 'whyRecordsAreHere', 'keyFieldsAndFilters',
   'accountantActionSOP', 'glAccountingImpact', 'whatHappensNext', 'yardiEquivalent', 'pdfManualSource',
+  'regulatoryGuardrail',
 ];
+const GUARDRAIL_FIELDS = ['governingAuthority', 'regulationCode', 'plainEnglishRule', 'auditRisk'];
 const PLACEHOLDER = /(\/\/\s*\.\.\.|remaining screens|\btodo\b|\btbd\b|lorem ipsum|\[placeholder\]|rest of fields)/i;
 
 const errors = [];
@@ -55,6 +57,10 @@ for (const [file, exportName] of Object.entries(EXPECTED)) {
         const v = scr[f];
         const empty = v == null || (typeof v === 'string' && !v.trim()) || (Array.isArray(v) && v.length === 0);
         if (empty) errors.push(`${file}: ${scr.id} field ${f} empty`);
+      }
+      for (const gf of GUARDRAIL_FIELDS) {
+        const v = scr.regulatoryGuardrail && scr.regulatoryGuardrail[gf];
+        if (typeof v !== 'string' || v.trim().length < 3) errors.push(`${file}: ${scr.id} regulatoryGuardrail.${gf} empty`);
       }
       if (allIds.has(scr.id)) errors.push(`${file}: duplicate screen id ${scr.id}`);
       allIds.add(scr.id);

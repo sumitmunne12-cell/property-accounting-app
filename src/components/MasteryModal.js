@@ -12,6 +12,8 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../theme/colors';
 import { PDF_CATALOG } from '../data/pdfCatalogData';
+import { TASK_GUARDRAILS } from '../data/taskGuardrails';
+import RegulatoryGuardrailCard from './RegulatoryGuardrailCard';
 import { triggerHaptic } from '../utils/haptics';
 
 export default function MasteryModal({
@@ -25,7 +27,7 @@ export default function MasteryModal({
   currentNote = '',
   onSaveNote,
 }) {
-  const [activeTab, setActiveTab] = useState('sop'); // 'nav' | 'purpose' | 'root_cause' | 'sop' | 'impact'
+  const [activeTab, setActiveTab] = useState('sop'); // 'nav' | 'purpose' | 'root_cause' | 'sop' | 'impact' | 'legal'
   const [softwareToggle, setSoftwareToggle] = useState('realpage'); // 'realpage' | 'yardi'
   const [noteText, setNoteText] = useState('');
   const [isEditingNote, setIsEditingNote] = useState(false);
@@ -44,6 +46,8 @@ export default function MasteryModal({
     onSaveNote(task.id, noteText);
     setIsEditingNote(false);
   };
+
+  const guardrail = TASK_GUARDRAILS[task.id];
 
   const navPath =
     softwareToggle === 'yardi' && task.navigation?.yardi
@@ -133,6 +137,21 @@ export default function MasteryModal({
               </Text>
             </View>
           </View>
+          {guardrail ? (
+            <TouchableOpacity
+              style={styles.guardrailBanner}
+              onPress={() => {
+                triggerHaptic('light');
+                setActiveTab('legal');
+              }}
+              activeOpacity={0.8}
+            >
+              <Text style={styles.guardrailBannerText} numberOfLines={1}>
+                ⚖️ {guardrail.governingAuthority}
+              </Text>
+              <Text style={styles.guardrailBannerLink}>View guardrail ›</Text>
+            </TouchableOpacity>
+          ) : null}
         </View>
 
         {/* 5-Point Segmented Tab Bar */}
@@ -220,6 +239,18 @@ export default function MasteryModal({
               />
               <Text style={[styles.tabText, activeTab === 'impact' && styles.tabTextActive]}>
                 5. GL Impact
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.tabButton, styles.legalTabButton, activeTab === 'legal' && styles.legalTabButtonActive]}
+              onPress={() => {
+                triggerHaptic('light');
+                setActiveTab('legal');
+              }}
+            >
+              <Text style={[styles.tabText, styles.legalTabText, activeTab === 'legal' && styles.tabTextActive]}>
+                ⚖️ Legal & Audit
               </Text>
             </TouchableOpacity>
           </ScrollView>
@@ -425,6 +456,17 @@ export default function MasteryModal({
                   Once all steps are completed, mark the task complete below to record progress.
                 </Text>
               </View>
+            </View>
+          )}
+
+          {/* TAB 6: LEGAL & AUDIT GUARDRAILS */}
+          {activeTab === 'legal' && (
+            <View style={styles.cardSection}>
+              <View style={styles.sectionHeader}>
+                <Ionicons name="shield-checkmark-outline" size={20} color={COLORS.gold} />
+                <Text style={styles.sectionTitle}>Legal & Audit Guardrails</Text>
+              </View>
+              <RegulatoryGuardrailCard guardrail={guardrail} compact />
             </View>
           )}
 
@@ -659,6 +701,38 @@ const styles = StyleSheet.create({
   tabButtonActive: {
     backgroundColor: COLORS.primaryDark,
     borderColor: COLORS.primaryLight,
+  },
+  legalTabButton: {
+    borderColor: `${COLORS.gold}80`,
+  },
+  legalTabButtonActive: {
+    backgroundColor: '#5B4A12',
+    borderColor: COLORS.gold,
+  },
+  legalTabText: {
+    color: COLORS.gold,
+  },
+  guardrailBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
+    backgroundColor: `${COLORS.gold}18`,
+    borderWidth: 1,
+    borderColor: `${COLORS.gold}70`,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 7,
+  },
+  guardrailBannerText: {
+    flex: 1,
+    fontSize: 12,
+    fontWeight: '700',
+    color: COLORS.gold,
+  },
+  guardrailBannerLink: {
+    fontSize: 11,
+    color: COLORS.gold,
+    marginLeft: 8,
   },
   tabText: {
     fontSize: 12,
