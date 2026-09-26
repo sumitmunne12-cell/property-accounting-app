@@ -1,0 +1,618 @@
+[
+  {
+    "name": "Invoice approval - 4th Workflow - Yardi",
+    "phase": "Ongoing - Daily",
+    "category": "Invoice Processing",
+    "freq": "Daily",
+    "priority": "Medium",
+    "notes": "All Approved as of 8/19/26"
+  },
+  {
+    "name": "Pending 1st/2nd Approval queue - intimate site team",
+    "phase": "Ongoing - Daily",
+    "category": "Invoice Processing",
+    "freq": "Daily",
+    "priority": "Medium",
+    "notes": "Approx. 4-5 Invoices are in Queue"
+  },
+  {
+    "name": "Checks void and re-issue",
+    "phase": "Ongoing - Daily",
+    "category": "Payment Processing",
+    "freq": "Daily",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Clearing BS Rec items (Oustanding Bank rec items)",
+    "phase": "Ongoing - Daily",
+    "category": "BS Reconciliation",
+    "freq": "Daily",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "AP Check run (Vendors + Resident Refunds)",
+    "phase": "Ongoing - Weekly",
+    "category": "Payment Processing",
+    "freq": "Weekly",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "STYL/MCMC Billback wires + Invoices to be sent to RF team",
+    "phase": "Ongoing - Weekly",
+    "category": "STYL/MCMC Billbacks",
+    "freq": "Weekly",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "Weekly Site Team Call \u2013 Key Review Points",
+    "phase": "Ongoing - Weekly",
+    "category": "Weekly calls - Review points",
+    "freq": "Weekly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Bank Activity - Operating account",
+    "phase": "Pre-AME",
+    "category": "Bank Reconciliation",
+    "freq": "Weekly",
+    "priority": "High",
+    "notes": "Activity as of 08.17"
+  },
+  {
+    "name": "Bank Activity - Depository account",
+    "phase": "Pre-AME",
+    "category": "Bank Reconciliation",
+    "freq": "Weekly",
+    "priority": "High",
+    "notes": "Activity as of 08.17"
+  },
+  {
+    "name": "Bank Activity - Security Deposit account",
+    "phase": "Pre-AME",
+    "category": "Bank Reconciliation",
+    "freq": "Weekly",
+    "priority": "High",
+    "notes": "Activity as of 08.17"
+  },
+  {
+    "name": "Insurance accrual",
+    "phase": "Pre-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "Medium",
+    "notes": "JEs are created"
+  },
+  {
+    "name": "Property tax accrual",
+    "phase": "Pre-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "Medium",
+    "notes": "JEs are created"
+  },
+  {
+    "name": "Payroll Accrual",
+    "phase": "Pre-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": "JEs are created"
+  },
+  {
+    "name": "Bank Reconciliation - Depository account",
+    "phase": "Post-AME",
+    "category": "Bank Reconciliation",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "AME reports saved in drive",
+    "phase": "Post-AME",
+    "category": "AME Reports",
+    "freq": "Monthly",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "AME reports tie out",
+    "phase": "Post-AME",
+    "category": "AME Reports",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "GPR entry posting and tie out",
+    "phase": "Post-AME",
+    "category": "GPR Posting",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Management Fees calculation",
+    "phase": "Post-AME",
+    "category": "PM Fees calculation",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Invoice & PO accruals file - from site team",
+    "phase": "Post-AME",
+    "category": "Invoice & PO accrual - Site team",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Marketing Accrual",
+    "phase": "Post-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "Bad debt calculation (90+days)",
+    "phase": "Post-AME",
+    "category": "Bad Debt",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Management Fees Accrual",
+    "phase": "Post-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "Invoice Accrual",
+    "phase": "Post-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "STYL/MCMC Billback accruals",
+    "phase": "Post-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "AM Fees/CM Fees accrual",
+    "phase": "Post-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "Medium",
+    "notes": "No Invoice available for July, Accrual estimate for August to be shared by Aman by 8/28"
+  },
+  {
+    "name": "Utilities Accrual",
+    "phase": "Post-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Bank Reconciliation - Operating/SD account",
+    "phase": "Post-AME",
+    "category": "Bank Reconciliation",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Utilities Re-bill Accrual",
+    "phase": "Post-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Sweep entries posting",
+    "phase": "Post-AME",
+    "category": "Bank Reconciliation",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "GL scrutiny",
+    "phase": "Post-AME",
+    "category": "Self Analysis",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Budget Variance Analysis",
+    "phase": "Post-AME",
+    "category": "Self Analysis",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "T12 income statement analysis",
+    "phase": "Post-AME",
+    "category": "Self Analysis",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Financial Report update",
+    "phase": "Reporting",
+    "category": "Month end reporting",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Save all supports in drive",
+    "phase": "Reporting",
+    "category": "Month end reporting",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Xshore Internal review of financials",
+    "phase": "Review",
+    "category": "Internal Review - Xshore",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Email to site team to begin variance comments -cc AM team",
+    "phase": "Reporting",
+    "category": "Variance Notes - Site team",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "1st Onshore review",
+    "phase": "Review",
+    "category": "Onshore review",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "2nd Onshore review",
+    "phase": "Review",
+    "category": "Onshore review",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "MOR package compile",
+    "phase": "Reporting",
+    "category": "MOR package",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": "Awaiting GS confirmation on Budget report to be shared. Last follow up - 9/14"
+  },
+  {
+    "name": "Invoice approval + Exception queue clearing",
+    "phase": "Ongoing - Daily",
+    "category": "Invoice Processing",
+    "freq": "Daily",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "Pending ROG Approval queue - intimate site team",
+    "phase": "Ongoing - Daily",
+    "category": "Invoice Processing",
+    "freq": "Daily",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "STYL/MCMC Billback wires + Invoice posting",
+    "phase": "Ongoing - Weekly",
+    "category": "STYL/MCMC Billbacks",
+    "freq": "Weekly",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "Replacement Reserve Draw",
+    "phase": "Ongoing - Quarterly",
+    "category": "Replacement Reserve Draw",
+    "freq": "Quarterly",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "Prepaid expense amortization",
+    "phase": "Pre-AME",
+    "category": "Amortization Entries",
+    "freq": "Monthly",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "Prepaid insurance amortization",
+    "phase": "Pre-AME",
+    "category": "Amortization Entries",
+    "freq": "Monthly",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "Mortgage interest accrual",
+    "phase": "Pre-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "Inform site team to begin entering comments for Income GL",
+    "phase": "Post-AME",
+    "category": "Variance Notes - Site team",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Invoice & PO accruals file - share with site team",
+    "phase": "Post-AME",
+    "category": "Invoice & PO accrual - Site team",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "AM Fees/CM Fees Accrual",
+    "phase": "Post-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "PO Accrual",
+    "phase": "Post-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Recurring contracts accrual",
+    "phase": "Post-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "Derivatives Posting",
+    "phase": "Post-AME",
+    "category": "Derivatives",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Depreciation posting",
+    "phase": "Post-AME",
+    "category": "Depreciation",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Bank Reconciliation - PNC account",
+    "phase": "Post-AME",
+    "category": "Bank Reconciliation",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Escrows Tie out",
+    "phase": "Post-AME",
+    "category": "Escrows",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Schedule Ops call",
+    "phase": "Reporting",
+    "category": "Ops call",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Inform site team to begin variance comments",
+    "phase": "Reporting",
+    "category": "Variance Notes - Site team",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Email to AM team",
+    "phase": "Reporting",
+    "category": "AM Review",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": "Was Awaiting PMs to finish entering comments"
+  },
+  {
+    "name": "Save Final Income statement to sharepoint",
+    "phase": "Reporting",
+    "category": "Sharepoint upload",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Send reports to lender for lender reporting",
+    "phase": "Reporting",
+    "category": "Lender reporting",
+    "freq": "Monthly/Quaterly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Mortgage wire process",
+    "phase": "Ongoing - Monthly",
+    "category": "Payment Processing",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Capex Funding",
+    "phase": "Ongoing - Monthly",
+    "category": "GS Funding",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Capex Accrual",
+    "phase": "Post-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Loan cost amortization",
+    "phase": "Pre-AME",
+    "category": "Amortization Entries",
+    "freq": "Monthly",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "Bad debt calculation (60+days)",
+    "phase": "Post-AME",
+    "category": "Bad Debt",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Utility re-bill Write off",
+    "phase": "Post-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "Send reports to OSSO for lender reporting",
+    "phase": "Reporting",
+    "category": "Lender reporting",
+    "freq": "Monthly/Quaterly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Clearing BS Rec items (AP other/AR other)",
+    "phase": "Ongoing - Daily",
+    "category": "BS Reconciliation",
+    "freq": "Daily",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Opex Funding",
+    "phase": "Ongoing - Quarterly",
+    "category": "OSSO Funding",
+    "freq": "Quarterly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Bank Reconciliation - CMA account",
+    "phase": "Post-AME",
+    "category": "Bank Reconciliation",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Maintain cash log",
+    "phase": "Ongoing - Daily",
+    "category": "Bank/Cash Management",
+    "freq": "Daily",
+    "priority": "Medium",
+    "notes": ""
+  },
+  {
+    "name": "Bank Activity - Depository account/Key bank",
+    "phase": "Pre-AME",
+    "category": "Bank Reconciliation",
+    "freq": "Weekly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Bank Reconciliation - Key bank account",
+    "phase": "Post-AME",
+    "category": "Bank Reconciliation",
+    "freq": "Monthly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "GS Reporting package",
+    "phase": "Reporting",
+    "category": "Lender reporting",
+    "freq": "Monthly/Quaterly",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Update Cash log",
+    "phase": "Ongoing - Daily",
+    "category": "Bank/Cash Management",
+    "freq": "Daily",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Clearing BS Rec items (CMA Reconciliation)",
+    "phase": "Ongoing - Daily",
+    "category": "BS Reconciliation",
+    "freq": "Daily",
+    "priority": "High",
+    "notes": ""
+  },
+  {
+    "name": "Interest rate cap accrual",
+    "phase": "Pre-AME",
+    "category": "Accrual Posting",
+    "freq": "Monthly",
+    "priority": "Medium",
+    "notes": ""
+  }
+]

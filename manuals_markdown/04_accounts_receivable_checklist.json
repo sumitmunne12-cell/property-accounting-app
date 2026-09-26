@@ -1,0 +1,5996 @@
+[
+  {
+    "title": "Introduction to Accounts Receivable",
+    "level": 1,
+    "page": 13,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Accounts Receivable Overview",
+    "level": 2,
+    "page": 14,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Accounts Receivable Home Page",
+    "level": 2,
+    "page": 16,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Accounts Receivable Menu",
+    "level": 2,
+    "page": 20,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Using Accounts Receivable",
+    "level": 2,
+    "page": 23,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customers",
+    "level": 1,
+    "page": 27,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customers Overview",
+    "level": 2,
+    "page": 28,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "How to Get Here",
+    "level": 3,
+    "page": 28,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 29,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Guidelines for Updating Customer Records",
+    "level": 3,
+    "page": 30,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customers List",
+    "level": 2,
+    "page": 32,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding Customers",
+    "level": 3,
+    "page": 33,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing or Editing a Customer",
+    "level": 3,
+    "page": 37,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customer Information Page",
+    "level": 2,
+    "page": 38,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customer Tab",
+    "level": 2,
+    "page": 39,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deleting or Inactivating a Customer",
+    "level": 3,
+    "page": 39,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Additional Information Tab",
+    "level": 2,
+    "page": 40,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Defining a Credit Limit for a Customer",
+    "level": 3,
+    "page": 40,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Placing a Customer\u2019s Credit on Hold",
+    "level": 3,
+    "page": 41,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing Customer Credit Limits and On Hold Status",
+    "level": 3,
+    "page": 42,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Contact List Tab",
+    "level": 2,
+    "page": 43,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Restrictions Tab",
+    "level": 2,
+    "page": 44,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Setting Up Customers in a Multi-Entity Shared Company",
+    "level": 3,
+    "page": 44,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing Customer Details",
+    "level": 3,
+    "page": 45,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Exporting Customer Details",
+    "level": 3,
+    "page": 46,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Duplicating a Customer Record",
+    "level": 3,
+    "page": 46,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing the Customer\u2019s Total Due",
+    "level": 3,
+    "page": 47,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing the A/R Ledger for a Customer",
+    "level": 3,
+    "page": 48,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing and Organizing Related Customers in a Hierarchical View",
+    "level": 3,
+    "page": 49,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reactivating a Customer",
+    "level": 3,
+    "page": 51,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 52,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 58,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customer A/R Ledger",
+    "level": 2,
+    "page": 59,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 60,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customer Groups",
+    "level": 2,
+    "page": 61,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customer Groups List",
+    "level": 2,
+    "page": 62,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 63,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding Customer Groups",
+    "level": 3,
+    "page": 63,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Filtering Groups",
+    "level": 3,
+    "page": 65,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Creating a Dimension Group Filter for Both Active and Inactive Members",
+    "level": 3,
+    "page": 67,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Determining What\u2019s in the Dimension Group",
+    "level": 3,
+    "page": 68,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Editing and Viewing Customer Group Details",
+    "level": 3,
+    "page": 70,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing a List of Customer Group Members",
+    "level": 3,
+    "page": 71,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Editing a Customer Group\u2019s Member Details",
+    "level": 3,
+    "page": 71,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deleting a Customer Group",
+    "level": 3,
+    "page": 72,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customer Group Information Page",
+    "level": 2,
+    "page": 73,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding a Customer to a Customer Group",
+    "level": 3,
+    "page": 74,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing a Customer Member\u2019s Details",
+    "level": 3,
+    "page": 74,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Removing a Customer from a Customer Group",
+    "level": 3,
+    "page": 75,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Duplicating a Customer Group",
+    "level": 3,
+    "page": 75,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing Customer Group Details",
+    "level": 3,
+    "page": 75,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Exporting Customer Group Details",
+    "level": 3,
+    "page": 76,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 77,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 78,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customer Types List",
+    "level": 2,
+    "page": 79,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 79,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding Customer Types",
+    "level": 3,
+    "page": 80,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customer Type Information Page",
+    "level": 3,
+    "page": 80,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Editing and Viewing Customer Types",
+    "level": 3,
+    "page": 81,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deleting Customer Types",
+    "level": 3,
+    "page": 81,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing Customer Types",
+    "level": 3,
+    "page": 82,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Duplicating Customer Types",
+    "level": 3,
+    "page": 82,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Exporting Customer Types",
+    "level": 3,
+    "page": 83,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 85,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 85,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customers in a Multi-Entity Shared Company",
+    "level": 2,
+    "page": 86,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 86,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Enabling Customer Restrictions",
+    "level": 3,
+    "page": 87,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Multi-Entity Customer Restrictions",
+    "level": 3,
+    "page": 87,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Displaying the Customer Visibility List",
+    "level": 3,
+    "page": 88,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customer Visibility List",
+    "level": 2,
+    "page": 89,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Creating the List View that Includes the Data You Want to Export",
+    "level": 3,
+    "page": 89,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Exporting the Customer Restrictions List",
+    "level": 3,
+    "page": 90,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing and Editing a Customer\u2019s Visibility Restrictions",
+    "level": 3,
+    "page": 91,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Required Fields for New Customer Restrictions",
+    "level": 3,
+    "page": 92,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Guidelines for Updating Customer Restrictions",
+    "level": 3,
+    "page": 92,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing Customer Visibility Details",
+    "level": 3,
+    "page": 93,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Updating Multiple Customer Visibility Records",
+    "level": 3,
+    "page": 93,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 94,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 95,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Billing",
+    "level": 1,
+    "page": 97,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "A/R Invoices List (A/R Sales Invoices)",
+    "level": 2,
+    "page": 98,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 98,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Managing A/R Invoices",
+    "level": 3,
+    "page": 99,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing the A/R Invoices List",
+    "level": 3,
+    "page": 99,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing an A/R Invoice",
+    "level": 3,
+    "page": 100,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding an A/R Invoice Workflow",
+    "level": 3,
+    "page": 100,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Entering Basic Information about the Invoice (A/R Sales Invoice)",
+    "level": 3,
+    "page": 100,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Selecting Default Information for Line Items",
+    "level": 3,
+    "page": 103,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Entering Line Items in an A/R Invoice (A/R Sales Invoice)",
+    "level": 3,
+    "page": 104,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Finish the Invoice",
+    "level": 3,
+    "page": 106,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Saving a Transaction as a Draft",
+    "level": 3,
+    "page": 107,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Editing an A/R Invoice",
+    "level": 3,
+    "page": 108,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Importing A/R Invoices",
+    "level": 3,
+    "page": 109,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deleting or Reversing Invoices",
+    "level": 3,
+    "page": 113,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing an Invoice\u2019s State",
+    "level": 3,
+    "page": 115,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Configuring Invoices for Reversal",
+    "level": 3,
+    "page": 115,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Clearing a Negative Invoice",
+    "level": 3,
+    "page": 116,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reversing an Invoice",
+    "level": 3,
+    "page": 117,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 118,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Enabling Invoice Reversal",
+    "level": 3,
+    "page": 119,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reversing a Paid Invoice",
+    "level": 3,
+    "page": 120,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reversing an Unpaid A/R Invoice",
+    "level": 3,
+    "page": 121,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deleting an A/R Invoice",
+    "level": 3,
+    "page": 122,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Preventing Unpaid Invoice Deletion",
+    "level": 3,
+    "page": 122,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Transaction Reversal Date Box",
+    "level": 2,
+    "page": 123,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 3,
+    "page": 123,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 123,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "A/R Invoice (A/R Sales Invoice) Page",
+    "level": 2,
+    "page": 124,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Using Transaction Allocations",
+    "level": 3,
+    "page": 125,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 126,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 134,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Invoice (Draft or Posted) Page",
+    "level": 2,
+    "page": 135,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Posting an Invoice",
+    "level": 3,
+    "page": 135,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Editing an Invoice",
+    "level": 3,
+    "page": 136,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing and Emailing A/R and A/P Invoices",
+    "level": 3,
+    "page": 137,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reclassifying Invoices",
+    "level": 3,
+    "page": 139,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 140,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "How to Get Here",
+    "level": 4,
+    "page": 141,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Why You Can\u2019t Find the Reclassify Option",
+    "level": 3,
+    "page": 141,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Multi-entity or Multi-currency Restrictions",
+    "level": 3,
+    "page": 142,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reclassifying One Invoice",
+    "level": 3,
+    "page": 143,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Troubleshooting Reclassification",
+    "level": 3,
+    "page": 144,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 147,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Duplicating an Invoice",
+    "level": 3,
+    "page": 149,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Creating a Recurring Transaction from an Existing Transaction",
+    "level": 3,
+    "page": 149,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 150,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Displaying Customer Totals",
+    "level": 3,
+    "page": 157,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing the Customer\u2019s Total",
+    "level": 3,
+    "page": 157,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Finding Draft or Posted Transactions",
+    "level": 3,
+    "page": 158,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Applying Payments",
+    "level": 3,
+    "page": 158,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Recording a Subsidy Payment",
+    "level": 3,
+    "page": 159,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Billing a Customer for an A/P Invoice",
+    "level": 3,
+    "page": 159,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Packaging Invoices",
+    "level": 2,
+    "page": 160,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Creating A/R Invoice Packages",
+    "level": 3,
+    "page": 161,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Moving In and Out of Packaging Invoices Mode",
+    "level": 3,
+    "page": 162,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 163,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 164,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Multiple Invoices: Quick Invoice Entry",
+    "level": 2,
+    "page": 165,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 165,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Quick Invoice Entry Preferences and Entry Pages",
+    "level": 2,
+    "page": 166,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Setting Up Your Quick Invoice Entry Session Preferences",
+    "level": 3,
+    "page": 168,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 169,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Quick A/R Invoice Entry Page",
+    "level": 2,
+    "page": 172,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Creating Multiple Invoices",
+    "level": 3,
+    "page": 173,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Editing a Quick A/R Entry Invoice While in Quick-Entry Mode",
+    "level": 3,
+    "page": 175,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deleting an Invoice Created with Quick A/R Invoice Entry",
+    "level": 3,
+    "page": 175,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 176,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 178,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Batch Entry Splits Box",
+    "level": 2,
+    "page": 179,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding Multiple Charges to an Invoice",
+    "level": 3,
+    "page": 179,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 181,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Recurring Invoices",
+    "level": 2,
+    "page": 182,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Recurring Invoice Workflow",
+    "level": 2,
+    "page": 183,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Recurring Invoices List",
+    "level": 2,
+    "page": 184,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 186,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding a New A/R Recurring Invoice",
+    "level": 3,
+    "page": 186,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Setting Up Online Payments for a Recurring Invoice",
+    "level": 3,
+    "page": 191,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Setting Up the Recurring Invoice for Offline Payments",
+    "level": 3,
+    "page": 192,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Setting Up the Recurrence Schedule",
+    "level": 3,
+    "page": 194,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Completing the Recurring Invoice",
+    "level": 3,
+    "page": 195,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing a Recurring A/R Invoice",
+    "level": 3,
+    "page": 195,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing the List of Transactions Created by the Recurring Invoice",
+    "level": 3,
+    "page": 195,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Editing a Recurring Invoice",
+    "level": 3,
+    "page": 196,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reversing Failed Recurring Invoices",
+    "level": 3,
+    "page": 196,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deleting a Recurring Invoice",
+    "level": 3,
+    "page": 197,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Turning a Recurring Schedule On or Off",
+    "level": 3,
+    "page": 197,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing the Recurring Invoice Execution Log List",
+    "level": 3,
+    "page": 198,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Troubleshooting Recurring Invoices",
+    "level": 2,
+    "page": 200,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 200,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Exporting the Execution Log List",
+    "level": 3,
+    "page": 201,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Execution Log List",
+    "level": 2,
+    "page": 203,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deleting an Execution Log",
+    "level": 3,
+    "page": 205,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Error (Scheduler) Log Page",
+    "level": 2,
+    "page": 206,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 206,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Recurring A/R Invoices Page",
+    "level": 2,
+    "page": 207,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Invoice Tab",
+    "level": 2,
+    "page": 208,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Payment Tab",
+    "level": 2,
+    "page": 211,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Schedule Tab",
+    "level": 2,
+    "page": 213,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Duplicating a Recurring Invoice",
+    "level": 3,
+    "page": 214,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Saving an Invoice as a Draft",
+    "level": 3,
+    "page": 215,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 216,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Penalties",
+    "level": 2,
+    "page": 225,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 225,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Apply Penalties Page",
+    "level": 2,
+    "page": 228,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Applying Invoice Penalties",
+    "level": 3,
+    "page": 228,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Setting and Applying the Filters",
+    "level": 3,
+    "page": 229,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Select Invoices to Penalize List",
+    "level": 3,
+    "page": 231,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Selecting Invoices to Penalize",
+    "level": 3,
+    "page": 231,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 232,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Transaction Allocations",
+    "level": 2,
+    "page": 234,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Defining Transaction Allocations",
+    "level": 3,
+    "page": 234,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 236,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Where to Apply Allocations",
+    "level": 3,
+    "page": 236,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding a Transaction Allocation",
+    "level": 3,
+    "page": 236,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Applying an Allocation",
+    "level": 3,
+    "page": 238,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Creating an Allocation Split",
+    "level": 3,
+    "page": 238,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Overriding a Line Allocation",
+    "level": 3,
+    "page": 239,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Restrictions on Applying Allocations",
+    "level": 3,
+    "page": 241,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 242,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Intercompany Billing",
+    "level": 2,
+    "page": 243,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 245,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing the List of Intercompany Invoices",
+    "level": 3,
+    "page": 245,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Intercompany Billing List",
+    "level": 2,
+    "page": 246,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Creating an Intercompany Bill",
+    "level": 3,
+    "page": 246,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Editing and Viewing Intercompany Billing Transactions",
+    "level": 3,
+    "page": 250,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Paying an Intercompany Invoice",
+    "level": 3,
+    "page": 251,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Applying a Payment to an Intercompany Bill",
+    "level": 3,
+    "page": 252,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Duplicating an Intercompany Billing Transaction",
+    "level": 3,
+    "page": 253,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deleting an Intercompany Billing Transaction",
+    "level": 3,
+    "page": 254,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Intercompany Billing Page",
+    "level": 2,
+    "page": 255,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields (ICB)",
+    "level": 3,
+    "page": 257,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 261,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Inter-company Bill-Back",
+    "level": 2,
+    "page": 262,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "What Does Inter-company Bill Back Do?",
+    "level": 2,
+    "page": 263,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Bill Back Feature Configuration Workflow",
+    "level": 2,
+    "page": 264,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Using the Inter-company Bill Back Workflow",
+    "level": 2,
+    "page": 265,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Managing Inter-company Bill Back Invoices",
+    "level": 2,
+    "page": 266,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 266,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Creating a Bill Back Invoice",
+    "level": 3,
+    "page": 267,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing an A/P Invoice Created with the Bill Back Feature",
+    "level": 3,
+    "page": 268,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Disabling Inter-company Bill Back Transactions",
+    "level": 3,
+    "page": 268,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Payments",
+    "level": 1,
+    "page": 269,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Payments",
+    "level": 2,
+    "page": 270,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 270,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Receiving a Payment",
+    "level": 3,
+    "page": 271,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Receiving Payments Q&A",
+    "level": 3,
+    "page": 271,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Select Invoices for Payment Page",
+    "level": 2,
+    "page": 272,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Receiving a Payment",
+    "level": 3,
+    "page": 273,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Entering an Overpayment",
+    "level": 3,
+    "page": 277,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Refunding an Overpayment",
+    "level": 3,
+    "page": 277,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Applying a Credit Memo to an Invoice",
+    "level": 3,
+    "page": 278,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Applying Credits Without Recording a Payment Receipt",
+    "level": 3,
+    "page": 279,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Applying Credits As You Record a Payment Receipt",
+    "level": 3,
+    "page": 280,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Changing the Amount Credited After Applying It",
+    "level": 3,
+    "page": 281,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 281,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Receiving Other Payments",
+    "level": 3,
+    "page": 290,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Applying a Payment to an Invoice",
+    "level": 3,
+    "page": 290,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Turning Off Auto Payment Suggestions",
+    "level": 3,
+    "page": 291,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Posted Payments List (Accounts Receivable)",
+    "level": 2,
+    "page": 292,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing a List of Posted Payments",
+    "level": 3,
+    "page": 294,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing Posted Payments",
+    "level": 3,
+    "page": 294,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reversing Payments",
+    "level": 3,
+    "page": 294,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 295,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reversing Posted Payments",
+    "level": 3,
+    "page": 295,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reversing a Payment from the Receipts Register Report",
+    "level": 3,
+    "page": 296,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "How to Access the Invoice Again to Apply the Correct Payment",
+    "level": 3,
+    "page": 296,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Posted Payment Page",
+    "level": 2,
+    "page": 297,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing Posted Payment Details",
+    "level": 3,
+    "page": 297,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 297,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Writing Off Unpaid Invoices",
+    "level": 2,
+    "page": 300,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Quick Payments",
+    "level": 2,
+    "page": 301,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Using the Quick Payments Page to Record Payments",
+    "level": 3,
+    "page": 302,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 305,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 306,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deposits",
+    "level": 2,
+    "page": 307,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deposits Workflow",
+    "level": 2,
+    "page": 308,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 309,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Undeposited Funds Accounts",
+    "level": 2,
+    "page": 311,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deposits List",
+    "level": 2,
+    "page": 313,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding a Deposit",
+    "level": 3,
+    "page": 313,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing and Verifying Deposits",
+    "level": 3,
+    "page": 315,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing Deposit Details",
+    "level": 3,
+    "page": 315,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reversing Deposits",
+    "level": 3,
+    "page": 315,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reversing a Deposit",
+    "level": 3,
+    "page": 316,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reversing a Payment in a Deposit",
+    "level": 3,
+    "page": 317,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deposit Page",
+    "level": 2,
+    "page": 318,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 3,
+    "page": 318,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 321,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Manual Deposits",
+    "level": 2,
+    "page": 322,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing the List of Manual Deposits",
+    "level": 3,
+    "page": 323,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 323,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Manual Deposits List",
+    "level": 2,
+    "page": 324,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding a Manual Deposit",
+    "level": 3,
+    "page": 324,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Recording a Manual Deposit",
+    "level": 3,
+    "page": 326,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing a Manual Deposit\u2019s Details",
+    "level": 3,
+    "page": 328,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Manual Deposit Page",
+    "level": 2,
+    "page": 329,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Duplicating a Manual Deposit",
+    "level": 3,
+    "page": 330,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 330,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 333,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Advances",
+    "level": 2,
+    "page": 334,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 334,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Receiving and Recording A/R Advance Payments",
+    "level": 3,
+    "page": 335,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Recording an Advance Payment",
+    "level": 3,
+    "page": 335,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Creating a Deposit from an Advance",
+    "level": 3,
+    "page": 336,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Receive Advances Page",
+    "level": 2,
+    "page": 337,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Entering Basic Information about the Advance Payment",
+    "level": 3,
+    "page": 338,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Entering Line Items for the Advance",
+    "level": 3,
+    "page": 341,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Applying the Advance to the Balance Owed",
+    "level": 3,
+    "page": 342,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 343,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 345,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Posted Advances List",
+    "level": 2,
+    "page": 346,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 346,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing Posted Advance Details",
+    "level": 3,
+    "page": 347,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing Posted Payment Information",
+    "level": 3,
+    "page": 347,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reversing an Advance",
+    "level": 3,
+    "page": 348,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Posted Advance Page",
+    "level": 2,
+    "page": 349,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing Posted Advance Details",
+    "level": 3,
+    "page": 349,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 350,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 352,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adjustments",
+    "level": 2,
+    "page": 353,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 354,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing a List of A/R Adjustments",
+    "level": 3,
+    "page": 354,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adjustments List",
+    "level": 2,
+    "page": 355,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding an A/R Adjustment",
+    "level": 3,
+    "page": 356,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 356,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding an A/R Credit Adjustment",
+    "level": 3,
+    "page": 357,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Creating a Debit Adjustment",
+    "level": 3,
+    "page": 361,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Editing an A/R Adjustment",
+    "level": 3,
+    "page": 365,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing A/R Adjustment Details",
+    "level": 3,
+    "page": 365,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Importing A/R Adjustments",
+    "level": 3,
+    "page": 366,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Clearing an A/R Credit Adjustment",
+    "level": 3,
+    "page": 369,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deleting Adjustments",
+    "level": 3,
+    "page": 369,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reversing Adjustments",
+    "level": 3,
+    "page": 370,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Other Ways to Reverse a Transaction",
+    "level": 3,
+    "page": 372,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Finding Draft or Posted Transactions",
+    "level": 3,
+    "page": 373,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Turning On the Deletion Warning",
+    "level": 3,
+    "page": 375,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing an Adjustment",
+    "level": 3,
+    "page": 375,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "A/R Adjustment Page",
+    "level": 2,
+    "page": 376,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Saving an A/R Transaction as a Draft",
+    "level": 3,
+    "page": 377,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Posting an A/R Adjustment",
+    "level": 3,
+    "page": 377,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Duplicating an A/R Adjustment",
+    "level": 3,
+    "page": 378,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing a Transaction",
+    "level": 3,
+    "page": 379,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 379,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 384,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "How to Refund a Credit Memo",
+    "level": 2,
+    "page": 385,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "How to Get Here",
+    "level": 3,
+    "page": 385,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Applying Credit to an Invoice",
+    "level": 3,
+    "page": 385,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Selecting Invoices",
+    "level": 3,
+    "page": 386,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Applying Credits Without Recording a Payment Receipt",
+    "level": 3,
+    "page": 387,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Applying Credits Along with Recording a Payment Receipt",
+    "level": 3,
+    "page": 388,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Refunding a Customer",
+    "level": 3,
+    "page": 389,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Changing the Amount Credited After Applying It",
+    "level": 3,
+    "page": 389,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Subledgers",
+    "level": 1,
+    "page": 391,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Subledgers",
+    "level": 2,
+    "page": 392,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "About A/R Summaries",
+    "level": 2,
+    "page": 393,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 393,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Importing Summaries",
+    "level": 3,
+    "page": 394,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Opening and Closing Summaries",
+    "level": 2,
+    "page": 395,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Closing A/R Summaries",
+    "level": 2,
+    "page": 396,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 396,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Close A/R Subledger Page",
+    "level": 2,
+    "page": 397,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Closing A/R Summaries",
+    "level": 3,
+    "page": 398,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 399,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 399,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Opening A/R Summaries",
+    "level": 2,
+    "page": 400,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 400,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Open the A/R Subledger Page",
+    "level": 2,
+    "page": 401,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Opening the A/R Subledger",
+    "level": 3,
+    "page": 402,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 403,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Finding Which Periods Are Closed",
+    "level": 3,
+    "page": 404,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reopening the A/R Books",
+    "level": 3,
+    "page": 405,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Summaries List",
+    "level": 2,
+    "page": 406,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "How to Get Here",
+    "level": 3,
+    "page": 407,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 408,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing the Summaries List",
+    "level": 3,
+    "page": 408,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding a Summary",
+    "level": 3,
+    "page": 409,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing Information About a Summary",
+    "level": 3,
+    "page": 410,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Editing a Summary\u2019s Details",
+    "level": 3,
+    "page": 410,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deleting Summaries",
+    "level": 3,
+    "page": 411,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deactivating or Closing a Summary",
+    "level": 3,
+    "page": 411,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Creating Automatic Summaries",
+    "level": 3,
+    "page": 411,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Summary Information Page",
+    "level": 3,
+    "page": 413,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 415,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 416,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Transactions List of a Summary",
+    "level": 3,
+    "page": 417,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding Transactions to a Summary",
+    "level": 3,
+    "page": 418,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing the List of Transactions in a Summary",
+    "level": 3,
+    "page": 421,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Importing Transactions into a Summary",
+    "level": 3,
+    "page": 422,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Editing the Transactions in a Summary",
+    "level": 3,
+    "page": 423,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 423,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 425,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Payment Summaries List",
+    "level": 2,
+    "page": 426,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "How to Get Here",
+    "level": 3,
+    "page": 427,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 427,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Creating Automatic Payment Summaries Workflow",
+    "level": 3,
+    "page": 428,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Creating Automatic Summaries",
+    "level": 3,
+    "page": 428,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Creating a Payment Summary Manually",
+    "level": 3,
+    "page": 430,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Editing Payment Summaries",
+    "level": 3,
+    "page": 431,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deleting a Payment Summary",
+    "level": 3,
+    "page": 432,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing Information About a Payment Summary",
+    "level": 3,
+    "page": 432,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Payment Summary Information Page",
+    "level": 3,
+    "page": 433,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Transactions List of Payment Summaries",
+    "level": 3,
+    "page": 434,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing the Payments in a Payment Summary",
+    "level": 3,
+    "page": 434,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding Transactions to a Payment Summary",
+    "level": 3,
+    "page": 435,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reversing a Payment in a Summary",
+    "level": 3,
+    "page": 436,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Applying an Overpayment an Invoice in a Summary",
+    "level": 3,
+    "page": 437,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Receive Payments List",
+    "level": 3,
+    "page": 438,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 439,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 441,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Account Maintenance",
+    "level": 1,
+    "page": 443,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "About the Account Maintenance Chapter",
+    "level": 2,
+    "page": 444,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Penalties",
+    "level": 2,
+    "page": 445,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Apply Penalties Page",
+    "level": 2,
+    "page": 445,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Applying Invoice Penalties",
+    "level": 3,
+    "page": 445,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Setting and Applying the Filters",
+    "level": 3,
+    "page": 446,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Select Invoices to Penalize List",
+    "level": 3,
+    "page": 448,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 448,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Print or Email A/R Invoices",
+    "level": 2,
+    "page": 450,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing or Emailing A/R Invoices",
+    "level": 3,
+    "page": 450,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Print or Email Statements",
+    "level": 2,
+    "page": 453,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Statements",
+    "level": 2,
+    "page": 454,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 455,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Creating Statements",
+    "level": 3,
+    "page": 455,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Selecting Statements to Print or Email",
+    "level": 3,
+    "page": 457,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "When to Print Statements",
+    "level": 3,
+    "page": 458,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing Statements",
+    "level": 3,
+    "page": 458,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Emailing Statements",
+    "level": 3,
+    "page": 459,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Sending Statements to Multiple Email Addresses",
+    "level": 3,
+    "page": 460,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Print/Email Statements Page",
+    "level": 3,
+    "page": 461,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 461,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "PEX Import",
+    "level": 1,
+    "page": 465,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Importing PEX Transactions",
+    "level": 2,
+    "page": 466,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 466,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "PEX Import List",
+    "level": 2,
+    "page": 467,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "PEX Import Box",
+    "level": 2,
+    "page": 467,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 3,
+    "page": 468,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 470,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Common Tasks",
+    "level": 1,
+    "page": 471,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Importing Data",
+    "level": 2,
+    "page": 473,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Overview of Importing Data into RealPage Accounting",
+    "level": 3,
+    "page": 474,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 475,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Best Practices for Preparing Data for Import",
+    "level": 4,
+    "page": 476,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Downloading a Template from the Import Data Page",
+    "level": 4,
+    "page": 477,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Filling In an Import Template with Data",
+    "level": 4,
+    "page": 478,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Preparing Your CSV File for Import",
+    "level": 4,
+    "page": 478,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "About CSV Templates",
+    "level": 4,
+    "page": 481,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Order of CSV Imports",
+    "level": 4,
+    "page": 485,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Importing a CSV File",
+    "level": 4,
+    "page": 485,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Importing Offline",
+    "level": 4,
+    "page": 486,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Automating Imports",
+    "level": 4,
+    "page": 486,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Importing A/R Invoices",
+    "level": 4,
+    "page": 487,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Importing Customer Records",
+    "level": 4,
+    "page": 491,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 5,
+    "page": 495,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Resolving Errors",
+    "level": 4,
+    "page": 496,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Import Error Notification",
+    "level": 4,
+    "page": 496,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Common Errors",
+    "level": 4,
+    "page": 499,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Handling Import Errors",
+    "level": 4,
+    "page": 502,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "A/R and Payments",
+    "level": 2,
+    "page": 503,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "About Accounts Receivable and Payments",
+    "level": 3,
+    "page": 504,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Payments",
+    "level": 4,
+    "page": 504,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding an A/R Term",
+    "level": 4,
+    "page": 505,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding Account Labels",
+    "level": 4,
+    "page": 507,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing and Emailing A/R and A/P Invoices",
+    "level": 4,
+    "page": 509,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Configuration",
+    "level": 2,
+    "page": 511,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Segments Overview",
+    "level": 3,
+    "page": 512,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 512,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Enabling Segments",
+    "level": 4,
+    "page": 513,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Functionality",
+    "level": 4,
+    "page": 513,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Accounting Settings",
+    "level": 4,
+    "page": 517,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Document Sequencing",
+    "level": 4,
+    "page": 520,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Overriding the G/L Account in A/R Transactions",
+    "level": 4,
+    "page": 522,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Defining Transaction Allocations",
+    "level": 4,
+    "page": 523,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Configuring Intercompany Bill Backs",
+    "level": 4,
+    "page": 524,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Enabling the Intercompany Bill Back Feature",
+    "level": 4,
+    "page": 524,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Granting Permissions to Bill Back Templates",
+    "level": 4,
+    "page": 525,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Create Vendors and Customers for Bill Backs",
+    "level": 4,
+    "page": 526,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Associating a Vendor and Customer to an Entity",
+    "level": 4,
+    "page": 527,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Creating Bill Back Templates",
+    "level": 4,
+    "page": 528,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Territories",
+    "level": 3,
+    "page": 530,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Reports",
+    "level": 2,
+    "page": 531,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "List of Standard Accounts Receivable Reports",
+    "level": 3,
+    "page": 532,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Segment Activity Report",
+    "level": 3,
+    "page": 535,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 536,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customizing and Running the Segment Activity Report",
+    "level": 4,
+    "page": 537,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Segment Activity Columns",
+    "level": 5,
+    "page": 540,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 5,
+    "page": 541,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "About Dimensions",
+    "level": 3,
+    "page": 542,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Limiting Members in Dimension Structures",
+    "level": 4,
+    "page": 543,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Attachments",
+    "level": 2,
+    "page": 545,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Attachments Overview",
+    "level": 3,
+    "page": 546,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 547,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding an Attachment to the System",
+    "level": 4,
+    "page": 548,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding a New Attachment to a Record",
+    "level": 4,
+    "page": 549,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding an Existing Attachment to a Record",
+    "level": 4,
+    "page": 551,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing an Attachment",
+    "level": 4,
+    "page": 552,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Editing an Attachment",
+    "level": 4,
+    "page": 553,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Deleting or Removing an Attachment",
+    "level": 4,
+    "page": 554,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Miscellaneous Common Tasks",
+    "level": 2,
+    "page": 555,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "About This Chapter",
+    "level": 3,
+    "page": 556,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Best Practices for Creating Names and IDs",
+    "level": 4,
+    "page": 557,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Setting Default Line-Item Values",
+    "level": 4,
+    "page": 558,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Managing Lists",
+    "level": 3,
+    "page": 560,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Sorting Lists",
+    "level": 4,
+    "page": 561,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Filtering Lists",
+    "level": 4,
+    "page": 562,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Examples of Using Filters with Field Values",
+    "level": 4,
+    "page": 569,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "List Views",
+    "level": 3,
+    "page": 570,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Drop-down List Controls",
+    "level": 4,
+    "page": 572,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Custom List Views",
+    "level": 3,
+    "page": 574,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding a New Custom View",
+    "level": 4,
+    "page": 576,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Exporting Lists",
+    "level": 4,
+    "page": 579,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Audit Trails",
+    "level": 3,
+    "page": 581,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Viewing Audit Trails",
+    "level": 4,
+    "page": 581,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Exporting a Record\u2019s Audit Trail",
+    "level": 4,
+    "page": 581,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 5,
+    "page": 582,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 5,
+    "page": 582,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Terminology List",
+    "level": 3,
+    "page": 583,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Changing a RealPage Accounting Term",
+    "level": 4,
+    "page": 583,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Roles and Permissions",
+    "level": 3,
+    "page": 584,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Duplicating Records",
+    "level": 4,
+    "page": 585,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding a G/L Account",
+    "level": 4,
+    "page": 586,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Adding a Contact",
+    "level": 4,
+    "page": 591,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Editing Customer Contact Information in a Transaction",
+    "level": 4,
+    "page": 593,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Editing Contact Information from a Transaction During Creation",
+    "level": 4,
+    "page": 593,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Editing Contact Information in an Existing Transaction",
+    "level": 4,
+    "page": 594,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Changing to a Different Contact in an Existing Transaction",
+    "level": 4,
+    "page": 595,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Using the Multi-Select Box",
+    "level": 4,
+    "page": 596,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing PDF Documents from Safari",
+    "level": 4,
+    "page": 597,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing PDF Documents from Firefox",
+    "level": 4,
+    "page": 597,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing PDF Documents from Microsoft Edge",
+    "level": 4,
+    "page": 597,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Printing PDF Documents from Chrome",
+    "level": 4,
+    "page": 599,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Help and Support",
+    "level": 2,
+    "page": 601,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Unified Platform Help and Support",
+    "level": 3,
+    "page": 602,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Client Portal Help",
+    "level": 4,
+    "page": 603,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Downloading RealPage Financial Suite Guides",
+    "level": 4,
+    "page": 604,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "How to Read Paths",
+    "level": 4,
+    "page": 605,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Support and Error IDs",
+    "level": 4,
+    "page": 608,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Appendices",
+    "level": 1,
+    "page": 609,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customer Data Appendix",
+    "level": 2,
+    "page": 611,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customer Fields Required for Importing Customer Data",
+    "level": 3,
+    "page": 611,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Customers Data Template",
+    "level": 3,
+    "page": 614,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "A/R Invoice Data Appendix",
+    "level": 2,
+    "page": 635,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "A/R Invoice Data",
+    "level": 3,
+    "page": 635,
+    "manual": "RP Accounting AR User Guide.pdf"
+  },
+  {
+    "title": "Configuring Accounts Receivable",
+    "level": 1,
+    "page": 9,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Accounts Receivable Configuration Workflow",
+    "level": 2,
+    "page": 10,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 10,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configure Accounts Receivable Page",
+    "level": 2,
+    "page": 11,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Accounting Settings",
+    "level": 3,
+    "page": 12,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Creating Automatic Summaries",
+    "level": 3,
+    "page": 15,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Thresholds",
+    "level": 3,
+    "page": 16,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Functionality",
+    "level": 3,
+    "page": 18,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring the System to Apply Discounts Automatically",
+    "level": 3,
+    "page": 21,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring Intercompany Billing",
+    "level": 2,
+    "page": 22,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 22,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding a Sequence ID",
+    "level": 3,
+    "page": 23,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring Intercompany Billing",
+    "level": 3,
+    "page": 24,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Defining the Default Bank Account for an Entity",
+    "level": 3,
+    "page": 26,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Screen Settings",
+    "level": 3,
+    "page": 27,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Dimensions",
+    "level": 3,
+    "page": 28,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Document Sequencing",
+    "level": 3,
+    "page": 29,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Aging",
+    "level": 3,
+    "page": 31,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Formatting",
+    "level": 3,
+    "page": 32,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Payments",
+    "level": 3,
+    "page": 34,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Auto Payment Suggestions",
+    "level": 3,
+    "page": 35,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Turning Off Auto Payment Suggestions",
+    "level": 3,
+    "page": 35,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Setting Up a Default Bank Account",
+    "level": 3,
+    "page": 37,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "PEX Configuration",
+    "level": 3,
+    "page": 38,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring Intercompany Bill Backs",
+    "level": 3,
+    "page": 40,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Enabling the Intercompany Bill Back Feature",
+    "level": 3,
+    "page": 40,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Granting Permissions to Bill Back Templates",
+    "level": 3,
+    "page": 41,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Create Vendors and Customers for Bill Backs",
+    "level": 3,
+    "page": 42,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Associating a Vendor and Customer to an Entity",
+    "level": 3,
+    "page": 43,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Creating Bill Back Templates",
+    "level": 3,
+    "page": 44,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 46,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 56,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Setting Up Override Accounts",
+    "level": 3,
+    "page": 57,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Account Labels",
+    "level": 1,
+    "page": 59,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Account Labels List",
+    "level": 2,
+    "page": 60,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding Account Labels",
+    "level": 3,
+    "page": 61,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Viewing and Editing Account Labels",
+    "level": 3,
+    "page": 62,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Finding Account Labels",
+    "level": 3,
+    "page": 63,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Deleting an Account Label",
+    "level": 3,
+    "page": 63,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Exporting the Account Label List",
+    "level": 3,
+    "page": 64,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printing the List of Account Labels",
+    "level": 3,
+    "page": 66,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Account Label Information Page",
+    "level": 3,
+    "page": 66,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printing the Account Label Details",
+    "level": 3,
+    "page": 67,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Exporting the Account Label Details",
+    "level": 3,
+    "page": 67,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 68,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 71,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Intercompany Bill-Backs",
+    "level": 1,
+    "page": 73,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Intercompany Bill Backs",
+    "level": 2,
+    "page": 74,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 77,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Bill Back Templates List",
+    "level": 3,
+    "page": 77,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Creating Bill Back Templates",
+    "level": 3,
+    "page": 78,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Editing and Viewing a Bill Back Template",
+    "level": 3,
+    "page": 80,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Deleting a Bill Back Template",
+    "level": 3,
+    "page": 81,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Bill Back Template Information Page",
+    "level": 3,
+    "page": 82,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Duplicating a Bill Back Template",
+    "level": 3,
+    "page": 83,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 84,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Overriding the G/L Account in A/R Transactions",
+    "level": 1,
+    "page": 85,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Setting Up G/L Account Override Workflow",
+    "level": 2,
+    "page": 86,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 86,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Enabling G/L Account Override",
+    "level": 3,
+    "page": 87,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Setting Up an Alternative G/L Account List",
+    "level": 3,
+    "page": 88,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Enabling User Permissions for Override",
+    "level": 3,
+    "page": 89,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Setting an Alternative G/L Account per Customer",
+    "level": 3,
+    "page": 90,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Overriding the Default G/L Account",
+    "level": 3,
+    "page": 90,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Order of Precedence in a Transaction with Multiple Alternative Accounts",
+    "level": 3,
+    "page": 91,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "A/R Terms",
+    "level": 1,
+    "page": 93,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Terms Overview",
+    "level": 2,
+    "page": 94,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 94,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Viewing the List of Terms",
+    "level": 3,
+    "page": 95,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "A/R Terms List",
+    "level": 2,
+    "page": 96,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding an A/R Term",
+    "level": 3,
+    "page": 96,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Editing and Viewing an A/R Term",
+    "level": 3,
+    "page": 98,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Assigning a Term to a Customer",
+    "level": 3,
+    "page": 99,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "A/R Terms Information Page",
+    "level": 3,
+    "page": 99,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printing A/R Term Details",
+    "level": 3,
+    "page": 99,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Exporting Terms Details",
+    "level": 3,
+    "page": 100,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 100,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Taxes",
+    "level": 1,
+    "page": 103,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "About Sales Tax",
+    "level": 2,
+    "page": 104,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Calculating Tax",
+    "level": 2,
+    "page": 105,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Account Label Tax Groups",
+    "level": 2,
+    "page": 106,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 106,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding an Account Label Tax Group",
+    "level": 3,
+    "page": 107,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Viewing and Editing Account Label Tax Groups",
+    "level": 3,
+    "page": 107,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Deleting an Account Label Tax Group",
+    "level": 3,
+    "page": 108,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Account Label Tax Group Information",
+    "level": 3,
+    "page": 108,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printing an Account Label Tax Group\u2019s Details",
+    "level": 3,
+    "page": 108,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Tax Authorities List",
+    "level": 2,
+    "page": 109,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Viewing Your List of Tax Authorities",
+    "level": 3,
+    "page": 109,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 110,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding Tax Authorities",
+    "level": 3,
+    "page": 110,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Viewing and Editing Tax Authority Details",
+    "level": 3,
+    "page": 111,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Deleting Tax Authorities",
+    "level": 3,
+    "page": 112,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Tax Authority Information Page",
+    "level": 3,
+    "page": 112,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Duplicating a Tax Authority",
+    "level": 3,
+    "page": 113,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printing a Tax Authority Record\u2019s Details",
+    "level": 3,
+    "page": 114,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 115,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 116,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Tax Details List",
+    "level": 2,
+    "page": 117,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 117,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding Tax Details",
+    "level": 3,
+    "page": 118,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Editing and Viewing Tax Details",
+    "level": 3,
+    "page": 120,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Deleting Tax Details",
+    "level": 3,
+    "page": 120,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Tax Detail Information Page",
+    "level": 3,
+    "page": 121,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Duplicating Records",
+    "level": 3,
+    "page": 121,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printing a Tax Detail Record\u2019s Details",
+    "level": 3,
+    "page": 122,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 123,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 124,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Tax Schedules",
+    "level": 2,
+    "page": 125,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "About Tax Schedules",
+    "level": 3,
+    "page": 125,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Viewing Your List of Tax Schedules",
+    "level": 3,
+    "page": 125,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Tax Schedules List",
+    "level": 2,
+    "page": 126,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 126,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding a Tax Schedule",
+    "level": 3,
+    "page": 127,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Viewing and Editing Tax Schedule Details",
+    "level": 3,
+    "page": 128,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Deleting a Tax Schedule",
+    "level": 3,
+    "page": 128,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Tax Schedule Information Page",
+    "level": 3,
+    "page": 129,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printing Tax Schedule Details",
+    "level": 3,
+    "page": 129,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 130,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 131,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Tax Schedule Maps List",
+    "level": 2,
+    "page": 132,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Tax Schedule Map Overview",
+    "level": 3,
+    "page": 133,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 133,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding a Tax Schedule Map",
+    "level": 3,
+    "page": 134,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Viewing and Editing a Schedule Map",
+    "level": 3,
+    "page": 134,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Deleting a Schedule Map",
+    "level": 3,
+    "page": 135,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Tax Schedule Map Information Page",
+    "level": 3,
+    "page": 136,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printing a Tax Schedule Map Record\u2019s Details",
+    "level": 3,
+    "page": 137,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 138,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Button",
+    "level": 4,
+    "page": 139,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Territories and Territory Groups",
+    "level": 1,
+    "page": 141,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Territories",
+    "level": 2,
+    "page": 142,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Reports That Use Territories",
+    "level": 2,
+    "page": 143,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 144,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Territories List",
+    "level": 2,
+    "page": 145,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding Territories",
+    "level": 3,
+    "page": 145,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Editing and Viewing Territories",
+    "level": 3,
+    "page": 146,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Making a Territory Inactive",
+    "level": 3,
+    "page": 147,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Deleting Territories",
+    "level": 3,
+    "page": 147,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Exporting the Territories List",
+    "level": 3,
+    "page": 148,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Territory Information Page",
+    "level": 2,
+    "page": 150,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Exporting Territory Details",
+    "level": 3,
+    "page": 150,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printing a Territory\u2019s Details",
+    "level": 3,
+    "page": 151,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 152,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 153,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Territory Groups List",
+    "level": 2,
+    "page": 154,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding a Territory Group",
+    "level": 3,
+    "page": 154,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Editing Territory Group Details",
+    "level": 3,
+    "page": 155,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Viewing Territory Group Details",
+    "level": 3,
+    "page": 155,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Exporting Territory Group Details",
+    "level": 3,
+    "page": 156,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Deleting a Territory Group",
+    "level": 3,
+    "page": 158,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Territory Groups Information",
+    "level": 2,
+    "page": 159,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Duplicating a Territory Group",
+    "level": 3,
+    "page": 159,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Exporting a Territory Group\u2019s Details",
+    "level": 3,
+    "page": 160,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printing a Territory Group\u2019s Details",
+    "level": 3,
+    "page": 160,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 161,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Shipping Methods",
+    "level": 1,
+    "page": 163,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Shipping Methods Overview",
+    "level": 2,
+    "page": 164,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 164,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Viewing the List of Shipping Methods",
+    "level": 3,
+    "page": 165,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Shipping Methods List",
+    "level": 2,
+    "page": 166,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding a Shipping Method",
+    "level": 3,
+    "page": 167,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Deleting a Shipping Method",
+    "level": 3,
+    "page": 167,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Duplicating a Shipping Method",
+    "level": 3,
+    "page": 168,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printing a Shipping Method",
+    "level": 3,
+    "page": 168,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Shipping Method Information Page",
+    "level": 3,
+    "page": 169,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 169,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printed Document Templates",
+    "level": 1,
+    "page": 171,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Custom Document Templates",
+    "level": 2,
+    "page": 172,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 173,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "How Merge Works",
+    "level": 3,
+    "page": 174,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Document Templates Workflow",
+    "level": 3,
+    "page": 175,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Downloading and Installing the Word Merge Tool",
+    "level": 3,
+    "page": 176,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 176,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Logging In to the Word Merge Tool",
+    "level": 3,
+    "page": 178,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Troubleshooting the Word Merge Tool",
+    "level": 3,
+    "page": 179,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Choosing a Word File for Your Document Template",
+    "level": 3,
+    "page": 180,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Constructing a Statement Template",
+    "level": 2,
+    "page": 181,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Parts of the Statement",
+    "level": 3,
+    "page": 181,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Content Supported in a Document Template",
+    "level": 3,
+    "page": 182,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Using the Word Merge Tool to Insert Merge Fields",
+    "level": 3,
+    "page": 183,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Using Merge Fields in Tables",
+    "level": 3,
+    "page": 185,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "A/R Invoice Fields",
+    "level": 3,
+    "page": 186,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Print/Email Statements Merge Fields",
+    "level": 4,
+    "page": 197,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Tips for Working in Word",
+    "level": 3,
+    "page": 203,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Syncing a Document Template with RealPage Accounting",
+    "level": 3,
+    "page": 204,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding and Uploading a Document Template",
+    "level": 3,
+    "page": 205,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Assigning a Document Template to a Transaction or Customer",
+    "level": 3,
+    "page": 206,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Assigning a Document Template to Accounts Receivable Invoices or Statements",
+    "level": 3,
+    "page": 206,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Assigning a Document Template to a Customer",
+    "level": 3,
+    "page": 207,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Testing a Document Template",
+    "level": 3,
+    "page": 208,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Troubleshooting a Document Template",
+    "level": 3,
+    "page": 209,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Common Tasks",
+    "level": 1,
+    "page": 213,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Importing Data",
+    "level": 2,
+    "page": 215,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Overview of Importing Data into RealPage Accounting",
+    "level": 3,
+    "page": 216,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 216,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Best Practices for Preparing Data for Import",
+    "level": 4,
+    "page": 217,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Downloading a Template from the Import Data Page",
+    "level": 4,
+    "page": 218,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Filling In an Import Template with Data",
+    "level": 4,
+    "page": 219,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Preparing Your CSV File for Import",
+    "level": 4,
+    "page": 219,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "About CSV Templates",
+    "level": 4,
+    "page": 223,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Order of CSV Imports",
+    "level": 4,
+    "page": 226,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Importing a CSV File",
+    "level": 4,
+    "page": 227,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Importing Offline",
+    "level": 4,
+    "page": 228,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Automating Imports",
+    "level": 4,
+    "page": 228,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Importing A/R Invoices",
+    "level": 4,
+    "page": 228,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Importing Customer Records",
+    "level": 4,
+    "page": 232,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 5,
+    "page": 235,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Resolving Errors",
+    "level": 4,
+    "page": 235,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Import Error Notification",
+    "level": 4,
+    "page": 236,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Common Errors",
+    "level": 4,
+    "page": 239,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Handling Import Errors",
+    "level": 4,
+    "page": 242,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "A/R and Payments",
+    "level": 2,
+    "page": 243,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "About Accounts Receivable and Payments",
+    "level": 3,
+    "page": 244,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Payments",
+    "level": 4,
+    "page": 244,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding an A/R Term",
+    "level": 4,
+    "page": 245,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding Account Labels",
+    "level": 4,
+    "page": 247,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printing and Emailing A/R and A/P Invoices",
+    "level": 4,
+    "page": 249,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuration",
+    "level": 2,
+    "page": 251,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Segments Overview",
+    "level": 3,
+    "page": 252,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 252,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Enabling Segments",
+    "level": 4,
+    "page": 252,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Functionality",
+    "level": 4,
+    "page": 253,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Accounting Settings",
+    "level": 4,
+    "page": 256,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Document Sequencing",
+    "level": 4,
+    "page": 260,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Overriding the G/L Account in A/R Transactions",
+    "level": 4,
+    "page": 262,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Defining Transaction Allocations",
+    "level": 4,
+    "page": 262,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Configuring Intercompany Bill Backs",
+    "level": 4,
+    "page": 263,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Enabling the Intercompany Bill Back Feature",
+    "level": 4,
+    "page": 264,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Granting Permissions to Bill Back Templates",
+    "level": 4,
+    "page": 264,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Create Vendors and Customers for Bill Backs",
+    "level": 4,
+    "page": 266,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Associating a Vendor and Customer to an Entity",
+    "level": 4,
+    "page": 267,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Creating Bill Back Templates",
+    "level": 4,
+    "page": 268,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Territories",
+    "level": 3,
+    "page": 270,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Reports",
+    "level": 2,
+    "page": 271,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "List of Standard Accounts Receivable Reports",
+    "level": 3,
+    "page": 272,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Segment Activity Report",
+    "level": 3,
+    "page": 275,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 276,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Customizing and Running the Segment Activity Report",
+    "level": 4,
+    "page": 277,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Segment Activity Columns",
+    "level": 5,
+    "page": 280,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 5,
+    "page": 281,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "About Dimensions",
+    "level": 3,
+    "page": 282,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Limiting Members in Dimension Structures",
+    "level": 4,
+    "page": 282,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Attachments",
+    "level": 2,
+    "page": 285,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Attachments Overview",
+    "level": 3,
+    "page": 286,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 287,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding an Attachment to the System",
+    "level": 4,
+    "page": 288,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding a New Attachment to a Record",
+    "level": 4,
+    "page": 289,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding an Existing Attachment to a Record",
+    "level": 4,
+    "page": 291,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Viewing an Attachment",
+    "level": 4,
+    "page": 292,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Editing an Attachment",
+    "level": 4,
+    "page": 293,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Deleting or Removing an Attachment",
+    "level": 4,
+    "page": 294,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Miscellaneous Common Tasks",
+    "level": 2,
+    "page": 295,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "About This Chapter",
+    "level": 3,
+    "page": 296,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Best Practices for Creating Names and IDs",
+    "level": 4,
+    "page": 297,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Setting Default Line-Item Values",
+    "level": 4,
+    "page": 298,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Managing Lists",
+    "level": 3,
+    "page": 300,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Sorting Lists",
+    "level": 4,
+    "page": 301,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Filtering Lists",
+    "level": 4,
+    "page": 302,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Examples of Using Filters with Field Values",
+    "level": 4,
+    "page": 308,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "List Views",
+    "level": 3,
+    "page": 309,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Drop-down List Controls",
+    "level": 4,
+    "page": 311,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Custom List Views",
+    "level": 3,
+    "page": 313,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding a New Custom View",
+    "level": 4,
+    "page": 315,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Exporting Lists",
+    "level": 4,
+    "page": 318,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Audit Trails",
+    "level": 3,
+    "page": 320,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Viewing Audit Trails",
+    "level": 4,
+    "page": 320,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Exporting a Record\u2019s Audit Trail",
+    "level": 4,
+    "page": 320,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 5,
+    "page": 321,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 5,
+    "page": 321,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Terminology List",
+    "level": 3,
+    "page": 322,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Changing a RealPage Accounting Term",
+    "level": 4,
+    "page": 322,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Roles and Permissions",
+    "level": 3,
+    "page": 323,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Duplicating Records",
+    "level": 4,
+    "page": 324,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding a G/L Account",
+    "level": 4,
+    "page": 324,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Adding a Contact",
+    "level": 4,
+    "page": 329,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Editing Customer Contact Information in a Transaction",
+    "level": 4,
+    "page": 330,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Editing Contact Information from a Transaction During Creation",
+    "level": 4,
+    "page": 331,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Editing Contact Information in an Existing Transaction",
+    "level": 4,
+    "page": 331,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Changing to a Different Contact in an Existing Transaction",
+    "level": 4,
+    "page": 332,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Using the Multi-Select Box",
+    "level": 4,
+    "page": 333,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printing PDF Documents from Safari",
+    "level": 4,
+    "page": 334,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printing PDF Documents from Firefox",
+    "level": 4,
+    "page": 334,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printing PDF Documents from Microsoft Edge",
+    "level": 4,
+    "page": 335,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Printing PDF Documents from Chrome",
+    "level": 4,
+    "page": 336,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Help and Support",
+    "level": 2,
+    "page": 337,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Unified Platform Help and Support",
+    "level": 3,
+    "page": 338,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Client Portal Help",
+    "level": 3,
+    "page": 339,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Downloading RealPage Financial Suite Guides",
+    "level": 3,
+    "page": 340,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "How to Read Paths",
+    "level": 3,
+    "page": 341,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Support and Error IDs",
+    "level": 3,
+    "page": 343,
+    "manual": "RP Accounting AR Setup User Guide.pdf"
+  },
+  {
+    "title": "Introduction to Accounts Receivable Reports",
+    "level": 1,
+    "page": 7,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "List of Standard Accounts Receivable Reports",
+    "level": 2,
+    "page": 8,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Report Workflow",
+    "level": 3,
+    "page": 10,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Accounts Receivable Reports",
+    "level": 1,
+    "page": 11,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Standard Reports",
+    "level": 1,
+    "page": 12,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customer Aging Report",
+    "level": 1,
+    "page": 13,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 14,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Aging Periods",
+    "level": 2,
+    "page": 15,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing the Customer Aging Report",
+    "level": 2,
+    "page": 18,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 22,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customer Listing Report",
+    "level": 1,
+    "page": 23,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 23,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing the Customer Listing Report",
+    "level": 2,
+    "page": 24,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customer Listing Columns",
+    "level": 3,
+    "page": 26,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 27,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Creating a Report that Groups Customers by Territory",
+    "level": 2,
+    "page": 28,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 29,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Creating a Customer List by Territory Report",
+    "level": 2,
+    "page": 29,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "A/R Ledger Report",
+    "level": 1,
+    "page": 34,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 35,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Running a Monthly Report",
+    "level": 2,
+    "page": 35,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing the A/R Ledger Report",
+    "level": 2,
+    "page": 36,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "A/R Ledger Report Columns",
+    "level": 3,
+    "page": 40,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 41,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Sales Register Report",
+    "level": 1,
+    "page": 42,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 43,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Running the Sales Register Report",
+    "level": 2,
+    "page": 43,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing the Sales Registers Report",
+    "level": 2,
+    "page": 44,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Registers Report Columns",
+    "level": 3,
+    "page": 47,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 48,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Deferred Revenue Forecast Report",
+    "level": 1,
+    "page": 49,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 49,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing and Running the Deferred Revenue Forecast Report",
+    "level": 2,
+    "page": 50,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Deferred Revenue Forecast Report Columns",
+    "level": 3,
+    "page": 54,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 57,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Deferred Revenue Details",
+    "level": 1,
+    "page": 58,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 59,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing and Running the Deferred Revenue Details Report",
+    "level": 2,
+    "page": 59,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Deferred Revenue Details Columns",
+    "level": 3,
+    "page": 64,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 66,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Deferred Revenue Revaluation Report",
+    "level": 1,
+    "page": 67,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 67,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing and Running the Deferred Revenue Revaluation Report",
+    "level": 2,
+    "page": 68,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Deferred Revenue Revaluation Columns",
+    "level": 3,
+    "page": 70,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 72,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Recurring Transactions Status Report",
+    "level": 1,
+    "page": 73,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 73,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing the Recurring Transaction Report",
+    "level": 2,
+    "page": 74,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Recurring Transaction Status Report Columns",
+    "level": 3,
+    "page": 76,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 77,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Recurring Transaction Forecast Report",
+    "level": 1,
+    "page": 78,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 79,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing the Recurring Transaction Forecast Report",
+    "level": 2,
+    "page": 79,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Recurring Transaction Forecast Report Columns",
+    "level": 3,
+    "page": 82,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 82,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Receipts Register Report",
+    "level": 1,
+    "page": 84,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 84,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing the Receipts Register Report",
+    "level": 2,
+    "page": 85,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Running a Monthly Report",
+    "level": 2,
+    "page": 88,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Receipts Report Columns",
+    "level": 3,
+    "page": 89,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 90,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Sales Tax Report",
+    "level": 1,
+    "page": 91,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 91,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing the Sales Tax Report",
+    "level": 2,
+    "page": 92,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Running a Monthly Report",
+    "level": 2,
+    "page": 94,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Sales Tax Report Columns",
+    "level": 3,
+    "page": 95,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 96,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Intercompany Billing Report",
+    "level": 1,
+    "page": 97,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 97,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Running the Intercompany Billing Report",
+    "level": 2,
+    "page": 98,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing the Intercompany Billing Report",
+    "level": 2,
+    "page": 99,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Intercompany Billing Report Columns",
+    "level": 3,
+    "page": 101,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 102,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Invoices Analysis Report",
+    "level": 1,
+    "page": 103,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 104,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Running the Invoices Analysis Report",
+    "level": 2,
+    "page": 104,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing the Invoices Analysis Report",
+    "level": 2,
+    "page": 105,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Invoices Analysis Report Columns",
+    "level": 3,
+    "page": 109,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 110,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Recurring Report",
+    "level": 1,
+    "page": 111,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 111,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Running the A/R Recurring Report",
+    "level": 2,
+    "page": 112,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing the Recurring Report",
+    "level": 2,
+    "page": 113,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Recurring Report Columns",
+    "level": 3,
+    "page": 116,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 117,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Reclassification Report",
+    "level": 1,
+    "page": 118,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 118,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Running the Reclassification Report",
+    "level": 2,
+    "page": 119,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing the Reclassification Report",
+    "level": 2,
+    "page": 120,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Reclassification Report Columns",
+    "level": 3,
+    "page": 122,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 123,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Using Reports",
+    "level": 1,
+    "page": 125,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Memorized Reports",
+    "level": 2,
+    "page": 126,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 126,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Memorizing a Report or Chart",
+    "level": 3,
+    "page": 127,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Memorized Reports List",
+    "level": 2,
+    "page": 128,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Editing a Memorized Report",
+    "level": 3,
+    "page": 128,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Running a Memorized Report or Chart",
+    "level": 3,
+    "page": 129,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Scheduling a Memorized Report or Chart",
+    "level": 3,
+    "page": 130,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Deleting a Memorized Report or Chart",
+    "level": 3,
+    "page": 134,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Edit Memorized Report Page",
+    "level": 2,
+    "page": 135,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Schedule Memorized Report Page",
+    "level": 2,
+    "page": 136,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 3,
+    "page": 137,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 3,
+    "page": 142,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Storing Standard Reports and Charts",
+    "level": 2,
+    "page": 143,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Choosing File Types to Store Reports and Charts",
+    "level": 3,
+    "page": 143,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Storing Reports",
+    "level": 3,
+    "page": 143,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Storage Options Page",
+    "level": 2,
+    "page": 145,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Storing a Report in My Stored Reports",
+    "level": 3,
+    "page": 145,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Storing a Report in a Cloud-Storage Target",
+    "level": 3,
+    "page": 146,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Storing a Report in Reporting Portal",
+    "level": 3,
+    "page": 147,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 149,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 152,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "My Stored Reports List",
+    "level": 2,
+    "page": 153,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 3,
+    "page": 153,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Viewing a Stored Report",
+    "level": 3,
+    "page": 154,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Stopping a Scheduled Report",
+    "level": 3,
+    "page": 156,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Deleting a Stored Report",
+    "level": 3,
+    "page": 156,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Fields",
+    "level": 4,
+    "page": 157,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Buttons",
+    "level": 4,
+    "page": 157,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Emailing Standard Reports and Charts",
+    "level": 3,
+    "page": 158,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Adding a Report to a Dashboard from a Dashboard",
+    "level": 3,
+    "page": 158,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Accessing Reports in the Reports Center",
+    "level": 3,
+    "page": 160,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 4,
+    "page": 160,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Custom Report Wizard",
+    "level": 2,
+    "page": 161,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Report Icons",
+    "level": 2,
+    "page": 162,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Saving and Adding Your Report to a Menu",
+    "level": 3,
+    "page": 162,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Troubleshooting A/R Reports",
+    "level": 1,
+    "page": 165,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Reconciling the A/R Subledger or Aging to the G/L Account",
+    "level": 2,
+    "page": 166,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Reasons Your A/R Subledger or Aging and G/L Might Not Balance",
+    "level": 2,
+    "page": 167,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Accounts Receivable Charts",
+    "level": 1,
+    "page": 171,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "List of Accounts Receivable Charts",
+    "level": 2,
+    "page": 172,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Examples of Chart Types",
+    "level": 2,
+    "page": 173,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customer Aging Chart",
+    "level": 1,
+    "page": 179,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 180,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Viewing a Monthly Chart",
+    "level": 2,
+    "page": 181,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing and Creating the Customer Aging Chart",
+    "level": 2,
+    "page": 181,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Aging Periods",
+    "level": 2,
+    "page": 185,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Deferred Revenue Forecast Graph",
+    "level": 1,
+    "page": 188,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 188,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing and Running the Deferred Revenue Forecast Graph",
+    "level": 2,
+    "page": 189,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Invoices Analysis Chart",
+    "level": 1,
+    "page": 194,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Before You Begin",
+    "level": 2,
+    "page": 194,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Viewing a Monthly Chart",
+    "level": 2,
+    "page": 195,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing and Creating the Invoices Analysis Chart",
+    "level": 2,
+    "page": 196,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Working with Charts",
+    "level": 1,
+    "page": 201,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "What You Can Do with Standard Charts",
+    "level": 2,
+    "page": 202,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Customizing Standard Reports and Charts",
+    "level": 2,
+    "page": 203,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Memorizing Standard Reports and Charts Parameters",
+    "level": 3,
+    "page": 203,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Scheduling a Memorized Report or Chart",
+    "level": 3,
+    "page": 203,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Storing Standard Reports and Charts",
+    "level": 2,
+    "page": 208,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Emailing Standard Reports and Charts",
+    "level": 3,
+    "page": 208,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Adding a Memorized Standard Chart to a Dashboard",
+    "level": 3,
+    "page": 208,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Adding a Financial Chart to a Dashboard",
+    "level": 3,
+    "page": 209,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Deleting a Memorized Report",
+    "level": 3,
+    "page": 210,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Common Tasks",
+    "level": 1,
+    "page": 211,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Roles and Permissions",
+    "level": 2,
+    "page": 212,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Assigning Permissions for a New Feature",
+    "level": 3,
+    "page": 212,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Creating a Financial Report",
+    "level": 2,
+    "page": 214,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Custom Report Wizard",
+    "level": 2,
+    "page": 217,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Creating a Financial Graph",
+    "level": 2,
+    "page": 217,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "List Views",
+    "level": 2,
+    "page": 221,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Exporting from Lists",
+    "level": 2,
+    "page": 223,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Using the From/To Fields",
+    "level": 2,
+    "page": 224,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Using the Multi-Select Box",
+    "level": 2,
+    "page": 226,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Specifying Dates",
+    "level": 2,
+    "page": 227,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Adding a Dashboard",
+    "level": 2,
+    "page": 230,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Adding a Report to a Dashboard from a Dashboard",
+    "level": 2,
+    "page": 231,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Saving and Adding Your Report to a Menu",
+    "level": 2,
+    "page": 233,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Adding Components to a Dashboard",
+    "level": 2,
+    "page": 234,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Aging Periods",
+    "level": 2,
+    "page": 240,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Configuring A/R Document Sequencing",
+    "level": 2,
+    "page": 243,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Configuring Intercompany Billing",
+    "level": 2,
+    "page": 245,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "Adding a Sequence ID",
+    "level": 2,
+    "page": 246,
+    "manual": "RP Accounting AR Reports User Guide.pdf"
+  },
+  {
+    "title": "QS Header",
+    "level": 1,
+    "page": 1,
+    "manual": "RP Accounting AR QS.pdf"
+  },
+  {
+    "title": "About the Accounts Receivable Application",
+    "level": 2,
+    "page": 1,
+    "manual": "RP Accounting AR QS.pdf"
+  },
+  {
+    "title": "Adding a Customer",
+    "level": 2,
+    "page": 1,
+    "manual": "RP Accounting AR QS.pdf"
+  },
+  {
+    "title": "Adding a Payment to Bank Account",
+    "level": 2,
+    "page": 1,
+    "manual": "RP Accounting AR QS.pdf"
+  },
+  {
+    "title": "Receiving Payment to Undeposited Funds",
+    "level": 2,
+    "page": 1,
+    "manual": "RP Accounting AR QS.pdf"
+  },
+  {
+    "title": "Recording a Deposit",
+    "level": 2,
+    "page": 1,
+    "manual": "RP Accounting AR QS.pdf"
+  },
+  {
+    "title": "Recording a Manual Deposit",
+    "level": 2,
+    "page": 1,
+    "manual": "RP Accounting AR QS.pdf"
+  },
+  {
+    "title": "Adding an A/R Invoice",
+    "level": 2,
+    "page": 1,
+    "manual": "RP Accounting AR QS.pdf"
+  },
+  {
+    "title": "Adding a Recurring A/R Invoice",
+    "level": 2,
+    "page": 1,
+    "manual": "RP Accounting AR QS.pdf"
+  },
+  {
+    "title": "Adding an Adjustment",
+    "level": 2,
+    "page": 1,
+    "manual": "RP Accounting AR QS.pdf"
+  },
+  {
+    "title": "Opening/Closing Subledger",
+    "level": 2,
+    "page": 1,
+    "manual": "RP Accounting AR QS.pdf"
+  }
+]
