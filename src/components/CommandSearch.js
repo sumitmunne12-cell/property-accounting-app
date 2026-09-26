@@ -16,6 +16,17 @@ import { GLOSSARY_TERMS } from '../data/glossaryData';
 import { PDF_CATALOG } from '../data/pdfCatalogData';
 import { triggerHaptic } from '../utils/haptics';
 
+// Flattened once: the nine module files hold several thousand screens.
+const ALL_SCREENS = [];
+REALPAGE_MODULES.forEach((mod) => {
+  mod.submodules.forEach((sub) => {
+    sub.screens.forEach((scr) => {
+      ALL_SCREENS.push({ ...scr, moduleTitle: mod.title, moduleColor: mod.color });
+    });
+  });
+});
+const MAX_SCREEN_RESULTS = 50;
+
 export default function CommandSearch({ onSelectTask, onSelectScreen }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('All'); // 'All' | 'Manuals' | 'Exceptions' | 'Tasks' | 'Screens' | 'Glossary'
@@ -57,17 +68,8 @@ export default function CommandSearch({ onSelectTask, onSelectScreen }) {
     );
   });
 
-  // Filter Screens
-  const allScreens = [];
-  REALPAGE_MODULES.forEach((mod) => {
-    mod.submodules.forEach((sub) => {
-      sub.screens.forEach((scr) => {
-        allScreens.push({ ...scr, moduleTitle: mod.title, moduleColor: mod.color });
-      });
-    });
-  });
-
-  const filteredScreens = allScreens.filter((scr) => {
+  // Filter Screens (ALL_SCREENS is flattened once at module load — thousands of entries)
+  const filteredScreens = ALL_SCREENS.filter((scr) => {
     if (!normalizedQuery) return false;
     return (
       scr.name.toLowerCase().includes(normalizedQuery) ||
@@ -347,12 +349,20 @@ export default function CommandSearch({ onSelectTask, onSelectScreen }) {
               </View>
             </View>
 
-            {filteredScreens.map((scr) => (
+            {filteredScreens.length > MAX_SCREEN_RESULTS && (
+              <Text style={styles.screenResultBreadcrumbs}>
+                Showing the first {MAX_SCREEN_RESULTS} of {filteredScreens.length} matches — refine your search.
+              </Text>
+            )}
+            {filteredScreens.slice(0, MAX_SCREEN_RESULTS).map((scr) => (
               <View key={scr.id} style={styles.screenResultCard}>
                 <Text style={[styles.screenResultModule, { color: scr.moduleColor }]}>{scr.moduleTitle}</Text>
                 <Text style={styles.screenResultName}>{scr.name}</Text>
                 <Text style={styles.screenResultBreadcrumbs}>{scr.navigation.join('  ›  ')}</Text>
                 <Text style={styles.screenResultPurpose} numberOfLines={2}>{scr.purpose}</Text>
+                {scr.pdfManualSource ? (
+                  <Text style={styles.screenResultBreadcrumbs} numberOfLines={1}>{scr.pdfManualSource}</Text>
+                ) : null}
               </View>
             ))}
           </View>

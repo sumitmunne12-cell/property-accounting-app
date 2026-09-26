@@ -1,0 +1,115 @@
+{
+  "01_general_ledger": {
+    "checklist_items": 1606,
+    "screens": 1201,
+    "submodules": 72,
+    "status_counts": {
+      "screen": 1196,
+      "merged": 278,
+      "duplicate": 131,
+      "layout-container": 1
+    },
+    "bytes": 4335358
+  },
+  "02_accounts_payable": {
+    "checklist_items": 3339,
+    "screens": 2061,
+    "submodules": 96,
+    "status_counts": {
+      "screen": 2055,
+      "merged": 730,
+      "duplicate": 252,
+      "container": 4,
+      "layout-container": 2,
+      "glossary-definition": 296
+    },
+    "bytes": 7258552
+  },
+  "03_cash_management": {
+    "checklist_items": 922,
+    "screens": 406,
+    "submodules": 13,
+    "status_counts": {
+      "screen": 404,
+      "merged": 196,
+      "duplicate": 17,
+      "glossary-definition": 304,
+      "layout-container": 1
+    },
+    "bytes": 1520255
+  },
+  "04_accounts_receivable": {
+    "checklist_items": 999,
+    "screens": 712,
+    "submodules": 36,
+    "status_counts": {
+      "screen": 710,
+      "merged": 178,
+      "duplicate": 110,
+      "layout-container": 1
+    },
+    "bytes": 2429899
+  },
+  "05_financial_close": {
+    "checklist_items": 466,
+    "screens": 118,
+    "submodules": 4,
+    "status_counts": {
+      "screen": 117,
+      "merged": 44,
+      "glossary-definition": 304,
+      "duplicate": 1
+    },
+    "bytes": 417543
+  },
+  "06_jobcost_capex_reserves": {
+    "checklist_items": 1269,
+    "screens": 365,
+    "submodules": 12,
+    "status_counts": {
+      "screen": 364,
+      "merged": 231,
+      "duplicate": 64,
+      "glossary-definition": 608,
+      "layout-container": 2
+    },
+    "bytes": 1267732
+  },
+  "07_fixed_assets": {
+    "checklist_items": 73,
+    "screens": 57,
+    "submodules": 3,
+    "status_counts": {
+      "screen": 56,
+      "merged": 16,
+      "layout-container": 1
+    },
+    "bytes": 194987
+  },
+  "08_budgeting_forecasting": {
+    "checklist_items": 455,
+    "screens": 291,
+    "submodules": 9,
+    "status_counts": {
+      "screen": 291,
+      "merged": 87,
+      "duplicate": 4,
+      "glossary-definition": 72,
+      "layout-container": 1
+    },
+    "bytes": 1019410
+  },
+  "09_reporting_admin": {
+    "checklist_items": 3391,
+    "screens": 1892,
+    "submodules": 81,
+    "status_counts": {
+      "screen": 1891,
+      "merged": 559,
+      "glossary-definition": 604,
+      "duplicate": 334,
+      "layout-container": 3
+    },
+    "bytes": 6242785
+  }
+}
