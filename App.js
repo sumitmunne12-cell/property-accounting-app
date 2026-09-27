@@ -19,7 +19,6 @@ import { LAYOUT, RADII } from './src/theme/layout';
 import {
   ALL_TASKS,
   TASK_PHASES,
-  PROPERTIES,
 } from './src/data/tasksData';
 import {
   getCompletedTasks,
@@ -32,7 +31,19 @@ import {
   saveSelectedProperty,
   getActiveSoftware,
   saveActiveSoftware,
+  getProperties,
+  saveProperties,
+  getCloseProgress,
+  saveCloseProgress,
 } from './src/utils/storage';
+import {
+  ALL_PROPERTIES,
+  seedProperties,
+  normalizeProperties,
+  resolveSelection,
+  propertyLabel,
+  migrateCloseProgress,
+} from './src/utils/propertyTimeline';
 import { triggerHaptic } from './src/utils/haptics';
 
 // Subcomponents
@@ -49,6 +60,8 @@ import { GaapNavContext } from './src/components/gaap/GaapNavContext';
 import { MODULE_FILE_TO_ID, SCREEN_COUNT } from './src/utils/screenIndex';
 import SwipeBackView from './src/components/SwipeBackView';
 import DeductionCompass from './src/components/compass/DeductionCompass';
+import PropertySetup from './src/components/PropertySetup';
+import CloseTimelineStrip from './src/components/CloseTimelineStrip';
 
 const TAB_TITLES = {
   tasks: 'Daily Hub',
@@ -88,7 +101,10 @@ function AppShell() {
   const [navHistory, setNavHistory] = useState(['tasks']);
   const [selectedPhase, setSelectedPhase] = useState('All');
   const [selectedPriority, setSelectedPriority] = useState('All');
-  const [selectedProperty, setSelectedProperty] = useState('All Properties');
+  // User-managed properties, each with its own close timeline (utils/propertyTimeline).
+  const [properties, setProperties] = useState([]);
+  const [selectedPropertyId, setSelectedPropertyId] = useState(ALL_PROPERTIES);
+  const [propertySetup, setPropertySetup] = useState({ visible: false, editId: null });
   const [activeSoftware, setActiveSoftware] = useState('realpage'); // 'realpage' | 'yardi'
   
   // Persistent storage state
@@ -123,6 +139,10 @@ function AppShell() {
   }, []);
 
   const handleGoBack = useCallback(() => {
+    if (propertySetup.visible) {
+      setPropertySetup({ visible: false, editId: null });
+      return true;
+    }
     if (propertyPickerVisible) {
       setPropertyPickerVisible(false);
       return true;
@@ -151,7 +171,7 @@ function AppShell() {
       return true;
     }
     return false;
-  }, [propertyPickerVisible, selectedTaskForMastery, sopScreen, navHistory, activeTab]);
+  }, [propertySetup.visible, propertyPickerVisible, selectedTaskForMastery, sopScreen, navHistory, activeTab]);
 
   useEffect(() => {
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
@@ -200,13 +220,24 @@ function AppShell() {
     const completed = await getCompletedTasks();
     const bookmarks = await getBookmarks();
     const notes = await getTaskNotes();
-    const prop = await getSelectedProperty();
     const soft = await getActiveSoftware();
+
+    // First run seeds the properties the app used to hard-code; afterwards the user's list wins.
+    const stored = normalizeProperties(await getProperties());
+    const props = stored || seedProperties();
+    if (!stored) await saveProperties(props);
+    const selected = resolveSelection(await getSelectedProperty(), props);
+    await saveSelectedProperty(selected);
+    // Close sign-offs used to be per period only; they now belong to a property.
+    const rawProgress = await getCloseProgress();
+    const migrated = migrateCloseProgress(rawProgress, props, selected);
+    if (migrated !== rawProgress) await saveCloseProgress(migrated);
 
     setCompletedTaskIds(completed);
     setBookmarkedIds(bookmarks);
     setTaskNotes(notes);
-    setSelectedProperty(prop);
+    setProperties(props);
+    setSelectedPropertyId(selected);
     setActiveSoftware(soft);
   };
 
@@ -227,10 +258,35 @@ function AppShell() {
     setTaskNotes(updated);
   };
 
-  const handleSelectProperty = async (prop) => {
-    setSelectedProperty(prop);
-    await saveSelectedProperty(prop);
+  const handleSelectProperty = async (propertyId) => {
+    setSelectedPropertyId(propertyId);
     setPropertyPickerVisible(false);
+    await saveSelectedProperty(propertyId);
+    // A property's accounting system drives the RealPage / Yardi toggle.
+    const prop = properties.find((p) => p.id === propertyId);
+    if (prop && prop.software !== activeSoftware) await handleToggleSoftware(prop.software);
+  };
+
+  const openPropertySetup = (editId = null) => {
+    setPropertyPickerVisible(false);
+    setPropertySetup({ visible: true, editId });
+  };
+
+  const handleSaveProperties = async (next, deletedId = null) => {
+    setProperties(next);
+    await saveProperties(next);
+    if (selectedPropertyId !== ALL_PROPERTIES && !next.some((p) => p.id === selectedPropertyId)) {
+      setSelectedPropertyId(ALL_PROPERTIES);
+      await saveSelectedProperty(ALL_PROPERTIES);
+    }
+    if (deletedId) {
+      const progress = await getCloseProgress();
+      if (progress && progress[deletedId]) {
+        const rest = { ...progress };
+        delete rest[deletedId];
+        await saveCloseProgress(rest);
+      }
+    }
   };
 
   const handleToggleSoftware = async (soft) => {
@@ -328,7 +384,7 @@ function AppShell() {
               {/* Global Executive Header */}
               <HeaderBar
                 hideBrand={isDesktop}
-                selectedProperty={selectedProperty}
+                selectedProperty={propertyLabel(selectedPropertyId, properties)}
                 onOpenPropertyPicker={() => setPropertyPickerVisible(true)}
                 activeSoftware={activeSoftware}
                 onToggleSoftware={handleToggleSoftware}
@@ -350,6 +406,17 @@ function AppShell() {
                 {/* TAB 1: DAILY TASK COMMAND HUB */}
                 {activeTab === 'tasks' && (
                   <View style={styles.tasksContainer}>
+                    {/* Close timeline of the selected property (or each property's next deadline) */}
+                    <CloseTimelineStrip
+                      properties={properties}
+                      selectedPropertyId={selectedPropertyId}
+                      tasks={ALL_TASKS}
+                      completedTaskIds={completedTaskIds}
+                      activePhase={selectedPhase}
+                      onSelectPhase={setSelectedPhase}
+                      onManage={openPropertySetup}
+                    />
+
                     {/* Phase Switcher Horizontal Scroll */}
                     <View style={styles.phaseBar}>
                       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.phaseScroll}>
@@ -431,7 +498,14 @@ function AppShell() {
                 )}
 
                 {/* TAB 2: MONTH-END CLOSE COCKPIT */}
-                {activeTab === 'close' && <CloseCockpit onOpenScreen={openScreen} />}
+                {activeTab === 'close' && (
+                  <CloseCockpit
+                    onOpenScreen={openScreen}
+                    properties={properties}
+                    selectedPropertyId={selectedPropertyId}
+                    onManageProperties={openPropertySetup}
+                  />
+                )}
 
                 {/* TAB 3: REALPAGE SYSTEM TWIN EXPLORER */}
                 {activeTab === 'explorer' && <RealPageExplorer focus={explorerFocus} />}
@@ -538,24 +612,44 @@ function AppShell() {
                 <Text style={styles.modalTitle}>Select Portfolio / Property</Text>
               </View>
 
-              {PROPERTIES.map((prop) => {
-                const isSelected = selectedProperty === prop;
-                return (
-                  <TouchableOpacity
-                    key={prop}
-                    style={[styles.propItem, isSelected && styles.propItemActive]}
-                    onPress={() => handleSelectProperty(prop)}
-                  >
-                    <Text style={[styles.propItemText, isSelected && styles.propItemTextActive]}>
-                      {prop}
-                    </Text>
-                    {isSelected && <Ionicons name="checkmark" size={18} color={COLORS.success} />}
-                  </TouchableOpacity>
-                );
-              })}
+              <ScrollView style={styles.propList}>
+                {[{ id: ALL_PROPERTIES, name: 'All Properties' }, ...properties].map((prop) => {
+                  const isSelected = selectedPropertyId === prop.id;
+                  return (
+                    <TouchableOpacity
+                      key={prop.id}
+                      style={[styles.propItem, isSelected && styles.propItemActive]}
+                      onPress={() => handleSelectProperty(prop.id)}
+                    >
+                      <View style={styles.flex}>
+                        <Text style={[styles.propItemText, isSelected && styles.propItemTextActive]}>{prop.name}</Text>
+                        {prop.software ? (
+                          <Text style={styles.propItemMeta}>
+                            {[prop.portfolio, prop.software === 'yardi' ? 'Yardi' : 'RealPage'].filter(Boolean).join(' · ')}
+                          </Text>
+                        ) : null}
+                      </View>
+                      {isSelected && <Ionicons name="checkmark" size={18} color={COLORS.success} />}
+                    </TouchableOpacity>
+                  );
+                })}
+              </ScrollView>
+              <TouchableOpacity style={styles.propManage} onPress={() => openPropertySetup()}>
+                <Ionicons name="settings-outline" size={16} color={COLORS.primaryLight} />
+                <Text style={styles.propManageText}>Manage properties & close timelines</Text>
+              </TouchableOpacity>
             </View>
           </TouchableOpacity>
         </Modal>
+
+        {/* PROPERTIES & CLOSE TIMELINES SETUP */}
+        <PropertySetup
+          visible={propertySetup.visible}
+          editId={propertySetup.editId}
+          properties={properties}
+          onSave={handleSaveProperties}
+          onClose={() => setPropertySetup({ visible: false, editId: null })}
+        />
       </View>
     </GaapNavContext.Provider>
   );
@@ -887,5 +981,29 @@ const styles = StyleSheet.create({
   propItemTextActive: {
     color: COLORS.text,
     fontWeight: '700',
+  },
+  propItemMeta: {
+    fontSize: 11,
+    color: COLORS.textMuted,
+    marginTop: 2,
+  },
+  propList: {
+    maxHeight: 360,
+  },
+  propManage: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginTop: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+  },
+  propManageText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: COLORS.primaryLight,
   },
 });

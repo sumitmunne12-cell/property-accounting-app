@@ -8,6 +8,17 @@ import { CLOSE_PHASES, CLOSE_ROLES } from '../data/closePlaybookData';
 import { getScreenEntry } from '../utils/screenIndex';
 import { getCloseProgress, saveCloseProgress } from '../utils/storage';
 import {
+  ALL_PROPERTIES,
+  DEFAULT_PROGRESS_KEY,
+  defaultTimeline,
+  migrateCloseProgress,
+  phaseSchedule,
+  windowStatus,
+  formatRange,
+  formatOffsets,
+} from '../utils/propertyTimeline';
+import { STATUS_STYLE } from './CloseTimelineStrip';
+import {
   defaultClosePeriod,
   periodLabel,
   shiftPeriod,
@@ -75,17 +86,37 @@ function TaskRow({ task, signedAt, locked, expanded, onToggleExpand, onToggleDon
   );
 }
 
-export default function CloseCockpit({ onOpenScreen }) {
+// `properties` / `selectedPropertyId` come from the app shell. Sign-offs are kept per property and
+// period; each property's timeline turns the phase windows into real due dates.
+export default function CloseCockpit({ onOpenScreen, properties = [], selectedPropertyId = ALL_PROPERTIES, onManageProperties }) {
   const [period, setPeriod] = useState(defaultClosePeriod());
   const [progress, setProgress] = useState({});
   const [expandedPhaseId, setExpandedPhaseId] = useState(null);
   const [expandedTaskId, setExpandedTaskId] = useState(null);
+  const [localPropertyId, setLocalPropertyId] = useState(null);
 
   useEffect(() => {
-    getCloseProgress().then(setProgress);
+    getCloseProgress().then((raw) => {
+      const migrated = migrateCloseProgress(raw, properties, selectedPropertyId);
+      setProgress(migrated);
+      if (migrated !== raw) saveCloseProgress(migrated);
+    });
+    // Migration only needs the list as it was at first load.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const done = useMemo(() => progress[period] || {}, [progress, period]);
+  // The property whose close is shown: the header selection, or a local pick under "All Properties".
+  const property =
+    properties.find((p) => p.id === selectedPropertyId) ||
+    properties.find((p) => p.id === localPropertyId) ||
+    properties[0] ||
+    null;
+  const progressKey = property ? property.id : DEFAULT_PROGRESS_KEY;
+  const timeline = property ? property.timeline : defaultTimeline();
+  const schedule = useMemo(() => phaseSchedule(period, timeline), [period, timeline]);
+  const today = new Date();
+
+  const done = useMemo(() => (progress[progressKey] || {})[period] || {}, [progress, progressKey, period]);
   const statuses = useMemo(() => phaseStatuses(CLOSE_PHASES, done), [done]);
   const overall = useMemo(() => overallProgress(CLOSE_PHASES, done), [done]);
   const upNext = useMemo(() => nextTask(CLOSE_PHASES, done), [done]);
@@ -96,14 +127,15 @@ export default function CloseCockpit({ onOpenScreen }) {
     const result = toggleTask(CLOSE_PHASES, done, taskId);
     if (!result.changed) return;
     triggerHaptic(result.done[taskId] ? 'success' : 'light');
-    const updated = { ...progress, [period]: result.done };
+    const updated = { ...progress, [progressKey]: { ...(progress[progressKey] || {}), [period]: result.done } };
     setProgress(updated);
     saveCloseProgress(updated);
   };
 
   const resetPeriod = () => {
-    const updated = { ...progress };
-    delete updated[period];
+    const forProperty = { ...(progress[progressKey] || {}) };
+    delete forProperty[period];
+    const updated = { ...progress, [progressKey]: forProperty };
     setProgress(updated);
     saveCloseProgress(updated);
   };
@@ -116,6 +148,42 @@ export default function CloseCockpit({ onOpenScreen }) {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.column}>
+      {/* Property whose close is shown */}
+      <View style={styles.propertyBar}>
+        {selectedPropertyId === ALL_PROPERTIES && properties.length > 1 ? (
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.propertyChips}>
+            {properties.map((p) => {
+              const on = property && p.id === property.id;
+              return (
+                <TouchableOpacity
+                  key={p.id}
+                  style={[styles.propertyChip, on && styles.propertyChipOn]}
+                  onPress={() => setLocalPropertyId(p.id)}
+                  accessibilityState={{ selected: on }}
+                >
+                  <Text style={[styles.propertyChipText, on && styles.propertyChipTextOn]} numberOfLines={1}>
+                    {p.name}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </ScrollView>
+        ) : (
+          <View style={styles.propertyNameRow}>
+            <Ionicons name="business-outline" size={14} color={COLORS.close} />
+            <Text style={styles.propertyName} numberOfLines={1}>
+              {property ? property.name : 'Default close timeline'}
+            </Text>
+          </View>
+        )}
+        {onManageProperties ? (
+          <TouchableOpacity onPress={() => onManageProperties(property ? property.id : null)} style={styles.manageBtn}>
+            <Ionicons name="calendar-outline" size={13} color={COLORS.primaryLight} />
+            <Text style={styles.manageText}>{property ? 'Edit timeline' : 'Add property'}</Text>
+          </TouchableOpacity>
+        ) : null}
+      </View>
+
       {/* Period + overall progress gauge + phase milestones */}
       <View style={styles.header}>
         <View style={styles.periodRow}>
@@ -183,7 +251,7 @@ export default function CloseCockpit({ onOpenScreen }) {
       {upNext ? (
         <View style={styles.nextCard}>
           <Text style={styles.nextLabel}>
-            UP NEXT · PHASE {upNext.phase.number} ({upNext.phase.window})
+            UP NEXT · PHASE {upNext.phase.number} · DUE {formatRange(schedule[upNext.phase.number - 1].start, schedule[upNext.phase.number - 1].end).toUpperCase()}
           </Text>
           <Text style={styles.nextTitle}>{upNext.task.title}</Text>
           <TouchableOpacity style={styles.performBtn} onPress={() => perform(upNext.task, upNext.phase)}>
@@ -204,6 +272,8 @@ export default function CloseCockpit({ onOpenScreen }) {
         const isOpen = phase.id === openPhaseId;
         const color = st.complete ? COLORS.success : st.locked ? COLORS.textMuted : COLORS.close;
         const pct = st.total ? Math.round((st.completed / st.total) * 100) : 0;
+        const sched = schedule[idx];
+        const due = STATUS_STYLE[windowStatus(sched, today, st.complete)];
         return (
           <View key={phase.id} style={[styles.phaseCard, isOpen && styles.phaseCardOpen, !st.locked && !st.complete && styles.phaseCardActive]}>
             <TouchableOpacity
@@ -225,8 +295,13 @@ export default function CloseCockpit({ onOpenScreen }) {
                   Phase {phase.number}: {phase.title}
                 </Text>
                 <Text style={styles.phaseMeta}>
-                  {phase.window} · {st.completed}/{st.total} signed off{st.locked ? ' · locked' : ''}
+                  {formatRange(sched.start, sched.end)} ({formatOffsets(sched.startOffset, sched.endOffset, timeline.basis)}) · {st.completed}/{st.total} signed off
+                  {st.locked ? ' · locked' : ''}
                 </Text>
+                <View style={[styles.duePill, { borderColor: `${due.color}66`, backgroundColor: `${due.color}14` }]}>
+                  <Ionicons name={due.icon} size={11} color={due.color} />
+                  <Text style={[styles.dueText, { color: due.color }]}>{due.label}</Text>
+                </View>
               </View>
               <Ionicons name={isOpen ? 'chevron-up' : 'chevron-down'} size={16} color={COLORS.textSecondary} />
             </TouchableOpacity>
@@ -274,6 +349,36 @@ export default function CloseCockpit({ onOpenScreen }) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: COLORS.background },
+  propertyBar: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 },
+  propertyChips: { gap: 6, paddingRight: 8 },
+  propertyChip: {
+    maxWidth: 200,
+    paddingHorizontal: 11,
+    paddingVertical: 6,
+    borderRadius: RADII.pill,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    backgroundColor: COLORS.surface,
+  },
+  propertyChipOn: { borderColor: `${COLORS.close}99`, backgroundColor: COLORS.closeSoft },
+  propertyChipText: { fontSize: 12, fontWeight: '700', color: COLORS.textMuted },
+  propertyChipTextOn: { color: COLORS.text },
+  propertyNameRow: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: 6 },
+  propertyName: { flex: 1, fontSize: 13.5, fontWeight: '800', color: COLORS.text },
+  manageBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, marginLeft: 'auto' },
+  manageText: { fontSize: 12, fontWeight: '800', color: COLORS.primaryLight },
+  duePill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    gap: 4,
+    marginTop: 5,
+    paddingHorizontal: 7,
+    paddingVertical: 2,
+    borderRadius: RADII.pill,
+    borderWidth: 1,
+  },
+  dueText: { fontSize: 10.5, fontWeight: '800' },
   content: { padding: 16, paddingBottom: 40 },
   column: { width: '100%', maxWidth: LAYOUT.READING_MAX, alignSelf: 'center' },
   header: {

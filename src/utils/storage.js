@@ -10,6 +10,7 @@ const STORAGE_KEYS = {
   CLOSE_PROGRESS: '@rp_close_progress_v1',
   ASC_STUDY: '@rp_asc_study_v1',
   COMPASS_PROGRESS: '@rp_compass_progress_v1',
+  PROPERTIES: '@rp_properties_v1',
 };
 
 export const getCompletedTasks = async () => {
@@ -88,17 +89,18 @@ export const toggleBookmark = async (id) => {
   }
 };
 
+// Selected property id ('all' for every property; older versions stored the property name).
 export const getSelectedProperty = async () => {
   try {
-    return (await AsyncStorage.getItem(STORAGE_KEYS.SELECTED_PROPERTY)) || 'All Properties';
+    return (await AsyncStorage.getItem(STORAGE_KEYS.SELECTED_PROPERTY)) || 'all';
   } catch (e) {
-    return 'All Properties';
+    return 'all';
   }
 };
 
-export const saveSelectedProperty = async (propName) => {
+export const saveSelectedProperty = async (propertyId) => {
   try {
-    await AsyncStorage.setItem(STORAGE_KEYS.SELECTED_PROPERTY, propName);
+    await AsyncStorage.setItem(STORAGE_KEYS.SELECTED_PROPERTY, propertyId);
   } catch (e) {
     console.error('Error saving selected property', e);
   }
@@ -120,7 +122,28 @@ export const saveActiveSoftware = async (software) => {
   }
 };
 
-// Month-end close progress: { [period 'YYYY-MM']: { [taskId]: ISO timestamp signed off } }
+// User-managed properties with their close timelines (see utils/propertyTimeline). null = never saved.
+export const getProperties = async () => {
+  try {
+    const json = await AsyncStorage.getItem(STORAGE_KEYS.PROPERTIES);
+    return json ? JSON.parse(json) : null;
+  } catch (e) {
+    console.error('Error reading properties', e);
+    return null;
+  }
+};
+
+export const saveProperties = async (properties) => {
+  try {
+    await AsyncStorage.setItem(STORAGE_KEYS.PROPERTIES, JSON.stringify(properties));
+  } catch (e) {
+    console.error('Error saving properties', e);
+  }
+  return properties;
+};
+
+// Month-end close progress: { [propertyId]: { [period 'YYYY-MM']: { [taskId]: ISO timestamp signed off } } }
+// (older versions stored { [period]: … }; utils/propertyTimeline.migrateCloseProgress converts it)
 export const getCloseProgress = async () => {
   try {
     const json = await AsyncStorage.getItem(STORAGE_KEYS.CLOSE_PROGRESS);
