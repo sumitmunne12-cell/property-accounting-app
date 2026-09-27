@@ -97,7 +97,7 @@ C(
     recog=[
         "Step 1: does a scope exception apply? Step 2: does the reporting entity hold a variable interest? Step 3: is the legal entity a VIE (insufficient equity at risk, equity holders lack power, disproportionate voting, etc.)?",
         "VIE: consolidate if you're the primary beneficiary — power to direct the activities that most significantly affect economic performance and the obligation to absorb losses or right to receive benefits that could be significant (810-10-25-38A).",
-        "Voting interest entities: consolidate with a majority voting interest; limited partnerships are consolidated by the partner with substantive kick-out rights or participating rights control.",
+        "Voting interest entities: consolidate with a majority voting interest. A limited partnership is a VIE unless a simple majority (or lower threshold) of limited partners can remove the general partner or hold substantive participating rights; if it is a voting interest entity, the limited partner with a majority of those kick-out rights consolidates (810-10-15-14, 810-10-25-1A).",
         "Eliminate intercompany balances and transactions; present NCI in equity separately (810-10-45-16).",
         "Changes in ownership without loss of control are equity transactions; loss of control triggers deconsolidation with a gain or loss.",
     ],
@@ -479,7 +479,7 @@ C(
         "Lessee: at commencement, recognize a ROU asset and lease liability (842-20-25-1); short-term leases (≤12 months, no reasonably certain purchase option) may be expensed straight-line by policy (842-20-25-2).",
         "Classification (lessee finance / lessor sales-type) if any criterion is met: ownership transfer, purchase option reasonably certain, major part of economic life, PV ≥ substantially all of fair value, specialized asset (842-10-25-2).",
         "Lessor operating leases (every apartment lease): keep the building on the books, recognize lease payments as income straight-line over the lease term; variable payments in the period earned (842-30-25-11).",
-        "Collectibility: if collection of lessor operating-lease payments is not probable, income is limited to cash received and receivables (including straight-line) are reversed (842-30-25-12, 35-3).",
+        "Collectibility: if collection of lessor operating-lease payments is not probable, income is limited to cash received and receivables (including straight-line) are reversed; a later change in the collectibility assessment is a current-period adjustment to lease income (842-30-25-12, 842-30-25-13).",
         "Lessor practical expedient: by class of asset, do not separate nonlease components (e.g., utilities/services) when timing and pattern match and the lease component is operating (842-10-15-42A).",
         "Sale-leaseback: sale accounting only if the transfer meets 606 control criteria and no repurchase option precludes it (842-40-25-1).",
     ],

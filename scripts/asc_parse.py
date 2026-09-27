@@ -30,6 +30,9 @@ e.g. "\\t(a) ...") or {"tbl": [[cell, ...], ...]} for a table.
 
 import re
 
+HEADER = re.compile(
+    r"^#\s+FASB ASC (Topic|Subtopic) (\d{3})(?:-(\d{2,3}))?:\s*(?:\d{3}(?:-\d{2,3})?\s+)?(.+?)\s*$"
+)
 PARA_ID = re.compile(r"^\s*(\d{3}-\d{2,3}-S?\d{2}-\d+[A-Z]{0,2})\s*$")
 SECTION = re.compile(r"^#\s+(S?\d{2})\s+(.+?)\s*$")
 HEADING = re.compile(r"^(#{2,6})\s+(.+?)\s*$")
@@ -219,16 +222,30 @@ def parse_topic(path):
     with open(path, encoding="utf-8") as fh:
         raw_lines = fh.read().split("\n")
 
-    head = re.match(r"^#\s+FASB ASC Topic (\d{3}):\s*(?:\d{3}\s+)?(.+?)\s*$", raw_lines[0])
+    head = HEADER.match(raw_lines[0])
     if not head:
-        raise ValueError(f"{path}: missing '# FASB ASC Topic NNN:' header")
-    topic, title = head.group(1), head.group(2)
+        raise ValueError(f"{path}: missing '# FASB ASC Topic NNN:' (or 'Subtopic NNN-SS:') header")
+    kind, topic, sub_code, title = head.group(1), head.group(2), head.group(3), head.group(4)
+    if kind == "Subtopic" and not sub_code:
+        raise ValueError(f"{path}: a Subtopic header needs a code such as 970-340")
     chunks = _chunks(raw_lines[1:])
 
-    area = clean_inline(" ".join(chunks[0])) if chunks else ""
-    result = {"topic": topic, "title": title, "area": area, "notes": {}, "subtopics": []}
+    # Topic exports open with the FASB area ("Broad Transactions"); a Subtopic export may not.
+    has_area = bool(chunks) and len(chunks[0]) == 1 and not chunks[0][0].lstrip().startswith(("#", "*"))
+    area = clean_inline(chunks[0][0]) if has_area else ""
+    result = {
+        "topic": topic,
+        "title": title if kind == "Topic" else None,
+        "area": area,
+        "notes": {},
+        "subtopics": [],
+        "supplement": kind == "Subtopic",
+    }
 
     subtopic = None
+    if kind == "Subtopic":
+        subtopic = {"code": sub_code, "title": clean_inline(title), "sections": []}
+        result["subtopics"].append(subtopic)
     section = None
     para = None
     pending_note = False
@@ -248,7 +265,7 @@ def parse_topic(path):
                 section["blocks"].append(blk)
         para = None
 
-    i = 1  # chunks[0] is the area line
+    i = 1 if has_area else 0
     while i < len(chunks):
         chunk = chunks[i]
         first = chunk[0]
@@ -377,3 +394,55 @@ def word_count(topic_doc):
                 else:
                     n += len(_flat(b.get("t", [])).split())
     return n
+
+
+def merge_subtopics(doc, supplement, source=""):
+    """Merge the subtopics of a supplemental export (e.g., a re-exported 970-340) into its Topic.
+
+    A subtopic already present is replaced only when the supplement has more paragraphs. Subtopics
+    are kept in Codification order (10, 20, … then 230, 340, 835). Returns the codes added or replaced.
+    """
+    if supplement["topic"] != doc["topic"]:
+        raise ValueError(f"{source}: supplement is for Topic {supplement['topic']}, not {doc['topic']}")
+    count = lambda st: sum(1 for sec in st["sections"] for b in sec["blocks"] if "p" in b)
+    by_code = {st["code"]: i for i, st in enumerate(doc["subtopics"])}
+    changed = []
+    for st in supplement["subtopics"]:
+        for sec in st["sections"]:
+            note = supplement["notes"].get(sec["code"])
+            if note and note != doc["notes"].get(sec["code"]) and "note" not in sec:
+                if sec["code"] in doc["notes"]:
+                    sec["note"] = note
+                else:
+                    doc["notes"][sec["code"]] = note
+        if st["code"] in by_code:
+            if count(st) <= count(doc["subtopics"][by_code[st["code"]]]):
+                continue
+            doc["subtopics"][by_code[st["code"]]] = st
+        else:
+            doc["subtopics"].append(st)
+        changed.append(st["code"])
+    doc["subtopics"].sort(key=lambda st: int(st["code"]))
+    if changed:
+        dupes = doc["stats"]["duplicatesCollapsed"] + supplement["stats"]["duplicatesCollapsed"]
+        doc["stats"] = structure_stats(doc)
+        doc["stats"]["duplicatesCollapsed"] = dupes
+    return changed
+
+
+def structure_stats(doc):
+    """Paragraph, glossary, table and pending-content counts recomputed from the parsed structure."""
+    stats = {"paragraphs": 0, "glossaryTerms": 0, "tables": 0, "duplicatesCollapsed": 0, "pendingContent": 0}
+    for st in doc["subtopics"]:
+        for sec in st["sections"]:
+            for b in sec["blocks"]:
+                if "p" in b:
+                    stats["paragraphs"] += 1
+                if "g" in b:
+                    stats["glossaryTerms"] += 1
+                for line in b.get("t", []):
+                    if isinstance(line, dict):
+                        stats["tables"] += 1
+                    elif "PENDING CONTENT" in line:
+                        stats["pendingContent"] += 1
+    return stats

@@ -28,7 +28,8 @@
     "lint": "eslint .",
     "validate": "node scripts/validate_modules.mjs && node --import ./scripts/test/register.mjs --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/validate_app_data.mjs",
     "test": "node --import ./scripts/test/register.mjs --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test scripts/test/app.test.mjs scripts/test/asc.test.mjs",
-    "check": "npm run lint && npm run validate && npm test"
+    "test:py": "python3 -m unittest discover -s scripts/test -p \"test_*.py\"",
+    "check": "npm run lint && npm run validate && npm test && npm run test:py"
   },
   "private": true,
   "devDependencies": {

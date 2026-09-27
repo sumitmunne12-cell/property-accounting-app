@@ -17,6 +17,9 @@ import {
   toggleTask,
 } from '../utils/closeEngine';
 import { triggerHaptic } from '../utils/haptics';
+import { CLOSE_TASK_ASC } from '../data/gaapLinksData';
+import { ascLinksForTopics } from '../utils/ascLinks';
+import GaapButton from './gaap/GaapButton';
 
 function TaskRow({ task, signedAt, locked, expanded, onToggleExpand, onToggleDone, onPerform }) {
   const entry = getScreenEntry(task.screenId);
@@ -65,6 +68,7 @@ function TaskRow({ task, signedAt, locked, expanded, onToggleExpand, onToggleDon
               {entry.moduleShortCode} › {entry.name}
             </Text>
           ) : null}
+          <GaapButton links={ascLinksForTopics(CLOSE_TASK_ASC[task.id], 'close')} contextLabel={task.title} />
         </View>
       )}
     </View>

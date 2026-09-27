@@ -28,9 +28,32 @@ import {
   loadSeries,
   loadText,
   getLoadedCard,
+  isGlossaryLoaded,
+  loadGlossary,
 } from '../../src/data/asc/ascLoader.js';
+import { searchGlossary, findGlossaryTerm, buildTermMatcher, splitByTerms } from '../../src/utils/ascGlossary.js';
 import { ascLinksForScreen, ascLinksForCitation, PRIMARY_RE_TOPICS } from '../../src/utils/ascLinks.js';
 import { ALL_SCREEN_ENTRIES, getScreenEntry, loadScreenById } from '../../src/utils/screenIndex.js';
+import { ascLinksForTopics } from '../../src/utils/ascLinks.js';
+import { CLOSE_TASK_ASC, EXCEPTION_ASC } from '../../src/data/gaapLinksData.js';
+import {
+  INTERVALS,
+  MAX_BOX,
+  MASTERED_BOX,
+  emptyStudy,
+  trapId,
+  todayIso,
+  addDays,
+  grade,
+  isMastered,
+  buildDeck,
+  progressFor,
+  masteredByTopic,
+  toggleBookmark,
+  normalizeStudy,
+} from '../../src/utils/studyEngine.js';
+import { CLOSE_PHASES } from '../../src/data/closePlaybookData.js';
+import { EXCEPTION_PLAYBOOKS } from '../../src/data/exceptionsPlaybookData.js';
 
 const MD_DIR = fileURLToPath(new URL('../../asc_codification/markdown/', import.meta.url));
 const MARKDOWN_TOPICS = readdirSync(MD_DIR)
@@ -51,6 +74,7 @@ test('boot is lightweight: no ASC card or text file is loaded at import time', (
   assert.deepEqual(loadedTexts(), []);
   assert.ok(ASC_SERIES_KEYS.every((s) => !isSeriesLoaded(s)));
   assert.equal(getLoadedCard('842'), null);
+  assert.equal(isGlossaryLoaded(), false);
   // Linking screens and searching use only the index.
   ascLinksForScreen(getScreenEntry('scr_cash_bank_reconciliation_new'));
   searchAsc('lease');
@@ -192,6 +216,9 @@ test('every master card is complete, matches the index and has balanced journal 
       assert.ok(c.recognition.length >= 2, `${t} recognition`);
       assert.ok(c.measurement.basis && c.measurement.initial && c.measurement.subsequent, `${t} measurement`);
       assert.ok(c.auditTraps.length >= 3 && c.auditTraps.every((x) => x.q && x.a), `${t} traps`);
+      assert.equal(c.auditTraps.length, e.traps, `${t} index trap count`);
+      // flashcard ids must be unique within a Topic or two traps would share progress
+      assert.equal(new Set(c.auditTraps.map((x) => trapId(t, x.q))).size, c.auditTraps.length, `${t} trap ids`);
       assert.ok(c.journalEntries.length >= 1, `${t} journal entries`);
       for (const je of c.journalEntries) {
         assert.ok(balanced(je), `${t}: ${je.label} does not balance`);
@@ -199,6 +226,9 @@ test('every master card is complete, matches the index and has balanced journal 
         entries++;
       }
       if (c.re) assert.ok(c.propertyLens, `${t} property lens`);
+      assert.ok(['ai-draft', 'self-reviewed', 'cpa-reviewed'].includes(c.review.status), `${t} review status`);
+      assert.equal(e.review, c.review.status, `${t} index review status`);
+      if (c.re) assert.notEqual(c.review.status, 'ai-draft', `${t}: real-estate cards must be at least self-reviewed`);
       assert.ok(c.outline.length === e.sourceSubtopics, `${t} outline`);
     }
   }
@@ -228,6 +258,25 @@ test('official text is complete for all 99 Topics and every cited paragraph exis
   const p = leases.subtopics.flatMap((s) => s.sections).flatMap((s) => s.blocks).find((b) => b.p === '842-20-35-4');
   assert.match(p.t[0], /as described in paragraphs 842-10-35-4 through 35-5\. A lessee shall recognize/);
   assert.ok(!/\]\(|fasb-asc-publication/.test(JSON.stringify(leases)), 'link markup must be stripped');
+});
+
+test('missing-subtopic manifest names exactly what the export lacks', () => {
+  const miss = (t) => getAscEntry(t).missing.map((m) => m.split(' ')[0]);
+  for (const code of ['970-230', '970-323', '970-340', '970-360', '970-470', '970-720', '970-810', '970-835']) {
+    assert.ok(miss('970').includes(code), code);
+  }
+  assert.ok(miss('974').includes('974-842'));
+  assert.ok(miss('805').includes('805-740'));
+  assert.ok(getAscEntry('360').relatedMissing.includes('970-360'));
+  assert.ok(getAscEntry('842').relatedMissing.includes('974-842'));
+  // Subtopics that are in the export are never reported missing.
+  for (const e of ASC_TOPICS) {
+    for (const m of e.missing) {
+      const code = m.split(' ')[0];
+      assert.ok(!e.subtopics.some((s) => `${e.topic}-${s.split(' ')[0]}` === code), `${e.topic}: ${m}`);
+    }
+  }
+  assert.deepEqual(getAscEntry('842').missing, []);
 });
 
 test('Track A: screens link to the real-estate standards', async () => {
@@ -267,4 +316,134 @@ test('Track A: Daily Hub guardrail citations link to cards', () => {
     ['842', '815']
   );
   assert.deepEqual(ascLinksForCitation('SOX 404 only'), []);
+});
+
+test('Track A: every close task and exception playbook maps to real ASC Topics', () => {
+  const taskIds = CLOSE_PHASES.flatMap((p) => p.tasks.map((t) => t.id)).sort();
+  assert.deepEqual(Object.keys(CLOSE_TASK_ASC).sort(), taskIds, 'close map must cover exactly the close tasks');
+  assert.deepEqual(Object.keys(EXCEPTION_ASC).sort(), EXCEPTION_PLAYBOOKS.map((x) => x.id).sort());
+  for (const [id, topics] of [...Object.entries(CLOSE_TASK_ASC), ...Object.entries(EXCEPTION_ASC)]) {
+    for (const t of topics) assert.ok(getAscEntry(t), `${id}: ASC ${t}`);
+    assert.equal(new Set(topics).size, topics.length, id);
+    assert.equal(ascLinksForTopics(topics, 'close').length, topics.length, id);
+  }
+  const linkedTasks = taskIds.filter((id) => CLOSE_TASK_ASC[id].length).length;
+  assert.ok(linkedTasks >= taskIds.length - 2, `${linkedTasks} of ${taskIds.length} close tasks linked`);
+  assert.ok(EXCEPTION_PLAYBOOKS.filter((x) => EXCEPTION_ASC[x.id].length).length >= 14);
+  assert.equal(EXCEPTION_ASC.ex_gpr_variance[0], '842');
+  assert.equal(CLOSE_TASK_ASC.p4_depreciation[0], '360');
+  assert.equal(CLOSE_TASK_ASC.p4_accrued_expense_review[0], '450');
+  assert.equal(EXCEPTION_ASC.ex_retainage[0], '970');
+  assert.ok(Object.values(CLOSE_TASK_ASC).some((t) => t.includes('606')));
+});
+
+test('FASB glossary: current Topic definitions plus Master Glossary terms, searchable', async () => {
+  const g = await loadGlossary();
+  assert.ok(g.terms.length > 1300, `${g.terms.length} terms`);
+  assert.equal(new Set(g.terms.map((t) => t.term.toLowerCase())).size, g.terms.length, 'terms are unique');
+  for (const t of g.terms) {
+    assert.ok(t.defs.length || t.master, t.term);
+    for (const d of t.defs) {
+      assert.ok(d.text.length > 0 && d.topics.length > 0, t.term);
+      for (const code of d.topics) assert.ok(getAscEntry(code.split('-')[0]), `${t.term}: ${code}`);
+    }
+    if (t.master) assert.ok(!/\b(FAS|SOP|APB) \d+[^,]*, paragraph \d/.test(t.master.text), `${t.term}: legacy source tag left in text`);
+  }
+  const lease = findGlossaryTerm(g, 'lease');
+  assert.ok(lease.defs[0].topics.includes('842-10'));
+  assert.match(lease.defs[0].text, /right to control the use of identified property, plant, or equipment/);
+  assert.equal(searchGlossary(g, 'lease term').results[0].term, 'Lease Term');
+  assert.equal(searchGlossary(g, 'primary beneficiary').results[0].term, 'Primary Beneficiary');
+  assert.ok(searchGlossary(g, 'variable interest entity').total >= 1);
+  assert.equal(searchGlossary(g, '').total, 0);
+  assert.ok(g.terms.some((t) => t.master && !t.defs.length), 'Master-Glossary-only terms are included');
+});
+
+test('defined terms are marked longest-first, case-insensitive, once per paragraph', () => {
+  const m = buildTermMatcher(['Lease', 'Lease Term', 'Lessee', 'ab']);
+  const seen = new Set();
+  const parts = splitByTerms('The lease term of the Lease is set by the lessee; leases and the lease term again.', m, seen);
+  const terms = parts.filter((p) => p.term).map((p) => `${p.text}=${p.term}`);
+  assert.deepEqual(terms, ['lease term=Lease Term', 'Lease=Lease', 'lessee=Lessee']);
+  assert.equal(parts.map((p) => p.text).join(''), 'The lease term of the Lease is set by the lessee; leases and the lease term again.');
+  // plural tolerance when not yet seen
+  assert.deepEqual(
+    splitByTerms('Two leases.', m).filter((p) => p.term).map((p) => p.term),
+    ['Lease']
+  );
+  assert.equal(buildTermMatcher([]), null);
+  assert.deepEqual(splitByTerms('plain', null), [{ text: 'plain' }]);
+});
+
+test('study mode: Leitner boxes space reviews out and a miss resets to tomorrow', () => {
+  const day = '2026-01-30';
+  const id = trapId('842', 'Is a lease with a purchase option always a finance lease?');
+  let s = emptyStudy();
+  const boxes = [];
+  for (let i = 0; i < MAX_BOX + 2; i++) {
+    s = grade(s, id, true, day);
+    boxes.push(s.cards[id].box);
+  }
+  assert.deepEqual(boxes, [1, 2, 3, 4, 5, 5, 5]); // capped at the top box
+  assert.equal(s.cards[id].due, addDays(day, INTERVALS[MAX_BOX]));
+  assert.equal(s.cards[id].seen, MAX_BOX + 2);
+  assert.ok(isMastered(s.cards[id]));
+
+  const missed = grade(s, id, false, day);
+  assert.equal(missed.cards[id].box, 1);
+  assert.equal(missed.cards[id].due, '2026-01-31');
+  assert.equal(missed.cards[id].correct, s.cards[id].correct);
+  assert.equal(s.cards[id].box, MAX_BOX, 'grade() must not mutate its input');
+
+  // a first-time "Review again" also lands in box 1, due tomorrow
+  const fresh = grade(emptyStudy(), id, false, day);
+  assert.deepEqual([fresh.cards[id].box, fresh.cards[id].due], [1, '2026-01-31']);
+  assert.equal(MASTERED_BOX, 4);
+  assert.ok(!isMastered(grade(grade(grade(emptyStudy(), id, true, day), id, true, day), id, true, day).cards[id]));
+
+  // dates roll over months and years in local time
+  assert.equal(addDays('2026-12-25', 14), '2027-01-08');
+  assert.equal(addDays('2028-02-28', 1), '2028-02-29');
+  assert.match(todayIso(), /^\d{4}-\d{2}-\d{2}$/);
+});
+
+test('study mode: deck puts overdue cards first, then new ones, and counts progress', () => {
+  const items = ['a', 'b', 'c', 'd', 'e'].map((q) => ({ id: trapId('606', q), topic: '606', q, a: 'x' }));
+  const [a, b, c, d] = items.map((i) => i.id);
+  const state = {
+    bookmarks: [],
+    cards: {
+      [a]: { box: 2, due: '2026-03-10', seen: 2, correct: 2 }, // due today
+      [b]: { box: 1, due: '2026-03-01', seen: 1, correct: 0 }, // overdue
+      [c]: { box: 3, due: '2026-03-20', seen: 3, correct: 3 }, // not due
+      [d]: { box: 5, due: '2026-04-01', seen: 5, correct: 5 }, // mastered, not due
+    },
+  };
+  const today = '2026-03-10';
+  assert.deepEqual(
+    buildDeck(items, state, { today }).map((i) => i.q),
+    ['b', 'a', 'e']
+  );
+  assert.deepEqual(
+    buildDeck(items, state, { today, limit: 2 }).map((i) => i.q),
+    ['b', 'a']
+  );
+  assert.deepEqual(progressFor(state, items.map((i) => i.id), today), { total: 5, seen: 4, mastered: 1, due: 2, fresh: 1 });
+  assert.deepEqual(masteredByTopic({ cards: { ...state.cards, [trapId('842', 'q')]: { box: 4, due: today } } }), { 606: 1, 842: 1 });
+});
+
+test('study mode: ids are stable, bookmarks toggle and stored state is sanitized', () => {
+  assert.equal(trapId('842', 'Same question'), trapId('842', 'Same question'));
+  assert.notEqual(trapId('842', 'Same question'), trapId('842', 'Same question?'));
+  assert.notEqual(trapId('842', 'Same question'), trapId('606', 'Same question'));
+  assert.match(trapId('842', 'Q'), /^842:[0-9a-z]+$/);
+
+  let s = toggleBookmark(emptyStudy(), 842);
+  assert.deepEqual(s.bookmarks, ['842']);
+  s = toggleBookmark(toggleBookmark(s, '606'), '842');
+  assert.deepEqual(s.bookmarks, ['606']);
+
+  assert.deepEqual(normalizeStudy(null), emptyStudy());
+  assert.deepEqual(normalizeStudy('garbage'), emptyStudy());
+  assert.deepEqual(normalizeStudy({ cards: 5, bookmarks: [842, '606'] }), { cards: {}, bookmarks: ['842', '606'] });
 });

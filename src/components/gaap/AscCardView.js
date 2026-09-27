@@ -3,7 +3,7 @@
 //   1 First Principle & Analogy · 2 Mechanics & DR/CR · 3 Audit Defense · 4 Official Codification Text
 // The header renders from the index at once; the card loads its FASB series file on demand and the
 // official text loads only when tab 4 is opened.
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../../theme/colors';
@@ -12,6 +12,8 @@ import { useAscCard } from '../../utils/useAscData';
 import { JournalTable } from '../Ledger';
 import { SectionLabel, ModuleLoading } from '../ui';
 import OfficialTextReader from './OfficialTextReader';
+import useStudy from '../../utils/useStudy';
+import { isMastered, trapId } from '../../utils/studyEngine';
 
 export const CARD_TABS = [
   { key: 'principle', num: '1', label: 'First Principle & Analogy', short: 'Principle', icon: 'bulb-outline' },
@@ -95,7 +97,10 @@ function PrincipleTab({ card }) {
         <Glance label="Measurement basis" value={card.measurement.basis} wide />
       </View>
       <View style={styles.glanceRow}>
-        <Glance label="Subtopics in source" value={`${card.stats.subtopics}${card.stats.declaredSubtopics > card.stats.subtopics ? ` of ${card.stats.declaredSubtopics}` : ''}`} />
+        <Glance
+          label="Subtopics in source"
+          value={`${card.stats.subtopics}${card.missingSubtopics && card.missingSubtopics.length ? ` · ${card.missingSubtopics.length} missing` : ''}`}
+        />
         <Glance label="Paragraphs" value={card.stats.paragraphs.toLocaleString()} />
         <Glance label="Glossary terms" value={card.stats.glossaryTerms.toLocaleString()} last />
       </View>
@@ -163,8 +168,12 @@ function MechanicsTab({ card, openParagraph }) {
   );
 }
 
-function AuditTab({ card, openParagraph }) {
+function AuditTab({ card, openParagraph, study, onStudy }) {
   const [open, setOpen] = useState(() => new Set([0]));
+  const mastered = useMemo(
+    () => card.auditTraps.filter((t) => isMastered(study.cards[trapId(card.topic, t.q)])).length,
+    [card, study]
+  );
   const toggle = (i) => {
     const next = new Set(open);
     if (next.has(i)) next.delete(i);
@@ -174,6 +183,16 @@ function AuditTab({ card, openParagraph }) {
   return (
     <>
       <SectionLabel icon="shield-checkmark-outline" color={COLORS.danger}>Audit & interview traps</SectionLabel>
+      {onStudy ? (
+        <TouchableOpacity style={styles.drillBtn} onPress={onStudy} activeOpacity={0.85} accessibilityLabel="Drill these traps as flashcards">
+          <Ionicons name="school-outline" size={16} color={COLORS.gold} />
+          <Text style={styles.drillText}>Drill these traps</Text>
+          <Text style={styles.drillMeta}>
+            {mastered}/{card.auditTraps.length} mastered
+          </Text>
+          <Ionicons name="chevron-forward" size={15} color={COLORS.gold} />
+        </TouchableOpacity>
+      ) : null}
       {card.auditTraps.map((t, i) => {
         const on = open.has(i);
         return (
@@ -215,6 +234,30 @@ function AuditTab({ card, openParagraph }) {
   );
 }
 
+const REVIEW_TEXT = {
+  'cpa-reviewed': 'Reviewed by a CPA',
+  'self-reviewed': 'AI-drafted, technically re-read — pending CPA sign-off',
+  'ai-draft': 'AI-drafted, automated checks only — pending CPA review',
+};
+
+// Every card says who has checked it; the official text tab is always the authority.
+function ReviewFooter({ review }) {
+  if (!review) return null;
+  const cpa = review.status === 'cpa-reviewed';
+  return (
+    <View style={styles.reviewBox}>
+      <Ionicons name={cpa ? 'shield-checkmark' : 'information-circle-outline'} size={13} color={cpa ? COLORS.success : COLORS.textMuted} />
+      <Text style={styles.reviewText}>
+        <Text style={[styles.reviewLead, cpa && { color: COLORS.success }]}>{REVIEW_TEXT[review.status] || review.status}</Text>
+        {review.by && cpa ? ` · ${review.by}` : ''}
+        {review.date ? ` · ${review.date}` : ''}
+        {review.notes ? `\n${review.notes}` : ''}
+        {cpa ? '' : '\nEducational synthesis — confirm against the official text before relying on it.'}
+      </Text>
+    </View>
+  );
+}
+
 /**
  * @param topic        ASC Topic number ("842")
  * @param initialTab   'principle' | 'mechanics' | 'audit' | 'text'
@@ -223,9 +266,11 @@ function AuditTab({ card, openParagraph }) {
  * @param onBack       optional back handler (phone list → card navigation)
  * @param headerExtra  optional node rendered under the title (e.g., related-topic chips)
  * @param actions      optional node rendered in the header's right side
+ * @param onStudy      optional; shows "Drill these traps" on the Audit tab (study mode for this Topic)
  */
-export default function AscCardView({ topic, initialTab = 'principle', paragraph = null, nonce = 0, onBack, headerExtra, actions }) {
+export default function AscCardView({ topic, initialTab = 'principle', paragraph = null, nonce = 0, onBack, headerExtra, actions, onStudy }) {
   const { entry, card, error, retry } = useAscCard(topic);
+  const { study, toggleBookmark } = useStudy();
   const [tab, setTab] = useState(paragraph ? 'text' : initialTab);
   const [target, setTarget] = useState({ id: paragraph, nonce });
 
@@ -240,6 +285,7 @@ export default function AscCardView({ topic, initialTab = 'principle', paragraph
     setTarget({ id, nonce: Date.now() });
     setTab('text');
   };
+  const saved = study.bookmarks.includes(entry.topic);
 
   return (
     <View style={styles.flex}>
@@ -260,6 +306,15 @@ export default function AscCardView({ topic, initialTab = 'principle', paragraph
             <Text style={styles.title}>{entry.title}</Text>
             {tab !== 'text' ? <Text style={styles.tag}>{entry.tag}</Text> : null}
           </View>
+          <TouchableOpacity
+            onPress={() => toggleBookmark(entry.topic)}
+            style={styles.starBtn}
+            hitSlop={8}
+            accessibilityLabel={saved ? `Remove ASC ${entry.topic} from saved` : `Save ASC ${entry.topic} for study`}
+            accessibilityState={{ selected: saved }}
+          >
+            <Ionicons name={saved ? 'star' : 'star-outline'} size={19} color={saved ? COLORS.gold : COLORS.textMuted} />
+          </TouchableOpacity>
           {actions}
         </View>
         {headerExtra}
@@ -291,7 +346,8 @@ export default function AscCardView({ topic, initialTab = 'principle', paragraph
           <View style={styles.reading}>
             {tab === 'principle' ? <PrincipleTab card={card} /> : null}
             {tab === 'mechanics' ? <MechanicsTab card={card} openParagraph={openParagraph} /> : null}
-            {tab === 'audit' ? <AuditTab card={card} openParagraph={openParagraph} /> : null}
+            {tab === 'audit' ? <AuditTab card={card} openParagraph={openParagraph} study={study} onStudy={onStudy} /> : null}
+            <ReviewFooter review={card.review} />
           </View>
         </ScrollView>
       )}
@@ -322,6 +378,7 @@ const styles = StyleSheet.create({
     marginTop: 6,
   },
   headerText: { flex: 1, marginLeft: 12 },
+  starBtn: { width: 34, height: 34, alignItems: 'center', justifyContent: 'center', marginLeft: 4, marginTop: 2 },
   kicker: { fontSize: 10, fontWeight: '800', color: COLORS.textMuted, letterSpacing: 0.9 },
   title: { fontSize: 18, fontWeight: '800', color: COLORS.text, letterSpacing: -0.3, marginTop: 2 },
   tag: { fontSize: 12.5, color: COLORS.textSecondary, lineHeight: 18, marginTop: 3 },
@@ -440,10 +497,33 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   trapOpen: { borderColor: `${COLORS.danger}55` },
+  drillBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    minHeight: 44,
+    paddingHorizontal: 12,
+    marginBottom: 10,
+    borderRadius: RADII.md,
+    borderWidth: 1,
+    borderColor: `${COLORS.gold}55`,
+    backgroundColor: COLORS.goldSoft,
+  },
+  drillText: { flex: 1, fontSize: 13, fontWeight: '800', color: COLORS.text, marginLeft: 8 },
+  drillMeta: { fontSize: 11, fontWeight: '700', color: COLORS.gold, marginRight: 4 },
   trapHead: { flexDirection: 'row', alignItems: 'flex-start' },
   trapQ: { flex: 1, fontSize: 13, lineHeight: 19, fontWeight: '700', color: COLORS.text, marginRight: 8 },
   trapQMark: { color: COLORS.danger, fontFamily: MONO },
   trapA: { fontSize: 13, lineHeight: 20, color: COLORS.textSecondary, marginTop: 8 },
   muted: { fontSize: 12, color: COLORS.textMuted },
   sourceNote: { fontSize: 10.5, color: COLORS.textMuted, marginTop: 14, lineHeight: 15 },
+  reviewBox: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginTop: 24,
+    paddingTop: 12,
+    borderTopWidth: 1,
+    borderTopColor: COLORS.border,
+  },
+  reviewText: { flex: 1, fontSize: 10.5, color: COLORS.textMuted, lineHeight: 15, marginLeft: 6 },
+  reviewLead: { fontWeight: '800', color: COLORS.textSecondary },
 });

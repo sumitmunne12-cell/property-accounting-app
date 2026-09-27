@@ -1,0 +1,596 @@
+{
+ "105": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "205": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "210": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "215": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "220": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "225": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "230": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "235": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "250": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "255": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "260": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "270": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "272": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "274": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "275": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "280": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "305": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "310": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Seller-financing entry rewritten so the note, the cash fee and the 610-20 sale clearing are shown gross."
+ },
+ "320": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "321": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "323": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "325": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "326": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Operating-lease collectibility citation corrected to 842-30-25-12 and 25-13."
+ },
+ "330": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "340": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "350": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "360": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "405": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "410": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "420": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "430": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "440": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "450": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Subsequent-event trap now cites 450-20-25-2 and 855-10-55-1(a); 450-20-25-6 covers losses arising after year-end."
+ },
+ "460": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "470": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "480": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "505": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "605": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "606": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "610": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "705": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "710": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "712": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "715": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "718": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "720": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Lease-up costs corrected: advertising is expensed (720-35), other costs to rent follow 970-340-25-16."
+ },
+ "730": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "740": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "805": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "808": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "810": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Limited-partnership consolidation wording aligned with 810-10-15-14 and 810-10-25-1A."
+ },
+ "815": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "818": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "820": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "825": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "830": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "832": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "835": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "840": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "842": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Collectibility citation corrected to 842-30-25-12 and 25-13 (35-3 covers sales-type loss allowances)."
+ },
+ "845": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "848": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "850": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "852": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "853": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "855": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "860": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "905": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "908": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "910": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "912": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "915": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "920": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "922": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "924": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "926": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "928": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Placeholder 'source note' trap replaced with a record-master capitalization trap."
+ },
+ "930": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "932": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "940": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "942": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "944": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "946": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "948": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "950": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "952": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "954": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "958": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "960": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "962": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "965": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "970": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Costs to rent a rental project (970-340-25-16 to 25-19, 35-2) added with a journal entry; trap corrected."
+ },
+ "972": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "974": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Technical re-read of triggers, measurement, journal entries and traps; no changes needed."
+ },
+ "976": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Placeholder 'source note' trap replaced with a collectibility trap."
+ },
+ "978": {
+  "status": "self-reviewed",
+  "by": "Claude (AI technical re-read)",
+  "date": "2026-09-27",
+  "notes": "Selling-cost trap updated for 340-40."
+ },
+ "980": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "985": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ },
+ "995": {
+  "status": "ai-draft",
+  "by": "Claude",
+  "date": "2026-09-27",
+  "notes": "Automated checks only (balanced entries, cited and in-text paragraph numbers verified against the source)."
+ }
+}

@@ -14,6 +14,8 @@ export const SERIES_IMPORTERS = {
   '900': () => import('./asc_900s.json'),
 };
 
+export const GLOSSARY_IMPORTER = () => import('./ascGlossary.json');
+
 export const TEXT_IMPORTERS = {
   '105': () => import('./text/asc_105.json'),
   '205': () => import('./text/asc_205.json'),

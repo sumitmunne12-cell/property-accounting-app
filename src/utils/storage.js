@@ -8,6 +8,7 @@ const STORAGE_KEYS = {
   ACTIVE_SOFTWARE: '@rp_active_software_v1',
   EXCEPTION_RESOLUTIONS: '@rp_exception_resolutions_v1',
   CLOSE_PROGRESS: '@rp_close_progress_v1',
+  ASC_STUDY: '@rp_asc_study_v1',
 };
 
 export const getCompletedTasks = async () => {
@@ -136,4 +137,24 @@ export const saveCloseProgress = async (progress) => {
     console.error('Error saving close progress', e);
   }
   return progress;
+};
+
+// GAAP Codex study progress and bookmarks: { cards: { [trapId]: { box, due, seen, correct } }, bookmarks: [topic] }
+export const getAscStudy = async () => {
+  try {
+    const json = await AsyncStorage.getItem(STORAGE_KEYS.ASC_STUDY);
+    return json ? JSON.parse(json) : null;
+  } catch (e) {
+    console.error('Error reading GAAP study progress', e);
+    return null;
+  }
+};
+
+export const saveAscStudy = async (study) => {
+  try {
+    await AsyncStorage.setItem(STORAGE_KEYS.ASC_STUDY, JSON.stringify(study));
+  } catch (e) {
+    console.error('Error saving GAAP study progress', e);
+  }
+  return study;
 };

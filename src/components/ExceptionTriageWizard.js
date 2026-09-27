@@ -6,6 +6,9 @@ import { entryTotals } from '../data/exceptionsPlaybookData';
 import { getScreenEntry } from '../utils/screenIndex';
 import { triggerHaptic } from '../utils/haptics';
 import { JournalTable } from './Ledger';
+import { EXCEPTION_ASC } from '../data/gaapLinksData';
+import { ascLinksForTopics } from '../utils/ascLinks';
+import GaapButton from './gaap/GaapButton';
 
 function DiagnosticWizard({ nodes }) {
   const [path, setPath] = useState([]); // [{ nodeId, label }]
@@ -139,6 +142,7 @@ export default function ExceptionTriageWizard({ playbook, onOpenScreen }) {
         ) : (
           <Text style={styles.body}>{playbook.noEntryReason}</Text>
         )}
+        <GaapButton links={ascLinksForTopics(EXCEPTION_ASC[playbook.id], 'exception')} contextLabel={playbook.title} />
       </View>
 
       <View style={styles.section}>

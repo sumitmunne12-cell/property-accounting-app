@@ -10,13 +10,14 @@
 //
 // Pure JS (no React Native imports) so it can be unit-tested in Node.
 
-import { SERIES_IMPORTERS, TEXT_IMPORTERS } from './ascImporters';
+import { SERIES_IMPORTERS, TEXT_IMPORTERS, GLOSSARY_IMPORTER } from './ascImporters';
 
 export const ASC_SERIES_KEYS = Object.keys(SERIES_IMPORTERS);
 export const ASC_TEXT_TOPICS = Object.keys(TEXT_IMPORTERS);
 
 const seriesCache = new Map(); // series -> { series, category, cards }
 const textCache = new Map(); // topic -> official text document
+const glossaryCache = new Map(); // 'all' -> { terms }
 const inflight = new Map(); // key -> Promise
 const listeners = new Set();
 
@@ -78,4 +79,13 @@ export async function loadCard(topic) {
 export function loadText(topic) {
   const t = String(topic);
   return once(`text:${t}`, textCache, t, TEXT_IMPORTERS[t]);
+}
+
+export const isGlossaryLoaded = () => glossaryCache.has('all');
+/** The FASB glossary if already loaded, else null (never triggers a load). */
+export const getLoadedGlossary = () => glossaryCache.get('all') || null;
+
+/** Loads (once) the combined FASB glossary (~0.6 MB): Topic glossary definitions + Master Glossary. */
+export function loadGlossary() {
+  return once('glossary', glossaryCache, 'all', GLOSSARY_IMPORTER);
 }

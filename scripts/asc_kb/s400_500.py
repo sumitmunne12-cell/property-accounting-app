@@ -242,7 +242,7 @@ C(
     traps=[
         ("Probable, reasonably possible, remote — what do they mean?", "Probable = likely to occur; reasonably possible = more than remote but less than likely; remote = slight chance. Accrue only probable-and-estimable."),
         ("Can you net the insurance receivable against the litigation liability?", "No — no right of setoff with the claimant; present gross."),
-        ("A lawsuit is filed after year-end about an injury that happened before year-end. Accrue?", "Yes if probable and estimable before issuance — the underlying cause existed at the balance-sheet date (recognized subsequent event, 450-20-25-6 / 855)."),
+        ("A lawsuit is filed after year-end about an injury that happened before year-end. Accrue?", "Yes if probable and estimable before issuance — the injury (the condition) existed at the balance-sheet date, so it is a recognized subsequent event (450-20-25-2, 855-10-55-1). If the loss event itself happened after year-end, disclose instead (450-20-25-6)."),
         ("Can management accrue a general reserve for future repairs or hurricanes?", "No. General or unspecified business risks do not meet the accrual conditions."),
         ("When is an expected insurance gain recognized after a casualty?", "Proceeds above the recognized loss are a gain contingency — recognized when realized (settlement), under 450-30/610-30."),
     ],

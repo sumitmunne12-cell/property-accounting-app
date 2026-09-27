@@ -1,7 +1,8 @@
 // Track B: the "GAAP Codex" tab — all 99 FASB ASC Topics organized by series (100s–900s) with
 // fuzzy search by number, title or alias ("842", "Lease", "Derivatives", "VIE", "Stock Comp"),
-// a Real Estate / All US GAAP filter and the four-tab card viewer. Phones navigate list → card;
-// desktop shows the list and the card side by side.
+// a Real Estate / All US GAAP filter, saved Topics, the four-tab card viewer and study mode
+// (flashcards from the audit traps). Phones navigate list → card / study; desktop shows the list
+// and the card (or the study session) side by side.
 //
 // Only the ~50 KB index is used to render this tab; cards and official text load on demand.
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
@@ -34,12 +35,43 @@ import { PRIMARY_RE_TOPICS } from '../../utils/ascLinks';
 import useDebouncedValue from '../../utils/useDebouncedValue';
 import { triggerHaptic } from '../../utils/haptics';
 import AscCardView, { TopicBadge } from './AscCardView';
+import StudySession from './StudySession';
+import useStudy from '../../utils/useStudy';
+import { masteredByTopic } from '../../utils/studyEngine';
+import { GlossaryTermModal } from './GlossaryTerm';
+import { useAscGlossary } from '../../utils/useAscData';
+import { searchGlossary } from '../../utils/ascGlossary';
+
+const MAX_GLOSSARY_RESULTS = 15;
+
+const GlossaryRow = memo(function GlossaryRow({ entry, onPress }) {
+  const first = entry.defs.length ? entry.defs[0] : null;
+  const text = first ? first.text : entry.master ? entry.master.text : '';
+  const codes = entry.defs.flatMap((d) => d.topics);
+  return (
+    <TouchableOpacity style={styles.termRow} onPress={() => onPress(entry)} activeOpacity={0.8} accessibilityLabel={`Glossary ${entry.term}`}>
+      <Ionicons name="book-outline" size={15} color={COLORS.gold} style={styles.termIcon} />
+      <View style={styles.rowText}>
+        <Text style={styles.rowTitle} numberOfLines={1}>
+          {entry.term}
+        </Text>
+        <Text style={styles.rowTag} numberOfLines={2}>
+          {text}
+        </Text>
+        <Text style={styles.metaText} numberOfLines={1}>
+          {codes.length ? `Defined in ${codes.slice(0, 4).join(', ')}${codes.length > 4 ? ` +${codes.length - 4}` : ''}` : 'Master Glossary'}
+        </Text>
+      </View>
+    </TouchableOpacity>
+  );
+});
 
 const TOTAL_PARAGRAPHS = ASC_TOPICS.reduce((n, e) => n + e.paragraphs, 0);
+const TOTAL_TRAPS = ASC_TOPICS.reduce((n, e) => n + e.traps, 0);
 const FILTER_COUNTS = Object.fromEntries(ASC_FILTERS.map((f) => [f.key, filterCount(f.key)]));
 const RE_BADGE = { core: 'CORE RE', support: 'REAL ESTATE' };
 
-const TopicRow = memo(function TopicRow({ entry, selected, onPress }) {
+const TopicRow = memo(function TopicRow({ entry, selected, onPress, saved = false, mastered = 0 }) {
   return (
     <TouchableOpacity
       style={[styles.row, selected && { borderColor: `${entry.color}AA`, backgroundColor: `${entry.color}12` }]}
@@ -53,6 +85,7 @@ const TopicRow = memo(function TopicRow({ entry, selected, onPress }) {
           <Text style={styles.rowTitle} numberOfLines={1}>
             {entry.title}
           </Text>
+          {saved ? <Ionicons name="star" size={12} color={COLORS.gold} style={styles.rowStar} /> : null}
         </View>
         <Text style={styles.rowTag} numberOfLines={2}>
           {entry.tag}
@@ -71,13 +104,19 @@ const TopicRow = memo(function TopicRow({ entry, selected, onPress }) {
           <Text style={styles.metaText}>
             {entry.paragraphs.toLocaleString()} ¶ · {entry.sourceSubtopics} subtopic{entry.sourceSubtopics === 1 ? '' : 's'}
           </Text>
+          {mastered ? (
+            <Text style={styles.masteredText}>
+              {' '}
+              · {mastered}/{entry.traps} mastered
+            </Text>
+          ) : null}
         </View>
       </View>
     </TouchableOpacity>
   );
 });
 
-function Welcome({ onOpen }) {
+function Welcome({ onOpen, onStudy }) {
   return (
     <ScrollView contentContainerStyle={styles.welcome}>
       <Text style={styles.welcomeIcon}>📖</Text>
@@ -87,6 +126,11 @@ function Welcome({ onOpen }) {
         analogy you won't forget, recognition and measurement triggers, balanced journal entries, audit and interview traps, and the complete
         official text.
       </Text>
+      <TouchableOpacity style={styles.welcomeStudy} onPress={onStudy} activeOpacity={0.85}>
+        <Ionicons name="school" size={16} color={COLORS.gold} />
+        <Text style={styles.welcomeStudyText}>Study the {TOTAL_TRAPS} audit & interview traps as flashcards</Text>
+        <Ionicons name="chevron-forward" size={15} color={COLORS.gold} />
+      </TouchableOpacity>
       <Text style={styles.welcomeLabel}>START WITH THE PROPERTY CORE</Text>
       {PRIMARY_RE_TOPICS.map((t) => {
         const e = getAscEntry(t);
@@ -104,37 +148,78 @@ export default function GaapCodex({ focus }) {
   const [filter, setFilter] = useState('all');
   const [series, setSeries] = useState(null);
   const [selected, setSelected] = useState(null); // { topic, paragraph, nonce }
+  const [term, setTerm] = useState(null); // glossary entry shown in the sheet
+  const [studying, setStudying] = useState(null); // { topic | null, nonce } while study mode is open
+  const [savedOnly, setSavedOnly] = useState(false);
+  const { glossary, loading: glossaryLoading } = useAscGlossary(Boolean(q));
+  const { study } = useStudy();
+  const mastery = useMemo(() => masteredByTopic(study), [study]);
+  const masteredTotal = useMemo(() => Object.values(mastery).reduce((n, v) => n + v, 0), [mastery]);
 
   useEffect(() => {
     if (focus && focus.topic) setSelected({ topic: focus.topic, paragraph: focus.paragraph || null, nonce: focus.nonce });
   }, [focus]);
 
-  // Android back button returns from a card to the list on phones.
+  // Android back button leaves study mode, then returns from a card to the list on phones.
   useEffect(() => {
-    if (wide || !selected) return undefined;
+    if (!studying && (wide || !selected)) return undefined;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
-      setSelected(null);
+      if (studying) setStudying(null);
+      else setSelected(null);
       return true;
     });
     return () => sub.remove();
-  }, [wide, selected]);
+  }, [wide, selected, studying]);
 
   const { results, reference } = useMemo(() => searchAsc(q, { filter }), [q, filter]);
-  const visible = useMemo(() => (series ? results.filter((e) => e.series === series) : results), [results, series]);
+  const visible = useMemo(
+    () => results.filter((e) => (!series || e.series === series) && (!savedOnly || study.bookmarks.includes(e.topic))),
+    [results, series, savedOnly, study.bookmarks]
+  );
+  const glossaryHits = useMemo(
+    () => (q && glossary && !reference ? searchGlossary(glossary, q, { limit: MAX_GLOSSARY_RESULTS }) : { results: [], total: 0 }),
+    [q, glossary, reference]
+  );
   const sections = useMemo(() => {
-    if (q) return visible.length ? [{ key: 'results', title: `${visible.length} matching Topic${visible.length === 1 ? '' : 's'}`, data: visible }] : [];
-    return groupBySeries(visible).map((g) => ({ key: g.series, title: `${g.series}s · ${g.category}`, color: g.color, data: g.data }));
-  }, [q, visible]);
+    if (!q) return groupBySeries(visible).map((g) => ({ key: g.series, title: `${g.series}s · ${g.category}`, color: g.color, data: g.data }));
+    const out = [];
+    if (visible.length) out.push({ key: 'results', title: `${visible.length} matching Topic${visible.length === 1 ? '' : 's'}`, data: visible });
+    if (glossaryHits.results.length) {
+      out.push({
+        key: 'glossary',
+        title: `FASB glossary · ${glossaryHits.total} term${glossaryHits.total === 1 ? '' : 's'}`,
+        color: COLORS.gold,
+        data: glossaryHits.results.map((g) => ({ glossaryTerm: g })),
+      });
+    }
+    return out;
+  }, [q, visible, glossaryHits]);
 
   const open = useCallback((topic, paragraph = null) => {
     triggerHaptic('light');
+    setStudying(null);
     setSelected({ topic, paragraph, nonce: Date.now() });
+  }, []);
+  const startStudy = useCallback((topic = null) => {
+    triggerHaptic('light');
+    setStudying({ topic, nonce: Date.now() });
   }, []);
 
   const selectedTopic = selected ? selected.topic : null;
   const renderItem = useCallback(
-    ({ item }) => <TopicRow entry={item} selected={wide && item.topic === selectedTopic} onPress={open} />,
-    [wide, selectedTopic, open]
+    ({ item }) =>
+      item.glossaryTerm ? (
+        <GlossaryRow entry={item.glossaryTerm} onPress={setTerm} />
+      ) : (
+        <TopicRow
+          entry={item}
+          selected={wide && !studying && item.topic === selectedTopic}
+          onPress={open}
+          saved={study.bookmarks.includes(item.topic)}
+          mastered={mastery[item.topic] || 0}
+        />
+      ),
+    [wide, studying, selectedTopic, open, study.bookmarks, mastery]
   );
 
   const card = selected ? (
@@ -144,10 +229,34 @@ export default function GaapCodex({ focus }) {
       paragraph={selected.paragraph}
       nonce={selected.nonce}
       onBack={wide ? undefined : () => setSelected(null)}
+      onStudy={() => startStudy(selected.topic)}
     />
   ) : null;
 
-  if (!wide && card) return <View style={styles.flex}>{card}</View>;
+  const studyView = studying ? (
+    <StudySession key={studying.nonce} initialTopic={studying.topic} onClose={() => setStudying(null)} onOpenTopic={(topic) => open(topic)} />
+  ) : null;
+
+  const termSheet = (
+    <GlossaryTermModal
+      entry={term}
+      onClose={() => setTerm(null)}
+      onOpenTopic={(topic) => {
+        setTerm(null);
+        open(topic);
+      }}
+    />
+  );
+
+  // Phones: study mode covers the card without unmounting it, so "Back" returns to the same tab.
+  if (!wide && (studyView || card)) {
+    return (
+      <View style={styles.flex}>
+        {card ? <View style={studyView ? styles.hidden : styles.flex}>{card}</View> : null}
+        {studyView}
+      </View>
+    );
+  }
 
   const list = (
     <View style={wide ? styles.listPane : styles.flex}>
@@ -155,9 +264,23 @@ export default function GaapCodex({ focus }) {
         <View style={styles.titleRow}>
           <Ionicons name="library" size={18} color={COLORS.gold} />
           <Text style={styles.heading}>US GAAP Codex</Text>
-          <Text style={styles.headingMeta}>
-            {ASC_TOPIC_COUNT} Topics · {TOTAL_PARAGRAPHS.toLocaleString()} ¶
-          </Text>
+          {wide ? (
+            <Text style={styles.headingMeta}>
+              {ASC_TOPIC_COUNT} Topics · {TOTAL_PARAGRAPHS.toLocaleString()} ¶
+            </Text>
+          ) : null}
+          <TouchableOpacity
+            style={[styles.studyBtn, studying && styles.studyBtnOn]}
+            onPress={() => (studying ? setStudying(null) : startStudy())}
+            accessibilityLabel="Study mode"
+            accessibilityState={{ selected: Boolean(studying) }}
+          >
+            <Ionicons name="school" size={14} color={COLORS.gold} />
+            <Text style={styles.studyText}>Study</Text>
+            <Text style={styles.studyMeta}>
+              {masteredTotal}/{TOTAL_TRAPS}
+            </Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.searchBar}>
           <Ionicons name="search" size={15} color={COLORS.textMuted} />
@@ -198,6 +321,15 @@ export default function GaapCodex({ focus }) {
         </View>
         <Text style={styles.filterCaption}>{ASC_FILTERS.find((f) => f.key === filter).label}</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.seriesRow}>
+          <TouchableOpacity
+            style={[styles.seriesChip, savedOnly && styles.savedChipOn]}
+            onPress={() => setSavedOnly((v) => !v)}
+            accessibilityLabel="Show saved Topics only"
+            accessibilityState={{ selected: savedOnly }}
+          >
+            <Ionicons name={savedOnly ? 'star' : 'star-outline'} size={12} color={COLORS.gold} style={styles.savedIcon} />
+            <Text style={[styles.seriesText, savedOnly && styles.seriesTextOn]}>Saved {study.bookmarks.length}</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={[styles.seriesChip, !series && styles.seriesChipOn]} onPress={() => setSeries(null)}>
             <Text style={[styles.seriesText, !series && styles.seriesTextOn]}>All series</Text>
           </TouchableOpacity>
@@ -228,7 +360,7 @@ export default function GaapCodex({ focus }) {
 
       <SectionList
         sections={sections}
-        keyExtractor={(e) => e.topic}
+        keyExtractor={(e) => (e.glossaryTerm ? `g:${e.glossaryTerm.term}` : e.topic)}
         renderItem={renderItem}
         renderSectionHeader={({ section }) => (
           <View style={styles.sectionHeader}>
@@ -244,13 +376,26 @@ export default function GaapCodex({ focus }) {
         windowSize={9}
         ListEmptyComponent={
           <View style={styles.empty}>
-            <Ionicons name="search-outline" size={32} color={COLORS.textMuted} />
-            <Text style={styles.emptyTitle}>No Topic matches “{q}”</Text>
-            <Text style={styles.emptySub}>Try a Topic number (842), a keyword (lease, revenue) or switch the filter to All US GAAP.</Text>
+            {savedOnly && !q ? (
+              <>
+                <Ionicons name="star-outline" size={32} color={COLORS.textMuted} />
+                <Text style={styles.emptyTitle}>No saved Topics{series ? ` in the ${series}s` : ''}</Text>
+                <Text style={styles.emptySub}>Tap the ☆ on any card to save it here and in the study deck.</Text>
+              </>
+            ) : (
+              <>
+                <Ionicons name="search-outline" size={32} color={COLORS.textMuted} />
+                <Text style={styles.emptyTitle}>No Topic matches{q ? ` “${q}”` : ''}</Text>
+                <Text style={styles.emptySub}>
+                  Try a Topic number (842), a keyword (lease, revenue){savedOnly ? ', turn off Saved' : ''} or switch the filter to All US GAAP.
+                </Text>
+              </>
+            )}
           </View>
         }
         ListFooterComponent={
           <Text style={styles.footer}>
+            {q && glossaryLoading ? 'Searching the FASB glossary…\n' : ''}
             FASB Accounting Standards Codification® · cards and official text load on demand when opened
           </Text>
         }
@@ -258,17 +403,26 @@ export default function GaapCodex({ focus }) {
     </View>
   );
 
-  if (!wide) return list;
+  if (!wide) {
+    return (
+      <View style={styles.flex}>
+        {list}
+        {termSheet}
+      </View>
+    );
+  }
   return (
     <View style={styles.split}>
       {list}
-      <View style={styles.detailPane}>{card || <Welcome onOpen={open} />}</View>
+      <View style={styles.detailPane}>{studyView || card || <Welcome onOpen={open} onStudy={() => startStudy()} />}</View>
+      {termSheet}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
+  hidden: { display: 'none' },
   split: { flex: 1, flexDirection: 'row' },
   listPane: { width: 380, flexGrow: 0, flexShrink: 0, borderRightWidth: 1, borderRightColor: COLORS.border },
   detailPane: { flex: 1, minWidth: 0 },
@@ -283,6 +437,20 @@ const styles = StyleSheet.create({
   titleRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
   heading: { fontSize: 16, fontWeight: '800', color: COLORS.text, marginLeft: 8, flex: 1 },
   headingMeta: { fontSize: 11, color: COLORS.textMuted, fontWeight: '600' },
+  studyBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    minHeight: 32,
+    paddingHorizontal: 10,
+    marginLeft: 10,
+    borderRadius: RADII.pill,
+    borderWidth: 1,
+    borderColor: `${COLORS.gold}66`,
+    backgroundColor: COLORS.goldSoft,
+  },
+  studyBtnOn: { borderColor: COLORS.gold },
+  studyText: { fontSize: 12, fontWeight: '800', color: COLORS.text, marginLeft: 5 },
+  studyMeta: { fontFamily: MONO, fontSize: 10, fontWeight: '700', color: COLORS.gold, marginLeft: 6 },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -336,6 +504,8 @@ const styles = StyleSheet.create({
     marginRight: 6,
   },
   seriesChipOn: { borderColor: COLORS.borderLight, backgroundColor: COLORS.surfaceHighlight },
+  savedChipOn: { borderColor: COLORS.gold, backgroundColor: COLORS.goldSoft },
+  savedIcon: { marginRight: 5 },
   seriesNum: { fontFamily: MONO, fontSize: 11, fontWeight: '800', marginRight: 5 },
   seriesText: { fontSize: 11.5, fontWeight: '600', color: COLORS.textSecondary },
   seriesTextOn: { color: COLORS.text },
@@ -376,6 +546,8 @@ const styles = StyleSheet.create({
   rowText: { flex: 1, marginLeft: 11 },
   rowTitleLine: { flexDirection: 'row', alignItems: 'center' },
   rowTitle: { flex: 1, fontSize: 13.5, fontWeight: '700', color: COLORS.text },
+  rowStar: { marginLeft: 6 },
+  masteredText: { fontSize: 10.5, fontWeight: '700', color: COLORS.success },
   rowTag: { fontSize: 11.5, color: COLORS.textSecondary, lineHeight: 16, marginTop: 2 },
   rowMeta: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', marginTop: 6 },
   pill: { paddingHorizontal: 6, paddingVertical: 1.5, borderRadius: RADII.sm, marginRight: 6 },
@@ -385,6 +557,17 @@ const styles = StyleSheet.create({
   pillText: { fontSize: 9, fontWeight: '800', letterSpacing: 0.6 },
   metaText: { fontSize: 10.5, color: COLORS.textMuted },
   empty: { alignItems: 'center', paddingVertical: 40, paddingHorizontal: 20 },
+  termRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    padding: 11,
+    marginBottom: 7,
+    borderRadius: RADII.md,
+    borderWidth: 1,
+    borderColor: `${COLORS.gold}33`,
+    backgroundColor: COLORS.surface,
+  },
+  termIcon: { marginTop: 2 },
   emptyTitle: { fontSize: 14, fontWeight: '700', color: COLORS.text, marginTop: 10 },
   emptySub: { fontSize: 12, color: COLORS.textMuted, marginTop: 4, textAlign: 'center' },
   footer: { fontSize: 10.5, color: COLORS.textMuted, textAlign: 'center', marginTop: 14 },
@@ -393,4 +576,16 @@ const styles = StyleSheet.create({
   welcomeTitle: { fontSize: 22, fontWeight: '800', color: COLORS.text, marginTop: 6 },
   welcomeText: { fontSize: 13.5, lineHeight: 21, color: COLORS.textSecondary, marginTop: 8, marginBottom: 22 },
   welcomeLabel: { fontSize: 10.5, fontWeight: '800', color: COLORS.gold, letterSpacing: 1, marginBottom: 8 },
+  welcomeStudy: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    minHeight: 46,
+    paddingHorizontal: 12,
+    marginBottom: 22,
+    borderRadius: RADII.md,
+    borderWidth: 1,
+    borderColor: `${COLORS.gold}55`,
+    backgroundColor: COLORS.goldSoft,
+  },
+  welcomeStudyText: { flex: 1, fontSize: 13, fontWeight: '800', color: COLORS.text, marginHorizontal: 8 },
 });

@@ -7,10 +7,12 @@ import { StyleSheet, View, Text, FlatList, ScrollView, TouchableOpacity, TextInp
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../../theme/colors';
 import { MONO, RADII } from '../../theme/layout';
-import { useAscText } from '../../utils/useAscData';
+import { useAscText, useAscGlossary } from '../../utils/useAscData';
+import { buildTermMatcher, splitByTerms, findGlossaryTerm } from '../../utils/ascGlossary';
 import { getAscEntry } from '../../utils/ascIndex';
 import useDebouncedValue from '../../utils/useDebouncedValue';
 import { ModuleLoading } from '../ui';
+import { GlossaryTermCard } from './GlossaryTerm';
 
 const TABLE_PREVIEW_ROWS = 40;
 const MAX_FIND_RESULTS = 200;
@@ -52,7 +54,7 @@ const TableBlock = memo(function TableBlock({ rows }) {
   );
 });
 
-function Line({ line }) {
+function Line({ line, matcher, seen, onTerm }) {
   if (typeof line !== 'string') return <TableBlock rows={line.tbl} />;
   const depth = /^\t*/.exec(line)[0].length;
   const body = line.slice(depth);
@@ -65,14 +67,25 @@ function Line({ line }) {
     );
   }
   if (body.startsWith('Transition date:')) return <Text style={styles.transition}>{body}</Text>;
+  const parts = matcher ? splitByTerms(body, matcher, seen) : null;
   return (
     <Text selectable style={[styles.line, depth ? { marginLeft: depth * 14 } : null]}>
-      {body}
+      {parts
+        ? parts.map((part, i) =>
+            part.term ? (
+              <Text key={i} style={styles.termLink} onPress={() => onTerm(part.term)} accessibilityRole="button">
+                {part.text}
+              </Text>
+            ) : (
+              part.text
+            )
+          )
+        : body}
     </Text>
   );
 }
 
-const Block = memo(function Block({ block, color, highlighted }) {
+const Block = memo(function Block({ block, color, highlighted, matcher, onTerm }) {
   if (block.h !== undefined) {
     return (
       <Text style={[styles.heading, block.l > 2 && styles.subHeading, { marginLeft: Math.max(0, block.l - 3) * 10 }]}>
@@ -81,16 +94,54 @@ const Block = memo(function Block({ block, color, highlighted }) {
     );
   }
   const superseded = block.p && /^(\[?Paragraph|Subparagraph) (superseded|not used)/i.test(block.t[0] || '');
+  // Mark each defined term once per paragraph (never the term a glossary entry is defining).
+  const seen = new Set(block.g ? [block.g] : []);
   return (
     <View style={[styles.block, highlighted && { borderColor: color, backgroundColor: `${color}14` }, superseded && styles.superseded]}>
       {block.p ? <Text style={[styles.paraId, { color }]}>{block.p}</Text> : null}
       {block.g ? <Text style={styles.term}>{block.g}</Text> : null}
       {block.t.map((line, i) => (
-        <Line key={i} line={line} />
+        <Line key={i} line={line} matcher={superseded ? null : matcher} seen={seen} onTerm={onTerm} />
       ))}
     </View>
   );
 });
+
+// Subtopics the source export does not include, derived at build time from the Topic's own
+// Overview list (see asc_codification/MISSING_SUBTOPICS.md).
+function CoverageNote({ entry }) {
+  const [open, setOpen] = useState(false);
+  const own = entry.missing || [];
+  const related = entry.relatedMissing || [];
+  if (!own.length && !related.length) return null;
+  const PREVIEW = 3;
+  const list = (items) => (open ? items : items.slice(0, PREVIEW)).join(' · ');
+  const more = own.length > PREVIEW || related.length > PREVIEW;
+  return (
+    <TouchableOpacity style={styles.coverage} onPress={() => setOpen(!open)} activeOpacity={more ? 0.8 : 1} disabled={!more}>
+      <Ionicons name="information-circle-outline" size={13} color={COLORS.textMuted} />
+      <View style={styles.flex}>
+        {own.length ? (
+          <Text style={styles.coverageText}>
+            <Text style={styles.coverageLead}>Not in your source export ({own.length}): </Text>
+            {list(own)}
+            {!open && own.length > PREVIEW ? ` · +${own.length - PREVIEW} more` : ''}
+          </Text>
+        ) : null}
+        {related.length ? (
+          <Text style={[styles.coverageText, own.length ? styles.coverageGap : null]}>
+            <Text style={styles.coverageLead}>Industry subtopics under Topic {entry.topic}, also missing ({related.length}): </Text>
+            {list(related)}
+            {!open && related.length > PREVIEW ? ` · +${related.length - PREVIEW} more` : ''}
+          </Text>
+        ) : null}
+        <Text style={[styles.coverageText, styles.coverageGap]}>
+          Add them by saving a FASB export in asc_codification/markdown/supplements/ — see MISSING_SUBTOPICS.md.
+        </Text>
+      </View>
+    </TouchableOpacity>
+  );
+}
 
 export default function OfficialTextReader({ topic, color = COLORS.info, targetParagraph = null, targetNonce = 0 }) {
   const { text, loading, error, retry } = useAscText(topic, true);
@@ -100,6 +151,8 @@ export default function OfficialTextReader({ topic, color = COLORS.info, targetP
   const [pendingScroll, setPendingScroll] = useState(null);
   const [find, setFind] = useState('');
   const [noteOpen, setNoteOpen] = useState(false);
+  const [openTerm, setOpenTerm] = useState(null);
+  const { glossary } = useAscGlossary(Boolean(openTerm));
   const debouncedFind = useDebouncedValue(find.trim(), 200);
   const listRef = useRef(null);
 
@@ -116,6 +169,30 @@ export default function OfficialTextReader({ topic, color = COLORS.info, targetP
     );
     return map;
   }, [text]);
+
+  // Terms this Topic defines (its Glossary sections) become tappable in the text.
+  const { matcher, localDefs } = useMemo(() => {
+    const defs = new Map();
+    if (text) {
+      for (const st of text.subtopics) {
+        for (const sec of st.sections) {
+          for (const b of sec.blocks) {
+            if (!b.g) continue;
+            const def = b.t.map((l) => (typeof l === 'string' ? l.replace(/^\t+/, '') : '')).join('\n');
+            const e = defs.get(b.g) || { term: b.g, defs: [], master: null };
+            const code = `${topic}-${st.code}`;
+            const same = e.defs.find((d) => d.text === def);
+            if (same) {
+              if (!same.topics.includes(code)) same.topics.push(code);
+            } else e.defs.push({ text: def, topics: [code] });
+            defs.set(b.g, e);
+          }
+        }
+      }
+    }
+    return { matcher: buildTermMatcher(Array.from(defs.keys())), localDefs: defs };
+  }, [text, topic]);
+  const termEntry = openTerm ? findGlossaryTerm(glossary, openTerm) || localDefs.get(openTerm) || null : null;
 
   // Reset to the default section when the Topic changes.
   useEffect(() => {
@@ -192,20 +269,9 @@ export default function OfficialTextReader({ topic, color = COLORS.info, targetP
   const st = text.subtopics[pos.sub] || text.subtopics[0];
   const sec = (st && st.sections[pos.sec]) || (st && st.sections[0]);
   const note = sec ? sec.note || text.notes[sec.code] : null;
-  const partial = entry && entry.declaredSubtopics > entry.sourceSubtopics;
-
   const header = (
     <View>
-      {partial ? (
-        <View style={styles.coverage}>
-          <Ionicons name="information-circle-outline" size={13} color={COLORS.textMuted} />
-          <Text style={styles.coverageText}>
-            The source library holds {entry.sourceSubtopics} of the {entry.declaredSubtopics} subtopics listed for Topic {topic} in
-            asc_codification/README.md. Subtopics missing from the markdown export (typically industry subtopics such as 970-340) cannot be
-            shown here.
-          </Text>
-        </View>
-      ) : null}
+      {entry ? <CoverageNote entry={entry} /> : null}
       {note ? (
         <TouchableOpacity style={styles.note} onPress={() => setNoteOpen(!noteOpen)} activeOpacity={0.8}>
           <Text style={styles.noteLabel}>
@@ -321,7 +387,9 @@ export default function OfficialTextReader({ topic, color = COLORS.info, targetP
           ref={listRef}
           data={sec ? sec.blocks : []}
           keyExtractor={(b, i) => `${i}-${b.p || b.g || ''}`}
-          renderItem={({ item }) => <Block block={item} color={color} highlighted={Boolean(item.p) && item.p === highlight} />}
+          renderItem={({ item }) => (
+            <Block block={item} color={color} highlighted={Boolean(item.p) && item.p === highlight} matcher={matcher} onTerm={setOpenTerm} />
+          )}
           extraData={highlight}
           ListHeaderComponent={header}
           contentContainerStyle={styles.listContent}
@@ -343,6 +411,21 @@ export default function OfficialTextReader({ topic, color = COLORS.info, targetP
           ListFooterComponent={<Text style={styles.footer}>FASB Accounting Standards Codification® · Topic {topic} · source: asc_codification/markdown</Text>}
         />
       )}
+
+      {termEntry ? (
+        <View style={styles.termSheet}>
+          <View style={styles.termSheetHead}>
+            <Ionicons name="book-outline" size={13} color={COLORS.gold} />
+            <Text style={styles.termSheetKicker}>DEFINED TERM</Text>
+            <TouchableOpacity onPress={() => setOpenTerm(null)} hitSlop={10} accessibilityLabel="Close definition">
+              <Ionicons name="close" size={19} color={COLORS.text} />
+            </TouchableOpacity>
+          </View>
+          <ScrollView style={styles.termSheetBody} contentContainerStyle={styles.termSheetContent}>
+            <GlossaryTermCard entry={termEntry} loadingMore={!glossary} />
+          </ScrollView>
+        </View>
+      ) : null}
     </View>
   );
 }
@@ -414,7 +497,9 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.surfaceLight,
     marginBottom: 10,
   },
-  coverageText: { flex: 1, fontSize: 11, color: COLORS.textMuted, lineHeight: 16, marginLeft: 6 },
+  coverageText: { fontSize: 11, color: COLORS.textMuted, lineHeight: 16, marginLeft: 6 },
+  coverageLead: { fontWeight: '800', color: COLORS.textSecondary },
+  coverageGap: { marginTop: 4 },
   note: { paddingVertical: 8, marginBottom: 6, borderBottomWidth: 1, borderBottomColor: COLORS.border },
   noteLabel: { fontSize: 10, fontWeight: '800', color: COLORS.textMuted, letterSpacing: 0.8 },
   noteText: { fontSize: 12, color: COLORS.textSecondary, lineHeight: 18, marginTop: 6 },
@@ -459,5 +544,38 @@ const styles = StyleSheet.create({
   resultWhere: { fontSize: 10.5, color: COLORS.textMuted, marginBottom: 3 },
   resultSnippet: { fontSize: 12, color: COLORS.textSecondary, lineHeight: 17 },
   empty: { fontSize: 12.5, color: COLORS.textMuted, paddingVertical: 20, textAlign: 'center' },
+  termLink: {
+    color: COLORS.info,
+    textDecorationLine: 'underline',
+    textDecorationStyle: 'dotted',
+    textDecorationColor: `${COLORS.info}99`,
+  },
+  termSheet: {
+    position: 'absolute',
+    left: 8,
+    right: 8,
+    bottom: 8,
+    maxHeight: '58%',
+    backgroundColor: COLORS.surface,
+    borderRadius: RADII.lg,
+    borderWidth: 1,
+    borderColor: `${COLORS.gold}66`,
+    shadowColor: '#000',
+    shadowOpacity: 0.5,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 12,
+  },
+  termSheetHead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
+  },
+  termSheetKicker: { flex: 1, fontSize: 10, fontWeight: '800', color: COLORS.gold, letterSpacing: 1, marginLeft: 6 },
+  termSheetBody: { flexGrow: 0 },
+  termSheetContent: { padding: 14 },
   footer: { fontSize: 10.5, color: COLORS.textMuted, textAlign: 'center', marginTop: 16 },
 });

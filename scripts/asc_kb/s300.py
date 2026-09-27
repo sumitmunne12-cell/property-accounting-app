@@ -65,10 +65,15 @@ C(
     ),
     je=[
         (
-            "Seller financing: note receivable from a property buyer",
-            "An owner sells a parcel and takes a $3,000,000 purchase-money note at a market rate; the buyer pays a $30,000 loan fee.",
-            [("DR", "Notes receivable", 3000000), ("CR", "Deferred loan fees (contra note)", 30000), ("CR", "Due from buyer — sale proceeds", 2970000)],
-            "The $30,000 fee accretes into interest income over the note's term via the interest method; the sale itself follows ASC 610-20.",
+            "Seller financing: record the purchase-money note and loan fee",
+            "An owner sells a parcel and takes a $3,000,000 purchase-money note at a market rate as the sale consideration; the buyer also pays a $30,000 loan fee in cash.",
+            [
+                ("DR", "Notes receivable", 3000000),
+                ("DR", "Cash — operating", 30000),
+                ("CR", "Land sale clearing (610-20 consideration)", 3000000),
+                ("CR", "Deferred loan fees (contra note)", 30000),
+            ],
+            "The clearing account is closed by the 610-20 entry that derecognizes the land and records the gain. The $30,000 fee accretes into interest income over the note's term (interest method).",
         ),
     ],
     traps=[
@@ -271,7 +276,7 @@ C(
         ),
     ],
     traps=[
-        ("Does CECL apply to resident rent receivables?", "No. Operating-lease receivables are outside ASC 326; the lessor assesses collectibility under ASC 842-30-25-12/35-3 and records changes as an adjustment to lease income. Many lessors also keep a general reserve under ASC 450 — a policy auditors scrutinize."),
+        ("Does CECL apply to resident rent receivables?", "No. Operating-lease receivables are outside ASC 326; the lessor assesses collectibility under ASC 842-30-25-12 and 25-13 and records changes as an adjustment to lease income. Many lessors also keep a general reserve under ASC 450 — a policy auditors scrutinize."),
         ("Is a zero-loss expectation allowed?", "Yes for assets like Treasuries or fully collateralized receivables where historical loss is zero and expected to remain so — document it."),
         ("What is the ASU 2025-05 expedient?", "For current accounts receivable and current contract assets, entities may assume current conditions at the balance-sheet date do not change for the remaining life of the asset (private companies can also consider subsequent collections)."),
         ("Can the allowance be recorded only when a receivable is 90 days past due?", "No — that's the incurred-loss mindset. CECL requires a lifetime estimate from day one; aging buckets are just one input."),

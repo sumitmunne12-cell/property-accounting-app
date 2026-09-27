@@ -14,7 +14,7 @@ import { triggerHaptic } from '../../utils/haptics';
 import AscCardView from './AscCardView';
 import { useGaapNav } from './GaapNavContext';
 
-export function AscCardModal({ visible, topics, topic, onSelect, onClose, contextLabel }) {
+export function AscCardModal({ visible, topics, topic, paragraph = null, onSelect, onClose, contextLabel }) {
   const insets = useSafeAreaInsets();
   const nav = useGaapNav();
   if (!topic) return null;
@@ -39,7 +39,7 @@ export function AscCardModal({ visible, topics, topic, onSelect, onClose, contex
               style={styles.codexBtn}
               onPress={() => {
                 onClose();
-                nav.openInCodex(topic);
+                nav.openInCodex(topic, paragraph);
               }}
             >
               <Ionicons name="library-outline" size={14} color={COLORS.gold} />
@@ -67,8 +67,8 @@ export function AscCardModal({ visible, topics, topic, onSelect, onClose, contex
             })}
           </ScrollView>
         ) : null}
-        {current ? <Text style={styles.reason}>Why linked: {LINK_REASONS[current.reason] || current.reason}</Text> : null}
-        <AscCardView topic={topic} />
+        {current && LINK_REASONS[current.reason] ? <Text style={styles.reason}>Why linked: {LINK_REASONS[current.reason]}</Text> : null}
+        <AscCardView topic={topic} paragraph={paragraph} />
       </View>
     </Modal>
   );

@@ -1,6 +1,16 @@
 import { useEffect, useState } from 'react';
 import { getAscEntry } from './ascIndex';
-import { getLoadedCard, getLoadedText, isSeriesLoaded, isTextLoaded, loadCard, loadText } from '../data/asc/ascLoader';
+import {
+  getLoadedCard,
+  getLoadedGlossary,
+  getLoadedText,
+  isGlossaryLoaded,
+  isSeriesLoaded,
+  isTextLoaded,
+  loadCard,
+  loadGlossary,
+  loadText,
+} from '../data/asc/ascLoader';
 
 /**
  * Master card for one ASC Topic, loading its FASB series file on first use.
@@ -66,4 +76,24 @@ export function useAscText(topic, enabled = true) {
     error: text ? null : error,
     retry: () => setAttempt((n) => n + 1),
   };
+}
+
+/** The FASB glossary, loaded the first time `enabled` is true (a search is typed or a term tapped). */
+export function useAscGlossary(enabled = true) {
+  const [error, setError] = useState(null);
+  const [, setLoadedTick] = useState(0);
+
+  useEffect(() => {
+    if (!enabled || isGlossaryLoaded()) return undefined;
+    let alive = true;
+    loadGlossary()
+      .then(() => alive && setLoadedTick((n) => n + 1))
+      .catch((e) => alive && setError(e));
+    return () => {
+      alive = false;
+    };
+  }, [enabled]);
+
+  const glossary = getLoadedGlossary();
+  return { glossary, loading: Boolean(enabled && !glossary && !error), error: glossary ? null : error };
 }

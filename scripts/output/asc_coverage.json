@@ -5,22 +5,22 @@
   "paragraphs": 18072,
   "liveParagraphs": 14657,
   "duplicatesCollapsed": 18072,
-  "journalEntries": 128,
+  "journalEntries": 129,
   "auditTraps": 332,
   "words": 1778500,
-  "indexBytes": 51004,
+  "indexBytes": 66774,
   "seriesBytes": {
-   "100": 6158,
-   "200": 92971,
-   "300": 81334,
-   "400": 62903,
-   "500": 8993,
-   "600": 27804,
-   "700": 59617,
-   "800": 150686,
-   "900": 147098
+   "100": 6396,
+   "200": 97106,
+   "300": 84946,
+   "400": 65515,
+   "500": 9281,
+   "600": 28611,
+   "700": 62643,
+   "800": 156226,
+   "900": 167641
   },
-  "textBytes": 13311996,
+  "textBytes": 13311897,
   "topicsWithPartialSourceSubtopics": [
    "205",
    "210",
@@ -104,14 +104,21 @@
    "978",
    "980",
    "985"
-  ]
+  ],
+  "missingSubtopics": 225,
+  "supplementsMerged": [],
+  "review": {
+   "ai-draft": 44,
+   "self-reviewed": 55,
+   "cpa-reviewed": 0
+  }
  },
  "topics": [
   {
    "topic": "105",
    "title": "Generally Accepted Accounting Principles",
-   "file": "asc_codification\\markdown\\ASC_105_105_Generally_Accepted_Accounting_Principles.md",
-   "textBytes": 31420,
+   "file": "asc_codification/markdown/ASC_105_105_Generally_Accepted_Accounting_Principles.md",
+   "textBytes": 31419,
    "subtopics": 1,
    "declaredSubtopics": 1,
    "sections": 7,
@@ -122,13 +129,16 @@
    "tables": 2,
    "pendingContent": 0,
    "words": 3846,
-   "duplicatesCollapsed": 23
+   "duplicatesCollapsed": 23,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "205",
    "title": "Presentation of Financial Statements",
-   "file": "asc_codification\\markdown\\ASC_205_205_Presentation_of_Financial_Statements.md",
-   "textBytes": 167685,
+   "file": "asc_codification/markdown/ASC_205_205_Presentation_of_Financial_Statements.md",
+   "textBytes": 167684,
    "subtopics": 4,
    "declaredSubtopics": 13,
    "sections": 45,
@@ -139,13 +149,16 @@
    "tables": 6,
    "pendingContent": 15,
    "words": 21884,
-   "duplicatesCollapsed": 241
+   "duplicatesCollapsed": 241,
+   "missingSubtopics": [],
+   "overviewParagraph": "205-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "210",
    "title": "Balance Sheet",
-   "file": "asc_codification\\markdown\\ASC_210_210_Balance_Sheet.md",
-   "textBytes": 95563,
+   "file": "asc_codification/markdown/ASC_210_210_Balance_Sheet.md",
+   "textBytes": 95562,
    "subtopics": 2,
    "declaredSubtopics": 10,
    "sections": 23,
@@ -156,13 +169,16 @@
    "tables": 3,
    "pendingContent": 5,
    "words": 12161,
-   "duplicatesCollapsed": 110
+   "duplicatesCollapsed": 110,
+   "missingSubtopics": [],
+   "overviewParagraph": "210-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "215",
    "title": "Statement of Shareholder Equity",
-   "file": "asc_codification\\markdown\\ASC_215_215_Statement_of_Shareholder_Equity.md",
-   "textBytes": 1191,
+   "file": "asc_codification/markdown/ASC_215_215_Statement_of_Shareholder_Equity.md",
+   "textBytes": 1190,
    "subtopics": 1,
    "declaredSubtopics": 2,
    "sections": 2,
@@ -173,13 +189,16 @@
    "tables": 0,
    "pendingContent": 0,
    "words": 36,
-   "duplicatesCollapsed": 2
+   "duplicatesCollapsed": 2,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "220",
    "title": "Income Statement—Reporting Comprehensive Income",
-   "file": "asc_codification\\markdown\\ASC_220_220_Income_Statement—Reporting_Comprehensive_Income.md",
-   "textBytes": 220090,
+   "file": "asc_codification/markdown/ASC_220_220_Income_Statement—Reporting_Comprehensive_Income.md",
+   "textBytes": 220089,
    "subtopics": 4,
    "declaredSubtopics": 11,
    "sections": 40,
@@ -190,13 +209,16 @@
    "tables": 5,
    "pendingContent": 85,
    "words": 28240,
-   "duplicatesCollapsed": 200
+   "duplicatesCollapsed": 200,
+   "missingSubtopics": [],
+   "overviewParagraph": "220-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "225",
    "title": "Income Statement",
-   "file": "asc_codification\\markdown\\ASC_225_225_Income_Statement.md",
-   "textBytes": 19679,
+   "file": "asc_codification/markdown/ASC_225_225_Income_Statement.md",
+   "textBytes": 19678,
    "subtopics": 3,
    "declaredSubtopics": 11,
    "sections": 28,
@@ -207,13 +229,16 @@
    "tables": 4,
    "pendingContent": 0,
    "words": 1071,
-   "duplicatesCollapsed": 70
+   "duplicatesCollapsed": 70,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "230",
    "title": "Statement of Cash Flows",
-   "file": "asc_codification\\markdown\\ASC_230_230_Statement_of_Cash_Flows.md",
-   "textBytes": 92985,
+   "file": "asc_codification/markdown/ASC_230_230_Statement_of_Cash_Flows.md",
+   "textBytes": 92984,
    "subtopics": 1,
    "declaredSubtopics": 10,
    "sections": 10,
@@ -224,13 +249,16 @@
    "tables": 1,
    "pendingContent": 4,
    "words": 12325,
-   "duplicatesCollapsed": 91
+   "duplicatesCollapsed": 91,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "235",
    "title": "Notes to Financial Statements",
-   "file": "asc_codification\\markdown\\ASC_235_235_Notes_to_Financial_Statements.md",
-   "textBytes": 35631,
+   "file": "asc_codification/markdown/ASC_235_235_Notes_to_Financial_Statements.md",
+   "textBytes": 35630,
    "subtopics": 1,
    "declaredSubtopics": 10,
    "sections": 8,
@@ -241,13 +269,16 @@
    "tables": 2,
    "pendingContent": 1,
    "words": 4626,
-   "duplicatesCollapsed": 24
+   "duplicatesCollapsed": 24,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "250",
    "title": "Accounting Changes and Error Corrections",
-   "file": "asc_codification\\markdown\\ASC_250_250_Accounting_Changes_and_Error_Corrections.md",
-   "textBytes": 135473,
+   "file": "asc_codification/markdown/ASC_250_250_Accounting_Changes_and_Error_Corrections.md",
+   "textBytes": 135472,
    "subtopics": 1,
    "declaredSubtopics": 3,
    "sections": 12,
@@ -258,13 +289,16 @@
    "tables": 2,
    "pendingContent": 8,
    "words": 19056,
-   "duplicatesCollapsed": 83
+   "duplicatesCollapsed": 83,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "255",
    "title": "Changing Prices",
-   "file": "asc_codification\\markdown\\ASC_255_255_Changing_Prices.md",
-   "textBytes": 87453,
+   "file": "asc_codification/markdown/ASC_255_255_Changing_Prices.md",
+   "textBytes": 87452,
    "subtopics": 1,
    "declaredSubtopics": 2,
    "sections": 10,
@@ -275,13 +309,16 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 11606,
-   "duplicatesCollapsed": 157
+   "duplicatesCollapsed": 157,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "260",
    "title": "Earnings Per Share",
-   "file": "asc_codification\\markdown\\ASC_260_260_Earnings_Per_Share.md",
-   "textBytes": 203623,
+   "file": "asc_codification/markdown/ASC_260_260_Earnings_Per_Share.md",
+   "textBytes": 203622,
    "subtopics": 1,
    "declaredSubtopics": 1,
    "sections": 16,
@@ -292,13 +329,16 @@
    "tables": 2,
    "pendingContent": 23,
    "words": 28036,
-   "duplicatesCollapsed": 257
+   "duplicatesCollapsed": 257,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "270",
    "title": "Interim Reporting",
-   "file": "asc_codification\\markdown\\ASC_270_270_Interim_Reporting.md",
-   "textBytes": 138765,
+   "file": "asc_codification/markdown/ASC_270_270_Interim_Reporting.md",
+   "textBytes": 138764,
    "subtopics": 1,
    "declaredSubtopics": 3,
    "sections": 14,
@@ -309,13 +349,16 @@
    "tables": 2,
    "pendingContent": 96,
    "words": 17478,
-   "duplicatesCollapsed": 120
+   "duplicatesCollapsed": 120,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "272",
    "title": "Limited Liability Entities",
-   "file": "asc_codification\\markdown\\ASC_272_272_Limited_Liability_Entities.md",
-   "textBytes": 13433,
+   "file": "asc_codification/markdown/ASC_272_272_Limited_Liability_Entities.md",
+   "textBytes": 13432,
    "subtopics": 1,
    "declaredSubtopics": 1,
    "sections": 6,
@@ -326,13 +369,16 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 1462,
-   "duplicatesCollapsed": 25
+   "duplicatesCollapsed": 25,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "274",
    "title": "Personal Financial Statements",
-   "file": "asc_codification\\markdown\\ASC_274_274_Personal_Financial_Statements.md",
-   "textBytes": 34031,
+   "file": "asc_codification/markdown/ASC_274_274_Personal_Financial_Statements.md",
+   "textBytes": 34030,
    "subtopics": 1,
    "declaredSubtopics": 1,
    "sections": 10,
@@ -343,13 +389,16 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 4162,
-   "duplicatesCollapsed": 52
+   "duplicatesCollapsed": 52,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "275",
    "title": "Risks and Uncertainties",
-   "file": "asc_codification\\markdown\\ASC_275_275_Risks_and_Uncertainties.md",
-   "textBytes": 55562,
+   "file": "asc_codification/markdown/ASC_275_275_Risks_and_Uncertainties.md",
+   "textBytes": 55561,
    "subtopics": 1,
    "declaredSubtopics": 2,
    "sections": 8,
@@ -360,13 +409,16 @@
    "tables": 1,
    "pendingContent": 3,
    "words": 7160,
-   "duplicatesCollapsed": 74
+   "duplicatesCollapsed": 74,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "280",
    "title": "Segment Reporting",
-   "file": "asc_codification\\markdown\\ASC_280_280_Segment_Reporting.md",
-   "textBytes": 103158,
+   "file": "asc_codification/markdown/ASC_280_280_Segment_Reporting.md",
+   "textBytes": 103157,
    "subtopics": 1,
    "declaredSubtopics": 5,
    "sections": 11,
@@ -377,13 +429,16 @@
    "tables": 1,
    "pendingContent": 2,
    "words": 13745,
-   "duplicatesCollapsed": 135
+   "duplicatesCollapsed": 135,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "305",
    "title": "Cash and Cash Equivalents",
-   "file": "asc_codification\\markdown\\ASC_305_305_Cash_and_Cash_Equivalents.md",
-   "textBytes": 4957,
+   "file": "asc_codification/markdown/ASC_305_305_Cash_and_Cash_Equivalents.md",
+   "textBytes": 4956,
    "subtopics": 1,
    "declaredSubtopics": 4,
    "sections": 7,
@@ -394,13 +449,16 @@
    "tables": 2,
    "pendingContent": 0,
    "words": 203,
-   "duplicatesCollapsed": 7
+   "duplicatesCollapsed": 7,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "310",
    "title": "Receivables",
-   "file": "asc_codification\\markdown\\ASC_310_310_Receivables.md",
-   "textBytes": 379800,
+   "file": "asc_codification/markdown/ASC_310_310_Receivables.md",
+   "textBytes": 379799,
    "subtopics": 4,
    "declaredSubtopics": 20,
    "sections": 58,
@@ -411,13 +469,16 @@
    "tables": 5,
    "pendingContent": 9,
    "words": 50681,
-   "duplicatesCollapsed": 587
+   "duplicatesCollapsed": 587,
+   "missingSubtopics": [],
+   "overviewParagraph": "310-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "320",
    "title": "Investments—Debt Securities",
-   "file": "asc_codification\\markdown\\ASC_320_320_Investments—Debt_Securities.md",
-   "textBytes": 129492,
+   "file": "asc_codification/markdown/ASC_320_320_Investments—Debt_Securities.md",
+   "textBytes": 129491,
    "subtopics": 1,
    "declaredSubtopics": 8,
    "sections": 17,
@@ -428,13 +489,16 @@
    "tables": 2,
    "pendingContent": 10,
    "words": 16874,
-   "duplicatesCollapsed": 177
+   "duplicatesCollapsed": 177,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "321",
    "title": "Investments—Equity Securities",
-   "file": "asc_codification\\markdown\\ASC_321_321_Investments—Equity_Securities.md",
-   "textBytes": 33889,
+   "file": "asc_codification/markdown/ASC_321_321_Investments—Equity_Securities.md",
+   "textBytes": 33888,
    "subtopics": 1,
    "declaredSubtopics": 2,
    "sections": 10,
@@ -445,13 +509,16 @@
    "tables": 1,
    "pendingContent": 3,
    "words": 4137,
-   "duplicatesCollapsed": 35
+   "duplicatesCollapsed": 35,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "323",
    "title": "Investments—Equity Method and Joint Ventures",
-   "file": "asc_codification\\markdown\\ASC_323_323_Investments—Equity_Method_and_Joint_Ventures.md",
-   "textBytes": 126576,
+   "file": "asc_codification/markdown/ASC_323_323_Investments—Equity_Method_and_Joint_Ventures.md",
+   "textBytes": 126575,
    "subtopics": 2,
    "declaredSubtopics": 7,
    "sections": 28,
@@ -462,13 +529,18 @@
    "tables": 4,
    "pendingContent": 0,
    "words": 16648,
-   "duplicatesCollapsed": 183
+   "duplicatesCollapsed": 183,
+   "missingSubtopics": [
+    "323-740"
+   ],
+   "overviewParagraph": "323-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "325",
    "title": "Investments—Other",
-   "file": "asc_codification\\markdown\\ASC_325_325_Investments—Other.md",
-   "textBytes": 74116,
+   "file": "asc_codification/markdown/ASC_325_325_Investments—Other.md",
+   "textBytes": 74115,
    "subtopics": 4,
    "declaredSubtopics": 14,
    "sections": 33,
@@ -479,13 +551,16 @@
    "tables": 4,
    "pendingContent": 5,
    "words": 9055,
-   "duplicatesCollapsed": 141
+   "duplicatesCollapsed": 141,
+   "missingSubtopics": [],
+   "overviewParagraph": "325-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "326",
    "title": "Financial Instruments—Credit Losses",
-   "file": "asc_codification\\markdown\\ASC_326_326_Financial_Instruments—Credit_Losses.md",
-   "textBytes": 286629,
+   "file": "asc_codification/markdown/ASC_326_326_Financial_Instruments—Credit_Losses.md",
+   "textBytes": 286628,
    "subtopics": 3,
    "declaredSubtopics": 3,
    "sections": 25,
@@ -496,13 +571,16 @@
    "tables": 4,
    "pendingContent": 64,
    "words": 39200,
-   "duplicatesCollapsed": 259
+   "duplicatesCollapsed": 259,
+   "missingSubtopics": [],
+   "overviewParagraph": "326-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "330",
    "title": "Inventory",
-   "file": "asc_codification\\markdown\\ASC_330_330_Inventory.md",
-   "textBytes": 57756,
+   "file": "asc_codification/markdown/ASC_330_330_Inventory.md",
+   "textBytes": 57755,
    "subtopics": 1,
    "declaredSubtopics": 11,
    "sections": 17,
@@ -513,13 +591,16 @@
    "tables": 2,
    "pendingContent": 1,
    "words": 7114,
-   "duplicatesCollapsed": 89
+   "duplicatesCollapsed": 89,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "340",
    "title": "Other Assets and Deferred Costs",
-   "file": "asc_codification\\markdown\\ASC_340_340_Other_Assets_and_Deferred_Costs.md",
-   "textBytes": 85791,
+   "file": "asc_codification/markdown/ASC_340_340_Other_Assets_and_Deferred_Costs.md",
+   "textBytes": 85790,
    "subtopics": 4,
    "declaredSubtopics": 15,
    "sections": 45,
@@ -530,13 +611,16 @@
    "tables": 5,
    "pendingContent": 2,
    "words": 10239,
-   "duplicatesCollapsed": 173
+   "duplicatesCollapsed": 173,
+   "missingSubtopics": [],
+   "overviewParagraph": "340-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "350",
    "title": "Intangibles—Goodwill and Other",
-   "file": "asc_codification\\markdown\\ASC_350_350_Intangibles—Goodwill_and_Other.md",
-   "textBytes": 352078,
+   "file": "asc_codification/markdown/ASC_350_350_Intangibles—Goodwill_and_Other.md",
+   "textBytes": 352077,
    "subtopics": 6,
    "declaredSubtopics": 13,
    "sections": 56,
@@ -547,13 +631,16 @@
    "tables": 6,
    "pendingContent": 93,
    "words": 46581,
-   "duplicatesCollapsed": 486
+   "duplicatesCollapsed": 486,
+   "missingSubtopics": [],
+   "overviewParagraph": "350-10-05-3",
+   "supplementsMerged": []
   },
   {
    "topic": "360",
    "title": "Property, Plant, and Equipment",
-   "file": "asc_codification\\markdown\\ASC_360_360_Property,_Plant,_and_Equipment.md",
-   "textBytes": 155432,
+   "file": "asc_codification/markdown/ASC_360_360_Property,_Plant,_and_Equipment.md",
+   "textBytes": 155431,
    "subtopics": 2,
    "declaredSubtopics": 18,
    "sections": 25,
@@ -564,13 +651,16 @@
    "tables": 3,
    "pendingContent": 4,
    "words": 20368,
-   "duplicatesCollapsed": 330
+   "duplicatesCollapsed": 330,
+   "missingSubtopics": [],
+   "overviewParagraph": "360-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "405",
    "title": "Liabilities",
-   "file": "asc_codification\\markdown\\ASC_405_405_Liabilities.md",
-   "textBytes": 78380,
+   "file": "asc_codification/markdown/ASC_405_405_Liabilities.md",
+   "textBytes": 78379,
    "subtopics": 5,
    "declaredSubtopics": 19,
    "sections": 40,
@@ -581,13 +671,16 @@
    "tables": 6,
    "pendingContent": 3,
    "words": 9857,
-   "duplicatesCollapsed": 108
+   "duplicatesCollapsed": 108,
+   "missingSubtopics": [],
+   "overviewParagraph": "405-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "410",
    "title": "Asset Retirement and Environmental Obligations",
-   "file": "asc_codification\\markdown\\ASC_410_410_Asset_Retirement_and_Environmental_Obligations.md",
-   "textBytes": 218514,
+   "file": "asc_codification/markdown/ASC_410_410_Asset_Retirement_and_Environmental_Obligations.md",
+   "textBytes": 218513,
    "subtopics": 3,
    "declaredSubtopics": 4,
    "sections": 30,
@@ -598,13 +691,16 @@
    "tables": 3,
    "pendingContent": 7,
    "words": 29785,
-   "duplicatesCollapsed": 279
+   "duplicatesCollapsed": 279,
+   "missingSubtopics": [],
+   "overviewParagraph": "410-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "420",
    "title": "Exit or Disposal Cost Obligations",
-   "file": "asc_codification\\markdown\\ASC_420_420_Exit_or_Disposal_Cost_Obligations.md",
-   "textBytes": 66244,
+   "file": "asc_codification/markdown/ASC_420_420_Exit_or_Disposal_Cost_Obligations.md",
+   "textBytes": 66243,
    "subtopics": 1,
    "declaredSubtopics": 1,
    "sections": 17,
@@ -615,13 +711,16 @@
    "tables": 2,
    "pendingContent": 4,
    "words": 8339,
-   "duplicatesCollapsed": 80
+   "duplicatesCollapsed": 80,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "430",
    "title": "Deferred Revenue",
-   "file": "asc_codification\\markdown\\ASC_430_430_Deferred_Revenue.md",
-   "textBytes": 5004,
+   "file": "asc_codification/markdown/ASC_430_430_Deferred_Revenue.md",
+   "textBytes": 5003,
    "subtopics": 1,
    "declaredSubtopics": 6,
    "sections": 5,
@@ -632,13 +731,16 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 357,
-   "duplicatesCollapsed": 4
+   "duplicatesCollapsed": 4,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "440",
    "title": "Commitments",
-   "file": "asc_codification\\markdown\\ASC_440_440_Commitments.md",
-   "textBytes": 21850,
+   "file": "asc_codification/markdown/ASC_440_440_Commitments.md",
+   "textBytes": 21849,
    "subtopics": 1,
    "declaredSubtopics": 5,
    "sections": 8,
@@ -649,13 +751,16 @@
    "tables": 1,
    "pendingContent": 1,
    "words": 2360,
-   "duplicatesCollapsed": 45
+   "duplicatesCollapsed": 45,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "450",
    "title": "Contingencies",
-   "file": "asc_codification\\markdown\\ASC_450_450_Contingencies.md",
-   "textBytes": 91368,
+   "file": "asc_codification/markdown/ASC_450_450_Contingencies.md",
+   "textBytes": 91367,
    "subtopics": 3,
    "declaredSubtopics": 7,
    "sections": 27,
@@ -666,13 +771,16 @@
    "tables": 4,
    "pendingContent": 3,
    "words": 11904,
-   "duplicatesCollapsed": 137
+   "duplicatesCollapsed": 137,
+   "missingSubtopics": [],
+   "overviewParagraph": "450-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "460",
    "title": "Guarantees",
-   "file": "asc_codification\\markdown\\ASC_460_460_Guarantees.md",
-   "textBytes": 101303,
+   "file": "asc_codification/markdown/ASC_460_460_Guarantees.md",
+   "textBytes": 101302,
    "subtopics": 1,
    "declaredSubtopics": 2,
    "sections": 14,
@@ -683,13 +791,16 @@
    "tables": 2,
    "pendingContent": 6,
    "words": 13290,
-   "duplicatesCollapsed": 122
+   "duplicatesCollapsed": 122,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "470",
    "title": "Debt",
-   "file": "asc_codification\\markdown\\ASC_470_470_Debt.md",
-   "textBytes": 319269,
+   "file": "asc_codification/markdown/ASC_470_470_Debt.md",
+   "textBytes": 319268,
    "subtopics": 6,
    "declaredSubtopics": 13,
    "sections": 66,
@@ -700,13 +811,16 @@
    "tables": 7,
    "pendingContent": 33,
    "words": 42652,
-   "duplicatesCollapsed": 544
+   "duplicatesCollapsed": 544,
+   "missingSubtopics": [],
+   "overviewParagraph": "470-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "480",
    "title": "Distinguishing Liabilities from Equity",
-   "file": "asc_codification\\markdown\\ASC_480_480_Distinguishing_Liabilities_from_Equity.md",
-   "textBytes": 161253,
+   "file": "asc_codification/markdown/ASC_480_480_Distinguishing_Liabilities_from_Equity.md",
+   "textBytes": 161252,
    "subtopics": 1,
    "declaredSubtopics": 1,
    "sections": 20,
@@ -717,13 +831,16 @@
    "tables": 2,
    "pendingContent": 3,
    "words": 22404,
-   "duplicatesCollapsed": 148
+   "duplicatesCollapsed": 148,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "505",
    "title": "Equity",
-   "file": "asc_codification\\markdown\\ASC_505_505_Equity.md",
-   "textBytes": 146121,
+   "file": "asc_codification/markdown/ASC_505_505_Equity.md",
+   "textBytes": 146120,
    "subtopics": 5,
    "declaredSubtopics": 9,
    "sections": 64,
@@ -734,13 +851,16 @@
    "tables": 8,
    "pendingContent": 7,
    "words": 18087,
-   "duplicatesCollapsed": 307
+   "duplicatesCollapsed": 307,
+   "missingSubtopics": [],
+   "overviewParagraph": "505-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "605",
    "title": "Revenue Recognition",
-   "file": "asc_codification\\markdown\\ASC_605_605_Revenue_Recognition.md",
-   "textBytes": 129551,
+   "file": "asc_codification/markdown/ASC_605_605_Revenue_Recognition.md",
+   "textBytes": 129550,
    "subtopics": 10,
    "declaredSubtopics": 36,
    "sections": 92,
@@ -751,13 +871,16 @@
    "tables": 16,
    "pendingContent": 0,
    "words": 12269,
-   "duplicatesCollapsed": 653
+   "duplicatesCollapsed": 653,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "606",
    "title": "Revenue from Contracts with Customers",
-   "file": "asc_codification\\markdown\\ASC_606_606_Revenue_from_Contracts_with_Customers.md",
-   "textBytes": 509656,
+   "file": "asc_codification/markdown/ASC_606_606_Revenue_from_Contracts_with_Customers.md",
+   "textBytes": 509655,
    "subtopics": 1,
    "declaredSubtopics": 2,
    "sections": 16,
@@ -768,13 +891,16 @@
    "tables": 2,
    "pendingContent": 24,
    "words": 72396,
-   "duplicatesCollapsed": 679
+   "duplicatesCollapsed": 679,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "610",
    "title": "Other Income",
-   "file": "asc_codification\\markdown\\ASC_610_610_Other_Income.md",
-   "textBytes": 60848,
+   "file": "asc_codification/markdown/ASC_610_610_Other_Income.md",
+   "textBytes": 60847,
    "subtopics": 3,
    "declaredSubtopics": 3,
    "sections": 21,
@@ -785,13 +911,16 @@
    "tables": 3,
    "pendingContent": 1,
    "words": 7714,
-   "duplicatesCollapsed": 70
+   "duplicatesCollapsed": 70,
+   "missingSubtopics": [],
+   "overviewParagraph": "610-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "705",
    "title": "Cost of Sales and Services",
-   "file": "asc_codification\\markdown\\ASC_705_705_Cost_of_Sales_and_Services.md",
-   "textBytes": 21001,
+   "file": "asc_codification/markdown/ASC_705_705_Cost_of_Sales_and_Services.md",
+   "textBytes": 21000,
    "subtopics": 2,
    "declaredSubtopics": 7,
    "sections": 9,
@@ -802,13 +931,16 @@
    "tables": 2,
    "pendingContent": 0,
    "words": 2435,
-   "duplicatesCollapsed": 39
+   "duplicatesCollapsed": 39,
+   "missingSubtopics": [],
+   "overviewParagraph": "705-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "710",
    "title": "Compensation—General",
-   "file": "asc_codification\\markdown\\ASC_710_710_Compensation—General.md",
-   "textBytes": 36542,
+   "file": "asc_codification/markdown/ASC_710_710_Compensation—General.md",
+   "textBytes": 36541,
    "subtopics": 1,
    "declaredSubtopics": 3,
    "sections": 14,
@@ -819,13 +951,16 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 4341,
-   "duplicatesCollapsed": 64
+   "duplicatesCollapsed": 64,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "712",
    "title": "Compensation—Nonretirement Postemployment Benefits",
-   "file": "asc_codification\\markdown\\ASC_712_712_Compensation—Nonretirement_Postemployment_Benefits.md",
-   "textBytes": 14892,
+   "file": "asc_codification/markdown/ASC_712_712_Compensation—Nonretirement_Postemployment_Benefits.md",
+   "textBytes": 14891,
    "subtopics": 1,
    "declaredSubtopics": 1,
    "sections": 9,
@@ -836,13 +971,16 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 1476,
-   "duplicatesCollapsed": 23
+   "duplicatesCollapsed": 23,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "715",
    "title": "Compensation—Retirement Benefits",
-   "file": "asc_codification\\markdown\\ASC_715_715_Compensation—Retirement_Benefits.md",
-   "textBytes": 686652,
+   "file": "asc_codification/markdown/ASC_715_715_Compensation—Retirement_Benefits.md",
+   "textBytes": 686651,
    "subtopics": 6,
    "declaredSubtopics": 10,
    "sections": 55,
@@ -853,13 +991,16 @@
    "tables": 7,
    "pendingContent": 1,
    "words": 95696,
-   "duplicatesCollapsed": 958
+   "duplicatesCollapsed": 958,
+   "missingSubtopics": [],
+   "overviewParagraph": "715-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "718",
    "title": "Compensation—Stock Compensation",
-   "file": "asc_codification\\markdown\\ASC_718_718_Compensation—Stock_Compensation.md",
-   "textBytes": 739804,
+   "file": "asc_codification/markdown/ASC_718_718_Compensation—Stock_Compensation.md",
+   "textBytes": 739803,
    "subtopics": 5,
    "declaredSubtopics": 6,
    "sections": 59,
@@ -870,13 +1011,18 @@
    "tables": 7,
    "pendingContent": 24,
    "words": 107763,
-   "duplicatesCollapsed": 695
+   "duplicatesCollapsed": 695,
+   "missingSubtopics": [
+    "718-740"
+   ],
+   "overviewParagraph": "718-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "720",
    "title": "Other Expenses",
-   "file": "asc_codification\\markdown\\ASC_720_720_Other_Expenses.md",
-   "textBytes": 114421,
+   "file": "asc_codification/markdown/ASC_720_720_Other_Expenses.md",
+   "textBytes": 114420,
    "subtopics": 9,
    "declaredSubtopics": 27,
    "sections": 56,
@@ -887,13 +1033,16 @@
    "tables": 6,
    "pendingContent": 1,
    "words": 14525,
-   "duplicatesCollapsed": 178
+   "duplicatesCollapsed": 178,
+   "missingSubtopics": [],
+   "overviewParagraph": "720-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "730",
    "title": "Research and Development",
-   "file": "asc_codification\\markdown\\ASC_730_730_Research_and_Development.md",
-   "textBytes": 65770,
+   "file": "asc_codification/markdown/ASC_730_730_Research_and_Development.md",
+   "textBytes": 65769,
    "subtopics": 2,
    "declaredSubtopics": 4,
    "sections": 23,
@@ -904,13 +1053,16 @@
    "tables": 3,
    "pendingContent": 5,
    "words": 8284,
-   "duplicatesCollapsed": 66
+   "duplicatesCollapsed": 66,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "740",
    "title": "Income Taxes",
-   "file": "asc_codification\\markdown\\ASC_740_740_Income_Taxes.md",
-   "textBytes": 392651,
+   "file": "asc_codification/markdown/ASC_740_740_Income_Taxes.md",
+   "textBytes": 392650,
    "subtopics": 3,
    "declaredSubtopics": 18,
    "sections": 38,
@@ -921,13 +1073,18 @@
    "tables": 4,
    "pendingContent": 28,
    "words": 55078,
-   "duplicatesCollapsed": 540
+   "duplicatesCollapsed": 540,
+   "missingSubtopics": [
+    "740-270"
+   ],
+   "overviewParagraph": "740-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "805",
    "title": "Business Combinations",
-   "file": "asc_codification\\markdown\\ASC_805_805_Business_Combinations.md",
-   "textBytes": 503971,
+   "file": "asc_codification/markdown/ASC_805_805_Business_Combinations.md",
+   "textBytes": 503970,
    "subtopics": 6,
    "declaredSubtopics": 12,
    "sections": 78,
@@ -938,13 +1095,18 @@
    "tables": 9,
    "pendingContent": 55,
    "words": 67499,
-   "duplicatesCollapsed": 588
+   "duplicatesCollapsed": 588,
+   "missingSubtopics": [
+    "805-740"
+   ],
+   "overviewParagraph": "805-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "808",
    "title": "Collaborative Arrangements",
-   "file": "asc_codification\\markdown\\ASC_808_808_Collaborative_Arrangements.md",
-   "textBytes": 45597,
+   "file": "asc_codification/markdown/ASC_808_808_Collaborative_Arrangements.md",
+   "textBytes": 45596,
    "subtopics": 1,
    "declaredSubtopics": 1,
    "sections": 9,
@@ -955,13 +1117,16 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 5881,
-   "duplicatesCollapsed": 46
+   "duplicatesCollapsed": 46,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "810",
    "title": "Consolidation",
-   "file": "asc_codification\\markdown\\ASC_810_810_Consolidation.md",
-   "textBytes": 532079,
+   "file": "asc_codification/markdown/ASC_810_810_Consolidation.md",
+   "textBytes": 532078,
    "subtopics": 3,
    "declaredSubtopics": 18,
    "sections": 39,
@@ -972,13 +1137,16 @@
    "tables": 4,
    "pendingContent": 12,
    "words": 74194,
-   "duplicatesCollapsed": 657
+   "duplicatesCollapsed": 657,
+   "missingSubtopics": [],
+   "overviewParagraph": "810-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "815",
    "title": "Derivatives and Hedging",
-   "file": "asc_codification\\markdown\\ASC_815_815_Derivatives_and_Hedging.md",
-   "textBytes": 1719557,
+   "file": "asc_codification/markdown/ASC_815_815_Derivatives_and_Hedging.md",
+   "textBytes": 1719556,
    "subtopics": 8,
    "declaredSubtopics": 14,
    "sections": 97,
@@ -989,13 +1157,16 @@
    "tables": 10,
    "pendingContent": 202,
    "words": 244898,
-   "duplicatesCollapsed": 2047
+   "duplicatesCollapsed": 2047,
+   "missingSubtopics": [],
+   "overviewParagraph": "815-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "818",
    "title": "Environmental Credits and Environmental Credit Obligations",
-   "file": "asc_codification\\markdown\\ASC_818_818_Environmental_Credits_and_Environmental_Credit_Obligations.md",
-   "textBytes": 108827,
+   "file": "asc_codification/markdown/ASC_818_818_Environmental_Credits_and_Environmental_Credit_Obligations.md",
+   "textBytes": 108826,
    "subtopics": 3,
    "declaredSubtopics": 3,
    "sections": 29,
@@ -1006,13 +1177,16 @@
    "tables": 3,
    "pendingContent": 108,
    "words": 13638,
-   "duplicatesCollapsed": 99
+   "duplicatesCollapsed": 99,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "820",
    "title": "Fair Value Measurement",
-   "file": "asc_codification\\markdown\\ASC_820_820_Fair_Value_Measurement.md",
-   "textBytes": 273504,
+   "file": "asc_codification/markdown/ASC_820_820_Fair_Value_Measurement.md",
+   "textBytes": 273503,
    "subtopics": 1,
    "declaredSubtopics": 2,
    "sections": 11,
@@ -1023,13 +1197,16 @@
    "tables": 1,
    "pendingContent": 10,
    "words": 38362,
-   "duplicatesCollapsed": 296
+   "duplicatesCollapsed": 296,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "825",
    "title": "Financial Instruments",
-   "file": "asc_codification\\markdown\\ASC_825_825_Financial_Instruments.md",
-   "textBytes": 124411,
+   "file": "asc_codification/markdown/ASC_825_825_Financial_Instruments.md",
+   "textBytes": 124410,
    "subtopics": 2,
    "declaredSubtopics": 5,
    "sections": 21,
@@ -1040,13 +1217,16 @@
    "tables": 2,
    "pendingContent": 16,
    "words": 16464,
-   "duplicatesCollapsed": 131
+   "duplicatesCollapsed": 131,
+   "missingSubtopics": [],
+   "overviewParagraph": "825-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "830",
    "title": "Foreign Currency Matters",
-   "file": "asc_codification\\markdown\\ASC_830_830_Foreign_Currency_Matters.md",
-   "textBytes": 100866,
+   "file": "asc_codification/markdown/ASC_830_830_Foreign_Currency_Matters.md",
+   "textBytes": 100865,
    "subtopics": 3,
    "declaredSubtopics": 6,
    "sections": 31,
@@ -1057,13 +1237,19 @@
    "tables": 4,
    "pendingContent": 1,
    "words": 12718,
-   "duplicatesCollapsed": 130
+   "duplicatesCollapsed": 130,
+   "missingSubtopics": [
+    "830-230",
+    "830-740"
+   ],
+   "overviewParagraph": "830-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "832",
    "title": "Government Assistance",
-   "file": "asc_codification\\markdown\\ASC_832_832_Government_Assistance.md",
-   "textBytes": 56078,
+   "file": "asc_codification/markdown/ASC_832_832_Government_Assistance.md",
+   "textBytes": 56077,
    "subtopics": 1,
    "declaredSubtopics": 1,
    "sections": 11,
@@ -1074,13 +1260,16 @@
    "tables": 1,
    "pendingContent": 50,
    "words": 7155,
-   "duplicatesCollapsed": 50
+   "duplicatesCollapsed": 50,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "835",
    "title": "Interest",
-   "file": "asc_codification\\markdown\\ASC_835_835_Interest.md",
-   "textBytes": 78794,
+   "file": "asc_codification/markdown/ASC_835_835_Interest.md",
+   "textBytes": 78793,
    "subtopics": 3,
    "declaredSubtopics": 10,
    "sections": 31,
@@ -1091,13 +1280,16 @@
    "tables": 4,
    "pendingContent": 0,
    "words": 9944,
-   "duplicatesCollapsed": 112
+   "duplicatesCollapsed": 112,
+   "missingSubtopics": [],
+   "overviewParagraph": "835-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "840",
    "title": "Leases",
-   "file": "asc_codification\\markdown\\ASC_840_840_Leases.md",
-   "textBytes": 93812,
+   "file": "asc_codification/markdown/ASC_840_840_Leases.md",
+   "textBytes": 93811,
    "subtopics": 4,
    "declaredSubtopics": 8,
    "sections": 53,
@@ -1108,13 +1300,16 @@
    "tables": 6,
    "pendingContent": 1,
    "words": 7926,
-   "duplicatesCollapsed": 578
+   "duplicatesCollapsed": 578,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "842",
    "title": "Leases",
-   "file": "asc_codification\\markdown\\ASC_842_842_Leases.md",
-   "textBytes": 514645,
+   "file": "asc_codification/markdown/ASC_842_842_Leases.md",
+   "textBytes": 514644,
    "subtopics": 5,
    "declaredSubtopics": 7,
    "sections": 56,
@@ -1125,13 +1320,16 @@
    "tables": 7,
    "pendingContent": 4,
    "words": 74489,
-   "duplicatesCollapsed": 694
+   "duplicatesCollapsed": 694,
+   "missingSubtopics": [],
+   "overviewParagraph": "842-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "845",
    "title": "Nonmonetary Transactions",
-   "file": "asc_codification\\markdown\\ASC_845_845_Nonmonetary_Transactions.md",
-   "textBytes": 80863,
+   "file": "asc_codification/markdown/ASC_845_845_Nonmonetary_Transactions.md",
+   "textBytes": 80862,
    "subtopics": 1,
    "declaredSubtopics": 5,
    "sections": 13,
@@ -1142,13 +1340,16 @@
    "tables": 2,
    "pendingContent": 4,
    "words": 10332,
-   "duplicatesCollapsed": 128
+   "duplicatesCollapsed": 128,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "848",
    "title": "Reference Rate Reform",
-   "file": "asc_codification\\markdown\\ASC_848_848_Reference_Rate_Reform.md",
-   "textBytes": 23951,
+   "file": "asc_codification/markdown/ASC_848_848_Reference_Rate_Reform.md",
+   "textBytes": 23950,
    "subtopics": 5,
    "declaredSubtopics": 5,
    "sections": 26,
@@ -1159,13 +1360,16 @@
    "tables": 5,
    "pendingContent": 0,
    "words": 1772,
-   "duplicatesCollapsed": 120
+   "duplicatesCollapsed": 120,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "850",
    "title": "Related Party Disclosures",
-   "file": "asc_codification\\markdown\\ASC_850_850_Related_Party_Disclosures.md",
-   "textBytes": 16947,
+   "file": "asc_codification/markdown/ASC_850_850_Related_Party_Disclosures.md",
+   "textBytes": 16946,
    "subtopics": 1,
    "declaredSubtopics": 2,
    "sections": 9,
@@ -1176,13 +1380,16 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 1719,
-   "duplicatesCollapsed": 33
+   "duplicatesCollapsed": 33,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "852",
    "title": "Reorganizations",
-   "file": "asc_codification\\markdown\\ASC_852_852_Reorganizations.md",
-   "textBytes": 93680,
+   "file": "asc_codification/markdown/ASC_852_852_Reorganizations.md",
+   "textBytes": 93679,
    "subtopics": 2,
    "declaredSubtopics": 3,
    "sections": 22,
@@ -1193,13 +1400,18 @@
    "tables": 2,
    "pendingContent": 4,
    "words": 12350,
-   "duplicatesCollapsed": 106
+   "duplicatesCollapsed": 106,
+   "missingSubtopics": [
+    "852-740"
+   ],
+   "overviewParagraph": "852-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "853",
    "title": "Service Concession Arrangements",
-   "file": "asc_codification\\markdown\\ASC_853_853_Service_Concession_Arrangements.md",
-   "textBytes": 12144,
+   "file": "asc_codification/markdown/ASC_853_853_Service_Concession_Arrangements.md",
+   "textBytes": 12143,
    "subtopics": 1,
    "declaredSubtopics": 1,
    "sections": 6,
@@ -1210,13 +1422,16 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 1336,
-   "duplicatesCollapsed": 11
+   "duplicatesCollapsed": 11,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "855",
    "title": "Subsequent Events",
-   "file": "asc_codification\\markdown\\ASC_855_855_Subsequent_Events.md",
-   "textBytes": 27351,
+   "file": "asc_codification/markdown/ASC_855_855_Subsequent_Events.md",
+   "textBytes": 27350,
    "subtopics": 1,
    "declaredSubtopics": 2,
    "sections": 15,
@@ -1227,13 +1442,16 @@
    "tables": 2,
    "pendingContent": 0,
    "words": 2880,
-   "duplicatesCollapsed": 35
+   "duplicatesCollapsed": 35,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "860",
    "title": "Transfers and Servicing",
-   "file": "asc_codification\\markdown\\ASC_860_860_Transfers_and_Servicing.md",
-   "textBytes": 404024,
+   "file": "asc_codification/markdown/ASC_860_860_Transfers_and_Servicing.md",
+   "textBytes": 404023,
    "subtopics": 5,
    "declaredSubtopics": 5,
    "sections": 61,
@@ -1244,13 +1462,16 @@
    "tables": 5,
    "pendingContent": 31,
    "words": 53432,
-   "duplicatesCollapsed": 468
+   "duplicatesCollapsed": 468,
+   "missingSubtopics": [],
+   "overviewParagraph": "860-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "905",
    "title": "Agriculture",
-   "file": "asc_codification\\markdown\\ASC_905_905_Agriculture.md",
-   "textBytes": 18808,
+   "file": "asc_codification/markdown/ASC_905_905_Agriculture.md",
+   "textBytes": 18807,
    "subtopics": 1,
    "declaredSubtopics": 10,
    "sections": 4,
@@ -1261,13 +1482,26 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 2127,
-   "duplicatesCollapsed": 25
+   "duplicatesCollapsed": 25,
+   "missingSubtopics": [
+    "905-205",
+    "905-310",
+    "905-325",
+    "905-330",
+    "905-360",
+    "905-405",
+    "905-505",
+    "905-605",
+    "905-705"
+   ],
+   "overviewParagraph": "905-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "908",
    "title": "Airlines",
-   "file": "asc_codification\\markdown\\ASC_908_908_Airlines.md",
-   "textBytes": 8291,
+   "file": "asc_codification/markdown/ASC_908_908_Airlines.md",
+   "textBytes": 8290,
    "subtopics": 1,
    "declaredSubtopics": 9,
    "sections": 4,
@@ -1278,13 +1512,24 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 862,
-   "duplicatesCollapsed": 10
+   "duplicatesCollapsed": 10,
+   "missingSubtopics": [
+    "908-280",
+    "908-330",
+    "908-350",
+    "908-360",
+    "908-710",
+    "908-720",
+    "908-845"
+   ],
+   "overviewParagraph": "908-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "910",
    "title": "Contractors—Construction",
-   "file": "asc_codification\\markdown\\ASC_910_910_Contractors—Construction.md",
-   "textBytes": 25217,
+   "file": "asc_codification/markdown/ASC_910_910_Contractors—Construction.md",
+   "textBytes": 25216,
    "subtopics": 2,
    "declaredSubtopics": 10,
    "sections": 16,
@@ -1295,13 +1540,18 @@
    "tables": 2,
    "pendingContent": 0,
    "words": 2639,
-   "duplicatesCollapsed": 32
+   "duplicatesCollapsed": 32,
+   "missingSubtopics": [
+    "910-810"
+   ],
+   "overviewParagraph": "910-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "912",
    "title": "Contractors—Federal Government",
-   "file": "asc_codification\\markdown\\ASC_912_912_Contractors—Federal_Government.md",
-   "textBytes": 16113,
+   "file": "asc_codification/markdown/ASC_912_912_Contractors—Federal_Government.md",
+   "textBytes": 16112,
    "subtopics": 2,
    "declaredSubtopics": 17,
    "sections": 11,
@@ -1312,13 +1562,28 @@
    "tables": 2,
    "pendingContent": 0,
    "words": 1601,
-   "duplicatesCollapsed": 32
+   "duplicatesCollapsed": 32,
+   "missingSubtopics": [
+    "912-225",
+    "912-255",
+    "912-275",
+    "912-310",
+    "912-330",
+    "912-405",
+    "912-450",
+    "912-705",
+    "912-715",
+    "912-730",
+    "912-835"
+   ],
+   "overviewParagraph": "912-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "915",
    "title": "Development Stage Entities",
-   "file": "asc_codification\\markdown\\ASC_915_915_Development_Stage_Entities.md",
-   "textBytes": 4506,
+   "file": "asc_codification/markdown/ASC_915_915_Development_Stage_Entities.md",
+   "textBytes": 4505,
    "subtopics": 1,
    "declaredSubtopics": 10,
    "sections": 5,
@@ -1329,13 +1594,16 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 237,
-   "duplicatesCollapsed": 5
+   "duplicatesCollapsed": 5,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "920",
    "title": "Entertainment—Broadcasters",
-   "file": "asc_codification\\markdown\\ASC_920_920_Entertainment—Broadcasters.md",
-   "textBytes": 5018,
+   "file": "asc_codification/markdown/ASC_920_920_Entertainment—Broadcasters.md",
+   "textBytes": 5017,
    "subtopics": 1,
    "declaredSubtopics": 8,
    "sections": 4,
@@ -1346,13 +1614,20 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 367,
-   "duplicatesCollapsed": 6
+   "duplicatesCollapsed": 6,
+   "missingSubtopics": [
+    "920-350",
+    "920-405",
+    "920-440"
+   ],
+   "overviewParagraph": "920-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "922",
    "title": "Entertainment—Cable Television",
-   "file": "asc_codification\\markdown\\ASC_922_922_Entertainment—Cable_Television.md",
-   "textBytes": 3361,
+   "file": "asc_codification/markdown/ASC_922_922_Entertainment—Cable_Television.md",
+   "textBytes": 3360,
    "subtopics": 1,
    "declaredSubtopics": 7,
    "sections": 3,
@@ -1363,13 +1638,21 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 233,
-   "duplicatesCollapsed": 5
+   "duplicatesCollapsed": 5,
+   "missingSubtopics": [
+    "922-350",
+    "922-360",
+    "922-720",
+    "922-835"
+   ],
+   "overviewParagraph": "922-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "924",
    "title": "Entertainment—Casinos",
-   "file": "asc_codification\\markdown\\ASC_924_924_Entertainment—Casinos.md",
-   "textBytes": 8056,
+   "file": "asc_codification/markdown/ASC_924_924_Entertainment—Casinos.md",
+   "textBytes": 8055,
    "subtopics": 1,
    "declaredSubtopics": 7,
    "sections": 6,
@@ -1380,13 +1663,22 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 653,
-   "duplicatesCollapsed": 9
+   "duplicatesCollapsed": 9,
+   "missingSubtopics": [
+    "924-280",
+    "924-405",
+    "924-720",
+    "924-740",
+    "924-815"
+   ],
+   "overviewParagraph": "924-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "926",
    "title": "Entertainment—Films",
-   "file": "asc_codification\\markdown\\ASC_926_926_Entertainment—Films.md",
-   "textBytes": 48746,
+   "file": "asc_codification/markdown/ASC_926_926_Entertainment—Films.md",
+   "textBytes": 48745,
    "subtopics": 2,
    "declaredSubtopics": 12,
    "sections": 15,
@@ -1397,13 +1689,16 @@
    "tables": 2,
    "pendingContent": 2,
    "words": 5868,
-   "duplicatesCollapsed": 74
+   "duplicatesCollapsed": 74,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "928",
    "title": "Entertainment—Music",
-   "file": "asc_codification\\markdown\\ASC_928_928_Entertainment—Music.md",
-   "textBytes": 5034,
+   "file": "asc_codification/markdown/ASC_928_928_Entertainment—Music.md",
+   "textBytes": 5033,
    "subtopics": 1,
    "declaredSubtopics": 7,
    "sections": 3,
@@ -1414,13 +1709,16 @@
    "tables": 0,
    "pendingContent": 0,
    "words": 512,
-   "duplicatesCollapsed": 3
+   "duplicatesCollapsed": 3,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "930",
    "title": "Extractive Activities—Mining",
-   "file": "asc_codification\\markdown\\ASC_930_930_Extractive_Activities—Mining.md",
-   "textBytes": 3430,
+   "file": "asc_codification/markdown/ASC_930_930_Extractive_Activities—Mining.md",
+   "textBytes": 3429,
    "subtopics": 1,
    "declaredSubtopics": 6,
    "sections": 3,
@@ -1431,13 +1729,22 @@
    "tables": 0,
    "pendingContent": 0,
    "words": 239,
-   "duplicatesCollapsed": 5
+   "duplicatesCollapsed": 5,
+   "missingSubtopics": [
+    "930-330",
+    "930-360",
+    "930-715",
+    "930-805",
+    "930-810"
+   ],
+   "overviewParagraph": "930-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "932",
    "title": "Extractive Activities—Oil and Gas",
-   "file": "asc_codification\\markdown\\ASC_932_932_Extractive_Activities—Oil_and_Gas.md",
-   "textBytes": 82522,
+   "file": "asc_codification/markdown/ASC_932_932_Extractive_Activities—Oil_and_Gas.md",
+   "textBytes": 82521,
    "subtopics": 1,
    "declaredSubtopics": 17,
    "sections": 13,
@@ -1448,13 +1755,31 @@
    "tables": 2,
    "pendingContent": 0,
    "words": 11006,
-   "duplicatesCollapsed": 26
+   "duplicatesCollapsed": 26,
+   "missingSubtopics": [
+    "932-225",
+    "932-235",
+    "932-270",
+    "932-280",
+    "932-323",
+    "932-330",
+    "932-350",
+    "932-360",
+    "932-470",
+    "932-720",
+    "932-740",
+    "932-810",
+    "932-815",
+    "932-835"
+   ],
+   "overviewParagraph": "932-10-05-3",
+   "supplementsMerged": []
   },
   {
    "topic": "940",
    "title": "Financial Services—Brokers and Dealers",
-   "file": "asc_codification\\markdown\\ASC_940_940_Financial_Services—Brokers_and_Dealers.md",
-   "textBytes": 24362,
+   "file": "asc_codification/markdown/ASC_940_940_Financial_Services—Brokers_and_Dealers.md",
+   "textBytes": 24361,
    "subtopics": 2,
    "declaredSubtopics": 12,
    "sections": 12,
@@ -1465,13 +1790,24 @@
    "tables": 2,
    "pendingContent": 0,
    "words": 2698,
-   "duplicatesCollapsed": 37
+   "duplicatesCollapsed": 37,
+   "missingSubtopics": [
+    "940-310",
+    "940-320",
+    "940-325",
+    "940-340",
+    "940-405",
+    "940-810",
+    "940-820"
+   ],
+   "overviewParagraph": "940-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "942",
    "title": "Financial Services—Depository and Lending",
-   "file": "asc_codification\\markdown\\ASC_942_942_Financial_Services—Depository_and_Lending.md",
-   "textBytes": 18760,
+   "file": "asc_codification/markdown/ASC_942_942_Financial_Services—Depository_and_Lending.md",
+   "textBytes": 18759,
    "subtopics": 1,
    "declaredSubtopics": 20,
    "sections": 8,
@@ -1482,13 +1818,34 @@
    "tables": 2,
    "pendingContent": 0,
    "words": 2042,
-   "duplicatesCollapsed": 18
+   "duplicatesCollapsed": 18,
+   "missingSubtopics": [
+    "942-210",
+    "942-225",
+    "942-230",
+    "942-235",
+    "942-825",
+    "942-305",
+    "942-310",
+    "942-320",
+    "942-325",
+    "942-360",
+    "942-405",
+    "942-470",
+    "942-505",
+    "942-720",
+    "942-740",
+    "942-805",
+    "942-810"
+   ],
+   "overviewParagraph": "942-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "944",
    "title": "Financial Services—Insurance",
-   "file": "asc_codification\\markdown\\ASC_944_944_Financial_Services—Insurance.md",
-   "textBytes": 503782,
+   "file": "asc_codification/markdown/ASC_944_944_Financial_Services—Insurance.md",
+   "textBytes": 503781,
    "subtopics": 7,
    "declaredSubtopics": 25,
    "sections": 82,
@@ -1499,13 +1856,32 @@
    "tables": 10,
    "pendingContent": 7,
    "words": 65002,
-   "duplicatesCollapsed": 821
+   "duplicatesCollapsed": 821,
+   "missingSubtopics": [
+    "944-210",
+    "944-225",
+    "944-235",
+    "944-310",
+    "944-340",
+    "944-360",
+    "944-405",
+    "944-470",
+    "944-505",
+    "944-605",
+    "944-720",
+    "944-740",
+    "944-805",
+    "944-815",
+    "944-825"
+   ],
+   "overviewParagraph": "944-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "946",
    "title": "Financial Services—Investment Companies",
-   "file": "asc_codification\\markdown\\ASC_946_946_Financial_Services—Investment_Companies.md",
-   "textBytes": 125355,
+   "file": "asc_codification/markdown/ASC_946_946_Financial_Services—Investment_Companies.md",
+   "textBytes": 125354,
    "subtopics": 2,
    "declaredSubtopics": 20,
    "sections": 24,
@@ -1516,13 +1892,33 @@
    "tables": 3,
    "pendingContent": 2,
    "words": 16820,
-   "duplicatesCollapsed": 140
+   "duplicatesCollapsed": 140,
+   "missingSubtopics": [
+    "946-205",
+    "946-210",
+    "946-225",
+    "946-230",
+    "946-235",
+    "946-305",
+    "946-310",
+    "946-320",
+    "946-323",
+    "946-325",
+    "946-405",
+    "946-505",
+    "946-605",
+    "946-740",
+    "946-810",
+    "946-830"
+   ],
+   "overviewParagraph": "946-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "948",
    "title": "Financial Services—Mortgage Banking",
-   "file": "asc_codification\\markdown\\ASC_948_948_Financial_Services—Mortgage_Banking.md",
-   "textBytes": 12471,
+   "file": "asc_codification/markdown/ASC_948_948_Financial_Services—Mortgage_Banking.md",
+   "textBytes": 12470,
    "subtopics": 1,
    "declaredSubtopics": 6,
    "sections": 5,
@@ -1533,13 +1929,20 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 1325,
-   "duplicatesCollapsed": 18
+   "duplicatesCollapsed": 18,
+   "missingSubtopics": [
+    "948-310",
+    "948-340",
+    "948-720"
+   ],
+   "overviewParagraph": "948-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "950",
    "title": "Financial Services—Title Plant",
-   "file": "asc_codification\\markdown\\ASC_950_950_Financial_Services—Title_Plant.md",
-   "textBytes": 10693,
+   "file": "asc_codification/markdown/ASC_950_950_Financial_Services—Title_Plant.md",
+   "textBytes": 10692,
    "subtopics": 1,
    "declaredSubtopics": 1,
    "sections": 8,
@@ -1550,13 +1953,16 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 1045,
-   "duplicatesCollapsed": 19
+   "duplicatesCollapsed": 19,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   },
   {
    "topic": "952",
    "title": "Franchisors",
-   "file": "asc_codification\\markdown\\ASC_952_952_Franchisors.md",
-   "textBytes": 9715,
+   "file": "asc_codification/markdown/ASC_952_952_Franchisors.md",
+   "textBytes": 9714,
    "subtopics": 1,
    "declaredSubtopics": 7,
    "sections": 9,
@@ -1567,13 +1973,18 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 698,
-   "duplicatesCollapsed": 15
+   "duplicatesCollapsed": 15,
+   "missingSubtopics": [
+    "952-810"
+   ],
+   "overviewParagraph": "952-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "954",
    "title": "Health Care Entities",
-   "file": "asc_codification\\markdown\\ASC_954_954_Health_Care_Entities.md",
-   "textBytes": 13966,
+   "file": "asc_codification/markdown/ASC_954_954_Health_Care_Entities.md",
+   "textBytes": 13965,
    "subtopics": 1,
    "declaredSubtopics": 25,
    "sections": 4,
@@ -1584,13 +1995,38 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 1545,
-   "duplicatesCollapsed": 10
+   "duplicatesCollapsed": 10,
+   "missingSubtopics": [
+    "954-205",
+    "954-210",
+    "954-225",
+    "954-280",
+    "954-305",
+    "954-310",
+    "954-325",
+    "954-340",
+    "954-360",
+    "954-405",
+    "954-440",
+    "954-450",
+    "954-460",
+    "954-470",
+    "954-605",
+    "954-720",
+    "954-740",
+    "954-805",
+    "954-810",
+    "954-815",
+    "954-825"
+   ],
+   "overviewParagraph": "954-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "958",
    "title": "Not-for-Profit Entities",
-   "file": "asc_codification\\markdown\\ASC_958_958_Not-for-Profit_Entities.md",
-   "textBytes": 125232,
+   "file": "asc_codification/markdown/ASC_958_958_Not-for-Profit_Entities.md",
+   "textBytes": 125231,
    "subtopics": 3,
    "declaredSubtopics": 23,
    "sections": 28,
@@ -1601,13 +2037,33 @@
    "tables": 3,
    "pendingContent": 0,
    "words": 16391,
-   "duplicatesCollapsed": 153
+   "duplicatesCollapsed": 153,
+   "missingSubtopics": [
+    "958-205",
+    "958-210",
+    "958-225",
+    "958-230",
+    "958-310",
+    "958-320",
+    "958-321",
+    "958-325",
+    "958-360",
+    "958-405",
+    "958-450",
+    "958-605",
+    "958-715",
+    "958-720",
+    "958-805",
+    "958-810"
+   ],
+   "overviewParagraph": "958-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "960",
    "title": "Plan Accounting—Defined Benefit Pension Plans",
-   "file": "asc_codification\\markdown\\ASC_960_960_Plan_Accounting—Defined_Benefit_Pension_Plans.md",
-   "textBytes": 79131,
+   "file": "asc_codification/markdown/ASC_960_960_Plan_Accounting—Defined_Benefit_Pension_Plans.md",
+   "textBytes": 79130,
    "subtopics": 4,
    "declaredSubtopics": 8,
    "sections": 28,
@@ -1618,13 +2074,21 @@
    "tables": 4,
    "pendingContent": 0,
    "words": 10096,
-   "duplicatesCollapsed": 98
+   "duplicatesCollapsed": 98,
+   "missingSubtopics": [
+    "960-205",
+    "960-310",
+    "960-325",
+    "960-360"
+   ],
+   "overviewParagraph": "960-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "962",
    "title": "Plan Accounting—Defined Contribution Pension Plans",
-   "file": "asc_codification\\markdown\\ASC_962_962_Plan_Accounting—Defined_Contribution_Pension_Plans.md",
-   "textBytes": 19193,
+   "file": "asc_codification/markdown/ASC_962_962_Plan_Accounting—Defined_Contribution_Pension_Plans.md",
+   "textBytes": 19192,
    "subtopics": 2,
    "declaredSubtopics": 7,
    "sections": 13,
@@ -1635,13 +2099,21 @@
    "tables": 2,
    "pendingContent": 0,
    "words": 1981,
-   "duplicatesCollapsed": 25
+   "duplicatesCollapsed": 25,
+   "missingSubtopics": [
+    "962-205",
+    "962-235",
+    "962-310",
+    "962-325"
+   ],
+   "overviewParagraph": "962-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "965",
    "title": "Plan Accounting—Health and Welfare Benefit Plans",
-   "file": "asc_codification\\markdown\\ASC_965_965_Plan_Accounting—Health_and_Welfare_Benefit_Plans.md",
-   "textBytes": 71846,
+   "file": "asc_codification/markdown/ASC_965_965_Plan_Accounting—Health_and_Welfare_Benefit_Plans.md",
+   "textBytes": 71845,
    "subtopics": 4,
    "declaredSubtopics": 9,
    "sections": 29,
@@ -1652,13 +2124,22 @@
    "tables": 4,
    "pendingContent": 0,
    "words": 9069,
-   "duplicatesCollapsed": 82
+   "duplicatesCollapsed": 82,
+   "missingSubtopics": [
+    "965-205",
+    "965-310",
+    "965-320",
+    "965-325",
+    "965-360"
+   ],
+   "overviewParagraph": "965-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "970",
    "title": "Real Estate—General",
-   "file": "asc_codification\\markdown\\ASC_970_970_Real_Estate—General.md",
-   "textBytes": 12891,
+   "file": "asc_codification/markdown/ASC_970_970_Real_Estate—General.md",
+   "textBytes": 12890,
    "subtopics": 1,
    "declaredSubtopics": 10,
    "sections": 6,
@@ -1669,13 +2150,25 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 1283,
-   "duplicatesCollapsed": 21
+   "duplicatesCollapsed": 21,
+   "missingSubtopics": [
+    "970-230",
+    "970-323",
+    "970-340",
+    "970-360",
+    "970-470",
+    "970-720",
+    "970-810",
+    "970-835"
+   ],
+   "overviewParagraph": "970-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "972",
    "title": "Real Estate—Common Interest Realty Associations",
-   "file": "asc_codification\\markdown\\ASC_972_972_Real_Estate—Common_Interest_Realty_Associations.md",
-   "textBytes": 10221,
+   "file": "asc_codification/markdown/ASC_972_972_Real_Estate—Common_Interest_Realty_Associations.md",
+   "textBytes": 10220,
    "subtopics": 1,
    "declaredSubtopics": 9,
    "sections": 4,
@@ -1686,13 +2179,23 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 1081,
-   "duplicatesCollapsed": 8
+   "duplicatesCollapsed": 8,
+   "missingSubtopics": [
+    "972-205",
+    "972-235",
+    "972-360",
+    "972-720",
+    "972-740",
+    "972-850"
+   ],
+   "overviewParagraph": "972-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "974",
    "title": "Real Estate—Real Estate Investment Trusts",
-   "file": "asc_codification\\markdown\\ASC_974_974_Real_Estate—Real_Estate_Investment_Trusts.md",
-   "textBytes": 9889,
+   "file": "asc_codification/markdown/ASC_974_974_Real_Estate—Real_Estate_Investment_Trusts.md",
+   "textBytes": 9888,
    "subtopics": 1,
    "declaredSubtopics": 8,
    "sections": 9,
@@ -1703,13 +2206,22 @@
    "tables": 2,
    "pendingContent": 1,
    "words": 755,
-   "duplicatesCollapsed": 13
+   "duplicatesCollapsed": 13,
+   "missingSubtopics": [
+    "974-323",
+    "974-720",
+    "974-810",
+    "974-835",
+    "974-842"
+   ],
+   "overviewParagraph": "974-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "976",
    "title": "Real Estate—Retail Land",
-   "file": "asc_codification\\markdown\\ASC_976_976_Real_Estate—Retail_Land.md",
-   "textBytes": 7427,
+   "file": "asc_codification/markdown/ASC_976_976_Real_Estate—Retail_Land.md",
+   "textBytes": 7426,
    "subtopics": 1,
    "declaredSubtopics": 5,
    "sections": 4,
@@ -1720,13 +2232,20 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 761,
-   "duplicatesCollapsed": 7
+   "duplicatesCollapsed": 7,
+   "missingSubtopics": [
+    "976-310",
+    "976-330",
+    "976-705"
+   ],
+   "overviewParagraph": "976-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "978",
    "title": "Real Estate—Time-Sharing Activities",
-   "file": "asc_codification\\markdown\\ASC_978_978_Real_Estate—Time-Sharing_Activities.md",
-   "textBytes": 19004,
+   "file": "asc_codification/markdown/ASC_978_978_Real_Estate—Time-Sharing_Activities.md",
+   "textBytes": 19003,
    "subtopics": 1,
    "declaredSubtopics": 10,
    "sections": 5,
@@ -1737,13 +2256,24 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 2330,
-   "duplicatesCollapsed": 20
+   "duplicatesCollapsed": 20,
+   "missingSubtopics": [
+    "978-230",
+    "978-250",
+    "978-310",
+    "978-330",
+    "978-340",
+    "978-720",
+    "978-810"
+   ],
+   "overviewParagraph": "978-10-05-2",
+   "supplementsMerged": []
   },
   {
    "topic": "980",
    "title": "Regulated Operations",
-   "file": "asc_codification\\markdown\\ASC_980_980_Regulated_Operations.md",
-   "textBytes": 41413,
+   "file": "asc_codification/markdown/ASC_980_980_Regulated_Operations.md",
+   "textBytes": 41412,
    "subtopics": 2,
    "declaredSubtopics": 19,
    "sections": 17,
@@ -1754,13 +2284,33 @@
    "tables": 2,
    "pendingContent": 0,
    "words": 5021,
-   "duplicatesCollapsed": 58
+   "duplicatesCollapsed": 58,
+   "missingSubtopics": [
+    "980-250",
+    "980-340",
+    "980-350",
+    "980-360",
+    "980-405",
+    "980-410",
+    "980-450",
+    "980-470",
+    "980-605",
+    "980-710",
+    "980-715",
+    "980-740",
+    "980-810",
+    "980-815",
+    "980-835",
+    "980-842"
+   ],
+   "overviewParagraph": "980-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "985",
    "title": "Software",
-   "file": "asc_codification\\markdown\\ASC_985_985_Software.md",
-   "textBytes": 48809,
+   "file": "asc_codification/markdown/ASC_985_985_Software.md",
+   "textBytes": 48808,
    "subtopics": 2,
    "declaredSubtopics": 8,
    "sections": 13,
@@ -1771,13 +2321,22 @@
    "tables": 2,
    "pendingContent": 1,
    "words": 6038,
-   "duplicatesCollapsed": 71
+   "duplicatesCollapsed": 71,
+   "missingSubtopics": [
+    "985-330",
+    "985-350",
+    "985-605",
+    "985-705",
+    "985-730"
+   ],
+   "overviewParagraph": "985-10-05-1",
+   "supplementsMerged": []
   },
   {
    "topic": "995",
    "title": "U.S. Steamship Entities",
-   "file": "asc_codification\\markdown\\ASC_995_995_U.S._Steamship_Entities.md",
-   "textBytes": 4281,
+   "file": "asc_codification/markdown/ASC_995_995_U.S._Steamship_Entities.md",
+   "textBytes": 4280,
    "subtopics": 1,
    "declaredSubtopics": 1,
    "sections": 6,
@@ -1788,7 +2347,10 @@
    "tables": 1,
    "pendingContent": 0,
    "words": 180,
-   "duplicatesCollapsed": 7
+   "duplicatesCollapsed": 7,
+   "missingSubtopics": [],
+   "overviewParagraph": null,
+   "supplementsMerged": []
   }
  ]
 }

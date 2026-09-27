@@ -48,7 +48,7 @@
       "duplicate": 110,
       "layout-container": 1
     },
-    "bytes": 2856227
+    "bytes": 2856317
   },
   "05_financial_close": {
     "checklist_items": 466,
@@ -60,7 +60,7 @@
       "glossary-definition": 304,
       "duplicate": 1
     },
-    "bytes": 482332
+    "bytes": 482350
   },
   "06_jobcost_capex_reserves": {
     "checklist_items": 1269,
@@ -110,7 +110,7 @@
       "duplicate": 334,
       "layout-container": 3
     },
-    "bytes": 7390772
+    "bytes": 7391069
   },
   "glossary": {
     "entries": 2169,

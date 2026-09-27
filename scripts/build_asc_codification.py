@@ -16,6 +16,7 @@ Outputs (all regenerated; do not hand-edit)
     scripts/output/asc_coverage.json         per-Topic processing report
 
 Run: npm run build:asc   (python3 scripts/build_asc_codification.py)
+Output is byte-identical on macOS, Linux and Windows (POSIX paths, LF line endings).
 The build fails if any Topic is missing a card or a card field, a journal entry does not balance,
 or a cited paragraph does not exist in the official text.
 """
@@ -34,6 +35,12 @@ import asc_parse  # noqa: E402
 from asc_kb import CARDS  # noqa: E402
 
 MD_DIR = os.path.join(ROOT, "asc_codification", "markdown")
+SUPPLEMENT_DIR = os.path.join(MD_DIR, "supplements")
+MISSING_DOC = os.path.join(ROOT, "asc_codification", "MISSING_SUBTOPICS.md")
+REVIEW = os.path.join(HERE, "asc_kb", "review.json")
+MASTER_GLOSSARY = os.path.join(ROOT, "asc_codification", "glossary", "Master_Glossary.md")
+REVIEW_SHEET = os.path.join(ROOT, "scripts", "output", "asc_review_sheet.csv")
+REVIEW_STATUSES = ("ai-draft", "self-reviewed", "cpa-reviewed")
 README = os.path.join(ROOT, "asc_codification", "README.md")
 OUT_DIR = os.path.join(ROOT, "src", "data", "asc")
 TEXT_DIR = os.path.join(OUT_DIR, "text")
@@ -56,6 +63,12 @@ REQUIRED = ("tag", "alias", "truth", "analogy", "recog", "meas", "je", "traps", 
 RE_TIERS = (None, "core", "support")
 EXCERPT = 420
 
+# Paragraph references in card prose ("842-30-25-12", "970-340") must resolve to the official text,
+# or to a subtopic the export is known to lack (MISSING_SUBTOPICS.md), or to one of these
+# superseded subtopics that a card mentions historically.
+SUPERSEDED_REFS = {"976-605"}
+PROSE_REF = re.compile(r"\b(\d{3})-(\d{2,3})(?:-(S?\d{2})(?:-(\d+[A-Z]{0,2}))?)?\b")
+
 
 def fail(msg):
     raise SystemExit(f"build_asc_codification: {msg}")
@@ -68,6 +81,182 @@ def declared_subtopics():
     except FileNotFoundError:
         return {}
     return {m.group(1): int(m.group(2)) for m in re.finditer(r"^\| \*\*(\d{3})\*\* \| .*? \| (\d+) \|", text, re.M)}
+
+
+# ── Subtopics the export is missing ─────────────────────────────────────────────────────────
+# Each Topic's Overview paragraph ("… includes the following Subtopics: (a) Overall (b) …") names
+# every subtopic FASB files under it. Industry and cross-reference subtopics carry the number of
+# the general Topic they relate to (Real Estate—General › Property, Plant, and Equipment = 970-360).
+SUBTOPIC_ALIASES = {
+    "investments debt and equity securities": "320",
+    "investments all other": "325",
+    "consolidations": "810",
+    "intangibles takeoff and landing slots": "350",
+    "revenue recognition cooperatives": "605",
+    "revenue recognition provision for losses": "605",
+    "business combinations mergers and acquisitions": "805",
+    "fair value measurements": "820",
+}
+LIST_ITEM = re.compile(r"^\t+\(([a-z]{1,3})\)\s*(.+?)\s*$")
+
+
+def norm_title(s):
+    return re.sub(r"[^a-z0-9]+", " ", str(s).lower()).strip()
+
+
+def listed_subtopics(doc):
+    """(paragraph id, [subtopic names]) from the Topic's own Overview list, or (None, [])."""
+    for st in doc["subtopics"]:
+        if st["code"] != "10":
+            continue
+        for sec in st["sections"]:
+            if sec["code"] != "05":
+                continue
+            for b in sec["blocks"]:
+                if "p" not in b or not b["t"] or not isinstance(b["t"][0], str):
+                    continue
+                if not re.search(r"(following|several)\s+(?:\w+\s+)?Subtopics?\b", b["t"][0]):
+                    continue
+                names = []
+                for line in b["t"][1:]:
+                    m = LIST_ITEM.match(line) if isinstance(line, str) else None
+                    if not m or re.match(r"(Sub)?paragraph superseded", m.group(2), re.I):
+                        continue
+                    name = re.split(r"—Subtopic|\s\(Subtopic|\.\s", m.group(2))[0].strip().rstrip(".")
+                    names.append(name)
+                if names and names[0].lower().startswith("overall"):
+                    return b["p"], names
+    return None, []
+
+
+def missing_subtopics(doc, title_to_topic):
+    """Subtopics named in the Overview list but absent from the parsed export."""
+    pid, names = listed_subtopics(doc)
+    have_titles = [norm_title(st["title"]) for st in doc["subtopics"]]
+    have_codes = {st["code"] for st in doc["subtopics"]}
+    parent = norm_title(doc["title"] or "") + " "
+
+    def present(n):
+        # "Financial Instruments—Credit Losses—Measured at Amortized Cost" vs "Measured at Amortized Cost",
+        # "Supplier Finance Programs" vs "Liabilities—Supplier Finance Programs",
+        # "Employee Stock Purchase Plans" vs "Employee Share Purchase Plans".
+        if n.startswith(parent):
+            n = n[len(parent):]
+        for h in have_titles:
+            if h == n or h.endswith(" " + n) or n.endswith(" " + h):
+                return True
+            a, b = set(h.split()), set(n.split())
+            if len(a & b) / len(a | b) >= 0.6:
+                return True
+        return False
+
+    missing = []
+    for name in names:
+        n = norm_title(name)
+        if present(n):
+            continue
+        general = SUBTOPIC_ALIASES.get(n) or title_to_topic.get(n) or title_to_topic.get(norm_title(name.split("—")[0]))
+        if general and general in have_codes:
+            continue
+        code = f"{doc['topic']}-{general}" if general and general != doc["topic"] else None
+        missing.append({"code": code, "title": name})
+    return pid, missing
+
+
+def load_docs():
+    """Parse every Topic file, then merge any re-exported subtopics from markdown/supplements/."""
+    docs, sources = {}, {}
+    for path in sorted(glob.glob(os.path.join(MD_DIR, "ASC_*.md"))):
+        doc = asc_parse.parse_topic(path)
+        if doc["supplement"]:
+            fail(f"{os.path.basename(path)} is a Subtopic export — move it to markdown/supplements/")
+        if doc["topic"] in docs:
+            fail(f"duplicate Topic {doc['topic']} ({os.path.basename(path)})")
+        docs[doc["topic"]], sources[doc["topic"]] = doc, path
+    merged = {}
+    for path in sorted(glob.glob(os.path.join(SUPPLEMENT_DIR, "*.md"))):
+        sup = asc_parse.parse_topic(path)
+        if sup["topic"] not in docs:
+            fail(f"supplement {os.path.basename(path)} is for Topic {sup['topic']}, which has no Topic file")
+        for code in asc_parse.merge_subtopics(docs[sup["topic"]], sup, path):
+            merged.setdefault(sup["topic"], []).append(f"{sup['topic']}-{code}")
+    return docs, sources, merged
+
+
+def card_texts(card):
+    yield card["tag"]
+    yield card["truth"]
+    yield from card["analogy"]
+    yield from card["recog"]
+    yield from card["meas"]
+    for title, scenario, _lines, memo in card["je"]:
+        yield from (title, scenario, memo)
+    for q, a in card["traps"]:
+        yield from (q, a)
+    if card.get("lens"):
+        yield card["lens"]
+
+
+def check_prose_refs(topic, card, ctx):
+    """Every Codification reference in a card's prose must exist; returns refs outside the export."""
+    outside = set()
+    for text in card_texts(card):
+        for m in PROSE_REF.finditer(text):
+            top, sub, sec, num = m.groups()
+            if top not in ctx["topics"]:
+                continue  # not a Codification number (e.g., "2016-02" in an ASU name)
+            code = f"{top}-{sub}"
+            if code in ctx["subtopics"]:
+                if sec and num and f"{code}-{sec}-{num}" not in ctx["paragraphs"]:
+                    fail(f"ASC {topic}: card text cites {code}-{sec}-{num}, which is not in the official text")
+            elif code in ctx["missing"] or code in SUPERSEDED_REFS:
+                outside.add(m.group(0))
+            else:
+                fail(f"ASC {topic}: card text cites {m.group(0)}, which is neither in the export nor a known missing subtopic")
+    return sorted(outside)
+
+
+def load_review():
+    try:
+        with open(REVIEW, encoding="utf-8") as fh:
+            review = json.load(fh)
+    except FileNotFoundError:
+        review = {}
+    for topic, r in review.items():
+        if r.get("status") not in REVIEW_STATUSES:
+            fail(f"review.json: ASC {topic} has status {r.get('status')!r}; use one of {REVIEW_STATUSES}")
+    return review
+
+
+def write_review_sheet(cards):
+    """scripts/output/asc_review_sheet.csv — one row per card for a CPA to review and sign off."""
+    import csv
+
+    fields = [
+        "Topic", "Title", "Real estate", "Review status", "Reviewed by", "Review date", "Review notes",
+        "First-principles truth", "Recognition triggers", "Measurement", "Journal entries", "Audit traps",
+        "Cited paragraphs", "References outside the source export", "Reviewer comments", "Sign-off (name, date)",
+    ]
+    os.makedirs(os.path.dirname(REVIEW_SHEET), exist_ok=True)
+    with open(REVIEW_SHEET, "w", encoding="utf-8-sig", newline="") as fh:
+        w = csv.writer(fh, lineterminator="\n")
+        w.writerow(fields)
+        for c in cards:
+            m = c["measurement"]
+            jes = []
+            for je in c["journalEntries"]:
+                lines = "; ".join(
+                    f"{'DR' if 'debit' in l else 'CR'} {l['account']} {l.get('debit', l.get('credit')):,}" for l in je["lines"]
+                )
+                jes.append(f"{je['label']}: {lines}")
+            w.writerow([
+                c["topic"], c["title"], c["re"] or "", c["review"]["status"], c["review"].get("by", ""),
+                c["review"].get("date", ""), c["review"].get("notes", ""), c["truth"],
+                "\n".join(f"• {r}" for r in c["recognition"]),
+                f"Basis: {m['basis']}\nInitial: {m['initial']}\nSubsequent: {m['subsequent']}",
+                "\n".join(jes), "\n".join(f"Q: {t['q']}\nA: {t['a']}" for t in c["auditTraps"]),
+                ", ".join(p["id"] for p in c["keyParagraphs"]), ", ".join(c["outsideRefs"]), "", "",
+            ])
 
 
 def is_live(text):
@@ -134,13 +323,14 @@ def journal_entries(topic, entries):
     return out
 
 
-def build_topic(path, declared):
-    doc = asc_parse.parse_topic(path)
+def build_topic(doc, path, declared, missing, related_missing, ref_ctx, review):
     topic = doc["topic"]
     card = CARDS.get(topic)
     if card is None:
         fail(f"ASC {topic}: no curated card in scripts/asc_kb")
     validate_card(topic, card)
+    outside_refs = check_prose_refs(topic, card, ref_ctx)
+    review = review or {"status": "ai-draft"}
 
     para_index = {}  # id -> (subtopic, section, block)
     outline = []
@@ -234,7 +424,11 @@ def build_topic(path, declared):
         "outline": outline,
         "glossary": glossary,
         "stats": stats,
-        "source": os.path.relpath(path, ROOT),
+        "missingSubtopics": missing,
+        "relatedMissing": related_missing,
+        "outsideRefs": outside_refs,
+        "review": review,
+        "source": os.path.relpath(path, ROOT).replace(os.sep, "/"),
     }
 
     index_entry = {
@@ -247,9 +441,13 @@ def build_topic(path, declared):
         "aliases": card["alias"],
         "subtopics": [f"{s['code']} {s['title']}" for s in doc["subtopics"]],
         "paragraphs": stats["paragraphs"],
+        "traps": len(card["traps"]),
         "words": words,
         "sourceSubtopics": stats["subtopics"],
         "declaredSubtopics": stats["declaredSubtopics"],
+        "review": review["status"],
+        "missing": [f"{m['code'] or '—'} {m['title']}" for m in missing],
+        "relatedMissing": related_missing,
     }
 
     text = {
@@ -264,7 +462,7 @@ def build_topic(path, declared):
 
 def dump(path, obj, pretty_list=False):
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w", encoding="utf-8") as fh:
+    with open(path, "w", encoding="utf-8", newline="\n") as fh:
         if pretty_list:
             fh.write("[\n")
             fh.write(",\n".join(json.dumps(o, ensure_ascii=False, separators=(",", ":")) for o in obj))
@@ -285,34 +483,155 @@ def write_importers(topics, series_keys):
     ]
     for s in series_keys:
         lines.append(f"  '{s}': () => import('./asc_{s}s.json'),")
-    lines += ["};", "", "export const TEXT_IMPORTERS = {"]
+    lines += ["};", "", "export const GLOSSARY_IMPORTER = () => import('./ascGlossary.json');", "", "export const TEXT_IMPORTERS = {"]
     for t in topics:
         lines.append(f"  '{t}': () => import('./text/asc_{t}.json'),")
     lines += ["};", ""]
     path = os.path.join(OUT_DIR, "ascImporters.js")
-    with open(path, "w", encoding="utf-8") as fh:
+    with open(path, "w", encoding="utf-8", newline="\n") as fh:
         fh.write("\n".join(lines))
 
 
+# Pre-Codification source tags embedded in the Master Glossary export ("FAS 087, paragraph 23").
+LEGACY_SOURCE = re.compile(
+    r"\b(?:FAS \d+(?:\(R\))?|SOP \d{2}-\d+|ASU \d{4}-\d+|EITF (?:D-)?\d{2}-\d+[A-Z]?|APB \d+|ARB \d+|"
+    r"FIN \d+(?:\(R\))?|FTB \d{2}-\d+|AAG [A-Z]{3}(?:\(\d{4}\))?|QA \d+(?:/\d+)?|SX [\d.-]*\d|DIG [A-Z]\d+|PB \d+|CON \d+|"
+    r"FSP [A-Z]+[ -]?[\w-]+|TB \d{2}-\d+), (?:paragraph|footnote|Appendix|Glossary)(?: [A-Za-z0-9.-]+)?"
+)
+
+
+def _definition_text(lines):
+    out = []
+    for line in lines:
+        if isinstance(line, str):
+            out.append(line.replace("\t", ""))
+        else:
+            out.append("\n".join(" · ".join(c for c in row if c) for row in line["tbl"]))
+    return "\n".join(out)
+
+
+def build_glossary(docs):
+    """src/data/asc/ascGlossary.json: every term defined in a Topic glossary (current wording, with the
+    subtopics that define it) plus Master Glossary terms not defined in any Topic in the export."""
+    terms = {}
+    for t in sorted(docs):
+        for st in docs[t]["subtopics"]:
+            code = f"{t}-{st['code']}"
+            for sec in st["sections"]:
+                for b in sec["blocks"]:
+                    if "g" not in b:
+                        continue
+                    text = _definition_text(b["t"])
+                    entry = terms.setdefault(norm_title(b["g"]), {"term": b["g"], "defs": [], "master": None})
+                    same = next((d for d in entry["defs"] if d["text"] == text), None)
+                    if same is None:
+                        entry["defs"].append({"text": text, "topics": [code]})
+                    elif code not in same["topics"]:
+                        same["topics"].append(code)
+    master_only = 0
+    try:
+        with open(MASTER_GLOSSARY, encoding="utf-8") as fh:
+            raw = fh.read()
+    except FileNotFoundError:
+        raw = ""
+    for m in re.finditer(r"^### (.+?)\s*\n(.*?)(?=^#{2,3} |\Z)", raw, re.M | re.S):
+        term = asc_parse.clean_inline(m.group(1))
+        key = norm_title(term)
+        if key in terms:
+            continue
+        body = asc_parse.clean_inline(" ".join(m.group(2).split()))
+        sources = [src.group(0) for src in LEGACY_SOURCE.finditer(body)]
+        text = re.sub(r"\s{2,}", " ", LEGACY_SOURCE.sub(" ", body)).strip()
+        text = re.sub(r"\s+([.,;:])", r"\1", text)
+        if not text:
+            continue
+        terms[key] = {"term": term, "defs": [], "master": {"text": text, "sources": sources}}
+        master_only += 1
+    ordered = sorted(terms.values(), key=lambda e: e["term"].casefold())
+    size = dump(os.path.join(OUT_DIR, "ascGlossary.json"), {"terms": ordered})
+    return len(ordered), master_only, size
+
+
+def write_missing_doc(docs, missing_by_topic, overview_para):
+    """asc_codification/MISSING_SUBTOPICS.md — the re-export checklist, real-estate Topics first."""
+    re_first = sorted(docs, key=lambda t: (CARDS[t].get("re") != "core", not CARDS[t].get("re"), t))
+    rows = [(t, m) for t in re_first for m in missing_by_topic[t]]
+    lines = [
+        "# Subtopics missing from the markdown export",
+        "",
+        "GENERATED by scripts/build_asc_codification.py — do not edit.",
+        "",
+        "Each Topic's Overview paragraph lists the subtopics FASB files under it. The ones below are named",
+        "there but are not in `asc_codification/markdown/`. To add one, export it from the FASB",
+        "Codification in the same markdown format (a Subtopic export starts with",
+        "`# FASB ASC Subtopic 970-340: Other Assets and Deferred Costs`, or re-export the whole Topic),",
+        "save it in `asc_codification/markdown/supplements/` and run `npm run build:asc`. The generator",
+        "merges it into its Topic and the app shows it in the Official Codification Text tab.",
+        "",
+        f"{len(rows)} subtopics across {len({t for t, _ in rows})} Topics. Real-estate Topics are listed first.",
+        "",
+        "| Subtopic | Title | Topic | Real estate | Listed in |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for t, m in rows:
+        tier = {"core": "core", "support": "yes"}.get(CARDS[t].get("re"), "")
+        lines.append(f"| {m['code'] or '—'} | {m['title']} | {t} {docs[t]['title']} | {tier} | {overview_para[t]} |")
+    with open(MISSING_DOC, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write("\n".join(lines) + "\n")
+
+
 def main():
-    files = sorted(glob.glob(os.path.join(MD_DIR, "ASC_*.md")))
-    if not files:
+    docs, sources, merged = load_docs()
+    if not docs:
         fail(f"no markdown files in {MD_DIR}")
     declared = declared_subtopics()
+
+    # Map general Topic titles to numbers (current standard wins over a superseded namesake, e.g. 842 over 840).
+    title_to_topic = {}
+    for t in sorted(docs, key=lambda t: bool(CARDS.get(t, {}).get("legacy")), reverse=True):
+        title_to_topic[norm_title(docs[t]["title"])] = t
+    missing_by_topic, overview_para, related = {}, {}, {}
+    for t, doc in docs.items():
+        overview_para[t], missing_by_topic[t] = missing_subtopics(doc, title_to_topic)
+        for m in missing_by_topic[t]:
+            general = m["code"].split("-")[1] if m["code"] else None
+            if general in docs and general != t:
+                related.setdefault(general, []).append(m["code"])
+
+    ref_ctx = {"topics": set(docs), "subtopics": set(), "paragraphs": set(), "missing": set()}
+    for t, doc in docs.items():
+        ref_ctx["missing"].update(m["code"] for m in missing_by_topic[t] if m["code"])
+        for st in doc["subtopics"]:
+            ref_ctx["subtopics"].add(f"{t}-{st['code']}")
+            for sec in st["sections"]:
+                ref_ctx["paragraphs"].update(b["p"] for b in sec["blocks"] if "p" in b)
+    review = load_review()
 
     index, by_series, report = [], {}, []
     text_bytes = 0
     seen = set()
-    for path in files:
-        topic, master, entry, text, stats = build_topic(path, declared)
-        if topic in seen:
-            fail(f"duplicate Topic {topic}")
+    for topic in sorted(docs):
+        _, master, entry, text, stats = build_topic(
+            docs[topic], sources[topic], declared, missing_by_topic[topic], sorted(related.get(topic, [])), ref_ctx,
+            review.get(topic),
+        )
         seen.add(topic)
         index.append(entry)
         by_series.setdefault(master["series"], {})[topic] = master
         size = dump(os.path.join(TEXT_DIR, f"asc_{topic}.json"), text)
         text_bytes += size
-        report.append({"topic": topic, "title": master["title"], "file": master["source"], "textBytes": size, **stats})
+        report.append(
+            {
+                "topic": topic,
+                "title": master["title"],
+                "file": master["source"],
+                "textBytes": size,
+                **stats,
+                "missingSubtopics": [m["code"] or m["title"] for m in missing_by_topic[topic]],
+                "overviewParagraph": overview_para[topic],
+                "supplementsMerged": merged.get(topic, []),
+            }
+        )
 
     missing = sorted(set(CARDS) - seen)
     if missing:
@@ -350,17 +669,28 @@ def main():
         "seriesBytes": series_bytes,
         "textBytes": text_bytes,
         "topicsWithPartialSourceSubtopics": [r["topic"] for r in report if r["declaredSubtopics"] > r["subtopics"]],
+        "missingSubtopics": sum(len(v) for v in missing_by_topic.values()),
+        "supplementsMerged": sorted(c for v in merged.values() for c in v),
+        "review": {st: sum(1 for c in (c for s in by_series.values() for c in s.values()) if c["review"]["status"] == st) for st in REVIEW_STATUSES},
     }
     os.makedirs(os.path.dirname(REPORT), exist_ok=True)
-    with open(REPORT, "w", encoding="utf-8") as fh:
+    with open(REPORT, "w", encoding="utf-8", newline="\n") as fh:
         json.dump({"totals": totals, "topics": report}, fh, ensure_ascii=False, indent=1)
         fh.write("\n")
+
+    write_missing_doc(docs, missing_by_topic, overview_para)
+    glossary_terms, master_only, glossary_bytes = build_glossary(docs)
+    write_review_sheet([c for s in series_keys for c in dict(sorted(by_series[s].items())).values()])
 
     print(f"ASC Codex: {totals['topics']} Topics, {totals['paragraphs']:,} paragraphs "
           f"({totals['duplicatesCollapsed']:,} export duplicates collapsed), {totals['journalEntries']} journal entries, "
           f"{totals['auditTraps']} audit traps, {totals['realEstateTopics']} real-estate Topics")
     print(f"  index {index_bytes / 1024:.1f} KB · series cards {sum(series_bytes.values()) / 1024:.0f} KB · "
           f"official text {text_bytes / 1e6:.1f} MB in {len(index)} files")
+    print(f"  {totals['missingSubtopics']} listed subtopics are not in the export (see asc_codification/MISSING_SUBTOPICS.md)"
+          + (f"; merged supplements: {', '.join(totals['supplementsMerged'])}" if totals["supplementsMerged"] else ""))
+    print(f"  glossary: {glossary_terms:,} terms ({master_only} from the Master Glossary only), {glossary_bytes / 1024:.0f} KB")
+    print("  review: " + ", ".join(f"{n} {st}" for st, n in totals["review"].items()) + " (scripts/output/asc_review_sheet.csv)")
 
 
 if __name__ == "__main__":

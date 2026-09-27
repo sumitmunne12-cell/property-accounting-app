@@ -86,7 +86,11 @@ Screen ids are derived from manual topic titles, so they only change when the ma
 ```bash
 npm run build:asc   # python3 scripts/build_asc_codification.py
 npm test            # includes scripts/test/asc.test.mjs
+npm run test:py     # parser tests (scripts/test/test_asc_parse.py)
 ```
+
+The generator writes POSIX paths and LF line endings, so a build on Windows produces the same
+files as one on macOS or Linux.
 
 ## Inputs
 
@@ -94,11 +98,34 @@ npm test            # includes scripts/test/asc.test.mjs
 | --- | --- |
 | `asc_codification/markdown/ASC_NNN_*.md` | One file per Topic. `scripts/asc_parse.py` splits it into subtopics → sections (00 Status, 05 Overview, 15 Scope, 20 Glossary, 25 Recognition, 30/35 Measurement, …, S99 SEC Materials) → headings, numbered paragraphs, glossary terms and tables. It strips link markup and glossary tooltips, collapses the export's back-to-back duplicate of every paragraph (18,072 of them; when the two copies differ the longer pending-content copy is kept), and joins inline cross-references ("see paragraphs 842-10-35-4 through 35-5") back into their sentences. No codification wording is dropped. |
 | `scripts/asc_kb/` | Curated first-principles card for every Topic: economic truth, everyday analogy, recognition triggers, measurement basis, balanced journal entries, audit & interview traps, the property-accounting lens and cited key paragraphs. |
-| `asc_codification/README.md` | Declared subtopic counts, used only for the coverage note. The markdown export holds the core subtopics of each Topic; industry cross-reference subtopics (e.g., 970-340, 805-740) are not in it, and the app says so on the Official Text tab. |
+| `asc_codification/markdown/supplements/*.md` | Optional FASB exports of subtopics the main library lacks (a Subtopic export starting `# FASB ASC Subtopic 970-340: …`, or a whole-Topic re-export). Each is merged into its Topic; a subtopic already present is replaced only when the supplement has more paragraphs. |
+| `asc_codification/glossary/Master_Glossary.md` | FASB Master Glossary. Terms no Topic in the export defines are added to the app glossary; legacy source tags (FAS, EITF, SOP, QA, SX …) are listed apart from the definition. |
+| `scripts/asc_kb/review.json` | Who has checked each card: `{"842": {"status": "cpa-reviewed", "by": "Jane Doe, CPA", "date": "2026-10-01", "notes": "…"}}`. Status is `ai-draft`, `self-reviewed` or `cpa-reviewed`; the card footer in the app shows it. |
+| `asc_codification/README.md` | Declared subtopic counts, used only for the coverage note. |
 
 The build fails if a Topic has no card or a card field is missing, a journal entry does not balance,
-the economic truth is not 2–3 sentences, a real-estate card has no property lens, or a cited
-paragraph does not exist in the parsed official text.
+the economic truth is not 2–3 sentences, a real-estate card has no property lens, a cited
+paragraph does not exist in the parsed official text, or a Codification number written anywhere in
+a card's prose (triggers, measurement, entries, traps, lens) is neither in the official text nor a
+known missing subtopic. References to missing subtopics are listed on the card as "outside the
+export".
+
+### Missing subtopics
+
+Each Topic's Overview paragraph lists the subtopics FASB files under it (e.g., 970-10-05-2). The
+generator compares that list with what the export contains and writes
+`asc_codification/MISSING_SUBTOPICS.md` — every subtopic the export lacks (225 across 33 Topics,
+real-estate ones first: 970-340, 970-360, 970-835, 974-842, 805-740, …). The Official Text tab
+shows the same list. To fill a gap, export the subtopic from the FASB Codification, save it in
+`asc_codification/markdown/supplements/` and rebuild.
+
+### Card review (CPA sign-off)
+
+`scripts/output/asc_review_sheet.csv` (UTF-8, opens in Excel) has one row per card — truth,
+triggers, measurement, journal entries, traps, cited paragraphs — plus empty "Reviewer comments"
+and "Sign-off" columns. After a CPA signs a card off, set its entry in `scripts/asc_kb/review.json`
+to `cpa-reviewed` with their name and date and rebuild; until then the app labels the card as an
+AI-drafted educational synthesis.
 
 ## Outputs and how the app loads them
 
@@ -107,6 +134,8 @@ paragraph does not exist in the parsed official text.
 | `src/data/asc/ascIndex.json` | Series table plus one compact entry per Topic (number, title, series, real-estate tier, legacy flag, tagline, aliases, subtopic titles, paragraph/word counts) — about 50 KB. | At startup (search, lists, screen links) |
 | `src/data/asc/asc_100s.json` … `asc_900s.json` | Master cards per FASB series (9 files, 620 KB in total). | `import()` the first time a card in that series is opened |
 | `src/data/asc/text/asc_NNN.json` | Complete official text per Topic (99 files, 13.3 MB; the largest, 815, is 1.7 MB). | `import()` only when the card's Official Text tab is opened |
+| `src/data/asc/ascGlossary.json` | FASB glossary: 1,331 terms — each Topic's current definitions (with the subtopics that define them) plus 193 Master Glossary terms no Topic defines (580 KB). | `import()` on the first glossary search, or when the Official Text tab needs a definition |
+| `asc_codification/MISSING_SUBTOPICS.md`, `scripts/output/asc_review_sheet.csv` | See above. | — |
 | `src/data/asc/ascImporters.js` | Static `import()` maps so Metro emits every file above as its own chunk. | — |
 | `scripts/output/asc_coverage.json` | Per-Topic report: subtopics (source vs. declared), paragraphs (live vs. superseded), glossary terms, tables, pending-content paragraphs, words, text size. | — |
 
@@ -117,3 +146,16 @@ tolerance, Codification references such as `842-20-25-1`) and the Real Estate / 
 real-estate rules for 842, 970, 606, 360 and 450. The unit tests fail if any ASC file is loaded at
 import time, a Topic is missing, a journal entry does not balance, a cited paragraph is missing from
 the official text, or a core property standard links to fewer than 40 screens.
+
+Other places the Codex surfaces in the app:
+
+- **Close Cockpit and exception playbooks** — `src/data/gaapLinksData.js` maps every close task
+  and triage playbook to the Topics that govern it (the tests check every id and Topic).
+- **Triage & Search** — Topic and paragraph results (`842`, `lease`, `842-20-25-2`) and FASB
+  glossary terms, alongside manuals, exceptions and tasks.
+- **Official Text tab** — defined terms are underlined; tapping one opens its definition.
+- **Study mode** — every audit & interview trap is a flashcard. `src/utils/studyEngine.js` is a
+  Leitner scheduler (reviews after 1, 3, 7, 14 and 30 days; box 4+ counts as mastered); progress
+  and ☆ saved Topics are stored on the device (`@rp_asc_study_v1` in AsyncStorage). A card's id is
+  a hash of its question, so rewording an answer keeps progress but rewording the question
+  starts it fresh.

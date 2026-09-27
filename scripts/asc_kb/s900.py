@@ -363,7 +363,7 @@ C(
     traps=[
         ("Is every advance an asset?", "No — only if recovery is reasonably assured based on past performance and popularity."),
         ("How are sales-based royalties recognized by the licensor?", "When the later of the sale or usage occurs and the performance obligation is satisfied (606 royalty exception)."),
-        ("Source note", "The library contains the Overall subtopic only; industry subtopics are referenced in 928-10-05-1."),
+        ("Is the cost of producing a record master capitalized?", "Only the portion expected to be recovered from future sales, based on past performance and current popularity; the rest is expensed. The detailed rules sit in the music industry subtopics, which the source export does not include."),
     ],
     cites=["928-10-05-1"],
 )
@@ -895,6 +895,7 @@ C(
         "Project costs clearly associated with acquisition, development and construction are capitalized; indirect costs capitalized only if clearly related to projects under development.",
         "Amenities: costs in excess of anticipated proceeds are allocated as common costs to the units benefited.",
         "Incidental operations: net revenue reduces capitalized costs; net costs in excess of revenue are expensed (not capitalized).",
+        "Costs to rent a rental project (models and their furnishings, rental facilities, semipermanent signs, grand openings, unused brochures, rent-up overhead) are capitalized when related to and recoverable from future rental operations, then amortized over the period benefited; advertising follows 720-35 (970-340-25-16, 970-340-35-2 — not in the source export).",
         "Rental projects: capitalize costs until substantially complete and held available for occupancy (no later than one year from cessation of major construction), then expense carrying costs.",
         "Source note: the library contains 970-10 (overview, scope and syndication/project-cost scope); the detailed rules live in 970-340, 970-360 and 970-835, which are referenced there (970-10-15-11).",
     ],
@@ -917,6 +918,12 @@ C(
             "Depreciation begins; carrying costs for this building are now expensed.",
         ),
         (
+            "Capitalize rent-up costs of a new rental project",
+            "During lease-up the owner furnishes two model units ($36,000) and hosts a grand opening ($14,000); both relate to and are recoverable from future rental operations.",
+            [("DR", "Deferred rent-up costs", 50000), ("CR", "Accounts payable", 50000)],
+            "Amortize over the period benefited (970-340-35-2) and expense any amount not recoverable. Paid advertising is expensed under 720-35.",
+        ),
+        (
             "Preacquisition option cost expensed after deal falls through",
             "A $75,000 purchase-option deposit and $30,000 of zoning studies were capitalized; the acquisition is abandoned.",
             [("DR", "Abandoned project costs (expense)", 105000), ("CR", "Preacquisition costs", 105000)],
@@ -926,7 +933,7 @@ C(
     traps=[
         ("Can property taxes on land held for future development with no activity be capitalized?", "No — taxes and insurance are capitalized only while development activities are in progress; land simply held is carried without capitalizing carrying costs (they are expensed)."),
         ("When does capitalization stop on a rental project?", "When the project is substantially completed and held available for occupancy — no later than one year after major construction activity ends — even if lease-up is slow."),
-        ("Are leasing and marketing costs for a new building capitalized?", "Generally no — advertising and start-up costs are expensed (720); only costs directly related to construction are capitalized. Model units/furnishings follow their own analysis."),
+        ("Are rent-up costs for a new building capitalized?", "Partly. Costs to rent a rental project that relate to and are recoverable from future rental operations — model units and their furnishings, rental facilities, semipermanent signs, grand openings, unused rental brochures, rent-up overhead — are capitalized and amortized over the period benefited (970-340-25-16, 970-340-35-2); costs of current rental operations are expensed. Advertising follows 720-35. These paragraphs don't apply when the predominant rental period is under one month (970-10-15-9)."),
         ("How is net income from a parking lot operated on the site before development (incidental operations) treated?", "Net incidental revenue reduces capitalized project costs; net losses are expensed — never capitalized as 'negative income'."),
         ("Why can't my auditor find 970-340 in our library?", "The source export includes only 970-10; 970-340/360/835 content is referenced by 970-10-15-11 and must be read in the full FASB Codification."),
     ],
@@ -1042,7 +1049,7 @@ C(
     traps=[
         ("Is the installment method still used for GAAP?", "No — superseded by ASC 606; collectibility is assessed at contract inception."),
         ("How are promised improvements handled?", "As performance obligations (or costs to fulfill) — revenue allocated to them is deferred until performed."),
-        ("Source note", "The library holds only 976-10 overview/scope content."),
+        ("A lot buyer pays 5% down and the developer's default rate is high. Is there a sale?", "Only if collection of substantially all the consideration is probable (606-10-25-1). If not, no contract exists yet: cash received is a liability until the criteria are met, or until the contract is terminated and the payment is nonrefundable."),
     ],
     lens="Multifamily developers rarely sell retail lots, but master-planned communities that sell land parcels to homebuilders use the same 606 collectibility and improvement-obligation logic.",
     cites=["976-10-05-2"],
@@ -1079,7 +1086,7 @@ C(
     traps=[
         ("Are timeshare defaults bad-debt expense?", "No — estimated uncollectibility is a reduction of revenue under the Topic's model."),
         ("How are inventory costs relieved?", "Relative sales value method, reflecting expected recoveries of repossessed intervals."),
-        ("Are selling and marketing costs capitalized?", "Generally expensed as incurred; limited costs related to unsold intervals may be deferred when directly tied to future sales."),
+        ("Are selling and marketing costs capitalized?", "Commissions that are incremental to obtaining a sales contract are capitalized under 340-40 (or expensed under the one-year practical expedient); other selling and marketing costs are expensed as incurred."),
     ],
     lens="Operators that convert apartment buildings to vacation-ownership or short-term rental programs meet time-sharing concepts; the phase-by-phase and seller-financing logic mirrors condo-conversion sell-outs.",
     cites=["978-10-25-1"],

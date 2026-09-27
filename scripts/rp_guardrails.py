@@ -192,7 +192,7 @@ g('ar_nsf', 'NACHA / State NSF Fee Law',
   'Excess NSF fees violate state law and invite consumer claims. NSFs posted in the wrong period break the bank reconciliation.')
 
 g('ar_writeoff', 'US GAAP / IRS / Consumer Protection',
-  'ASC 842-30-35-3 (operating lease collectibility); IRC § 166 (bad debts); FDCPA 15 U.S.C. § 1692 & FCRA § 1681s-2 (collections/reporting)',
+  'ASC 842-30-25-12 & 25-13 (operating lease collectibility); IRC § 166 (bad debts); FDCPA 15 U.S.C. § 1692 & FCRA § 1681s-2 (collections/reporting)',
   'When a resident balance is not probable of collection, lease income is limited to cash received, and uncollectible balances are written off per policy after applying deposits. Accounts sent to collection agencies must be accurate, because agencies and credit reporting are regulated.',
   'Overstated receivables misstate income. Inaccurate balances reported to collectors or bureaus can create FDCPA/FCRA liability, and inconsistent write-off policy is an audit finding.')
 
@@ -222,7 +222,7 @@ g('ar_customer', 'Fair Housing / Consumer Privacy',
   'Inconsistent treatment can support fair-housing claims, and exposed personal data triggers breach-notification duties and regulatory penalties.')
 
 g('ar_aging', 'US GAAP / SOX 404',
-  'ASC 842-30-35-3 (collectibility); SOX 404 (subledger reconciliation)',
+  'ASC 842-30-25-12 & 25-13 (collectibility); SOX 404 (subledger reconciliation)',
   'The receivable aging must equal the A/R control account, and collectibility must be assessed each period. Balances not probable of collection are reserved or written off.',
   'An unreconciled or stale aging overstates receivables and income. Auditors test aging accuracy and the reserve methodology.')
 

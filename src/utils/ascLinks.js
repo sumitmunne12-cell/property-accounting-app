@@ -18,6 +18,8 @@ export const LINK_REASONS = {
   capital: 'Capital project / development cost screen',
   keyword: 'Screen subject matches this standard',
   module: 'Module governed by this standard',
+  close: 'Standard that governs this close step',
+  exception: 'Standard behind this exception and its adjusting entries',
 };
 
 const RULES = [
@@ -94,4 +96,14 @@ export function ascLinksForCitation(code, { limit = 5 } = {}) {
     const e = getAscEntry(topic);
     return { topic, title: e.title, re: e.re, reason: 'cited' };
   });
+}
+
+/** Links for a curated Topic list (Close Cockpit tasks, exception playbooks). */
+export function ascLinksForTopics(topics, reason) {
+  return (topics || [])
+    .filter((t) => getAscEntry(t))
+    .map((topic) => {
+      const e = getAscEntry(topic);
+      return { topic, title: e.title, re: e.re, reason };
+    });
 }

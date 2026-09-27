@@ -17,11 +17,20 @@ import { GLOSSARY_TERMS } from '../data/glossaryData';
 import { PDF_CATALOG } from '../data/pdfCatalogData';
 import { triggerHaptic } from '../utils/haptics';
 import { searchScreens, SCREEN_COUNT } from '../utils/screenIndex';
+import { searchAsc, ASC_TOPIC_COUNT } from '../utils/ascIndex';
 import useDebouncedValue from '../utils/useDebouncedValue';
 import ExceptionTriageWizard from './ExceptionTriageWizard';
+import { TopicBadge } from './gaap/AscCardView';
+import { AscCardModal } from './gaap/GaapButton';
+import { GlossaryTermModal } from './gaap/GlossaryTerm';
+import { useAscGlossary } from '../utils/useAscData';
+import { searchGlossary } from '../utils/ascGlossary';
 
 const MAX_SCREEN_RESULTS = 50;
 const MAX_GLOSSARY_RESULTS = 40;
+const MAX_ASC_RESULTS = 8;
+const MAX_FASB_TERMS = 12;
+const RE_LABEL = { core: 'CORE RE', support: 'REAL ESTATE' };
 
 export default function CommandSearch({ onSelectTask, onOpenScreen }) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -29,6 +38,10 @@ export default function CommandSearch({ onSelectTask, onOpenScreen }) {
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('All'); // 'All' | 'Manuals' | 'Exceptions' | 'Tasks' | 'Screens' | 'Glossary'
   const [expandedExceptionId, setExpandedExceptionId] = useState('ex_po_variance');
   const [expandedManualId, setExpandedManualId] = useState(null);
+  const [ascOpen, setAscOpen] = useState(null); // { topic, paragraph }
+  const [fasbTerm, setFasbTerm] = useState(null); // FASB glossary entry in the sheet
+  // The FASB glossary (~0.6 MB) loads the first time something is typed.
+  const { glossary: fasbGlossary } = useAscGlossary(Boolean(debouncedQuery.trim()));
 
   const normalizedQuery = debouncedQuery.trim().toLowerCase();
 
@@ -73,6 +86,17 @@ export default function CommandSearch({ onSelectTask, onOpenScreen }) {
   );
   const filteredScreens = screenSearch.results;
 
+  // US GAAP Codex: Topic number, title, alias ("VIE", "ROU") or a paragraph reference ("842-20-25-1")
+  const ascSearch = useMemo(
+    () => (debouncedQuery.trim() ? searchAsc(debouncedQuery, { limit: MAX_ASC_RESULTS }) : { results: [], total: 0, reference: null }),
+    [debouncedQuery]
+  );
+
+  const fasbSearch = useMemo(
+    () => (fasbGlossary && debouncedQuery.trim() ? searchGlossary(fasbGlossary, debouncedQuery, { limit: MAX_FASB_TERMS }) : { results: [], total: 0 }),
+    [fasbGlossary, debouncedQuery]
+  );
+
   // Filter Glossary
   const filteredGlossary = useMemo(() => {
     if (!normalizedQuery) return [];
@@ -87,6 +111,17 @@ export default function CommandSearch({ onSelectTask, onOpenScreen }) {
 
   const show = (cat) => activeCategoryFilter === 'All' || activeCategoryFilter === cat;
   const sections = [];
+  if (show('ASC') && ascSearch.results.length) {
+    sections.push({
+      key: 'asc',
+      title: 'US GAAP Standards (ASC)',
+      icon: 'library',
+      color: COLORS.gold,
+      count: ascSearch.total,
+      note: ascSearch.reference && ascSearch.reference.paragraph ? `Opens paragraph ${ascSearch.reference.paragraph} in the official text.` : null,
+      data: ascSearch.results.map((e) => ({ key: `a:${e.topic}`, type: 'asc', e })),
+    });
+  }
   if (show('Manuals') && filteredManuals.length) {
     sections.push({ key: 'manuals', title: 'Matching RealPage PDF Manuals', icon: 'document-text', color: COLORS.info, count: filteredManuals.length, data: filteredManuals.map((doc) => ({ key: `m:${doc.id}`, type: 'manual', doc })) });
   }
@@ -105,6 +140,16 @@ export default function CommandSearch({ onSelectTask, onOpenScreen }) {
       count: screenSearch.total,
       note: screenSearch.total > MAX_SCREEN_RESULTS ? `Showing the best ${MAX_SCREEN_RESULTS} of ${screenSearch.total} matches — refine your search.` : null,
       data: filteredScreens.map((entry) => ({ key: `s:${entry.id}`, type: 'screen', entry })),
+    });
+  }
+  if ((show('ASC') || show('Glossary')) && fasbSearch.results.length) {
+    sections.push({
+      key: 'fasb',
+      title: 'FASB Glossary (ASC Definitions)',
+      icon: 'book',
+      color: COLORS.gold,
+      count: fasbSearch.total,
+      data: fasbSearch.results.map((g) => ({ key: `f:${g.term}`, type: 'fasb', g })),
     });
   }
   if (show('Glossary') && filteredGlossary.length) {
@@ -129,6 +174,8 @@ export default function CommandSearch({ onSelectTask, onOpenScreen }) {
     if (item.type === 'exception') return renderException(item.ex);
     if (item.type === 'task') return renderTask(item.t);
     if (item.type === 'screen') return renderScreen(item.entry);
+    if (item.type === 'asc') return renderAsc(item.e);
+    if (item.type === 'fasb') return renderFasbTerm(item.g);
     return renderGlossary(item.g);
   };
 
@@ -261,6 +308,46 @@ export default function CommandSearch({ onSelectTask, onOpenScreen }) {
     </TouchableOpacity>
   );
 
+  const renderAsc = (e) => (
+    <TouchableOpacity
+      style={styles.ascResultCard}
+      activeOpacity={0.7}
+      onPress={() => {
+        triggerHaptic('light');
+        setAscOpen({ topic: e.topic, paragraph: ascSearch.reference ? ascSearch.reference.paragraph || null : null });
+      }}
+      accessibilityLabel={`ASC ${e.topic} ${e.title}`}
+    >
+      <TopicBadge entry={e} />
+      <View style={styles.ascResultText}>
+        <Text style={styles.ascResultTitle} numberOfLines={1}>
+          {e.title}
+        </Text>
+        <Text style={styles.ascResultTag} numberOfLines={2}>
+          {e.tag}
+        </Text>
+        {e.re ? <Text style={styles.ascResultRe}>{RE_LABEL[e.re]}</Text> : null}
+      </View>
+      <Ionicons name="chevron-forward" size={16} color={COLORS.textMuted} />
+    </TouchableOpacity>
+  );
+
+  const renderFasbTerm = (g) => {
+    const codes = g.defs.flatMap((d) => d.topics);
+    const text = g.defs.length ? g.defs[0].text : g.master ? g.master.text : '';
+    return (
+      <TouchableOpacity style={styles.glossaryResultCard} onPress={() => setFasbTerm(g)} activeOpacity={0.7}>
+        <Text style={[styles.glossaryTerm, { color: COLORS.gold }]}>{g.term}</Text>
+        <Text style={styles.glossaryDef} numberOfLines={3}>
+          {text}
+        </Text>
+        <Text style={styles.glossaryContext}>
+          {codes.length ? `ASC ${codes.slice(0, 5).join(', ')}${codes.length > 5 ? ` +${codes.length - 5} more` : ''}` : 'FASB Master Glossary'}
+        </Text>
+      </TouchableOpacity>
+    );
+  };
+
   const renderGlossary = (g) => (
     <View style={styles.glossaryResultCard}>
       <Text style={styles.glossaryTerm}>{g.term}</Text>
@@ -274,7 +361,7 @@ export default function CommandSearch({ onSelectTask, onOpenScreen }) {
     </View>
   );
 
-  const categories = ['All', 'Manuals (57)', 'Exceptions', 'Tasks', 'Screens', 'Glossary'];
+  const categories = ['All', 'ASC', 'Manuals (57)', 'Exceptions', 'Tasks', 'Screens', 'Glossary'];
 
   return (
     <View style={styles.container}>
@@ -284,7 +371,7 @@ export default function CommandSearch({ onSelectTask, onOpenScreen }) {
           <Ionicons name="search" size={18} color={COLORS.textSecondary} style={styles.searchIcon} />
           <TextInput
             style={styles.searchInput}
-            placeholder={`Search ${SCREEN_COUNT.toLocaleString()} screens, 57 manuals, exceptions, terms…`}
+            placeholder={`Search ${SCREEN_COUNT.toLocaleString()} screens, ${ASC_TOPIC_COUNT} ASC standards, 57 manuals, terms…`}
             placeholderTextColor={COLORS.textMuted}
             value={searchQuery}
             onChangeText={(text) => setSearchQuery(text)}
@@ -345,10 +432,29 @@ export default function CommandSearch({ onSelectTask, onOpenScreen }) {
             <View style={styles.emptyState}>
               <Ionicons name="search-outline" size={40} color={COLORS.textMuted} />
               <Text style={styles.emptyTitle}>No matching items found</Text>
-              <Text style={styles.emptySubtitle}>Try searching for "AP", "Bank Rec", "Close", "Exception", or "GPR".</Text>
+              <Text style={styles.emptySubtitle}>Try searching for "AP", "Bank Rec", "Close", "Exception", "842" or "GPR".</Text>
             </View>
           ) : null
         }
+      />
+
+      <GlossaryTermModal
+        entry={fasbTerm}
+        onClose={() => setFasbTerm(null)}
+        onOpenTopic={(topic) => {
+          setFasbTerm(null);
+          setAscOpen({ topic, paragraph: null });
+        }}
+      />
+
+      <AscCardModal
+        visible={Boolean(ascOpen)}
+        topics={ascOpen ? [{ topic: ascOpen.topic }] : []}
+        topic={ascOpen ? ascOpen.topic : null}
+        paragraph={ascOpen ? ascOpen.paragraph : null}
+        onSelect={(topic) => setAscOpen({ topic, paragraph: null })}
+        onClose={() => setAscOpen(null)}
+        contextLabel="Triage & Search"
       />
     </View>
   );
@@ -806,6 +912,20 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginTop: 6,
   },
+  ascResultCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: COLORS.surface,
+    padding: 12,
+    borderRadius: 10,
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: `${COLORS.gold}40`,
+  },
+  ascResultText: { flex: 1, marginLeft: 11, marginRight: 6 },
+  ascResultTitle: { fontSize: 13.5, fontWeight: '700', color: COLORS.text },
+  ascResultTag: { fontSize: 11.5, color: COLORS.textSecondary, lineHeight: 16, marginTop: 2 },
+  ascResultRe: { fontSize: 9, fontWeight: '800', color: COLORS.success, letterSpacing: 0.6, marginTop: 4 },
   glossaryResultCard: {
     backgroundColor: COLORS.surface,
     padding: 12,
