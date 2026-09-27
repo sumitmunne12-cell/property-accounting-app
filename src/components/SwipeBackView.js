@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { StyleSheet, View, PanResponder, Platform } from 'react-native';
+import { StyleSheet, View, PanResponder } from 'react-native';
 import { triggerHaptic } from '../utils/haptics';
 
 /**

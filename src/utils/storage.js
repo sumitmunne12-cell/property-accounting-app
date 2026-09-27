@@ -9,6 +9,7 @@ const STORAGE_KEYS = {
   EXCEPTION_RESOLUTIONS: '@rp_exception_resolutions_v1',
   CLOSE_PROGRESS: '@rp_close_progress_v1',
   ASC_STUDY: '@rp_asc_study_v1',
+  COMPASS_PROGRESS: '@rp_compass_progress_v1',
 };
 
 export const getCompletedTasks = async () => {
@@ -157,4 +158,26 @@ export const saveAscStudy = async (study) => {
     console.error('Error saving GAAP study progress', e);
   }
   return study;
+};
+
+// Deduction Compass drill progress: { answered, correct, steps: { app, stage, submenu }, misses: { ruleOrExceptionId: n } }
+const EMPTY_COMPASS = { answered: 0, correct: 0, steps: { app: 0, stage: 0, submenu: 0 }, misses: {} };
+
+export const getCompassProgress = async () => {
+  try {
+    const json = await AsyncStorage.getItem(STORAGE_KEYS.COMPASS_PROGRESS);
+    return json ? { ...EMPTY_COMPASS, ...JSON.parse(json) } : EMPTY_COMPASS;
+  } catch (e) {
+    console.error('Error reading compass progress', e);
+    return EMPTY_COMPASS;
+  }
+};
+
+export const saveCompassProgress = async (progress) => {
+  try {
+    await AsyncStorage.setItem(STORAGE_KEYS.COMPASS_PROGRESS, JSON.stringify(progress));
+  } catch (e) {
+    console.error('Error saving compass progress', e);
+  }
+  return progress;
 };

@@ -17,7 +17,7 @@ import json
 import os
 import re
 import sys
-from collections import Counter, OrderedDict
+from collections import Counter, OrderedDict, defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,6 +25,7 @@ import rp_parse as P  # noqa: E402
 import rp_kb as K     # noqa: E402
 import rp_glossary as G  # noqa: E402
 import rp_guardrails as R  # noqa: E402
+import rp_compass as X  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MD_DIR = os.path.join(ROOT, 'manuals_markdown')
@@ -1072,6 +1073,76 @@ def write_search_index(built):
     return len(index), os.path.getsize(SEARCH_INDEX_JSON)
 
 
+COMPASS_INDEX_JSON = os.path.join(ROOT, 'src', 'data', 'compassIndex.json')
+COMPASS_RULES_JSON = os.path.join(ROOT, 'src', 'data', 'compassRules.json')
+COMPASS_REPORT_JSON = os.path.join(REPORT_DIR, 'compass_report.json')
+COMPASS_PARITY_JSON = os.path.join(REPORT_DIR, 'compass_parity.json')
+# Scenario phrasings the in-app matcher must resolve exactly like rp_compass.deduce (parity test).
+COMPASS_PARITY_SCENARIOS = [
+    'void a vendor check and restore the invoice',
+    'site entered the wrong invoice date and the batch is already posted',
+    'refund a resident security deposit after move-out',
+    'retainage invoice on a construction job',
+    'reverse a journal entry posted in a closed period',
+    'reconcile the operating bank account',
+    'record interest income the bank deposited',
+    'transfer cash from operating to reserve account',
+    'approve an invoice that is stuck in approval',
+    'import opening balances for a new property',
+    'set up a new vendor type',
+    'print the check register for last month',
+    'close the A/P subledger for the month',
+    'post monthly depreciation',
+    'add a draw to the construction job',
+    'create a purchase order for carpet replacement',
+    'enter a customer payment and deposit it',
+    'run the income statement for the owner package',
+    'create location groups for regional reporting',
+    'change the payment terms on a vendor invoice',
+    'record a bounced resident payment',
+    'write off a bad debt balance',
+    'accrue the utility bill we have not received',
+    'reclass a utility expense to repairs',
+    'amortize prepaid insurance',
+    'load open A/P invoices for an acquired property',
+    'invoice is stuck in approval',
+]
+
+
+def write_compass(built, all_screens):
+    """Boot-time compass index (parallel to searchIndex.json), the rules for the in-app matcher,
+    the scoring report and the Python/JS parity fixture."""
+    order = [scr for mid in APP_MODULE_ORDER for m, subs in built if m['id'] == mid for sm in subs for scr in sm['screens']]
+    apps = sorted({s['compass']['app'] for s in order if s['compass'].get('app')})
+    sections = list(X.SECTIONS)
+    stages = list(X.STAGES)
+    objects = [o['id'] for o in X.OBJECTS]
+    fits = ['exact', 'location', 'app', 'miss', 'unmatched']
+    kinds = ['menu', 'chapter', 'topic', 'none']
+    ix = lambda seq, v: seq.index(v) if v in seq else None  # noqa: E731
+    rows = []
+    for scr in order:
+        c = defaultdict(lambda: None, scr['compass'])
+        rows.append([ix(apps, c['app']), ix(list(X.TABS), c['tab']), ix(sections, c['section']), c['submenu'],
+                     ix(stages, c['stage']), ix(objects, c['object']), ix(fits, c['fit']), c['exc'], ix(kinds, c['pathKind'])])
+    rep = X.report(X.evaluate(all_screens))
+    index = OrderedDict([('version', 1), ('metrics', rep['menuPaths']), ('apps', apps), ('tabs', list(X.TABS)), ('sections', sections), ('stages', stages),
+                         ('objects', objects), ('fits', fits), ('pathKinds', kinds),
+                         ('fields', ['app', 'tab', 'section', 'submenu', 'stage', 'object', 'fit', 'exc', 'pathKind']),
+                         ('rows', rows)])
+    with open(COMPASS_INDEX_JSON, 'w', encoding='utf-8') as f:
+        json.dump(index, f, ensure_ascii=False, separators=(',', ':'))
+    with open(COMPASS_RULES_JSON, 'w', encoding='utf-8') as f:
+        json.dump(X.rules_json(), f, ensure_ascii=False, indent=1)
+    with open(COMPASS_REPORT_JSON, 'w', encoding='utf-8') as f:
+        json.dump(rep, f, ensure_ascii=False, indent=1)
+    cases = [(t, True) for t in COMPASS_PARITY_SCENARIOS] + [(scr['name'], False) for scr in order[::9]]
+    with open(COMPASS_PARITY_JSON, 'w', encoding='utf-8') as f:
+        json.dump([OrderedDict([('text', t), ('scenario', sc), ('expected', X.deduce(t, scenario=sc))]) for t, sc in cases],
+                  f, ensure_ascii=False, indent=0)
+    return rep
+
+
 TASKS_JS = os.path.join(ROOT, 'src', 'data', 'tasksData.js')
 TASK_GUARDRAILS_JS = os.path.join(ROOT, 'src', 'data', 'taskGuardrails.js')
 TASK_MODULE = {'GL': 'gl', 'AP': 'ap', 'Cash Management': 'cash', 'Approvals': 'ap', 'Reporting Portal': 'reporting'}
@@ -1183,15 +1254,27 @@ def main():
         for s in submodules:
             s.pop('manual', None)
         screens_by_module[module['file']] = [x for sm in submodules for x in sm['screens']]
-        path, n = write_js(module, submodules)
         built.append((module, submodules))
-        st = Counter(c['status'] for c in coverage)
-        summary[module['file']] = {'checklist_items': len(coverage), 'screens': n, 'submodules': len(submodules),
-                                   'status_counts': dict(st), 'bytes': os.path.getsize(path)}
         all_cov[module['file']] = coverage
+
+    # Deduction Compass: one path index over the whole catalog, then a `compass` tag on every screen.
+    all_screens = [scr for _, subs in built for sm in subs for scr in sm['screens']]
+    compass_index = X.PathIndex([scr['navigation'] for scr in all_screens])
+    for scr in all_screens:
+        scr['compass'] = X.tag_screen(scr, compass_index)
+
+    for module, submodules in built:
+        path, n = write_js(module, submodules)
+        st = Counter(c['status'] for c in all_cov[module['file']])
+        summary[module['file']] = {'checklist_items': len(all_cov[module['file']]), 'screens': n, 'submodules': len(submodules),
+                                   'status_counts': dict(st), 'bytes': os.path.getsize(path)}
         print(f"{module['file']}: {n} screens in {len(submodules)} submodules; {dict(st)}; {os.path.getsize(path)/1e6:.2f} MB")
     n_idx, idx_bytes = write_search_index(built)
     print(f"search index: {n_idx} screens, {idx_bytes / 1e6:.2f} MB")
+    rep = write_compass(built, all_screens)
+    print(f"compass: {rep['menuPaths']['screens']} menu-path screens; app {rep['menuPaths']['appPrecision']}%, "
+          f"tab {rep['menuPaths']['tabPrecisionGivenApp']}%, section {rep['menuPaths']['sectionPrecisionGivenApp']}%, "
+          f"submenu {rep['menuPaths']['submenuPrecisionGivenApp']}%")
     n_tasks = write_task_guardrails()
     print(f"task guardrails: {n_tasks} Daily Hub tasks")
     terms, entries = G.build_glossary(module_manuals, screens_by_module)

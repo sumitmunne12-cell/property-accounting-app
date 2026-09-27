@@ -25,6 +25,7 @@ python3 scripts/audit_quality.py   # optional: how much content is manual-derive
 | `scripts/rp_kb.py` | Multifamily accounting knowledge base. Each topic (A/P invoice, payment, bank rec, accrual, draw, depreciation…) has a DR/CR pattern, a Yardi Voyager equivalent, reasons records appear, the downstream workflow and a control check. Screen actions are classified as create, post, reverse, report, setup and so on. |
 | `scripts/curated_screens.json` | Hand-authored mastery workflows. Each module's first "Mastery Playbook" submodule comes from here, including the 4 budgeting showcase screens. |
 | `scripts/rp_guardrails.py` | US legal, tax and accounting rules (GAAP ASC, IRC/Treasury regs, SOX 404/COSO, UCC, NACHA/FinCEN/OFAC, state landlord-tenant, lien and unclaimed-property law, HUD/agency lender rules) for each knowledge-base topic. It fills every screen's `regulatoryGuardrail` and generates `src/data/taskGuardrails.js` for the Daily Hub tasks. |
+| `scripts/rp_compass.py` | Deduction Compass. It normalizes every `navigation[]` into application › tab › section › list (label variants folded, manual-chapter paths flagged), holds the filing rules as data (business objects and their lists, stage verbs, record states, tie-breakers T1–T9, exceptions E01–E34), tags every screen, and scores the rules against the real paths. `python3 scripts/rp_compass.py [--misses]` prints the scores. See `docs/DEDUCTION_COMPASS.md`. |
 | `scripts/rp_glossary.py` | Extracts every "Glossary of Terms" entry from the manuals, dedupes terms repeated across manuals, and cross-references each term to modules and related screens. The result is written into the generated block of `src/data/glossaryData.js`. |
 
 ## How each screen field is filled
@@ -44,12 +45,16 @@ python3 scripts/audit_quality.py   # optional: how much content is manual-derive
 
 ## How the app loads the catalog
 
-The nine module files hold about 28 MB of screen detail, too much to parse at launch on a 3 GB phone. The builder therefore also writes two small files:
+The nine module files hold about 28 MB of screen detail, too much to parse at launch on a 3 GB phone. The builder therefore also writes small boot-time files:
 
 | File | Content |
 | --- | --- |
 | `src/data/searchIndex.json` | One compact entry per screen: `{ id, name, nav, moduleId, category, authority }` (about 1.8 MB, 175 KB gzipped). `nav` is the navigation path without the leading "Applications" and the trailing screen name. |
 | `src/data/moduleManifest.json` | Module titles, colors, icons, descriptions, GL legend and each submodule's id, title and screen count. The index is written in manifest order, so the counts map every entry to its submodule. |
+| `src/data/compassIndex.json` | Deduction Compass tags per screen (app, tab, section, list, stage, object, fit, exception), as positional rows parallel to `searchIndex.json`, plus the measured rule accuracy. |
+| `src/data/compassRules.json` | The compass rules exported from `scripts/rp_compass.py` for the in-app matcher (`src/utils/compassEngine.js`). |
+
+Every screen in the module files also carries the same tags as a `compass` block. `scripts/output/compass_report.json` holds per-rule support and precision, miss clusters and exception counts. `scripts/output/compass_parity.json` holds Python predictions; `scripts/test/compass.test.mjs` requires the JS matcher to reproduce them exactly.
 
 `src/utils/screenIndex.js` builds the fuzzy search, the Explorer lists and every cross-link check from these two files. `src/data/moduleLoader.js` imports a module file with `import()` only when a screen in it is opened (`useScreenDetail` / `LazyScreenDetail`). On web, Metro emits each module as its own chunk. On iOS and Android (Hermes), the module stays in the bundle but its factory does not run, so its objects are not allocated, until it is loaded.
 

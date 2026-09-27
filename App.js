@@ -48,11 +48,13 @@ import GaapCodex from './src/components/gaap/GaapCodex';
 import { GaapNavContext } from './src/components/gaap/GaapNavContext';
 import { MODULE_FILE_TO_ID, SCREEN_COUNT } from './src/utils/screenIndex';
 import SwipeBackView from './src/components/SwipeBackView';
+import DeductionCompass from './src/components/compass/DeductionCompass';
 
 const TAB_TITLES = {
   tasks: 'Daily Hub',
   close: 'Close',
   explorer: 'Explorer',
+  compass: 'Compass',
   search: 'Triage',
   tools: 'Yardi',
   codex: 'Codex',
@@ -62,6 +64,7 @@ const NAV_ITEMS = [
   { key: 'tasks', label: 'Daily Hub', icon: 'checkbox', accent: COLORS.success },
   { key: 'close', label: 'Close', icon: 'lock-closed', accent: COLORS.close },
   { key: 'explorer', label: 'RP Explorer', short: 'Explorer', icon: 'desktop', accent: COLORS.info },
+  { key: 'compass', label: 'Deduction Compass', short: 'Compass', icon: 'compass', accent: COLORS.warning },
   { key: 'search', label: 'Triage & Search', short: 'Triage', icon: 'search', accent: COLORS.danger },
   { key: 'tools', label: 'Yardi & Terms', short: 'Yardi', icon: 'layers', accent: COLORS.yardi },
   { key: 'codex', label: 'GAAP Codex', short: 'Codex', icon: 'library', accent: COLORS.gold },
@@ -81,7 +84,7 @@ function AppShell() {
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const isDesktop = width >= LAYOUT.DESKTOP_MIN;
-  const [activeTab, setActiveTab] = useState('tasks'); // 'tasks' | 'close' | 'explorer' | 'search' | 'tools' | 'codex'
+  const [activeTab, setActiveTab] = useState('tasks'); // 'tasks' | 'close' | 'explorer' | 'compass' | 'search' | 'tools' | 'codex'
   const [navHistory, setNavHistory] = useState(['tasks']);
   const [selectedPhase, setSelectedPhase] = useState('All');
   const [selectedPriority, setSelectedPriority] = useState('All');
@@ -102,6 +105,8 @@ function AppShell() {
   const [explorerFocus, setExplorerFocus] = useState(null);
   // Deep link into the GAAP Codex: { topic, paragraph, nonce }
   const [codexFocus, setCodexFocus] = useState(null);
+  // Hand-off from the Deduction Compass scenario box to Triage & Search: { text, nonce }
+  const [searchFocus, setSearchFocus] = useState(null);
 
   const navigateToTab = useCallback((tabKey, replace = false) => {
     triggerHaptic('light');
@@ -177,6 +182,10 @@ function AppShell() {
     }),
     [navigateToTab]
   );
+  const openInSearch = (text) => {
+    setSearchFocus({ text, nonce: Date.now() });
+    navigateToTab('search');
+  };
   const openModule = (moduleFile) => {
     const moduleId = MODULE_FILE_TO_ID[moduleFile] || moduleFile;
     setExplorerFocus({ moduleId, screenId: null, nonce: Date.now() });
@@ -427,11 +436,22 @@ function AppShell() {
                 {/* TAB 3: REALPAGE SYSTEM TWIN EXPLORER */}
                 {activeTab === 'explorer' && <RealPageExplorer focus={explorerFocus} />}
 
+                {/* DEDUCTION COMPASS: predict-then-reveal drill, scenario box, app × stage map */}
+                {activeTab === 'compass' && (
+                  <DeductionCompass
+                    onOpenScreen={openScreen}
+                    onOpenInExplorer={openInExplorer}
+                    onOpenMastery={openMastery}
+                    onSearchAll={openInSearch}
+                  />
+                )}
+
                 {/* TAB 3: COMMAND SEARCH & EXCEPTION TRIAGE */}
                 {activeTab === 'search' && (
                   <CommandSearch
                     onSelectTask={openMastery}
                     onOpenScreen={openScreen}
+                    initialQuery={searchFocus}
                   />
                 )}
 

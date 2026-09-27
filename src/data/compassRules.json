@@ -1,0 +1,3021 @@
+{
+ "version": 1,
+ "stages": {
+  "configure": {
+   "label": "Configure",
+   "where": "Setup tab (small code lists under Setup › More)",
+   "question": "Am I changing how future transactions default, validate or route?"
+  },
+  "enter": {
+   "label": "Enter & pay",
+   "where": "All › Daily Tasks",
+   "question": "Am I creating a high-volume transaction or moving money today?"
+  },
+  "find_fix": {
+   "label": "Find & fix",
+   "where": "All › Search & Find (the record list)",
+   "question": "Am I opening, correcting, reversing or deleting a record that already exists?"
+  },
+  "process": {
+   "label": "Process & close",
+   "where": "All › Periodic Tasks (incl. Month End)",
+   "question": "Am I running a batch, recurring or period-end process?"
+  },
+  "review": {
+   "label": "Review & report",
+   "where": "All › Reports (registers, aging, ledgers)",
+   "question": "Am I reading results rather than changing them?"
+  }
+ },
+ "verbs": [
+  {
+   "stage": "review",
+   "action": "report",
+   "match": "\\b(reports?|registers?|aging|ledger|listing|analysis|analytics|inquiry|statements? of|graphs?|charts?|run(ning)? the|customiz(e|ing) and run)\\b"
+  },
+  {
+   "stage": "configure",
+   "action": "configure",
+   "match": "\\b(configur(e|ing|ation)|set(ting)? ?up|enabl(e|ing)|disabl(e|ing)|defin(e|ing)|setup|settings?|preferences|installing|assign(ing)? .*(roles?|permissions?))\\b"
+  },
+  {
+   "stage": "process",
+   "action": "close",
+   "match": "\\b(clos(e|ing)|reopen(ing)?|open(ing)? (the )?(books|periods?|subledger)|month[- ]end|year[- ]end|lock(ing)?)\\b"
+  },
+  {
+   "stage": "process",
+   "action": "reconcile",
+   "match": "\\b(reconcil(e|es|ing|iation)|match(ing)?|unmatch(ing)?)\\b"
+  },
+  {
+   "stage": "process",
+   "action": "recur",
+   "match": "\\b(recurring|schedul(e|ing)|generat(e|ing)|calculat(e|ing)|recalculat(e|ing)|allocat(e|ing)|depreciat(e|ing)|amortiz(e|ing)|accru(e|al|ing)|summar(y|ies|ize)|process(ing)? (the )?(batch|month))\\b"
+  },
+  {
+   "stage": "find_fix",
+   "action": "void",
+   "match": "\\b(void(ed|ing|s)?|stop payment|spoiled|ruined)\\b"
+  },
+  {
+   "stage": "find_fix",
+   "action": "reverse",
+   "match": "\\b(revers(e|ed|al|ing)|unpost(ing)?|back out|undo)\\b"
+  },
+  {
+   "stage": "find_fix",
+   "action": "delete",
+   "match": "\\b(delet(e|ing)|inactivat(e|ing)|remov(e|ing)|merg(e|ing))\\b"
+  },
+  {
+   "stage": "find_fix",
+   "action": "edit",
+   "match": "\\b(edit(ing)?|chang(e|ing)|correct(ing)?|updat(e|ing)|fix(ing)?|wrong|incorrect|reclass(ify|ifying|ing)?|reprint(ing)?)\\b"
+  },
+  {
+   "stage": "find_fix",
+   "action": "view",
+   "match": "\\b(view(ing)?|find(ing)?|search(ing)?|look(ing)? up|research(ing)?|history|audit trail|drill)\\b"
+  },
+  {
+   "stage": "enter",
+   "action": "pay",
+   "match": "\\b(pay(ing)?|print(ing)? checks?|issu(e|ing)|refund(ing)?|disburs(e|ing))\\b"
+  },
+  {
+   "stage": "enter",
+   "action": "receive",
+   "match": "\\b(receiv(e|ing)|deposit(ing)?|appl(y|ying) (a )?(payment|credit|advance))\\b"
+  },
+  {
+   "stage": "enter",
+   "action": "create",
+   "match": "\\b(add(ing)?|creat(e|ing)|enter(ing)?|record(ing)?|upload(ing)?|import(ing)?|submit(ting)?|request(ing)?|post(ing)?|new)\\b"
+  }
+ ],
+ "states": [
+  {
+   "state": "closed_period",
+   "match": "\\b(closed (period|month|books)|prior (period|month|year)|after (the )?close|books? (are|is) closed|locked period)\\b",
+   "hint": "Posted in a closed period: you cannot edit it. Reverse it with a date in the current open period, or have the controller reopen the period in General Ledger › All › Periodic Tasks › Month End (Books)."
+  },
+  {
+   "state": "paid",
+   "match": "\\b(paid|check (was|has been) (cut|issued|printed|cleared)|already (cut|printed|issued|cleared)|cleared)\\b",
+   "hint": "Paid: undo the payment first. Void the check from the Check Register (Accounts Payable › All › Reports › Check Register) or the Payments list; voiding restores the invoice to open."
+  },
+  {
+   "state": "posted",
+   "match": "\\b(posted|already (posted|entered|approved)|in the ledger|hit the gl|on the books)\\b",
+   "hint": "Posted: open it from its Search & Find list and use Reverse (or Edit, only while the period is open). Posted history is never deleted."
+  },
+  {
+   "state": "pending_approval",
+   "match": "\\b(pending approval|awaiting approval|in approval|stuck|declined|not approved|needs approval)\\b",
+   "hint": "In approval: it lives in Company › All › Approvals › Approval Workbench until the last approver acts."
+  },
+  {
+   "state": "draft",
+   "match": "\\b(draft|unposted|not (yet )?posted|saved but|future draft)\\b",
+   "hint": "Draft: it is still editable from the object's Search & Find list (filter by status = draft); no reversal needed."
+  }
+ ],
+ "objects": [
+  {
+   "id": "bs_rec_report",
+   "label": "Balance-sheet account report",
+   "app": "Financial Close Management",
+   "kind": "output",
+   "match": "^(customizing and running the )?(a/r - (multifamily|commercial|other)|allowance for doubtful accounts|security deposits - (multifamily|commercial)|mortgage and escrow|notes (payable|receivable)|prepaid expenses?|accrued expenses|fixed assets|other assets|property tax|rent roll|cash & cash equivalents|accounts payable)( \\(no variance\\))? report\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Reports",
+    "submenu": "=title"
+   },
+   "lists": []
+  },
+  {
+   "id": "work_paper",
+   "label": "Close checklist / work paper",
+   "app": "Financial Close Management",
+   "kind": "process",
+   "match": "\\b(checklists?|work ?papers?|close (tasks?|workbench|console|activities)|financial close management|task generation)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": null,
+    "submenu": "Activities"
+   },
+   "setup": {
+    "match": null,
+    "tab": "Setup",
+    "section": null,
+    "submenu": "Configuration"
+   },
+   "lists": [
+    {
+     "match": "\\b(checklists?|task generation|work ?paper configurations?|unrestricted users)\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Configuration"
+    },
+    {
+     "match": "\\bconsole\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Console"
+    },
+    {
+     "match": "\\bworkbench\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Workbench"
+    }
+   ]
+  },
+  {
+   "id": "depreciation",
+   "label": "Depreciation",
+   "app": "Fixed Assets",
+   "kind": "process",
+   "match": "\\b(depreciat(e|ion|ing))\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Periodic Tasks",
+    "submenu": "Post Depreciation"
+   },
+   "lists": []
+  },
+  {
+   "id": "fixed_asset",
+   "label": "Fixed asset",
+   "app": "Fixed Assets",
+   "kind": "master",
+   "match": "\\b(fixed assets?|draft assets?|asset class(es)?|dispos(e|al|ing) (of )?(an )?assets?|asset (info|reconciliation)|(transferring|reclassing|activating) (an |draft )?assets?|assets in bulk)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": null,
+    "submenu": "Assets"
+   },
+   "setup": {
+    "match": null,
+    "tab": "Setup",
+    "section": null,
+    "submenu": "Asset Classes"
+   },
+   "lists": [
+    {
+     "match": "\\basset class",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Asset Classes"
+    },
+    {
+     "match": "\\bdraft assets?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Draft Assets"
+    },
+    {
+     "match": "\\basset info",
+     "tab": "All",
+     "section": null,
+     "submenu": "Asset Info Reports"
+    },
+    {
+     "match": "\\basset reconciliation",
+     "tab": "All",
+     "section": null,
+     "submenu": "Asset Reconciliation Report"
+    }
+   ]
+  },
+  {
+   "id": "draw",
+   "label": "Draw",
+   "app": "Job Cost & Reserves",
+   "kind": "txn",
+   "match": "\\b(draws?|draw workbench|draw requests?|draw receipts?|draw activity|draw schedules?)\\b(?! models?)",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Search & Find",
+    "submenu": "Draw Workbench"
+   },
+   "lists": [
+    {
+     "match": "\\bdraw detail\\b",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "Draw Detail"
+    }
+   ]
+  },
+  {
+   "id": "job_setup",
+   "label": "Draw model / funding source / cost structure",
+   "app": "Job Cost & Reserves",
+   "kind": "code",
+   "match": "\\b(draw models?|funding sources?|reserve account schedules?|cost structures?|cost codes?|job types?|job reporting codes?|permits?|job segments?)\\b",
+   "home": {
+    "match": null,
+    "tab": "Setup",
+    "section": null,
+    "submenu": "Draw Models"
+   },
+   "setup": {
+    "match": null,
+    "tab": "Setup",
+    "section": null,
+    "submenu": "Configuration"
+   },
+   "lists": [
+    {
+     "match": "\\bfunding source inquiry\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Funding Source Inquiry"
+    },
+    {
+     "match": "\\bjob segment budgets?\\b",
+     "tab": "All",
+     "section": "Search & Find",
+     "submenu": "Job Segment Budgets"
+    },
+    {
+     "match": "\\bcost code structure report",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "Cost Code Structure"
+    },
+    {
+     "match": "\\b(closing|reopening|close|reopen)\\b.*\\bcost codes?\\b",
+     "tab": "All",
+     "section": "Search & Find",
+     "submenu": "Jobs"
+    },
+    {
+     "match": "\\bjob types?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Job Types"
+    },
+    {
+     "match": "\\bfunding sources?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Funding Sources"
+    },
+    {
+     "match": "\\breserve account schedules?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Reserve Account Schedule"
+    },
+    {
+     "match": "\\bpermits?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Permits"
+    },
+    {
+     "match": "\\bjob reporting codes?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Job Reporting Codes"
+    },
+    {
+     "match": "\\bcost structures?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Cost Structure Definition"
+    },
+    {
+     "match": "\\bjob segments?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Segments"
+    }
+   ]
+  },
+  {
+   "id": "job_process",
+   "label": "Job budget / commitment / lien release",
+   "app": "Job Cost & Reserves",
+   "kind": "process",
+   "match": "\\b(job (segment )?budgets?|external commitments?|commitments?|lien releases?|close (a )?job|closing (a )?job|tenant invoices?)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Periodic Tasks",
+    "submenu": "Budgets"
+   },
+   "lists": [
+    {
+     "match": "\\bexternal commitments?\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "External Commitments"
+    },
+    {
+     "match": "\\b(open|pending) commitments?\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Job Status Inquiry"
+    },
+    {
+     "match": "\\bjob budgets?\\b",
+     "tab": "All",
+     "section": "Search & Find",
+     "submenu": "Jobs"
+    },
+    {
+     "match": "\\blien releases?\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Lien Releases"
+    },
+    {
+     "match": "\\bclos(e|ing) (a )?job\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Close Job"
+    },
+    {
+     "match": "\\btenant invoices?\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Generate Tenant Invoice"
+    }
+   ]
+  },
+  {
+   "id": "job_report",
+   "label": "Job cost report",
+   "app": "Job Cost & Reserves",
+   "kind": "output",
+   "match": "\\b(retainage (register|report)|wip account|job (cost|status|setup) (summary|activity|status)|job cost status|job status with|job budget report|open invoices report)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Reports",
+    "submenu": "=title"
+   },
+   "lists": []
+  },
+  {
+   "id": "job",
+   "label": "Job / replacement reserve",
+   "app": "Job Cost & Reserves",
+   "kind": "master",
+   "match": "\\b(jobs?|job status inquiry|replacement reserves?|reserve (status|accounts?)|capital projects?|construction projects?|capex)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Search & Find",
+    "submenu": "Jobs"
+   },
+   "setup": {
+    "match": null,
+    "tab": "Setup",
+    "section": null,
+    "submenu": "Configuration"
+   },
+   "lists": [
+    {
+     "match": "\\b(job|replacement reserve) status inquiry\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Job Status Inquiry"
+    },
+    {
+     "match": "\\bjob cost & reserves (all|setup) tab\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": null
+    }
+   ]
+  },
+  {
+   "id": "purchase_order",
+   "label": "Purchase order / contract",
+   "app": "Spend Management",
+   "kind": "txn",
+   "match": "\\b(purchase orders?|p\\.?o\\.?s?|service contracts?|subcontracts?|change orders?|spend (inquiry|management)|catalogs?|catalog mapping|storefront|requisitions?|saved items|invoice processing upload|invoice exception queue|expense allocations?|punch-?out)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": null,
+    "submenu": "Workbench"
+   },
+   "daily": {
+    "match": null,
+    "tab": "All",
+    "section": "Daily Tasks",
+    "submenu": "Create a Purchase Order"
+   },
+   "setup": {
+    "match": null,
+    "tab": "Setup",
+    "section": null,
+    "submenu": "Configuration"
+   },
+   "lists": [
+    {
+     "match": "\\bsubcontracts?\\b",
+     "tab": "All",
+     "section": "Search & Find",
+     "submenu": "Subcontract"
+    },
+    {
+     "match": "\\bservice contracts?\\b",
+     "tab": "All",
+     "section": "Search & Find",
+     "submenu": "Service Contract"
+    },
+    {
+     "match": "\\bspend inquiry\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Spend Inquiry"
+    },
+    {
+     "match": "\\bsaved items\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Saved Items"
+    },
+    {
+     "match": "\\binvoice processing upload\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Invoice Processing Upload"
+    },
+    {
+     "match": "\\binvoice exception queue\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Invoice Exception Queue"
+    },
+    {
+     "match": "\\b(catalog mapping|catalogs?)\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Configuration"
+    },
+    {
+     "match": "\\bexpense allocations?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Expense Allocations"
+    }
+   ]
+  },
+  {
+   "id": "working_budget",
+   "label": "Working budget / payroll plan",
+   "app": "Forecasting & Planning",
+   "kind": "process",
+   "match": "\\b(working budgets?|forecasting & planning|payroll|job positions?|benefits|worker'?s? comp(ensation)?|federal tax|state tax)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Periodic Tasks",
+    "submenu": "Working Budgets"
+   },
+   "lists": [
+    {
+     "match": "\\bpayroll\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Payroll Workbench"
+    },
+    {
+     "match": "\\bworkbench\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Workbench"
+    },
+    {
+     "match": "\\bworker'?s? comp",
+     "tab": "All",
+     "section": null,
+     "submenu": "Worker Compensation Class"
+    },
+    {
+     "match": "\\bbenefits\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Benefits"
+    },
+    {
+     "match": "\\bfederal tax\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Federal Tax"
+    },
+    {
+     "match": "\\bstate tax\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "State Tax"
+    },
+    {
+     "match": "\\bjob positions?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Job Positions"
+    },
+    {
+     "match": "\\bworking budget report\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Working Budget Report"
+    }
+   ]
+  },
+  {
+   "id": "investor",
+   "label": "Investor / contribution / distribution",
+   "app": "Investor Tracking",
+   "kind": "txn",
+   "match": "\\b(investors?|contributions?|calculate distributions?|bulk distributions?|investor (distributions?|portals?)|owner statements?|capital calls?)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Search & Find",
+    "submenu": "Investor"
+   },
+   "daily": {
+    "match": null,
+    "tab": "All",
+    "section": "Daily Tasks",
+    "submenu": "Contributions"
+   },
+   "report": {
+    "match": null,
+    "tab": "All",
+    "section": null,
+    "submenu": "Investor Reports"
+   },
+   "lists": [
+    {
+     "match": "\\bbulk contributions?\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Create Bulk Contributions"
+    },
+    {
+     "match": "\\bbulk distributions?\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Create Bulk Distributions"
+    },
+    {
+     "match": "\\bcontributions? register|distributions? register|investors report\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Investor Reports"
+    },
+    {
+     "match": "\\bcontributions?\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Contributions"
+    },
+    {
+     "match": "\\bcalculat\\w* distributions?\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Calculate Distribution"
+    },
+    {
+     "match": "\\bdistributions?\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Distributions"
+    },
+    {
+     "match": "\\binvestor portals?\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Investor Portals"
+    },
+    {
+     "match": "\\bowner statements?\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Owner Statements"
+    },
+    {
+     "match": "\\bupload\\w* (reports and )?documents\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Upload Documents"
+    },
+    {
+     "match": "\\bproperty report groups?\\b",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "Property Report Groups"
+    }
+   ]
+  },
+  {
+   "id": "owner_portal",
+   "label": "Owner portal",
+   "app": "Reporting Portal",
+   "kind": "service",
+   "match": "\\b(owner portals?|reporting portal|portal (users?|documents?|owners?))\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Daily Tasks",
+    "submenu": "Owner Portals"
+   },
+   "lists": [
+    {
+     "match": "\\b(owners?|contacts?)\\b.*\\b(search|find|add|edit|password)|\\b(add|edit|search)\\w* (an )?(owner|contact)\\b",
+     "tab": "All",
+     "section": "Search & Find",
+     "submenu": "Owner"
+    }
+   ]
+  },
+  {
+   "id": "dashboard",
+   "label": "Dashboard",
+   "app": "Dashboards",
+   "kind": "output",
+   "match": "\\b(dashboards?|dashboard components?|smartlinks?|rss)\\b",
+   "home": {
+    "match": null,
+    "tab": null,
+    "section": null,
+    "submenu": "[select dashboard]"
+   },
+   "lists": []
+  },
+  {
+   "id": "timesheet",
+   "label": "Timesheet / PTO",
+   "app": "Time & Resources",
+   "kind": "txn",
+   "match": "\\b(timesheets?|pto|paid time off|certifications?|skills|billable time|project types?|employee time)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": null,
+    "submenu": "My Timesheets"
+   },
+   "report": {
+    "match": null,
+    "tab": "All",
+    "section": "Reports",
+    "submenu": "=title"
+   },
+   "lists": [
+    {
+     "match": "\\bstaff timesheets?\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Staff Timesheets"
+    },
+    {
+     "match": "\\bpto requests?\\b|\\brequest\\w* (paid time off|pto)\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "PTO Request"
+    },
+    {
+     "match": "\\bpto approvals?|approv\\w* (a )?pto\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "PTO Approvals"
+    },
+    {
+     "match": "\\b(time|timesheet) approvals?|approv\\w* timesheets?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Time Approvals"
+    },
+    {
+     "match": "\\b(pto|project|certification and skill) types?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "=noun"
+    },
+    {
+     "match": "\\bbillable time\\b(?! report)",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Billable Time"
+    },
+    {
+     "match": "\\bmy certifications\\b|\\bcertification or skill to your\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "My Certifications and Skills"
+    }
+   ]
+  },
+  {
+   "id": "ai_agent",
+   "label": "AI Finance Agent",
+   "app": "Finance Agent",
+   "kind": "service",
+   "match": "\\b(finance agent|ai[- ]agent|agent (jobs?|performance|payments?)|lumina|standard vendors?|missing expenses|ai configuration|ai contract screening|monthly job)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": null,
+    "submenu": "Agent Jobs"
+   },
+   "setup": {
+    "match": null,
+    "tab": "Setup",
+    "section": null,
+    "submenu": "AI Configuration"
+   },
+   "report": {
+    "match": null,
+    "tab": "All",
+    "section": "Reports",
+    "submenu": "=title"
+   },
+   "lists": [
+    {
+     "match": "\\b(ai configuration|standard vendor types?|ai contract screening|contract screening)\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "AI Configuration"
+    },
+    {
+     "match": "\\bagent performance\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Agent Performance"
+    }
+   ]
+  },
+  {
+   "id": "vat",
+   "label": "VAT / tax submission",
+   "app": "Taxes",
+   "kind": "txn",
+   "match": "\\b(vat|value[- ]added tax(es)?|tax submissions?|tax solutions?|tax records?)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": null,
+    "submenu": "Tax Submissions"
+   },
+   "report": {
+    "match": null,
+    "tab": "All",
+    "section": "Reports",
+    "submenu": "Tax Reports"
+   },
+   "setup": {
+    "match": null,
+    "tab": "Setup",
+    "section": null,
+    "submenu": "Tax Solutions"
+   },
+   "lists": [
+    {
+     "match": "\\btax records?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Tax Records"
+    },
+    {
+     "match": "\\btax solutions?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Tax Solutions"
+    }
+   ]
+  },
+  {
+   "id": "customization",
+   "label": "Object customization",
+   "app": "Platform Services",
+   "kind": "service",
+   "match": "\\b(object customization|custom (fields?|objects?|relationships?)|smart (events?|rules?|links?)|printed doc(ument)? templates?|platform services|customization services|custom report wizard)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": null,
+    "submenu": "Object Customization"
+   },
+   "lists": [
+    {
+     "match": "\\bcustom report",
+     "tab": "All",
+     "section": null,
+     "submenu": "Custom Reports"
+    },
+    {
+     "match": "\\bprinted doc",
+     "tab": "All",
+     "section": null,
+     "submenu": "Printed Doc Templates"
+    }
+   ]
+  },
+  {
+   "id": "bank_rec",
+   "label": "Bank reconciliation / bank feed",
+   "app": "Cash Management",
+   "kind": "process",
+   "match": "\\b(bank rec(onciliation)?s?|reconcil(e|es|ing|iation)s?|bank feeds?|bank statements?|matching rules?|reconciliation rules?|quick match|bank transactions?|cleared (checks|items)|outstanding checks?)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Periodic Tasks",
+    "submenu": "Reconciliation"
+   },
+   "lists": [
+    {
+     "match": "\\bbank feed configurations?\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Bank Feed Configurations"
+    },
+    {
+     "match": "\\b(reconciliation|matching) rules?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Reconciliation Rules"
+    },
+    {
+     "match": "\\bbank transactions summary\\b",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "Bank Transactions Summary"
+    }
+   ]
+  },
+  {
+   "id": "funds_transfer",
+   "label": "Funds transfer / other receipt",
+   "app": "Cash Management",
+   "kind": "process",
+   "match": "\\b(funds? transfers?|transfer(ring)? (funds|cash|money)|between (bank )?accounts|other receipts?|bank interest|charges and fees)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Periodic Tasks",
+    "submenu": "Funds Transfer"
+   },
+   "lists": [
+    {
+     "match": "\\bbulk funds",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Bulk Funds Transfer"
+    },
+    {
+     "match": "\\b(other )?receipts?\\b|bank interest",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Other Receipts"
+    },
+    {
+     "match": "\\bcharges and fees\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Charges and Fees"
+    }
+   ]
+  },
+  {
+   "id": "card",
+   "label": "Credit card / PC card / petty cash",
+   "app": "Cash Management",
+   "kind": "txn",
+   "match": "\\b(credit cards?|pc cards?|petty cash|debit cards?|charge payoffs?|card (charges|limits?|transactions))\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Search & Find",
+    "submenu": "Credit Card"
+   },
+   "report": {
+    "match": null,
+    "tab": "All",
+    "section": "Reports",
+    "submenu": "=title"
+   },
+   "lists": [
+    {
+     "match": "\\b(pc cards?|petty cash|debit cards?)\\b(?! (report|billing|transactions report))",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Debit Cards for Petty Cash"
+    },
+    {
+     "match": "\\bcharge payoffs?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Charge Payoffs"
+    },
+    {
+     "match": "\\bcredit card charges and fees\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Credit Card Charges and Fees"
+    },
+    {
+     "match": "\\bcredit card accounts?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Accounts"
+    }
+   ]
+  },
+  {
+   "id": "cash_position",
+   "label": "Available cash / e-payment files / escheat",
+   "app": "Cash Management",
+   "kind": "process",
+   "match": "\\b(available cash|cash (balances?|visibility|analysis|position)|holdbacks?|escheat(ment)?|unclaimed property|stale[- ]dated|positive pay|payment files?|ach (bank|files?|configurations?)|electronic payment (bank|files?)|electronic payments|bank configurations?|bacs)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Periodic Tasks",
+    "submenu": "Available Cash"
+   },
+   "report": {
+    "match": null,
+    "tab": "All",
+    "section": "Reports",
+    "submenu": "=title"
+   },
+   "lists": [
+    {
+     "match": "\\bavailable cash location groups?\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Available Cash Location Groups"
+    },
+    {
+     "match": "\\bholdback categor",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Holdback Categories"
+    },
+    {
+     "match": "\\bholdbacks?\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Bank Account Holdbacks"
+    },
+    {
+     "match": "\\bach bank configurations?\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "ACH Bank Configurations"
+    },
+    {
+     "match": "\\belectronic payment bank configurations?\\b|\\bbank configurations?\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Electronic Payment Bank Configurations"
+    },
+    {
+     "match": "\\bpositive pay configurations?\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Positive Pay Configuration"
+    },
+    {
+     "match": "\\bpositive pay\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Positive Pay"
+    },
+    {
+     "match": "\\b(ach|payment files?|electronic payments)\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Electronic Payments"
+    },
+    {
+     "match": "\\b(escheat|unclaimed|stale)",
+     "tab": "All",
+     "section": null,
+     "submenu": "Escheatment Workbench"
+    },
+    {
+     "match": "\\bcash (balances|visibility|analysis)\\b",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "=title"
+    }
+   ]
+  },
+  {
+   "id": "check_setup",
+   "label": "Check stock / layout (bank-account setting)",
+   "app": "Cash Management",
+   "kind": "code",
+   "match": "\\b(check (layouts?|stock|update|formats?|templates?|alignment|print date|printing)|design custom check|test check|void blank check|checks with a (company )?logo|(ruined|spoiled) check|name or address on printed checks|owner distributions?)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Search & Find",
+    "submenu": "Bank Accounts"
+   },
+   "lists": [
+    {
+     "match": "\\b(custom check layouts?|check layouts?|design custom check)\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Design Custom Check Layouts"
+    },
+    {
+     "match": "\\bcheck (update|templates?)\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Check Update"
+    },
+    {
+     "match": "\\bowner distributions?\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Owner Distribution"
+    },
+    {
+     "match": "\\bforeign check formats?\\b|\\bcheck print date\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Configuration"
+    }
+   ]
+  },
+  {
+   "id": "bank_account",
+   "label": "Bank account",
+   "app": "Cash Management",
+   "kind": "master",
+   "match": "\\b(bank accounts?|operating account|trust account|bai file)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Search & Find",
+    "submenu": "Bank Accounts"
+   },
+   "lists": [
+    {
+     "match": "\\b(csv or bai|bai) file\\b|\\balternate bank accounts\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Reconciliation"
+    }
+   ]
+  },
+  {
+   "id": "ar_setup",
+   "label": "Sales tax / terms / territories",
+   "app": "Accounts Receivable",
+   "kind": "code",
+   "match": "\\b(sales tax|tax (authorit(y|ies)|schedules?|groups?|codes?)|authorities|territor(y|ies)|shipping methods?|bill ?back templates?|customer (types?|visibility|restrictions?)|a/?r (terms|account labels?)|account label tax groups?)\\b",
+   "home": {
+    "match": null,
+    "tab": "Setup",
+    "section": null,
+    "submenu": "Tax"
+   },
+   "lists": [
+    {
+     "match": "\\bterritory groups?\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Territory Groups"
+    },
+    {
+     "match": "\\bterritor(y|ies)\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Territories"
+    },
+    {
+     "match": "\\bshipping methods?\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Shipping Methods"
+    },
+    {
+     "match": "\\baccount label tax groups?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Account Label Tax Groups"
+    },
+    {
+     "match": "\\baccount labels?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Account Labels"
+    },
+    {
+     "match": "\\bauthorit(y|ies)\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Authorities"
+    },
+    {
+     "match": "\\bbill ?back templates?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Bill Back Templates"
+    },
+    {
+     "match": "\\bcustomer (visibility|restrictions?)\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Customer Visibility"
+    },
+    {
+     "match": "\\bcustomer types?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Types"
+    },
+    {
+     "match": "\\bterms\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Terms"
+    },
+    {
+     "match": "\\bsales tax report\\b",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "Sales Tax Report"
+    }
+   ]
+  },
+  {
+   "id": "ar_payment",
+   "label": "Customer payment / deposit",
+   "app": "Accounts Receivable",
+   "kind": "txn",
+   "match": "\\b(receiv(e|ing) (a )?payments?|enter(ing)? payments?|quick payments?|payment summar(y|ies)|customer payments?|manual deposits?|deposits?|posted payments?|nsf|returned (check|payment)|payment to bank account)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Search & Find",
+    "submenu": "Payments"
+   },
+   "daily": {
+    "match": null,
+    "tab": "All",
+    "section": "Daily Tasks",
+    "submenu": "Enter Payments"
+   },
+   "report": {
+    "match": null,
+    "tab": "All",
+    "section": "Reports",
+    "submenu": "Receipts"
+   },
+   "lists": [
+    {
+     "match": "\\breceive (a )?payments?\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Receive a Payment"
+    },
+    {
+     "match": "\\bmanual deposits?\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Manual Deposits"
+    },
+    {
+     "match": "\\bpayment summar",
+     "tab": "All",
+     "section": "Search & Find",
+     "submenu": "Payment Summaries"
+    },
+    {
+     "match": "\\bposted payments?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Posted Payments"
+    },
+    {
+     "match": "\\b(quick payments|deposits?)\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Enter Payments"
+    }
+   ]
+  },
+  {
+   "id": "ar_invoice",
+   "label": "A/R invoice / billing",
+   "app": "Accounts Receivable",
+   "kind": "txn",
+   "match": "\\b(a/?r (sales )?invoices?|sales invoices?|quick a/?r|bill ?backs?|intercompany bill(ing|s)?|billing|penalt(y|ies)|penalize|late fees?|credit memos?|pex|recurring a/?r|a/?r recurring|recurring transactions?)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Search & Find",
+    "submenu": "A/R Invoices"
+   },
+   "daily": {
+    "match": null,
+    "tab": "All",
+    "section": null,
+    "submenu": "A/R Sales Invoices"
+   },
+   "report": {
+    "match": null,
+    "tab": "All",
+    "section": "Reports",
+    "submenu": "A/R Invoices Analysis"
+   },
+   "lists": [
+    {
+     "match": "\\bquick a/?r\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Quick A/R Invoice Entry"
+    },
+    {
+     "match": "\\bintercompany bill(ing)? report\\b",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "Intercompany Billing Report"
+    },
+    {
+     "match": "\\bintercompany bill",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Intercompany Billing"
+    },
+    {
+     "match": "\\bpex\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "PEX Import"
+    },
+    {
+     "match": "\\b(penalt|penalize|late fee)",
+     "tab": "All",
+     "section": null,
+     "submenu": "Penalties"
+    },
+    {
+     "match": "\\brecurring (a/?r|transactions?)\\b.*\\breport\\b|\\brecurring (transaction|report)",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "Recurring Transaction"
+    },
+    {
+     "match": "\\brecurring\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Recurring A/R Invoices"
+    },
+    {
+     "match": "\\bline items\\b|\\bbasic information\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "A/R Sales Invoices"
+    }
+   ]
+  },
+  {
+   "id": "ar_other",
+   "label": "A/R adjustment / advance / statement / subledger",
+   "app": "Accounts Receivable",
+   "kind": "txn",
+   "match": "\\b(a/?r (adjustments?|advances?|summar(y|ies)|ledger|aging|books|subledger)|account statements?|final account statements?|customer statements?|print(ing)? statements|statements for customers)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Daily Tasks",
+    "submenu": "Adjustments"
+   },
+   "daily": {
+    "match": null,
+    "tab": "All",
+    "section": "Daily Tasks",
+    "submenu": "Adjustments"
+   },
+   "lists": [
+    {
+     "match": "\\badvances?\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Advances"
+    },
+    {
+     "match": "\\bclos\\w* (the )?a/?r (subledger|summar)|close a/?r subledger\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Close Subledger"
+    },
+    {
+     "match": "\\bopen\\w* (the )?a/?r (subledger|summar)|open the a/?r subledger\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Open Subledger"
+    },
+    {
+     "match": "\\bsummar(y|ies)\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Summaries"
+    },
+    {
+     "match": "\\bstatements?\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Account Maintenance"
+    },
+    {
+     "match": "\\ba/?r ledger\\b",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "A/R Ledger"
+    }
+   ]
+  },
+  {
+   "id": "customer",
+   "label": "Customer / resident",
+   "app": "Accounts Receivable",
+   "kind": "master",
+   "match": "\\b(customers?|residents?|tenants?|lessees?)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": null,
+    "submenu": "Customers"
+   },
+   "report": {
+    "match": null,
+    "tab": "All",
+    "section": "Reports",
+    "submenu": "Customers"
+   },
+   "lists": [
+    {
+     "match": "\\bcustomer (aging|listing|list by)\\b|\\bcustomer a/?r ledger\\b",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "Customers"
+    }
+   ]
+  },
+  {
+   "id": "ap_setup",
+   "label": "A/P terms / types / templates",
+   "app": "Accounts Payable",
+   "kind": "code",
+   "match": "\\b(a/?p (terms|types|account labels?)|vendor (types?|groups?|visibility)|loan types?|contract types?|asset (types?|categor(y|ies))|fee templates?|allocation templates?|schedule payments selection|expense report configuration)\\b",
+   "home": {
+    "match": null,
+    "tab": "Setup",
+    "section": null,
+    "submenu": "Configuration"
+   },
+   "lists": [
+    {
+     "match": "\\baccount labels?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Account Labels"
+    },
+    {
+     "match": "\\bcontract types?\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Contract Type"
+    },
+    {
+     "match": "\\bloan types?\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Loan Types"
+    },
+    {
+     "match": "\\basset categor",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Asset Categories"
+    },
+    {
+     "match": "\\basset types?\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Asset Types"
+    },
+    {
+     "match": "\\bschedule payments selection\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Schedule Payments Selection"
+    },
+    {
+     "match": "\\bfee templates?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Fee Template"
+    },
+    {
+     "match": "\\ballocation templates?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Templates"
+    },
+    {
+     "match": "\\bexpense report configuration\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Expense Report Configuration"
+    },
+    {
+     "match": "\\bvendor groups?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Groups"
+    },
+    {
+     "match": "\\bvendor visibility\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Visibility"
+    },
+    {
+     "match": "\\b(vendor|a/?p) types?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Types"
+    },
+    {
+     "match": "\\ba/?p terms\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Terms"
+    }
+   ]
+  },
+  {
+   "id": "check",
+   "label": "Check / vendor payment",
+   "app": "Accounts Payable",
+   "kind": "txn",
+   "match": "\\b(checks?|pay(ing)? (a/?p |the )?(invoices?|bills?|vendors?)|payment requests?|print payment|payment copies|manual payments?|a/?p payments?|vendor payments?|ach payments?|eft|paymode|third party payments?|pay by entity|paying by entity|check run|refund checks?|remittance)\\b(?! (budget|of the budget))",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Search & Find",
+    "submenu": "Payments"
+   },
+   "daily": {
+    "match": null,
+    "tab": "All",
+    "section": "Daily Tasks",
+    "submenu": "Pay A/P Invoices"
+   },
+   "report": {
+    "match": null,
+    "tab": "All",
+    "section": "Reports",
+    "submenu": "Check Register"
+   },
+   "lists": [
+    {
+     "match": "\\bcheck register\\b",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "Check Register"
+    },
+    {
+     "match": "\\b(print payment copies|payment copies|payment notification)",
+     "tab": "All",
+     "section": null,
+     "submenu": "Print Payment Copies"
+    },
+    {
+     "match": "\\bcreat\\w* payment requests?\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Create Payment Requests"
+    },
+    {
+     "match": "\\bpayment requests?\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "View Payment Requests"
+    },
+    {
+     "match": "\\bpaymode",
+     "tab": "All",
+     "section": null,
+     "submenu": "Paymode-X Payments Queue"
+    },
+    {
+     "match": "\\bthird party payments?\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Third Party Payments Queue"
+    },
+    {
+     "match": "\\b(pay(ing)? by entity|pay (a/?p )?invoices?|paying (a/?p )?invoices?|pay a/?p)\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Pay A/P Invoices"
+    },
+    {
+     "match": "\\bquick check\\b|\\bchecks list\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Checks"
+    },
+    {
+     "match": "\\b(print\\w*|reprint\\w*|check run|check number|rejected)\\b.*\\bchecks?\\b|\\bchecks?\\b.*\\b(print|run)\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Banking"
+    }
+   ]
+  },
+  {
+   "id": "ap_process",
+   "label": "Expense report / bid & contract / A/P maintenance",
+   "app": "Accounts Payable",
+   "kind": "process",
+   "match": "\\b(expense reports?|staff expenses|my expenses|bids?|contracts?|loans?|debt maintenance|a/?p summar(y|ies)|account maintenance|a/?p subledger|invoice reclassification|recurring a/?p)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Periodic Tasks",
+    "submenu": "Expense Reports"
+   },
+   "report": {
+    "match": null,
+    "tab": "All",
+    "section": "Reports",
+    "submenu": "A/P Invoices & Registers"
+   },
+   "lists": [
+    {
+     "match": "\\b(bids?|contracts?)\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Bids and Contracts"
+    },
+    {
+     "match": "\\b(loans?|debt maintenance)\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Debt Maintenance"
+    },
+    {
+     "match": "\\b(a/?p summar(y|ies)|account maintenance|final account statements?)\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Account Maintenance"
+    },
+    {
+     "match": "\\ba/?p subledger\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Subledger"
+    },
+    {
+     "match": "\\binvoice reclassification\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Invoice Reclassification"
+    },
+    {
+     "match": "\\brecurring\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Recurring AP Invoices"
+    }
+   ]
+  },
+  {
+   "id": "vendor_1099",
+   "label": "1099 / 1096",
+   "app": "Accounts Payable",
+   "kind": "output",
+   "match": "\\b(1099s?|1096|form 1099)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Search & Find",
+    "submenu": "Vendors"
+   },
+   "report": {
+    "match": null,
+    "tab": "All",
+    "section": "Reports",
+    "submenu": "1096/1099"
+   },
+   "lists": [
+    {
+     "match": "\\b(1096|1099 report|print\\w* 1099|1099s? (forms?|filing|electronic)|e-?fil)",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "1096/1099"
+    }
+   ]
+  },
+  {
+   "id": "vendor",
+   "label": "Vendor",
+   "app": "Accounts Payable",
+   "kind": "master",
+   "match": "\\b(vendors?|suppliers?|payees?|w-?9)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Search & Find",
+    "submenu": "Vendors"
+   },
+   "report": {
+    "match": null,
+    "tab": "All",
+    "section": "Reports",
+    "submenu": "Vendor Reports"
+   },
+   "lists": [
+    {
+     "match": "\\bapprov\\w* vendors?\\b|\\bapprove vendors\\b|\\bvendor record details during approval\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Approve Vendors"
+    },
+    {
+     "match": "\\bvendor requests?\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "View Vendor Requests"
+    },
+    {
+     "match": "\\bmerg",
+     "tab": "All",
+     "section": null,
+     "submenu": "Merge History"
+    },
+    {
+     "match": "\\bvendor insurance\\b",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "Vendor Insurance"
+    },
+    {
+     "match": "\\bvendor (aging|ledger|list report|activity)\\b",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "Vendor Reports"
+    }
+   ]
+  },
+  {
+   "id": "ap_invoice",
+   "label": "A/P invoice",
+   "app": "Accounts Payable",
+   "kind": "txn",
+   "match": "\\b(a/?p invoices?|invoices?|bills?|utility bills?|ai[- ]invoices?|invoice research|a/?p adjustments?|a/?p advances?|fees?|management fees?|document (queue|dashboard)|scann\\w* invoices?)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Search & Find",
+    "submenu": "A/P Invoices"
+   },
+   "daily": {
+    "match": null,
+    "tab": "All",
+    "section": "Daily Tasks",
+    "submenu": "Create an A/P Invoice"
+   },
+   "report": {
+    "match": null,
+    "tab": "All",
+    "section": "Reports",
+    "submenu": "A/P Invoices & Registers"
+   },
+   "lists": [
+    {
+     "match": "\\b(ai[- ]invoices?|scann\\w*|ai invoice queue)\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "AI-Invoice Queue"
+    },
+    {
+     "match": "\\binvoice research\\b",
+     "tab": "All",
+     "section": "Search & Find",
+     "submenu": "Invoice Research"
+    },
+    {
+     "match": "\\bfees?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Fees"
+    },
+    {
+     "match": "\\bdocument (queue|dashboard)\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Document Dashboard"
+    },
+    {
+     "match": "\\badjustments?\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Adjustments"
+    },
+    {
+     "match": "\\badvances?\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "Advances"
+    },
+    {
+     "match": "\\b(invoice register|a/?p invoice analysis|selected a/?p invoices report|top expense|unit cost)\\b",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "A/P Invoices & Registers"
+    }
+   ]
+  },
+  {
+   "id": "gl_setup",
+   "label": "Journal definitions / templates / allocation setup",
+   "app": "General Ledger",
+   "kind": "code",
+   "match": "\\b(journals?(?! entr)|accrual templates?|transaction templates?|allocation definitions?|g/?l allocation definitions?|chart types?|segment rules?|segment rule set|account titles? by entity|account group purposes?|custom (account )?categor(y|ies)|user[- ]defined (books|journals)|bva users|reporting periods?)\\b",
+   "home": {
+    "match": null,
+    "tab": "Setup",
+    "section": null,
+    "submenu": "Journals"
+   },
+   "lists": [
+    {
+     "match": "\\bstatistical adjustment journals?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Statistical Adjustment"
+    },
+    {
+     "match": "\\bstatistical journals?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Statistical"
+    },
+    {
+     "match": "\\bgaap adjust",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "GAAP Adjustment"
+    },
+    {
+     "match": "\\btax adjust",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Tax Adjustment"
+    },
+    {
+     "match": "\\badjust\\w* journals?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Adjustment"
+    },
+    {
+     "match": "\\buser[- ]defined (books|journals)\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "User-Defined Books"
+    },
+    {
+     "match": "\\baccrual templates?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Accrual Template"
+    },
+    {
+     "match": "\\btransaction templates?\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Transaction Templates"
+    },
+    {
+     "match": "\\ballocation definitions?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "G/L Allocation Definitions"
+    },
+    {
+     "match": "\\bchart types?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Chart Types"
+    },
+    {
+     "match": "\\bsegment rule",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Segment Rule Set"
+    },
+    {
+     "match": "\\baccount titles? by entity\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Account Title by Entity"
+    },
+    {
+     "match": "\\baccount group purposes?\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Account Group Purposes"
+    },
+    {
+     "match": "\\bcustom (account )?categor",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Custom Categories"
+    },
+    {
+     "match": "\\bbva users\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "BVA Users"
+    },
+    {
+     "match": "\\breporting periods?\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Reporting Periods"
+    }
+   ]
+  },
+  {
+   "id": "period",
+   "label": "Books / periods",
+   "app": "General Ledger",
+   "kind": "process",
+   "match": "\\b(books?|periods?|year[- ]end|month[- ]end|fiscal year)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Periodic Tasks",
+    "submenu": "Books"
+   },
+   "lists": [
+    {
+     "match": "\\banalysis periods?\\b|\\bbudget variance analysis\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Budget Variance Analysis"
+    },
+    {
+     "match": "\\bworkbench\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Workbench"
+    }
+   ]
+  },
+  {
+   "id": "gl_process",
+   "label": "Accrual / prepaid / allocation / budget",
+   "app": "General Ledger",
+   "kind": "process",
+   "match": "\\b(accruals?|accrual workbench|prepaids?|prepaid (expenses?|journal)|allocations?|budgets?|budget variance|bva|site view)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Periodic Tasks",
+    "submenu": "Budgets"
+   },
+   "lists": [
+    {
+     "match": "\\bbudget variance|\\bbva\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Budget Variance Analysis"
+    },
+    {
+     "match": "\\baccrual workbench\\b|\\bposting and unposting accruals\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Accrual Workbench"
+    },
+    {
+     "match": "\\baccruals?\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Accrual"
+    },
+    {
+     "match": "\\bprepaid",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Prepaids"
+    },
+    {
+     "match": "\\ballocation log\\b|\\bprocessed g/?l allocation\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "View Allocation Log"
+    },
+    {
+     "match": "\\bgenerat\\w* (an? )?(g/?l )?allocations?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Generate Allocation"
+    },
+    {
+     "match": "\\ballocations?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Allocations"
+    },
+    {
+     "match": "\\bsite view\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Site View"
+    }
+   ]
+  },
+  {
+   "id": "journal_entry",
+   "label": "Journal entry",
+   "app": "General Ledger",
+   "kind": "txn",
+   "match": "\\b(journal entr(y|ies)|jes?|adjusting (journal )?entr(y|ies)|adjusting journals?|gaap adjust(ing|ment)|tax adjust(ing|ment)|statistical (journal|adjusting)|memorized transactions?|reclass entry)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Search & Find",
+    "submenu": "Journal Entry"
+   },
+   "lists": [
+    {
+     "match": "\\brecurring statistical\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Recurring Statistical Journal Entry"
+    },
+    {
+     "match": "\\brecurring\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Recurring Journal Entries"
+    },
+    {
+     "match": "\\b(adjusting|gaap|tax adjust|user[- ]defined)\\b",
+     "tab": "All",
+     "section": "Periodic Tasks",
+     "submenu": "Adjusting Entry"
+    },
+    {
+     "match": "\\bstatistical\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Statistical Journal Entry"
+    },
+    {
+     "match": "\\bworkbench\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Workbench"
+    }
+   ]
+  },
+  {
+   "id": "gl_account",
+   "label": "G/L account / account group",
+   "app": "General Ledger",
+   "kind": "master",
+   "match": "\\b(g/?l accounts?|chart of accounts|account groups?|statistical accounts?|reporting accounts?|account sets?|accounts?)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Search & Find",
+    "submenu": "Accounts"
+   },
+   "lists": [
+    {
+     "match": "\\baccount groups?\\b",
+     "tab": "All",
+     "section": "Search & Find",
+     "submenu": "Account Groups"
+    },
+    {
+     "match": "\\b(reporting accounts?|account sets?)\\b",
+     "tab": "All",
+     "section": "Search & Find",
+     "submenu": "Reporting Accounts"
+    },
+    {
+     "match": "\\bstatistical accounts?\\b",
+     "tab": "All",
+     "section": "Search & Find",
+     "submenu": "Statistical Accounts"
+    },
+    {
+     "match": "\\bchart of accounts\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Chart of Accounts"
+    },
+    {
+     "match": "\\baccount balances\\b",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "Financial Analytics"
+    }
+   ]
+  },
+  {
+   "id": "gl_report",
+   "label": "G/L report / analytics",
+   "app": "General Ledger",
+   "kind": "output",
+   "match": "\\b(trial balance|cash flow|general ledger report|financial analytics|deferred revenue|(location|department|unit|segment|journal) activity|dimension balances|g/?l workbench|general ledger workbench)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": "Reports",
+    "submenu": "Financial Analytics"
+   },
+   "lists": [
+    {
+     "match": "\\bworkbench\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Workbench"
+    },
+    {
+     "match": "\\bdeferred revenue (forecast|details?|revaluation)\\b",
+     "tab": "All",
+     "section": "Reports",
+     "submenu": "=title"
+    },
+    {
+     "match": "\\bgeneral ledger report\\b",
+     "tab": "All",
+     "section": "Daily Tasks",
+     "submenu": "General Ledger Report"
+    },
+    {
+     "match": "\\btrial balance\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Trial Balance"
+    }
+   ]
+  },
+  {
+   "id": "fin_statement",
+   "label": "Financial statement (report library)",
+   "app": "Reports",
+   "kind": "output",
+   "match": "\\b(income statement|balance sheet|budget comparison|annual budget statement|financial reports library|statement of cash flows)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": null,
+    "submenu": "Financial Reporting"
+   },
+   "lists": []
+  },
+  {
+   "id": "report_builder",
+   "label": "Report writer / report setup",
+   "app": "Reports",
+   "kind": "service",
+   "match": "\\b(financial reports?|report writer|computations?|rows tab|columns tab|format tab|filters tab|report groups?|cover letters?|reports? center|custom reports?|operational reports?|onesite reports?|dimension (groups?|structures?)|dimensions|customer groups?|location groups?|financial graphs?|report (audiences?|types?|schedules?)|stored reports?|memorized reports?|scheduled reports?|storage options)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": null,
+    "submenu": "Reports Center"
+   },
+   "lists": [
+    {
+     "match": "\\bdimension groups?\\b|\\b(customer|location|vendor|department) groups?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Dimension Groups"
+    },
+    {
+     "match": "\\bdimension structures?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Dimension Structures"
+    },
+    {
+     "match": "\\b(report groups?|cover letters?|report types?|report audiences?)\\b",
+     "tab": "Setup",
+     "section": "More",
+     "submenu": "Report"
+    },
+    {
+     "match": "\\b(stored reports?|storage options|storing)\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "My Stored Reports"
+    },
+    {
+     "match": "\\bcustom reports?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Custom Reports"
+    },
+    {
+     "match": "\\boperational reports?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Operational Reports"
+    },
+    {
+     "match": "\\bfinancial graphs?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Financial Graphs"
+    },
+    {
+     "match": "\\bdimensions\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Dimensions"
+    },
+    {
+     "match": "\\b(financial reports?|report writer|computations?|rows tab|columns tab|format tab|filters tab)\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Financial Reporting"
+    }
+   ]
+  },
+  {
+   "id": "approval",
+   "label": "Transaction approval",
+   "app": "Company",
+   "kind": "service",
+   "match": "\\b(approval (workbench|workflows?|polic(y|ies)|configuration|setup wizard|history)|approvals?|approv(e|ing)|declin(e|ing)|delegates?|spend polic(y|ies))\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": null,
+    "submenu": "Approvals"
+   },
+   "lists": [
+    {
+     "match": "\\bapproval setup wizard\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Approval Setup Wizard"
+    }
+   ]
+  },
+  {
+   "id": "import",
+   "label": "Data import",
+   "app": "Company",
+   "kind": "service",
+   "match": "\\b(import data|data templates?|import(ing)? (templates?|master lists?|beginning balances|historical|opening balances)|data import wizard|conversion|imports?|importing)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": null,
+    "submenu": "Import Data"
+   },
+   "lists": [
+    {
+     "match": "\\bdata import wizard\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Data Import Wizard"
+    }
+   ]
+  },
+  {
+   "id": "user_role",
+   "label": "User / role / permission / subscription",
+   "app": "Company",
+   "kind": "service",
+   "match": "\\b(users?|roles?|permissions?|passwords?|sign[- ]?in|web services|subscriptions?|subscrib(e|ing)|external authorizations?)\\b",
+   "home": {
+    "match": null,
+    "tab": "Setup",
+    "section": null,
+    "submenu": "Users"
+   },
+   "lists": [
+    {
+     "match": "\\broles?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Roles"
+    },
+    {
+     "match": "\\bweb services\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Web Services Users"
+    },
+    {
+     "match": "\\bexternal users?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "External users"
+    },
+    {
+     "match": "\\bexternal authorizations?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "External Authorizations"
+    },
+    {
+     "match": "\\bsubscri",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Subscriptions"
+    },
+    {
+     "match": "\\buser permissions report\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "User Permissions Report"
+    },
+    {
+     "match": "\\bgroups?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Groups"
+    }
+   ]
+  },
+  {
+   "id": "entity",
+   "label": "Entity / location / department",
+   "app": "Company",
+   "kind": "service",
+   "match": "\\b(entit(y|ies)|locations?|departments?|segments?|property transfer|multi[- ]?entity|inter[- ]entity|management reporting codes?)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": null,
+    "submenu": "Entities"
+   },
+   "lists": [
+    {
+     "match": "\\blocations?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Locations"
+    },
+    {
+     "match": "\\bdepartments?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Departments"
+    },
+    {
+     "match": "\\bsegments?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Segments"
+    },
+    {
+     "match": "\\bmanagement reporting codes?\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Management Reporting Codes"
+    },
+    {
+     "match": "\\binter[- ]entity account mapping\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Inter-Entity Account Mapping"
+    },
+    {
+     "match": "\\bmulti[- ]?entity (console|restrictions?)\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Subscriptions"
+    }
+   ]
+  },
+  {
+   "id": "company_config",
+   "label": "Company configuration / storage / contacts",
+   "app": "Company",
+   "kind": "service",
+   "match": "\\b(central configuration|notifications?|email templates?|document numbering|multi[- ]?currency|currenc(y|ies)|attachments?|storage|cloud[- ]storage|kpis?|key performance|close calendar|ledger sentry|service tickets?|terminology|holiday|contacts?|my preferences|company setup wizard|customer utility tool|audit event|access log|company messages|units)\\b",
+   "home": {
+    "match": null,
+    "tab": "All",
+    "section": null,
+    "submenu": "Configuration"
+   },
+   "lists": [
+    {
+     "match": "\\bcentral configuration\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Central Configuration"
+    },
+    {
+     "match": "\\bcloud[- ]storage\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Cloud Storage"
+    },
+    {
+     "match": "\\b(storage|attachments?)\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Storage"
+    },
+    {
+     "match": "\\bcontacts?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Contacts"
+    },
+    {
+     "match": "\\b(multi[- ]?currency|currenc(y|ies))\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Multi-currency"
+    },
+    {
+     "match": "\\bservice tickets?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Service Tickets"
+    },
+    {
+     "match": "\\bclose calendar\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Close Calendar"
+    },
+    {
+     "match": "\\bemail templates?\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Email Templates"
+    },
+    {
+     "match": "\\bkpis?\\b|key performance",
+     "tab": "All",
+     "section": null,
+     "submenu": "KPIs Setup"
+    },
+    {
+     "match": "\\bledger sentry\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Ledger Sentry"
+    },
+    {
+     "match": "\\bterminology\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Terminology"
+    },
+    {
+     "match": "\\bdocument numbering\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Document Numbering"
+    },
+    {
+     "match": "\\bunits\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Units"
+    },
+    {
+     "match": "\\bcompany messages\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Company Messages"
+    },
+    {
+     "match": "\\bcustomer utility tool\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "Customer Utility Tool"
+    },
+    {
+     "match": "\\b(audit event|access log)\\b",
+     "tab": "Setup",
+     "section": null,
+     "submenu": "History and Reports"
+    },
+    {
+     "match": "\\bcompany setup wizard\\b",
+     "tab": "All",
+     "section": null,
+     "submenu": "Company Setup Wizard"
+    }
+   ]
+  }
+ ],
+ "tieBreakers": [
+  {
+   "id": "T1",
+   "name": "The most specific business object wins",
+   "rule": "Match the task against the object list in order (specialty apps, then subledgers, then the General Ledger, then Company/Reports services). The first hit decides the application: a job beats an invoice, an invoice beats an account, any business object beats a platform service.",
+   "trigger": null,
+   "unless": null,
+   "force": null
+  },
+  {
+   "id": "T2",
+   "name": "Transaction approvals go to the Approval Workbench",
+   "rule": "Approving, declining or routing a transaction (invoice, payment, PO, journal entry) happens in Company › All › Approvals › Approval Workbench. Approving a non-transaction record (vendor record, bank rec, work paper, expense report, timesheet/PTO) stays in that record's own application.",
+   "trigger": "\\b(approv(e|al|als|ing)|declin(e|ing)|unapproved)\\b",
+   "unless": "\\b(vendors?|reconciliations?|work ?papers?|pto|timesheets?|time approvals?|expense reports?|staff expenses|budget check|virtual refunds?)\\b",
+   "force": "approval"
+  },
+  {
+   "id": "T3",
+   "name": "Bulk loads and conversions go to Import Data",
+   "rule": "Loading records from a template (master lists, opening balances, history, open items) happens in Company › All › Import Data. An import button on one working list (a budget, a bank feed/BAI file, a funds-transfer or payment file, staff expenses) stays on that list.",
+   "trigger": "\\b(import(ing|s)?|data templates?|template/import)\\b|\\bdata$",
+   "unless": "\\b(budgets?|bank feeds?|bai|csv or bai|bank statements?|funds transfers?|payments?|expenses|segment rules?|catalog|draws?|draw models?|cost codes?|transaction allocations?|investor data|summary|working budgets?|pex|prepaids?|account groups?|account group members|reporting accounts?)\\b",
+   "force": "import"
+  },
+  {
+   "id": "T4",
+   "name": "Money direction decides AP vs AR vs Cash",
+   "rule": "Money leaving to anyone (vendors, resident deposit refunds, owner payouts by check) is an A/P payment. Money arriving against a customer charge is an A/R payment/deposit. Money arriving with no customer charge, or moving between your own bank accounts, is Cash Management (Other Receipts / Funds Transfer).",
+   "trigger": "\\b(refund(s|ing)?|return(ing)? (the |a )?(security )?deposit|deposit refund|move-?out)\\b",
+   "unless": "\\b(configur|enabl)\\w*",
+   "force": "check"
+  },
+  {
+   "id": "T5",
+   "name": "Groups and structures are reporting setup",
+   "rule": "Customer / location / vendor groups and dimension structures are maintained in Reports › Setup (Dimension Groups / Structures), not in the application that owns the records.",
+   "trigger": "\\b(customer groups?|location groups?|dimension (groups?|structures?)|report groups?)\\b",
+   "unless": "\\bavailable cash\\b",
+   "force": "report_builder"
+  },
+  {
+   "id": "T6",
+   "name": "Balance-sheet account reports belong to Financial Close",
+   "rule": "A report named after a balance-sheet account (Prepaid Expenses, Accrued Expenses, Notes Payable, A/R - Multifamily, Security Deposits …) is a close work-paper report in Financial Close Management › All › Reports.",
+   "trigger": null,
+   "unless": null,
+   "force": "bs_rec_report"
+  },
+  {
+   "id": "T7",
+   "name": "\"Create X from Y\": the Y list hosts the action",
+   "rule": "When a task starts from an existing record (\"create a PO from a contract\", \"an intercompany bill from an A/P invoice\", \"a journal entry from the workbench\"), go to the source record's list.",
+   "trigger": null,
+   "unless": null,
+   "force": null
+  },
+  {
+   "id": "T8",
+   "name": "Moving money between your own accounts is a funds transfer",
+   "rule": "Moving cash between two of your own bank accounts (operating to reserve, sweep to trust) is Cash Management › Periodic Tasks › Funds Transfer, even when one account is a reserve or escrow account.",
+   "trigger": "\\btransfer(ring)? (funds|cash|money)\\b|\\bfunds? transfers?\\b",
+   "unless": "\\b(entity data|property transfer|asset)\\b",
+   "force": "funds_transfer"
+  },
+  {
+   "id": "T9",
+   "name": "A period-end process beats the document it is about",
+   "rule": "When the verb is a period-end process (accrue, amortize a prepaid, allocate), the General Ledger process list wins over the invoice or bill it concerns: accruals, prepaids and allocations are worked in General Ledger › All › Periodic Tasks.",
+   "trigger": "\\b(accru(e|es|al|als|ing)|amortiz\\w*|allocat(e|ing))\\b",
+   "unless": "\\b(templates?|agent|finance agent|expense allocations?|allocation (definitions?|templates?|log)|g/?l allocations workflow|accrual activity)\\b",
+   "force": "gl_process"
+  }
+ ],
+ "outOfScopeApps": [
+  "(Any application)",
+  "Property Management"
+ ],
+ "stageOfKind": {
+  "code": "configure",
+  "master": "find_fix",
+  "txn": "find_fix",
+  "process": "process",
+  "output": "review",
+  "service": "configure"
+ },
+ "stageOfSection": {
+  "Daily Tasks": "enter",
+  "Search & Find": "find_fix",
+  "Periodic Tasks": "process",
+  "Reports": "review",
+  "More": "configure"
+ },
+ "fromClause": "\\bfrom (a |an |an existing |the |existing )?(.+)$",
+ "synonyms": [
+  {
+   "match": "\\b(vendor|supplier|utility) (bill|invoice)s?\\b",
+   "replace": "A/P invoice"
+  },
+  {
+   "match": "\\bbills?\\b",
+   "replace": "A/P invoice"
+  },
+  {
+   "match": "\\b(cut|write|issue) (a |the )?checks?\\b",
+   "replace": "print checks"
+  },
+  {
+   "match": "\\bwire transfers?\\b|\\bwires?\\b",
+   "replace": "manual payment"
+  },
+  {
+   "match": "\\b(interest (income|earned)|bank interest|misc(ellaneous)? (income|receipt)|non-customer receipt)\\b",
+   "replace": "other receipt"
+  },
+  {
+   "match": "\\b(move|moving|sweep|sweeping) (cash|money|funds)\\b",
+   "replace": "transfer funds"
+  },
+  {
+   "match": "\\b(bank rec|bank recon)\\b",
+   "replace": "bank reconciliation"
+  },
+  {
+   "match": "\\b(gl entry|journal|je)s?\\b(?! entr)",
+   "replace": "journal entry"
+  },
+  {
+   "match": "\\breclass(ify|ification)?\\b",
+   "replace": "reclass entry"
+  },
+  {
+   "match": "\\b(write[- ]?offs?|writing off|bad debt)\\b",
+   "replace": "A/R adjustment"
+  },
+  {
+   "match": "\\b(late fees?|late charges?)\\b",
+   "replace": "penalties"
+  },
+  {
+   "match": "\\b(bounced|returned|nsf) (check|payment)s?\\b",
+   "replace": "NSF payment"
+  },
+  {
+   "match": "\\b(owner|investor) (draw|contribution|capital call)s?\\b",
+   "replace": "contribution"
+  },
+  {
+   "match": "\\b(capex|capital (project|improvement)s?|renovation|rehab)\\b",
+   "replace": "construction job"
+  },
+  {
+   "match": "\\b(undo|back out|take back)\\b",
+   "replace": "reverse"
+  },
+  {
+   "match": "\\b(accrue|accruing)\\b",
+   "replace": "accrual"
+  },
+  {
+   "match": "\\b(rent|resident) (payment|receipt)s?\\b",
+   "replace": "customer payment"
+  },
+  {
+   "match": "\\b(prepay|prepaid insurance|prepaid tax(es)?)\\b",
+   "replace": "prepaid"
+  },
+  {
+   "match": "\\b(month[- ]end close|close the month|period close)\\b",
+   "replace": "close the books"
+  },
+  {
+   "match": "\\bpo\\b",
+   "replace": "purchase order"
+  },
+  {
+   "match": "\\b(load|loading|migrat\\w*|bring(ing)? (in|over)|convert(ing)?)\\b",
+   "replace": "import"
+  }
+ ],
+ "codeNoun": "\\b(types?|terms|categor(y|ies)|class(es)?|templates?|labels?|methods?|purposes|rules?|configurations?)( (list|page|information page))?$",
+ "strongConfig": "\\b(configur\\w*|enabl\\w*|disabl\\w*|settings?|preferences|turn(ing)? (on|off))\\b",
+ "exceptionGroups": {
+  "company": "Lives in Company, not in its functional application",
+  "reports": "Lives in Reports / a reporting layer, not in the application's own menu",
+  "crossapp": "A workflow that spans applications",
+  "split": "One feature, two homes",
+  "naming": "A misleading name"
+ },
+ "exceptions": [
+  {
+   "id": "E01",
+   "group": "company",
+   "title": "Transaction approvals and budget checks",
+   "cue": "\\b(approv\\w*|declin\\w*|stuck|workflow|available budget|budget check)\\b",
+   "where": "^Company › All › - › (Approvals|Approval Workbench|Approval Configuration)",
+   "trap": "You look for invoice, payment, PO or journal-entry approvals (and the \"available budget\" check) inside AP, Spend or GL.",
+   "why": "Approval routing is one engine shared by every transaction type, so it is configured and worked once, in Company.",
+   "hook": "Anything waiting for a signature sits on one desk: Company › Approvals."
+  },
+  {
+   "id": "E02",
+   "group": "company",
+   "title": "Bulk imports and opening balances",
+   "cue": "\\b(import\\w*|convert\\w*|conversion|go[- ]live|opening balances?|beginning balances?|onboard\\w*|new property|acquisition)\\b",
+   "where": "^Company › (All|Setup) › - › (Import Data|Import data|Data Import Wizard)",
+   "trap": "You look for \"import vendors / A/P invoices / journal entries / bank rec items\" in the owning application.",
+   "why": "Conversions and go-live loads use one template engine (Import Data) so every file is validated the same way.",
+   "hook": "Moving in? The loading dock is in Company."
+  },
+  {
+   "id": "E03",
+   "group": "company",
+   "title": "Central Configuration tabs for AP, AR, Cash and Site View",
+   "cue": "\\b(central configuration|all entities|company[- ]wide|every property)\\b",
+   "where": "^Company › All › - › Central Configuration",
+   "trap": "You open Accounts Payable › Setup › Configuration to change payment priority, inline credits or A/R formatting across entities.",
+   "why": "Multi-entity companies set cross-entity defaults once in Company; each application's Setup › Configuration holds only its own local switches.",
+   "hook": "Local switch = app Setup; company-wide switch = Central Configuration."
+  },
+  {
+   "id": "E04",
+   "group": "company",
+   "title": "App-specific permissions and user flags",
+   "cue": "\\b(permission\\w*|access|role|user)\\b",
+   "where": "^Company › Setup › - › (Users|Roles|Users/Roles|Groups)",
+   "trap": "You look for \"BVA user\", chart-type permission or expense-report approver settings in GL or AP.",
+   "why": "A permission is a property of the user, and users live in Company.",
+   "hook": "If it is about a person, it is in Company › Setup › Users/Roles."
+  },
+  {
+   "id": "E05",
+   "group": "company",
+   "title": "Subscription switches (vendor restrictions, 1099 by tax ID, multi-entity, full service)",
+   "cue": "\\b(subscription|enable vendor restrictions|1099 by tax id|multi[- ]entity)\\b",
+   "where": "^Company › Setup › - › Subscriptions",
+   "trap": "You look for \"enable vendor restrictions\" or \"validate 1099 by tax ID\" in AP Setup.",
+   "why": "Features that change how an application is licensed or shared across entities are turned on from the subscription, in Company.",
+   "hook": "Turning a whole feature on? Subscriptions, in Company."
+  },
+  {
+   "id": "E06",
+   "group": "company",
+   "title": "Customer Utility Tool (mass inactivate vendors, change default bank G/L)",
+   "cue": "\\b(mass|bulk) (inactivat\\w*|update|change)|\\binactive vendors\\b|\\bstale vendors\\b",
+   "where": "^Company › Setup › - › Customer Utility Tool",
+   "trap": "You try to inactivate stale vendors or change a bank account's G/L from the vendor or bank list.",
+   "why": "Bulk data-maintenance utilities run outside the normal record lists.",
+   "hook": "Mass clean-up = Company utility, not the list."
+  },
+  {
+   "id": "E07",
+   "group": "company",
+   "title": "Tax codes and contact tax groups",
+   "cue": "\\btax codes?\\b",
+   "where": "^Company › All › - › (Tax Codes|Contact Tax Groups|Settings|Company)",
+   "name": "\\btax\\b",
+   "trap": "You expect tax codes under Accounts Receivable › Setup › Tax.",
+   "why": "Tax codes are shared by A/P, A/R and Spend lines, so the code list is a company setting; A/R Setup keeps the authorities and schedules.",
+   "hook": "Code in Company, authority in A/R."
+  },
+  {
+   "id": "E08",
+   "group": "company",
+   "title": "Close Calendar generates close work and posts depreciation",
+   "cue": "\\b(close calendar|schedule\\w* (the )?close|generate checklists?)\\b",
+   "where": "^Company › All › - › Close Calendar",
+   "trap": "You look for \"generate FCM checklists\", \"open BVA periods\" or \"post depreciation for fixed assets\" in FCM, GL or Fixed Assets.",
+   "why": "The Close Calendar is the company-wide scheduler that triggers period tasks in several applications.",
+   "hook": "Scheduled month-end triggers hang on the Company calendar."
+  },
+  {
+   "id": "E09",
+   "group": "company",
+   "title": "Entity record settings (default bank, vendor/customer link, posting date)",
+   "cue": "\\b(entity|property) (default|settings?|bank)\\b|\\bdefault bank\\b",
+   "where": "^Company › All › - › Entities",
+   "trap": "You look for an entity's default bank account or its linked vendor/customer in Cash, AP or AR.",
+   "why": "The entity (property) record owns its defaults; applications read them.",
+   "hook": "Property-level defaults live on the entity card."
+  },
+  {
+   "id": "E10",
+   "group": "company",
+   "title": "Contract-expiration and other Ledger Sentry alerts",
+   "cue": "\\b(alert|expir\\w*)\\b",
+   "where": "^Company › All › - › Ledger Sentry",
+   "trap": "You look for contract-expiration alerts under AP › Bids and Contracts.",
+   "why": "Ledger Sentry is the company-wide rules/alert engine.",
+   "hook": "Alerts = Ledger Sentry."
+  },
+  {
+   "id": "E11",
+   "group": "company",
+   "title": "AI configuration",
+   "cue": "\\b(ai|scann\\w*|finance agent)\\b",
+   "where": "^(Company › All › - › AI Configuration|Finance Agent › Setup › - › AI Configuration)",
+   "trap": "You look for AI-invoice scanning or standard vendor types in AP Setup.",
+   "why": "AI features are configured once for the agent that serves several applications.",
+   "hook": "AI knobs: Company › AI Configuration / Finance Agent › Setup."
+  },
+  {
+   "id": "E12",
+   "group": "reports",
+   "title": "Named financial statements (Income Statement, Balance Sheet, budget comparisons)",
+   "cue": "\\b(income statement|balance sheet|budget comparison|owner package|financial statements?)\\b",
+   "where": "^Reports › All › - › (Financial Reporting|Financial Reports)",
+   "trap": "You look for the Income Statement or Annual Budget Statement under General Ledger › Reports.",
+   "why": "Statements are Financial Report Writer layouts, so they live in the report library shared by all applications; GL keeps Trial Balance and analytics.",
+   "hook": "Trial balance in GL; the statements you hand an owner in Reports."
+  },
+  {
+   "id": "E13",
+   "group": "reports",
+   "title": "Locations, departments and groups maintained as dimensions",
+   "cue": "\\b(location groups?|customer groups?|department list|dimension|roll[- ]?up|regional)\\b",
+   "where": "^Reports › (Setup › - › Dimension [Gg]roups|Setup › - › Dimension Structures|All › - › Dimensions)",
+   "trap": "You look for location groups, customer groups or the department list in Company or AR.",
+   "why": "Grouping exists for reporting roll-ups, so the Reports application owns dimension groups and structures.",
+   "hook": "If it only exists to roll up a report, it is in Reports › Setup."
+  },
+  {
+   "id": "E14",
+   "group": "reports",
+   "title": "Stored, scheduled and exported report output",
+   "cue": "\\b(stored reports?|schedul\\w* reports?|email\\w* (a |the )?reports?|save (a |the )?reports?)\\b",
+   "where": "^(Reports › Setup › (-|More) › (My Stored Reports|Report)|Reports › All › - › Reports Center)",
+   "name": "\\b(stor(e|ing|ed)|schedul|cloud|portal|export|email)",
+   "trap": "You look for where a stored or scheduled report went inside the application that ran it.",
+   "why": "Every application hands output to the same Process & Store service.",
+   "hook": "Output goes to one shelf: My Stored Reports."
+  },
+  {
+   "id": "E15",
+   "group": "reports",
+   "title": "OneSite resident reports (rent roll, deposits, resident balances)",
+   "cue": "\\b(rent roll|resident (ledger|balance)|security deposits? (audit|report)|onesite)\\b",
+   "where": "^(Reports › All › - › Reports Center|General Ledger › All › Reports › Financial Statements)",
+   "name": "\\b(rent roll|security deposits?|resident|bank deposit|lost rent|units? report|onesite)",
+   "trap": "You look for the rent roll or resident deposit audit in Accounts Receivable.",
+   "why": "Resident ledgers live in OneSite (property management); Financial Suite only reports them through Reports Center › OneSite Reports.",
+   "hook": "Residents are OneSite's; you only read them in Reports Center."
+  },
+  {
+   "id": "E16",
+   "group": "reports",
+   "title": "Custom report builder in Platform Services (incl. Positive Pay files)",
+   "cue": "\\b(custom reports?|positive pay (file|report))\\b",
+   "where": "^(Platform Services › All › - › Custom Reports|Reports › All › - › (Operational Reports|Custom Reports))",
+   "trap": "You look for the Custom Report Wizard or the Positive Pay report under Reports or Cash Management.",
+   "why": "Custom reports are built on the customization platform, so the wizard lives with object customization.",
+   "hook": "Build-your-own report = Platform Services."
+  },
+  {
+   "id": "E17",
+   "group": "naming",
+   "title": "\"Document Dashboard\" is AP's scanning queue",
+   "cue": "\\bdocument (queue|dashboard)\\b",
+   "where": "^Accounts Payable › All › - › Document Dashboard",
+   "trap": "The name sends you to the Dashboards application.",
+   "why": "It is the inbox of scanned invoice documents before they become A/P invoices.",
+   "hook": "Documents waiting to become invoices = AP."
+  },
+  {
+   "id": "E18",
+   "group": "crossapp",
+   "title": "Customer refunds start in AR, are paid through AP",
+   "cue": "\\b(refund\\w*|move[- ]?out|deposit refund|credit balance)\\b",
+   "where": "^(Accounts Receivable › All › (Daily Tasks › Receive a Payment|Search & Find › Payments)|Accounts Payable › All › (Search & Find › Payments|Daily Tasks › Third Party Payments Queue|- › Third Party Payments Queue))",
+   "name": "\\b(refund|credit to an invoice|writing off|reversing a paid invoice|applying)",
+   "trap": "A resident/customer refund: AR or AP?",
+   "why": "The credit balance is cleared on the customer (AR › Receive a Payment › Refunding a Customer); the cash leaves as an A/P payment (check, virtual refund or third-party queue).",
+   "hook": "Decide it in AR, pay it in AP."
+  },
+  {
+   "id": "E19",
+   "group": "crossapp",
+   "title": "Bank reconciliation: Cash does it, FCM files it, Finance Agent can pre-approve it",
+   "cue": "\\b(bank rec\\w*|reconcil\\w*)\\b",
+   "where": "^(Finance Agent › All › - › Cash Management|Financial Close Management › All › Reports › Cash)",
+   "trap": "You look for the bank rec in General Ledger, or for the AI's pending recs in Cash Management.",
+   "why": "Matching and approval happen in Cash › Periodic Tasks › Reconciliation; the close work paper (Cash & Cash Equivalents) is an FCM report; AI-prepared recs queue in Finance Agent.",
+   "hook": "Match in Cash, file in FCM, let the Agent queue."
+  },
+  {
+   "id": "E20",
+   "group": "crossapp",
+   "title": "Capital projects: PO/contract → A/P invoice → job draw → fixed asset",
+   "cue": "\\b(retainage|construction|capital|capex|draw|subcontract\\w*|renovation|job)\\b",
+   "where": "^(Job Cost & Reserves › All › (Search & Find › Subcontracts|Periodic Tasks › Budgets)|Accounts Payable › All › - › (Subcontracts|Purchase Orders|Assets)|Accounts Payable › All › Periodic Tasks › Assets)",
+   "trap": "A construction invoice with retainage: Spend, AP or Job Cost?",
+   "why": "The commitment starts in Spend/AP Bids and Contracts, the invoice is an A/P invoice coded to a job and cost code, draws and retainage are tracked in Job Cost, and the finished asset is created from AP then activated in Fixed Assets.",
+   "hook": "Commit in Spend, bill in AP, draw in Job Cost, capitalize in Fixed Assets."
+  },
+  {
+   "id": "E21",
+   "group": "crossapp",
+   "title": "Contracts are an AP periodic task; POs made from them are too",
+   "cue": "\\b(contract|bid)s?\\b",
+   "where": "^Accounts Payable › All › Periodic Tasks › Bids and Contracts",
+   "trap": "\"Create a PO / subcontract / service contract from a contract\" sends you to Spend Management.",
+   "why": "Bids and Contracts is the A/P contract register; the PO it spawns then lives in Spend.",
+   "hook": "The contract is AP's; the PO it spawns is Spend's."
+  },
+  {
+   "id": "E22",
+   "group": "crossapp",
+   "title": "Check stock, alignment and ACH set-up help sit in AP Banking",
+   "cue": "\\b(check stock|alignment|printer|signature)\\b",
+   "where": "^Accounts Payable › All › Daily Tasks › Banking",
+   "name": "\\b(stock|alignment|electronic payments|ach|signature|printer)",
+   "trap": "Bank-facing check settings sound like Cash Management.",
+   "why": "AP Banking is where checks are printed, so the printing prerequisites are documented there; the bank's check layout itself is Cash › Setup › More.",
+   "hook": "Printing problems: AP Banking. Layout design: Cash Setup."
+  },
+  {
+   "id": "E23",
+   "group": "crossapp",
+   "title": "Vendor e-payment enrollment is on the vendor, not in Cash",
+   "cue": "\\b(ach|eft|electronic payments?|direct deposit) (for|to) (a |the )?vendors?\\b|\\bvendor (ach|eft|bank details)\\b",
+   "where": "^Accounts Payable › All › Search & Find › Vendors",
+   "name": "\\b(electronic payments?|ach|eft)\\b",
+   "trap": "\"Set up vendors for ACH\" sounds like a bank configuration.",
+   "why": "The remittance method and bank details are fields on the vendor record; Cash only holds your side of the file.",
+   "hook": "Their bank details = vendor record; your bank file = Cash."
+  },
+  {
+   "id": "E24",
+   "group": "split",
+   "title": "Four kinds of budget",
+   "cue": "\\bbudgets?\\b",
+   "where": "^(Forecasting & Planning › All › (- › Budgets|Periodic Tasks › Working Budgets)|Job Cost & Reserves › All › (Periodic Tasks › Budgets|Search & Find › Jobs))",
+   "name": "\\bbudget",
+   "trap": "Every \"budget\" task goes to General Ledger › Budgets.",
+   "why": "GL holds the posted operating budget and BVA; Forecasting & Planning builds working budgets before publishing; Job Cost holds job and change-order budgets; Company approvals check available budget.",
+   "hook": "Operating = GL, draft = F&P, capital = Job Cost, spending check = Company."
+  },
+  {
+   "id": "E25",
+   "group": "split",
+   "title": "Opening and closing books from FCM Console",
+   "cue": "\\b(open|close|reopen) (the )?books\\b",
+   "where": "^Financial Close Management › All › - › Console",
+   "name": "\\b(open|close) books\\b",
+   "trap": "Books open/close is a GL month-end task.",
+   "why": "It is (GL › Periodic Tasks › Month End › Books), but FCM's Console exposes the same Open/Close Books boxes for the close team.",
+   "hook": "Same switch, two panels: GL Month End and FCM Console."
+  },
+  {
+   "id": "E26",
+   "group": "split",
+   "title": "Account labels are kept per subledger",
+   "cue": "\\baccount labels?\\b",
+   "where": "^(Accounts Receivable|Accounts Payable) › Setup › - › Account Labels",
+   "trap": "Labels map to G/L accounts, so you look in General Ledger.",
+   "why": "A label is the subledger's friendly name for a G/L account; each subledger keeps its own label list.",
+   "hook": "Labels belong to the subledger that uses them."
+  },
+  {
+   "id": "E27",
+   "group": "split",
+   "title": "Customer types exist in AR and in Cash Management",
+   "cue": "\\bcustomer types?\\b",
+   "where": "^Cash Management › All › - › Customer Management",
+   "trap": "Customer types must be an A/R setup code.",
+   "why": "Cash Management keeps its own customers and types for credit-card and PC-card billing.",
+   "hook": "Card-program customers belong to Cash."
+  },
+  {
+   "id": "E28",
+   "group": "split",
+   "title": "Job positions are payroll planning, not Job Cost",
+   "cue": "\\bjob positions?\\b",
+   "where": "^(Forecasting & Planning › All › - › Job Positions|Time & Resources › All › Periodic Tasks › Job Positions)",
+   "trap": "\"Job\" sends you to Job Cost & Reserves.",
+   "why": "A job position is an HR/payroll object (Forecasting & Planning payroll, Time & Resources staffing).",
+   "hook": "A job *position* is a person's role, not a construction job."
+  },
+  {
+   "id": "E29",
+   "group": "naming",
+   "title": "\"Agent Jobs\" and \"Agent Accruals\" belong to the Finance Agent",
+   "cue": "\\bagent\\b",
+   "where": "^Finance Agent › All › - › (Agent Jobs|Accounts Payable)",
+   "trap": "\"Job\" or \"accrual\" sends you to Job Cost or GL.",
+   "why": "These are the AI agent's scheduled work and proposed accruals, reviewed before anything posts.",
+   "hook": "Agent-prefixed = Finance Agent."
+  },
+  {
+   "id": "E30",
+   "group": "naming",
+   "title": "A/R keeps an \"Invoices\" list without the A/R prefix",
+   "cue": "\\b(a/?r|customer|sales) invoices?\\b",
+   "where": "^Accounts Receivable › All › (- › (Invoices|A/R Sales Invoices)|Reports › A/R Invoices Analysis|Search & Find › Payments)",
+   "trap": "A bare \"invoice\" defaults to A/P.",
+   "why": "Inside the A/R menu the sales-invoice list is simply called Invoices.",
+   "hook": "Check which menu you are in before trusting a bare \"invoice\"."
+  },
+  {
+   "id": "E31",
+   "group": "naming",
+   "title": "\"Posted Payments\" and payment requests are A/P",
+   "cue": "\\bposted payments?\\b|\\bpayment requests?\\b",
+   "where": "^Accounts Payable › All › Search & Find › Payments",
+   "name": "\\b(posted payments?|payment requests?|notification)",
+   "trap": "\"Posted payment\" sounds like cash received in A/R.",
+   "why": "Posted Payments is the list of A/P disbursements after the check run.",
+   "hook": "A/P posts payments out; A/R enters payments in."
+  },
+  {
+   "id": "E32",
+   "group": "split",
+   "title": "Spend Management setup reaches into GL and AP",
+   "cue": "\\b(catalog|site view)\\b",
+   "where": "^Spend Management › Setup › - › Configuration",
+   "trap": "Mapping G/L accounts to catalog categories or the Site View A/P close calendar sounds like GL or AP setup.",
+   "why": "Both only matter to purchasing, so Spend owns them.",
+   "hook": "Only purchasing cares? Spend Setup."
+  },
+  {
+   "id": "E33",
+   "group": "split",
+   "title": "Multi-currency switches are in GL and AR configuration",
+   "cue": "\\b(currenc\\w*|foreign)\\b",
+   "where": "^(General Ledger|Accounts Receivable) › Setup › - › Configuration",
+   "name": "\\b(currenc|multi-currency|segments?|foreign)",
+   "trap": "Currency and segment settings sound like Company-wide options.",
+   "why": "Company defines currencies; GL (Accounting Settings) and AR decide how they post and revalue.",
+   "hook": "Define in Company, post-behaviour in GL/AR Setup."
+  },
+  {
+   "id": "E34",
+   "group": "naming",
+   "title": "Voiding a check is done from the Check Register",
+   "cue": "\\bvoid\\w*\\b",
+   "where": "^Accounts Payable › All › Reports › Check Register",
+   "name": "\\bvoid",
+   "trap": "A register is a report, so you do not expect an action there.",
+   "why": "The Check Register lists every issued payment, so it carries the Void action; voiding restores the invoices to open.",
+   "hook": "Void where the checks are listed: the Check Register."
+  }
+ ]
+}

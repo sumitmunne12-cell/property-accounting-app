@@ -1,0 +1,2801 @@
+{
+ "screens": 7107,
+ "excluded": {
+  "topics": {
+   "report column reference": 173,
+   "overview/intro": 158,
+   "FAQ/troubleshooting": 97,
+   "appendix/help": 40,
+   "examples/tips": 28,
+   "application home page": 20,
+   "browser how-to": 11,
+   "workflow narrative": 6
+  },
+  "topicsTotal": 533,
+  "noApplication": 6,
+  "outOfScope": 4
+ },
+ "menuPaths": {
+  "screens": 4701,
+  "ruleCoverage": 81.3,
+  "appPrecision": 81.4,
+  "tabPrecisionGivenApp": 93.1,
+  "sectionPrecisionGivenApp": 81.7,
+  "submenuPrecisionGivenApp": 74.7,
+  "endToEnd": 60.8
+ },
+ "chapterPaths": {
+  "screens": 1863,
+  "ruleCoverage": 63.8,
+  "appPrecision": 50.4
+ },
+ "byApplication": {
+  "Accounts Payable": {
+   "support": 792,
+   "appPrecision": 85.1,
+   "tabPrecision": 96.1,
+   "submenuPrecision": 59.3
+  },
+  "Company": {
+   "support": 651,
+   "appPrecision": 75.9,
+   "tabPrecision": 85.8,
+   "submenuPrecision": 74.9
+  },
+  "General Ledger": {
+   "support": 650,
+   "appPrecision": 90.6,
+   "tabPrecision": 92.2,
+   "submenuPrecision": 78.9
+  },
+  "Accounts Receivable": {
+   "support": 365,
+   "appPrecision": 74.5,
+   "tabPrecision": 95.6,
+   "submenuPrecision": 82.4
+  },
+  "Cash Management": {
+   "support": 308,
+   "appPrecision": 89.3,
+   "tabPrecision": 91.6,
+   "submenuPrecision": 85.5
+  },
+  "Reports": {
+   "support": 291,
+   "appPrecision": 68.7,
+   "tabPrecision": 95.5,
+   "submenuPrecision": 61.5
+  },
+  "Job Cost & Reserves": {
+   "support": 217,
+   "appPrecision": 91.7,
+   "tabPrecision": 95.5,
+   "submenuPrecision": 85.4
+  },
+  "Spend Management": {
+   "support": 118,
+   "appPrecision": 69.5,
+   "tabPrecision": 100.0,
+   "submenuPrecision": 61.0
+  },
+  "Financial Close Management": {
+   "support": 117,
+   "appPrecision": 94.9,
+   "tabPrecision": 96.4,
+   "submenuPrecision": 96.4
+  },
+  "Forecasting & Planning": {
+   "support": 80,
+   "appPrecision": 65.0,
+   "tabPrecision": 98.1,
+   "submenuPrecision": 92.3
+  },
+  "Time & Resources": {
+   "support": 58,
+   "appPrecision": 82.8,
+   "tabPrecision": 93.8,
+   "submenuPrecision": 81.2
+  },
+  "Finance Agent": {
+   "support": 48,
+   "appPrecision": 37.5,
+   "tabPrecision": 83.3,
+   "submenuPrecision": 55.6
+  },
+  "Platform Services": {
+   "support": 42,
+   "appPrecision": 64.3,
+   "tabPrecision": 77.8,
+   "submenuPrecision": 77.8
+  },
+  "Investor Tracking": {
+   "support": 37,
+   "appPrecision": 83.8,
+   "tabPrecision": 100.0,
+   "submenuPrecision": 87.1
+  },
+  "Fixed Assets": {
+   "support": 23,
+   "appPrecision": 100.0,
+   "tabPrecision": 95.7,
+   "submenuPrecision": 91.3
+  },
+  "Reporting Portal": {
+   "support": 12,
+   "appPrecision": 50.0,
+   "tabPrecision": 83.3,
+   "submenuPrecision": 66.7
+  },
+  "Taxes": {
+   "support": 12,
+   "appPrecision": 100.0,
+   "tabPrecision": 91.7,
+   "submenuPrecision": 91.7
+  },
+  "Global Consolidations": {
+   "support": 1,
+   "appPrecision": 0.0,
+   "tabPrecision": 0.0,
+   "submenuPrecision": 0.0
+  }
+ },
+ "rules": {
+  "A:ai_agent": {
+   "support": 26,
+   "precision": 69.2
+  },
+  "A:ap_invoice": {
+   "support": 249,
+   "precision": 67.1
+  },
+  "A:ap_process": {
+   "support": 131,
+   "precision": 90.8
+  },
+  "A:ap_setup": {
+   "support": 66,
+   "precision": 93.9
+  },
+  "A:approval": {
+   "support": 128,
+   "precision": 89.1
+  },
+  "A:ar_invoice": {
+   "support": 63,
+   "precision": 90.5
+  },
+  "A:ar_other": {
+   "support": 23,
+   "precision": 95.7
+  },
+  "A:ar_payment": {
+   "support": 49,
+   "precision": 87.8
+  },
+  "A:ar_setup": {
+   "support": 149,
+   "precision": 77.9
+  },
+  "A:bank_account": {
+   "support": 26,
+   "precision": 65.4
+  },
+  "A:bank_rec": {
+   "support": 94,
+   "precision": 88.3
+  },
+  "A:bs_rec_report": {
+   "support": 61,
+   "precision": 78.7
+  },
+  "A:card": {
+   "support": 43,
+   "precision": 97.7
+  },
+  "A:cash_position": {
+   "support": 111,
+   "precision": 80.2
+  },
+  "A:check": {
+   "support": 210,
+   "precision": 91.9
+  },
+  "A:check_setup": {
+   "support": 36,
+   "precision": 77.8
+  },
+  "A:company_config": {
+   "support": 163,
+   "precision": 81.0
+  },
+  "A:customer": {
+   "support": 42,
+   "precision": 81.0
+  },
+  "A:customization": {
+   "support": 30,
+   "precision": 90.0
+  },
+  "A:dashboard": {
+   "support": 11,
+   "precision": 0.0
+  },
+  "A:depreciation": {
+   "support": 6,
+   "precision": 83.3
+  },
+  "A:draw": {
+   "support": 29,
+   "precision": 100.0
+  },
+  "A:entity": {
+   "support": 73,
+   "precision": 54.8
+  },
+  "A:fin_statement": {
+   "support": 17,
+   "precision": 76.5
+  },
+  "A:fixed_asset": {
+   "support": 18,
+   "precision": 100.0
+  },
+  "A:funds_transfer": {
+   "support": 16,
+   "precision": 100.0
+  },
+  "A:gl_account": {
+   "support": 205,
+   "precision": 70.7
+  },
+  "A:gl_process": {
+   "support": 233,
+   "precision": 64.8
+  },
+  "A:gl_report": {
+   "support": 45,
+   "precision": 100.0
+  },
+  "A:gl_setup": {
+   "support": 162,
+   "precision": 95.1
+  },
+  "A:import": {
+   "support": 188,
+   "precision": 75.5
+  },
+  "A:investor": {
+   "support": 32,
+   "precision": 96.9
+  },
+  "A:job": {
+   "support": 54,
+   "precision": 64.8
+  },
+  "A:job_process": {
+   "support": 30,
+   "precision": 90.0
+  },
+  "A:job_report": {
+   "support": 17,
+   "precision": 100.0
+  },
+  "A:job_setup": {
+   "support": 91,
+   "precision": 100.0
+  },
+  "A:journal_entry": {
+   "support": 71,
+   "precision": 93.0
+  },
+  "A:owner_portal": {
+   "support": 12,
+   "precision": 50.0
+  },
+  "A:period": {
+   "support": 41,
+   "precision": 68.3
+  },
+  "A:purchase_order": {
+   "support": 128,
+   "precision": 64.1
+  },
+  "A:report_builder": {
+   "support": 230,
+   "precision": 81.3
+  },
+  "A:timesheet": {
+   "support": 48,
+   "precision": 100.0
+  },
+  "A:user_role": {
+   "support": 73,
+   "precision": 90.4
+  },
+  "A:vat": {
+   "support": 18,
+   "precision": 66.7
+  },
+  "A:vendor": {
+   "support": 100,
+   "precision": 84.0
+  },
+  "A:vendor_1099": {
+   "support": 52,
+   "precision": 94.2
+  },
+  "A:work_paper": {
+   "support": 69,
+   "precision": 91.3
+  },
+  "A:working_budget": {
+   "support": 53,
+   "precision": 98.1
+  },
+  "L:ai_agent:0": {
+   "support": 5,
+   "precision": 40.0
+  },
+  "L:ai_agent:1": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:ap_invoice:0": {
+   "support": 12,
+   "precision": 91.7
+  },
+  "L:ap_invoice:1": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:ap_invoice:2": {
+   "support": 43,
+   "precision": 97.7
+  },
+  "L:ap_invoice:4": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:ap_invoice:6": {
+   "support": 8,
+   "precision": 100.0
+  },
+  "L:ap_process:0": {
+   "support": 29,
+   "precision": 89.7
+  },
+  "L:ap_process:1": {
+   "support": 17,
+   "precision": 100.0
+  },
+  "L:ap_process:2": {
+   "support": 6,
+   "precision": 83.3
+  },
+  "L:ap_process:3": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:ap_process:4": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:ap_process:5": {
+   "support": 13,
+   "precision": 100.0
+  },
+  "L:ap_setup:0": {
+   "support": 7,
+   "precision": 100.0
+  },
+  "L:ap_setup:1": {
+   "support": 7,
+   "precision": 100.0
+  },
+  "L:ap_setup:10": {
+   "support": 4,
+   "precision": 75.0
+  },
+  "L:ap_setup:11": {
+   "support": 7,
+   "precision": 100.0
+  },
+  "L:ap_setup:12": {
+   "support": 4,
+   "precision": 100.0
+  },
+  "L:ap_setup:2": {
+   "support": 6,
+   "precision": 100.0
+  },
+  "L:ap_setup:3": {
+   "support": 7,
+   "precision": 71.4
+  },
+  "L:ap_setup:4": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:ap_setup:5": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:ap_setup:6": {
+   "support": 4,
+   "precision": 100.0
+  },
+  "L:ap_setup:7": {
+   "support": 4,
+   "precision": 75.0
+  },
+  "L:ap_setup:8": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:ap_setup:9": {
+   "support": 7,
+   "precision": 100.0
+  },
+  "L:approval:0": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:ar_invoice:0": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:ar_invoice:1": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:ar_invoice:2": {
+   "support": 9,
+   "precision": 100.0
+  },
+  "L:ar_invoice:3": {
+   "support": 4,
+   "precision": 100.0
+  },
+  "L:ar_invoice:4": {
+   "support": 6,
+   "precision": 100.0
+  },
+  "L:ar_invoice:5": {
+   "support": 9,
+   "precision": 88.9
+  },
+  "L:ar_invoice:6": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:ar_invoice:7": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:ar_other:0": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:ar_other:1": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:ar_other:2": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:ar_other:4": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:ar_other:5": {
+   "support": 4,
+   "precision": 100.0
+  },
+  "L:ar_payment:0": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:ar_payment:1": {
+   "support": 8,
+   "precision": 100.0
+  },
+  "L:ar_payment:2": {
+   "support": 10,
+   "precision": 100.0
+  },
+  "L:ar_payment:4": {
+   "support": 27,
+   "precision": 77.8
+  },
+  "L:ar_setup:0": {
+   "support": 10,
+   "precision": 100.0
+  },
+  "L:ar_setup:1": {
+   "support": 13,
+   "precision": 84.6
+  },
+  "L:ar_setup:10": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:ar_setup:2": {
+   "support": 8,
+   "precision": 100.0
+  },
+  "L:ar_setup:3": {
+   "support": 7,
+   "precision": 100.0
+  },
+  "L:ar_setup:4": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:ar_setup:5": {
+   "support": 24,
+   "precision": 87.5
+  },
+  "L:ar_setup:6": {
+   "support": 7,
+   "precision": 85.7
+  },
+  "L:ar_setup:7": {
+   "support": 10,
+   "precision": 80.0
+  },
+  "L:ar_setup:8": {
+   "support": 8,
+   "precision": 25.0
+  },
+  "L:ar_setup:9": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:bank_account:0": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:bank_rec:0": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:bank_rec:2": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:card:0": {
+   "support": 14,
+   "precision": 92.9
+  },
+  "L:card:1": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:card:3": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:cash_position:0": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:cash_position:1": {
+   "support": 4,
+   "precision": 100.0
+  },
+  "L:cash_position:2": {
+   "support": 9,
+   "precision": 88.9
+  },
+  "L:cash_position:3": {
+   "support": 7,
+   "precision": 100.0
+  },
+  "L:cash_position:4": {
+   "support": 7,
+   "precision": 100.0
+  },
+  "L:cash_position:5": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:cash_position:6": {
+   "support": 11,
+   "precision": 45.5
+  },
+  "L:cash_position:7": {
+   "support": 32,
+   "precision": 75.0
+  },
+  "L:cash_position:8": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:cash_position:9": {
+   "support": 6,
+   "precision": 100.0
+  },
+  "L:check:0": {
+   "support": 7,
+   "precision": 100.0
+  },
+  "L:check:1": {
+   "support": 8,
+   "precision": 100.0
+  },
+  "L:check:2": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:check:3": {
+   "support": 34,
+   "precision": 100.0
+  },
+  "L:check:4": {
+   "support": 4,
+   "precision": 100.0
+  },
+  "L:check:5": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:check:6": {
+   "support": 18,
+   "precision": 100.0
+  },
+  "L:check:7": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:check:8": {
+   "support": 48,
+   "precision": 95.8
+  },
+  "L:check_setup:0": {
+   "support": 8,
+   "precision": 100.0
+  },
+  "L:check_setup:1": {
+   "support": 4,
+   "precision": 100.0
+  },
+  "L:check_setup:2": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:check_setup:3": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:company_config:1": {
+   "support": 12,
+   "precision": 41.7
+  },
+  "L:company_config:10": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:company_config:11": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:company_config:12": {
+   "support": 3,
+   "precision": 66.7
+  },
+  "L:company_config:13": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:company_config:15": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:company_config:16": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:company_config:2": {
+   "support": 33,
+   "precision": 97.0
+  },
+  "L:company_config:3": {
+   "support": 29,
+   "precision": 69.0
+  },
+  "L:company_config:4": {
+   "support": 19,
+   "precision": 94.7
+  },
+  "L:company_config:5": {
+   "support": 11,
+   "precision": 100.0
+  },
+  "L:company_config:6": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:company_config:7": {
+   "support": 6,
+   "precision": 100.0
+  },
+  "L:company_config:8": {
+   "support": 10,
+   "precision": 90.0
+  },
+  "L:company_config:9": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:customer:0": {
+   "support": 6,
+   "precision": 100.0
+  },
+  "L:customization:0": {
+   "support": 5,
+   "precision": 40.0
+  },
+  "L:customization:1": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:draw:0": {
+   "support": 4,
+   "precision": 100.0
+  },
+  "L:entity:0": {
+   "support": 12,
+   "precision": 16.7
+  },
+  "L:entity:1": {
+   "support": 6,
+   "precision": 33.3
+  },
+  "L:entity:2": {
+   "support": 17,
+   "precision": 58.8
+  },
+  "L:entity:3": {
+   "support": 4,
+   "precision": 100.0
+  },
+  "L:entity:5": {
+   "support": 3,
+   "precision": 66.7
+  },
+  "L:fixed_asset:0": {
+   "support": 6,
+   "precision": 100.0
+  },
+  "L:fixed_asset:1": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:fixed_asset:2": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:fixed_asset:3": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:funds_transfer:0": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:funds_transfer:1": {
+   "support": 7,
+   "precision": 100.0
+  },
+  "L:gl_account:0": {
+   "support": 73,
+   "precision": 93.2
+  },
+  "L:gl_account:1": {
+   "support": 23,
+   "precision": 95.7
+  },
+  "L:gl_account:2": {
+   "support": 9,
+   "precision": 88.9
+  },
+  "L:gl_account:3": {
+   "support": 8,
+   "precision": 87.5
+  },
+  "L:gl_account:4": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:gl_process:0": {
+   "support": 29,
+   "precision": 65.5
+  },
+  "L:gl_process:1": {
+   "support": 6,
+   "precision": 100.0
+  },
+  "L:gl_process:2": {
+   "support": 20,
+   "precision": 65.0
+  },
+  "L:gl_process:3": {
+   "support": 11,
+   "precision": 100.0
+  },
+  "L:gl_process:4": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:gl_process:5": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:gl_process:6": {
+   "support": 27,
+   "precision": 74.1
+  },
+  "L:gl_process:7": {
+   "support": 16,
+   "precision": 18.8
+  },
+  "L:gl_report:0": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:gl_report:1": {
+   "support": 16,
+   "precision": 100.0
+  },
+  "L:gl_report:2": {
+   "support": 6,
+   "precision": 100.0
+  },
+  "L:gl_report:3": {
+   "support": 7,
+   "precision": 100.0
+  },
+  "L:gl_setup:0": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:gl_setup:1": {
+   "support": 6,
+   "precision": 100.0
+  },
+  "L:gl_setup:10": {
+   "support": 14,
+   "precision": 92.9
+  },
+  "L:gl_setup:11": {
+   "support": 9,
+   "precision": 100.0
+  },
+  "L:gl_setup:12": {
+   "support": 10,
+   "precision": 100.0
+  },
+  "L:gl_setup:13": {
+   "support": 7,
+   "precision": 100.0
+  },
+  "L:gl_setup:15": {
+   "support": 19,
+   "precision": 68.4
+  },
+  "L:gl_setup:2": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:gl_setup:3": {
+   "support": 9,
+   "precision": 100.0
+  },
+  "L:gl_setup:4": {
+   "support": 11,
+   "precision": 100.0
+  },
+  "L:gl_setup:5": {
+   "support": 10,
+   "precision": 100.0
+  },
+  "L:gl_setup:6": {
+   "support": 8,
+   "precision": 100.0
+  },
+  "L:gl_setup:7": {
+   "support": 9,
+   "precision": 100.0
+  },
+  "L:gl_setup:8": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:gl_setup:9": {
+   "support": 13,
+   "precision": 92.3
+  },
+  "L:import:0": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:investor:0": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:investor:1": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:investor:2": {
+   "support": 4,
+   "precision": 100.0
+  },
+  "L:investor:3": {
+   "support": 8,
+   "precision": 100.0
+  },
+  "L:investor:4": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:investor:6": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:investor:7": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:job:0": {
+   "support": 6,
+   "precision": 100.0
+  },
+  "L:job:1": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:job_process:0": {
+   "support": 6,
+   "precision": 100.0
+  },
+  "L:job_process:1": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:job_process:2": {
+   "support": 11,
+   "precision": 100.0
+  },
+  "L:job_process:3": {
+   "support": 3,
+   "precision": 66.7
+  },
+  "L:job_process:4": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:job_process:5": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:job_setup:0": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:job_setup:1": {
+   "support": 8,
+   "precision": 100.0
+  },
+  "L:job_setup:10": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:job_setup:2": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:job_setup:3": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:job_setup:4": {
+   "support": 6,
+   "precision": 100.0
+  },
+  "L:job_setup:5": {
+   "support": 9,
+   "precision": 100.0
+  },
+  "L:job_setup:6": {
+   "support": 6,
+   "precision": 100.0
+  },
+  "L:job_setup:7": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:job_setup:8": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:job_setup:9": {
+   "support": 4,
+   "precision": 100.0
+  },
+  "L:journal_entry:0": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:journal_entry:1": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:journal_entry:2": {
+   "support": 14,
+   "precision": 100.0
+  },
+  "L:journal_entry:3": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:journal_entry:4": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:period:0": {
+   "support": 7,
+   "precision": 85.7
+  },
+  "L:period:1": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:purchase_order:0": {
+   "support": 28,
+   "precision": 57.1
+  },
+  "L:purchase_order:1": {
+   "support": 15,
+   "precision": 86.7
+  },
+  "L:purchase_order:2": {
+   "support": 4,
+   "precision": 100.0
+  },
+  "L:purchase_order:3": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:purchase_order:4": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:purchase_order:5": {
+   "support": 3,
+   "precision": 66.7
+  },
+  "L:purchase_order:6": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:purchase_order:7": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:report_builder:0": {
+   "support": 29,
+   "precision": 82.8
+  },
+  "L:report_builder:1": {
+   "support": 12,
+   "precision": 75.0
+  },
+  "L:report_builder:2": {
+   "support": 19,
+   "precision": 63.2
+  },
+  "L:report_builder:3": {
+   "support": 24,
+   "precision": 95.8
+  },
+  "L:report_builder:4": {
+   "support": 32,
+   "precision": 56.2
+  },
+  "L:report_builder:6": {
+   "support": 21,
+   "precision": 100.0
+  },
+  "L:report_builder:7": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:report_builder:8": {
+   "support": 51,
+   "precision": 86.3
+  },
+  "L:timesheet:0": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:timesheet:1": {
+   "support": 6,
+   "precision": 100.0
+  },
+  "L:timesheet:2": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:timesheet:3": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:timesheet:4": {
+   "support": 11,
+   "precision": 100.0
+  },
+  "L:timesheet:5": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:timesheet:6": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:user_role:0": {
+   "support": 18,
+   "precision": 100.0
+  },
+  "L:user_role:1": {
+   "support": 6,
+   "precision": 100.0
+  },
+  "L:user_role:2": {
+   "support": 4,
+   "precision": 100.0
+  },
+  "L:user_role:3": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:user_role:4": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:user_role:5": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:user_role:6": {
+   "support": 9,
+   "precision": 100.0
+  },
+  "L:vat:0": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:vat:1": {
+   "support": 5,
+   "precision": 80.0
+  },
+  "L:vendor:0": {
+   "support": 4,
+   "precision": 100.0
+  },
+  "L:vendor:1": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:vendor:2": {
+   "support": 10,
+   "precision": 100.0
+  },
+  "L:vendor:3": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:vendor:4": {
+   "support": 8,
+   "precision": 75.0
+  },
+  "L:vendor_1099:0": {
+   "support": 21,
+   "precision": 100.0
+  },
+  "L:work_paper:0": {
+   "support": 44,
+   "precision": 95.5
+  },
+  "L:working_budget:0": {
+   "support": 10,
+   "precision": 100.0
+  },
+  "L:working_budget:1": {
+   "support": 4,
+   "precision": 100.0
+  },
+  "L:working_budget:2": {
+   "support": 5,
+   "precision": 100.0
+  },
+  "L:working_budget:3": {
+   "support": 2,
+   "precision": 100.0
+  },
+  "L:working_budget:4": {
+   "support": 1,
+   "precision": 100.0
+  },
+  "L:working_budget:5": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "L:working_budget:7": {
+   "support": 3,
+   "precision": 100.0
+  },
+  "S:configure": {
+   "support": 795,
+   "precision": 71.9
+  },
+  "S:enter": {
+   "support": 75,
+   "precision": 73.3
+  },
+  "S:find_fix": {
+   "support": 546,
+   "precision": 72.0
+  },
+  "S:process": {
+   "support": 299,
+   "precision": 79.6
+  },
+  "S:review": {
+   "support": 230,
+   "precision": 81.3
+  },
+  "T1": {
+   "support": 645,
+   "precision": 70.1
+  },
+  "T2": {
+   "support": 118,
+   "precision": 89.0
+  },
+  "T3": {
+   "support": 182,
+   "precision": 77.5
+  },
+  "T4": {
+   "support": 7,
+   "precision": 71.4
+  },
+  "T5": {
+   "support": 56,
+   "precision": 73.2
+  },
+  "T6": {
+   "support": 61,
+   "precision": 78.7
+  },
+  "T7": {
+   "support": 8,
+   "precision": 100.0
+  },
+  "T8": {
+   "support": 9,
+   "precision": 100.0
+  },
+  "T9": {
+   "support": 25,
+   "precision": 88.0
+  },
+  "X:void-from-register": {
+   "support": 14,
+   "precision": 100.0
+  },
+  "stage:configure": {
+   "support": 607,
+   "precision": 87.5
+  },
+  "stage:enter": {
+   "support": 214,
+   "precision": 74.3
+  },
+  "stage:find_fix": {
+   "support": 425,
+   "precision": 81.4
+  },
+  "stage:process": {
+   "support": 425,
+   "precision": 82.6
+  },
+  "stage:review": {
+   "support": 267,
+   "precision": 73.8
+  }
+ },
+ "objects": {
+  "bs_rec_report": {
+   "support": 61,
+   "appPrecision": 78.7,
+   "tabPrecision": 100.0,
+   "submenuPrecision": 100.0
+  },
+  "work_paper": {
+   "support": 69,
+   "appPrecision": 91.3,
+   "tabPrecision": 93.7,
+   "submenuPrecision": 93.7
+  },
+  "depreciation": {
+   "support": 6,
+   "appPrecision": 83.3,
+   "tabPrecision": 100.0,
+   "submenuPrecision": 100.0
+  },
+  "fixed_asset": {
+   "support": 18,
+   "appPrecision": 100.0,
+   "tabPrecision": 94.4,
+   "submenuPrecision": 88.9
+  },
+  "draw": {
+   "support": 29,
+   "appPrecision": 100.0,
+   "tabPrecision": 96.6,
+   "submenuPrecision": 96.6
+  },
+  "job_setup": {
+   "support": 91,
+   "appPrecision": 100.0,
+   "tabPrecision": 98.9,
+   "submenuPrecision": 89.0
+  },
+  "job_process": {
+   "support": 30,
+   "appPrecision": 90.0,
+   "tabPrecision": 100.0,
+   "submenuPrecision": 81.5
+  },
+  "job_report": {
+   "support": 17,
+   "appPrecision": 100.0,
+   "tabPrecision": 100.0,
+   "submenuPrecision": 94.1
+  },
+  "job": {
+   "support": 54,
+   "appPrecision": 64.8,
+   "tabPrecision": 80.0,
+   "submenuPrecision": 65.7
+  },
+  "purchase_order": {
+   "support": 128,
+   "appPrecision": 64.1,
+   "tabPrecision": 100.0,
+   "submenuPrecision": 61.0
+  },
+  "working_budget": {
+   "support": 53,
+   "appPrecision": 98.1,
+   "tabPrecision": 98.1,
+   "submenuPrecision": 92.3
+  },
+  "investor": {
+   "support": 32,
+   "appPrecision": 96.9,
+   "tabPrecision": 100.0,
+   "submenuPrecision": 87.1
+  },
+  "owner_portal": {
+   "support": 12,
+   "appPrecision": 50.0,
+   "tabPrecision": 83.3,
+   "submenuPrecision": 66.7
+  },
+  "dashboard": {
+   "support": 11,
+   "appPrecision": 0.0,
+   "tabPrecision": 0.0,
+   "submenuPrecision": 0.0
+  },
+  "timesheet": {
+   "support": 48,
+   "appPrecision": 100.0,
+   "tabPrecision": 93.8,
+   "submenuPrecision": 81.2
+  },
+  "ai_agent": {
+   "support": 26,
+   "appPrecision": 69.2,
+   "tabPrecision": 83.3,
+   "submenuPrecision": 55.6
+  },
+  "vat": {
+   "support": 18,
+   "appPrecision": 66.7,
+   "tabPrecision": 91.7,
+   "submenuPrecision": 91.7
+  },
+  "customization": {
+   "support": 30,
+   "appPrecision": 90.0,
+   "tabPrecision": 77.8,
+   "submenuPrecision": 77.8
+  },
+  "bank_rec": {
+   "support": 94,
+   "appPrecision": 88.3,
+   "tabPrecision": 96.4,
+   "submenuPrecision": 96.4
+  },
+  "funds_transfer": {
+   "support": 16,
+   "appPrecision": 100.0,
+   "tabPrecision": 100.0,
+   "submenuPrecision": 75.0
+  },
+  "card": {
+   "support": 43,
+   "appPrecision": 97.7,
+   "tabPrecision": 90.5,
+   "submenuPrecision": 78.6
+  },
+  "cash_position": {
+   "support": 111,
+   "appPrecision": 80.2,
+   "tabPrecision": 91.0,
+   "submenuPrecision": 83.1
+  },
+  "check_setup": {
+   "support": 36,
+   "appPrecision": 77.8,
+   "tabPrecision": 82.1,
+   "submenuPrecision": 82.1
+  },
+  "bank_account": {
+   "support": 26,
+   "appPrecision": 65.4,
+   "tabPrecision": 82.4,
+   "submenuPrecision": 76.5
+  },
+  "ar_setup": {
+   "support": 149,
+   "appPrecision": 77.9,
+   "tabPrecision": 97.4,
+   "submenuPrecision": 84.5
+  },
+  "ar_payment": {
+   "support": 49,
+   "appPrecision": 87.8,
+   "tabPrecision": 97.7,
+   "submenuPrecision": 90.7
+  },
+  "ar_invoice": {
+   "support": 63,
+   "appPrecision": 90.5,
+   "tabPrecision": 98.2,
+   "submenuPrecision": 75.4
+  },
+  "ar_other": {
+   "support": 23,
+   "appPrecision": 95.7,
+   "tabPrecision": 100.0,
+   "submenuPrecision": 81.8
+  },
+  "customer": {
+   "support": 42,
+   "appPrecision": 81.0,
+   "tabPrecision": 79.4,
+   "submenuPrecision": 76.5
+  },
+  "ap_setup": {
+   "support": 66,
+   "appPrecision": 93.9,
+   "tabPrecision": 100.0,
+   "submenuPrecision": 100.0
+  },
+  "check": {
+   "support": 210,
+   "appPrecision": 91.9,
+   "tabPrecision": 95.3,
+   "submenuPrecision": 36.8
+  },
+  "ap_process": {
+   "support": 131,
+   "appPrecision": 90.8,
+   "tabPrecision": 98.3,
+   "submenuPrecision": 47.1
+  },
+  "vendor_1099": {
+   "support": 52,
+   "appPrecision": 94.2,
+   "tabPrecision": 95.9,
+   "submenuPrecision": 61.2
+  },
+  "vendor": {
+   "support": 100,
+   "appPrecision": 84.0,
+   "tabPrecision": 89.3,
+   "submenuPrecision": 61.9
+  },
+  "ap_invoice": {
+   "support": 249,
+   "appPrecision": 67.1,
+   "tabPrecision": 97.6,
+   "submenuPrecision": 77.2
+  },
+  "gl_setup": {
+   "support": 162,
+   "appPrecision": 95.1,
+   "tabPrecision": 84.4,
+   "submenuPrecision": 77.9
+  },
+  "period": {
+   "support": 41,
+   "appPrecision": 68.3,
+   "tabPrecision": 92.9,
+   "submenuPrecision": 46.4
+  },
+  "gl_process": {
+   "support": 233,
+   "appPrecision": 64.8,
+   "tabPrecision": 96.0,
+   "submenuPrecision": 80.8
+  },
+  "journal_entry": {
+   "support": 71,
+   "appPrecision": 93.0,
+   "tabPrecision": 93.9,
+   "submenuPrecision": 84.8
+  },
+  "gl_account": {
+   "support": 205,
+   "appPrecision": 70.7,
+   "tabPrecision": 93.8,
+   "submenuPrecision": 82.1
+  },
+  "gl_report": {
+   "support": 45,
+   "appPrecision": 100.0,
+   "tabPrecision": 97.8,
+   "submenuPrecision": 77.8
+  },
+  "fin_statement": {
+   "support": 17,
+   "appPrecision": 76.5,
+   "tabPrecision": 100.0,
+   "submenuPrecision": 100.0
+  },
+  "report_builder": {
+   "support": 230,
+   "appPrecision": 81.3,
+   "tabPrecision": 95.2,
+   "submenuPrecision": 58.8
+  },
+  "approval": {
+   "support": 128,
+   "appPrecision": 89.1,
+   "tabPrecision": 85.1,
+   "submenuPrecision": 82.5
+  },
+  "import": {
+   "support": 188,
+   "appPrecision": 75.5,
+   "tabPrecision": 84.5,
+   "submenuPrecision": 72.5
+  },
+  "user_role": {
+   "support": 73,
+   "appPrecision": 90.4,
+   "tabPrecision": 92.4,
+   "submenuPrecision": 83.3
+  },
+  "entity": {
+   "support": 73,
+   "appPrecision": 54.8,
+   "tabPrecision": 82.5,
+   "submenuPrecision": 72.5
+  },
+  "company_config": {
+   "support": 163,
+   "appPrecision": 81.0,
+   "tabPrecision": 85.6,
+   "submenuPrecision": 67.4
+  }
+ },
+ "exceptions": {
+  "E01": {
+   "title": "Transaction approvals and budget checks",
+   "group": "company",
+   "screensExplained": 38,
+   "examples": [
+    "Company › All › Approvals › Approval Workbench › Viewing an Attachment for a Transaction ‖ Viewing an Attachment for a Transaction",
+    "Company › All › Approvals › Approval Workbench › Viewing the Available Budget for a Transaction ‖ Viewing the Available Budget for a Transaction",
+    "Company › All › Approvals › Approval Configuration ‖ Setting a System Action When a Transaction Exceeds the Budget"
+   ]
+  },
+  "E02": {
+   "title": "Bulk imports and opening balances",
+   "group": "company",
+   "screensExplained": 41,
+   "examples": [
+    "Company › Setup › Import data ‖ Importing Data into RealPage Accounting",
+    "Company › Setup › Import data › Filling In an Import Template with Data ‖ Filling In an Import Template with Data",
+    "Company › All › Import Data › Set Up AP Master List, Open Invoices and Adjustments › Standard Vendors ‖ Standard Vendors Data Template"
+   ]
+  },
+  "E03": {
+   "title": "Central Configuration tabs for AP, AR, Cash and Site View",
+   "group": "company",
+   "screensExplained": 14,
+   "examples": [
+    "Company › All › Central Configuration ‖ Central Configuration Page",
+    "Company › All › Central Configuration › Accounts Payable ‖ Accounts Payable Tab",
+    "Company › All › Central Configuration › Accounts Payable › 1099's ‖ Configuring A/P 1099 Settings"
+   ]
+  },
+  "E04": {
+   "title": "App-specific permissions and user flags",
+   "group": "company",
+   "screensExplained": 34,
+   "examples": [
+    "Company › Setup › Roles › Subscriptions › (Company) ‖ Bypassing the Prevent or Warn When Exceeding a Budget Setting",
+    "Company › Setup › Users/Roles › Adding an Existing Attachment to a Record ‖ Adding an Existing Attachment to a Record",
+    "Company › Setup › Users/Roles › Changing to a Different Contact in an Existing Transaction ‖ Changing to a Different Contact in an Existing Transaction"
+   ]
+  },
+  "E05": {
+   "title": "Subscription switches (vendor restrictions, 1099 by tax ID, multi-entity, full service)",
+   "group": "company",
+   "screensExplained": 18,
+   "examples": [
+    "Company › Subscriptions ‖ Multi-Entity Report Structures",
+    "Company › Setup › Subscriptions › Full Service Spend Management ‖ Full Service Spend Management",
+    "Company › Setup › Subscriptions › Accounts Receivable › Configure ‖ Enabling the Intercompany Bill Back Feature"
+   ]
+  },
+  "E06": {
+   "title": "Customer Utility Tool (mass inactivate vendors, change default bank G/L)",
+   "group": "company",
+   "screensExplained": 6,
+   "examples": [
+    "Company › Setup › Customer Utility Tool › Default Bank G/L Account Change ‖ Changing the Default G/L Account for a Bank Account",
+    "Company › Setup › Customer Utility Tool › Inactivate Vendors ‖ Inactivating Vendors",
+    "Company › Setup › Customer Utility Tool › Inactivate Vendors ‖ Marking Vendors as Inactive if They Have Not Had an Invoice Since the Defined Date"
+   ]
+  },
+  "E07": {
+   "title": "Tax codes and contact tax groups",
+   "group": "company",
+   "screensExplained": 16,
+   "examples": [
+    "Company › All › Settings › Tax Codes › Add ‖ Adding Tax Codes",
+    "Company › All › Company › Edit › General Information ‖ Defining Tax Code Groups for the Company",
+    "Company › All › Contact Tax Groups ‖ Adding a Contact Tax Group"
+   ]
+  },
+  "E08": {
+   "title": "Close Calendar generates close work and posts depreciation",
+   "group": "company",
+   "screensExplained": 6,
+   "examples": [
+    "Company › All › Close Calendar ‖ Importing Close Calendar Tasks",
+    "Company › All › Close Calendar ‖ Opening Budget Variance Analysis Periods",
+    "Company › All › Close Calendar ‖ Running Report Groups"
+   ]
+  },
+  "E09": {
+   "title": "Entity record settings (default bank, vendor/customer link, posting date)",
+   "group": "company",
+   "screensExplained": 15,
+   "examples": [
+    "Company › All › Entities › Edit › Base Currency ‖ Setting the Base Currency for an Entity",
+    "Company › All › Entities › Edit › Additional Information ‖ Associating a Vendor and Customer to an Entity",
+    "Company › All › Entities › Edit › Spend Management ‖ Overriding the Site View Subledger A/P Close Dates for an Individual Entity"
+   ]
+  },
+  "E10": {
+   "title": "Contract-expiration and other Ledger Sentry alerts",
+   "group": "company",
+   "screensExplained": 5,
+   "examples": [
+    "Company › All › Ledger Sentry › Alerts and Notifications ‖ Setting Up the Contract Expiration Alert",
+    "Company › All › Ledger Sentry ‖ Setting Up the Contract Expiration Alert",
+    "Company › All › Ledger Sentry › Dimension Rule Set ‖ Importing Dimension Rules"
+   ]
+  },
+  "E11": {
+   "title": "AI configuration",
+   "group": "company",
+   "screensExplained": 12,
+   "examples": [
+    "Company › All › AI Configuration › AI-Invoice Scanning ‖ Configuring AI-Invoice Scanning",
+    "Finance Agent › Setup › AI Configuration › AI-Invoice Scanning › Do Not Itemize Invoices ‖ Scanning Invoices Without Itemization",
+    "Company › All › AI Configuration › AI Contract Screening ‖ Configuring AI Contract Screening"
+   ]
+  },
+  "E12": {
+   "title": "Named financial statements (Income Statement, Balance Sheet, budget comparisons)",
+   "group": "reports",
+   "screensExplained": 34,
+   "examples": [
+    "Reports › All › Financial Reports › Edit ‖ Adding Budget Variance Analysis Notes to a Financial Report",
+    "Reports › All › Financial Reporting › Financial Graphs › Graphs Library ‖ Running a System Financial Graph",
+    "Reports › All › Financial Reporting › Financial Reports › Financial Reports Library ‖ Customizing and Running the Annual Budget Statement Report"
+   ]
+  },
+  "E13": {
+   "title": "Locations, departments and groups maintained as dimensions",
+   "group": "reports",
+   "screensExplained": 17,
+   "examples": [
+    "Reports › All › Dimensions ‖ Adding and Editing Departments",
+    "Reports › Setup › Dimension groups › Location ‖ Location Information Page",
+    "Reports › Setup › Dimension groups › Location › Changing the Parent of a Location ‖ Changing the Parent of a Location"
+   ]
+  },
+  "E14": {
+   "title": "Stored, scheduled and exported report output",
+   "group": "reports",
+   "screensExplained": 2,
+   "examples": [
+    "Reports › All › Reports Center › Scheduled › More Actions ‖ Editing the Schedule of a Financial Report",
+    "Reports › All › Reports Center › Scheduled › More Actions ‖ Deleting a Scheduled Financial Report"
+   ]
+  },
+  "E15": {
+   "title": "OneSite resident reports (rent roll, deposits, resident balances)",
+   "group": "reports",
+   "screensExplained": 17,
+   "examples": [
+    "Reports › All › Reports Center › OneSite Reports › Security Deposits - Multifamily Report ‖ Security Deposits - Multifamily Report",
+    "Reports › All › Reports Center › OneSite Reports › Security Deposits - Multifamily (No Variance) Report ‖ Security Deposits - Multifamily (No Variance) Report",
+    "General Ledger › All › Financial Statements › Security Deposits - Multifamily ‖ Security Deposits - Multifamily"
+   ]
+  },
+  "E16": {
+   "title": "Custom report builder in Platform Services (incl. Positive Pay files)",
+   "group": "reports",
+   "screensExplained": 31,
+   "examples": [
+    "Reports › All › Operational Reports › Custom Reports ‖ Creating a Positive Pay Report",
+    "Platform Services › All › Custom Reports ‖ Custom Reports",
+    "Platform Services › All › Custom Reports › Delete ‖ Deleting a Custom Report"
+   ]
+  },
+  "E17": {
+   "title": "\"Document Dashboard\" is AP's scanning queue",
+   "group": "naming",
+   "screensExplained": 6,
+   "examples": [
+    "Accounts Payable › All › Document Dashboard ‖ Document Dashboard",
+    "Accounts Payable › All › Document Dashboard ‖ Using Document Dashboards",
+    "Accounts Payable › All › Document Dashboard ‖ Document Dashboards List"
+   ]
+  },
+  "E18": {
+   "title": "Customer refunds start in AR, are paid through AP",
+   "group": "crossapp",
+   "screensExplained": 9,
+   "examples": [
+    "Accounts Receivable › All › Payments ‖ Reversing a Paid Invoice",
+    "Accounts Payable › Payments › Troubleshooting Payments › Deposit and Record a Refund from a Vendor ‖ Deposit and Record a Refund from a Vendor",
+    "Accounts Receivable › All › Receive a Payment › Refunding an Overpayment ‖ Refunding an Overpayment"
+   ]
+  },
+  "E19": {
+   "title": "Bank reconciliation: Cash does it, FCM files it, Finance Agent can pre-approve it",
+   "group": "crossapp",
+   "screensExplained": 6,
+   "examples": [
+    "Finance Agent › All › Cash Management › Upload Bank Statement ‖ Upload Bank Statements",
+    "Finance Agent › All › Cash Management › Upload Bank Statement › More Actions ‖ Uploaded Bank Statements",
+    "Finance Agent › All › Cash Management › Pending Reconciliations ‖ Pending Reconciliations"
+   ]
+  },
+  "E20": {
+   "title": "Capital projects: PO/contract → A/P invoice → job draw → fixed asset",
+   "group": "crossapp",
+   "screensExplained": 19,
+   "examples": [
+    "Accounts Payable › All › Assets ‖ Adding an Asset Manually (Accounts Payable)",
+    "Accounts Payable › All › Purchase Orders › Package Purchase Orders ‖ Package Purchase Orders List",
+    "Accounts Payable › All › Purchase Orders › Package Purchase Orders ‖ Generating the Purchase Order Package"
+   ]
+  },
+  "E21": {
+   "title": "Contracts are an AP periodic task; POs made from them are too",
+   "group": "crossapp",
+   "screensExplained": 9,
+   "examples": [
+    "Accounts Payable › All › Periodic Tasks › Bids and Contracts › Contracts ‖ Viewing the Details of a Subcontract That Is Associated with a Contract",
+    "Accounts Payable › All › Periodic Tasks › Bids and Contracts › Contracts ‖ Viewing the Details of a Purchase Order That Is Associated with a Contract",
+    "Accounts Payable › All › Periodic Tasks › Bids and Contracts › Contracts ‖ Viewing the Available Budget While Creating a Purchase Order"
+   ]
+  },
+  "E22": {
+   "title": "Check stock, alignment and ACH set-up help sit in AP Banking",
+   "group": "crossapp",
+   "screensExplained": 9,
+   "examples": [
+    "Accounts Payable › Banking › Electronic Payments (ACH) ‖ Electronic Payments (ACH)",
+    "Accounts Payable › All › Daily Tasks › Banking › ACH / Electronic Payments ‖ Schedule ACH File Generation Page",
+    "Accounts Payable › Banking › Electronic Payments (ACH) › Voiding Electronic Payments ‖ Voiding Electronic Payments"
+   ]
+  },
+  "E23": {
+   "title": "Vendor e-payment enrollment is on the vendor, not in Cash",
+   "group": "crossapp",
+   "screensExplained": 5,
+   "examples": [
+    "Accounts Payable › All › Vendors › Edit › Enable ACH/Enable Electronic Payments ‖ Setting Up Vendors for Electronic Payments",
+    "Accounts Payable › All › Vendors › Edit › Payment Information ‖ Setting Up Vendors to Receive Foreign Electronic Payments",
+    "Accounts Payable › All › Vendors › Edit › Payment Information ‖ Enabling Vendors to Receive ACH or Foreign Electronic Payments"
+   ]
+  },
+  "E24": {
+   "title": "Four kinds of budget",
+   "group": "split",
+   "screensExplained": 13,
+   "examples": [
+    "Forecasting & Planning › All › Budgets › Export ‖ Uploading Changes to a Budget",
+    "Forecasting & Planning › All › Budgets › Budget details › Budgets ‖ Viewing the Budget for an Account",
+    "Job Cost & Reserves › All › Search & Find › Jobs › Budgets by Month ‖ Budget by Month Page"
+   ]
+  },
+  "E25": {
+   "title": "Opening and closing books from FCM Console",
+   "group": "split",
+   "screensExplained": 4,
+   "examples": [
+    "Financial Close Management › All › Console › Books › Open ‖ Open Books Box",
+    "Financial Close Management › All › Console › Books › Close ‖ Close Books Box"
+   ]
+  },
+  "E26": {
+   "title": "Account labels are kept per subledger",
+   "group": "split",
+   "screensExplained": 12,
+   "examples": [
+    "Accounts Payable › Setup › Account Labels › Edit › Form 1099 ‖ Form 1099 Information Box",
+    "Accounts Receivable › Setup › Account Labels ‖ Adding Account Labels",
+    "Accounts Receivable › Account Labels ‖ Account Labels"
+   ]
+  },
+  "E27": {
+   "title": "Customer types exist in AR and in Cash Management",
+   "group": "split",
+   "screensExplained": 6,
+   "examples": [
+    "Cash Management › All › Customer Management › Types ‖ Customer Types List",
+    "Cash Management › All › Customer Management › Types › Editing and Viewing Customer Types ‖ Editing and Viewing Customer Types",
+    "Cash Management › All › Customer Management › Types › Deleting Customer Types ‖ Deleting Customer Types"
+   ]
+  },
+  "E28": {
+   "title": "Job positions are payroll planning, not Job Cost",
+   "group": "split",
+   "screensExplained": 9,
+   "examples": [
+    "Forecasting & Planning › All › Job Positions ‖ Job Positions List",
+    "Forecasting & Planning › All › Job Positions ‖ Adding a Job Position",
+    "Forecasting & Planning › All › Job Positions › View or Edit ‖ Viewing and Editing Job Positions"
+   ]
+  },
+  "E29": {
+   "title": "\"Agent Jobs\" and \"Agent Accruals\" belong to the Finance Agent",
+   "group": "naming",
+   "screensExplained": 15,
+   "examples": [
+    "Finance Agent › All › Agent Jobs ‖ Agent Jobs",
+    "Finance Agent › All › Agent Jobs ‖ Agent Jobs Page",
+    "Finance Agent › All › Agent Jobs › Run ‖ Running a Job"
+   ]
+  },
+  "E30": {
+   "title": "A/R keeps an \"Invoices\" list without the A/R prefix",
+   "group": "naming",
+   "screensExplained": 24,
+   "examples": [
+    "Accounts Receivable › All › Invoices › Edit › Reclassify ‖ Reclassifying Invoices",
+    "Accounts Receivable › All › A/R Sales Invoices › Finish the Invoice ‖ Finish the Invoice",
+    "Accounts Receivable › All › A/R Sales Invoices › Deleting or Reversing Invoices ‖ Deleting or Reversing Invoices"
+   ]
+  },
+  "E31": {
+   "title": "\"Posted Payments\" and payment requests are A/P",
+   "group": "naming",
+   "screensExplained": 6,
+   "examples": [
+    "Accounts Payable › Payments › Payment Requests and Posted Payments ‖ Payment Requests and Posted Payments",
+    "Accounts Payable › Payments › Pay A/P Invoices Outbox › Processing Draft Payment Requests ‖ Processing Draft Payment Requests",
+    "Accounts Payable › Payments › Pay A/P Invoices Outbox › Receiving Notifications for Payment Requests ‖ Receiving Notifications for Payment Requests"
+   ]
+  },
+  "E32": {
+   "title": "Spend Management setup reaches into GL and AP",
+   "group": "split",
+   "screensExplained": 10,
+   "examples": [
+    "Spend Management › Setup › Configuration › Enable Functionality › Enable Subledger AP Close for Site View ‖ Subledger A/P Close for Site View List",
+    "Spend Management › Setup › Configuration › Enable Functionality › Enable Subledger AP Close for Site View ‖ Adding a Subledger A/P Close Calendar for Site View",
+    "Spend Management › Setup › Configuration › Enable Functionality › Enable Subledger AP Close for Site View ‖ Viewing or Editing a Subledger A/P Close Calendar for Site View"
+   ]
+  },
+  "E33": {
+   "title": "Multi-currency switches are in GL and AR configuration",
+   "group": "split",
+   "screensExplained": 13,
+   "examples": [
+    "General Ledger › Setup › Configuration › Enable Segments ‖ Enabling Segments",
+    "General Ledger › Setup › Configuration › Accounting Settings › Multi-currency Management ‖ Configuring Multi-Currency Management",
+    "General Ledger › Setup › Configuration ‖ Enabling Foreign Electronic Payments"
+   ]
+  },
+  "E34": {
+   "title": "Voiding a check is done from the Check Register",
+   "group": "naming",
+   "screensExplained": 1,
+   "examples": [
+    "Accounts Payable › All › Check Register › Setting a Check Void Date ‖ Setting a Check Void Date"
+   ]
+  }
+ },
+ "missClusters": [
+  {
+   "predicted": "Reports",
+   "actual": "Platform Services › All › - › Custom Reports",
+   "count": 13,
+   "examples": [
+    "Custom Reports",
+    "Custom Reports List",
+    "Deleting a Custom Report",
+    "Editing a Custom Report"
+   ]
+  },
+  {
+   "predicted": "Cash Management",
+   "actual": "Accounts Payable › All › Daily Tasks › Banking",
+   "count": 11,
+   "examples": [
+    "Check Stock",
+    "Electronic Payments (ACH)",
+    "Fixing Check Alignment",
+    "Generating a Payment File"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Accounts Receivable › Setup › - › Account Labels",
+   "count": 11,
+   "examples": [
+    "Account Label Information Page",
+    "Account Labels",
+    "Account Labels List",
+    "Adding Account Labels"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Reports › All › - › Financial Reporting",
+   "count": 10,
+   "examples": [
+    "Annual Budget Statement Report",
+    "Customizing and Running the Annual Budget Statement Report",
+    "Customizing and Running the Income Statement Budget Comparison Report",
+    "Income Statement Budget Comparison Report"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Spend Management › Setup › - › Configuration",
+   "count": 10,
+   "examples": [
+    "Adding a Subledger A/P Close Calendar for Site View",
+    "Mapping G/L Accounts to Categories",
+    "Mapping a G/L Account to a Category",
+    "Subledger A/P Close for Site View List"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "Accounts Receivable › All › Periodic Tasks › Recurring A/R Invoices",
+   "count": 10,
+   "examples": [
+    "Completing the Recurring Invoice",
+    "Deleting a Recurring Invoice",
+    "Editing a Recurring Invoice",
+    "Invoice Tab"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Company › All › - › Approvals",
+   "count": 9,
+   "examples": [
+    "Available Budget Page",
+    "Setting a System Action When a Transaction Exceeds the Budget",
+    "Viewing the Available Budget for a Transaction"
+   ]
+  },
+  {
+   "predicted": "Spend Management",
+   "actual": "Accounts Payable › All › Periodic Tasks › Bids and Contracts",
+   "count": 9,
+   "examples": [
+    "Viewing the Available Budget While Creating a Purchase Order",
+    "Viewing the Details of a Purchase Order That Is Associated with a Contract",
+    "Viewing the Details of a Service Contract That Is Associated with a Contract",
+    "Viewing the Details of a Subcontract That Is Associated with a Contract"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Forecasting & Planning › All › Periodic Tasks › Working Budgets",
+   "count": 9,
+   "examples": [
+    "Account Detail Page",
+    "Adding Budget Amounts for One Account",
+    "Adding a Comment to an Account's Budget Details",
+    "Budget Model Creation (Annual Operating Budget Build)"
+   ]
+  },
+  {
+   "predicted": "Job Cost & Reserves",
+   "actual": "Finance Agent › All › - › Agent Jobs",
+   "count": 8,
+   "examples": [
+    "Adding a Monthly Job",
+    "Adding an Individual Job to the Job Agent List",
+    "Agent Jobs",
+    "Agent Jobs Page"
+   ]
+  },
+  {
+   "predicted": "Financial Close Management",
+   "actual": "Reports › All › - › Reports Center",
+   "count": 8,
+   "examples": [
+    "Customizing and Running the Security Deposits - Multifamily (No Variance) Report",
+    "Customizing and Running the Security Deposits - Multifamily Report",
+    "Security Deposits - Multifamily (No Variance) Report",
+    "Security Deposits - Multifamily Report"
+   ]
+  },
+  {
+   "predicted": "Accounts Receivable",
+   "actual": "Company › All › - › Contact Tax Groups",
+   "count": 8,
+   "examples": [
+    "Adding a Contact Tax Group",
+    "Contact Tax Group Information Page",
+    "Contact Tax Groups List",
+    "Deleting a Contact Tax Group"
+   ]
+  },
+  {
+   "predicted": "Company",
+   "actual": "General Ledger › Setup › - › Configuration",
+   "count": 7,
+   "examples": [
+    "Configuring Multi-Currency Management",
+    "Enabling Segments",
+    "Individual Reports for Each Department, Location, or Entity"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Accounts Payable › Setup › - › Configuration",
+   "count": 7,
+   "examples": [
+    "Accounts Payable Setup Workflow",
+    "Configure Accounts Payable Page",
+    "Configuring A/P Aging Periods",
+    "Configuring Accounts Payable for Foreign Currencies"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Reports › All › - › Reports Center",
+   "count": 7,
+   "examples": [
+    "Running Financial Reports on Alternate G/L Account Groups",
+    "Setting the Repo;rting Period and Reporting Book",
+    "Setting the Reporting Period and Reporting Book",
+    "Using Alternate Accounts for a Financial Report"
+   ]
+  },
+  {
+   "predicted": "Company",
+   "actual": "Cash Management › All › Periodic Tasks › Reconciliation",
+   "count": 7,
+   "examples": [
+    "Bank Reconciliation Data",
+    "Importing Bank Reconciliation Records",
+    "Importing Initial Open Items",
+    "Importing a Bank File"
+   ]
+  },
+  {
+   "predicted": "Company",
+   "actual": "Accounts Receivable › Setup › - › Configuration",
+   "count": 7,
+   "examples": [
+    "Configuring Currencies",
+    "Customers Data Template",
+    "Enabling Multi-Currency Management in General Ledger",
+    "Enabling the Multi-Entity Console"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "Company › All › - › Approvals",
+   "count": 7,
+   "examples": [
+    "Creating an A/P Invoice for a Transaction",
+    "Expense Report Approvals",
+    "Future Draft Invoice Notifications",
+    "Paying an A/P Invoice for a Transaction (Workbench)"
+   ]
+  },
+  {
+   "predicted": "Spend Management",
+   "actual": "Company › All › - › Approvals",
+   "count": 7,
+   "examples": [
+    "Adding a Change Order for a Transaction",
+    "Automatically Advancing A/P Invoices and Purchase Orders to the Next Approver After XX Days",
+    "Viewing the Available Budget While Creating a Purchase Order",
+    "Viewing the Available Budget While Creating a Subcontract Record"
+   ]
+  },
+  {
+   "predicted": "Company",
+   "actual": "Reports › Setup › - › Dimension groups",
+   "count": 7,
+   "examples": [
+    "Changing the Parent of a Location",
+    "Inactivating a Location",
+    "Location Information Page"
+   ]
+  },
+  {
+   "predicted": "Company",
+   "actual": "Accounts Payable › Setup › - › Expense Report Configuration",
+   "count": 6,
+   "examples": [
+    "Viewing and Editing Transactions in the Approval Workbench"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Company › All › - › Import Data",
+   "count": 6,
+   "examples": [
+    "Creating Default Account Groups",
+    "Creating Default Reporting Periods",
+    "Importing Segment Rules",
+    "Importing Transaction Allocations"
+   ]
+  },
+  {
+   "predicted": "Cash Management",
+   "actual": "Reports › All › - › Operational Reports",
+   "count": 6,
+   "examples": [
+    "Creating a Positive Pay Report"
+   ]
+  },
+  {
+   "predicted": "Company",
+   "actual": "Accounts Payable › All › Search & Find › A/P Invoices",
+   "count": 6,
+   "examples": [
+    "Approving and Declining Payments",
+    "Importing A/P Invoices On-the-Fly",
+    "Importing A/P Invoices into a Package",
+    "Importing an A/P Invoice"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "Accounts Receivable › All › - › Invoices",
+   "count": 6,
+   "examples": [
+    "Duplicating an Invoice",
+    "Editing an Invoice",
+    "Invoice (Draft or Posted) Page",
+    "Posting an Invoice"
+   ]
+  },
+  {
+   "predicted": "Cash Management",
+   "actual": "Finance Agent › All › - › Cash Management",
+   "count": 6,
+   "examples": [
+    "Approve Reconciliation",
+    "Pending Reconciliations",
+    "Reconciliation History",
+    "Reconciling Items"
+   ]
+  },
+  {
+   "predicted": "Company",
+   "actual": "Reports › Setup › More › (Report)",
+   "count": 6,
+   "examples": [
+    "Storing a Report in a Cloud-Storage Target"
+   ]
+  },
+  {
+   "predicted": "Accounts Receivable",
+   "actual": "Cash Management › All › - › Customer Management",
+   "count": 6,
+   "examples": [
+    "Customer Types List",
+    "Deleting Customer Types",
+    "Duplicating Customer Types",
+    "Editing and Viewing Customer Types"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "Accounts Receivable › All › - › A/R Sales Invoices",
+   "count": 6,
+   "examples": [
+    "Clearing a Negative Invoice",
+    "Configuring Invoices for Reversal",
+    "Deleting or Reversing Invoices",
+    "Finish the Invoice"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "Accounts Receivable › All › Daily Tasks › Receive a Payment",
+   "count": 6,
+   "examples": [
+    "Applying Credit to an Invoice",
+    "Applying a Payment to an Invoice",
+    "Refunding a Customer",
+    "Refunding an Overpayment"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Forecasting & Planning › All › - › Budgets",
+   "count": 5,
+   "examples": [
+    "Uploading Changes to a Budget",
+    "Viewing the Budget for an Account",
+    "Viewing the Budgets List"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Reports › All › - › Financial Reports",
+   "count": 5,
+   "examples": [
+    "Adding Budget Variance Analysis Notes to a Financial Report"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Accounts Receivable › Setup › - › Configuration",
+   "count": 5,
+   "examples": [
+    "Configure Accounts Receivable Page",
+    "Configuring Accounts Receivable for Foreign Currencies",
+    "Undeposited Funds Accounts"
+   ]
+  },
+  {
+   "predicted": "Company",
+   "actual": "Reporting Portal › All › Search & Find › Contact",
+   "count": 5,
+   "examples": [
+    "Adding a Contact"
+   ]
+  },
+  {
+   "predicted": "Company",
+   "actual": "Accounts Payable › All › Periodic Tasks › Expense Reports",
+   "count": 5,
+   "examples": [
+    "Approved Staff Expense Report Data",
+    "Draft Staff Expense Report Data",
+    "Importing Draft Expenses"
+   ]
+  },
+  {
+   "predicted": "Cash Management",
+   "actual": "Accounts Payable › All › Search & Find › Vendors",
+   "count": 5,
+   "examples": [
+    "Enabling Vendors to Receive ACH or Foreign Electronic Payments",
+    "Setting Up Vendors for Electronic Payments",
+    "Setting Up Vendors to Receive Foreign Electronic Payments"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "Company › All › - › Configuration",
+   "count": 5,
+   "examples": [
+    "Aligning Your Printer to Print Checks",
+    "Creating a Digital Check Signature",
+    "Enabling and Disabling Vendor ID (Supplier ID) Capitalization",
+    "Setting Up Check Preferences"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "Spend Management › All › - › Workbench",
+   "count": 5,
+   "examples": [
+    "A/P Invoice Information",
+    "Adding a New A/P Invoice",
+    "Creating an A/P Invoice Package",
+    "Duplicating an A/P Invoice"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Company › Setup › - › Import data",
+   "count": 5,
+   "examples": [
+    "Account balance",
+    "Account grouping",
+    "Account type",
+    "Accounting period"
+   ]
+  },
+  {
+   "predicted": "Reporting Portal",
+   "actual": "Reports › Setup › More › (Report)",
+   "count": 5,
+   "examples": [
+    "Storing a Report in Reporting Portal"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "Accounts Receivable › All › Reports › A/R Invoices Analysis",
+   "count": 5,
+   "examples": [
+    "Customizing and Creating the Invoices Analysis Chart",
+    "Customizing the Invoices Analysis Report",
+    "Invoices Analysis Chart",
+    "Invoices Analysis Report"
+   ]
+  },
+  {
+   "predicted": "Spend Management",
+   "actual": "Job Cost & Reserves › All › Periodic Tasks › Budgets",
+   "count": 5,
+   "examples": [
+    "Adding a Budget Change Order",
+    "Budget Change Orders Page",
+    "Deleting a Budget Change Order",
+    "Editing a Budget Change Order"
+   ]
+  },
+  {
+   "predicted": "Job Cost & Reserves",
+   "actual": "Forecasting & Planning › All › - › Job Positions",
+   "count": 5,
+   "examples": [
+    "Adding a Job Position",
+    "Deleting a Job Position",
+    "Job Positions List",
+    "New Job Position Page"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Company › All › - › Central Configuration",
+   "count": 5,
+   "examples": [
+    "Accounts Payable Tab",
+    "Accounts Receivable Tab",
+    "Customizing Fields in the Entries Grid in the Site View",
+    "Enabling Additional Dimensions in the Site View"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "General Ledger › All › Periodic Tasks › Budgets",
+   "count": 4,
+   "examples": [
+    "Bypassing Budget Checks",
+    "Setting Up a Budget Check As Part of Approvals"
+   ]
+  },
+  {
+   "predicted": "Company",
+   "actual": "Reports › All › - › Reports Center",
+   "count": 4,
+   "examples": [
+    "All Units Report",
+    "Filtering by Location, Department, or Other Dimension",
+    "Grouping Data"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "Company › Setup › - › Customer Utility Tool",
+   "count": 4,
+   "examples": [
+    "Inactivate Vendors",
+    "Inactivating Vendors",
+    "Marking Vendors as Inactive if They Have Not Had an Invoice Since the Defined Date"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "Company › Setup › - › Subscriptions",
+   "count": 4,
+   "examples": [
+    "Enabling Vendor Restrictions (Visibility)",
+    "Setting Up 1099 Reporting for Duplicate Vendor Records",
+    "Setting the Validate and Issue 1099 by Tax ID and Legal Contact Information Option",
+    "Vendor Visibility"
+   ]
+  },
+  {
+   "predicted": "Company",
+   "actual": "Accounts Payable › All › Search & Find › Payments",
+   "count": 4,
+   "examples": [
+    "Determining the \"From\" Contact",
+    "Payment Notifications",
+    "Setting Up Automatic Payment Notifications",
+    "Viewing a Posted Payment's Attachment"
+   ]
+  },
+  {
+   "predicted": "Accounts Receivable",
+   "actual": "Company › All › - › Entities",
+   "count": 4,
+   "examples": [
+    "Associating Entities and Locations with Tax Codes",
+    "Associating a Customer Record with an Entity",
+    "Associating a Vendor and Customer to an Entity"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Financial Close Management › All › - › Console",
+   "count": 4,
+   "examples": [
+    "Close Books Box",
+    "Open Books Box"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Finance Agent › All › - › Accounts Payable",
+   "count": 4,
+   "examples": [
+    "Agent Accruals List",
+    "Agent Accruals Page",
+    "Deleting an Agent Accrual",
+    "Editing an Agent Accrual"
+   ]
+  },
+  {
+   "predicted": "Spend Management",
+   "actual": "Job Cost & Reserves › All › Search & Find › Subcontracts",
+   "count": 4,
+   "examples": [
+    "Adding a Change Order for a Subcontract",
+    "Creating an A/P Invoice for a Subcontract",
+    "Subcontracts List",
+    "Viewing a Subcontract"
+   ]
+  },
+  {
+   "predicted": "Company",
+   "actual": "Reports › All › - › Dimensions",
+   "count": 4,
+   "examples": [
+    "Adding and Editing Departments"
+   ]
+  },
+  {
+   "predicted": "Accounts Receivable",
+   "actual": "Reports › All › - › Reports Center",
+   "count": 4,
+   "examples": [
+    "Bank Deposit Details (Excel) Report",
+    "Bank Deposit Summary Report",
+    "Resident Balances by Fiscal Period Report (Reports)",
+    "Resident Deposit Audit by Fiscal Period Report"
+   ]
+  },
+  {
+   "predicted": "Company",
+   "actual": "Reports › Setup › - › Dimension Groups",
+   "count": 4,
+   "examples": [
+    "Creating an \"Entity Group\"",
+    "Importing a Location Group"
+   ]
+  },
+  {
+   "predicted": "Reports",
+   "actual": "Investor Tracking › All › Reports › Property Report Groups",
+   "count": 4,
+   "examples": [
+    "Creating a Property Report Group",
+    "Property Report Group Information Page",
+    "Property Report Groups List",
+    "Running a Property Report Group"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "Company › All › - › Central Configuration",
+   "count": 4,
+   "examples": [
+    "Configuring A/P 1099 Settings",
+    "Configuring A/P Payment Priority Settings",
+    "Configuring A/P Vendor Approval Settings",
+    "Configuring Pay A/P Invoices Defaults"
+   ]
+  },
+  {
+   "predicted": "Accounts Receivable",
+   "actual": "Company › All › - › Tax Codes",
+   "count": 4,
+   "examples": [
+    "Deleting Tax Codes",
+    "Tax Code Information Page",
+    "Tax Codes List",
+    "Viewing and Editing Tax Codes"
+   ]
+  },
+  {
+   "predicted": "Job Cost & Reserves",
+   "actual": "Time & Resources › All › Periodic Tasks › Job Positions",
+   "count": 4,
+   "examples": [
+    "Adding a New Job Position",
+    "Deleting a Job Position Record",
+    "Job Position Page",
+    "Job Positions"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Company › Setup › - › Users",
+   "count": 3,
+   "examples": [
+    "Flagging a User as a Budget Variance Analysis User",
+    "Granting Chart Type Permissions",
+    "Updating User Records for Budget Variance Analysis"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Accounts Payable › Setup › - › Templates",
+   "count": 3,
+   "examples": [
+    "Configuring the G/L Allocations Workflow",
+    "Deleting an Allocation",
+    "Viewing the A/P Allocations List"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Company › Setup › - › Inter-Entity Account Mapping",
+   "count": 3,
+   "examples": [
+    "Inter-Entity Account Mapping List",
+    "Inter-Entity Account Mapping Page"
+   ]
+  },
+  {
+   "predicted": "Reports",
+   "actual": "General Ledger › All › Reports › Financial Statements",
+   "count": 3,
+   "examples": [
+    "Finding Dimension Structures",
+    "Using Segments in the Financial Reports Writer",
+    "Viewing a List of Scheduled Reports"
+   ]
+  },
+  {
+   "predicted": "Financial Close Management",
+   "actual": "General Ledger › All › Reports › Financial Statements",
+   "count": 3,
+   "examples": [
+    "Customizing and Running the Rent Roll Report",
+    "Customizing and Running the Security Deposits - Multifamily Report",
+    "Rent Roll Report"
+   ]
+  },
+  {
+   "predicted": "Reports",
+   "actual": "General Ledger › All › - › Memorized reports",
+   "count": 3,
+   "examples": [
+    "Exporting Standard and Custom Reports",
+    "Memorized Reports",
+    "Storing a Report in My Stored Reports"
+   ]
+  },
+  {
+   "predicted": "Company",
+   "actual": "Accounts Payable › All › Periodic Tasks › Debt Maintenance",
+   "count": 3,
+   "examples": [
+    "Importing Loan Schedules",
+    "Loan Schedule Data"
+   ]
+  },
+  {
+   "predicted": "Company",
+   "actual": "Accounts Payable › All › Search & Find › Vendors",
+   "count": 3,
+   "examples": [
+    "Importing Vendors",
+    "Vendor Data"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "Company › All › - › Import Data",
+   "count": 3,
+   "examples": [
+    "Setting Up A/P Master List, Open Invoices, and Adjustments",
+    "Setting Up A/R Master List, Open Invoices, and Adjustments",
+    "Vendor Account Number for Entities"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "Accounts Receivable › All › Search & Find › Payments",
+   "count": 3,
+   "examples": [
+    "Reversing a Paid Invoice",
+    "Writing Off Unpaid Invoices"
+   ]
+  },
+  {
+   "predicted": "Dashboards",
+   "actual": "Accounts Payable › All › - › Document Dashboard",
+   "count": 3,
+   "examples": [
+    "Document Dashboard",
+    "Document Dashboards List",
+    "Using Document Dashboards"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Cash Management › Setup › - › Accounts",
+   "count": 3,
+   "examples": [
+    "Setting Up Checking Accounts for Standard ACH",
+    "Setting Up Your Checking Account"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "Company › All › - › Ledger Sentry",
+   "count": 3,
+   "examples": [
+    "Setting Up the Contract Expiration Alert"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "Company › Setup › - › Users",
+   "count": 3,
+   "examples": [
+    "Assigning the Contract Expiration Notification Role to Users",
+    "Enabling Permissions for the Fees Feature",
+    "Setting Up a User's Record for Expense Reports"
+   ]
+  },
+  {
+   "predicted": "Accounts Payable",
+   "actual": "Spend Management › All › - › Invoice Processing Upload",
+   "count": 3,
+   "examples": [
+    "Uploading Invoice Processing Invoices",
+    "Viewing an Uploaded Invoice Processing Invoice"
+   ]
+  },
+  {
+   "predicted": "Finance Agent",
+   "actual": "Company › All › - › AI Configuration",
+   "count": 3,
+   "examples": [
+    "AI Configuration Page",
+    "Configuring AI Contract Screening",
+    "Setting Up Standard Vendor Types"
+   ]
+  },
+  {
+   "predicted": "Accounts Receivable",
+   "actual": "Accounts Payable › Setup › - › Tax",
+   "count": 3,
+   "examples": [
+    "Tax Authorities List"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Company › Setup › - › Roles",
+   "count": 3,
+   "examples": [
+    "Bypassing the Prevent or Warn When Exceeding a Budget Setting"
+   ]
+  },
+  {
+   "predicted": "Spend Management",
+   "actual": "Accounts Payable › All › - › Subcontracts",
+   "count": 3,
+   "examples": [
+    "Creating Subcontracts Packages",
+    "Generating the Subcontract Package",
+    "Package Subcontracts List"
+   ]
+  },
+  {
+   "predicted": "General Ledger",
+   "actual": "Cash Management › All › Periodic Tasks › Reconciliation",
+   "count": 3,
+   "examples": [
+    "Creating Transactions or Journal Entries for Unmatched Transactions"
+   ]
+  }
+ ],
+ "labelVariants": {
+  "Accounts Payable": {
+   "Accounts Payable": 1301,
+   "Configure (Accounts Payable)": 4,
+   "Accounts payable": 1
+  },
+  "Accounts Receivable": {
+   "Accounts Receivable": 754,
+   "Configure (Accounts Receivable)": 4,
+   "Accounts receivable": 3,
+   "Receivable": 5
+  },
+  "Cash Management": {
+   "Cash Management": 446,
+   "(Cash Management) Configure": 1
+  },
+  "Dashboards": {
+   "Dashboards": 78,
+   "Dashboards (menu)": 12
+  },
+  "General Ledger": {
+   "General Ledger": 1057,
+   "General ledger": 2,
+   "General Ledger Setup": 1
+  },
+  "Job Cost & Reserves": {
+   "Job Cost & Reserves": 250,
+   "Job Cost & Reserves or Replacement Reserves": 63,
+   "Replacement Reserves": 6,
+   "Job Cost": 3
+  },
+  "Reports": {
+   "Reports": 744,
+   "(Reports": 7
+  },
+  "Spend Management": {
+   "Spend Management": 263,
+   "Accounts Payable/Spend Management": 9,
+   "Configure (Spend Management)": 1,
+   "Spend management": 5
+  }
+ }
+}

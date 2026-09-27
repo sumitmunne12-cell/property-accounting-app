@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -32,8 +32,12 @@ const MAX_ASC_RESULTS = 8;
 const MAX_FASB_TERMS = 12;
 const RE_LABEL = { core: 'CORE RE', support: 'REAL ESTATE' };
 
-export default function CommandSearch({ onSelectTask, onOpenScreen }) {
-  const [searchQuery, setSearchQuery] = useState('');
+// `initialQuery` = { text, nonce } lets other tabs (the Deduction Compass) open a search.
+export default function CommandSearch({ onSelectTask, onOpenScreen, initialQuery }) {
+  const [searchQuery, setSearchQuery] = useState(initialQuery ? initialQuery.text : '');
+  useEffect(() => {
+    if (initialQuery && initialQuery.text) setSearchQuery(initialQuery.text);
+  }, [initialQuery]);
   const debouncedQuery = useDebouncedValue(searchQuery, 150);
   const [activeCategoryFilter, setActiveCategoryFilter] = useState('All'); // 'All' | 'Manuals' | 'Exceptions' | 'Tasks' | 'Screens' | 'Glossary'
   const [expandedExceptionId, setExpandedExceptionId] = useState('ex_po_variance');
