@@ -31,8 +31,31 @@ import { triggerHaptic } from '../utils/haptics';
 import { CLOSE_TASK_ASC } from '../data/gaapLinksData';
 import { ascLinksForTopics } from '../utils/ascLinks';
 import GaapButton from './gaap/GaapButton';
+import {
+  reorderCloseTask,
+  updateCloseTask,
+  addCloseTask,
+  removeCloseTask,
+  getDefaultClosePhases,
+} from '../utils/taskManager';
+import TaskEditModal from './TaskEditModal';
 
-function TaskRow({ task, signedAt, locked, expanded, onToggleExpand, onToggleDone, onPerform }) {
+function TaskRow({
+  task,
+  signedAt,
+  locked,
+  expanded,
+  onToggleExpand,
+  onToggleDone,
+  onPerform,
+  isManageMode,
+  canMoveUp,
+  canMoveDown,
+  onMoveUp,
+  onMoveDown,
+  onEdit,
+  onDelete,
+}) {
   const entry = getScreenEntry(task.screenId);
   return (
     <View style={[styles.taskCard, signedAt && styles.taskCardDone]}>
@@ -52,34 +75,91 @@ function TaskRow({ task, signedAt, locked, expanded, onToggleExpand, onToggleDon
         <TouchableOpacity style={styles.taskTitleWrap} onPress={onToggleExpand} activeOpacity={0.7}>
           <Text style={[styles.taskTitle, signedAt && styles.taskTitleDone]}>{task.title}</Text>
           <View style={styles.taskMetaRow}>
-            <Text style={styles.ownerChip}>{CLOSE_ROLES[task.owner]}</Text>
+            <Text style={styles.ownerChip}>{CLOSE_ROLES[task.owner] || task.owner}</Text>
             {task.critical ? <Text style={styles.criticalChip}>CRITICAL</Text> : null}
+            {task.isCustom ? <Text style={[styles.ownerChip, { backgroundColor: `${COLORS.accent}25`, color: COLORS.accent }]}>CUSTOM</Text> : null}
             {signedAt ? <Text style={styles.signedText}>Signed {new Date(signedAt).toLocaleDateString()}</Text> : null}
           </View>
         </TouchableOpacity>
-        <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={16} color={COLORS.textSecondary} />
+
+        {isManageMode ? (
+          <View style={styles.inlineManageGroup}>
+            <TouchableOpacity
+              style={[styles.miniBtn, !canMoveUp && styles.miniBtnDisabled]}
+              disabled={!canMoveUp}
+              onPress={onMoveUp}
+              accessibilityLabel="Move up"
+            >
+              <Ionicons name="arrow-up" size={13} color={canMoveUp ? COLORS.text : COLORS.textMuted} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.miniBtn, !canMoveDown && styles.miniBtnDisabled]}
+              disabled={!canMoveDown}
+              onPress={onMoveDown}
+              accessibilityLabel="Move down"
+            >
+              <Ionicons name="arrow-down" size={13} color={canMoveDown ? COLORS.text : COLORS.textMuted} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.miniBtn} onPress={onEdit} accessibilityLabel="Edit task">
+              <Ionicons name="pencil" size={13} color={COLORS.primaryLight} />
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.miniBtn, styles.miniBtnDelete]} onPress={onDelete} accessibilityLabel="Delete task">
+              <Ionicons name="trash-outline" size={13} color={COLORS.danger} />
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={16} color={COLORS.textSecondary} />
+        )}
       </View>
 
       {expanded && (
         <View style={styles.taskBody}>
           <Text style={styles.label}>WHAT TO DO</Text>
-          <Text style={styles.body}>{task.instructions}</Text>
-          <Text style={[styles.label, { color: COLORS.success }]}>CONTROL CHECK</Text>
-          <Text style={styles.body}>{task.controlCheck}</Text>
-          <Text style={[styles.label, { color: COLORS.warning }]}>EVIDENCE FOR THE CLOSE BINDER</Text>
-          <Text style={styles.body}>{task.evidence}</Text>
-          <Text style={[styles.label, { color: COLORS.yardi }]}>YARDI VOYAGER EQUIVALENT</Text>
-          <Text style={styles.body}>{task.yardiEquivalent}</Text>
-          <TouchableOpacity style={styles.performBtn} onPress={onPerform} activeOpacity={0.8}>
-            <Ionicons name="play-circle" size={16} color="#FFFFFF" />
-            <Text style={styles.performText}>Perform Task — open SOP</Text>
-          </TouchableOpacity>
+          <Text style={styles.body}>{task.instructions || 'No instructions provided.'}</Text>
+          {task.controlCheck ? (
+            <>
+              <Text style={[styles.label, { color: COLORS.success }]}>CONTROL CHECK</Text>
+              <Text style={styles.body}>{task.controlCheck}</Text>
+            </>
+          ) : null}
+          {task.evidence ? (
+            <>
+              <Text style={[styles.label, { color: COLORS.warning }]}>EVIDENCE FOR THE CLOSE BINDER</Text>
+              <Text style={styles.body}>{task.evidence}</Text>
+            </>
+          ) : null}
+          {task.yardiEquivalent ? (
+            <>
+              <Text style={[styles.label, { color: COLORS.yardi }]}>YARDI VOYAGER EQUIVALENT</Text>
+              <Text style={styles.body}>{task.yardiEquivalent}</Text>
+            </>
+          ) : null}
+          {task.screenId ? (
+            <TouchableOpacity style={styles.performBtn} onPress={onPerform} activeOpacity={0.8}>
+              <Ionicons name="play-circle" size={16} color="#FFFFFF" />
+              <Text style={styles.performText}>Perform Task — open SOP</Text>
+            </TouchableOpacity>
+          ) : null}
           {entry ? (
             <Text style={styles.linkedScreen} numberOfLines={2}>
               {entry.moduleShortCode} › {entry.name}
             </Text>
           ) : null}
-          <GaapButton links={ascLinksForTopics(CLOSE_TASK_ASC[task.id], 'close')} contextLabel={task.title} />
+          {CLOSE_TASK_ASC[task.id] && (
+            <GaapButton links={ascLinksForTopics(CLOSE_TASK_ASC[task.id], 'close')} contextLabel={task.title} />
+          )}
+
+          {/* Quick manage buttons inside expanded view */}
+          <View style={styles.expandedManageRow}>
+            <TouchableOpacity style={styles.expandedManageBtn} onPress={onEdit}>
+              <Ionicons name="create-outline" size={14} color={COLORS.primaryLight} />
+              <Text style={[styles.expandedManageBtnText, { color: COLORS.primaryLight }]}>Edit Task</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.expandedManageBtn, styles.expandedDeleteBtn]} onPress={onDelete}>
+              <Ionicons name="trash-outline" size={14} color={COLORS.danger} />
+              <Text style={[styles.expandedManageBtnText, { color: COLORS.danger }]}>Remove Task</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       )}
     </View>
@@ -88,12 +168,33 @@ function TaskRow({ task, signedAt, locked, expanded, onToggleExpand, onToggleDon
 
 // `properties` / `selectedPropertyId` come from the app shell. Sign-offs are kept per property and
 // period; each property's timeline turns the phase windows into real due dates.
-export default function CloseCockpit({ onOpenScreen, properties = [], selectedPropertyId = ALL_PROPERTIES, onManageProperties }) {
+export default function CloseCockpit({
+  onOpenScreen,
+  properties = [],
+  selectedPropertyId = ALL_PROPERTIES,
+  onManageProperties,
+  closePhases: propsClosePhases,
+  onSaveClosePhases,
+}) {
   const [period, setPeriod] = useState(defaultClosePeriod());
   const [progress, setProgress] = useState({});
   const [expandedPhaseId, setExpandedPhaseId] = useState(null);
   const [expandedTaskId, setExpandedTaskId] = useState(null);
   const [localPropertyId, setLocalPropertyId] = useState(null);
+
+  // Close phases customization state
+  const [internalClosePhases, setInternalClosePhases] = useState(propsClosePhases || CLOSE_PHASES);
+  const phases = propsClosePhases || internalClosePhases;
+  const [isManageMode, setIsManageMode] = useState(false);
+  const [editingCloseTask, setEditingCloseTask] = useState(null); // { task, phaseId }
+  const [isAddingCloseTask, setIsAddingCloseTask] = useState(false);
+  const [addCloseTaskTargetPhaseId, setAddCloseTaskTargetPhaseId] = useState('phase1');
+
+  useEffect(() => {
+    if (propsClosePhases) {
+      setInternalClosePhases(propsClosePhases);
+    }
+  }, [propsClosePhases]);
 
   useEffect(() => {
     getCloseProgress().then((raw) => {
@@ -117,14 +218,14 @@ export default function CloseCockpit({ onOpenScreen, properties = [], selectedPr
   const today = new Date();
 
   const done = useMemo(() => (progress[progressKey] || {})[period] || {}, [progress, progressKey, period]);
-  const statuses = useMemo(() => phaseStatuses(CLOSE_PHASES, done), [done]);
-  const overall = useMemo(() => overallProgress(CLOSE_PHASES, done), [done]);
-  const upNext = useMemo(() => nextTask(CLOSE_PHASES, done), [done]);
+  const statuses = useMemo(() => phaseStatuses(phases, done), [phases, done]);
+  const overall = useMemo(() => overallProgress(phases, done), [phases, done]);
+  const upNext = useMemo(() => nextTask(phases, done), [phases, done]);
   const currentPhaseId = upNext ? upNext.phase.id : null;
   const openPhaseId = expandedPhaseId ?? currentPhaseId;
 
   const handleToggle = (taskId) => {
-    const result = toggleTask(CLOSE_PHASES, done, taskId);
+    const result = toggleTask(phases, done, taskId);
     if (!result.changed) return;
     triggerHaptic(result.done[taskId] ? 'success' : 'light');
     const updated = { ...progress, [progressKey]: { ...(progress[progressKey] || {}), [period]: result.done } };
@@ -143,6 +244,52 @@ export default function CloseCockpit({ onOpenScreen, properties = [], selectedPr
   const perform = (task, phase) => {
     triggerHaptic('light');
     onOpenScreen(task.screenId, `PHASE ${phase.number} · ${task.title.toUpperCase()}`);
+  };
+
+  // Close Task Management Handlers
+  const handleMoveCloseTask = (phaseId, taskIndex, direction) => {
+    triggerHaptic('light');
+    const updated = reorderCloseTask(phases, phaseId, taskIndex, direction);
+    setInternalClosePhases(updated);
+    onSaveClosePhases?.(updated);
+  };
+
+  const handleDeleteCloseTask = (phaseId, taskId) => {
+    triggerHaptic('warning');
+    const updated = removeCloseTask(phases, phaseId, taskId);
+    setInternalClosePhases(updated);
+    onSaveClosePhases?.(updated);
+  };
+
+  const handleOpenAddCloseTask = (phaseId = 'phase1') => {
+    triggerHaptic('light');
+    setAddCloseTaskTargetPhaseId(phaseId);
+    setIsAddingCloseTask(true);
+  };
+
+  const handleOpenEditCloseTask = (task, phaseId) => {
+    triggerHaptic('light');
+    setEditingCloseTask({ task, phaseId });
+  };
+
+  const handleSaveCloseTaskModal = (taskData, phaseId) => {
+    let updated;
+    if (editingCloseTask) {
+      updated = updateCloseTask(phases, editingCloseTask.phaseId, editingCloseTask.task.id, taskData);
+    } else {
+      updated = addCloseTask(phases, phaseId || addCloseTaskTargetPhaseId, taskData);
+    }
+    setInternalClosePhases(updated);
+    onSaveClosePhases?.(updated);
+    setEditingCloseTask(null);
+    setIsAddingCloseTask(false);
+  };
+
+  const handleResetClosePhases = () => {
+    triggerHaptic('medium');
+    const defaults = getDefaultClosePhases();
+    setInternalClosePhases(defaults);
+    onSaveClosePhases?.(defaults);
   };
 
   return (
@@ -176,12 +323,41 @@ export default function CloseCockpit({ onOpenScreen, properties = [], selectedPr
             </Text>
           </View>
         )}
-        {onManageProperties ? (
-          <TouchableOpacity onPress={() => onManageProperties(property ? property.id : null)} style={styles.manageBtn}>
-            <Ionicons name="calendar-outline" size={13} color={COLORS.primaryLight} />
-            <Text style={styles.manageText}>{property ? 'Edit timeline' : 'Add property'}</Text>
+        <View style={styles.headerActionRow}>
+          <TouchableOpacity
+            onPress={() => {
+              triggerHaptic('light');
+              setIsManageMode(!isManageMode);
+            }}
+            style={[styles.manageBtn, isManageMode && styles.manageBtnActive]}
+            accessibilityLabel={isManageMode ? 'Done managing tasks' : 'Manage close checklist tasks'}
+          >
+            <Ionicons
+              name={isManageMode ? 'checkmark-circle' : 'reorder-three'}
+              size={14}
+              color={isManageMode ? COLORS.success : COLORS.primaryLight}
+            />
+            <Text style={[styles.manageText, isManageMode && { color: COLORS.success }]}>
+              {isManageMode ? 'Done' : 'Manage'}
+            </Text>
           </TouchableOpacity>
-        ) : null}
+
+          <TouchableOpacity
+            onPress={() => handleOpenAddCloseTask('phase1')}
+            style={styles.manageBtn}
+            accessibilityLabel="Add new close task"
+          >
+            <Ionicons name="add-circle-outline" size={14} color={COLORS.close} />
+            <Text style={[styles.manageText, { color: COLORS.close }]}>+ Task</Text>
+          </TouchableOpacity>
+
+          {onManageProperties ? (
+            <TouchableOpacity onPress={() => onManageProperties(property ? property.id : null)} style={styles.manageBtn}>
+              <Ionicons name="calendar-outline" size={13} color={COLORS.primaryLight} />
+              <Text style={styles.manageText}>{property ? 'Timeline' : 'Add'}</Text>
+            </TouchableOpacity>
+          ) : null}
+        </View>
       </View>
 
       {/* Period + overall progress gauge + phase milestones */}
@@ -267,7 +443,7 @@ export default function CloseCockpit({ onOpenScreen, properties = [], selectedPr
       )}
 
       {/* Phases */}
-      {CLOSE_PHASES.map((phase, idx) => {
+      {phases.map((phase, idx) => {
         const st = statuses[idx];
         const isOpen = phase.id === openPhaseId;
         const color = st.complete ? COLORS.success : st.locked ? COLORS.textMuted : COLORS.close;
@@ -318,7 +494,7 @@ export default function CloseCockpit({ onOpenScreen, properties = [], selectedPr
                     Locked: sign off every task in Phase {phase.number - 1} first. Subledgers close in sequence, so this phase depends on the previous lock.
                   </Text>
                 ) : null}
-                {phase.tasks.map((task) => (
+                {phase.tasks.map((task, taskIdx) => (
                   <TaskRow
                     key={task.id}
                     task={task}
@@ -328,21 +504,60 @@ export default function CloseCockpit({ onOpenScreen, properties = [], selectedPr
                     onToggleExpand={() => setExpandedTaskId(expandedTaskId === task.id ? null : task.id)}
                     onToggleDone={() => handleToggle(task.id)}
                     onPerform={() => perform(task, phase)}
+                    isManageMode={isManageMode}
+                    canMoveUp={taskIdx > 0}
+                    canMoveDown={taskIdx < phase.tasks.length - 1}
+                    onMoveUp={() => handleMoveCloseTask(phase.id, taskIdx, -1)}
+                    onMoveDown={() => handleMoveCloseTask(phase.id, taskIdx, 1)}
+                    onEdit={() => handleOpenEditCloseTask(task, phase.id)}
+                    onDelete={() => handleDeleteCloseTask(phase.id, task.id)}
                   />
                 ))}
+
+                <TouchableOpacity
+                  style={styles.addPhaseTaskBtn}
+                  onPress={() => handleOpenAddCloseTask(phase.id)}
+                  activeOpacity={0.7}
+                  accessibilityLabel={`Add task to Phase ${phase.number}`}
+                >
+                  <Ionicons name="add-circle-outline" size={15} color={COLORS.close} />
+                  <Text style={styles.addPhaseTaskText}>+ Add task to Phase {phase.number}</Text>
+                </TouchableOpacity>
               </View>
             )}
           </View>
         );
       })}
 
-      {overall.completed > 0 && (
-        <TouchableOpacity style={styles.resetBtn} onPress={resetPeriod}>
-          <Ionicons name="refresh" size={14} color={COLORS.textSecondary} />
-          <Text style={styles.resetText}>Reset sign-offs for {periodLabel(period)}</Text>
+      <View style={styles.bottomActionsRow}>
+        {overall.completed > 0 && (
+          <TouchableOpacity style={styles.resetBtn} onPress={resetPeriod}>
+            <Ionicons name="refresh" size={14} color={COLORS.textSecondary} />
+            <Text style={styles.resetText}>Reset sign-offs for {periodLabel(period)}</Text>
+          </TouchableOpacity>
+        )}
+        <TouchableOpacity style={styles.resetBtn} onPress={handleResetClosePhases}>
+          <Ionicons name="arrow-undo" size={14} color={COLORS.textMuted} />
+          <Text style={[styles.resetText, { color: COLORS.textMuted }]}>Reset all close tasks to default</Text>
         </TouchableOpacity>
-      )}
       </View>
+      </View>
+
+      {/* Modal for editing or adding close tasks */}
+      {Boolean(editingCloseTask || isAddingCloseTask) && (
+        <TaskEditModal
+          visible={Boolean(editingCloseTask || isAddingCloseTask)}
+          type="close"
+          initialTask={editingCloseTask?.task || null}
+          targetPhaseId={editingCloseTask?.phaseId || addCloseTaskTargetPhaseId}
+          closePhases={phases}
+          onSave={handleSaveCloseTaskModal}
+          onClose={() => {
+            setEditingCloseTask(null);
+            setIsAddingCloseTask(false);
+          }}
+        />
+      )}
     </ScrollView>
   );
 }
@@ -513,4 +728,70 @@ const styles = StyleSheet.create({
   linkedScreen: { fontSize: 11, color: COLORS.textMuted, marginTop: 6, textAlign: 'center' },
   resetBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 8, padding: 10 },
   resetText: { fontSize: 12, color: COLORS.textSecondary, marginLeft: 6 },
+  headerActionRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginLeft: 'auto' },
+  manageBtnActive: { borderColor: COLORS.success, backgroundColor: `${COLORS.success}18` },
+  inlineManageGroup: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+  miniBtn: {
+    width: 26,
+    height: 26,
+    borderRadius: 6,
+    backgroundColor: COLORS.surfaceLight,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  miniBtnDisabled: { opacity: 0.3 },
+  miniBtnDelete: { borderColor: `${COLORS.danger}40`, backgroundColor: `${COLORS.danger}15` },
+  expandedManageRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginTop: 12,
+    paddingTop: 10,
+    borderTopWidth: 1,
+    borderTopColor: COLORS.border,
+  },
+  expandedManageBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: COLORS.surfaceLight,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    borderRadius: RADII.sm,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+  },
+  expandedDeleteBtn: {
+    borderColor: `${COLORS.danger}40`,
+    backgroundColor: `${COLORS.danger}15`,
+  },
+  expandedManageBtnText: {
+    fontSize: 11,
+    fontWeight: '700',
+  },
+  addPhaseTaskBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    borderColor: `${COLORS.close}88`,
+    borderRadius: 8,
+    paddingVertical: 10,
+    marginTop: 10,
+    backgroundColor: `${COLORS.close}08`,
+  },
+  addPhaseTaskText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: COLORS.close,
+  },
+  bottomActionsRow: {
+    marginTop: 12,
+    alignItems: 'center',
+    gap: 4,
+  },
 });

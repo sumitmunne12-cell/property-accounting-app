@@ -4144,6 +4144,8 @@ export const TASK_PHASES = [
   'Ongoing - Quarterly'
 ];
 
+export const TASK_PRIORITIES = ['High', 'Medium', 'Low'];
+
 export const TASK_CATEGORIES = Array.from(new Set(ALL_TASKS.map(t => t.category))).sort();
 
 export const PROPERTIES = [

@@ -18,6 +18,13 @@ function TaskCard({
   onToggleBookmark,
   onOpenMastery,
   activeSoftware = 'realpage',
+  isManageMode = false,
+  canMoveUp = false,
+  canMoveDown = false,
+  onMoveUp,
+  onMoveDown,
+  onEdit,
+  onDelete,
 }) {
   const navBreadcrumbs =
     activeSoftware === 'yardi' && task.navigation?.yardi
@@ -122,6 +129,7 @@ function TaskCard({
               onToggleBookmark(task.id);
             }}
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            accessibilityLabel={isBookmarked ? 'Remove bookmark' : 'Bookmark task'}
           >
             <Ionicons
               name={isBookmarked ? 'bookmark' : 'bookmark-outline'}
@@ -129,6 +137,21 @@ function TaskCard({
               color={isBookmarked ? COLORS.gold : COLORS.textMuted}
             />
           </TouchableOpacity>
+
+          {onEdit && (
+            <TouchableOpacity
+              style={styles.iconButton}
+              onPress={(e) => {
+                e.stopPropagation();
+                triggerHaptic('light');
+                onEdit(task);
+              }}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              accessibilityLabel="Edit task"
+            >
+              <Ionicons name="pencil-outline" size={16} color={COLORS.textMuted} />
+            </TouchableOpacity>
+          )}
         </View>
       </View>
 
@@ -178,6 +201,65 @@ function TaskCard({
           <Ionicons name="chevron-forward" size={13} color={COLORS.primaryLight} />
         </View>
       </View>
+
+      {/* Reorder and Management Toolbar */}
+      {isManageMode && (
+        <View style={styles.manageBar}>
+          <TouchableOpacity
+            style={[styles.manageBtn, !canMoveUp && styles.manageBtnDisabled]}
+            disabled={!canMoveUp}
+            onPress={(e) => {
+              e.stopPropagation();
+              triggerHaptic('light');
+              onMoveUp?.(task.id);
+            }}
+            accessibilityLabel="Move task up"
+          >
+            <Ionicons name="arrow-up" size={14} color={canMoveUp ? COLORS.text : COLORS.textMuted} />
+            <Text style={[styles.manageBtnText, !canMoveUp && styles.manageBtnTextDisabled]}>Up</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.manageBtn, !canMoveDown && styles.manageBtnDisabled]}
+            disabled={!canMoveDown}
+            onPress={(e) => {
+              e.stopPropagation();
+              triggerHaptic('light');
+              onMoveDown?.(task.id);
+            }}
+            accessibilityLabel="Move task down"
+          >
+            <Ionicons name="arrow-down" size={14} color={canMoveDown ? COLORS.text : COLORS.textMuted} />
+            <Text style={[styles.manageBtnText, !canMoveDown && styles.manageBtnTextDisabled]}>Down</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.manageBtn}
+            onPress={(e) => {
+              e.stopPropagation();
+              triggerHaptic('light');
+              onEdit?.(task);
+            }}
+            accessibilityLabel="Edit task"
+          >
+            <Ionicons name="create-outline" size={14} color={COLORS.primaryLight} />
+            <Text style={[styles.manageBtnText, { color: COLORS.primaryLight }]}>Edit</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.manageBtn, styles.manageBtnDelete]}
+            onPress={(e) => {
+              e.stopPropagation();
+              triggerHaptic('warning');
+              onDelete?.(task.id);
+            }}
+            accessibilityLabel="Delete task"
+          >
+            <Ionicons name="trash-outline" size={14} color={COLORS.danger} />
+            <Text style={[styles.manageBtnText, { color: COLORS.danger }]}>Delete</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </TouchableOpacity>
   );
 }
@@ -322,5 +404,42 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: COLORS.primaryLight,
     marginRight: 2,
+  },
+  manageBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    gap: 8,
+    marginTop: 10,
+    paddingTop: 8,
+    borderTopWidth: 1,
+    borderTopColor: COLORS.border,
+  },
+  manageBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: COLORS.surfaceLight,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 6,
+    minHeight: 32,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+  },
+  manageBtnDisabled: {
+    opacity: 0.35,
+  },
+  manageBtnDelete: {
+    borderColor: `${COLORS.danger}40`,
+    backgroundColor: `${COLORS.danger}15`,
+  },
+  manageBtnText: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: COLORS.textSecondary,
+  },
+  manageBtnTextDisabled: {
+    color: COLORS.textMuted,
   },
 });

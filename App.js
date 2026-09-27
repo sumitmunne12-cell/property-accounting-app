@@ -35,7 +35,21 @@ import {
   saveProperties,
   getCloseProgress,
   saveCloseProgress,
+  getStoredDailyTasks,
+  saveStoredDailyTasks,
+  resetStoredDailyTasks,
+  getStoredClosePhases,
+  saveStoredClosePhases,
+  resetStoredClosePhases,
 } from './src/utils/storage';
+import {
+  reorderDailyTask,
+  updateDailyTask,
+  addDailyTask,
+  removeDailyTask,
+  getDefaultDailyTasks,
+  getDefaultClosePhases,
+} from './src/utils/taskManager';
 import {
   ALL_PROPERTIES,
   seedProperties,
@@ -62,6 +76,7 @@ import SwipeBackView from './src/components/SwipeBackView';
 import DeductionCompass from './src/components/compass/DeductionCompass';
 import PropertySetup from './src/components/PropertySetup';
 import CloseTimelineStrip from './src/components/CloseTimelineStrip';
+import TaskEditModal from './src/components/TaskEditModal';
 
 const TAB_TITLES = {
   tasks: 'Daily Hub',
@@ -106,6 +121,13 @@ function AppShell() {
   const [selectedPropertyId, setSelectedPropertyId] = useState(ALL_PROPERTIES);
   const [propertySetup, setPropertySetup] = useState({ visible: false, editId: null });
   const [activeSoftware, setActiveSoftware] = useState('realpage'); // 'realpage' | 'yardi'
+
+  // User-customized daily tasks and close phases
+  const [dailyTasks, setDailyTasks] = useState(ALL_TASKS);
+  const [closePhases, setClosePhases] = useState(getDefaultClosePhases());
+  const [isManageDailyMode, setIsManageDailyMode] = useState(false);
+  const [editingDailyTask, setEditingDailyTask] = useState(null);
+  const [isAddingDailyTask, setIsAddingDailyTask] = useState(false);
   
   // Persistent storage state
   const [completedTaskIds, setCompletedTaskIds] = useState([]);
@@ -139,6 +161,11 @@ function AppShell() {
   }, []);
 
   const handleGoBack = useCallback(() => {
+    if (editingDailyTask || isAddingDailyTask) {
+      setEditingDailyTask(null);
+      setIsAddingDailyTask(false);
+      return true;
+    }
     if (propertySetup.visible) {
       setPropertySetup({ visible: false, editId: null });
       return true;
@@ -222,6 +249,12 @@ function AppShell() {
     const notes = await getTaskNotes();
     const soft = await getActiveSoftware();
 
+    // User-managed custom daily tasks & close phases
+    const customDaily = await getStoredDailyTasks();
+    if (customDaily && Array.isArray(customDaily)) setDailyTasks(customDaily);
+    const customClose = await getStoredClosePhases();
+    if (customClose && Array.isArray(customClose)) setClosePhases(customClose);
+
     // First run seeds the properties the app used to hard-code; afterwards the user's list wins.
     const stored = normalizeProperties(await getProperties());
     const props = stored || seedProperties();
@@ -294,36 +327,93 @@ function AppShell() {
     await saveActiveSoftware(soft);
   };
 
+  // Daily Task Management Handlers
+  const handleMoveDailyTask = useCallback((taskId, direction) => {
+    triggerHaptic('light');
+    setDailyTasks((prev) => {
+      const updated = reorderDailyTask(prev, taskId, direction, selectedPhase);
+      saveStoredDailyTasks(updated);
+      return updated;
+    });
+  }, [selectedPhase]);
+
+  const handleSaveDailyTaskModal = useCallback((taskData) => {
+    setDailyTasks((prev) => {
+      let updated;
+      if (editingDailyTask) {
+        updated = updateDailyTask(prev, editingDailyTask.id, taskData);
+      } else {
+        updated = addDailyTask(prev, taskData, true);
+      }
+      saveStoredDailyTasks(updated);
+      return updated;
+    });
+    setEditingDailyTask(null);
+    setIsAddingDailyTask(false);
+  }, [editingDailyTask]);
+
+  const handleDeleteDailyTask = useCallback((taskId) => {
+    triggerHaptic('warning');
+    setDailyTasks((prev) => {
+      const updated = removeDailyTask(prev, taskId);
+      saveStoredDailyTasks(updated);
+      return updated;
+    });
+  }, []);
+
+  const handleResetDailyTasks = useCallback(async () => {
+    triggerHaptic('medium');
+    const defaults = getDefaultDailyTasks();
+    setDailyTasks(defaults);
+    await resetStoredDailyTasks();
+  }, []);
+
+  const handleSaveClosePhases = useCallback(async (nextPhases) => {
+    setClosePhases(nextPhases);
+    await saveStoredClosePhases(nextPhases);
+  }, []);
+
   // Filter Tasks based on Phase and Priority
   const filteredTasks = useMemo(
     () =>
-      ALL_TASKS.filter((t) => {
+      dailyTasks.filter((t) => {
         if (selectedPhase !== 'All' && t.phase !== selectedPhase) return false;
         if (selectedPriority !== 'All' && t.priority !== selectedPriority) return false;
         return true;
       }),
-    [selectedPhase, selectedPriority]
+    [dailyTasks, selectedPhase, selectedPriority]
   );
 
   const selectTab = (key) => {
     navigateToTab(key);
   };
 
-  const renderTask = ({ item: task }) => (
-    <TaskCard
-      task={task}
-      isCompleted={completedTaskIds.includes(task.id)}
-      isBookmarked={bookmarkedIds.includes(task.id)}
-      hasNote={Boolean(taskNotes[task.id])}
-      onToggleComplete={handleToggleComplete}
-      onToggleBookmark={handleToggleBookmark}
-      onOpenMastery={openMastery}
-      activeSoftware={activeSoftware}
-    />
-  );
+  const renderTask = ({ item: task, index }) => {
+    const canMoveUp = index > 0;
+    const canMoveDown = index < filteredTasks.length - 1;
+    return (
+      <TaskCard
+        task={task}
+        isCompleted={completedTaskIds.includes(task.id)}
+        isBookmarked={bookmarkedIds.includes(task.id)}
+        hasNote={Boolean(taskNotes[task.id])}
+        onToggleComplete={handleToggleComplete}
+        onToggleBookmark={handleToggleBookmark}
+        onOpenMastery={openMastery}
+        activeSoftware={activeSoftware}
+        isManageMode={isManageDailyMode}
+        canMoveUp={canMoveUp}
+        canMoveDown={canMoveDown}
+        onMoveUp={() => handleMoveDailyTask(task.id, -1)}
+        onMoveDown={() => handleMoveDailyTask(task.id, 1)}
+        onEdit={(t) => setEditingDailyTask(t)}
+        onDelete={(id) => handleDeleteDailyTask(id)}
+      />
+    );
+  };
 
   const completedCount = completedTaskIds.length;
-  const totalCount = ALL_TASKS.length;
+  const totalCount = dailyTasks.length;
 
   const pct = totalCount ? Math.round((completedCount / totalCount) * 100) : 0;
 
@@ -410,7 +500,7 @@ function AppShell() {
                     <CloseTimelineStrip
                       properties={properties}
                       selectedPropertyId={selectedPropertyId}
-                      tasks={ALL_TASKS}
+                      tasks={dailyTasks}
                       completedTaskIds={completedTaskIds}
                       activePhase={selectedPhase}
                       onSelectPhase={setSelectedPhase}
@@ -422,7 +512,7 @@ function AppShell() {
                       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.phaseScroll}>
                         {TASK_PHASES.map((ph) => {
                           const isSelected = selectedPhase === ph;
-                          const count = ph === 'All' ? ALL_TASKS.length : ALL_TASKS.filter((t) => t.phase === ph).length;
+                          const count = ph === 'All' ? dailyTasks.length : dailyTasks.filter((t) => t.phase === ph).length;
                           return (
                             <TouchableOpacity
                               key={ph}
@@ -449,30 +539,75 @@ function AppShell() {
                     {/* Priority Filter & Phase Title Row */}
                     <View style={styles.subFilterRow}>
                       <Text style={styles.listHeading}>
-                        {selectedPhase === 'All' ? `All ${ALL_TASKS.length} Offshore Tasks` : selectedPhase}
+                        {selectedPhase === 'All' ? `All ${dailyTasks.length} Offshore Tasks` : selectedPhase}
                         <Text style={styles.listHeadingCount}> ({filteredTasks.length})</Text>
                       </Text>
 
-                      <View style={styles.priorityFilterGroup}>
-                        {['All', 'High', 'Medium'].map((prio) => {
-                          const isSelected = selectedPriority === prio;
-                          return (
-                            <TouchableOpacity
-                              key={prio}
-                              style={[styles.prioButton, isSelected && styles.prioButtonActive]}
-                              onPress={() => {
-                                triggerHaptic('light');
-                                setSelectedPriority(prio);
-                              }}
-                            >
-                              <Text style={[styles.prioText, isSelected && styles.prioTextActive]}>
-                                {prio}
-                              </Text>
-                            </TouchableOpacity>
-                          );
-                        })}
+                      <View style={styles.actionFilterRow}>
+                        <TouchableOpacity
+                          style={[styles.manageTasksToggle, isManageDailyMode && styles.manageTasksToggleActive]}
+                          onPress={() => {
+                            triggerHaptic('light');
+                            setIsManageDailyMode(!isManageDailyMode);
+                          }}
+                          accessibilityLabel={isManageDailyMode ? 'Done managing tasks' : 'Manage tasks'}
+                        >
+                          <Ionicons
+                            name={isManageDailyMode ? 'checkmark-circle' : 'reorder-three'}
+                            size={14}
+                            color={isManageDailyMode ? COLORS.success : COLORS.primaryLight}
+                          />
+                          <Text style={[styles.manageTasksToggleText, isManageDailyMode && { color: COLORS.success }]}>
+                            {isManageDailyMode ? 'Done' : 'Manage'}
+                          </Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style={styles.addTaskBtn}
+                          onPress={() => {
+                            triggerHaptic('light');
+                            setIsAddingDailyTask(true);
+                          }}
+                          accessibilityLabel="Add new daily task"
+                        >
+                          <Ionicons name="add" size={14} color="#FFFFFF" />
+                          <Text style={styles.addTaskBtnText}>New</Text>
+                        </TouchableOpacity>
+
+                        <View style={styles.priorityFilterGroup}>
+                          {['All', 'High', 'Medium'].map((prio) => {
+                            const isSelected = selectedPriority === prio;
+                            return (
+                              <TouchableOpacity
+                                key={prio}
+                                style={[styles.prioButton, isSelected && styles.prioButtonActive]}
+                                onPress={() => {
+                                  triggerHaptic('light');
+                                  setSelectedPriority(prio);
+                                }}
+                              >
+                                <Text style={[styles.prioText, isSelected && styles.prioTextActive]}>
+                                  {prio}
+                                </Text>
+                              </TouchableOpacity>
+                            );
+                          })}
+                        </View>
                       </View>
                     </View>
+
+                    {/* Manage Tasks Informational Strip */}
+                    {isManageDailyMode && (
+                      <View style={styles.manageHelperBanner}>
+                        <Ionicons name="information-circle-outline" size={15} color={COLORS.primaryLight} />
+                        <Text style={styles.manageHelperText}>
+                          Tap Up / Down to reorder tasks in {selectedPhase}. Edit or delete any task.
+                        </Text>
+                        <TouchableOpacity style={styles.manageResetBtn} onPress={handleResetDailyTasks}>
+                          <Text style={styles.manageResetText}>Reset to defaults</Text>
+                        </TouchableOpacity>
+                      </View>
+                    )}
 
                     {/* Tasks List (virtualized) */}
                     <FlatList
@@ -481,7 +616,7 @@ function AppShell() {
                       data={filteredTasks}
                       keyExtractor={(t) => t.id}
                       renderItem={renderTask}
-                      extraData={`${completedTaskIds.length}|${bookmarkedIds.length}|${activeSoftware}|${Object.keys(taskNotes).length}`}
+                      extraData={`${completedTaskIds.length}|${bookmarkedIds.length}|${activeSoftware}|${isManageDailyMode}|${dailyTasks.length}|${Object.keys(taskNotes).length}`}
                       initialNumToRender={8}
                       maxToRenderPerBatch={8}
                       windowSize={7}
@@ -490,7 +625,7 @@ function AppShell() {
                         <View style={styles.emptyTasksBox}>
                           <Ionicons name="filter-outline" size={36} color={COLORS.textMuted} />
                           <Text style={styles.emptyTasksTitle}>No tasks match this filter</Text>
-                          <Text style={styles.emptyTasksSub}>Try switching the priority or phase filter above.</Text>
+                          <Text style={styles.emptyTasksSub}>Try switching the priority or phase filter above, or add a new task.</Text>
                         </View>
                       }
                     />
@@ -504,6 +639,8 @@ function AppShell() {
                     properties={properties}
                     selectedPropertyId={selectedPropertyId}
                     onManageProperties={openPropertySetup}
+                    closePhases={closePhases}
+                    onSaveClosePhases={handleSaveClosePhases}
                   />
                 )}
 
@@ -650,6 +787,20 @@ function AppShell() {
           onSave={handleSaveProperties}
           onClose={() => setPropertySetup({ visible: false, editId: null })}
         />
+
+        {/* DAILY TASK CREATE / EDIT MODAL */}
+        {Boolean(editingDailyTask || isAddingDailyTask) && (
+          <TaskEditModal
+            visible={Boolean(editingDailyTask || isAddingDailyTask)}
+            type="daily"
+            initialTask={editingDailyTask}
+            onSave={handleSaveDailyTaskModal}
+            onClose={() => {
+              setEditingDailyTask(null);
+              setIsAddingDailyTask(false);
+            }}
+          />
+        )}
       </View>
     </GaapNavContext.Provider>
   );
@@ -862,6 +1013,79 @@ const styles = StyleSheet.create({
   listHeadingCount: {
     color: COLORS.textSecondary,
     fontWeight: '500',
+  },
+  actionFilterRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  manageTasksToggle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: COLORS.surface,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    borderRadius: 6,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    minHeight: 28,
+  },
+  manageTasksToggleActive: {
+    borderColor: COLORS.success,
+    backgroundColor: `${COLORS.success}18`,
+  },
+  manageTasksToggleText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: COLORS.primaryLight,
+  },
+  addTaskBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 2,
+    backgroundColor: COLORS.accent,
+    borderRadius: 6,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    minHeight: 28,
+  },
+  addTaskBtnText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  manageHelperBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: `${COLORS.primary}15`,
+    borderLeftWidth: 3,
+    borderLeftColor: COLORS.primaryLight,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    marginHorizontal: 16,
+    marginBottom: 8,
+    borderRadius: 6,
+    gap: 8,
+  },
+  manageHelperText: {
+    flex: 1,
+    fontSize: 11,
+    color: COLORS.textSecondary,
+    lineHeight: 15,
+  },
+  manageResetBtn: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+    backgroundColor: COLORS.surface,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+  },
+  manageResetText: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: COLORS.textMuted,
   },
   priorityFilterGroup: {
     flexDirection: 'row',

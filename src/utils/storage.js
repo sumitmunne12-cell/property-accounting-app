@@ -11,6 +11,8 @@ const STORAGE_KEYS = {
   ASC_STUDY: '@rp_asc_study_v1',
   COMPASS_PROGRESS: '@rp_compass_progress_v1',
   PROPERTIES: '@rp_properties_v1',
+  CUSTOM_DAILY_TASKS: '@rp_custom_daily_tasks_v1',
+  CUSTOM_CLOSE_PHASES: '@rp_custom_close_phases_v1',
 };
 
 export const getCompletedTasks = async () => {
@@ -204,3 +206,60 @@ export const saveCompassProgress = async (progress) => {
   }
   return progress;
 };
+
+// User-customized Daily Hub tasks (null = user has not overridden default tasks)
+export const getStoredDailyTasks = async () => {
+  try {
+    const json = await AsyncStorage.getItem(STORAGE_KEYS.CUSTOM_DAILY_TASKS);
+    return json ? JSON.parse(json) : null;
+  } catch (e) {
+    console.error('Error reading custom daily tasks', e);
+    return null;
+  }
+};
+
+export const saveStoredDailyTasks = async (tasks) => {
+  try {
+    await AsyncStorage.setItem(STORAGE_KEYS.CUSTOM_DAILY_TASKS, JSON.stringify(tasks));
+  } catch (e) {
+    console.error('Error saving custom daily tasks', e);
+  }
+  return tasks;
+};
+
+export const resetStoredDailyTasks = async () => {
+  try {
+    await AsyncStorage.removeItem(STORAGE_KEYS.CUSTOM_DAILY_TASKS);
+  } catch (e) {
+    console.error('Error resetting custom daily tasks', e);
+  }
+};
+
+// User-customized Month-End Close phases and tasks (null = user has not overridden default close phases)
+export const getStoredClosePhases = async () => {
+  try {
+    const json = await AsyncStorage.getItem(STORAGE_KEYS.CUSTOM_CLOSE_PHASES);
+    return json ? JSON.parse(json) : null;
+  } catch (e) {
+    console.error('Error reading custom close phases', e);
+    return null;
+  }
+};
+
+export const saveStoredClosePhases = async (phases) => {
+  try {
+    await AsyncStorage.setItem(STORAGE_KEYS.CUSTOM_CLOSE_PHASES, JSON.stringify(phases));
+  } catch (e) {
+    console.error('Error saving custom close phases', e);
+  }
+  return phases;
+};
+
+export const resetStoredClosePhases = async () => {
+  try {
+    await AsyncStorage.removeItem(STORAGE_KEYS.CUSTOM_CLOSE_PHASES);
+  } catch (e) {
+    console.error('Error resetting custom close phases', e);
+  }
+};
+
