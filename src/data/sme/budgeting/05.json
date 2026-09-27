@@ -1,0 +1,1115 @@
+{
+  "scr_budgeting_job_positions_list": {
+    "purpose": "Lists the site job positions used for payroll budgeting — community manager, assistant manager, leasing consultant, maintenance supervisor, maintenance technician, porter — with their default pay, hours and workers' comp class.",
+    "outcome": "A standard position catalog so payroll is budgeted consistently across properties.",
+    "rootCause": "Payroll budgets are built position by position. A shared catalog with default pay and class ensures, for example, that every maintenance technician is budgeted with the maintenance workers' comp class and a market-based wage.",
+    "ifSkipped": "Each property invents its own positions and pay assumptions, and payroll budgets cannot be compared across the portfolio.",
+    "glAccounts": [
+      "6010 Payroll",
+      "Workers' compensation"
+    ],
+    "gaap": [
+      "Management agreement payroll reimbursement provisions"
+    ],
+    "stakeholders": [
+      "HR",
+      "Regional manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll budget"
+    ],
+    "redFlags": [
+      "Positions without a workers' comp class"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_a_job_position": {
+    "purpose": "Adds a new job position to the payroll planning catalog with its default wage, hours, overtime assumption and workers' comp class — for example a new 'Resident Experience Coordinator' role.",
+    "outcome": "New roles can be budgeted with consistent default assumptions.",
+    "rootCause": "Operating models change (centralized leasing, new amenity staff); new roles need catalog entries before properties can budget them, or they get forced into ill-fitting positions with wrong rates.",
+    "ifSkipped": "New roles are budgeted under unrelated positions with wrong wages and burden.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Job positions list"
+    ],
+    "redFlags": [
+      "Positions created without default wage assumptions"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_and_editing_job_positions": {
+    "purpose": "Views or updates a job position's defaults — typically raising default wages for market adjustments before the budget cycle.",
+    "outcome": "Position defaults reflect current market wages and policies.",
+    "rootCause": "Wage markets move quickly for leasing and maintenance roles; outdated defaults produce payroll budgets that are too low and variances all year.",
+    "ifSkipped": "Payroll budgets understate wages and show unfavorable variances from January.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR",
+      "Regional manager"
+    ],
+    "reports": [
+      "Job positions list"
+    ],
+    "redFlags": [
+      "Default wages unchanged for multiple years"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_deleting_a_job_position": {
+    "purpose": "Deletes a job position no longer used in the operating model, such as a role eliminated by centralizing leasing.",
+    "outcome": "The catalog contains only current roles.",
+    "rootCause": "Obsolete positions remain selectable and can be budgeted by mistake, adding payroll for roles the property no longer staffs.",
+    "ifSkipped": "Budgets include payroll for eliminated roles, overstating expenses.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Job positions list"
+    ],
+    "redFlags": [
+      "Deleting positions still assigned to employees"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_new_job_position_page": {
+    "purpose": "The page for adding, viewing or editing a job position's details — title, wage basis (hourly or salary), default rate, hours and workers' comp class.",
+    "outcome": "Complete position definitions for payroll calculation.",
+    "rootCause": "Each field drives the payroll calculation; a salaried position set as hourly with 40 hours plus overtime produces a wrong budget.",
+    "ifSkipped": "Payroll calculations use incomplete or wrong position data.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "FLSA exempt vs non-exempt classification (overtime)"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Job positions list"
+    ],
+    "redFlags": [
+      "Non-exempt roles budgeted without overtime"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_employees_list": {
+    "purpose": "Lists employee records used in payroll planning — typically synchronized from the payroll system — with position, property, wage and status.",
+    "outcome": "Payroll budgets built from actual staff and wages rather than generic positions.",
+    "rootCause": "Budgeting from the real employee roster (current wages, open positions) is far more accurate than escalating last year's payroll total.",
+    "ifSkipped": "Payroll budgets ignore current wages and vacancies.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll budget"
+    ],
+    "redFlags": [
+      "Terminated employees still in the planning roster"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_an_employee_record": {
+    "purpose": "Adds an employee record manually in payroll planning — normally unnecessary because employees come from the payroll interface, but used for planned new hires.",
+    "outcome": "Planned hires can be budgeted by name or as open positions.",
+    "rootCause": "Budgets must include positions the property plans to fill; adding them explicitly avoids understating payroll.",
+    "ifSkipped": "Planned hires are left out and payroll is understated.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR",
+      "Property manager"
+    ],
+    "reports": [
+      "Employees list"
+    ],
+    "redFlags": [
+      "Manual employees duplicating interfaced records"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_and_editing_employee_records": {
+    "purpose": "Views or updates an employee's planning data — wage, position, allocation across properties, planned raises.",
+    "outcome": "Employee-level payroll assumptions stay current.",
+    "rootCause": "Raises, promotions and shared-staff allocations change payroll cost by property; employee-level edits capture them.",
+    "ifSkipped": "Raises and allocations are missing from the budget.",
+    "glAccounts": [
+      "6010 Payroll",
+      "1230 Due From Affiliates"
+    ],
+    "gaap": [
+      "Management agreement shared-staff allocation provisions"
+    ],
+    "stakeholders": [
+      "HR",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll budget"
+    ],
+    "redFlags": [
+      "Shared staff allocated over 100% across properties"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_deleting_an_employee_record": {
+    "purpose": "Deletes an employee record from payroll planning, for example a duplicate or an employee who left before the budget year.",
+    "outcome": "The planning roster reflects actual staffing.",
+    "rootCause": "Departed employees left in the roster are budgeted at their old wage, overstating payroll.",
+    "ifSkipped": "Payroll includes employees who no longer work at the property.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Employees list"
+    ],
+    "redFlags": [
+      "Positions deleted without planning a replacement"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_employee_page": {
+    "purpose": "The employee record page for payroll planning — name, position, property, wage, hours and allocations.",
+    "outcome": "A complete employee definition for payroll calculation.",
+    "rootCause": "Allocations across properties matter: shared maintenance staff must be charged to each property in the right proportion.",
+    "ifSkipped": "Shared staff costs land at one property instead of being allocated.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "Management agreement allocation provisions"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Payroll budget"
+    ],
+    "redFlags": [
+      "Missing allocations for shared staff"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_federal_taxes_list": {
+    "purpose": "Lists federal payroll tax settings for budgeting — Social Security and Medicare (FICA) rates and wage bases, and FUTA rate and wage base — by year.",
+    "outcome": "Payroll burden budgets use the correct federal rates and caps.",
+    "rootCause": "Federal payroll taxes are a fixed-percentage burden with annual wage bases (the Social Security wage base changes every year). Using wrong caps misstates burden for higher-paid staff.",
+    "ifSkipped": "Payroll tax budgets are misstated, especially for managers above the FUTA or FICA wage bases.",
+    "glAccounts": [
+      "Payroll taxes",
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "IRC §3101/§3111 (FICA)",
+      "IRC §3301 (FUTA)"
+    ],
+    "stakeholders": [
+      "HR",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll budget"
+    ],
+    "redFlags": [
+      "Prior-year Social Security wage base used"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_federal_taxes": {
+    "purpose": "Sets up the federal payroll tax parameters for a new budget year — Social Security and Medicare rates, the Social Security wage base, and the FUTA rate and wage base — used in every payroll calculation.",
+    "outcome": "The new budget year has correct federal tax parameters.",
+    "rootCause": "Wage bases change annually; each budget year needs its own settings or the calculation carries last year's figures.",
+    "ifSkipped": "Budgets use outdated federal tax parameters.",
+    "glAccounts": [
+      "Payroll taxes"
+    ],
+    "gaap": [
+      "IRC §3101/§3111",
+      "IRC §3301"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Federal taxes list"
+    ],
+    "redFlags": [
+      "Missing settings for the budget year"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_and_editing_federal_taxes": {
+    "purpose": "Views or updates federal payroll tax settings when rates or wage bases are announced for the new year.",
+    "outcome": "Federal burden calculations stay current.",
+    "rootCause": "The SSA announces the new wage base each autumn, often after budgeting starts; settings must be updated when it is published.",
+    "ifSkipped": "Budgets finalize on estimated rather than published wage bases.",
+    "glAccounts": [
+      "Payroll taxes"
+    ],
+    "gaap": [
+      "IRC §3121(a)(1) — Social Security wage base"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Federal taxes list"
+    ],
+    "redFlags": [
+      "Edits after payroll budgets were published without recalculation"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_deleting_federal_taxes": {
+    "purpose": "Deletes a set of federal payroll tax settings that was entered in error, such as a duplicate record for the same budget year.",
+    "outcome": "Only one valid set of federal settings per year remains.",
+    "rootCause": "Two sets of federal settings for the same year make it unclear which rates a payroll calculation used, and the wrong set may be applied to every property's payroll budget.",
+    "ifSkipped": "Payroll calculations may pick the wrong set of rates.",
+    "glAccounts": [
+      "Payroll taxes"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Federal taxes list"
+    ],
+    "redFlags": [
+      "Deleting the only settings for an active budget year"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_federal_tax_page": {
+    "purpose": "The page where federal payroll tax rates (FICA and FUTA percentages) and their annual wage bases are entered for a budget year and applied to every employee's payroll calculation.",
+    "outcome": "Accurate federal burden parameters.",
+    "rootCause": "Rates and caps entered here apply to every employee's budget; one error distorts payroll burden across the portfolio.",
+    "ifSkipped": "Federal burden errors spread to every property.",
+    "glAccounts": [
+      "Payroll taxes"
+    ],
+    "gaap": [
+      "IRC §3101/§3111/§3301"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Federal taxes list"
+    ],
+    "redFlags": [
+      "Rates entered as whole numbers instead of percentages"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_state_taxes_list": {
+    "purpose": "Lists state payroll tax settings — state unemployment (SUTA) rates and wage bases, and other state-specific payroll taxes — by state and year.",
+    "outcome": "Payroll burden reflects each state's rates and wage bases.",
+    "rootCause": "SUTA rates vary by state and by employer experience; wage bases range widely. Portfolios across several states need state-specific settings for accurate burden.",
+    "ifSkipped": "State payroll taxes are budgeted with one generic rate, misstating burden.",
+    "glAccounts": [
+      "Payroll taxes"
+    ],
+    "gaap": [
+      "State unemployment insurance laws"
+    ],
+    "stakeholders": [
+      "HR",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll budget"
+    ],
+    "redFlags": [
+      "States in the portfolio without settings"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_a_state_tax": {
+    "purpose": "Adds a state's payroll tax settings for a budget year — the employer's SUTA rate, the state wage base and any other state payroll taxes — so properties in that state budget burden correctly.",
+    "outcome": "Properties in that state budget payroll taxes correctly.",
+    "rootCause": "Entering a new state (acquisition) requires its payroll tax settings before payroll can be budgeted there.",
+    "ifSkipped": "New-state properties are budgeted without state taxes.",
+    "glAccounts": [
+      "Payroll taxes"
+    ],
+    "gaap": [
+      "State unemployment insurance laws"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "State taxes list"
+    ],
+    "redFlags": [
+      "Employer-specific SUTA rate not used"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_and_editing_state_taxes": {
+    "purpose": "Views or updates state payroll tax settings when the state issues the employer's new SUTA rate notice.",
+    "outcome": "State burden uses the current employer rate.",
+    "rootCause": "Employer SUTA rates change annually with claims experience; stale rates misstate burden.",
+    "ifSkipped": "State payroll burden is budgeted on last year's employer rate and misstated for every property in that state.",
+    "glAccounts": [
+      "Payroll taxes"
+    ],
+    "gaap": [
+      "State unemployment insurance laws"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "State taxes list"
+    ],
+    "redFlags": [
+      "Rates not updated after state notice"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_deleting_a_state_tax": {
+    "purpose": "Deletes state payroll tax settings that were entered in error or are no longer needed after exiting a state.",
+    "outcome": "State tax settings reflect current operations.",
+    "rootCause": "Duplicate or obsolete state tax settings can be picked up by payroll calculations for the wrong properties, applying another state's rates and wage base to their payroll budgets.",
+    "ifSkipped": "Wrong state rates applied to payroll budgets.",
+    "glAccounts": [
+      "Payroll taxes"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "State taxes list"
+    ],
+    "redFlags": [
+      "Deleting settings still used by active properties"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_state_tax_page": {
+    "purpose": "The page where a state's payroll tax rates and wage base are entered for a budget year, applied to every employee budgeted at properties in that state.",
+    "outcome": "Accurate state burden parameters.",
+    "rootCause": "State parameters apply to every employee budgeted in that state; errors multiply across properties.",
+    "ifSkipped": "State burden errors spread across the state's properties.",
+    "glAccounts": [
+      "Payroll taxes"
+    ],
+    "gaap": [
+      "State unemployment insurance laws"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "State taxes list"
+    ],
+    "redFlags": [
+      "Wage base missing"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_benefits_list": {
+    "purpose": "Lists employee benefits used in payroll planning — medical, dental, vision, 401(k) match, life insurance — with employer costs by year and plan.",
+    "outcome": "Benefit costs budgeted per employee based on actual plans.",
+    "rootCause": "Benefits can add 20-30% to wages and vary by plan and coverage tier. Budgeting them from plan costs rather than a flat percentage improves accuracy.",
+    "ifSkipped": "Benefit budgets are rough percentages and miss renewal increases.",
+    "glAccounts": [
+      "Employee benefits",
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "ERISA plan cost structures"
+    ],
+    "stakeholders": [
+      "HR",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll budget"
+    ],
+    "redFlags": [
+      "Benefit costs not updated for the plan renewal"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_a_benefit": {
+    "purpose": "Adds a benefit plan with its employer cost for a year — useful when the company offers many plans across regions.",
+    "outcome": "New plans available for employee budget assignments.",
+    "rootCause": "Plan changes at renewal (new carriers, tiers) require new benefit records so employees are budgeted at correct costs.",
+    "ifSkipped": "Employees are budgeted on outdated plans.",
+    "glAccounts": [
+      "Employee benefits"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Benefits list"
+    ],
+    "redFlags": [
+      "Plans added without employer cost"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_and_editing_benefits": {
+    "purpose": "Views or updates a benefit plan's employer cost by coverage level after the annual renewal, so payroll budgets reflect renewal pricing.",
+    "outcome": "Benefit budgets reflect renewal rates.",
+    "rootCause": "Medical renewals often increase 5-10% or more; updating costs prevents understated benefits.",
+    "ifSkipped": "Benefits are budgeted at last year's cost and show unfavorable variances all year.",
+    "glAccounts": [
+      "Employee benefits"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Benefits list"
+    ],
+    "redFlags": [
+      "Costs unchanged from prior year"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_deleting_a_benefit": {
+    "purpose": "Deletes a benefit plan that is no longer offered, such as a carrier dropped at renewal.",
+    "outcome": "Only benefit plans actually offered remain assignable in payroll budgets.",
+    "rootCause": "Discontinued plans left in the list are assigned by mistake and budget at old costs.",
+    "ifSkipped": "Employees are budgeted on discontinued plans.",
+    "glAccounts": [
+      "Employee benefits"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Benefits list"
+    ],
+    "redFlags": [
+      "Deleting plans still assigned to employees"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_benefit_page": {
+    "purpose": "The page to add, view or edit a benefit plan's employer cost by year and coverage level.",
+    "outcome": "Accurate benefit cost definitions.",
+    "rootCause": "Coverage-level costs (employee only vs family) differ greatly; entering them correctly determines benefit budget accuracy.",
+    "ifSkipped": "Benefit budgets ignore coverage levels and understate family-coverage costs.",
+    "glAccounts": [
+      "Employee benefits"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Benefits list"
+    ],
+    "redFlags": [
+      "Single cost used for all coverage levels"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_payroll_workbench": {
+    "purpose": "The payroll workbench where payroll budgets are created, calculated from positions, employees, taxes and benefits, and published to working budgets.",
+    "outcome": "A calculated payroll budget by property ready to publish.",
+    "rootCause": "Payroll calculation combines many inputs; the workbench is where they come together and are reviewed before feeding the operating budget.",
+    "ifSkipped": "Payroll is budgeted outside the system with less rigor.",
+    "glAccounts": [
+      "6010 Payroll",
+      "Payroll taxes",
+      "Employee benefits"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "HR"
+    ],
+    "reports": [
+      "Payroll list"
+    ],
+    "redFlags": [
+      "Payroll not refreshed after rate changes"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_payroll_list": {
+    "purpose": "Lists payroll budgets by property and year with status, calculation date and publish status.",
+    "outcome": "Visibility of which properties' payroll budgets are calculated and published.",
+    "rootCause": "Payroll budgets must be calculated and published for every property before the operating budget is final.",
+    "ifSkipped": "Some properties' payroll is never published and the operating budget omits payroll.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll list"
+    ],
+    "redFlags": [
+      "Properties with no published payroll"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_and_calculating_a_payroll": {
+    "purpose": "Creates a payroll budget for a property and year and calculates wages, overtime, taxes, benefits and workers' comp from the setup tables.",
+    "outcome": "A detailed payroll budget calculated from current assumptions.",
+    "rootCause": "Calculating from components produces a payroll budget that can be explained line by line to the asset manager.",
+    "ifSkipped": "Payroll is estimated as a lump sum that cannot be explained.",
+    "glAccounts": [
+      "6010 Payroll",
+      "Payroll taxes",
+      "Employee benefits",
+      "Workers' compensation"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll budget"
+    ],
+    "redFlags": [
+      "Calculation run before tax and benefit tables were updated"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_publishing_a_payroll_to_a_working_budget": {
+    "purpose": "Publishes a calculated payroll budget into a working budget, populating the payroll, tax and benefit accounts.",
+    "outcome": "Payroll lines in the operating budget come from the detailed calculation.",
+    "rootCause": "Publishing links the payroll model to the operating budget so changes in staffing assumptions flow through consistently.",
+    "ifSkipped": "Operating budget payroll lines differ from the payroll model.",
+    "glAccounts": [
+      "6010 Payroll",
+      "Payroll taxes",
+      "Employee benefits"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget"
+    ],
+    "redFlags": [
+      "Publishing to the wrong working budget"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_the_publish_history_of_a_payroll": {
+    "purpose": "Shows when a property's payroll budget was published, by whom and into which working budget, to trace the origin of payroll lines in the operating budget.",
+    "outcome": "Traceability of payroll figures in the operating budget.",
+    "rootCause": "When payroll lines in the budget change unexpectedly, publish history shows whether payroll was republished.",
+    "ifSkipped": "Changes to payroll lines in the operating budget cannot be traced back to a publish event.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll publish history"
+    ],
+    "redFlags": [
+      "Republishing after approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_refreshing_a_payrolls_calculations": {
+    "purpose": "Recalculates a payroll budget after changes to positions, employees, taxes or benefits.",
+    "outcome": "Payroll budgets reflect the latest assumptions.",
+    "rootCause": "Rate updates (new wage base, benefit renewal) arrive during budget season; payrolls calculated before them must be refreshed.",
+    "ifSkipped": "Payroll budgets keep stale calculations.",
+    "glAccounts": [
+      "6010 Payroll",
+      "Payroll taxes"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll budget"
+    ],
+    "redFlags": [
+      "Refresh not followed by republishing"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_deleting_a_payroll": {
+    "purpose": "Deletes a payroll budget that was created in error or has been superseded by a recalculated version for the same property and year.",
+    "outcome": "Only the valid payroll budget remains for each property and year.",
+    "rootCause": "Duplicate payroll budgets can be published in error, doubling or replacing payroll lines in the operating budget.",
+    "ifSkipped": "Duplicate payroll budgets exist and the wrong one may be published into the operating budget.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll list"
+    ],
+    "redFlags": [
+      "Deleting the published payroll"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_payroll_workbench_page": {
+    "purpose": "The payroll workbench page for creating, calculating, refreshing, publishing and reviewing payroll budgets.",
+    "outcome": "One place to manage payroll budgeting for all properties.",
+    "rootCause": "Payroll budgeting across many properties needs a central page to track status and act in bulk during budget season.",
+    "ifSkipped": "Payroll budgets are tracked in side lists.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll list"
+    ],
+    "redFlags": [
+      "Properties without calculated payroll"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_employees_of_entity_name_list": {
+    "purpose": "Lists employees included in a property's payroll budget, with positions, wages and allocations.",
+    "outcome": "Visibility of exactly whose payroll makes up the property budget.",
+    "rootCause": "Reviewers verify payroll budgets by checking the headcount and wages behind them; the list shows that directly.",
+    "ifSkipped": "Headcount errors (missing or extra staff) go unnoticed.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Regional manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll budget"
+    ],
+    "redFlags": [
+      "Headcount different from the approved staffing plan"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_an_employee_to_the_payroll": {
+    "purpose": "Adds an employee or a planned open position to a property's payroll budget — for example a second leasing consultant planned for lease-up season.",
+    "outcome": "Planned staffing changes included in the payroll budget.",
+    "rootCause": "Staffing plans change (adding a porter, a second leasing agent); the budget must include them.",
+    "ifSkipped": "Planned staffing additions are left out and payroll is under-budgeted.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [
+      "Payroll budget"
+    ],
+    "redFlags": [
+      "Additions without regional approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_an_employees_payroll": {
+    "purpose": "Views one employee's calculated payroll budget — wages, overtime, taxes, benefits and workers' comp by month.",
+    "outcome": "Line-level verification of an employee's budget.",
+    "rootCause": "Spot-checking individual calculations confirms the payroll setup is producing correct results.",
+    "ifSkipped": "Setup errors affecting all employees go undetected.",
+    "glAccounts": [
+      "6010 Payroll",
+      "Payroll taxes"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll budget"
+    ],
+    "redFlags": [
+      "Taxes continuing after wage bases are exceeded"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_management_fees_list": {
+    "purpose": "Lists management fee budget setups by property — fee percentage and fee base — used to calculate budgeted management fees from budgeted revenue.",
+    "outcome": "Management fees budgeted consistently with the management agreement.",
+    "rootCause": "Management fees are a percentage of revenue (often collections); budgeting them from budgeted revenue with the contract percentage keeps them consistent with the revenue plan.",
+    "ifSkipped": "Fee budgets are guessed and do not move with revenue changes.",
+    "glAccounts": [
+      "6510 Management Fees",
+      "4010 Gross Potential Rent"
+    ],
+    "gaap": [
+      "Management agreement fee provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Management fee budget"
+    ],
+    "redFlags": [
+      "Fee percentage different from the agreement"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_calculating_management_fees": {
+    "purpose": "Calculates budgeted management fees from the working budget's revenue and the fee percentage.",
+    "outcome": "Fee budgets that follow revenue assumptions.",
+    "rootCause": "When revenue assumptions change during review, fees must be recalculated or the budget becomes internally inconsistent.",
+    "ifSkipped": "Fees do not reflect final revenue assumptions.",
+    "glAccounts": [
+      "6510 Management Fees"
+    ],
+    "gaap": [
+      "Management agreement fee provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Management fee budget"
+    ],
+    "redFlags": [
+      "Fees calculated on GPR when the agreement specifies collections"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_publishing_management_fees_to_a_working_budget": {
+    "purpose": "Publishes the calculated management fee (fee percentage × budgeted fee base) into the management fee account of the property's working budget.",
+    "outcome": "The operating budget includes correctly calculated fees.",
+    "rootCause": "Publishing links the fee calculation to the budget so final numbers are consistent.",
+    "ifSkipped": "Budget fee lines stay stale after revenue assumptions change and the budget is internally inconsistent.",
+    "glAccounts": [
+      "6510 Management Fees"
+    ],
+    "gaap": [
+      "Management agreement fee provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget"
+    ],
+    "redFlags": [
+      "Fees not republished after revenue changes"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_reports": {
+    "purpose": "Reports section of Forecasting & Planning — trial balance and GL reports for actuals, budget reports and stored or memorized reports.",
+    "outcome": "Budget and actuals reporting available from within planning.",
+    "rootCause": "Budget work needs actuals and budget reports side by side; having them in the planning area avoids switching applications.",
+    "ifSkipped": "Budget analysis relies on exports from other modules.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget reports"
+    ],
+    "redFlags": [
+      "Budget reports run on draft versions"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_my_stored_reports_list": {
+    "purpose": "Lists budget and actuals reports the user has stored — for example the final approved budget report sent to the owner — with generation dates.",
+    "outcome": "A retained copy of the exact budget reports shared with owners.",
+    "rootCause": "When a question arises months later about what the owner approved, the stored budget report shows exactly what was sent.",
+    "ifSkipped": "The version of the budget shared with the owner cannot be reproduced.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "My Stored Reports"
+    ],
+    "redFlags": [
+      "Approved budget report not stored"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_storing_standard_reports_and_charts": {
+    "purpose": "Explains storing budget reports and charts — running them in the background and saving outputs for later use.",
+    "outcome": "Large budget reports run reliably and are retained.",
+    "rootCause": "Portfolio budget reports are large and time out when viewed live; storing them also preserves the approved version.",
+    "ifSkipped": "Large budget reports fail and approved versions are not retained.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Stored reports"
+    ],
+    "redFlags": [
+      "No stored copy of approved budgets"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_a_stored_report": {
+    "purpose": "Opens a stored budget or budget-vs-actual report once background generation completes, to review exactly the version that was produced for the owner.",
+    "outcome": "Access to the saved budget output.",
+    "rootCause": "Reviewing the stored version ensures discussions refer to exactly what was sent, not a regenerated report reflecting later edits.",
+    "ifSkipped": "Budget discussions use regenerated reports that differ from what was approved.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Stored reports"
+    ],
+    "redFlags": [
+      "Regenerated reports used in place of approved versions"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_choosing_file_types_to_store_reports_and_charts": {
+    "purpose": "Chooses the file format for stored budget reports — PDF for owner approval packages, Excel for analysis.",
+    "outcome": "Budget reports stored in formats suited to their audience.",
+    "rootCause": "Owners approve budgets from fixed PDFs while accountants need Excel for analysis; storing both avoids rework.",
+    "ifSkipped": "Reports must be rerun in the needed format.",
+    "glAccounts": [],
+    "gaap": [
+      "Owner reporting conventions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Stored reports"
+    ],
+    "redFlags": [
+      "Approval packages sent in editable formats"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_deleting_a_stored_report": {
+    "purpose": "Deletes stored budget reports that are no longer needed, since stored reports are kept until someone deletes them — while keeping the approved budget package.",
+    "outcome": "Stored report lists stay manageable.",
+    "rootCause": "Unmanaged stored reports make the approved version hard to find, but deleting the approved version loses evidence.",
+    "ifSkipped": "Clutter; misuse deletes approved budget evidence.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Stored reports"
+    ],
+    "redFlags": [
+      "Deleting approved budget reports"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_storage_options_page": {
+    "purpose": "Chooses where a processed budget report is stored — My Stored Reports, cloud storage or the Reporting Portal.",
+    "outcome": "Budget reports delivered to the right audience's location.",
+    "rootCause": "Approved budgets are often published to owners through the Reporting Portal or shared cloud folders; storing directly avoids manual uploads.",
+    "ifSkipped": "Owners do not receive the approved budget through their expected channel.",
+    "glAccounts": [],
+    "gaap": [
+      "Owner reporting requirements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Stored reports"
+    ],
+    "redFlags": [
+      "Draft budgets stored to owner-facing locations"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_storing_a_report_in_my_stored_reports": {
+    "purpose": "Stores a processed budget report — for example the approved annual budget package — in the user's My Stored Reports so it can be reopened later exactly as sent.",
+    "outcome": "A retained personal copy of the budget report.",
+    "rootCause": "Preparers need the exact budget report they submitted for approval for later reference.",
+    "ifSkipped": "The submitted version cannot be reproduced.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "My Stored Reports"
+    ],
+    "redFlags": [
+      "Only personal copies, no shared evidence"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_storing_a_report_in_a_cloud_storage_target": {
+    "purpose": "Stores a budget report directly into a configured cloud storage location such as the owner's SharePoint budget folder.",
+    "outcome": "Budget packages saved automatically where owners and teams expect them.",
+    "rootCause": "Offshore teams deliver budget packages through shared folders; direct storage avoids missed or wrong-version uploads.",
+    "ifSkipped": "Owner folders hold outdated budget versions.",
+    "glAccounts": [],
+    "gaap": [
+      "Owner reporting requirements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Cloud-stored reports"
+    ],
+    "redFlags": [
+      "Cloud targets shared too broadly"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_storing_a_report_in_reporting_portal": {
+    "purpose": "Stores a processed budget report in the RealPage Reporting Portal so owners and investors can access the approved budget through their portal login.",
+    "outcome": "Owners access approved budgets through the portal.",
+    "rootCause": "The portal is the owner-facing channel; publishing the approved budget there ensures owners see the official version.",
+    "ifSkipped": "Owners receive budgets through ad hoc emails with version risk.",
+    "glAccounts": [],
+    "gaap": [
+      "Owner reporting requirements"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Investors"
+    ],
+    "reports": [
+      "Reporting Portal"
+    ],
+    "redFlags": [
+      "Drafts published to the portal"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_memorized_reports": {
+    "purpose": "Explains memorized budget reports — saved settings for budget and BVA reports that can be rerun or scheduled.",
+    "outcome": "Budget reports produced consistently each cycle.",
+    "rootCause": "Owners compare budget packages year to year; memorized settings keep formats consistent.",
+    "ifSkipped": "Budget packages vary in format and content year to year.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — consistency"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Memorized reports"
+    ],
+    "redFlags": [
+      "Memorized reports pointing to prior-year budgets"
+    ],
+    "confidence": "high"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "scr_close_accrued_expenses_report": {
+    "purpose": "Lists every expense the property has incurred but not yet been invoiced for or paid at period end (utilities consumed through month-end, landscaping and pest-control services performed, contract labor, payroll earned but unpaid, interest accrued on the mortgage) so the accountant can prove the 2020 Accrued Expenses balance is complete and supported line by line before the books close.",
+    "outcome": "A period-end accrued-liabilities schedule that ties to the 2020 Accrued Expenses GL balance and becomes a signed work paper in the monthly close package sent to the onshore reviewer and asset manager.",
+    "rootCause": "Property managers and vendors routinely bill in arrears: the water/sewer bill for August arrives in late September, the landscaper invoices after month-end, and the payroll cycle straddles the cutoff. Under accrual-basis GAAP (ASC 450 recognition of incurred obligations and the matching principle underlying ASC 720/ASC 405 liabilities), the expense belongs to the period the service was consumed. Without a report that lists what was accrued and why, nobody can tell a legitimate accrual from a stale one that should have reversed.",
+    "ifSkipped": "Operating expenses are understated and NOI is overstated in the month (often by $10K-$50K per property for utilities alone), the reversal the following month creates a false expense spike that the site team cannot explain in variance commentary, and auditors flag unsupported or stale balances sitting in 2020 as a cutoff deficiency.",
+    "glAccounts": ["2020 Accrued Expenses", "6210 Utilities", "6110 Repairs & Maintenance", "6010 Payroll", "7010 Interest Expense", "6510 Management Fees"],
+    "gaap": ["ASC 450-20 — recognize incurred obligations when probable and estimable", "ASC 405-10 — liabilities recognized when the obligation exists, not when the invoice arrives", "Accrual-basis matching: expense in the period the service is consumed"],
+    "stakeholders": ["Offshore property accountant (preparer)", "Onshore senior accountant / reviewer", "Property manager (confirms services received)", "Asset manager (owner side)", "External auditor"],
+    "reports": ["Balance Sheet (2020 Accrued Expenses)", "Income Statement / T12", "Budget vs Actual variance report", "Monthly close work paper package", "MOR / owner monthly package"],
+    "redFlags": ["Accrual lines older than 60 days that never reversed or were never replaced by the actual invoice", "Utility accruals not based on the prior three months' average or a meter-read estimate", "Accrued balance on the report does not tie to the 2020 trial balance to the penny", "Accruals booked without an auto-reverse date, causing double-counted expense when the real invoice posts"],
+    "confidence": "high",
+    "yardi": "Yardi has no standalone accrued-expenses report; accountants pull GL Detail (Financial Analytics > Ledger) on the accrual account and maintain the schedule in Excel, or use auto-reversing JEs flagged by batch description."
+  },
+  "scr_close_approving_work_papers": {
+    "purpose": "The final sign-off step in Financial Close Management where the designated Approver (usually the onshore accounting manager or controller) accepts the reviewed work-paper package for a property and period, converting it from Reviewed to Approved status and locking it as the official close evidence.",
+    "outcome": "An approved, time-stamped, immutable close package per property per month that proves segregation of duties (preparer, reviewer and approver are different people) and can be handed to owners, lenders or auditors.",
+    "rootCause": "Institutional owners (Goldman Sachs, Brookfield, pension-fund JVs) contractually require evidence that each month's financials were prepared, reviewed and approved by different people. SOX-style internal control frameworks (COSO 2013 control activities) and most management agreements mandate a documented review trail. Before close-management tools, sign-off lived in email chains that auditors could not rely on.",
+    "ifSkipped": "The period cannot be treated as final, owner reporting goes out without documented approval (a breach of most management agreement reporting covenants), and auditors cannot rely on the internal control, which expands substantive testing and audit fees.",
+    "glAccounts": [],
+    "gaap": ["COSO 2013 Principle 10 — control activities including review and approval", "AU-C 315 / PCAOB AS 2201 — auditor reliance on documented review controls", "Management agreement reporting covenants (monthly financials within 15-20 days)"],
+    "stakeholders": ["Onshore accounting manager / controller (Approver)", "Onshore senior accountant (Reviewer)", "Offshore property accountant (Preparer)", "Asset manager", "External auditor"],
+    "reports": ["Final work paper package", "Monthly close checklist status", "Owner monthly financial package", "Audit PBC (provided-by-client) binder"],
+    "redFlags": ["Same user acting as preparer and approver for the same property-period", "Approval dated before the final bank reconciliation or before the last JE was posted", "Approved package with open variance explanations or reconciling items older than 90 days", "Approval given without reviewer notes on material variances"],
+    "confidence": "high"
+  },
+  "scr_close_cash_and_cash_equivalents_report": {
+    "purpose": "Summarizes every cash and cash-equivalent balance for the property at period end — operating account, security deposit trust account, petty cash, money-market sweeps, and restricted reserve accounts — so the accountant can tie each bank account's reconciled balance to its GL cash account and present cash correctly on the balance sheet.",
+    "outcome": "A single cash tie-out schedule where each 11xx GL balance equals the reconciled bank balance, separating unrestricted operating cash from restricted cash (security deposits, lender reserves) as required for the statement of cash flows.",
+    "rootCause": "A typical multifamily property holds 3-6 bank accounts with different legal restrictions: security deposits must be held in trust under state landlord-tenant law, replacement reserves are lender-controlled, and operating cash funds distributions. ASC 230 (as amended by ASU 2016-18) requires restricted cash to be included with cash in the cash flow statement and disclosed separately. Owners also use unrestricted cash to decide distributions and capital calls.",
+    "ifSkipped": "Unreconciled differences between the bank and GL go unnoticed, restricted cash may be reported as available for distribution (a lender covenant breach), and the cash flow statement will not tie beginning-to-ending cash.",
+    "glAccounts": ["1110 Operating Cash", "1115 Security Deposit Trust Cash", "1120 Petty Cash", "1130 Undeposited Funds", "1330 Tax & Insurance Escrow", "1340 Replacement Reserve Escrow"],
+    "gaap": ["ASC 230-10-45-4 — cash and cash equivalents definition (maturity ≤ 3 months)", "ASU 2016-18 — restricted cash included in cash flow statement totals", "ASC 210-10-45 — classification of restricted cash"],
+    "stakeholders": ["Offshore property accountant", "Onshore reviewer", "Asset manager (distribution decisions)", "Lender / loan servicer", "Treasury / cash management team"],
+    "reports": ["Bank reconciliations", "Balance Sheet", "Statement of Cash Flows", "Owner distribution / funding request", "Lender compliance certificate"],
+    "redFlags": ["Any GL cash account whose balance differs from the approved bank rec ending book balance", "Negative operating cash balance (indicates unfunded check run or missed owner funding)", "Security deposit trust cash lower than the 2110 Security Deposit liability", "Undeposited Funds (1130) carrying balances more than a few days old"],
+    "confidence": "high"
+  },
+  "scr_close_dashboard": {
+    "purpose": "The command center for month-end close: shows each property's close status and lets accounting lock subledgers (A/R, A/P, Cash, Fixed Assets) in sequence and then close the GL period, so no one can post or backdate transactions into a period that has already been reported.",
+    "outcome": "A controlled, sequenced period cutoff across the portfolio, with visibility into which properties are late, and a hard lock that preserves the numbers already delivered to owners.",
+    "rootCause": "Site teams keep working in OneSite and A/P after month-end: residents pay late, invoices keep arriving, and managers try to post prior-month charges. If the period stays open, numbers change after the owner package is sent, the trial balance no longer matches the reported financials, and nobody can say which version is correct. The cutoff and period-lock control is a basic COSO control activity and a routine audit test.",
+    "ifSkipped": "Backdated postings silently change already-reported NOI and balance sheets, bank recs that were signed off stop tying, and the next month's opening balances no longer agree with the prior month's reported closing balances — the most common cause of unexplained 'roll-forward' differences in owner packages.",
+    "glAccounts": ["3100 Retained Earnings (year-end roll)", "2010 Accounts Payable (subledger lock)", "1210 Resident/Tenant A/R (subledger lock)", "1110 Operating Cash (cash lock)"],
+    "gaap": ["ASC 855 — subsequent events: post-close activity must be evaluated, not backdated", "COSO 2013 — period-end financial reporting process controls", "ASC 250 — prior-period changes require correction accounting, not silent reposting"],
+    "stakeholders": ["Onshore accounting manager (controls the lock)", "Offshore property accountant", "Property manager / site team", "A/P processing team", "Asset manager"],
+    "reports": ["Close status dashboard", "Trial Balance (final)", "Owner monthly package", "Subledger-to-GL tie-outs (AP aging, AR aging)"],
+    "redFlags": ["GL closed before the A/P and A/R subledgers were locked (subledger postings can then land in a closed period via summaries)", "Periods reopened after owner reporting without a documented reason and approver", "Properties that remain open more than 10 business days after month-end", "Unposted draft JEs still sitting in a period that was closed"],
+    "confidence": "high",
+    "yardi": "Yardi: Financials > Closing > Post Month sets the AP and AR post-months per property; GL is controlled by the 'Close Period' / security settings rather than a sequenced subledger lock."
+  },
+  "scr_close_exporting_monthly_checklist_results": {
+    "purpose": "Exports the completed month-end checklist — every close task per property with its preparer, reviewer, due date, completion date and status — to Excel so it can be filed as evidence, shared with owners who require close attestations, or analyzed for late or skipped tasks.",
+    "outcome": "A portable, auditable record showing that every recurring close step (bank recs, accruals, prepaid amortization, depreciation, GPR posting, variance notes) was completed on time and by whom for the period.",
+    "rootCause": "Institutional clients and auditors ask for proof that the close was complete, not just that the numbers look right. Offshore delivery models also need SLA reporting (tasks completed by day 5, package delivered by day 10). The checklist lives inside RealPage, but auditors, onshore managers and clients need it in a file they can retain.",
+    "ifSkipped": "There is no durable evidence that controls operated for the period, SLA breaches between the offshore team and onshore client go unmeasured, and recurring late tasks (such as the same property's bank rec always missing day 5) are never escalated.",
+    "glAccounts": [],
+    "gaap": ["COSO 2013 Principle 16 — monitoring activities", "SOC 1 Type II evidence expectations for outsourced accounting service providers"],
+    "stakeholders": ["Offshore team lead", "Onshore accounting manager", "Client controller / asset manager", "External auditor", "Service-delivery / SLA manager"],
+    "reports": ["Close checklist status export", "Offshore SLA scorecard", "Audit PBC binder", "Quarterly control attestation to owner"],
+    "redFlags": ["Tasks marked complete with no reviewer sign-off", "Completion dates later than the owner reporting deadline", "Tasks marked 'N/A' without a note explaining why (e.g., depreciation skipped)", "The same task repeatedly late for the same property"],
+    "confidence": "high"
+  },
+  "scr_close_generating_a_final_work_paper_package": {
+    "purpose": "Produces the locked, final version of a property's month-end work-paper package — trial balance, bank reconciliations, A/R and A/P subledger tie-outs, accrual and prepaid schedules, escrow and mortgage roll-forwards — after all adjustments from the preliminary review have been posted.",
+    "outcome": "The official close evidence file for the period that is routed for review and approval and that supports the numbers in the owner's monthly financial package.",
+    "rootCause": "The balance sheet is only as reliable as the reconciliations behind each account. Owners, lenders and auditors require every material balance sheet account to be reconciled and supported monthly. The preliminary package exists to find problems; the final package exists to freeze the evidence after corrections so the reviewer signs off on exactly what was reported.",
+    "ifSkipped": "Reviewers approve numbers from a preliminary snapshot that no longer matches the ledger, balance-sheet accounts go unreconciled into the next month, and at audit time the property cannot produce period-end support for cash, A/P, accruals or deposits.",
+    "glAccounts": ["1110 Operating Cash", "1210 Resident/Tenant A/R", "1310 Prepaid Expenses", "1330 Tax & Insurance Escrow", "2010 Accounts Payable", "2020 Accrued Expenses", "2110 Resident Security Deposits", "2210 Mortgage/Construction Loan Payable"],
+    "gaap": ["ASC 210 — balance sheet presentation supported by account reconciliations", "COSO 2013 — account reconciliation as a key control", "AU-C 500 — audit evidence for period-end balances"],
+    "stakeholders": ["Offshore property accountant (preparer)", "Onshore reviewer", "Accounting manager (approver)", "Asset manager", "External auditor"],
+    "reports": ["Final work paper package", "Balance sheet reconciliation index", "Owner monthly package / MOR", "Audit PBC binder"],
+    "redFlags": ["Final package generated while adjusting JEs from the preliminary review are still in draft", "Any work paper with a variance between the subledger and the GL", "Final package regenerated after approval without re-review", "Missing work papers for accounts with balances (e.g., no escrow roll-forward when 1330 has a balance)"],
+    "confidence": "high"
+  },
+  "scr_close_generating_a_preliminary_work_paper_package": {
+    "purpose": "Generates a draft version of the month-end work-paper package so the preparer can see which reconciliations do not yet tie — A/R aging vs. 1210, A/P aging vs. 2010, deposits register vs. 2110, bank rec vs. cash — and fix them before the final package is produced.",
+    "outcome": "A list of reconciliation breaks and missing support identified early in the close (typically business day 3-5), giving time to post correcting entries before the owner reporting deadline.",
+    "rootCause": "Most close errors are discovered only when subledgers are compared to the GL: a manual JE hit the A/P control account, a resident refund was coded to the wrong deposit account, a sweep was not recorded. Finding these in a preliminary pass costs hours; finding them after the owner package is issued costs a restatement and credibility with the asset manager.",
+    "ifSkipped": "Reconciliation breaks surface only after the final package is locked or, worse, after reporting, forcing prior-period adjustments and reopened periods; the offshore team misses the day-10 delivery SLA while chasing late surprises.",
+    "glAccounts": ["1210 Resident/Tenant A/R", "2010 Accounts Payable", "2110 Resident Security Deposits", "1110 Operating Cash", "2020 Accrued Expenses"],
+    "gaap": ["COSO 2013 — detective reconciliation controls", "ASC 250 — avoiding prior-period error corrections by catching errors pre-close"],
+    "stakeholders": ["Offshore property accountant", "Onshore reviewer", "A/R specialist / property manager (resident ledger fixes)", "A/P processing team"],
+    "reports": ["Preliminary work paper package", "A/R aging vs GL tie-out", "A/P aging vs GL tie-out", "Security deposit register tie-out"],
+    "redFlags": ["Subledger-to-GL variances carried forward from last month with the same unexplained amount", "Manual JEs posted directly to control accounts (1210, 2010) that break the subledger tie", "Preliminary package never generated, only the final one (no evidence of pre-review)"],
+    "confidence": "high"
+  },
+  "scr_close_mortgage_and_escrow_report": {
+    "purpose": "Rolls forward the property's mortgage and lender escrow balances — beginning balance, monthly debt-service payment split into principal, interest and escrow deposits, disbursements the servicer made for real estate taxes and insurance, and ending balance — so they can be tied to the loan servicer's monthly statement.",
+    "outcome": "A reconciled loan and escrow schedule that proves 2210 Mortgage Payable, 7010 Interest Expense, 1330 Tax & Insurance Escrow and 1340 Replacement Reserve Escrow agree with the servicer's records.",
+    "rootCause": "The loan servicer (Fannie Mae/Freddie Mac DUS lender, life company, CMBS servicer) pulls a single ACH payment and splits it internally; the property books never see the split unless the accountant records it from the servicer statement. The servicer also pays taxes and insurance out of escrow without notifying the site. Lenders require escrow and reserve balances in quarterly compliance reporting.",
+    "ifSkipped": "Interest expense and principal are misallocated (overstating or understating 7010), escrow balances drift from servicer records, tax and insurance payments made by the servicer are never expensed or reclassed from escrow, and lender compliance reporting shows the wrong balances.",
+    "glAccounts": ["2210 Mortgage/Construction Loan Payable", "7010 Interest Expense", "1330 Tax & Insurance Escrow", "1340 Replacement Reserve Escrow", "6620 Real Estate Taxes", "6610 Insurance", "1310 Prepaid Expenses"],
+    "gaap": ["ASC 835-30 — interest method and debt issuance cost amortization", "ASC 470-10 — debt classification and presentation", "ASC 340-10 — prepaid taxes and insurance paid from escrow"],
+    "stakeholders": ["Offshore property accountant", "Onshore reviewer", "Loan servicer", "Asset manager / debt manager", "Lender compliance team"],
+    "reports": ["Mortgage and escrow roll-forward", "Balance Sheet", "Income Statement (interest expense)", "Lender quarterly compliance package", "DSCR / debt-yield covenant calculation"],
+    "redFlags": ["Escrow balance per GL differs from the servicer statement", "Tax or insurance disbursements shown on the servicer statement but not recorded", "Interest expense varies materially month to month on a fixed-rate loan", "Principal balance per GL differs from the servicer's unpaid principal balance"],
+    "confidence": "high"
+  },
+  "scr_close_prepaid_expenses_report": {
+    "purpose": "Lists every prepaid asset for the location — property and liability insurance premiums, real estate tax installments paid in advance, software and service contracts, loan-related fees — with original amount, amortization to date and remaining balance so the 1310 Prepaid Expenses balance can be supported at period end.",
+    "outcome": "A prepaid amortization schedule tied to the 1310 balance that proves the correct portion of each prepayment was expensed in the month.",
+    "rootCause": "Multifamily properties pay large annual bills up front (insurance renewals often exceed $100K per property; some jurisdictions bill taxes semi-annually in advance). Expensing them when paid would create massive one-month spikes and distort NOI and budget variances. GAAP requires deferring the cost and recognizing it over the period of benefit.",
+    "ifSkipped": "Prepaids either sit un-amortized (overstated assets, understated expenses) or are fully expensed in one month (NOI swings that trigger unnecessary variance questions from the asset manager); insurance renewal months become unexplainable in the T12.",
+    "glAccounts": ["1310 Prepaid Expenses", "6610 Insurance", "6620 Real Estate Taxes", "6410 Administrative", "7010 Interest Expense"],
+    "gaap": ["ASC 340-10 — prepaid expenses deferred and recognized over the benefit period", "ASC 720 — recognition of other expenses", "ASC 835-30 — debt issuance costs amortized as interest, presented net of debt"],
+    "stakeholders": ["Offshore property accountant", "Onshore reviewer", "Risk management / insurance team", "Tax department", "Asset manager"],
+    "reports": ["Prepaid amortization schedule", "Balance Sheet (1310)", "Income Statement / T12", "Budget vs Actual variance report"],
+    "redFlags": ["Prepaid balance per report does not tie to 1310 on the trial balance", "Policies past their expiry date still carrying a remaining balance", "Renewal premium expensed in one month instead of being set up as a new prepaid", "Monthly amortization amount inconsistent with premium ÷ policy months"],
+    "confidence": "high"
+  }
+}

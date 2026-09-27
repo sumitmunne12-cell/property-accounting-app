@@ -1,0 +1,1146 @@
+{
+  "scr_budgeting_viewing_the_budget_for_an_account": {
+    "purpose": "Opens one account's budget within a budget version to see its monthly amounts, notes and how it was built — for example the monthly phasing of 6620 Real Estate Taxes.",
+    "outcome": "The accountant can explain exactly what was budgeted for an account when a variance question arrives.",
+    "rootCause": "Variance explanations start with 'what did we budget and why'. Seeing the account's budget detail and notes in one place answers that without digging through budget-season spreadsheets.",
+    "ifSkipped": "Variance commentary is written without knowing the budget assumption, and explanations to the asset manager are guesses.",
+    "glAccounts": [
+      "6620 Real Estate Taxes",
+      "6610 Insurance",
+      "6210 Utilities"
+    ],
+    "gaap": [
+      "Management agreement variance-reporting provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [
+      "Budget details",
+      "Variance commentary"
+    ],
+    "redFlags": [
+      "Budget lines without notes explaining the assumption"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_budget_details_for_an_account": {
+    "purpose": "Adds budget amounts for an account that was left out of a budget version — typically an account created mid-year or one the property manager forgot to budget.",
+    "outcome": "The account is budgeted so BVA reports compare its actuals to a real plan instead of zero.",
+    "rootCause": "Accounts with actual activity but no budget produce 100% variances every month, which generate repeated questions from the asset manager and hide real performance issues.",
+    "ifSkipped": "Unbudgeted accounts show recurring 100% variances that nobody can meaningfully explain.",
+    "glAccounts": [
+      "6410 Administrative",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "Management agreement budget provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Budget vs Actual"
+    ],
+    "redFlags": [
+      "Budget added to the approved version without owner approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_editing_budget_details_for_a_specific_account": {
+    "purpose": "Changes one account's budget amounts or phasing in a budget version — for example re-phasing the insurance budget to match a new policy renewal month.",
+    "outcome": "The account's budget reflects the approved plan with correct monthly timing.",
+    "rootCause": "Phasing errors (an annual premium budgeted in one month instead of monthly amortization) produce large, meaningless monthly variances even when the annual total is right.",
+    "ifSkipped": "Monthly variance reports show large swings that net to zero over the year but consume review time every month.",
+    "glAccounts": [
+      "6610 Insurance",
+      "6620 Real Estate Taxes"
+    ],
+    "gaap": [
+      "ASC 340-10 — prepaid expense amortization (drives monthly phasing)"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget details",
+      "Budget vs Actual"
+    ],
+    "redFlags": [
+      "Edits to an approved budget without a documented approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_budget_periods_list": {
+    "purpose": "Lists the periods (months) of a budget with their amounts for the selected account, used to review and edit phasing across the fiscal year.",
+    "outcome": "Monthly phasing is visible and editable in one list.",
+    "rootCause": "Budgets must match the property's seasonal pattern — higher utilities in summer, more turnover costs in peak leasing season — so monthly variances reflect real performance.",
+    "ifSkipped": "Flat phasing makes every seasonal month look like a variance.",
+    "glAccounts": [
+      "6210 Utilities",
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget details"
+    ],
+    "redFlags": [
+      "Seasonal accounts budgeted evenly across months"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_budget_amount_details_page": {
+    "purpose": "The page for adding or editing an account's budget amounts by period, with any supporting information about how the amount was derived.",
+    "outcome": "Budget amounts entered with their rationale attached.",
+    "rootCause": "Recording the basis of each budget amount (per-unit rate, contract amount, escalator) at entry makes the budget defensible when the asset manager challenges it months later.",
+    "ifSkipped": "Budget amounts exist without rationale and cannot be defended in variance discussions.",
+    "glAccounts": [
+      "6110 Repairs & Maintenance",
+      "6310 Marketing"
+    ],
+    "gaap": [
+      "COSO 2013 — documentation"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [
+      "Budget details"
+    ],
+    "redFlags": [
+      "Large budget amounts without supporting notes"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_information_about_the_budget_for_an_account": {
+    "purpose": "Adds descriptive information to an account's budget — assumptions, contract references, per-unit calculations — to accompany the numbers.",
+    "outcome": "Budget assumptions are documented where reviewers and variance writers will see them.",
+    "rootCause": "Assumptions documented in the system survive staff turnover; assumptions kept in a preparer's head or email do not.",
+    "ifSkipped": "When the preparer leaves, nobody knows why a line was budgeted as it was.",
+    "glAccounts": [
+      "6010 Payroll",
+      "6210 Utilities"
+    ],
+    "gaap": [
+      "COSO 2013 — documentation"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget details"
+    ],
+    "redFlags": [
+      "Assumption notes missing on material lines"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_entering_budget_amounts_for_the_reporting_periods": {
+    "purpose": "Enters budget amounts for each reporting period of the fiscal year for an account, either individually or by spreading an annual amount.",
+    "outcome": "Complete monthly budget amounts for the account.",
+    "rootCause": "BVA reporting compares monthly actuals to monthly budgets; missing periods show as full variances and partial-year budgets understate the annual plan.",
+    "ifSkipped": "Some months have no budget and show full variances.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget details"
+    ],
+    "redFlags": [
+      "Months with zero budget on recurring expense accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_setting_up_a_budget_check_as_part_of_approvals": {
+    "purpose": "Configures the approval workflow to check A/P invoices and purchase orders against the remaining budget for the GL line before approval.",
+    "outcome": "Approvers see, at the moment of approval, whether a transaction will push the line over budget.",
+    "rootCause": "Owners delegate spend within an approved budget. Catching over-budget spend at approval — rather than in next month's BVA — is the preventive control that keeps the management company within its authority.",
+    "ifSkipped": "Over-budget spend is discovered only after it is incurred and owners dispute reimbursing it.",
+    "glAccounts": [
+      "6110 Repairs & Maintenance",
+      "6310 Marketing",
+      "1530 Building Improvements"
+    ],
+    "gaap": [
+      "COSO 2013 — preventive authorization controls",
+      "Management agreement delegation of authority"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Regional manager",
+      "Approvers",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Budget variance with commitments",
+      "Approval audit trail"
+    ],
+    "redFlags": [
+      "Budget check pointing at a draft budget rather than the approved one"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_setting_a_system_action_when_a_transaction_exceeds_the_budget": {
+    "purpose": "Sets what the system does when a transaction exceeds its budget — warn the approver, require an additional approver, or prevent the transaction.",
+    "outcome": "Over-budget spend is handled according to the owner's delegation of authority.",
+    "rootCause": "Different owners set different tolerances: some want a hard stop on unbudgeted capex, others only a warning on small opex overruns. The system action encodes that policy.",
+    "ifSkipped": "All overruns are treated the same, either blocking routine operations or letting material unbudgeted spend through.",
+    "glAccounts": [
+      "1530 Building Improvements",
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "Management agreement approval thresholds"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Asset manager"
+    ],
+    "reports": [
+      "Approval configuration"
+    ],
+    "redFlags": [
+      "Warn-only settings on capital lines the owner requires hard stops for"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_bypassing_budget_checks": {
+    "purpose": "Allows specific transactions or accounts to bypass budget checks — for example non-controllable items like real estate taxes or emergency repairs where blocking payment would cause harm.",
+    "outcome": "Essential payments are not held up by budget controls designed for discretionary spend.",
+    "rootCause": "Some costs are not controllable (tax bills, utility bills) and delaying them causes penalties or service cut-offs. Bypass rules keep the control focused on discretionary spend — but bypasses must be limited and reviewed.",
+    "ifSkipped": "Either essential payments are blocked, or bypasses are granted too broadly and the budget control stops working.",
+    "glAccounts": [
+      "6620 Real Estate Taxes",
+      "6210 Utilities"
+    ],
+    "gaap": [
+      "COSO 2013 — exception management"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Asset manager"
+    ],
+    "reports": [
+      "Approval audit trail"
+    ],
+    "redFlags": [
+      "Bypass applied to discretionary accounts such as marketing"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_working_budgets_list": {
+    "purpose": "Lists working budgets in Forecasting & Planning — drafts, revisions and reforecasts by year and property — with their status and publish history.",
+    "outcome": "A clear register of every budget version in progress and which have been published to the GL.",
+    "rootCause": "Budget season produces many drafts per property. Without a register, teams edit the wrong draft or publish an unapproved version.",
+    "ifSkipped": "Wrong drafts are edited or published, and BVA reports use an unapproved budget.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "Management agreement budget approval"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Regional manager"
+    ],
+    "reports": [
+      "Working budgets list"
+    ],
+    "redFlags": [
+      "Multiple working budgets for the same property and year marked active"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_a_working_budget": {
+    "purpose": "Creates a working budget for one or more properties and a fiscal year, seeded from actuals, a prior budget or blank.",
+    "outcome": "A draft budget ready for assumptions and review.",
+    "rootCause": "Working budgets separate drafting from the approved GL budget, so property managers can iterate without affecting reporting.",
+    "ifSkipped": "Drafting happens in spreadsheets outside the system.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [
+      "Working budgets list"
+    ],
+    "redFlags": [
+      "Working budgets seeded from partial-year actuals"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_editing_a_working_budget": {
+    "purpose": "Edits a working budget's amounts and assumptions during review cycles with the regional and asset managers.",
+    "outcome": "The draft reflects agreed changes from each review round.",
+    "rootCause": "Budgets go through several review rounds; changes must be applied to the working budget so the final version is complete.",
+    "ifSkipped": "Agreed review changes are lost and the final budget differs from what was agreed.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget"
+    ],
+    "redFlags": [
+      "Edits after the budget was published"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_a_working_budget": {
+    "purpose": "Views a working budget's header, properties and status, and opens its details, summary and publish history.",
+    "outcome": "A quick check of a draft's state before editing or publishing.",
+    "rootCause": "Before editing or publishing, the accountant must confirm it is the right draft for the right properties and year.",
+    "ifSkipped": "Edits or a publish are applied to the wrong draft, and the owner-approved numbers are overwritten.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget"
+    ],
+    "redFlags": [
+      "Drafts without clear version names"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_a_working_budget_summary": {
+    "purpose": "Shows the working budget summarized by account or account group with totals, used to review the budget at a glance.",
+    "outcome": "A high-level view to check totals like revenue, controllable expenses and NOI before line review.",
+    "rootCause": "Reviewers start with totals (is NOI growth reasonable?) before diving into lines; the summary provides that view.",
+    "ifSkipped": "Line-level reviews miss that the overall NOI is unrealistic.",
+    "glAccounts": [
+      "4010 Gross Potential Rent",
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Working budget summary"
+    ],
+    "redFlags": [
+      "NOI growth inconsistent with market assumptions"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_the_publish_history_of_a_working_budget": {
+    "purpose": "Shows when a working budget was published to the GL budget, by whom and to which budget.",
+    "outcome": "An audit trail of what was published and when.",
+    "rootCause": "If BVA numbers change unexpectedly, the publish history shows whether the budget was republished and by whom.",
+    "ifSkipped": "Unexpected budget changes cannot be traced.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Publish history"
+    ],
+    "redFlags": [
+      "Republishing after owner approval without re-approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_deleting_or_inactivating_a_working_budget": {
+    "purpose": "Deletes or inactivates a working budget draft that has been abandoned or superseded — for example the property manager's first draft once the regional manager's revision is final.",
+    "outcome": "Only relevant drafts remain active.",
+    "rootCause": "Abandoned drafts left active look like real options; under deadline, someone edits or publishes the stale draft and the GL budget no longer matches what the owner approved.",
+    "ifSkipped": "Old drafts are edited or published in error.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budgets list"
+    ],
+    "redFlags": [
+      "Deleting the draft that was published"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_working_budget_page": {
+    "purpose": "The working budget record page — header, properties, fiscal year, status and links to details, summary and history.",
+    "outcome": "Central record for one budget draft.",
+    "rootCause": "A single record page keeps a draft's identity, scope and status clear across review rounds.",
+    "ifSkipped": "Drafts lose track of their scope and status, and teams cannot tell which one is approved.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget"
+    ],
+    "redFlags": [
+      "Status not updated after approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_duplicating_a_working_budget": {
+    "purpose": "Copies a working budget to create a new draft — for example to prepare the regional manager's revision while keeping the property manager's original draft.",
+    "outcome": "Each review round has its own version for comparison.",
+    "rootCause": "Keeping each round's version allows changes to be shown to the asset manager and reversed if needed.",
+    "ifSkipped": "Earlier versions are overwritten and changes cannot be explained.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013 — version control"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budgets list"
+    ],
+    "redFlags": [
+      "Duplicates without distinguishing names"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_advance_actuals_box": {
+    "purpose": "Dialog to advance year-to-date actuals into a working budget or forecast, replacing budget amounts for completed months with actual results.",
+    "outcome": "Reforecasts show actual results for completed months plus projections for the rest of the year.",
+    "rootCause": "A 6+6 or 9+3 reforecast is only credible if the completed months are actuals; advancing actuals does that automatically.",
+    "ifSkipped": "Reforecasts mix budget and actual months manually with errors.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Reforecast"
+    ],
+    "redFlags": [
+      "Actuals advanced before the month was closed"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_advancing_year_to_date_actuals": {
+    "purpose": "Procedure to pull closed-month actuals into a reforecast working budget through a chosen month.",
+    "outcome": "Reforecasts anchored on actual results.",
+    "rootCause": "Investors and lenders get reforecasts that must reconcile to reported actuals; advancing from the GL ensures that.",
+    "ifSkipped": "Reforecast actuals differ from reported financials.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reforecast"
+    ],
+    "redFlags": [
+      "Advancing into unclosed periods"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_working_budget_summary_page": {
+    "purpose": "The page summarizing a working budget by account with totals by period, where users filter, add accounts, adjust and publish.",
+    "outcome": "The main editing and review surface for a draft budget.",
+    "rootCause": "Budget review needs totals, line detail and adjustment tools together to iterate quickly during budget season.",
+    "ifSkipped": "Budget work moves to disconnected spreadsheets and the system version falls out of date.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget summary"
+    ],
+    "redFlags": [
+      "Publishing from the summary without final review"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_filtering_the_working_budget_summary": {
+    "purpose": "Filters the working budget summary by property, account group, dimension or period to focus the review.",
+    "outcome": "Reviewers look at one slice (e.g., payroll for one property) at a time.",
+    "rootCause": "Reviewing hundreds of lines at once is ineffective; filtering by group keeps reviews focused and consistent across properties.",
+    "ifSkipped": "Reviews are unfocused and important lines are missed.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget summary"
+    ],
+    "redFlags": [
+      "Filters hiding lines at publish time"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_an_account_to_a_working_budget": {
+    "purpose": "Adds a GL account to a working budget that did not come through the seed — for example a new income account for EV charging.",
+    "outcome": "New revenue or cost lines are budgeted.",
+    "rootCause": "Seeds based on prior actuals omit accounts with no history; new activities must be added explicitly.",
+    "ifSkipped": "New activities are unbudgeted and show as variances all year.",
+    "glAccounts": [
+      "4100 Other Income",
+      "6410 Administrative"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget summary"
+    ],
+    "redFlags": [
+      "Known new activities missing from the budget"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_a_working_budgets_account_details": {
+    "purpose": "Views one account's details in a working budget — periods, amounts, calculation method and comments.",
+    "outcome": "Line-level understanding of how an account was budgeted.",
+    "rootCause": "Reviewers need to see the method (actuals × escalator, per-unit rate) to evaluate a line.",
+    "ifSkipped": "Lines are approved without understanding the method.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Account detail"
+    ],
+    "redFlags": [
+      "Lines with no stated method"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_editing_an_accounts_details": {
+    "purpose": "Edits the monthly amounts, calculation method or comments for a single account inside a working budget — the normal way to apply a reviewer's line-level feedback.",
+    "outcome": "Individual lines corrected per review feedback.",
+    "rootCause": "Reviewers change specific lines; edits must be made in the working budget to flow to the published version.",
+    "ifSkipped": "Feedback is not reflected in the published budget.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Account detail"
+    ],
+    "redFlags": [
+      "Edits without comments explaining the change"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_importing_workflow": {
+    "purpose": "Describes the import workflow for working budgets: download the template, fill it in Excel, import, and review results.",
+    "outcome": "Large budgets loaded consistently from spreadsheets.",
+    "rootCause": "Many property managers build budgets in Excel; a defined import workflow brings them into the system without re-keying.",
+    "ifSkipped": "Budgets are re-keyed from Excel with errors, and the system budget never matches the owner file.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Imports not reconciled to the source file totals"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_downloading_or_exporting_a_template_for_importing_budget_data": {
+    "purpose": "Downloads the import template (or exports the current budget in template format) for filling in budget data offline.",
+    "outcome": "A correctly structured file for importing budget data.",
+    "rootCause": "Imports fail or load wrongly when files do not match the expected layout; starting from the template avoids that.",
+    "ifSkipped": "Imports fail or map data to wrong accounts.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import template"
+    ],
+    "redFlags": [
+      "Custom files used instead of the template"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_importing_data_into_a_working_budget": {
+    "purpose": "Imports budget amounts from a completed import template into a working budget, loading hundreds of account-by-month values for one or more properties in one step.",
+    "outcome": "Budget data from spreadsheets loaded accurately.",
+    "rootCause": "Property managers typically build their numbers in Excel. Importing brings them into the system exactly as prepared, whereas re-keying hundreds of lines per property during budget season guarantees transcription errors.",
+    "ifSkipped": "Budgets are keyed by hand with errors that later appear as unexplained variances.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Rows rejected by the import not followed up"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_exporting_a_working_budget": {
+    "purpose": "Exports a working budget to Excel for offline review by the regional or asset manager, labeled with the draft name and export date so comments come back on the right version.",
+    "outcome": "The draft shared in Excel with clear version identity.",
+    "rootCause": "Owners review budgets in Excel; exports must be labeled with version and date to avoid comments on the wrong draft.",
+    "ifSkipped": "Owners comment on the wrong draft and agreed changes are applied to a different version.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Working budget export"
+    ],
+    "redFlags": [
+      "Exports without version labels"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_publishing_a_working_budget": {
+    "purpose": "Publishes an approved working budget to a General Ledger budget so it becomes the budget used by BVA reports and budget checks.",
+    "outcome": "The owner-approved budget becomes the official budget in the GL.",
+    "rootCause": "Publishing is the control point between drafting and reporting; only the approved version should be published, and publishing twice can overwrite the official budget.",
+    "ifSkipped": "BVA reports and budget checks run against no budget or a draft.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "Management agreement budget approval"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Asset manager"
+    ],
+    "reports": [
+      "Budget vs Actual",
+      "Publish history"
+    ],
+    "redFlags": [
+      "Publishing before owner approval",
+      "Publishing to the wrong GL budget"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_deleting_an_account_for_a_working_budget": {
+    "purpose": "Removes an account from a working budget — for example an account that should not be budgeted at this property.",
+    "outcome": "Irrelevant accounts removed from the draft.",
+    "rootCause": "Seeds sometimes include accounts not relevant to the property (e.g., commercial accounts at a pure multifamily site).",
+    "ifSkipped": "Irrelevant lines clutter the budget and reports.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget summary"
+    ],
+    "redFlags": [
+      "Removing accounts that receive actual activity"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_account_detail_page": {
+    "purpose": "The account detail page within a working budget for entering amounts by period, applying calculations and adding comments.",
+    "outcome": "Complete line-level budget information for one account.",
+    "rootCause": "Recording the calculation method and comments next to each account's monthly amounts makes every budget line explainable months later, when a variance question arrives and the original preparer may have moved on.",
+    "ifSkipped": "Lines lack method and rationale, so variance explanations become guesswork.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Account detail"
+    ],
+    "redFlags": [
+      "Amounts without comments"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_budget_amounts_for_one_account": {
+    "purpose": "Enters monthly budget amounts by hand for one account in a working budget — used for known items like a signed landscaping contract or a planned exterior paint project.",
+    "outcome": "The account's budget populated with correct phasing.",
+    "rootCause": "Some accounts need hand-entered amounts (a known contract, a planned project) rather than calculated ones.",
+    "ifSkipped": "Known, contracted costs are left out of the budget and show as full variances when they are incurred.",
+    "glAccounts": [
+      "6110 Repairs & Maintenance",
+      "6310 Marketing"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Account detail"
+    ],
+    "redFlags": [
+      "Amounts entered in the wrong months"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_importing_budget_data_for_one_account": {
+    "purpose": "Imports budget data for one account from a file, used when a detailed schedule (e.g., a payroll or contract schedule) is prepared separately.",
+    "outcome": "Detailed schedules loaded accurately into one budget line.",
+    "rootCause": "Detailed schedules for specific lines are often built outside the system; importing preserves their accuracy.",
+    "ifSkipped": "Detailed schedules are re-keyed with errors.",
+    "glAccounts": [
+      "6010 Payroll",
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Account detail"
+    ],
+    "redFlags": [
+      "Imported totals different from the schedule"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_calculating_the_budget_increase_for_an_account": {
+    "purpose": "Calculates an account's budget as a percentage or amount increase over a base (prior budget or actuals) — for example insurance at +15% over the current premium.",
+    "outcome": "Escalator-driven lines calculated consistently.",
+    "rootCause": "Many budget lines follow escalators set by the asset manager (payroll +4%, insurance +15%); calculating them in the system keeps them consistent and traceable.",
+    "ifSkipped": "Escalators are applied inconsistently across properties.",
+    "glAccounts": [
+      "6610 Insurance",
+      "6010 Payroll",
+      "6210 Utilities"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Account detail"
+    ],
+    "redFlags": [
+      "Escalators applied to the wrong base year"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adjusting_a_working_budget_by_account": {
+    "purpose": "Adjusts one account's working budget by an amount or percentage after review feedback — for example 'reduce marketing by 10%' from the asset manager.",
+    "outcome": "Targeted changes applied quickly.",
+    "rootCause": "Review feedback is often a specific adjustment ('cut marketing 10%'); applying it directly is faster and less error-prone than recalculating by hand.",
+    "ifSkipped": "Adjustments are recalculated by hand with errors.",
+    "glAccounts": [
+      "6310 Marketing"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Account detail"
+    ],
+    "redFlags": [
+      "Adjustments without comments"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_a_comment_to_an_accounts_budget_details": {
+    "purpose": "Adds a comment to an account's budget explaining its assumptions or a review change.",
+    "outcome": "Budget rationale travels with the numbers.",
+    "rootCause": "Comments are what allow variance writers months later to explain why a line was set as it was.",
+    "ifSkipped": "Rationale is lost and variance explanations are weak.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013 — documentation"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [
+      "Account detail"
+    ],
+    "redFlags": [
+      "Material lines without comments"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_filtering_by_dimension_or_segment": {
+    "purpose": "Filters a working budget by dimension or segment (e.g., department, building, cost center) to review or budget at that level.",
+    "outcome": "Budgets reviewed or built by department or building.",
+    "rootCause": "Large properties budget by department or building; filtering by dimension supports that level of planning.",
+    "ifSkipped": "Department-level budgets are not possible in the system.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget summary"
+    ],
+    "redFlags": [
+      "Dimensions left blank on budget lines"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_adjustment_box": {
+    "purpose": "Dialog for applying an adjustment to selected budget lines — a percentage or amount, to certain periods or all.",
+    "outcome": "Consistent adjustments across multiple lines at once.",
+    "rootCause": "Top-down changes from the asset manager ('reduce all controllable expenses 3%') need to be applied uniformly.",
+    "ifSkipped": "Top-down changes are applied inconsistently.",
+    "glAccounts": [
+      "6010 Payroll",
+      "6110 Repairs & Maintenance",
+      "6310 Marketing"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget summary"
+    ],
+    "redFlags": [
+      "Adjustments applied to non-controllable lines"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adjusting_a_working_budget_in_bulk": {
+    "purpose": "Applies one adjustment across many accounts or properties in a working budget at once — for example updating every property's insurance line for a new portfolio insurance program cost.",
+    "outcome": "Portfolio-wide changes applied in one step.",
+    "rootCause": "Portfolio-level assumptions (e.g., updated insurance program cost) affect many properties; bulk adjustment keeps them consistent.",
+    "ifSkipped": "Properties receive inconsistent adjustments.",
+    "glAccounts": [
+      "6610 Insurance",
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget summary"
+    ],
+    "redFlags": [
+      "Bulk adjustments applied twice"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_publish_working_budget_history_box": {
+    "purpose": "Dialog showing the publish history of a working budget — dates, users and target budgets.",
+    "outcome": "Visibility of when and where a draft was published.",
+    "rootCause": "When BVA figures change unexpectedly mid-year, the first question is whether someone republished the budget. The publish history answers who published, when, and to which GL budget.",
+    "ifSkipped": "Budget changes in reports cannot be explained.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Publish history"
+    ],
+    "redFlags": [
+      "Multiple publishes after approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_payroll": {
+    "purpose": "Section on payroll planning in Forecasting & Planning — budgeting site staff wages, overtime, payroll taxes, benefits and workers' compensation by position and employee.",
+    "outcome": "A detailed, defensible payroll budget, typically the largest controllable expense at a property.",
+    "rootCause": "Payroll is often 25-35% of multifamily operating expenses and is heavily scrutinized by owners. Budgeting it by position with burden rates is far more accurate than escalating last year's total.",
+    "ifSkipped": "Payroll budgets miss burden changes (tax rate, benefits, workers' comp) and produce large variances.",
+    "glAccounts": [
+      "6010 Payroll",
+      "Payroll taxes",
+      "Employee benefits",
+      "Workers' compensation"
+    ],
+    "gaap": [
+      "FICA/FUTA/SUTA rates",
+      "Management agreement payroll reimbursement provisions"
+    ],
+    "stakeholders": [
+      "Property manager",
+      "Regional manager",
+      "HR",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll budget",
+      "Budget vs Actual (payroll)"
+    ],
+    "redFlags": [
+      "Payroll budgets without burden"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_payroll_planning_workflow": {
+    "purpose": "Describes the payroll planning workflow: set up workers' comp classes, job positions, employees, tax rates and benefits; calculate payroll; publish it to the working budget.",
+    "outcome": "Payroll budget built from its components in the right order.",
+    "rootCause": "Payroll depends on several tables; building in the wrong order (calculating before rates are set) gives wrong results.",
+    "ifSkipped": "Payroll budgets calculated on missing or old rates.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "HR"
+    ],
+    "reports": [
+      "Payroll budget"
+    ],
+    "redFlags": [
+      "Payroll calculated before tax rates updated for the new year"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_worker_compensation_class_list": {
+    "purpose": "Lists workers' compensation classes (e.g., clerical, maintenance, building operations) with rates used to budget workers' comp by position.",
+    "outcome": "Workers' comp budgeted by risk class rather than a flat percentage.",
+    "rootCause": "Maintenance staff carry much higher workers' comp rates than office staff; budgeting by class reflects the real cost.",
+    "ifSkipped": "Workers' comp is under-budgeted for maintenance-heavy properties.",
+    "glAccounts": [
+      "Workers' compensation",
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "State workers' compensation rate classes (NCCI)"
+    ],
+    "stakeholders": [
+      "HR",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll budget"
+    ],
+    "redFlags": [
+      "Maintenance positions assigned clerical class"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_a_worker_compensation_class": {
+    "purpose": "Adds a workers' compensation class code with its premium rate (per $100 of payroll) so positions assigned to it are budgeted at the right workers' comp cost.",
+    "outcome": "New classes available for positions.",
+    "rootCause": "Expanding into a new state or adding a new position type (e.g., a pool attendant) can require a class code with a different rate. Without it, those positions borrow an unrelated class and their burden is misstated.",
+    "ifSkipped": "Positions use inappropriate classes and rates.",
+    "glAccounts": [
+      "Workers' compensation"
+    ],
+    "gaap": [
+      "State workers' compensation rules"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Workers' comp classes"
+    ],
+    "redFlags": [
+      "Rates not updated for the new policy year"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_and_editing_worker_compensation_classes": {
+    "purpose": "Views or updates workers' comp class rates — typically at policy renewal each year.",
+    "outcome": "Payroll budgets use current workers' comp rates.",
+    "rootCause": "Workers' compensation rates reset at each policy renewal and can move significantly after claims. Budgets built on last year's rates misstate one of the largest payroll burden components.",
+    "ifSkipped": "Payroll burden is misstated and payroll variances appear all year.",
+    "glAccounts": [
+      "Workers' compensation"
+    ],
+    "gaap": [
+      "State workers' compensation rules"
+    ],
+    "stakeholders": [
+      "HR",
+      "Risk management"
+    ],
+    "reports": [
+      "Workers' comp classes"
+    ],
+    "redFlags": [
+      "Rates from prior policy year"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_deleting_a_worker_compensation_class": {
+    "purpose": "Deletes a workers' compensation class that no position uses any more, such as a class for a state the company no longer operates in.",
+    "outcome": "Only relevant class codes remain available for assignment.",
+    "rootCause": "Unused classes may be selected by mistake for new positions, applying wrong rates.",
+    "ifSkipped": "Obsolete classes are selected for new positions and their outdated rates flow into the payroll budget.",
+    "glAccounts": [
+      "Workers' compensation"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Workers' comp classes"
+    ],
+    "redFlags": [
+      "Deleting classes still assigned to positions"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_copying_records_from_a_previous_year": {
+    "purpose": "Copies payroll setup records (classes, positions, taxes, benefits) from the prior year into the new budget year.",
+    "outcome": "Payroll setup carried forward, needing only rate updates.",
+    "rootCause": "Most payroll setup is stable year to year; copying saves time, but rates must then be updated to avoid budgeting at last year's costs.",
+    "ifSkipped": "Setup is rebuilt from scratch each year.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "HR"
+    ],
+    "reports": [
+      "Payroll setup"
+    ],
+    "redFlags": [
+      "Copied records not updated for new rates"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_worker_compensation_class_page": {
+    "purpose": "The page for entering or editing one workers' compensation class — class code, description and premium rate per $100 of payroll — used by every position assigned to it.",
+    "outcome": "Accurate class definitions for payroll budgeting.",
+    "rootCause": "The rate on this page multiplies across every position in the class, so a single entry error (for example 5.2 entered as 52) inflates workers' comp for every maintenance position in the portfolio.",
+    "ifSkipped": "Rate errors spread across all positions in the class.",
+    "glAccounts": [
+      "Workers' compensation"
+    ],
+    "gaap": [
+      "State workers' compensation rules"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Workers' comp classes"
+    ],
+    "redFlags": [
+      "Rates entered as whole numbers instead of per $100 of payroll"
+    ],
+    "confidence": "high"
+  }
+}

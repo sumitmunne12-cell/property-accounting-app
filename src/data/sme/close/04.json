@@ -1,0 +1,1006 @@
+{
+  "scr_close_reports_2": {
+    "purpose": "Runs a single close report on demand at property level — for example re-running the A/R report after a preliminary package showed a variance, exporting it to Excel and sending it to the site team with a specific question about the delinquent or prepaid balance.",
+    "outcome": "A focused, property-level report that isolates one reconciliation break and can be handed to the person who can fix it.",
+    "rootCause": "Multi-property packages hide which property causes a variance. Running the individual report at property level pinpoints the source, and the Excel export gives the site team something concrete to act on.",
+    "ifSkipped": "Variances are escalated vaguely ('A/R doesn't tie'), site teams cannot act, and breaks carry into the next month.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "2120 Prepaid Rent",
+      "2110 Resident Security Deposits"
+    ],
+    "gaap": [
+      "COSO 2013 — investigation of reconciling differences"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager / A/R specialist",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "A/R report",
+      "Security deposit report",
+      "Preliminary work paper package"
+    ],
+    "redFlags": [
+      "Report permission missing (A/R - Multifamily (No Variance) requires specific rights)",
+      "Report run for a different period than the package"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_generating_a_report": {
+    "purpose": "Procedure to generate a standard close report by selecting report type, property or group and period — distinct from building a custom financial report in the Financial Reporting module.",
+    "outcome": "A standard close report output for the selected scope and period.",
+    "rootCause": "Users confuse close reports (reconciliation-focused) with financial statements; this procedure keeps them in the right tool for tie-outs.",
+    "ifSkipped": "Users build custom financial reports to do reconciliations, producing inconsistent tie-outs.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — standardized reconciliation tools"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Standard close reports"
+    ],
+    "redFlags": [
+      "Tie-outs performed on custom reports that exclude some accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_financial_close_management_reports": {
+    "purpose": "Catalog of the balance-sheet reconciliation reports available in Financial Close Management — cash, A/P, A/R (multifamily, commercial, other), allowance, security deposits, mortgage and escrow, notes payable/receivable, prepaids, accruals, fixed assets, other assets, property tax and rent roll.",
+    "outcome": "Accountants know which report supports which balance-sheet account in the close package.",
+    "rootCause": "Every material balance-sheet account needs a reconciliation. Mapping each account group to a standard report ensures coverage of the whole balance sheet.",
+    "ifSkipped": "Some balance-sheet accounts go unreconciled because nobody knows which report supports them.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1210 Resident/Tenant A/R",
+      "1215 Allowance for Doubtful Accounts",
+      "1310 Prepaid Expenses",
+      "1520 Buildings",
+      "2010 Accounts Payable",
+      "2020 Accrued Expenses",
+      "2110 Resident Security Deposits",
+      "2210 Mortgage/Construction Loan Payable"
+    ],
+    "gaap": [
+      "ASC 210 — balance sheet",
+      "COSO 2013 — account reconciliation coverage"
+    ],
+    "stakeholders": [
+      "Offshore property accountants",
+      "Onshore reviewers"
+    ],
+    "reports": [
+      "All Financial Close reports"
+    ],
+    "redFlags": [
+      "Balance-sheet accounts with balances but no mapped report"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_cash_and_cash_equivalents_report_columns": {
+    "purpose": "Explains each column of the Cash & Cash Equivalents report — GL balance, reconciled bank balance, variance, account type — so preparers can read which bank accounts do not tie and why.",
+    "outcome": "Preparers correctly interpret variances and restricted/unrestricted classification on the cash work paper.",
+    "rootCause": "Misreading columns (e.g., comparing unreconciled bank balance to GL) leads to false variances or missed real ones.",
+    "ifSkipped": "Cash variances are misinterpreted and wrongly escalated or ignored.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash",
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "ASC 230 — cash and restricted cash"
+    ],
+    "stakeholders": [
+      "Offshore property accountants"
+    ],
+    "reports": [
+      "Cash & Cash Equivalents report"
+    ],
+    "redFlags": [
+      "Variance column non-zero on accounts marked reconciled"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_accounts_payable_report": {
+    "purpose": "Compares the vendor aging (A/P subledger) to the 2010 Accounts Payable GL balance at period end and shows payments made, so the preparer can prove the A/P liability on the balance sheet is supported by specific open invoices.",
+    "outcome": "An A/P tie-out work paper showing zero variance, or specific explained reconciling items, between the subledger and GL.",
+    "rootCause": "A/P and GL diverge when JEs are posted directly to the A/P control account, when invoices are posted to a closed summary, or when interfaces fail. The liability owners see must equal the invoices actually owed.",
+    "ifSkipped": "Unsupported A/P balances accumulate, unrecorded liabilities or phantom payables go undetected, and auditors cannot rely on A/P completeness.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "2020 Accrued Expenses",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 405 — liabilities",
+      "AU-C 330 — search for unrecorded liabilities"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "A/P team",
+      "Onshore reviewer",
+      "External auditor"
+    ],
+    "reports": [
+      "Vendor aging",
+      "A/P tie-out work paper",
+      "Balance Sheet"
+    ],
+    "redFlags": [
+      "Non-zero variance between aging and GL",
+      "Manual JEs to 2010",
+      "Debit balances in the aging"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_accounts_payable_report_columns": {
+    "purpose": "Defines the A/P report columns — aging balance per subledger, GL balance, variance and supporting detail — to analyze where a subledger-to-GL difference comes from.",
+    "outcome": "Preparers can trace an A/P variance to specific transactions.",
+    "rootCause": "Understanding the columns is necessary to separate timing items from true errors.",
+    "ifSkipped": "Variances are mischaracterized as timing.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — reconciliation analysis"
+    ],
+    "stakeholders": [
+      "Offshore property accountants"
+    ],
+    "reports": [
+      "Accounts Payable report"
+    ],
+    "redFlags": [
+      "Variances explained as timing without transaction detail"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_a_r_multifamily_report": {
+    "purpose": "Reconciles multifamily resident receivables from OneSite/Accounts Receivable — delinquent balances and prepaid (credit) balances — to the GL A/R and prepaid rent accounts, showing variances by property.",
+    "outcome": "A resident A/R tie-out that proves 1210 A/R and 2120 Prepaid Rent agree with resident ledgers, including correct gross presentation of prepaids.",
+    "rootCause": "Resident ledgers live in the property management system while the GL is summarized. Interface timing, manual JEs and miscoded charges cause breaks. GAAP also requires prepaid rent (credit balances) to be shown as a liability rather than netted against receivables.",
+    "ifSkipped": "Revenue and A/R misstatements persist, prepaid rent is netted into A/R (understating both), and bad-debt reserves are calculated on wrong balances.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "2120 Prepaid Rent",
+      "1215 Allowance for Doubtful Accounts"
+    ],
+    "gaap": [
+      "ASC 842-30 — lessor receivables",
+      "ASC 210-20 — offsetting (prepaids not netted against receivables)"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Customer aging / delinquency",
+      "A/R tie-out work paper",
+      "Balance Sheet"
+    ],
+    "redFlags": [
+      "Prepaid balances netted into A/R",
+      "Variances caused by manual JEs to 1210",
+      "Old credit balances for moved-out residents (refund or escheat due)"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_a_r_multifamily_report_columns": {
+    "purpose": "Explains the A/R - Multifamily report's delinquent and prepaid columns versus GL columns, and how variance is computed.",
+    "outcome": "Preparers correctly separate delinquent and prepaid variances.",
+    "rootCause": "Delinquent and prepaid balances tie to different GL accounts; confusing them hides real variances.",
+    "ifSkipped": "Offsetting errors in A/R and prepaids go unnoticed.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "2120 Prepaid Rent"
+    ],
+    "gaap": [
+      "ASC 210-20 — offsetting"
+    ],
+    "stakeholders": [
+      "Offshore property accountants"
+    ],
+    "reports": [
+      "A/R - Multifamily report"
+    ],
+    "redFlags": [
+      "Net variance zero but delinquent and prepaid variances non-zero"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_a_r_multifamily_no_variance_report": {
+    "purpose": "Variant of the multifamily A/R report that lists receivable balances without calculating variance to the GL — used when the reviewer only needs the balance detail, or when the GL uses a different account structure.",
+    "outcome": "A clean listing of resident receivables and prepaids for the package or for owner requests.",
+    "rootCause": "Some owners' charts of accounts do not map one-to-one to the report's variance logic, producing false variances; the no-variance version provides the detail without misleading comparisons.",
+    "ifSkipped": "False variances confuse reviewers, or detail is unavailable for owners.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "2120 Prepaid Rent"
+    ],
+    "gaap": [
+      "ASC 842-30 — lessor receivables"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer",
+      "Asset manager"
+    ],
+    "reports": [
+      "A/R listing"
+    ],
+    "redFlags": [
+      "Using the no-variance report to avoid showing a real variance"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_a_r_multifamily_no_variance_report_columns": {
+    "purpose": "Defines the columns of the no-variance multifamily A/R report — resident, unit, delinquent balance, prepaid balance, aging.",
+    "outcome": "Correct interpretation of receivable detail without GL comparison.",
+    "rootCause": "Reviewers need to know the report omits the GL comparison so they perform the tie-out separately.",
+    "ifSkipped": "Reviewers assume a tie-out was performed when it was not.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — reconciliation completeness"
+    ],
+    "stakeholders": [
+      "Onshore reviewers"
+    ],
+    "reports": [
+      "A/R - Multifamily (No Variance) report"
+    ],
+    "redFlags": [
+      "No separate GL tie-out when this report is used"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_allowance_for_doubtful_accounts_report": {
+    "purpose": "Shows the estimated uncollectible portion of receivables — typically reserved by aging bucket (e.g., 100% of former-resident balances, 50% of 60+ days) — and compares it to the 1215 Allowance balance so the reserve can be adjusted at month-end.",
+    "outcome": "A supported bad-debt reserve and the monthly adjusting entry (DR 4050 Bad Debt / CR 1215 Allowance) that keeps receivables at net realizable value.",
+    "rootCause": "Rent receivables from delinquent and moved-out residents are frequently uncollectible. Reporting them at face value overstates assets and revenue. Owners also track bad debt as a percentage of revenue as a key operating metric.",
+    "ifSkipped": "A/R is overstated, bad debt is recognized in large lumps at write-off, and revenue quality is misrepresented.",
+    "glAccounts": [
+      "1215 Allowance for Doubtful Accounts",
+      "4050 Bad Debt",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 842-30-25-12 — lease income when collectibility is not probable",
+      "ASC 326 — expected credit losses (non-lease receivables)"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager",
+      "Asset manager",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Allowance roll-forward",
+      "Customer aging",
+      "Income Statement (bad debt)"
+    ],
+    "redFlags": [
+      "Allowance not changing while aging deteriorates",
+      "Former-resident balances not fully reserved",
+      "Allowance exceeding total receivables"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_allowance_for_doubtful_accounts_report_columns": {
+    "purpose": "Explains the allowance report columns — balance per aging bucket, reserve percentage per bucket, calculated reserve, current 1215 Allowance balance and the adjustment needed — so the preparer can book the month's bad-debt entry.",
+    "outcome": "A calculated reserve adjustment (DR 4050 Bad Debt / CR 1215 Allowance, or the reverse) supported bucket by bucket.",
+    "rootCause": "The reserve method (e.g., 25% of 31-60, 50% of 61-90, 100% of 90+ and former residents) must be applied consistently each month. The columns make the method transparent so reviewers can verify it instead of accepting a single number.",
+    "ifSkipped": "Reserve adjustments are booked as plugs, bad debt swings unpredictably, and auditors challenge the estimate's consistency.",
+    "glAccounts": [
+      "1215 Allowance for Doubtful Accounts",
+      "4050 Bad Debt",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 250-10 — consistent application of estimates",
+      "ASC 842-30-25-12 — collectibility of lease income"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer",
+      "Asset manager"
+    ],
+    "reports": [
+      "Allowance for Doubtful Accounts report",
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Reserve percentages changed from last month without documented approval",
+      "Calculated reserve differing from the booked allowance after the adjustment"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_a_r_commercial_report": {
+    "purpose": "Reconciles commercial tenant receivables — base rent, CAM, real estate tax and insurance recoveries, percentage rent — from the Accounts Receivable subledger to the GL for retail or office components of a property.",
+    "outcome": "A commercial A/R tie-out that supports tenant receivables, including recovery billings and straight-line rent where tracked.",
+    "rootCause": "Mixed-use multifamily properties often include ground-floor retail. Commercial leases have complex billing (CAM estimates, year-end reconciliations) that frequently diverges from the GL.",
+    "ifSkipped": "Commercial receivables and recovery income are misstated, and CAM reconciliation disputes with tenants escalate.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income (CAM recoveries)",
+      "Straight-line rent receivable"
+    ],
+    "gaap": [
+      "ASC 842-30 — lessor accounting including straight-line rent",
+      "ASC 842-10-15 — lease vs non-lease components (CAM)"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Commercial property manager",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Commercial aging",
+      "CAM reconciliation",
+      "Balance Sheet"
+    ],
+    "redFlags": [
+      "CAM estimate billings not trued up annually",
+      "Straight-line receivable not reconciled"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_a_r_commercial_report_columns": {
+    "purpose": "Defines each column of the commercial A/R reconciliation — tenant, charge type (base rent, CAM, tax and insurance recovery, percentage rent), subledger balance, GL balance and variance — so the preparer can trace a commercial receivable break to a specific tenant and charge code.",
+    "outcome": "A commercial A/R variance is pinned to one tenant and one charge type, e.g. a CAM estimate billed in A/R but posted to the wrong recovery income account.",
+    "rootCause": "Commercial leases generate many charge codes that map to different GL recovery accounts. A variance that nets to zero across charge types can still hide offsetting errors (CAM billed to tax recovery). Reading the columns by charge type is the only way to see them.",
+    "ifSkipped": "Offsetting charge-code errors survive the tie-out, and year-end CAM reconciliations to tenants start from wrong recovery balances, leading to tenant disputes and refunds.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income (CAM recoveries)",
+      "Tax & insurance recovery income"
+    ],
+    "gaap": [
+      "ASC 842-10-15-38 — lease vs non-lease components (CAM)",
+      "ASC 842-30 — lessor receivables"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Commercial property manager",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "A/R - Commercial report",
+      "CAM reconciliation",
+      "Tenant ledger"
+    ],
+    "redFlags": [
+      "Net variance zero but individual charge-type variances non-zero",
+      "Tenants with recovery billings but no lease abstract support"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_a_r_other_report": {
+    "purpose": "Reconciles non-resident receivables from the Accounts Receivable customer aging — affiliates, insurance claims receivable, utility company rebates, vendors owing refunds, ancillary contract partners — to the GL.",
+    "outcome": "Other receivables are supported and aged, and stale items are identified for collection or write-off.",
+    "rootCause": "Miscellaneous receivables are often forgotten after being recorded (e.g., an insurance claim receivable after a casualty). Periodic reconciliation keeps them collectible and supported.",
+    "ifSkipped": "Stale receivables stay on the balance sheet, overstating assets.",
+    "glAccounts": [
+      "1230 Due From Affiliates",
+      "Insurance claims receivable",
+      "Other receivables"
+    ],
+    "gaap": [
+      "ASC 326 — credit losses on other receivables",
+      "ASC 610-30 — insurance recoveries"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Customer aging (other)",
+      "Balance Sheet"
+    ],
+    "redFlags": [
+      "Receivables older than one year without collection activity"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_a_r_other_report_columns": {
+    "purpose": "Explains how the A/R - Other report lines up each non-resident customer's aging balance (affiliates, insurance carriers, utility rebates, vendor refunds) against the GL accounts those receivables post to, and how the variance is computed.",
+    "outcome": "Preparers can match each miscellaneous receivable to its GL account and identify which customer causes a break.",
+    "rootCause": "Other receivables are spread across several GL accounts (Due From Affiliates, insurance claims receivable, other receivables). Without understanding which columns map to which accounts, preparers compare the wrong totals and report false variances.",
+    "ifSkipped": "False variances waste reviewer time, or real breaks (a receivable posted to the wrong account) are missed.",
+    "glAccounts": [
+      "1230 Due From Affiliates",
+      "Insurance claims receivable",
+      "Other receivables"
+    ],
+    "gaap": [
+      "ASC 310 — receivables",
+      "COSO 2013 — reconciliation analysis"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "A/R - Other report",
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Receivables in the aging mapped to an account outside the report's account group",
+      "Customers with credit balances left in other receivables"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_security_deposits_multifamily_report": {
+    "purpose": "Reconciles resident security deposits held per OneSite resident ledgers to the 2110 Resident Security Deposits GL balance, with variance by property.",
+    "outcome": "A deposit liability tie-out supporting both the balance sheet and state trust-account compliance.",
+    "rootCause": "Deposits collected at move-in and dispositioned at move-out flow through the property management system; posting and interface errors cause the GL to drift from what residents are actually owed.",
+    "ifSkipped": "Deposit liabilities are misstated, refunds may be wrong, and trust-account shortfalls go unnoticed.",
+    "glAccounts": [
+      "2110 Resident Security Deposits",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "State landlord-tenant security deposit statutes",
+      "ASC 405 — liabilities"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Security deposit tie-out",
+      "Balance Sheet"
+    ],
+    "redFlags": [
+      "Variance between resident deposits and 2110",
+      "Deposits for former residents past the statutory refund deadline"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_security_deposits_multifamily_report_columns": {
+    "purpose": "Defines the multifamily deposit report columns — deposits held per resident ledger by type (security, pet, key/amenity), GL balance and variance — so the preparer can isolate which deposit type causes a break.",
+    "outcome": "A deposit variance is traced to a deposit type, often pet deposits posted to income or key deposits posted to a different liability account.",
+    "rootCause": "Deposit types frequently map to different GL accounts, and pet fees (non-refundable, income) are often confused with pet deposits (refundable, liability). The column breakdown exposes those misclassifications.",
+    "ifSkipped": "Refundable deposits are recorded as income, understating liabilities and exposing the owner to statutory penalties at move-out.",
+    "glAccounts": [
+      "2110 Resident Security Deposits",
+      "4100 Other Income (pet fees)"
+    ],
+    "gaap": [
+      "State security deposit statutes",
+      "ASC 606 — non-refundable fees vs refundable deposits"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [
+      "Security Deposits - Multifamily report"
+    ],
+    "redFlags": [
+      "Pet deposits recorded in income",
+      "Variance concentrated in one deposit type"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_security_deposits_multifamily_no_variance_report": {
+    "purpose": "Lists multifamily security deposits held by resident without comparing to the GL, used for resident-level detail or when the chart of accounts does not map cleanly to the variance logic.",
+    "outcome": "Resident-level deposit detail for the package or compliance review.",
+    "rootCause": "Compliance reviews and owner requests often need resident-level deposit listings independent of the GL comparison.",
+    "ifSkipped": "Resident-level deposit detail is unavailable.",
+    "glAccounts": [
+      "2110 Resident Security Deposits"
+    ],
+    "gaap": [
+      "State security deposit statutes"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Compliance"
+    ],
+    "reports": [
+      "Deposit listing"
+    ],
+    "redFlags": [
+      "No separate GL tie-out when using this report"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_security_deposits_multifamily_no_variance_report_columns": {
+    "purpose": "Explains the columns of the no-variance deposit listing — resident, unit, move-in date, deposit types and amounts held — which lists deposits without comparing them to the GL.",
+    "outcome": "Reviewers understand that this report is a listing only, and that the 2110 tie-out must be done separately.",
+    "rootCause": "Because this variant omits the GL comparison, reviewers can mistake it for a completed tie-out. Knowing the columns prevents that assumption.",
+    "ifSkipped": "Packages go out with a deposit listing but no actual reconciliation to 2110, and a deposit shortfall is missed.",
+    "glAccounts": [
+      "2110 Resident Security Deposits"
+    ],
+    "gaap": [
+      "State security deposit statutes",
+      "COSO 2013 — reconciliation completeness"
+    ],
+    "stakeholders": [
+      "Onshore reviewer",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Security Deposits - Multifamily (No Variance) report"
+    ],
+    "redFlags": [
+      "Package includes only the no-variance listing with no separate tie-out"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_security_deposits_commercial_report": {
+    "purpose": "Reconciles commercial tenant security deposits (including letters of credit tracked off-balance-sheet) to the GL deposit liability.",
+    "outcome": "Commercial deposit liabilities are supported by tenant-level detail.",
+    "rootCause": "Commercial deposits are larger and governed by lease terms; errors affect tenant relationships and lease compliance.",
+    "ifSkipped": "Commercial deposit liabilities are misstated.",
+    "glAccounts": [
+      "2110 Resident Security Deposits (commercial)"
+    ],
+    "gaap": [
+      "ASC 405 — liabilities",
+      "Lease terms governing deposit use"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Commercial property manager"
+    ],
+    "reports": [
+      "Commercial deposit tie-out"
+    ],
+    "redFlags": [
+      "Letters of credit recorded as cash deposits"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_security_deposits_commercial_report_columns": {
+    "purpose": "Defines the commercial security deposit columns — tenant, lease, deposit required per lease, deposit held, GL balance and variance — used to reconcile commercial tenant deposits.",
+    "outcome": "Commercial deposit balances are matched to lease requirements and the GL, tenant by tenant.",
+    "rootCause": "Commercial leases specify deposit amounts, and some tenants provide letters of credit instead of cash. Comparing held versus required, and cash versus GL, catches missing deposits and LCs wrongly recorded as cash.",
+    "ifSkipped": "Deposit shortfalls against lease terms go unnoticed, and letters of credit may be booked as cash liabilities.",
+    "glAccounts": [
+      "2110 Resident Security Deposits (commercial)",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 405 — liabilities",
+      "Lease agreement deposit provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Commercial property manager"
+    ],
+    "reports": [
+      "Security Deposits - Commercial report",
+      "Lease abstracts"
+    ],
+    "redFlags": [
+      "Deposit held less than the lease requirement",
+      "Letters of credit recorded in the GL as cash deposits"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_mortgage_and_escrow_report_columns": {
+    "purpose": "Explains how the mortgage and escrow report shows the monthly payment split — principal, interest, tax escrow, insurance escrow, reserve deposits — and escrow disbursements.",
+    "outcome": "Preparers correctly map each component to the right GL account.",
+    "rootCause": "Misreading the payment split sends principal to interest or escrow deposits to expense.",
+    "ifSkipped": "Debt and escrow balances drift from servicer records.",
+    "glAccounts": [
+      "2210 Mortgage/Construction Loan Payable",
+      "7010 Interest Expense",
+      "1330 Tax & Insurance Escrow",
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "ASC 470 — debt",
+      "ASC 835-30 — interest"
+    ],
+    "stakeholders": [
+      "Offshore property accountants"
+    ],
+    "reports": [
+      "Mortgage and Escrow report"
+    ],
+    "redFlags": [
+      "Escrow deposits expensed"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_notes_payable_report": {
+    "purpose": "Details formal debt obligations — mortgage loans, mezzanine loans, seller financing, affiliate notes — with principal balances, rates and maturity, and ties them to the GL.",
+    "outcome": "A debt schedule supporting the balance sheet and lender covenant reporting, including current vs long-term classification.",
+    "rootCause": "Debt is often the largest liability. Owners, lenders and auditors require a schedule tying outstanding principal to lender statements, and maturities drive refinancing decisions.",
+    "ifSkipped": "Debt balances are unsupported, maturities are missed, and covenant reporting is inaccurate.",
+    "glAccounts": [
+      "2210 Mortgage/Construction Loan Payable",
+      "7010 Interest Expense",
+      "2130 Due To Affiliates (affiliate notes)"
+    ],
+    "gaap": [
+      "ASC 470-10 — debt classification",
+      "ASC 835-30 — debt issuance costs",
+      "ASC 850 — related-party notes"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Debt / asset manager",
+      "Lender",
+      "External auditor"
+    ],
+    "reports": [
+      "Debt schedule",
+      "Balance Sheet",
+      "Covenant compliance"
+    ],
+    "redFlags": [
+      "Principal per GL differs from lender statement",
+      "Debt maturing within 12 months not flagged"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_notes_payable_report_columns": {
+    "purpose": "Defines the notes payable columns — lender, original principal, current principal, interest rate (fixed or floating with index and spread), payment schedule and maturity date — used to build the debt schedule and classify the current portion.",
+    "outcome": "A debt schedule where each loan's balance, rate and maturity can be checked against the loan documents and servicer statement.",
+    "rootCause": "Maturity and payment-schedule columns determine current vs long-term classification and flag refinancing risk. Floating-rate loans also require the rate column to reconcile interest expense and any interest rate cap or swap.",
+    "ifSkipped": "Debt maturing within 12 months is misclassified as long-term, and interest expense on floating-rate loans is not reconciled to the index.",
+    "glAccounts": [
+      "2210 Mortgage/Construction Loan Payable",
+      "7010 Interest Expense"
+    ],
+    "gaap": [
+      "ASC 470-10-45 — current vs noncurrent classification",
+      "ASC 815 — interest rate caps and swaps on floating-rate debt"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Debt / asset manager"
+    ],
+    "reports": [
+      "Notes Payable report",
+      "Debt schedule"
+    ],
+    "redFlags": [
+      "Maturity within 12 months not highlighted",
+      "Floating rate not updated for the current index reset"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_notes_receivable_report": {
+    "purpose": "Details promissory notes owed to the entity — seller notes from a property sale, loans to affiliates or partners, resident payment plans formalized as notes — with balances and collection status.",
+    "outcome": "Notes receivable are supported, aged and assessed for collectibility.",
+    "rootCause": "Notes receivable carry credit risk and often involve related parties, which require disclosure and scrutiny.",
+    "ifSkipped": "Uncollectible notes remain at face value, and related-party balances go undisclosed.",
+    "glAccounts": [
+      "Notes receivable",
+      "1230 Due From Affiliates",
+      "Interest income"
+    ],
+    "gaap": [
+      "ASC 310 — receivables",
+      "ASC 326 — credit losses",
+      "ASC 850 — related parties"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Notes receivable schedule"
+    ],
+    "redFlags": [
+      "Notes with no payments received",
+      "Related-party notes without documentation"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_notes_receivable_report_columns": {
+    "purpose": "Defines the notes receivable columns — borrower, principal, interest rate, payment schedule, due date and balance — for loans owed to the entity, such as seller financing on a disposition or a loan to an affiliate.",
+    "outcome": "Each note can be verified against the note agreement and assessed for collectibility and classification.",
+    "rootCause": "Notes receivable often involve related parties or buyers of sold properties. Due dates drive current vs long-term classification, and missed scheduled payments are the first signal of impairment.",
+    "ifSkipped": "Past-due notes go unreserved and related-party notes are not disclosed.",
+    "glAccounts": [
+      "Notes receivable",
+      "1230 Due From Affiliates",
+      "Interest income"
+    ],
+    "gaap": [
+      "ASC 310-10 — receivables",
+      "ASC 326 — expected credit losses",
+      "ASC 850 — related-party disclosures"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Notes Receivable report"
+    ],
+    "redFlags": [
+      "Scheduled payments not received",
+      "Interest accrued but never collected"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_prepaid_expense_report_columns": {
+    "purpose": "Explains the prepaid report columns — item, original amount, term, monthly amortization, amortized to date, remaining balance and GL comparison — for each insurance, tax, license or contract prepayment.",
+    "outcome": "Preparers verify that each prepaid is amortizing at the right rate and that the remaining balances sum to 1310.",
+    "rootCause": "Prepaid errors are visible only at item level: a 12-month schedule on a 13-month policy, a cancelled policy still amortizing, a renewal never set up. The columns make each item's math checkable.",
+    "ifSkipped": "Item-level amortization errors go unnoticed and 1310 carries expired or unscheduled balances.",
+    "glAccounts": [
+      "1310 Prepaid Expenses",
+      "6610 Insurance",
+      "6620 Real Estate Taxes"
+    ],
+    "gaap": [
+      "ASC 340-10 — prepaid expenses"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Prepaid Expenses report"
+    ],
+    "redFlags": [
+      "Remaining balance on items past their end date",
+      "Monthly amortization not equal to original amount ÷ term"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_accrued_expenses_report_columns": {
+    "purpose": "Defines the accrued expenses report columns — vendor, GL account, accrual period, amount, reversal status and GL comparison — so preparers can separate current-month accruals from stale ones that failed to reverse.",
+    "outcome": "Every line in 2020 Accrued Expenses is classified as current, awaiting reversal, or stale and needing correction.",
+    "rootCause": "The reversal-status and period columns are what reveal accrual hygiene problems: an accrual from three months ago still sitting in 2020 means either the reversal failed or the actual invoice was coded elsewhere, double-counting expense.",
+    "ifSkipped": "Stale accruals accumulate in 2020 Accrued Expenses, overstating liabilities and expenses, and auditors flag unsupported accrued balances.",
+    "glAccounts": [
+      "2020 Accrued Expenses",
+      "6210 Utilities",
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "ASC 450-20 — accruals",
+      "ASC 405-20 — derecognition of settled liabilities"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Accrued Expenses report",
+      "Trial Balance"
+    ],
+    "redFlags": [
+      "Accrual periods older than 60 days",
+      "Reversal status 'not reversed' for prior-month auto-reversing entries"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_fixed_assets_report": {
+    "purpose": "Summarizes fixed asset balances — cost by class, accumulated depreciation, net book value, additions and disposals for the period — for the close package, tied to GL asset accounts.",
+    "outcome": "A fixed asset roll-forward work paper supporting the largest balance on the balance sheet.",
+    "rootCause": "Fixed assets change through capital projects and disposals every month in value-add portfolios. A monthly roll-forward catches capital spend not capitalized and disposals not recorded.",
+    "ifSkipped": "Fixed asset balances drift from the register and year-end requires large corrections.",
+    "glAccounts": [
+      "1520 Buildings",
+      "1530 Building Improvements",
+      "1540 FF&E",
+      "1590 Accumulated Depreciation",
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "ASC 360-10 — property, plant and equipment"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer",
+      "External auditor"
+    ],
+    "reports": [
+      "Fixed asset roll-forward",
+      "Balance Sheet"
+    ],
+    "redFlags": [
+      "Additions in the GL with no register additions",
+      "Negative net book values"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_fixed_assets_report_columns": {
+    "purpose": "Explains the fixed assets report roll-forward columns — beginning cost, additions, disposals, ending cost, beginning accumulated depreciation, depreciation for the period, accumulated depreciation on disposals, ending net book value — by asset class.",
+    "outcome": "Preparers can see which component of the roll-forward is missing, e.g. additions in the GL with no matching additions column, or disposals without accumulated depreciation removed.",
+    "rootCause": "Fixed asset errors show up as a roll-forward that does not foot: capital invoices coded to 1530 without an asset record, or a disposal that removed cost but not accumulated depreciation. The columns are the diagnostic tool.",
+    "ifSkipped": "Roll-forward breaks are not diagnosed and the register drifts further from the GL each month.",
+    "glAccounts": [
+      "1530 Building Improvements",
+      "1540 FF&E",
+      "1590 Accumulated Depreciation",
+      "7110 Depreciation Expense"
+    ],
+    "gaap": [
+      "ASC 360-10-50 — PP&E disclosures (roll-forward)"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Fixed Assets report",
+      "Asset reconciliation report"
+    ],
+    "redFlags": [
+      "Disposals column populated for cost but not for accumulated depreciation",
+      "Depreciation column not equal to the posted depreciation entry"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_other_assets_report": {
+    "purpose": "Reconciles miscellaneous assets that do not fit standard categories — utility deposits held by utility companies, deferred leasing costs, deferred financing costs, deposits on purchases — using a selected GL account group.",
+    "outcome": "Miscellaneous asset balances are supported and reviewed for impairment or write-off.",
+    "rootCause": "Other assets are often recorded once and forgotten (e.g., a utility deposit refunded years ago but never cleared). A periodic review prevents stale balances.",
+    "ifSkipped": "Stale or unsupported other-asset balances persist.",
+    "glAccounts": [
+      "Utility deposits",
+      "Deferred leasing costs",
+      "Deferred financing costs"
+    ],
+    "gaap": [
+      "ASC 340 — other assets and deferred costs",
+      "ASC 835-30 — deferred financing costs"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Other assets schedule"
+    ],
+    "redFlags": [
+      "Other-asset balances unchanged for years"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_other_assets_report_columns": {
+    "purpose": "Defines the columns of the Other Assets report — GL account within the selected account group, balance, and comparison — for miscellaneous assets such as utility deposits, deferred leasing commissions and deferred financing costs.",
+    "outcome": "Preparers know which accounts the report covered and can tie each miscellaneous asset balance to its support.",
+    "rootCause": "The report only covers the G/L account group selected; accounts outside it are silently excluded. Knowing the columns and the group scope prevents a false conclusion that all other assets were reconciled.",
+    "ifSkipped": "Other-asset accounts outside the selected group go unreconciled for months.",
+    "glAccounts": [
+      "Utility deposits",
+      "Deferred leasing costs",
+      "Deferred financing costs"
+    ],
+    "gaap": [
+      "ASC 340-40 — contract costs",
+      "ASC 835-30 — debt issuance costs"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Other Assets report"
+    ],
+    "redFlags": [
+      "Other-asset accounts with balances not in the selected account group"
+    ],
+    "confidence": "medium"
+  },
+  "scr_close_property_tax_report": {
+    "purpose": "Tracks property tax assessments, liability, installments and payments — including jurisdictions that bill in arrears versus in advance — to support the real estate tax accrual or prepaid at period end.",
+    "outcome": "A supported real estate tax accrual or prepaid balance and correct monthly tax expense.",
+    "rootCause": "Real estate taxes are often the largest operating expense. Billing cycles vary by jurisdiction (Texas bills in arrears annually; others in advance semi-annually). Monthly expense must be accrued evenly regardless of payment timing.",
+    "ifSkipped": "Tax expense swings with payment timing, accruals are unsupported, and reassessment increases are not reflected.",
+    "glAccounts": [
+      "6620 Real Estate Taxes",
+      "2020 Accrued Expenses",
+      "1310 Prepaid Expenses",
+      "1330 Tax & Insurance Escrow"
+    ],
+    "gaap": [
+      "ASC 720-30 — real and personal property taxes",
+      "ASC 450-20 — accruals"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Tax department / tax consultant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Property tax schedule",
+      "Accrued Expenses",
+      "Budget vs Actual"
+    ],
+    "redFlags": [
+      "Accrual based on prior-year tax without adjusting for reassessment",
+      "Taxes paid from escrow not recorded"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_property_tax_report_columns": {
+    "purpose": "Explains the property tax columns — assessed value, tax rate, annual liability, installments paid, accrued or prepaid balance — so the preparer can confirm the month's tax expense and the balance-sheet position.",
+    "outcome": "A tax accrual or prepaid balance supported by the assessment and payment history.",
+    "rootCause": "Whether the property needs an accrual or a prepaid depends on the jurisdiction's billing cycle (arrears vs advance). The liability and paid columns show which applies and how large it should be.",
+    "ifSkipped": "Accruals and prepaids are set on the wrong side of the balance sheet, and reassessment increases are missed until the bill arrives.",
+    "glAccounts": [
+      "6620 Real Estate Taxes",
+      "2020 Accrued Expenses",
+      "1310 Prepaid Expenses"
+    ],
+    "gaap": [
+      "ASC 720-30 — real and personal property taxes"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Tax consultant"
+    ],
+    "reports": [
+      "Property Tax report",
+      "Accrued Expenses report"
+    ],
+    "redFlags": [
+      "Annual liability based on the prior-year assessment after a reassessment notice",
+      "Paid column not matching servicer escrow disbursements"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_rent_roll_report": {
+    "purpose": "Includes the rent roll in the close package — each unit with tenant, lease terms, rent, payment status — to support the revenue and occupancy figures in the owner financials.",
+    "outcome": "Rent roll evidence in the package for GPR and occupancy tie-outs.",
+    "rootCause": "Revenue reported to owners must be supported by the rent roll as of month-end; including it in the package freezes the month-end snapshot.",
+    "ifSkipped": "Revenue support is missing from close evidence.",
+    "glAccounts": [
+      "4010 Gross Potential Rent",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 842-30 — lease income"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Rent roll",
+      "GPR tie-out"
+    ],
+    "redFlags": [
+      "Rent roll dated after month-end"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_rent_roll_report_columns": {
+    "purpose": "Defines the rent roll columns — unit, unit type, resident, lease start and end, market rent, lease rent, concessions, balance and status — used in the close package to support revenue and occupancy.",
+    "outcome": "Preparers can compute GPR (sum of market rent), loss to lease (market minus lease rent) and vacancy from the rent roll to tie to the GL.",
+    "rootCause": "The GPR tie-out relies on reading market rent versus lease rent correctly. Confusing the two columns misstates loss to lease, one of the metrics asset managers use to judge pricing.",
+    "ifSkipped": "Loss-to-lease and vacancy loss are miscalculated, and revenue components in the owner package do not tie to the rent roll.",
+    "glAccounts": [
+      "4010 Gross Potential Rent",
+      "Loss to lease",
+      "Vacancy loss",
+      "4040 Concessions"
+    ],
+    "gaap": [
+      "ASC 842-30 — lessor operating lease income"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Rent Roll report",
+      "GPR tie-out"
+    ],
+    "redFlags": [
+      "Market rent blank or zero for vacant units",
+      "Lease rent above market rent without explanation (gain to lease)"
+    ],
+    "confidence": "high"
+  }
+}

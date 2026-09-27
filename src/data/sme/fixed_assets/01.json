@@ -1,0 +1,62 @@
+{
+  "scr_fixed_assets_activating_draft_assets": {
+    "purpose": "Promotes draft asset records — typically created automatically from capitalized A/P invoices or job-cost closeouts (roof replacements, HVAC units, unit-interior renovations, parking-lot resurfacing) — into live assets in the asset register so the system starts generating their depreciation schedules.",
+    "outcome": "Capital spend that was coded to 1410 Construction in Progress or a capital GL line becomes a placed-in-service fixed asset with a useful life, depreciation method and in-service date, and starts depreciating from the correct month.",
+    "rootCause": "In RealPage, capitalized invoices do not become assets automatically; they land as drafts that need a human to confirm the asset class, useful life and placed-in-service date. Asset managers push renovation programs (value-add unit turns at $8K-$15K per unit) that generate hundreds of capital invoices a year, and each must be depreciated from the date it is ready for use, not the invoice date.",
+    "ifSkipped": "Drafts pile up, capital spend sits in CIP or capital accounts without depreciating, 7110 Depreciation Expense is understated, and at year-end the tax preparer and auditor find assets placed in service months earlier with no depreciation — a catch-up entry and possible bonus-depreciation elections missed on the tax return.",
+    "glAccounts": ["1410 Construction in Progress", "1530 Building Improvements", "1540 FF&E", "1590 Accumulated Depreciation", "7110 Depreciation Expense"],
+    "gaap": ["ASC 360-10-35 — depreciation begins when the asset is ready for its intended use", "ASC 360-10-30 — cost basis includes costs to bring the asset to its intended use", "IRC §168 MACRS classes (27.5-year residential rental, 5/7/15-year property) for the tax book"],
+    "stakeholders": ["Offshore property accountant", "Construction / capital projects manager", "Onshore reviewer", "Tax department", "Asset manager"],
+    "reports": ["Fixed asset register", "Depreciation schedule", "Balance Sheet (1530, 1540, 1590)", "Capex budget vs actual", "Tax depreciation report"],
+    "redFlags": ["Draft assets older than one month still unactivated", "Placed-in-service date set to the invoice date for a project that finished later (or earlier)", "Repairs that should have been expensed (routine unit turns, paint, carpet cleaning) activated as assets", "Asset class useful life inconsistent with the owner's capitalization policy"],
+    "confidence": "high"
+  },
+  "scr_fixed_assets_depr": {
+    "purpose": "Calculates and posts the month's depreciation for every active asset — buildings, building improvements, land improvements, appliances and FF&E — from the fixed asset register to the GL, in the GAAP book and, where maintained, the tax book.",
+    "outcome": "A single, reproducible monthly depreciation entry (DR 7110 Depreciation Expense / CR 1590 Accumulated Depreciation) that ties to the asset register and keeps net book value current for the balance sheet.",
+    "rootCause": "Institutional multifamily owners report GAAP financials (and often fair-value or NAREIT FFO reporting) where depreciation is a significant non-cash expense that bridges net income to FFO. Calculating it asset by asset in Excel is error-prone once a property has hundreds of capitalized unit renovations. A controlled monthly run ensures every asset depreciates consistently from its in-service date.",
+    "ifSkipped": "Net income is overstated, the balance sheet overstates net property, the fixed asset register stops tying to the GL, and year-end requires a large catch-up entry that distorts the fourth quarter and draws audit scrutiny.",
+    "glAccounts": ["7110 Depreciation Expense", "1590 Accumulated Depreciation", "1520 Buildings", "1530 Building Improvements", "1540 FF&E"],
+    "gaap": ["ASC 360-10-35-4 — systematic and rational allocation of cost over useful life", "ASC 250-10-45-17 — change in estimated useful life is prospective", "IRC §168 — MACRS 27.5-year straight-line for residential rental property (tax book)"],
+    "stakeholders": ["Offshore property accountant", "Onshore reviewer", "Tax preparer / tax department", "Asset manager", "External auditor"],
+    "reports": ["Income Statement (below-NOI depreciation)", "Balance Sheet (net fixed assets)", "Fixed asset roll-forward", "FFO reconciliation", "Tax depreciation schedule"],
+    "redFlags": ["Depreciation posted to the GL differs from the register's calculated amount", "Depreciation amount unchanged even though assets were added or disposed this month", "Land (non-depreciable) included in a depreciating asset class", "Depreciation posted inside NOI instead of below the NOI line"],
+    "confidence": "high"
+  },
+  "scr_fixed_assets_disposing_or_partially_disposing_of_an_asset": {
+    "purpose": "Removes an asset (or part of it) from the register when it is replaced, destroyed, sold or abandoned — for example an old roof when a new one is installed, appliances replaced during a unit renovation, or fire-damaged components — and records the gain or loss on disposal.",
+    "outcome": "Cost and accumulated depreciation of the retired component are derecognized, remaining depreciation is recalculated, and any loss on disposal is recorded in the correct period.",
+    "rootCause": "Value-add programs continually replace components that are still on the books. If the old roof stays in the register when the new roof is capitalized, the property carries two roofs, overstating assets and depreciation. GAAP requires derecognizing replaced components, and the tax side (partial disposition election under Treas. Reg. §1.168(i)-8) allows deducting the remaining basis of the replaced component — a real tax benefit.",
+    "ifSkipped": "Gross asset and accumulated depreciation balances inflate, depreciation expense is overstated, casualty insurance proceeds are not matched against the written-off basis, and the owner loses partial-disposition tax deductions.",
+    "glAccounts": ["1520 Buildings", "1530 Building Improvements", "1540 FF&E", "1590 Accumulated Depreciation", "7110 Depreciation Expense", "Loss/(Gain) on Disposal of Assets", "Insurance proceeds receivable (casualty)"],
+    "gaap": ["ASC 360-10-40 — derecognition of long-lived assets", "ASC 610-30 — involuntary conversions and insurance recoveries", "Treas. Reg. §1.168(i)-8 — partial disposition election (tax book)"],
+    "stakeholders": ["Offshore property accountant", "Construction / capital projects manager", "Tax department", "Risk management (casualty claims)", "Onshore reviewer"],
+    "reports": ["Fixed asset roll-forward (additions, disposals)", "Income Statement (loss on disposal)", "Tax depreciation schedule", "Casualty loss / insurance recovery schedule"],
+    "redFlags": ["Major replacement capitalized with no corresponding disposal of the old component", "Disposal recorded in a different period from the replacement", "Loss on disposal posted inside operating expenses (inflating opex and deflating NOI)", "Casualty write-off without an offsetting insurance receivable when a claim was filed"],
+    "confidence": "high"
+  },
+  "scr_fixed_assets_post_depreciation": {
+    "purpose": "Runs the depreciation posting for a selected period, books or locations, taking the depreciation schedules RealPage generated from each asset's class and settings and posting the calculated amounts to the GL.",
+    "outcome": "The month's depreciation journal lands in the GL for each property and book, and the asset register's accumulated depreciation and net book value advance by one period.",
+    "rootCause": "Asset schedules are calculated at the asset level but have no financial statement effect until posted. The posting step exists as a separate, deliberate action so the accountant can activate draft assets, record disposals and correct useful lives before the period's depreciation hits the GL — avoiding reversal entries.",
+    "ifSkipped": "The GL misses the month's depreciation entirely; because the posting is period-specific, a skipped month does not fix itself and later requires a catch-up posting that distorts the month it lands in.",
+    "glAccounts": ["7110 Depreciation Expense", "1590 Accumulated Depreciation"],
+    "gaap": ["ASC 360-10-35 — periodic depreciation", "ASC 250 — correcting missed depreciation as an error if material"],
+    "stakeholders": ["Offshore property accountant", "Onshore reviewer", "Tax department"],
+    "reports": ["Depreciation posting journal", "Trial Balance", "Fixed asset register", "Income Statement"],
+    "redFlags": ["Depreciation posted before this month's draft assets were activated", "Tax book posted with GAAP lives or vice versa", "A period skipped between the last posted period and the current one"],
+    "confidence": "high"
+  },
+  "scr_fixed_assets_running_the_asset_reconciliation_report": {
+    "purpose": "Compares the asset subledger (cost and accumulated depreciation by asset class) against the corresponding GL balances so the accountant can prove the fixed asset register and the balance sheet agree at period end.",
+    "outcome": "A signed tie-out between the register and GL accounts 1520/1530/1540 and 1590, with any differences identified (manual JEs to asset accounts, unposted depreciation, disposals not reflected).",
+    "rootCause": "Asset accounts are easily touched outside the Fixed Assets module: an A/P invoice coded straight to 1530 without creating an asset, a manual reclass JE between repairs and capital, or a depreciation adjustment posted by JE. Every such entry breaks the subledger-to-GL tie. Auditors test this reconciliation because fixed assets are usually the largest balance on a multifamily balance sheet.",
+    "ifSkipped": "Differences accumulate silently, the register becomes unreliable for depreciation and disposal decisions, and year-end audit or sale due diligence (where buyers review the asset register for the purchase price allocation) uncovers unsupported balances.",
+    "glAccounts": ["1410 Construction in Progress", "1520 Buildings", "1530 Building Improvements", "1540 FF&E", "1590 Accumulated Depreciation"],
+    "gaap": ["ASC 360-10 — property, plant and equipment carrying amounts", "COSO 2013 — subledger-to-GL reconciliation control"],
+    "stakeholders": ["Offshore property accountant", "Onshore reviewer", "External auditor", "Tax department", "Asset manager"],
+    "reports": ["Asset reconciliation report", "Fixed asset roll-forward", "Balance Sheet", "Year-end audit PBC schedules"],
+    "redFlags": ["Capital invoices posted to asset accounts with no matching asset record", "Manual JEs to 1590 not reflected in the register", "Reconciling differences carried forward without explanation", "CIP balance not moving on completed projects"],
+    "confidence": "high"
+  }
+}

@@ -1,0 +1,1058 @@
+{
+  "scr_budgeting_introduction_to_forecasting_and_planning": {
+    "purpose": "Introduces RealPage Forecasting & Planning — the application for building working budgets, reforecasts and multi-year plans by property and GL account, comparing them to actuals, and publishing approved budgets to the General Ledger for budget-vs-actual reporting.",
+    "outcome": "Accountants understand how a working budget moves from draft to the approved budget that drives BVA reports, variance commentary and spend controls.",
+    "rootCause": "Annual budgets are the owner's operating plan and the yardstick for the management company's performance and incentive fees. Building them in disconnected spreadsheets makes assumptions untraceable and forces manual loading into the GL. A dedicated planning tool keeps budgets, versions and approvals in the system of record.",
+    "ifSkipped": "Budgets live in spreadsheets, versions get confused, and the budget loaded to the GL may not be the one the owner approved.",
+    "glAccounts": [
+      "4010 Gross Potential Rent",
+      "6010 Payroll",
+      "6110 Repairs & Maintenance",
+      "6620 Real Estate Taxes"
+    ],
+    "gaap": [
+      "Management agreement budget approval provisions"
+    ],
+    "stakeholders": [
+      "Property manager",
+      "Regional manager",
+      "Asset manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget",
+      "Budget vs Actual"
+    ],
+    "redFlags": [
+      "Approved budget in the GL differs from the owner-approved file"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_forecasting_and_planning_home_page": {
+    "purpose": "The Forecasting & Planning home page with navigation to working budgets, the workbench, accounts, account groups and budget reports, laid out in the order of the budget cycle.",
+    "outcome": "Users reach each budgeting step (build, compare, approve, publish) from one landing page.",
+    "rootCause": "The budget season (typically September to November) compresses many steps into a few weeks. A task-oriented landing page reduces time lost navigating while deadlines approach.",
+    "ifSkipped": "Users lose time finding budget functions during the busiest weeks of budget season.",
+    "glAccounts": [],
+    "gaap": [
+      "Management agreement budget-delivery deadlines"
+    ],
+    "stakeholders": [
+      "Property manager",
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Budget steps done out of order (publishing before approval)"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_forecasting_and_planning_all_tab": {
+    "purpose": "The All tab listing Forecasting & Planning functions — Workbench, Search & Find (accounts, account groups, budgets), Periodic Tasks (working budgets) and Reports.",
+    "outcome": "All operational budgeting functions reachable from one tab.",
+    "rootCause": "Budgeting work spans account structure, budget versions and comparison reports; grouping them supports moving between them during budget reviews.",
+    "ifSkipped": "Users miss comparison and report tools that would catch budget errors before approval.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — budget review controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget reports"
+    ],
+    "redFlags": [
+      "Budgets approved without running comparison reports"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_forecasting_and_planning_setup_tab": {
+    "purpose": "The Setup tab for Forecasting & Planning configuration — budget models, assumptions, driver settings and permissions used to build working budgets.",
+    "outcome": "Budget building follows company-wide models and assumptions rather than each preparer's own method.",
+    "rootCause": "Consistent assumptions (rent growth, payroll burden, management fee percentage) across properties are what make budgets comparable and defensible to owners. Setup is where those are fixed.",
+    "ifSkipped": "Each property budget uses different methods, and the asset manager cannot compare them.",
+    "glAccounts": [
+      "6510 Management Fees",
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "Management agreement fee percentage provisions"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Budget administrator"
+    ],
+    "reports": [
+      "Budget model configuration"
+    ],
+    "redFlags": [
+      "Management fee assumption differing from the agreement"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_using_forecasting_and_planning": {
+    "purpose": "Overview of using Forecasting & Planning day to day: workbench analysis, account and account group maintenance, budget creation and modification, and reports.",
+    "outcome": "A map of which budgeting tool to use for each task in the cycle.",
+    "rootCause": "Budgeting involves both finance structure (accounts, groups) and plan content (amounts, assumptions); users need to know which area handles which.",
+    "ifSkipped": "Users change account structures when they meant to change budget amounts, or vice versa.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Account structure changes made during budget season without review"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_daily_tasks": {
+    "purpose": "Daily Tasks section within Forecasting & Planning providing quick access to the Trial Balance and General Ledger reports used to pull actuals into budget analysis.",
+    "outcome": "Accountants pull current actuals directly while building or reviewing budgets.",
+    "rootCause": "Budgets are seeded from trailing actuals (T12). Having actuals reports available within planning avoids exporting and re-keying.",
+    "ifSkipped": "Budgets are built on stale or re-keyed actuals.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Trial Balance",
+      "General Ledger report"
+    ],
+    "redFlags": [
+      "Budget seeds based on unreconciled actuals"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_trial_balance_report": {
+    "purpose": "Trial Balance report used within budgeting to view all account balances for a period — typically the year-to-date or trailing-12-month actuals that seed next year's budget.",
+    "outcome": "A verified starting point of actual results for budget assumptions.",
+    "rootCause": "Budgets built on actuals that include unreconciled errors or one-time items carry those errors into the next year's plan. The trial balance is where the accountant confirms the base.",
+    "ifSkipped": "Budget seeds include mis-coded or one-time items, and next year's variances are distorted from day one.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [
+      "Trial Balance",
+      "T12"
+    ],
+    "redFlags": [
+      "One-time items (insurance claims, tax refunds) left in the budget seed"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_customizing_and_running_the_trial_balance_report": {
+    "purpose": "Sets the trial balance parameters — period range, book, entities — for budget seeding and runs it.",
+    "outcome": "A trial balance for exactly the actual period used as budget base.",
+    "rootCause": "Using the accrual book and the full trailing 12 months (not a partial year) gives a representative base; the wrong book or range skews every line of the budget.",
+    "ifSkipped": "Budget base drawn from the wrong book or partial periods.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Trial Balance"
+    ],
+    "redFlags": [
+      "Cash book used for budgeting on an accrual-basis owner"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_trial_balance_report_columns": {
+    "purpose": "Explains trial balance columns — beginning balance, debits, credits, ending balance — and drill-down links to transactions.",
+    "outcome": "Preparers can drill from a balance into the transactions behind it when an amount looks wrong for budgeting.",
+    "rootCause": "Unusual actuals need investigation before becoming budget assumptions; drill-down links allow that directly from the report.",
+    "ifSkipped": "Unusual actuals are budgeted without understanding what caused them.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Trial Balance"
+    ],
+    "redFlags": [
+      "Large debit/credit activity on accounts expected to be stable"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_general_ledger_report": {
+    "purpose": "General Ledger report showing transaction-level detail by account, used during budgeting to understand the drivers of actual costs (vendors, frequency, one-time charges).",
+    "outcome": "Budget lines are built from an understanding of what actually drove the cost, not just the total.",
+    "rootCause": "A repairs line that jumped because of one HVAC failure should not be budgeted at that level again. Transaction detail separates recurring from one-time costs.",
+    "ifSkipped": "One-time costs are budgeted as recurring and vice versa.",
+    "glAccounts": [
+      "6110 Repairs & Maintenance",
+      "6210 Utilities",
+      "6410 Administrative"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [
+      "General Ledger report"
+    ],
+    "redFlags": [
+      "Budget lines based on totals without reviewing detail"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_customizing_and_running_the_general_ledger_report": {
+    "purpose": "Sets GL report parameters — accounts, period, entities, detail level — and runs it for budget analysis.",
+    "outcome": "Transaction detail for the accounts under review.",
+    "rootCause": "Focused GL detail for the accounts being budgeted makes driver analysis practical; full-ledger output is unmanageable.",
+    "ifSkipped": "Driver analysis is skipped because the output is too large.",
+    "glAccounts": [
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "General Ledger report"
+    ],
+    "redFlags": [
+      "Periods not aligned with the budget base"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_general_ledger_report_columns": {
+    "purpose": "Explains GL report columns — date, source, reference, description, vendor or customer, debit, credit and running balance.",
+    "outcome": "Correct reading of transaction detail for budget driver analysis.",
+    "rootCause": "Source and description columns reveal whether a cost came from a recurring contract, a one-time invoice or a reclass JE.",
+    "ifSkipped": "Reclass JEs are mistaken for real costs in the budget base.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "General Ledger report"
+    ],
+    "redFlags": [
+      "Large JEs driving account totals"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_forecasting_and_planning_workbench": {
+    "purpose": "The Forecasting & Planning workbench — a grid of budget and actual amounts by account and period where users analyze, compare and adjust working budgets.",
+    "outcome": "A single workspace to review budget lines against actuals and other versions before approval.",
+    "rootCause": "Budget review is iterative: the regional manager and asset manager push back on lines, and changes must be analyzed quickly against actuals and prior versions.",
+    "ifSkipped": "Budget reviews happen in exported spreadsheets that drift from the system version.",
+    "glAccounts": [
+      "4010 Gross Potential Rent",
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Regional manager",
+      "Asset manager"
+    ],
+    "reports": [
+      "Workbench views"
+    ],
+    "redFlags": [
+      "Budget changes made in exports but not uploaded"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_forecasting_and_planning_workbench_page": {
+    "purpose": "The workbench page layout — filters, the budget grid, column tools and export — for working through budget lines property by property.",
+    "outcome": "Efficient line-by-line budget review in one screen.",
+    "rootCause": "Portfolios with dozens of properties require an efficient review screen to get through hundreds of budget lines in budget season.",
+    "ifSkipped": "Reviews are rushed and lines are missed.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Workbench"
+    ],
+    "redFlags": [
+      "Lines never reviewed before approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_forecasting_and_planning_workbench_filters": {
+    "purpose": "Filters the budget workbench by budget version, property, account group and period, so a reviewer can look at, say, only the payroll group for one property in the regional manager's draft.",
+    "outcome": "Users focus on one property or one account group at a time.",
+    "rootCause": "Reviewers typically go account group by account group (revenue, payroll, R&M, utilities) across properties; filters make that possible.",
+    "ifSkipped": "Reviews are unfocused and inconsistent across properties.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Workbench"
+    ],
+    "redFlags": [
+      "Filters set to the wrong budget version"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_forecasting_and_planning_workbench_list": {
+    "purpose": "The list of budget lines in the workbench showing accounts, periods and amounts for the selected version.",
+    "outcome": "A line-level view for detailed review and edits.",
+    "rootCause": "Budget accuracy is decided line by line; the list is where lines are checked and corrected.",
+    "ifSkipped": "Errors in individual lines go unnoticed until BVA reporting starts.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Workbench"
+    ],
+    "redFlags": [
+      "Lines with annual totals entered in a single month"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_comparing_two_budgets_in_the_workbench": {
+    "purpose": "Compares two budget versions side by side — e.g., the property manager's draft and the regional manager's revision, or this year's budget and next year's.",
+    "outcome": "Every change between versions is visible and can be explained to the asset manager.",
+    "rootCause": "Asset managers ask 'what changed since the last draft?' Showing version differences line by line is faster and more reliable than comparing spreadsheets.",
+    "ifSkipped": "Unexplained changes between drafts erode the owner's trust in the budget.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Regional manager",
+      "Asset manager"
+    ],
+    "reports": [
+      "Budget comparison"
+    ],
+    "redFlags": [
+      "Large unexplained changes between drafts"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_comparing_the_working_budget_with_another_budget_or_with_actuals": {
+    "purpose": "Compares the working budget with another budget or with actuals (e.g., T12 or current-year forecast) to test whether each line is reasonable.",
+    "outcome": "Budget lines are validated against real performance before approval.",
+    "rootCause": "A budget far from recent actuals needs a documented reason (renovation completion, tax reassessment, new contract). The comparison surfaces lines that need justification.",
+    "ifSkipped": "Unrealistic budget lines are approved and produce large variances all year.",
+    "glAccounts": [
+      "4010 Gross Potential Rent",
+      "6210 Utilities",
+      "6620 Real Estate Taxes"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Budget vs actual comparison"
+    ],
+    "redFlags": [
+      "Budget lines varying more than 10% from T12 without explanation"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_workbench_features": {
+    "purpose": "Describes workbench features — column management, grouping, math operators, saved views and export — for budget analysis.",
+    "outcome": "Users know which tools can speed up budget review.",
+    "rootCause": "Budget season is time-constrained; knowing workbench features avoids exporting to Excel for tasks the workbench already does.",
+    "ifSkipped": "Users export and lose the link to the system version.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Workbench"
+    ],
+    "redFlags": [
+      "Frequent exports for simple analysis"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_using_the_columns_tab": {
+    "purpose": "Uses the Columns tab to choose which data columns (budget versions, actuals, variances, periods) appear in the workbench.",
+    "outcome": "The workbench shows exactly the comparison needed, e.g., budget, T12 and variance percentage.",
+    "rootCause": "Different reviews need different columns; a regional review wants variance to T12, an asset manager review wants version-to-version change.",
+    "ifSkipped": "Reviewers work with cluttered or incomplete views.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Workbench"
+    ],
+    "redFlags": [
+      "Variance columns missing from review views"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_grouping_workbench_transactions": {
+    "purpose": "Groups workbench rows by property, account group or category to see subtotals — e.g., total controllable expenses per property.",
+    "outcome": "Budget totals by meaningful categories for review.",
+    "rootCause": "Owners review budgets at category level (controllable opex, NOI) before drilling into lines; grouping produces those views.",
+    "ifSkipped": "Category totals must be computed outside the system.",
+    "glAccounts": [
+      "6010 Payroll",
+      "6110 Repairs & Maintenance",
+      "6310 Marketing"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Workbench"
+    ],
+    "redFlags": [
+      "NOI subtotal including below-the-line items"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_applying_mathematical_operators_to_column_values": {
+    "purpose": "Applies math operators to column values in the workbench — for example increasing all utility lines by 5% or multiplying a unit count by a per-unit cost.",
+    "outcome": "Assumption-driven changes are applied consistently across lines.",
+    "rootCause": "Many budget assumptions are percentage escalators (insurance +15%, payroll +4%). Applying them in bulk keeps the change consistent and traceable.",
+    "ifSkipped": "Escalators are applied line by line with inconsistencies.",
+    "glAccounts": [
+      "6210 Utilities",
+      "6610 Insurance",
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Workbench"
+    ],
+    "redFlags": [
+      "Escalators applied twice"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_rearranging_columns": {
+    "purpose": "Reorders workbench columns to place the comparison of interest next to the budget line — for example budget beside T12 beside variance.",
+    "outcome": "A more readable review layout.",
+    "rootCause": "Reviewers catch errors faster when the numbers being compared sit side by side; a budget column separated from its T12 column by six other columns is how obvious outliers get missed during a rushed budget review.",
+    "ifSkipped": "Reviewers misread comparisons across distant columns.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Workbench"
+    ],
+    "redFlags": [
+      "Views without comparison columns adjacent"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_showing_and_hiding_columns_in_the_workbench": {
+    "purpose": "Shows or hides workbench columns to focus on relevant data during a specific review.",
+    "outcome": "Focused views for each type of review.",
+    "rootCause": "Too many columns obscure the numbers that matter; hiding irrelevant ones speeds review.",
+    "ifSkipped": "Reviews are slower and important variances missed.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Workbench"
+    ],
+    "redFlags": [
+      "Variance columns hidden in approval reviews"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_sorting_columns": {
+    "purpose": "Sorts workbench rows by any column — for instance by variance to T12 descending to see the largest changes first.",
+    "outcome": "Reviewers start with the budget lines that matter most.",
+    "rootCause": "Sorting by variance focuses limited review time on the lines most likely to be challenged by the asset manager.",
+    "ifSkipped": "Large variances are buried among small ones.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Workbench"
+    ],
+    "redFlags": [
+      "Reviews not prioritized by variance size"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_using_column_menus": {
+    "purpose": "Uses column menus in the workbench to sort, filter, group or hide by that column.",
+    "outcome": "Quick column-level operations without leaving the grid.",
+    "rootCause": "Column menus speed up the frequent operations needed during line-by-line budget review.",
+    "ifSkipped": "Reviewers resort to exporting for simple operations.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Workbench"
+    ],
+    "redFlags": [
+      "Filters applied through column menus forgotten and hiding rows"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_saving_a_custom_workbench_view": {
+    "purpose": "Saves the current workbench configuration (columns, filters, grouping) as a named view for reuse — for example 'Regional Review — Controllable Opex'.",
+    "outcome": "Standard review views reused across properties and budget cycles.",
+    "rootCause": "Consistent review views ensure every property's budget is reviewed with the same lens, making results comparable.",
+    "ifSkipped": "Each review uses a different view and results are not comparable.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — consistent review"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Regional manager"
+    ],
+    "reports": [
+      "Saved views"
+    ],
+    "redFlags": [
+      "Saved views referencing old budget versions"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_exporting_from_a_workbench": {
+    "purpose": "Exports workbench data to Excel for offline review or presentation to the asset manager.",
+    "outcome": "Budget data shared in the format owners typically review.",
+    "rootCause": "Asset managers often review budgets in Excel; exports must be clearly labeled with version and date to avoid confusion with later changes.",
+    "ifSkipped": "Budget data is shared by screenshots or re-keyed.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — version control"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Workbench export"
+    ],
+    "redFlags": [
+      "Exports without version labels"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_search_and_find": {
+    "purpose": "Search & Find section for budgeting — accounts, accounts with budgets, accounts with categories, account groups and account group managers.",
+    "outcome": "The account structure behind budgets can be found and maintained.",
+    "rootCause": "Budgets are only as good as the account structure they are built on; missing accounts or groupings produce incomplete budgets.",
+    "ifSkipped": "Budgets omit accounts that later receive actual costs.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Budget administrator"
+    ],
+    "reports": [
+      "Accounts list"
+    ],
+    "redFlags": [
+      "Accounts with actuals but no budget"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_accounts": {
+    "purpose": "Explains GL accounts as the level at which transactions are recorded and budgets are set.",
+    "outcome": "Users understand that each budget line maps to a GL account.",
+    "rootCause": "Budget-vs-actual only works when budgets and actuals share the same accounts; understanding that link prevents budgeting to summary accounts that never receive actuals.",
+    "ifSkipped": "Budgets are loaded to accounts that do not receive actuals and BVA is meaningless.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Accounts list"
+    ],
+    "redFlags": [
+      "Budget amounts on header or summary accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_accounts_with_budgets": {
+    "purpose": "Lists the GL accounts that carry budget amounts for the selected budget, so the accountant can confirm every account that normally receives actual costs has been budgeted.",
+    "outcome": "Gaps in budget coverage are visible.",
+    "rootCause": "Accounts that routinely receive actual costs but have no budget produce 100% variances and questions from the asset manager.",
+    "ifSkipped": "Budget gaps surface only when BVA reports show unbudgeted spend.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Accounts with budgets"
+    ],
+    "redFlags": [
+      "Active expense accounts missing from the list"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_accounts_with_categories": {
+    "purpose": "Lists accounts with their budget categories (e.g., controllable, non-controllable, capital) used in budget analysis and reporting.",
+    "outcome": "Accounts are correctly categorized for budget views such as controllable opex.",
+    "rootCause": "Property managers are typically evaluated on controllable expenses; misclassification rewards or penalizes them unfairly and distorts incentive calculations.",
+    "ifSkipped": "Controllable-expense reporting is wrong.",
+    "glAccounts": [
+      "6010 Payroll",
+      "6110 Repairs & Maintenance",
+      "6620 Real Estate Taxes",
+      "6610 Insurance"
+    ],
+    "gaap": [
+      "Management agreement incentive fee provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Controllable expense reports"
+    ],
+    "redFlags": [
+      "Taxes or insurance categorized as controllable"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_the_list_of_g_l_accounts": {
+    "purpose": "Views the chart of accounts used for budgeting, with account types and statuses.",
+    "outcome": "Users confirm the accounts available for budget lines.",
+    "rootCause": "Budgeting to inactive or wrong-type accounts produces lines that never match actuals.",
+    "ifSkipped": "Budget lines are placed on inactive accounts.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Accounts list"
+    ],
+    "redFlags": [
+      "Budget lines on inactive accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_accounts_list": {
+    "purpose": "The General Ledger Accounts list, reached from budgeting, used to add and manage GL accounts that budgets and actuals share.",
+    "outcome": "The chart of accounts is maintained as the backbone for both actuals and budgets.",
+    "rootCause": "When owners introduce new reporting lines (e.g., separate EV charging income), accounts must be added before budgets or actuals can use them.",
+    "ifSkipped": "New owner reporting requirements cannot be budgeted or tracked.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013 — chart of accounts control"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Budget administrator"
+    ],
+    "reports": [
+      "Accounts list"
+    ],
+    "redFlags": [
+      "Accounts added without mapping to owner reporting"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_a_g_l_account": {
+    "purpose": "Adds a GL account, selecting chart types, account type and normal balance, so it can receive budgets and actuals.",
+    "outcome": "A new account ready for budgeting and posting.",
+    "rootCause": "New revenue streams or cost categories need accounts before they can be budgeted; wrong type or normal balance breaks financial statement presentation.",
+    "ifSkipped": "New items are forced into existing accounts, obscuring reporting.",
+    "glAccounts": [
+      "4100 Other Income",
+      "6410 Administrative"
+    ],
+    "gaap": [
+      "ASC 205 — financial statement presentation"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Accounts list"
+    ],
+    "redFlags": [
+      "Income accounts created with debit normal balance"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_mapping_reporting_accounts_to_g_l_accounts": {
+    "purpose": "Maps property GL accounts to owner reporting accounts, so budgets and actuals roll up into each owner's chart of accounts.",
+    "outcome": "Budgets and BVA reports presented in the owner's own account structure.",
+    "rootCause": "Institutional owners each have their own chart of accounts; the management company must report in it. Mapping translates property accounts into owner reporting lines.",
+    "ifSkipped": "Owner reports require manual re-mapping and budgets do not match the owner's format.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "Owner reporting requirements"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Asset manager"
+    ],
+    "reports": [
+      "Owner-format BVA"
+    ],
+    "redFlags": [
+      "Unmapped accounts with balances"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_and_editing_accounts": {
+    "purpose": "Views or edits a GL account's details — description, type, categories, mappings.",
+    "outcome": "Account attributes stay correct for budgeting and reporting.",
+    "rootCause": "Changing an account's category or mapping affects every budget and report that uses it; edits must be deliberate.",
+    "ifSkipped": "Accounts carry wrong categories and reports misclassify amounts.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013 — change control"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Accounts list"
+    ],
+    "redFlags": [
+      "Account edits during budget season without notice"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_inactivating_or_deleting_an_account": {
+    "purpose": "Inactivates or deletes a GL account no longer used; accounts with history should be inactivated, not deleted.",
+    "outcome": "Obsolete accounts stop receiving budgets and postings while history is preserved.",
+    "rootCause": "Leaving obsolete accounts active invites mis-coding; deleting accounts with history would break prior reports.",
+    "ifSkipped": "Postings and budgets land on obsolete accounts.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Accounts list"
+    ],
+    "redFlags": [
+      "Inactivated accounts that still have budget amounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_and_printing_account_information": {
+    "purpose": "Views and prints the chart of accounts with account numbers, descriptions, types and categories, for owner documentation, audit requests or onboarding new offshore staff to coding.",
+    "outcome": "Chart of accounts documentation for owners, auditors or onboarding.",
+    "rootCause": "Owners and auditors request chart of accounts listings to understand reporting; new staff need them to code correctly.",
+    "ifSkipped": "Coding errors increase due to poor chart understanding.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "External auditor"
+    ],
+    "reports": [
+      "Chart of accounts listing"
+    ],
+    "redFlags": [
+      "Printed listings out of date"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_specifying_different_default_accounts_by_property": {
+    "purpose": "Sets property-specific default accounts where one property uses a different account for a common item than the rest of the portfolio.",
+    "outcome": "Transactions and budgets default to the right account for each property.",
+    "rootCause": "Owners sometimes require unique accounts for certain properties (e.g., a JV partner's reporting). Defaults prevent mis-coding.",
+    "ifSkipped": "Transactions post to company defaults that are wrong for that property.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "Owner reporting requirements"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Accounts list"
+    ],
+    "redFlags": [
+      "Defaults inconsistent with the property's owner chart"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_account_groups": {
+    "purpose": "Explains account groups — named collections of GL accounts (e.g., Total Revenue, Controllable Expenses, NOI) — used to build budgets, reports and performance cards.",
+    "outcome": "Users understand that every subtotal in budget and financial reports comes from account groups.",
+    "rootCause": "Consistent definitions of NOI, controllable expenses and revenue across properties require shared account groups; ad hoc subtotals produce different NOI numbers for the same property.",
+    "ifSkipped": "Reports and budgets compute NOI differently.",
+    "glAccounts": [
+      "4010 Gross Potential Rent",
+      "6010 Payroll",
+      "7010 Interest Expense"
+    ],
+    "gaap": [
+      "NAREIT / owner NOI definitions"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Asset manager"
+    ],
+    "reports": [
+      "Financial reports",
+      "Budget reports"
+    ],
+    "redFlags": [
+      "Multiple NOI account groups with different members"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_account_groups_overview": {
+    "purpose": "Overview of account groups as the fundamental building blocks of financial reports, graphs and performance cards.",
+    "outcome": "Users see how groups feed every report.",
+    "rootCause": "Changes to an account group change every report built on it; understanding that dependency prevents unintended report changes.",
+    "ifSkipped": "Group edits unexpectedly change owner reports.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Financial reports"
+    ],
+    "redFlags": [
+      "Group edits without impact review"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_reusable_building_blocks": {
+    "purpose": "Explains that account groups are reusable — one 'Total Operating Expenses' group feeds income statements, budget reports and charts.",
+    "outcome": "Consistency: the same definition used everywhere.",
+    "rootCause": "Defining subtotals once and reusing them guarantees the BVA report and the income statement show the same totals.",
+    "ifSkipped": "Duplicated definitions drift and totals differ across reports.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Financial reports"
+    ],
+    "redFlags": [
+      "Duplicated groups with similar names"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_role_in_financial_reports_graphs_and_performance_cards": {
+    "purpose": "Describes how account groups drive financial report rows, graph series and performance card metrics.",
+    "outcome": "Users can trace any report figure back to its account group.",
+    "rootCause": "When an asset manager questions a figure, the accountant must trace it to the group and then to accounts.",
+    "ifSkipped": "Figures on owner reports and performance cards cannot be explained when the asset manager questions them.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Financial reports",
+      "Performance cards"
+    ],
+    "redFlags": [
+      "Performance cards using different groups than the income statement"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_account_groups_and_the_calculation_method": {
+    "purpose": "Explains how account groups calculate — for the period, year-to-date, or balance as of a date — which matters for income versus balance sheet groups.",
+    "outcome": "Groups compute the right figures for their purpose.",
+    "rootCause": "Income statement groups need period or YTD activity; balance sheet groups need point-in-time balances. The wrong method produces wrong totals.",
+    "ifSkipped": "Balance sheet groups show activity instead of balances.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "4010 Gross Potential Rent"
+    ],
+    "gaap": [
+      "ASC 205 — financial statement basis"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Financial reports"
+    ],
+    "redFlags": [
+      "Balance sheet groups set to period activity"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_organize_accounts_and_create_hierarchy": {
+    "purpose": "Organizes accounts into a hierarchy of groups (accounts > categories > totals > NOI > net income) for structured reporting.",
+    "outcome": "A clear hierarchy producing subtotals owners expect.",
+    "rootCause": "Owner reports follow a standard hierarchy (revenue, operating expenses, NOI, below-the-line); the group hierarchy mirrors it.",
+    "ifSkipped": "Reports lack the revenue, operating expense and NOI subtotals owners expect, and NOI is computed by hand.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "Owner reporting conventions"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Financial reports"
+    ],
+    "redFlags": [
+      "Below-NOI items inside the NOI hierarchy"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_types_of_account_groups": {
+    "purpose": "Describes the types of account groups — simple lists of accounts, groups of groups, and computation groups (formulas such as NOI = Revenue − Opex).",
+    "outcome": "Users choose the right type for each subtotal.",
+    "rootCause": "Computed metrics (NOI margin, expense per unit) require computation groups; building them as lists produces wrong results.",
+    "ifSkipped": "Computed metrics such as NOI margin or expense per unit come out wrong on reports and performance cards.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Financial reports"
+    ],
+    "redFlags": [
+      "Ratios built as simple sums"
+    ],
+    "confidence": "high"
+  }
+}

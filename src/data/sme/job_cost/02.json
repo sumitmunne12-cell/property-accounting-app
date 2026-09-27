@@ -1,0 +1,1054 @@
+{
+  "scr_jobcost_job_cost_and_reserves": {
+    "purpose": "The Job Cost & Reserves application, which tracks capital projects (jobs) against their budgets, commitments (POs and subcontracts) and actual costs, and manages draws from construction lenders, equity partners and lender-held replacement reserves.",
+    "outcome": "Every capital project — roof replacement, unit renovation program, amenity upgrade, ground-up construction — has a live budget-vs-committed-vs-spent position and a documented funding trail.",
+    "rootCause": "Capital spending in multifamily is large, multi-period and funded from several sources (operating cash, reserves, loan draws, equity). Owners and lenders need to know at any moment how much of each project is committed and spent and who is paying for it; GL accounts alone cannot show that.",
+    "ifSkipped": "Capital projects overrun without warning, reserve reimbursements are missed, and lenders reject draws because costs cannot be traced to approved budgets.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "1530 Building Improvements",
+      "1340 Replacement Reserve Escrow",
+      "2015 Retainage Payable",
+      "2210 Mortgage/Construction Loan Payable"
+    ],
+    "gaap": [
+      "ASC 360-10-30 — capitalized costs",
+      "ASC 835-20 — capitalized interest during construction",
+      "Loan agreement draw and reserve provisions"
+    ],
+    "stakeholders": [
+      "Construction / capital projects manager",
+      "Offshore property accountant",
+      "Asset manager",
+      "Construction lender / loan servicer"
+    ],
+    "reports": [
+      "Job status inquiry",
+      "Draw package",
+      "Replacement reserve status",
+      "Capex budget vs actual"
+    ],
+    "redFlags": [
+      "Capital invoices posted without a job",
+      "Jobs with costs exceeding budget and no change order"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_introduction_to_job_cost_and_reserves": {
+    "purpose": "Introduces how Job Cost & Reserves fits into the Financial Suite: jobs and job segments hold budgets, Spend Management creates commitments, A/P invoices post actual costs to jobs, and the Draw Workbench packages costs for funding.",
+    "outcome": "Accountants understand the flow from project budget to draw before handling live capital projects.",
+    "rootCause": "Capital project accounting spans several modules; errors happen at the hand-offs (an invoice without a job code, a PO without a segment). Understanding the flow prevents those gaps.",
+    "ifSkipped": "Costs are coded outside jobs and cannot be drawn or reported by project.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "ASC 360-10"
+    ],
+    "stakeholders": [
+      "New offshore accountants",
+      "Construction manager"
+    ],
+    "reports": [
+      "Job status inquiry"
+    ],
+    "redFlags": [
+      "Capital invoices without job coding"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_job_cost_and_reserves_overview": {
+    "purpose": "Overview of job cost concepts — jobs, segments (cost codes), budgets, change orders, commitments, cost to date, funding sources and draws — and how they relate.",
+    "outcome": "A shared vocabulary for project accounting with construction managers and lenders.",
+    "rootCause": "Construction managers speak in cost codes, commitments and change orders; accountants must map those to system objects to track projects correctly.",
+    "ifSkipped": "Accounting and construction teams talk past each other and project reports disagree.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "ASC 360-10"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Construction manager"
+    ],
+    "reports": [
+      "Job status inquiry"
+    ],
+    "redFlags": [
+      "Project cost codes that do not map to job segments"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_job_cost_and_reserves_permissions": {
+    "purpose": "Defines permissions for job cost functions — creating jobs, editing budgets, approving change orders, creating and approving draws.",
+    "outcome": "Budget changes and draws require appropriately authorized users.",
+    "rootCause": "Increasing a job budget or requesting a draw commits owner or lender money; these actions need restricted, segregated permissions.",
+    "ifSkipped": "Budgets are raised and draws requested by unauthorized users.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013 — segregation of duties"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Construction manager"
+    ],
+    "reports": [
+      "User permissions"
+    ],
+    "redFlags": [
+      "The same user creating and approving budget change orders"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_job_cost_and_reserves_home_page": {
+    "purpose": "The Job Cost & Reserves home page with navigation to jobs, draws, inquiries, commitments and setup.",
+    "outcome": "Quick access to the main project accounting tasks.",
+    "rootCause": "Project accountants move between job status, draws and commitments daily; a task-oriented landing page keeps that efficient.",
+    "ifSkipped": "Users lose time navigating during draw deadlines.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Draw deadlines missed due to navigation delays"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_job_cost_and_reserves_all_tab": {
+    "purpose": "The All tab listing Search & Find (jobs, activity, segment budgets, subcontracts, draws), Daily Tasks (job status, funding source and reserve inquiries) and reports.",
+    "outcome": "All operational job cost functions reachable in one tab.",
+    "rootCause": "Project accounting routines (weekly job status review, monthly draws) span several functions; grouping them supports those routines.",
+    "ifSkipped": "Routine reviews like job status are skipped.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Job status inquiry"
+    ],
+    "redFlags": [
+      "No regular job status review"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_job_cost_and_reserves_setup_tab": {
+    "purpose": "The Setup tab for Job Cost & Reserves configuration — job types, segments (cost codes), funding sources, draw settings and approval policies.",
+    "outcome": "Project accounting structures defined consistently across jobs.",
+    "rootCause": "Standard cost codes and funding sources let the company compare projects and produce lender-ready draws; without setup, each job invents its own structure.",
+    "ifSkipped": "Jobs use inconsistent cost codes and draws must be restructured for each lender.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Construction manager"
+    ],
+    "reports": [
+      "Setup lists"
+    ],
+    "redFlags": [
+      "Cost codes not aligned with lender draw categories"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_using_job_cost_and_reserves": {
+    "purpose": "Section on operating Job Cost & Reserves — jobs, draws, activity, segment budgets, POs, subcontracts, inquiries and approvals.",
+    "outcome": "A map of daily and monthly project accounting tasks.",
+    "rootCause": "Project accounting has many moving parts; a structured guide keeps offshore teams consistent across projects.",
+    "ifSkipped": "Project accounting is handled inconsistently across properties.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Projects tracked outside the system"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_jobs": {
+    "purpose": "Explains jobs — the project records (e.g., '2026 Roof Replacement Bldg 4', 'Unit Interior Renovations Phase 2') that capital costs are charged to and budgets tracked against.",
+    "outcome": "Each capital project has a record to hold its budget, costs and funding.",
+    "rootCause": "Without a job, capital costs are just amounts in 1530 or CIP; the job is what ties costs to a project budget, a funding source and a placed-in-service date.",
+    "ifSkipped": "Project budgets cannot be tracked and costs cannot be drawn by project.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "1530 Building Improvements"
+    ],
+    "gaap": [
+      "ASC 360-10-30"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Jobs list"
+    ],
+    "redFlags": [
+      "Capital work performed without a job"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_jobs_list": {
+    "purpose": "Lists jobs with status, budget, committed and actual amounts, and actions to add, edit, view, delete and manage budgets.",
+    "outcome": "A portfolio view of capital projects and their financial status.",
+    "rootCause": "Asset managers review capital programs across properties; the list shows which projects are over budget or stalled.",
+    "ifSkipped": "Over-budget or stalled projects are noticed late.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Asset manager"
+    ],
+    "reports": [
+      "Jobs list"
+    ],
+    "redFlags": [
+      "Completed jobs still open",
+      "Jobs over budget"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_job": {
+    "purpose": "Creates a job with its general information — property, description, type (capex, replacement reserve, construction), dates, manager — and prepares it for budgets and costs.",
+    "outcome": "A project record ready to receive budget, commitments and costs.",
+    "rootCause": "Jobs should be created when the project is approved, before any commitment, so every PO, invoice and draw can reference them.",
+    "ifSkipped": "Early project costs are coded elsewhere and must be reclassified later.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "ASC 360-10"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Jobs list"
+    ],
+    "redFlags": [
+      "Jobs created after invoices already posted"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_editing_a_job": {
+    "purpose": "Edits a job's information and tabs — status (active, on hold, complete), dates, project manager, funding sources — as the capital project moves through its life cycle.",
+    "outcome": "Job records reflect current project status.",
+    "rootCause": "Project status (active, complete) drives capitalization timing and whether costs can still post; it must be kept current.",
+    "ifSkipped": "Completed jobs keep receiving costs and assets are placed in service late.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "1530 Building Improvements"
+    ],
+    "gaap": [
+      "ASC 360-10-35 — placed in service"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Jobs list"
+    ],
+    "redFlags": [
+      "Status not updated on completion"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_a_job": {
+    "purpose": "Opens a job's information page to review its details, budgets by segment, commitments, costs and funding sources in one place — typically while preparing a draw or answering a lender question.",
+    "outcome": "A complete picture of one project.",
+    "rootCause": "Draw preparation and lender questions require quick access to a job's full detail.",
+    "ifSkipped": "Lender questions take longer to answer and draws are delayed.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Job information"
+    ],
+    "redFlags": [
+      "Jobs without a budget"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_deleting_a_job": {
+    "purpose": "Deletes a job record that was created in error (for example a duplicate of an existing roof project) and has no costs, commitments or draws attached.",
+    "outcome": "Erroneous project records removed.",
+    "rootCause": "Duplicate jobs split costs and budgets between two records; deleting unused duplicates keeps project tracking clean.",
+    "ifSkipped": "Costs split across duplicate jobs and budgets appear under-spent.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Jobs list"
+    ],
+    "redFlags": [
+      "Deleting jobs with activity"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_job_name_budgets_list": {
+    "purpose": "Lists a job's budgets by segment (cost code) — original budget, approved change orders, revised budget.",
+    "outcome": "The approved spending plan for each cost code of the project.",
+    "rootCause": "Projects are controlled at cost-code level (demolition, roofing, electrical); budgets by segment show where the project is over or under.",
+    "ifSkipped": "Overruns are hidden in the total and discovered only at completion.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Job budgets"
+    ],
+    "redFlags": [
+      "Revised budget exceeding the owner-approved amount"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_importing_a_job_budget": {
+    "purpose": "Imports a job's budget by segment from a template — typically the contractor's schedule of values or the owner-approved project budget.",
+    "outcome": "Detailed project budgets loaded accurately.",
+    "rootCause": "Project budgets often have dozens of cost codes; importing avoids keying errors that would distort cost-to-complete.",
+    "ifSkipped": "Budgets keyed with errors and cost-to-complete is wrong.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Job budgets"
+    ],
+    "redFlags": [
+      "Imported total not equal to approved project budget"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_budget_by_month_page": {
+    "purpose": "Spreads a job's budget across months — the planned spending curve — for cash planning and draw forecasting.",
+    "outcome": "A monthly spend forecast for the project.",
+    "rootCause": "Owners and lenders fund projects over time; monthly budgets forecast when draws and capital calls will be needed.",
+    "ifSkipped": "Funding needs are surprises and draws are requested late.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Asset manager"
+    ],
+    "reports": [
+      "Job budgets by month"
+    ],
+    "redFlags": [
+      "All budget in one month"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_importing_job_budgets_by_month": {
+    "purpose": "Imports monthly budget spreads for one or many jobs from a template, loading the planned spending curve used to forecast draws and capital calls.",
+    "outcome": "Monthly spend curves loaded for many jobs at once.",
+    "rootCause": "Capital programs with many jobs need monthly curves for funding plans; importing them is far faster than manual entry.",
+    "ifSkipped": "Monthly curves are missing and funding cannot be forecast.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Job budgets by month"
+    ],
+    "redFlags": [
+      "Monthly totals not matching job budget totals"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_draw_workbench": {
+    "purpose": "Explains the Draw Workbench — where job cost draws (construction loan, equity) and replacement reserve draws are created, populated with paid costs and tracked to funding.",
+    "outcome": "Draws are assembled from system costs rather than spreadsheets.",
+    "rootCause": "Lenders reject draws that cannot be traced to paid invoices and approved budgets; building draws in the system keeps that trace.",
+    "ifSkipped": "Draws are assembled manually with errors and duplicates.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "2210 Mortgage/Construction Loan Payable",
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Loan agreement draw provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Lender / servicer"
+    ],
+    "reports": [
+      "Draw register"
+    ],
+    "redFlags": [
+      "Draws prepared outside the system"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_draw_workbench_page": {
+    "purpose": "The Draw Workbench page listing draws by job or reserve with status (open, submitted, funded), amounts and actions.",
+    "outcome": "A tracker of every draw and its funding status.",
+    "rootCause": "Unfunded submitted draws represent money owed to the property; tracking them ensures follow-up with the lender.",
+    "ifSkipped": "Submitted draws go unfunded without follow-up.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Loan agreement draw provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Draw register"
+    ],
+    "redFlags": [
+      "Draws submitted more than 30 days without funding"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_filtering_the_draw_workbench": {
+    "purpose": "Filters the Draw Workbench by property, job, draw type (job cost or replacement reserve) and status (open, submitted, funded) to produce the working list for a lender or servicer follow-up.",
+    "outcome": "Focused views, such as all open reserve draws for a lender.",
+    "rootCause": "Draw follow-up is done lender by lender; filtering produces the list for each call with the servicer.",
+    "ifSkipped": "Lender follow-up misses submitted draws and reimbursements owed to the property go uncollected.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw register"
+    ],
+    "redFlags": [
+      "Filters hiding funded-but-unrecorded draws"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_importing_job_cost_or_replacement_reserve_draws": {
+    "purpose": "Imports multiple job cost or replacement reserve draws from a CSV template — used when migrating an existing capital program into RealPage or loading many small reserve draws at once.",
+    "outcome": "Many draws created at once, for example during migration of an existing capital program.",
+    "rootCause": "Migrating projects or processing many small reserve draws is impractical one by one.",
+    "ifSkipped": "Draw history is incomplete after migration.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Imported draws duplicating existing ones"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_or_editing_a_draw": {
+    "purpose": "Opens a draw to review or edit its items, amounts, status and attachments — adjusting it for lender feedback before submission and recording funding once received.",
+    "outcome": "Draws are corrected before submission and updated when funded.",
+    "rootCause": "Draws change between preparation and submission (lender feedback, rejected items); edits keep the draw record accurate.",
+    "ifSkipped": "The draw record differs from what was submitted and funded.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement draw provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw detail"
+    ],
+    "redFlags": [
+      "Edits after funding"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_managing_draw_activity_and_allocations": {
+    "purpose": "Explains draw activity — how paid costs are added to draws and allocated across funding sources (lender, equity, reserve) by percent or amount.",
+    "outcome": "Each dollar of cost is assigned to the source that funds it.",
+    "rootCause": "Projects are often funded by multiple sources in set ratios (e.g., 70% loan, 30% equity); allocation ensures each source is drawn correctly.",
+    "ifSkipped": "Funding sources are over- or under-drawn.",
+    "glAccounts": [
+      "2210 Mortgage/Construction Loan Payable",
+      "3010 Partners' Capital",
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement funding ratios",
+      "Operating agreement capital contributions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Funding source inquiry"
+    ],
+    "redFlags": [
+      "Allocations inconsistent with loan agreement ratios"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_single_source_job_cost_draw_activity": {
+    "purpose": "Adds costs to a draw funded by one source — for example a replacement reserve draw fully reimbursed by the servicer.",
+    "outcome": "Draw populated with paid costs for a single funder.",
+    "rootCause": "Reserve draws typically have one funder; adding activity directly is the simplest path.",
+    "ifSkipped": "Paid, qualifying capital costs are never claimed and the property absorbs costs the reserve should have funded.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw detail"
+    ],
+    "redFlags": [
+      "Unpaid invoices added to reimbursement draws"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_multiple_source_job_cost_draw_activity": {
+    "purpose": "Adds paid costs to a draw that is funded by more than one source — for example a renovation funded partly by the construction loan and partly by equity — splitting each item among the sources.",
+    "outcome": "Costs allocated across lender, equity and other sources in one draw.",
+    "rootCause": "Construction and major renovations are commonly funded by loan and equity together; draws must show each source's share.",
+    "ifSkipped": "One funding source pays more than its share, and the imbalance surfaces in the lender's or partner's reconciliation.",
+    "glAccounts": [
+      "2210 Mortgage/Construction Loan Payable",
+      "3010 Partners' Capital"
+    ],
+    "gaap": [
+      "Loan agreement funding ratios"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Draw detail",
+      "Funding source inquiry"
+    ],
+    "redFlags": [
+      "Allocations not summing to 100%"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_job_cost_draw_activity_allocated_by_percent": {
+    "purpose": "Allocates draw activity across funding sources by percentage, e.g., 65% loan / 35% equity.",
+    "outcome": "Consistent percentage splits across draw items.",
+    "rootCause": "Many loan agreements fix funding ratios; percent allocation applies them uniformly.",
+    "ifSkipped": "Ratios drift across draws and the lender challenges the draw.",
+    "glAccounts": [
+      "2210 Mortgage/Construction Loan Payable",
+      "3010 Partners' Capital"
+    ],
+    "gaap": [
+      "Loan agreement funding ratios"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw detail"
+    ],
+    "redFlags": [
+      "Percentages differing from the loan agreement"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_job_cost_draw_activity_allocated_by_amount": {
+    "purpose": "Allocates draw activity across funding sources by specific amounts, used when a source covers particular items (e.g., equity pays soft costs).",
+    "outcome": "Item-specific funding recorded precisely.",
+    "rootCause": "Some agreements assign particular costs to particular sources; amount allocation captures that.",
+    "ifSkipped": "Sources fund items they are not responsible for.",
+    "glAccounts": [
+      "2210 Mortgage/Construction Loan Payable",
+      "3010 Partners' Capital"
+    ],
+    "gaap": [
+      "Loan agreement provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw detail"
+    ],
+    "redFlags": [
+      "Amount allocations not tied to agreement terms"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_reversing_draw_activity": {
+    "purpose": "Reverses draw activity — removing costs from a draw after the lender rejects them or they were added in error.",
+    "outcome": "Draws contain only accepted, eligible costs.",
+    "rootCause": "Lenders routinely reject some items (missing lien waivers, ineligible costs); the draw record must reflect what was actually funded.",
+    "ifSkipped": "Rejected costs appear as funded and are never resubmitted.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement draw provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw detail"
+    ],
+    "redFlags": [
+      "Rejected items not resubmitted in later draws"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_invoice_attachments_in_draw_items": {
+    "purpose": "Views the invoice images and supporting documents attached to each draw item, to confirm the draw package has every invoice the lender or servicer requires before it is submitted.",
+    "outcome": "Draw packages include the invoices lenders require.",
+    "rootCause": "Lenders and servicers require invoice copies for each reimbursed item; checking attachments before submission prevents rejections.",
+    "ifSkipped": "Draws are rejected for missing invoice support and reimbursement is delayed by weeks.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement documentation requirements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw package"
+    ],
+    "redFlags": [
+      "Draw items without invoice images"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_activity": {
+    "purpose": "Explains job cost activity — the transactions (invoices, JEs, commitments) posted to jobs.",
+    "outcome": "Users understand where job costs come from.",
+    "rootCause": "Job cost-to-date is only as good as the transactions coded to the job; understanding activity helps spot mis-coded costs.",
+    "ifSkipped": "Mis-coded costs distort job cost-to-date.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Job cost activity"
+    ],
+    "redFlags": [
+      "Operating repairs coded to capital jobs"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_job_cost_activity_list": {
+    "purpose": "Lists every transaction posted to jobs — A/P invoices, journal entries and commitments — with source, vendor, amount, job and segment, forming the detail behind each job's cost-to-date.",
+    "outcome": "Transaction detail behind each job's cost-to-date.",
+    "rootCause": "Draw preparation, lender questions and capital additions audits all require the transaction detail behind a job's cost-to-date; totals alone cannot show whether costs are eligible or correctly coded.",
+    "ifSkipped": "Job costs cannot be supported in draws or audits.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "AU-C 500 — capital additions testing"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "External auditor"
+    ],
+    "reports": [
+      "Job cost activity"
+    ],
+    "redFlags": [
+      "Activity without segment coding"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_job_segment_budgets": {
+    "purpose": "Explains job segment budgets — budgets by cost code within a job, the level at which projects are controlled.",
+    "outcome": "Projects controlled at cost-code level.",
+    "rootCause": "Overruns in one trade (e.g., electrical) are hidden if only the total budget is tracked.",
+    "ifSkipped": "Trade-level overruns stay hidden inside the job total until the project closes over budget.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job segment budgets"
+    ],
+    "redFlags": [
+      "Segments without budgets"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_job_segment_budgets_list": {
+    "purpose": "Lists segment budgets for jobs with original, change orders and revised amounts.",
+    "outcome": "Cost-code budgets visible for review.",
+    "rootCause": "Change order history by cost code explains why budgets moved — key for lender and owner reporting.",
+    "ifSkipped": "Budget changes cannot be explained by trade.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job segment budgets"
+    ],
+    "redFlags": [
+      "Revised budgets without change orders"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_job_segment_budget": {
+    "purpose": "Adds a budget for one cost code (segment) on a job — for example $180,000 for roofing or $45,000 for electrical — so commitments and costs for that trade can be controlled.",
+    "outcome": "Cost-code budget available for control and draws.",
+    "rootCause": "Every cost code that will receive costs needs a budget, or commitments and costs have nothing to be measured against.",
+    "ifSkipped": "Costs post to codes with no budget, showing infinite overruns.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job segment budgets"
+    ],
+    "redFlags": [
+      "Budgets added after costs posted"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_importing_a_job_segment_budget": {
+    "purpose": "Imports segment budgets from a template, such as a contractor's schedule of values.",
+    "outcome": "Detailed cost-code budgets loaded accurately.",
+    "rootCause": "A contractor's schedule of values can contain dozens of cost-code lines. Importing it reproduces the contract exactly, whereas re-keying introduces errors that distort cost-to-complete by trade.",
+    "ifSkipped": "Segment budgets are keyed with errors and cost-to-complete forecasts are wrong.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Job segment budgets"
+    ],
+    "redFlags": [
+      "Import total different from contract value"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_editing_a_job_segment_budget": {
+    "purpose": "Edits a segment budget; approved scope changes should go through change orders rather than direct edits.",
+    "outcome": "Budget corrections applied with appropriate control.",
+    "rootCause": "Direct budget edits hide scope changes that owners and lenders need to approve; change orders preserve the trail.",
+    "ifSkipped": "Budgets change without an approval trail and lenders question unexplained budget growth.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job segment budgets"
+    ],
+    "redFlags": [
+      "Direct edits instead of change orders"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_deleting_job_segment_budgets": {
+    "purpose": "Deletes segment budgets that were created in error, such as a duplicated cost code that doubled the roofing budget on a job.",
+    "outcome": "Erroneous cost-code budgets removed.",
+    "rootCause": "Duplicate segment budgets inflate the total job budget, making the project look under budget and hiding real overruns from the asset manager and lender.",
+    "ifSkipped": "Job budgets are overstated and overruns go unnoticed.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job segment budgets"
+    ],
+    "redFlags": [
+      "Deleting segments with commitments"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_job_segment_budget_page": {
+    "purpose": "The segment budget page showing original budget, change orders, revised budget, commitments and costs for one cost code.",
+    "outcome": "A complete financial picture for one trade on the project.",
+    "rootCause": "Final project cost is forecast trade by trade: revised budget minus commitments and costs shows each trade's remaining room. This page brings those numbers together for one cost code.",
+    "ifSkipped": "Final project cost forecasts are unreliable and overruns are discovered at completion.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job segment budgets"
+    ],
+    "redFlags": [
+      "Commitments exceeding revised budget"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_job_segment_budget_change_orders_page": {
+    "purpose": "Lists change orders for a segment budget with amounts, dates and approval status.",
+    "outcome": "A trail of every approved scope change by cost code.",
+    "rootCause": "Owners and lenders require approved change orders for budget increases; the list shows that trail.",
+    "ifSkipped": "Budget growth cannot be justified to lenders.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Loan agreement change order approval provisions"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Asset manager",
+      "Lender"
+    ],
+    "reports": [
+      "Change order log"
+    ],
+    "redFlags": [
+      "Unapproved change orders affecting budgets"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_segment_budget_change_order": {
+    "purpose": "Adds a change order to a segment budget, increasing or decreasing it with a documented reason and approval.",
+    "outcome": "Approved scope changes reflected in the budget.",
+    "rootCause": "Unforeseen conditions (rot found under roofing) require scope changes; change orders document and authorize them.",
+    "ifSkipped": "Overruns occur without authorization and owners or lenders refuse to fund them.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Asset manager"
+    ],
+    "reports": [
+      "Change order log"
+    ],
+    "redFlags": [
+      "Change orders without owner approval over threshold"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_purchase_order": {
+    "purpose": "Explains purchase orders in job cost — commitments for materials and services charged to job segments.",
+    "outcome": "Committed costs tracked against job budgets.",
+    "rootCause": "Committed but not yet invoiced costs must be counted against the job budget; otherwise the budget appears to have room that has already been promised to vendors, and new commitments push the project over budget.",
+    "ifSkipped": "Budgets appear to have room that is already committed.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Commitments"
+    ],
+    "redFlags": [
+      "Job purchases without POs"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_purchase_order_information_page": {
+    "purpose": "The PO record page in Spend Management with vendor, job and segment coding, lines, amounts and approval status.",
+    "outcome": "A complete commitment record tied to the job.",
+    "rootCause": "Job and segment coding on the PO determines which budget the commitment counts against.",
+    "ifSkipped": "Commitments count against the wrong budget.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Commitments"
+    ],
+    "redFlags": [
+      "POs coded to wrong segments"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_printing_a_purchase_order": {
+    "purpose": "Prints an approved job purchase order to send to the vendor as written authorization for the materials or work, with the PO number the vendor must quote on its invoice.",
+    "outcome": "The vendor receives written authorization for the work or materials.",
+    "rootCause": "Vendors need written POs to proceed and to reference on invoices, which enables matching.",
+    "ifSkipped": "Vendors invoice without PO references and matching fails.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Vendor"
+    ],
+    "reports": [
+      "Purchase order"
+    ],
+    "redFlags": [
+      "POs printed before approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_emailing_or_esigning_a_purchase_order": {
+    "purpose": "Emails an approved job purchase order to the vendor or routes it for electronic signature, creating a signed commitment on scope, price and terms.",
+    "outcome": "A signed, documented commitment with the vendor.",
+    "rootCause": "Signed POs create enforceable terms and scope, reducing disputes over what was ordered.",
+    "ifSkipped": "Scope and price disputes arise because the vendor never formally accepted the PO terms.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "UCC Article 2 — contracts for goods"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Vendor"
+    ],
+    "reports": [
+      "Purchase order"
+    ],
+    "redFlags": [
+      "Unsigned POs for large commitments"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_subcontract": {
+    "purpose": "Explains subcontracts — contracts with trades for construction work, billed through pay applications with retainage.",
+    "outcome": "Construction contracts tracked with billing and retainage.",
+    "rootCause": "Construction work is billed progressively against a schedule of values with retainage withheld; subcontracts track that.",
+    "ifSkipped": "Pay applications cannot be reconciled to contracts.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "2015 Retainage Payable"
+    ],
+    "gaap": [
+      "ASC 360-10-30"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Subcontracts list"
+    ],
+    "redFlags": [
+      "Construction work without subcontracts"
+    ],
+    "confidence": "high"
+  }
+}

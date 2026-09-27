@@ -1,0 +1,50 @@
+{
+  "scr_budget_gl_comparison": {
+    "purpose": "Runs the monthly budget-versus-actual (BVA) income statement for a property — actual MTD and YTD against the approved budget by GL line, with dollar and percentage variances — as the basis for the variance commentary the site team and accounting must write for the owner.",
+    "outcome": "A variance report showing which revenue and expense lines breached the owner's thresholds (commonly ±$5K and ±10% monthly), driving the variance explanations in the owner package.",
+    "rootCause": "The approved budget is the owner's operating plan and often the basis of the property manager's incentive fee. Asset managers must explain NOI performance to investors and lenders, and most management agreements require written variance explanations above set thresholds. The BVA also catches mis-codings: a huge variance on one line and an offsetting one on another usually means an invoice hit the wrong account.",
+    "ifSkipped": "Coding errors reach the owner package, the site team cannot explain NOI misses, the asset manager escalates to the management company, and year-end reforecasts are built on bad information.",
+    "glAccounts": ["4010 Gross Potential Rent", "4040 Concessions", "4050 Bad Debt", "6110 Repairs & Maintenance", "6210 Utilities", "6310 Marketing", "6510 Management Fees"],
+    "gaap": ["Management agreement reporting covenants (budget variance explanations)", "Owner/JV operating agreement approval rights over the annual budget"],
+    "stakeholders": ["Property manager / site team (writes explanations)", "Offshore property accountant", "Regional property manager", "Asset manager", "Onshore reviewer"],
+    "reports": ["Budget vs Actual income statement", "Variance commentary", "Owner monthly package / MOR", "T12 operating statement"],
+    "redFlags": ["Variances explained as 'timing' month after month without a reversal", "Variance caused by a mis-coded invoice rather than real performance", "Budget loaded to the wrong periods (annual amount in one month)", "Actuals compared against a superseded budget version instead of the approved one"],
+    "confidence": "high"
+  },
+  "scr_budget_model_creation": {
+    "purpose": "Builds next year's property operating budget as a working budget — seeding from the T12 or current-year forecast, applying rent growth, occupancy, concession and bad-debt assumptions, payroll and contract escalators, tax reassessment and insurance renewal estimates — before it is reviewed and approved by the owner.",
+    "outcome": "A complete, account-level monthly operating budget ready for regional and asset-manager review, which will become the approved budget used for BVA reporting and spend controls.",
+    "rootCause": "Owners and JV partners approve an annual budget each fall; it drives distributions, debt covenant forecasts (DSCR), incentive fees and capital planning. A structured budget model makes assumptions explicit and repeatable instead of an untraceable spreadsheet.",
+    "ifSkipped": "The property enters the year with no approved plan, BVA reporting has nothing to compare against, spend controls cannot operate, and the management company may be in breach of its management agreement's budget-delivery deadline.",
+    "glAccounts": ["4010 Gross Potential Rent", "4040 Concessions", "4050 Bad Debt", "6010 Payroll", "6610 Insurance", "6620 Real Estate Taxes", "6510 Management Fees"],
+    "gaap": ["Management agreement budget-delivery covenant (typically 60-90 days before fiscal year-end)", "Loan documents — lender budget submission for agency loans"],
+    "stakeholders": ["Property manager", "Regional property manager", "Offshore property accountant (support, loads)", "Asset manager (approves)", "Revenue management team"],
+    "reports": ["Annual operating budget", "Budget vs prior-year and T12 comparison", "Capex budget", "Lender budget submission"],
+    "redFlags": ["Real estate taxes budgeted flat despite a known reassessment", "Management fee not recalculated on budgeted revenue", "Monthly seasonality missing (utilities, turnover) — annual amount spread evenly", "Rent growth assumptions inconsistent with the revenue management forecast"],
+    "confidence": "high"
+  },
+  "scr_budget_reforecast_revisions": {
+    "purpose": "Duplicates the approved budget into a new version to produce a mid-year reforecast (6+6 or 9+3: actuals for completed months plus revised projections for the rest) or a formal revision, without overwriting the original approved budget.",
+    "outcome": "A current full-year outlook that asset managers use for investor updates, distribution planning and covenant forecasts, while the original budget stays intact for accountability.",
+    "rootCause": "Market conditions change during the year (rent growth, insurance spikes, tax appeals). Owners need an updated forecast, but performance must still be measured against the original approved budget. Separate versions allow both.",
+    "ifSkipped": "Either the original budget is overwritten (destroying the accountability baseline and incentive-fee calculations) or investors receive stale forecasts, leading to surprise covenant breaches or distribution shortfalls.",
+    "glAccounts": ["4010 Gross Potential Rent", "6620 Real Estate Taxes", "6610 Insurance", "7010 Interest Expense"],
+    "gaap": ["JV/fund reporting — quarterly forecast updates to investors", "Loan covenants — forward-looking DSCR tests"],
+    "stakeholders": ["Asset manager", "Property manager", "Offshore property accountant", "Investor relations / fund accounting"],
+    "reports": ["Reforecast vs budget vs actual", "Quarterly investor update", "Covenant forecast"],
+    "redFlags": ["Reforecast built on unreconciled actuals", "Original budget version modified instead of duplicated", "Reforecast assumptions undocumented"],
+    "confidence": "high"
+  },
+  "scr_budget_variance_threshold_locking": {
+    "purpose": "Configures budget checks on approvals so that an A/P invoice or purchase order that would push a GL line over its approved budget either warns the approver or is blocked outright until someone with authority overrides it.",
+    "outcome": "Over-budget spend is stopped or escalated before the obligation is incurred rather than discovered after the month closes.",
+    "rootCause": "Owners delegate spending authority to management companies within an approved budget; management agreements typically require owner approval for unbudgeted spend over a threshold (e.g., $5K-$25K). A preventive system control is stronger than after-the-fact variance explanations.",
+    "ifSkipped": "Unbudgeted spend is only discovered in BVA reporting, the management company breaches its delegated authority, and owners may refuse to fund or reimburse the expense.",
+    "glAccounts": ["6110 Repairs & Maintenance", "6310 Marketing", "6410 Administrative", "1530 Building Improvements (capex lines)"],
+    "gaap": ["COSO 2013 — preventive authorization controls", "Management agreement delegation-of-authority limits"],
+    "stakeholders": ["Asset manager", "Regional property manager", "Accounting manager (configures)", "Approvers in the workflow"],
+    "reports": ["Budget variance with commitments", "Approval audit trail", "Budget vs Actual"],
+    "redFlags": ["Budget checks set to 'warn' on lines the owner requires hard stops for", "Overrides granted by the same person who requested the spend", "Budget checks running against a draft instead of the approved budget"],
+    "confidence": "high"
+  }
+}

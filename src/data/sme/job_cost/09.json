@@ -1,0 +1,667 @@
+{
+  "scr_jobcost_replacement_reserves": {
+    "purpose": "The stand-alone Replacement Reserves application — licensed by companies that need to manage lender-held replacement reserves and reimbursement draws without the full Job Cost module.",
+    "outcome": "Agency- and CMBS-financed properties can track reserve deposits, eligible repairs and servicer reimbursements in the system of record.",
+    "rootCause": "Many stabilized multifamily properties carry Fannie Mae, Freddie Mac or HUD loans with replacement reserves but have no ground-up construction. They need reserve tracking and draws, not full project accounting, so RealPage offers reserves on their own.",
+    "ifSkipped": "Reserve reimbursements are tracked in spreadsheets, eligible repairs go unclaimed, and reserve balances drift from servicer records.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "1110 Operating Cash",
+      "1530 Building Improvements"
+    ],
+    "gaap": [
+      "Loan agreement replacement reserve provisions",
+      "ASC 230 / ASU 2016-18 — restricted cash"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager",
+      "Loan servicer"
+    ],
+    "reports": [
+      "Replacement reserve status",
+      "Reserve draw detail"
+    ],
+    "redFlags": [
+      "Reserve balances per system differing from servicer statements"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_introduction_to_replacement_reserves": {
+    "purpose": "Introduces the Replacement Reserves application: reserve records mirror servicer-held accounts, reserve account schedules track required deposits, and the Draw Workbench packages paid, eligible repairs for reimbursement.",
+    "outcome": "Accountants understand the reserve cycle — deposit, spend, draw, reimburse — before handling live reserves.",
+    "rootCause": "Reserve accounting spans the loan servicer, A/P and cash. New staff who do not understand the cycle often expense reimbursable repairs or forget to request reimbursement.",
+    "ifSkipped": "Reimbursable repairs are paid from operating cash and never recovered from the reserve.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "6110 Repairs & Maintenance",
+      "1530 Building Improvements"
+    ],
+    "gaap": [
+      "Loan agreement replacement reserve provisions"
+    ],
+    "stakeholders": [
+      "New offshore accountants"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Eligible repairs expensed without reserve claims"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_replacement_reserves_permissions": {
+    "purpose": "Defines who can create reserves, maintain deposit schedules, prepare draws and post draw receipts in the Replacement Reserves application.",
+    "outcome": "Reserve draws and receipts are handled only by authorized users with segregated duties.",
+    "rootCause": "Reserve draws request lender-held cash; the person preparing a draw should not also be able to post its receipt and alter reserve balances unreviewed.",
+    "ifSkipped": "One user controls the full reserve cycle and errors or misuse go unchecked.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "COSO 2013 — segregation of duties"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "User permissions"
+    ],
+    "redFlags": [
+      "Same user preparing and posting draw receipts"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_replacement_reserves_home_page": {
+    "purpose": "The Replacement Reserves home page with navigation to reserves, deposit schedules, draws, the status inquiry and setup.",
+    "outcome": "Quick access to reserve tasks during monthly draw cycles.",
+    "rootCause": "Reserve work is periodic (monthly deposits, draws as repairs are paid); a focused landing page keeps the routine efficient for accountants handling many loans.",
+    "ifSkipped": "Accountants lose time navigating and draw cycles slip.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Draw cycles missed for some loans"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_replacement_reserves_all_tab": {
+    "purpose": "The All tab of Replacement Reserves listing Search & Find (draws, reserves), Periodic Tasks (reserves, deposit schedules) and the Replacement Reserve Status inquiry.",
+    "outcome": "All operational reserve functions reachable from one tab.",
+    "rootCause": "The monthly reserve routine — check status, add draws, post receipts — spans several functions; grouping them supports doing all steps each cycle.",
+    "ifSkipped": "Steps like posting draw receipts are skipped and reserve balances drift.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Replacement reserve status"
+    ],
+    "redFlags": [
+      "Funded draws without posted receipts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_replacement_reserves_setup_tab": {
+    "purpose": "The Setup tab of Replacement Reserves for configuration, draw models and funding sources.",
+    "outcome": "Reserve structures configured once for all properties.",
+    "rootCause": "Draw models and funding sources determine whether reserve draws come out in each servicer's format; configuring them centrally keeps all properties consistent.",
+    "ifSkipped": "Each reserve draw is formatted manually.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Setup lists"
+    ],
+    "redFlags": [
+      "Servicers without draw models"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_using_replacement_reserves": {
+    "purpose": "Section on operating Replacement Reserves day to day — creating reserve draws, managing draw activity and allocations, and posting draw schedules.",
+    "outcome": "A repeatable reserve reimbursement routine.",
+    "rootCause": "Reimbursements are only received if someone assembles and submits draws regularly; a defined routine prevents eligible costs from aging unclaimed.",
+    "ifSkipped": "Eligible costs age past servicer claim windows and are never reimbursed.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reserve draw register"
+    ],
+    "redFlags": [
+      "No reserve draws submitted in the quarter"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_replacement_reserve_draw_2": {
+    "purpose": "Creates a replacement reserve draw in the stand-alone Replacement Reserves application, selecting paid, eligible repair invoices to request from the servicer.",
+    "outcome": "A reimbursement request ready for support documents and submission.",
+    "rootCause": "Servicers reimburse only paid, eligible repairs listed in the loan's reserve schedule; the draw record gathers exactly those items and prevents them being claimed twice.",
+    "ifSkipped": "Eligible repairs are funded from operating cash and never recovered.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Loan servicer"
+    ],
+    "reports": [
+      "Reserve draw detail"
+    ],
+    "redFlags": [
+      "Unpaid invoices included in the draw"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_or_editing_a_draw_2": {
+    "purpose": "Opens a reserve draw in the Replacement Reserves application to review its items, amounts, status and attachments, and to adjust it for servicer feedback.",
+    "outcome": "Reserve draws corrected before submission and updated when funded.",
+    "rootCause": "Servicers often request changes (remove an item, add a waiver). Editing the draw keeps the record identical to what was finally submitted and funded.",
+    "ifSkipped": "The draw record differs from what the servicer actually funded.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reserve draw detail"
+    ],
+    "redFlags": [
+      "Edits after funding"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_managing_draw_activity_and_allocations_2": {
+    "purpose": "Manages the items on a reserve draw and how they are allocated — typically fully to the replacement reserve, occasionally split with operating cash for partially eligible repairs.",
+    "outcome": "Each repair cost is assigned to the correct funder.",
+    "rootCause": "Some repairs are only partly reserve-eligible (e.g., a roof replacement with an upgrade the servicer will not fund). Allocation ensures only the eligible portion is claimed.",
+    "ifSkipped": "Ineligible amounts are claimed and the draw is rejected, or eligible portions are left unclaimed.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Loan agreement reserve eligibility provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reserve draw detail"
+    ],
+    "redFlags": [
+      "Full amounts claimed on partially eligible items"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_posting_a_draw_schedule_2": {
+    "purpose": "Posts the draw schedule for reserve draws in the Replacement Reserves application, recording planned reimbursements.",
+    "outcome": "Planned reserve reimbursements tracked against actual draws.",
+    "rootCause": "Asset managers plan cash around expected reserve reimbursements; a posted schedule shows whether reimbursements are arriving as planned.",
+    "ifSkipped": "Delayed reimbursements are not noticed until cash runs short.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Asset manager"
+    ],
+    "reports": [
+      "Draw schedule report"
+    ],
+    "redFlags": [
+      "Schedule not updated after servicer delays"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_setting_up_replacement_reserves": {
+    "purpose": "Section on setting up the Replacement Reserves application — configuration, draw models and funding sources — before the first reserve draw.",
+    "outcome": "A configured reserve environment ready for draws.",
+    "rootCause": "Reserve draws must follow each servicer's format and post to the reserve escrow account; setup encodes both before the first reimbursement is needed.",
+    "ifSkipped": "The first reserve draws are built manually and post inconsistently.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Draws prepared before setup was completed"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_configuration_2": {
+    "purpose": "The Configuration section of Replacement Reserves setup for application-wide settings such as default reserve accounts and draw behavior.",
+    "outcome": "Reserve postings use consistent defaults across properties.",
+    "rootCause": "Default accounts determine where reserve draws and receipts post; a wrong default misstates restricted cash for every property.",
+    "ifSkipped": "Reserve activity posts to wrong accounts and restricted cash is misstated.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 230 — restricted cash"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Configuration"
+    ],
+    "redFlags": [
+      "Reserve default mapped to operating cash"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_configure_replacement_reserves_page": {
+    "purpose": "The Configure page of Replacement Reserves where default reserve and cash accounts and draw options are set.",
+    "outcome": "Company-wide reserve settings defined in one place.",
+    "rootCause": "Centralized settings ensure every property's reserve draws and receipts follow the same accounting treatment.",
+    "ifSkipped": "Reserve accounting varies by property and restricted cash is reported inconsistently.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Configuration"
+    ],
+    "redFlags": [
+      "Configuration changed without review"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_configuring_replacement_reserves": {
+    "purpose": "Procedure for configuring the Replacement Reserves application — default reserve escrow and cash accounts and draw options — before any reserve records or draws are created.",
+    "outcome": "The reserve application is ready for reserve records and draws.",
+    "rootCause": "Configuring first avoids reposting reserve activity after draws have already been processed under wrong defaults.",
+    "ifSkipped": "Early reserve activity must be reposted.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Configuration"
+    ],
+    "redFlags": [
+      "Configuration done after draws were created"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_draw_models_2": {
+    "purpose": "Explains draw models in the Replacement Reserves guide — templates that reproduce each servicer's reimbursement request format.",
+    "outcome": "Reserve draws produced in servicer format automatically.",
+    "rootCause": "Each servicer uses its own request layout and repair categories; draw models remove the need to reformat every draw.",
+    "ifSkipped": "Reserve draws are reformatted manually for each servicer.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw models list"
+    ],
+    "redFlags": [
+      "Servicers without models"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_draw_models_list_replacement_reserves_2": {
+    "purpose": "Lists replacement reserve draw models in the stand-alone Replacement Reserves application.",
+    "outcome": "A catalog of servicer reserve draw formats.",
+    "rootCause": "Portfolios with several servicers need one model per servicer; the list confirms each active loan's servicer is covered.",
+    "ifSkipped": "Some servicers' draws are built manually.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw models list"
+    ],
+    "redFlags": [
+      "Models for repaid loans still active"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_deleting_a_replacement_reserve_draw_model_2": {
+    "purpose": "Deletes a replacement reserve draw model in the stand-alone application after the related loan is repaid or the servicer format changes.",
+    "outcome": "Only current servicer formats remain selectable.",
+    "rootCause": "Retired formats left active can be picked by mistake and produce draws the current servicer returns.",
+    "ifSkipped": "Draws are produced in retired formats and rejected.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw models list"
+    ],
+    "redFlags": [
+      "Deleting models with draw history"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_replacement_reserve_draw_model_details_2": {
+    "purpose": "Adds lines to a reserve draw model in the stand-alone application, matching the servicer's repair categories (roofing, HVAC, paving, appliances).",
+    "outcome": "The model covers every category the servicer uses.",
+    "rootCause": "Costs can only be requested under categories that exist in the model; missing categories leave eligible costs unclaimed.",
+    "ifSkipped": "Eligible costs in missing categories are never requested.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw model details"
+    ],
+    "redFlags": [
+      "Categories not in the servicer's schedule"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_importing_replacement_reserve_draw_model_details_2": {
+    "purpose": "Imports reserve draw model lines from a template in the stand-alone application — often from the servicer's repair schedule in the property condition report.",
+    "outcome": "Servicer categories loaded accurately into the model.",
+    "rootCause": "Importing the servicer's own schedule reproduces its categories exactly, avoiding mismatches that cause returned draws.",
+    "ifSkipped": "Model categories are keyed with errors and draws are questioned.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Imported categories differing from the servicer schedule"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_about_replacement_reserves": {
+    "purpose": "Quick Steps overview of replacement reserves: lender-held funds deposited monthly and reimbursed to the property for qualifying capital repairs through documented draws.",
+    "outcome": "New staff understand why and how reserves are drawn.",
+    "rootCause": "Replacement reserves are a loan covenant feature unfamiliar to many new accountants; a short overview prevents reimbursable repairs from being expensed without a claim.",
+    "ifSkipped": "Reimbursable repairs go unclaimed and the property funds lender-reserve work from operating cash.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "New offshore accountants"
+    ],
+    "reports": [],
+    "redFlags": [
+      "No reserve claims at properties with active repair programs"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_reserve_account_schedule_2": {
+    "purpose": "Quick Steps for adding a reserve account schedule — the required monthly deposit into a lender reserve — so deposits can be tracked against the loan requirement.",
+    "outcome": "Required deposits defined for compliance tracking.",
+    "rootCause": "Servicers flag deposit shortfalls; recording the required schedule allows the property to confirm each month's deposit matches the loan terms.",
+    "ifSkipped": "Deposit shortfalls are discovered by the servicer rather than the accountant.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve deposit covenants"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reserve account schedules"
+    ],
+    "redFlags": [
+      "Schedule amounts not matching loan documents"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_replacement_reserve_draw_model_2": {
+    "purpose": "Quick Steps for adding a replacement reserve draw model that defines a servicer's reimbursement request format.",
+    "outcome": "Reserve draws generated in the servicer's format.",
+    "rootCause": "The model must exist before the first reserve draw so the request is accepted without reformatting.",
+    "ifSkipped": "First reserve draws are formatted manually and delayed.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw models list"
+    ],
+    "redFlags": [
+      "Models missing servicer categories"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_draw_model_details_2": {
+    "purpose": "Quick Steps for adding the repair-category lines to a replacement reserve draw model.",
+    "outcome": "Complete servicer category structure in the model.",
+    "rootCause": "Every servicer category needs a model line or its eligible costs cannot be requested on reserve draws.",
+    "ifSkipped": "Costs in missing categories are never reimbursed.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw model details"
+    ],
+    "redFlags": [
+      "Fewer model lines than servicer categories"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_importing_draw_model_details": {
+    "purpose": "Quick Steps for importing the repair-category lines of a replacement reserve draw model from a template, typically built from the servicer's reserve repair schedule.",
+    "outcome": "Servicer categories loaded in one step.",
+    "rootCause": "Importing the servicer's repair schedule avoids keying errors that misalign reserve draws with servicer categories.",
+    "ifSkipped": "Model lines contain errors and draws are questioned by the servicer.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Import totals not reconciled to the source schedule"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_assigning_reserve_accounts_to_draw_model_details_2": {
+    "purpose": "Quick Steps for assigning reserve accounts to reserve draw model lines so eligible costs appear under the right servicer category.",
+    "outcome": "Automatic roll-up of reserve costs into servicer categories.",
+    "rootCause": "Mapping once removes manual categorization from every reserve draw and prevents costs dropping out of requests.",
+    "ifSkipped": "Every reserve draw is categorized by hand and costs are missed.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw model details"
+    ],
+    "redFlags": [
+      "Unmapped reserve accounts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_replacement_reserve_funding_source_2": {
+    "purpose": "Quick Steps for adding the replacement reserve as a funding source linked to the reserve escrow GL account.",
+    "outcome": "Reserve-funded repairs can be drawn against the reserve.",
+    "rootCause": "Draws must be allocated to a funding source; the reserve must be defined as one before any reimbursement can be requested.",
+    "ifSkipped": "Reserve draws cannot be allocated or posted.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Funding source list"
+    ],
+    "redFlags": [
+      "Reserve source mapped to the wrong GL account"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_reserve_2": {
+    "purpose": "Quick Steps for adding a reserve account record that mirrors a servicer-held replacement reserve, used to track deposits, eligible repairs and reimbursements.",
+    "outcome": "A new lender reserve tracked from loan closing.",
+    "rootCause": "Reserve deposits start with the first loan payment; creating the reserve record at closing lets every deposit and eligible repair be tracked from day one.",
+    "ifSkipped": "Early deposits and eligible repairs are not tracked and later reconciliation is difficult.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reserves list"
+    ],
+    "redFlags": [
+      "Loans with reserves but no reserve record"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_replacement_reserve_draw_3": {
+    "purpose": "Quick Steps for adding a replacement reserve draw — selecting paid eligible invoices, attaching proof of payment and waivers, and preparing the servicer request.",
+    "outcome": "A reimbursement request ready for submission.",
+    "rootCause": "Reserve reimbursements recover cash the property already spent on eligible repairs; a quick, repeatable procedure keeps draws flowing each month.",
+    "ifSkipped": "Reimbursable cash stays with the servicer.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reserve draw detail"
+    ],
+    "redFlags": [
+      "Draws missing proof of payment"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_viewing_the_replacement_reserve_status": {
+    "purpose": "Quick Steps for viewing the Replacement Reserve Status inquiry — reserve balance, eligible costs, draws submitted and funded, and amounts still claimable.",
+    "outcome": "A quick check of how much the property can still claim from its reserves.",
+    "rootCause": "Asset managers ask how much reserve money is available and how much is owed back to the property; the status view answers both.",
+    "ifSkipped": "Claimable reserve amounts are unknown and left unclaimed.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Replacement reserve status"
+    ],
+    "redFlags": [
+      "Claimable amounts older than 90 days"
+    ],
+    "confidence": "medium"
+  }
+}

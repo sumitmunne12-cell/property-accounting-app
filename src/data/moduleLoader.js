@@ -21,7 +21,27 @@ const IMPORTERS = {
   reporting: () => import('./modules/09_reporting_admin').then((m) => m.reportingAdminModule),
 };
 
+// Hand-written SME analysis (src/data/sme/<moduleId>.js), keyed by screen id. It is loaded with
+// its module and attached to each screen as `screen.sme`.
+const SME_IMPORTERS = {
+  gl: () => import('./sme/gl').then((m) => m.default),
+  ap: () => import('./sme/ap').then((m) => m.default),
+  cash: () => import('./sme/cash').then((m) => m.default),
+  ar: () => import('./sme/ar').then((m) => m.default),
+  close: () => import('./sme/close').then((m) => m.default),
+  job_cost: () => import('./sme/job_cost').then((m) => m.default),
+  fixed_assets: () => import('./sme/fixed_assets').then((m) => m.default),
+  budgeting: () => import('./sme/budgeting').then((m) => m.default),
+  reporting: () => import('./sme/reporting').then((m) => m.default),
+};
+
 export const MODULE_IDS = Object.keys(IMPORTERS);
+
+/** The SME analysis map for one module ({ [screenId]: analysis }), without loading the module. */
+export function loadSmeAnalysis(moduleId) {
+  const importer = SME_IMPORTERS[moduleId];
+  return importer ? importer() : Promise.reject(new Error(`Unknown module "${moduleId}"`));
+}
 
 const loaded = new Map(); // moduleId -> { module, screens: Map<screenId, screen> }
 const inflight = new Map(); // moduleId -> Promise
@@ -44,10 +64,15 @@ export function loadModule(moduleId) {
   if (inflight.has(moduleId)) return inflight.get(moduleId);
   const importer = IMPORTERS[moduleId];
   if (!importer) return Promise.reject(new Error(`Unknown module "${moduleId}"`));
-  const p = importer()
-    .then((module) => {
+  const p = Promise.all([importer(), SME_IMPORTERS[moduleId]()])
+    .then(([module, sme]) => {
       const screens = new Map();
-      for (const sub of module.submodules) for (const s of sub.screens) screens.set(s.id, s);
+      for (const sub of module.submodules) {
+        for (const s of sub.screens) {
+          if (sme[s.id]) s.sme = sme[s.id];
+          screens.set(s.id, s);
+        }
+      }
       loaded.set(moduleId, { module, screens });
       inflight.delete(moduleId);
       listeners.forEach((fn) => fn(moduleId));

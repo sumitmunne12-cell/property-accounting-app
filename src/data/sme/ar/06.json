@@ -1,0 +1,1055 @@
+{
+  "scr_ar_posted_payment_page": {
+    "purpose": "The posted payment record page showing payer, date, method, reference, deposit, and the invoices and credits the payment was applied to.",
+    "outcome": "A complete view of one customer receipt for review, disputes and audit samples.",
+    "rootCause": "Auditors testing cash receipts and customers disputing balances both need to see exactly how a receipt was recorded and applied; this page is that evidence.",
+    "ifSkipped": "Receipt questions cannot be answered from the system and disputes drag on.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "AU-C 500 — cash receipts testing"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "External auditor"
+    ],
+    "reports": [
+      "Payment detail"
+    ],
+    "redFlags": [
+      "Payments posted without deposit linkage"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_printing_posted_payment_details": {
+    "purpose": "Prints the details of a posted customer payment — for example to send a commercial tenant confirmation of how their check was applied.",
+    "outcome": "A document confirming receipt and application for the customer or file.",
+    "rootCause": "Tenants and affiliates often dispute how payments were applied; a printed application record resolves those disputes quickly.",
+    "ifSkipped": "Application disputes take longer to resolve and payments are withheld meanwhile.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Customers"
+    ],
+    "reports": [
+      "Payment detail"
+    ],
+    "redFlags": [
+      "Payment confirmations sent to unverified contacts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_writing_off_unpaid_invoices": {
+    "purpose": "Writes off unpaid A/R invoices judged uncollectible — for example a former retail tenant that closed owing rent — through an adjustment against the allowance or bad debt expense.",
+    "outcome": "Uncollectible receivables are removed and the loss recognized, with the invoice and adjustment linked.",
+    "rootCause": "Carrying uncollectible balances overstates assets; GAAP requires receivables at the amount expected to be collected. Write-offs must be approved because they are also a way to conceal diverted collections.",
+    "ifSkipped": "A/R is overstated with balances that will never be collected, and bad debt is recognized in lumps later.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1215 Allowance for Doubtful Accounts",
+      "4050 Bad Debt"
+    ],
+    "gaap": [
+      "ASC 326 — credit losses",
+      "ASC 842-30-35 — collectibility of lease receivables"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Allowance roll-forward",
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Write-offs without approval",
+      "Write-offs of recently invoiced amounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_quick_payments": {
+    "purpose": "The Quick Payments page for recording many customer payments rapidly — for example a batch of checks from ancillary vendors received in one mail run.",
+    "outcome": "High-volume receipts entered and applied efficiently.",
+    "rootCause": "Entering each payment through the full receipt page is slow; quick entry keeps daily receipt processing current so deposits and aging stay accurate.",
+    "ifSkipped": "Receipts back up, deposits are late and aging overstates what customers owe.",
+    "glAccounts": [
+      "1130 Undeposited Funds",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Receipts register"
+    ],
+    "redFlags": [
+      "Batch totals not matching the deposit"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_using_the_quick_payments_page_to_record_payments": {
+    "purpose": "Procedure for recording payments on the Quick Payments page — customer, amount, reference and invoice application per row.",
+    "outcome": "A batch of receipts recorded and applied in one session.",
+    "rootCause": "A consistent procedure ensures each quick-entry row still captures the reference needed to match to the bank deposit.",
+    "ifSkipped": "Quick-entered receipts lack references and cannot be matched.",
+    "glAccounts": [
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Receipts register"
+    ],
+    "redFlags": [
+      "Rows without check numbers"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deposits": {
+    "purpose": "Explains A/R deposits — grouping customer payments held in Undeposited Funds into a deposit that matches the bank credit.",
+    "outcome": "A/R receipts reach the bank account as deposits that reconcile line for line.",
+    "rootCause": "The bank shows one credit per deposit; grouping receipts identically makes the bank reconciliation match and exposes missing receipts.",
+    "ifSkipped": "Receipts stay in Undeposited Funds and the bank rec cannot be matched.",
+    "glAccounts": [
+      "1130 Undeposited Funds",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — cash receipts"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposits list",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Undeposited funds aging"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_deposits_workflow": {
+    "purpose": "Diagram of the A/R deposit workflow: payment received into Undeposited Funds, grouped into a deposit, deposited at the bank and cleared in reconciliation.",
+    "outcome": "Users see where a receipt sits at each stage.",
+    "rootCause": "Tracing a missing payment requires knowing whether it was recorded, deposited or cleared; the workflow shows those states.",
+    "ifSkipped": "Missing receipts cannot be traced to where they stopped.",
+    "glAccounts": [
+      "1130 Undeposited Funds",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposits list"
+    ],
+    "redFlags": [
+      "Receipts recorded but never deposited"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_undeposited_funds_accounts": {
+    "purpose": "Configures the undeposited funds account used by A/R to hold checks and cash received but not yet deposited.",
+    "outcome": "A/R receipts flow through a holding account that exposes undeposited items.",
+    "rootCause": "Without an undeposited funds step, receipts post straight to cash and the bank rec cannot tell receipts not yet deposited from missing deposits.",
+    "ifSkipped": "Undeposited receipts are invisible and misappropriation is harder to detect.",
+    "glAccounts": [
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013 — safeguarding assets"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Undeposited funds balance"
+    ],
+    "redFlags": [
+      "Undeposited funds mapped to operating cash"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_deposits_list": {
+    "purpose": "Lists A/R deposits with bank, date, amount and status for review, printing and reversal.",
+    "outcome": "A deposit register for matching to bank statements.",
+    "rootCause": "Deposits in transit at month-end are listed on the bank rec from this register; it is also where late deposits show up.",
+    "ifSkipped": "Deposits in transit cannot be supported.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposits list"
+    ],
+    "redFlags": [
+      "Deposits recorded but not cleared after several days"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_adding_a_deposit": {
+    "purpose": "Creates an A/R deposit by selecting undeposited customer payments and the bank account and date of deposit.",
+    "outcome": "Customer receipts move from Undeposited Funds to cash as one deposit matching the bank.",
+    "rootCause": "Recording the deposit exactly as made (same date, same checks) is what lets the bank rec match one book line to one bank credit.",
+    "ifSkipped": "Receipts remain undeposited in the books and cash is understated.",
+    "glAccounts": [
+      "1130 Undeposited Funds",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposits list"
+    ],
+    "redFlags": [
+      "Deposit dates differing from bank credit dates"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_viewing_and_verifying_deposits": {
+    "purpose": "Opens an A/R deposit to verify its payments and total against the deposit slip and bank credit.",
+    "outcome": "Deposit discrepancies caught before the bank rec.",
+    "rootCause": "Differences between recorded deposits and bank credits are early signs of keying errors or missing checks.",
+    "ifSkipped": "Discrepancies surface only at month-end.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposit detail"
+    ],
+    "redFlags": [
+      "Deposit total not equal to bank credit"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_deposit_details": {
+    "purpose": "Prints the detail of an A/R deposit — each payment, payer and amount — to accompany the deposit or support the bank rec.",
+    "outcome": "Evidence of which customer payments made up a deposit.",
+    "rootCause": "When a customer disputes a payment, the deposit detail links their check to a specific bank credit.",
+    "ifSkipped": "Customer payment disputes cannot be resolved from bank totals alone.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "AU-C 500"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposit detail"
+    ],
+    "redFlags": [
+      "Deposit detail not retained"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_reversing_deposits": {
+    "purpose": "Explains that A/R deposits are reversed rather than deleted, preserving the cash audit trail.",
+    "outcome": "Deposit corrections always leave a visible record.",
+    "rootCause": "Deleting deposits would allow cash records to change without trace; reversal is the controlled correction.",
+    "ifSkipped": "Deposit history could be altered invisibly.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposits list"
+    ],
+    "redFlags": [
+      "Frequent deposit reversals"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_reversing_a_deposit": {
+    "purpose": "Reverses an A/R deposit recorded to the wrong bank account or date, returning its payments to Undeposited Funds for re-deposit.",
+    "outcome": "The erroneous deposit is cancelled and the payments can be deposited correctly.",
+    "rootCause": "Deposits recorded to the wrong account break two bank recs; reversal moves them back cleanly.",
+    "ifSkipped": "Deposits stay in the wrong account and both recs break.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposits list"
+    ],
+    "redFlags": [
+      "Reversals dated in reconciled periods"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_reversing_a_payment_in_a_deposit": {
+    "purpose": "Reverses one customer payment inside an A/R deposit — usually a returned check — without reversing the whole deposit.",
+    "outcome": "The returned payment is reinstated on the customer's account.",
+    "rootCause": "Returned checks affect single payments; reversing only that payment keeps the rest of the deposit matched to the bank.",
+    "ifSkipped": "Returned payments remain credited and A/R and cash are overstated.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 310"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer ledger"
+    ],
+    "redFlags": [
+      "Returned checks without follow-up collection"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_deposit_page": {
+    "purpose": "The page for recording an A/R deposit — bank account, date and selected undeposited payments.",
+    "outcome": "A deposit that matches the physical deposit.",
+    "rootCause": "Accurate deposit entry is the book side of deposit matching in the bank reconciliation.",
+    "ifSkipped": "Receipts remain in Undeposited Funds and the bank rec cannot match.",
+    "glAccounts": [
+      "1130 Undeposited Funds",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposits list"
+    ],
+    "redFlags": [
+      "Deposits mixing receipts from different entities"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_manual_deposits": {
+    "purpose": "Explains manual deposits — recording a customer payment directly to a bank account (e.g., a wire or ACH received) without first going through Undeposited Funds.",
+    "outcome": "Electronic receipts recorded directly to the bank account they arrived in.",
+    "rootCause": "Wires and ACH credits arrive in the bank before anyone records them; a manual deposit records the receipt against the customer at the same time as the cash.",
+    "ifSkipped": "Electronic receipts show as unexplained bank credits and customers look delinquent.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Manual deposits list"
+    ],
+    "redFlags": [
+      "Unidentified wires left unrecorded"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_viewing_the_list_of_manual_deposits": {
+    "purpose": "Opens the list of manual deposits — customer payments such as wires and ACH credits recorded directly to a bank account without passing through Undeposited Funds.",
+    "outcome": "Visibility of electronic receipts recorded directly to cash.",
+    "rootCause": "Manual deposits bypass the undeposited funds step, so they deserve separate review for correct customer application.",
+    "ifSkipped": "Direct receipts are not reviewed for correct application.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Manual deposits list"
+    ],
+    "redFlags": [
+      "Manual deposits without customer application"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_manual_deposits_list": {
+    "purpose": "Lists manual deposits with customer, bank account, date and amount, used to match electronic customer receipts to bank statement credits.",
+    "outcome": "A register of direct electronic receipts for bank matching.",
+    "rootCause": "Wires and ACH credits must be matched to bank lines; the list supports that and highlights unapplied amounts.",
+    "ifSkipped": "Electronic receipts cannot be efficiently matched to the bank.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Manual deposits list"
+    ],
+    "redFlags": [
+      "Manual deposits not matching bank credits"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_a_manual_deposit": {
+    "purpose": "Adds a manual deposit — customer, bank account, date, amount and invoices paid — for a payment received directly in the bank.",
+    "outcome": "The receipt is recorded to cash and the customer's invoices in one step.",
+    "rootCause": "Recording wires the same day they arrive keeps customer balances current and the bank rec clean.",
+    "ifSkipped": "Wires sit as unexplained credits and customers are chased for amounts already paid.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Manual deposits list"
+    ],
+    "redFlags": [
+      "Manual deposits dated differently from the bank credit"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_recording_a_manual_deposit": {
+    "purpose": "Procedure for recording a manual deposit: select the customer and bank account, enter the wire or ACH amount and date, and apply it to the customer's open invoices.",
+    "outcome": "Direct receipts recorded completely.",
+    "rootCause": "A defined procedure ensures manual deposits are applied to invoices, not left on account.",
+    "ifSkipped": "Manual deposits are recorded but left unapplied.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Manual deposits list"
+    ],
+    "redFlags": [
+      "Unapplied manual deposits"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_a_manual_deposits_details": {
+    "purpose": "Views a manual deposit's details — customer, bank account, date and the invoices it paid — typically to resolve a customer's question about a wired payment.",
+    "outcome": "Full detail of one direct receipt.",
+    "rootCause": "Disputes over wired payments are resolved by showing exactly which invoices the wire paid.",
+    "ifSkipped": "Wire payment disputes are hard to resolve.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Manual deposit detail"
+    ],
+    "redFlags": [
+      "Wires applied to the wrong customer"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_manual_deposit_page": {
+    "purpose": "The page showing a manual deposit's full record — customer, bank, reference, amount and invoice applications — for review and audit.",
+    "outcome": "A complete record of a direct receipt.",
+    "rootCause": "Direct receipts need the same traceability as regular deposits for audits and bank reconciliation.",
+    "ifSkipped": "Direct electronic receipts lack traceability for bank recs and audits.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Manual deposit detail"
+    ],
+    "redFlags": [
+      "Missing bank references"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_duplicating_a_manual_deposit": {
+    "purpose": "Adds a manual deposit by duplicating an existing one — useful for recurring wires from the same customer.",
+    "outcome": "Recurring direct receipts recorded quickly.",
+    "rootCause": "Customers who wire monthly (affiliates, cell tower licensees) create repetitive entries; duplicating saves time while keeping coding consistent.",
+    "ifSkipped": "Recurring receipts are keyed from scratch with inconsistent coding.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Manual deposits list"
+    ],
+    "redFlags": [
+      "Duplicates left with prior dates or amounts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_advances": {
+    "purpose": "Explains advances — prepayments or retainers received from customers before invoicing, recorded as a liability until applied.",
+    "outcome": "Customer prepayments are held as liabilities, not income.",
+    "rootCause": "Money received before the service or period it pays for is not yet earned; recognizing it as revenue overstates income and misstates the balance sheet.",
+    "ifSkipped": "Prepayments are recorded as revenue too early.",
+    "glAccounts": [
+      "2120 Prepaid Rent",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 606 — contract liabilities",
+      "ASC 842-30 — prepaid lease payments"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Posted advances list",
+      "Balance Sheet"
+    ],
+    "redFlags": [
+      "Advances recorded as income"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_receiving_and_recording_a_r_advance_payments": {
+    "purpose": "Receives and records an advance payment from a customer, such as a tenant prepaying three months of rent.",
+    "outcome": "The prepayment is recorded as a liability ready to apply to future invoices.",
+    "rootCause": "Recording advances properly ensures revenue is recognized in the months it is earned and the customer's prepaid position is tracked.",
+    "ifSkipped": "Prepaid amounts are forgotten or recognized too early.",
+    "glAccounts": [
+      "2120 Prepaid Rent",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Posted advances list"
+    ],
+    "redFlags": [
+      "Advances never applied"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_recording_an_advance_payment": {
+    "purpose": "Procedure for recording an advance — customer, amount, date, deposit account and liability account.",
+    "outcome": "Advance recorded with correct accounts.",
+    "rootCause": "Using the correct liability account for advances keeps prepaid amounts visible on the balance sheet.",
+    "ifSkipped": "Advances post to revenue instead of a liability and income is overstated.",
+    "glAccounts": [
+      "2120 Prepaid Rent"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Posted advances list"
+    ],
+    "redFlags": [
+      "Advances posted to revenue accounts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_creating_a_deposit_from_an_advance": {
+    "purpose": "Creates a bank deposit from recorded advance payments so the customer's prepayment moves from Undeposited Funds to the operating account in the books.",
+    "outcome": "Advance receipts reach the bank account in the books.",
+    "rootCause": "Advances are cash received; they must be deposited like other receipts for the bank rec to match.",
+    "ifSkipped": "Advance receipts sit in Undeposited Funds.",
+    "glAccounts": [
+      "1130 Undeposited Funds",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposits list"
+    ],
+    "redFlags": [
+      "Advances not deposited"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_receive_advances_page": {
+    "purpose": "The page for receiving advances, with the top section for essentials (customer, amount, date) and lines for allocation.",
+    "outcome": "Advance payments entered with complete header and line detail.",
+    "rootCause": "An advance must carry the customer, amount, reference and allocation so it can be deposited, matched to the bank and applied to the right future invoices.",
+    "ifSkipped": "Advances lack the detail needed for application.",
+    "glAccounts": [
+      "2120 Prepaid Rent"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Posted advances list"
+    ],
+    "redFlags": [
+      "Advances without customer reference"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_entering_basic_information_about_the_advance_payment": {
+    "purpose": "Enters the advance header — customer, date, amount, payment method and reference.",
+    "outcome": "A correctly identified advance receipt.",
+    "rootCause": "The reference and date tie the advance to the bank deposit and the customer's records.",
+    "ifSkipped": "Advances cannot be matched to deposits or to the customer's remittance.",
+    "glAccounts": [
+      "2120 Prepaid Rent"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Posted advances list"
+    ],
+    "redFlags": [
+      "Missing check or wire references"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_entering_line_items_for_the_advance": {
+    "purpose": "Enters the line items of an advance payment, assigning the prepaid amount to liability accounts, properties and dimensions so it can be applied correctly later.",
+    "outcome": "Advances allocated to the correct liability accounts and properties.",
+    "rootCause": "An advance covering several properties or charge types must be split so each is applied correctly later.",
+    "ifSkipped": "Advances are applied to the wrong property or charge.",
+    "glAccounts": [
+      "2120 Prepaid Rent"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Advance detail"
+    ],
+    "redFlags": [
+      "Line totals not equal to advance amount"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_applying_the_advance_to_the_balance_owed": {
+    "purpose": "Applies a recorded advance to invoices when they are billed, converting the liability into payment of revenue.",
+    "outcome": "Prepaid amounts settle invoices in the periods they are earned.",
+    "rootCause": "Advances left unapplied mean the customer looks delinquent while the property holds their money.",
+    "ifSkipped": "Customers look delinquent and prepaid liabilities are overstated.",
+    "glAccounts": [
+      "2120 Prepaid Rent",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Advances unapplied while invoices are open"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_posted_advances_list": {
+    "purpose": "Lists posted customer advances with amount received, amount applied and remaining unapplied balance, showing prepaid money the property is holding for customers.",
+    "outcome": "Visibility of prepaid amounts held for customers.",
+    "rootCause": "Unapplied advances are liabilities that must be applied or refunded; the list shows them.",
+    "ifSkipped": "Unapplied prepayments linger as liabilities and customers look delinquent.",
+    "glAccounts": [
+      "2120 Prepaid Rent"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Posted advances list"
+    ],
+    "redFlags": [
+      "Unapplied advances older than 90 days"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_posted_advance_details": {
+    "purpose": "Views a posted advance's details and each application against invoices, showing how much of the customer's prepayment has been used.",
+    "outcome": "Clarity on how much of an advance has been used.",
+    "rootCause": "Customers who prepay rent or fees routinely ask how their money was applied; a clear application history answers them and supports audits of prepaid liabilities.",
+    "ifSkipped": "Prepayment questions cannot be answered.",
+    "glAccounts": [
+      "2120 Prepaid Rent"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Advance detail"
+    ],
+    "redFlags": [
+      "Applications to other customers"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_posted_payment_information": {
+    "purpose": "Prints posted advance or payment information — amount received and how it was applied — to send to the customer as confirmation or keep in the file.",
+    "outcome": "Documentation of prepayment receipt.",
+    "rootCause": "Customers who prepay often want confirmation; printed records also support audits of liabilities.",
+    "ifSkipped": "Prepayment confirmations are unavailable.",
+    "glAccounts": [
+      "2120 Prepaid Rent"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Advance detail"
+    ],
+    "redFlags": [
+      "Confirmations sent before the advance cleared the bank"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_reversing_an_advance": {
+    "purpose": "Reverses an advance that was misapplied to the wrong customer or returned by the bank, removing the prepaid liability and the cash receipt with an audit trail.",
+    "outcome": "Incorrect advances removed with an audit trail.",
+    "rootCause": "Advances recorded to the wrong customer or returned by the bank must be reversed to keep liabilities and cash correct.",
+    "ifSkipped": "Prepaid liabilities and cash are misstated.",
+    "glAccounts": [
+      "2120 Prepaid Rent",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Posted advances list"
+    ],
+    "redFlags": [
+      "Reversals without bank evidence"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_posted_advance_page": {
+    "purpose": "The record page for a posted advance showing amounts, applications and remaining balance.",
+    "outcome": "A complete record of one customer prepayment.",
+    "rootCause": "Tracking prepayment use over time requires a single record showing remaining balance.",
+    "ifSkipped": "Remaining prepayment balances are unclear.",
+    "glAccounts": [
+      "2120 Prepaid Rent"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Advance detail"
+    ],
+    "redFlags": [
+      "Negative remaining balances"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_posted_advance_details": {
+    "purpose": "Prints the details of a posted advance, including applications and remaining balance, for customer confirmation or audit support of prepaid liabilities.",
+    "outcome": "A printed record of the advance's use.",
+    "rootCause": "Printed advance details support customer questions and audit testing of prepaid liabilities.",
+    "ifSkipped": "Advance support is unavailable when requested.",
+    "glAccounts": [
+      "2120 Prepaid Rent"
+    ],
+    "gaap": [
+      "AU-C 500"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Advance detail"
+    ],
+    "redFlags": [
+      "Printed balances differing from system"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adjustments": {
+    "purpose": "Explains A/R adjustments — credit and debit adjustments to a customer's account for corrections, concessions and small write-offs, plus editing, exporting and importing them.",
+    "outcome": "Customer balances corrected through documented adjustments.",
+    "rootCause": "Balances drift from what is owed because of billing errors and negotiated settlements; adjustments correct them without altering original invoices.",
+    "ifSkipped": "Customer balances stay wrong or are corrected by untraceable JEs.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4040 Concessions",
+      "4050 Bad Debt"
+    ],
+    "gaap": [
+      "ASC 606 — price concessions",
+      "COSO 2013 — authorization of credits"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [
+      "Adjustments list"
+    ],
+    "redFlags": [
+      "Frequent credits to the same customer"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_viewing_a_list_of_a_r_adjustments": {
+    "purpose": "Views the list of A/R credit and debit adjustments with customer, type, amount, reason and user, as the basis for reviewing customer credits each month.",
+    "outcome": "Visibility of all credits and debits applied to customers.",
+    "rootCause": "Credits reduce revenue and receivables; reviewing them as a list is a key fraud and error control.",
+    "ifSkipped": "Unauthorized or unsupported credits go unnoticed.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Adjustments list"
+    ],
+    "redFlags": [
+      "Credits without reasons"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adjustments_list": {
+    "purpose": "The Adjustments list under Account Maintenance with actions to add, view, edit and export adjustments.",
+    "outcome": "A managed register of customer adjustments.",
+    "rootCause": "Monthly review of adjustments by someone independent of collections deters and detects improper credits.",
+    "ifSkipped": "Customer credits escape independent review, weakening fraud controls.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4040 Concessions"
+    ],
+    "gaap": [
+      "COSO 2013 — segregation of duties"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Adjustments list"
+    ],
+    "redFlags": [
+      "Adjustments entered by staff who also receive payments"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_adding_an_a_r_credit_adjustment": {
+    "purpose": "Adds a credit adjustment reducing a customer's balance — for a billing correction, approved concession or small write-off — saved as draft or posted.",
+    "outcome": "The customer's balance is reduced with a documented reason and GL offset.",
+    "rootCause": "Credits must carry a reason and the correct offset (concessions vs bad debt vs revenue correction) so revenue analysis and the allowance stay accurate.",
+    "ifSkipped": "Balances stay overstated or credits are coded to the wrong accounts.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4040 Concessions",
+      "4050 Bad Debt"
+    ],
+    "gaap": [
+      "ASC 606",
+      "ASC 326"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Adjustments list"
+    ],
+    "redFlags": [
+      "Credits coded to revenue accounts instead of concessions"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_creating_a_debit_adjustment": {
+    "purpose": "Creates a debit adjustment increasing a customer's balance — for a missed charge or a reversal of a prior credit.",
+    "outcome": "Missed charges are added to the customer's account.",
+    "rootCause": "Charges missed in billing (e.g., a CAM true-up) must be added with a documented basis to be collectible.",
+    "ifSkipped": "Revenue from missed or under-billed charges is never collected.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Adjustments list"
+    ],
+    "redFlags": [
+      "Debit adjustments without supporting calculations"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_editing_an_a_r_adjustment": {
+    "purpose": "Edits a draft A/R adjustment — amount, reason, offset account — before it is posted to the customer's account and the GL.",
+    "outcome": "Adjustment details corrected before affecting the GL.",
+    "rootCause": "Correcting an adjustment while it is a draft avoids posting and then reversing it, keeping the customer ledger and audit trail clean.",
+    "ifSkipped": "Wrong adjustments are posted and must be reversed.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Adjustments list"
+    ],
+    "redFlags": [
+      "Edits changing amounts after approval"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_a_r_adjustment_details": {
+    "purpose": "Views an A/R adjustment's details — customer, type, amount, reason and GL distribution.",
+    "outcome": "Full detail of one adjustment for review.",
+    "rootCause": "Reviewers must see the reason and offset account to judge whether an adjustment was appropriate.",
+    "ifSkipped": "Adjustments are approved without scrutiny.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Adjustment detail"
+    ],
+    "redFlags": [
+      "Vague reasons"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_importing_a_r_adjustments": {
+    "purpose": "Imports A/R adjustments in bulk from a template — for example opening balance adjustments at onboarding or a batch of approved write-offs.",
+    "outcome": "Many adjustments recorded consistently.",
+    "rootCause": "Onboarding and periodic cleanups involve many adjustments; importing ensures consistency and a clear batch record.",
+    "ifSkipped": "Adjustments are keyed manually with errors.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4050 Bad Debt"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Imported write-offs without approval evidence"
+    ],
+    "confidence": "medium"
+  }
+}

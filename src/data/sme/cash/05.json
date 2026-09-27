@@ -1,0 +1,1136 @@
+{
+  "scr_cash_reconcile_bank_account_page": {
+    "purpose": "The main matching workspace of a bank reconciliation: book transactions (checks, deposits, transfers, JEs to cash) on one side, bank transactions on the other, with running totals showing the difference still to be explained.",
+    "outcome": "Every book and bank item for the period is either matched, carried as an outstanding item, or booked as a new transaction, until the difference is zero.",
+    "rootCause": "Reconciliation is fundamentally a matching exercise between two independent records of the same cash. A dedicated workspace with live difference totals shows exactly how far the preparer is from a true balance.",
+    "ifSkipped": "Preparers match in spreadsheets, lose track of what was matched, and finish with an unexplained difference.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash",
+      "6420 Bank Charges"
+    ],
+    "gaap": [
+      "ASC 305",
+      "COSO 2013 — bank reconciliation control"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Bank reconciliation report",
+      "Outstanding items report"
+    ],
+    "redFlags": [
+      "Difference cleared with a manual adjustment rather than matched items"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_filtering_and_sorting_transactions": {
+    "purpose": "Filters and sorts book and bank transactions on the reconciliation page — by type, amount, date or check number — to find matches quickly in accounts with thousands of resident ACH receipts.",
+    "outcome": "Preparers find matching pairs fast and isolate the handful of genuinely unmatched items.",
+    "rootCause": "Large multifamily operating accounts can have thousands of transactions a month. Without filtering by amount or type, finding the one unmatched $1,250 NSF return is impractical.",
+    "ifSkipped": "Reconciliations take hours longer and unmatched items are missed.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Reconciliations completed without reviewing unmatched items by type"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reconciling_an_account_manually": {
+    "purpose": "Matches book and bank transactions by hand when auto-matching cannot — for example a single bank deposit covering several book deposits, or checks with keying differences.",
+    "outcome": "Items the system could not pair automatically are matched with preparer judgment.",
+    "rootCause": "Banks batch and split transactions differently from the books (a remote-deposit capture may combine several days of deposits). Manual matching resolves these many-to-one cases.",
+    "ifSkipped": "Legitimate items remain unmatched and are carried forward as false reconciling items.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Manual matches where amounts differ"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_matching_different_transaction_types_if_the_amount_to_match_is_z": {
+    "purpose": "Allows matching a group of different transaction types (e.g., a deposit and a reversal, or a check and its void) together when their net amount is zero, clearing offsetting items with no bank impact.",
+    "outcome": "Offsetting book entries that never reached the bank are cleared together.",
+    "rootCause": "A check issued and voided in the same period, or a deposit reversed and re-entered, produces pairs that net to zero and never appear at the bank. They must be cleared together or they sit as outstanding forever.",
+    "ifSkipped": "Offsetting pairs remain as permanent outstanding items, inflating the outstanding list.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation",
+      "Outstanding items report"
+    ],
+    "redFlags": [
+      "Zero-net matches of unrelated transactions"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_matching_a_range_of_checks_quick_match": {
+    "purpose": "Quick Match clears a whole range of check numbers at once when the bank statement shows them all cleared at their issued amounts.",
+    "outcome": "High-volume check clearing is done in seconds instead of check by check.",
+    "rootCause": "Properties paying many vendors by check can have hundreds clearing each month. Range matching saves time but must only be used when amounts agree, since an altered check would be hidden.",
+    "ifSkipped": "Check clearing is slow; misused, it can hide a fraudulently altered check amount.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "UCC 4-406 — duty to examine statements for alterations"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Quick match used when bank and book amounts differ"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_unmatching_a_transaction": {
+    "purpose": "Undoes a match made in error on the reconciliation page so the items can be matched correctly.",
+    "outcome": "Mistaken matches are corrected before the reconciliation is finalized.",
+    "rootCause": "Auto-matching and quick-matching can pair the wrong items with the same amount. Unmatching is the correction path before the reconciliation is locked.",
+    "ifSkipped": "Wrong matches stay, hiding a real unmatched item.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Frequent unmatch/rematch activity on the same items"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_exporting_bank_reconciliation_transactions_to_excel": {
+    "purpose": "Exports the reconciliation's matched and unmatched transactions to Excel for analysis, reviewer questions or attachment to the close package.",
+    "outcome": "A portable copy of reconciliation detail for review and support.",
+    "rootCause": "Reviewers and auditors often ask for detail of outstanding items or unusual matches in Excel, and offshore teams use it to investigate aged items with site staff.",
+    "ifSkipped": "Reviewers cannot easily analyze reconciling items and follow-up with site teams is slower.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "AU-C 500 — audit evidence"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Reconciliation export"
+    ],
+    "redFlags": [
+      "Exports edited and presented as system output"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_excluding_bank_transactions": {
+    "purpose": "Excludes bank transactions that are not relevant to the reconciliation — for example duplicate lines in an imported bank file or memo-only lines.",
+    "outcome": "Noise is removed from the bank side so real items stand out.",
+    "rootCause": "Bank files sometimes contain informational or duplicate entries. Excluding them prevents false unmatched items, but exclusion of real items would hide activity, so it needs care.",
+    "ifSkipped": "False unmatched items clutter the rec; if misused, real bank activity is hidden.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Excluded items with real amounts (fees, returns)"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_marking_bank_transactions_as_reconciling_items": {
+    "purpose": "Marks a bank transaction as a reconciling item to be resolved later — for example an unidentified deposit awaiting research or a bank error the bank has agreed to correct.",
+    "outcome": "The reconciliation can be finalized with the item explicitly listed and tracked rather than forced.",
+    "rootCause": "Some items cannot be resolved by the close deadline. Tracking them as reconciling items makes them visible and aged instead of being plugged.",
+    "ifSkipped": "Unresolved items are plugged or forgotten.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — follow-up of reconciling items"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Reconciling items list"
+    ],
+    "redFlags": [
+      "Reconciling items older than 60 days"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_alternate_bank_accounts": {
+    "purpose": "Views transactions in alternate bank accounts during a reconciliation — helpful when an item was recorded to the wrong account (e.g., a deposit booked to operating that actually went to the trust account).",
+    "outcome": "Mis-posted items between accounts are identified and corrected.",
+    "rootCause": "Transactions posted to the wrong bank account create offsetting unmatched items in two recs. Seeing the other account reveals the pair.",
+    "ifSkipped": "Two recs carry offsetting items for months.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Recurring items posted to the wrong account"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_finalizing_the_reconciliation": {
+    "purpose": "Completes the reconciliation once all appropriate items are matched and the remaining difference is zero, locking the matched items and producing the reconciliation record.",
+    "outcome": "A finalized reconciliation that becomes part of the close evidence.",
+    "rootCause": "Finalizing freezes the result so later changes cannot silently alter it. It marks the point at which the preparer asserts the account is reconciled.",
+    "ifSkipped": "Reconciliations remain open and can be changed after review.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — reconciliation completion"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reconciliation report"
+    ],
+    "redFlags": [
+      "Finalized reconciliations with a non-zero difference"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_editing_or_voiding_reconciled_transactions": {
+    "purpose": "Explains how edits or voids of transactions already reconciled affect the reconciliation — typically requiring the reconciliation to be reopened or the change dated in the current period.",
+    "outcome": "Changes to reconciled items are made without silently breaking prior reconciliations.",
+    "rootCause": "Voiding a check that already cleared, or editing a reconciled deposit, changes a closed reconciliation's balance. The rules exist to force such changes into the current period.",
+    "ifSkipped": "Prior reconciliations break, and next month's beginning balance no longer agrees.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 250 — changes to closed periods"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Reconciliation histories"
+    ],
+    "redFlags": [
+      "Voids dated into reconciled periods"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_troubleshooting_reconciliation": {
+    "purpose": "Guidance for resolving reconciliation differences before finalizing — checking the statement ending balance, beginning balance, duplicate matches, transactions dated outside the period and unrecorded bank items.",
+    "outcome": "The preparer finds the true cause of a difference instead of forcing a balance.",
+    "rootCause": "Common causes of differences are predictable (wrong ending balance, changed prior rec, missed bank fee). A checklist gets preparers to the cause quickly.",
+    "ifSkipped": "Differences are plugged and real errors or fraud remain hidden.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "6420 Bank Charges"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Round-dollar adjustments to force balance"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_credit_card_reconciliation": {
+    "purpose": "Reconciles company credit card accounts to issuer statements — recorded charges, fees and payments versus the statement — with setup required the first time.",
+    "outcome": "Card liability balances agree with issuer statements monthly.",
+    "rootCause": "Credit cards are an unapproved-spend risk; reconciling them monthly confirms every charge was recorded, coded and paid.",
+    "ifSkipped": "Unrecorded or personal charges go unnoticed and the card liability is misstated.",
+    "glAccounts": [
+      "2140 Credit Card Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — purchasing card controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Credit card reconciliation"
+    ],
+    "redFlags": [
+      "Card reconciliations not performed monthly"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_setting_up_an_account_for_reconciliation": {
+    "purpose": "First-time setup of a credit card account for reconciliation — opening balance and outstanding charges at the start date.",
+    "outcome": "Card reconciliations start from a correct opening position.",
+    "rootCause": "Like bank recs, card recs need a verified opening balance; otherwise every later month carries the initial error.",
+    "ifSkipped": "Card reconciliations start with an unexplained difference.",
+    "glAccounts": [
+      "2140 Credit Card Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — conversion controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Credit card reconciliation"
+    ],
+    "redFlags": [
+      "Opening balance not matching the issuer statement"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reconciling_credit_cards": {
+    "purpose": "Monthly card reconciliation — entering the statement balance and matching recorded charges, fees and payments to the statement.",
+    "outcome": "Every card charge on the statement is recorded, coded and matched.",
+    "rootCause": "Card charges are often recorded late or not at all by site staff; the reconciliation is where missing charges surface.",
+    "ifSkipped": "Missing charges are discovered only when the issuer demands payment.",
+    "glAccounts": [
+      "2140 Credit Card Payable",
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Credit card reconciliation"
+    ],
+    "redFlags": [
+      "Statement charges without recorded transactions"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_bank_feeds_list": {
+    "purpose": "Lists bank feed transactions imported automatically from banks (via subscription) for all accounts, ready for matching in reconciliations.",
+    "outcome": "Daily bank activity is available in RealPage without manual file downloads.",
+    "rootCause": "Daily bank feeds allow continuous reconciliation and early detection of unauthorized transactions, instead of waiting for month-end statements.",
+    "ifSkipped": "Unauthorized debits are discovered weeks later at month-end.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "UCC 4-406 — timely review of bank activity",
+      "NACHA — 60-day window for unauthorized ACH returns"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank feeds list"
+    ],
+    "redFlags": [
+      "Unmatched feed transactions older than a week"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_configuring_the_bank_feeds_list": {
+    "purpose": "Enables the bank feeds subscription and configures which accounts receive feeds.",
+    "outcome": "Bank feeds flow for the accounts that need daily monitoring.",
+    "rootCause": "Bank feeds require a subscription and account-level setup; without it, the team relies on manual statement downloads.",
+    "ifSkipped": "Manual statement downloads and slower detection of problems.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — IT general controls"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Treasury"
+    ],
+    "reports": [
+      "Bank feeds list"
+    ],
+    "redFlags": [
+      "Active bank accounts without feeds configured"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_an_unmatched_transaction": {
+    "purpose": "Deletes an unmatched bank feed transaction — for example a duplicate feed line — from the bank feeds list.",
+    "outcome": "Duplicate feed lines no longer appear as unmatched items.",
+    "rootCause": "Feeds occasionally duplicate transactions; deleting duplicates keeps the rec accurate. Deleting real transactions would hide bank activity, so this needs care.",
+    "ifSkipped": "Duplicate feed lines inflate unmatched items; misuse hides real debits.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Bank feeds list"
+    ],
+    "redFlags": [
+      "Deleted feed transactions that appear on the bank statement"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_bulk_bank_feed_import_page": {
+    "purpose": "Imports bank transaction files for many accounts at once — a consolidated CSV or BAI2 file from the bank covering every property account.",
+    "outcome": "Portfolio-wide bank activity loaded in one step for reconciliation.",
+    "rootCause": "Banks commonly provide one consolidated file for all accounts of a management company. Importing it at once is far faster than per-account imports.",
+    "ifSkipped": "Accountants download and import files per account, delaying recs.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — data integrity"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results",
+      "Bank feeds list"
+    ],
+    "redFlags": [
+      "Accounts in the file not mapped to RealPage bank accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_importing_a_consolidated_csv_or_bai_file_for_all_bank_accounts": {
+    "purpose": "Imports one consolidated CSV or BAI file that contains transactions for all bank accounts, mapping each to its RealPage bank account.",
+    "outcome": "All accounts receive their bank transactions from a single upload.",
+    "rootCause": "Consolidated bank files are standard in treasury services; mapping them correctly is necessary so transactions land in the right account's reconciliation.",
+    "ifSkipped": "Transactions land in the wrong account or are skipped.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Unmapped account numbers skipped silently"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_importing_a_csv_or_bai_file_for_an_individual_bank_account": {
+    "purpose": "Imports a CSV or BAI file for one bank account, used when the bank provides account-level files or a single account needs reloading.",
+    "outcome": "One account's bank activity loaded for reconciliation.",
+    "rootCause": "Smaller banks often provide only per-account files; single-account imports cover these cases.",
+    "ifSkipped": "The account's activity must be keyed manually.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "File date range overlapping a prior import"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_editing_or_deleting_a_layout_for_a_consolidated_csv_file": {
+    "purpose": "Maintains the column layout that tells RealPage how to read a bank's consolidated CSV file (which column is account, date, amount, description).",
+    "outcome": "Bank files are parsed correctly after a bank changes its format.",
+    "rootCause": "Banks change file formats without notice; an outdated layout misreads amounts or dates and loads wrong data.",
+    "ifSkipped": "Imports fail or load wrong amounts after a bank format change.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — interface controls"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "System administrator"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Import totals not matching bank totals after a layout change"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reconciling_items_list": {
+    "purpose": "Lists all transactions marked as reconciling items across accounts, with age, so they can be followed up and resolved.",
+    "outcome": "A portfolio-wide list of open reconciling items with aging for escalation.",
+    "rootCause": "Reconciling items that are not tracked centrally get carried forward indefinitely. Aging them forces resolution — and items over 90 days are an audit finding.",
+    "ifSkipped": "Old reconciling items accumulate and hide errors or fraud.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — follow-up of exceptions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Reconciling items list"
+    ],
+    "redFlags": [
+      "Items older than 90 days"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_bulk_reconciliation_page": {
+    "purpose": "Manages bulk reconciliation — automatically matching and reconciling many bank accounts at once using bank feeds and matching rules.",
+    "outcome": "Most accounts reconcile automatically, leaving only exceptions for manual work.",
+    "rootCause": "Large portfolios have hundreds of accounts. Bulk reconciliation lets a small team keep up by handling only exceptions.",
+    "ifSkipped": "Each account must be reconciled manually, delaying the close.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — automated controls with exception review"
+    ],
+    "stakeholders": [
+      "Offshore team lead",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bulk reconciliation results",
+      "Pending reconciliations"
+    ],
+    "redFlags": [
+      "Auto-reconciled accounts never reviewed"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_starting_a_bulk_reconciliation_on_demand": {
+    "purpose": "Starts a bulk reconciliation run immediately rather than waiting for the schedule — for example after a late bank file arrives.",
+    "outcome": "Accounts are reconciled as soon as data is available.",
+    "rootCause": "Close deadlines do not wait for schedules; on-demand runs keep recs moving when files arrive late.",
+    "ifSkipped": "Recs wait for the next scheduled run, losing a day of the close.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bulk reconciliation results"
+    ],
+    "redFlags": [
+      "On-demand runs started before all bank files were imported"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_manually_reconciling_bank_accounts_in_bulk": {
+    "purpose": "Manually reconciles multiple accounts at once from the bulk page when the system has matched everything but needs the preparer to confirm.",
+    "outcome": "Fully matched accounts are finalized in one step.",
+    "rootCause": "Confirmation by a preparer is still required for accountability even when matching is automatic; doing it in bulk keeps it efficient.",
+    "ifSkipped": "Fully matched accounts remain pending and delay the close.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Pending reconciliations"
+    ],
+    "redFlags": [
+      "Bulk confirmation of accounts with reconciling items"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_pending_bank_reconciliations_list": {
+    "purpose": "Lists bank reconciliations that have been started but not finalized, by account and statement period, so the team can see which accounts are still open for the close.",
+    "outcome": "Clear visibility of which bank accounts are not yet reconciled for the period.",
+    "rootCause": "Close status depends on every account being reconciled by the deadline (typically business day 3-5). The pending list shows exactly which are still open, including ones abandoned mid-way.",
+    "ifSkipped": "Half-finished recs are forgotten and the property's close package goes out missing bank reconciliations.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — monitoring"
+    ],
+    "stakeholders": [
+      "Offshore team lead",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Pending reconciliations"
+    ],
+    "redFlags": [
+      "Reconciliations pending from prior months"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_and_finalizing_open_bank_reconciliations": {
+    "purpose": "Opens pending reconciliations from the pending list to review the remaining items and finalize them once the difference is zero.",
+    "outcome": "Nearly-complete recs are closed out quickly and moved to approval.",
+    "rootCause": "Many pending recs need only a last check before finalizing. Working them from the pending list is the fastest way to clear the backlog before the close deadline.",
+    "ifSkipped": "Recs remain open, never reach the approver, and the close checklist shows cash as incomplete.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Pending reconciliations"
+    ],
+    "redFlags": [
+      "Recs finalized without reviewing reconciling items"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_generating_a_pending_bank_reconciliation_report": {
+    "purpose": "Produces a report of all pending (unfinalized) bank reconciliations by account, preparer and age, for monitoring and escalation during close.",
+    "outcome": "Managers can escalate specific late reconciliations before the owner reporting deadline.",
+    "rootCause": "Onshore managers need a portable status report of open recs to chase preparers and to explain delays to clients.",
+    "ifSkipped": "Late recs are not escalated in time and owner packages go out without complete bank reconciliations.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — monitoring"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Pending reconciliation report"
+    ],
+    "redFlags": [
+      "The same accounts pending month after month"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reconciliation_histories_list": {
+    "purpose": "Lists completed reconciliations per account with statement dates, balances and status, and gives access to reconciliation reports, attached statements and reopening.",
+    "outcome": "A complete history of every account's reconciliations for audit and reference.",
+    "rootCause": "Auditors, lenders and owners request prior reconciliations, and gaps in monthly history are an immediate finding. The history also shows whether any reconciliation was reopened after approval.",
+    "ifSkipped": "Prior reconciliations cannot be produced on request and gaps in history go unnoticed until an audit.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Record retention requirements",
+      "AU-C 500 — audit evidence"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "External auditor"
+    ],
+    "reports": [
+      "Reconciliation histories"
+    ],
+    "redFlags": [
+      "Gaps in monthly reconciliation history"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reopening_and_adjusting_a_closed_reconciliation": {
+    "purpose": "Reopens a finalized reconciliation to correct it — for example when an item was matched to the wrong bank line or a transaction in the period was later voided.",
+    "outcome": "Errors in closed reconciliations are corrected with a record that the rec was reopened and why.",
+    "rootCause": "Mistakes are sometimes found after finalizing. A controlled reopen path fixes them, but every reopening changes evidence that may already have been reviewed, so it needs justification and re-approval.",
+    "ifSkipped": "Errors carry forward into every later month, or reconciliations are changed after approval without anyone re-reviewing them.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — change controls over completed controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Reconciliation histories"
+    ],
+    "redFlags": [
+      "Reopened recs after approval without re-approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_attaching_a_bank_statement_to_a_bank_reconciliation": {
+    "purpose": "Attaches the bank statement PDF for the period to the reconciliation record, so the reviewer can confirm the ending balance used in the rec against the bank's own document.",
+    "outcome": "Each reconciliation carries its external evidence, ready for review and audit.",
+    "rootCause": "The ending bank balance is the anchor of the reconciliation. Reviewers and auditors rely on the bank's statement, not a keyed number, to verify it.",
+    "ifSkipped": "Reviewers approve recs without seeing the statement, or must request it separately, delaying approval.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "AU-C 500 — external evidence"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Reconciliation report"
+    ],
+    "redFlags": [
+      "Recs approved without an attached statement"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_generating_a_reconciliation_report": {
+    "purpose": "Produces the reconciliation report — bank balance, outstanding checks, deposits in transit, adjustments and book balance — for a finalized reconciliation.",
+    "outcome": "The formal reconciliation document for the close package.",
+    "rootCause": "The report is the standard evidence of the bank reconciliation control that owners, lenders and auditors expect.",
+    "ifSkipped": "No formal evidence of the reconciliation.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013",
+      "AU-C 500"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer",
+      "External auditor"
+    ],
+    "reports": [
+      "Reconciliation report"
+    ],
+    "redFlags": [
+      "Reports generated before finalization"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_generating_an_outstanding_items_report": {
+    "purpose": "Lists outstanding checks, deposits in transit and reconciling items as of a reconciliation date.",
+    "outcome": "A schedule of items that explain the difference between bank and book, with ages.",
+    "rootCause": "Outstanding items must be aged and reviewed; stale checks move to escheatment and old deposits in transit indicate problems.",
+    "ifSkipped": "Stale items are not identified for follow-up or escheatment.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2170 Unclaimed Property Payable"
+    ],
+    "gaap": [
+      "State unclaimed property laws"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Outstanding items report"
+    ],
+    "redFlags": [
+      "Outstanding checks older than 180 days"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_generating_an_adjusted_items_report": {
+    "purpose": "Lists adjustments made during a reconciliation — transactions or JEs created for bank-only items.",
+    "outcome": "Reviewers see every entry the preparer booked to make the rec balance.",
+    "rootCause": "Adjustments made during reconciliation are the highest-risk items (potential plugs); a separate report focuses review on them.",
+    "ifSkipped": "Plugs and improper adjustments escape review.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "6420 Bank Charges"
+    ],
+    "gaap": [
+      "COSO 2013 — review of adjustments"
+    ],
+    "stakeholders": [
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Adjusted items report"
+    ],
+    "redFlags": [
+      "Adjustments to miscellaneous or suspense accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_generating_a_package_with_multiple_bank_reconciliations": {
+    "purpose": "Produces one package combining multiple bank reconciliations — for a property with several accounts or for a portfolio — for the close package or owner request.",
+    "outcome": "All of a property's bank recs delivered as one document.",
+    "rootCause": "Owners and auditors typically want every account's reconciliation for a period; a combined package saves assembling them manually.",
+    "ifSkipped": "Packages are assembled by hand and accounts get left out.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "AU-C 500"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager",
+      "External auditor"
+    ],
+    "reports": [
+      "Reconciliation package"
+    ],
+    "redFlags": [
+      "Packages missing trust or reserve accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_approve_bank_reconciliations_list": {
+    "purpose": "Lists bank reconciliations submitted for approval, where the approver reviews each one and approves or declines it.",
+    "outcome": "An approval queue that documents independent review of every bank reconciliation.",
+    "rootCause": "Independent review of bank recs is one of the key controls auditors test. The queue is where that review happens and is evidenced with a name and timestamp.",
+    "ifSkipped": "Reconciliations are prepared but never independently reviewed, and the control fails audit testing.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — segregation of duties"
+    ],
+    "stakeholders": [
+      "Onshore reviewer / approver"
+    ],
+    "reports": [
+      "Approval queue"
+    ],
+    "redFlags": [
+      "Recs pending approval past the close deadline"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_approving_and_declining_bank_reconciliations": {
+    "purpose": "Approver's action to approve a reconciliation or decline it with comments for correction.",
+    "outcome": "Approved recs are locked as close evidence; declined ones return to the preparer.",
+    "rootCause": "Approval documents that someone independent examined the reconciling items; declines evidence that the review found problems.",
+    "ifSkipped": "No evidence of review; problems are not sent back for correction.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 Principle 10"
+    ],
+    "stakeholders": [
+      "Onshore reviewer / approver",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Approval history"
+    ],
+    "redFlags": [
+      "Approvals without comments on aged reconciling items"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_opting_out_of_approval_notifications_for_bank_reconciliations": {
+    "purpose": "Lets users stop receiving email notifications for bank reconciliation approvals.",
+    "outcome": "Users control notification volume.",
+    "rootCause": "High-volume approvers may receive hundreds of emails at close, but opting out risks missing items they must approve, so it should be used with care.",
+    "ifSkipped": "Notification fatigue; if misused, approvers miss pending recs.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — monitoring"
+    ],
+    "stakeholders": [
+      "Approvers"
+    ],
+    "reports": [
+      "Approval queue"
+    ],
+    "redFlags": [
+      "Approvers opted out with pending items aging in their queue"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_sample_email_notifications_for_bank_reconciliation_approvals": {
+    "purpose": "Shows examples of the email notifications sent during bank reconciliation approval (submitted, approved, declined).",
+    "outcome": "Users recognize legitimate approval emails and know what action each requires.",
+    "rootCause": "Knowing the genuine notification format helps staff act on real requests and recognize phishing emails that imitate system notifications.",
+    "ifSkipped": "Staff miss or misread approval requests, or fall for imitation emails.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — information and communication"
+    ],
+    "stakeholders": [
+      "Preparers",
+      "Approvers"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Notification emails asking users to enter credentials"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_debit_cards_for_petty_cash": {
+    "purpose": "Explains prepaid debit cards issued to site staff in place of physical petty cash, with spending tracked by expense category and reimbursed through an approval workflow.",
+    "outcome": "Small site purchases are made with traceable cards rather than cash boxes.",
+    "rootCause": "Physical petty cash at leasing offices is a common source of shortages and misappropriation. Prepaid cards give transaction-level visibility and limit exposure to the loaded balance.",
+    "ifSkipped": "Cash boxes continue with little traceability and frequent unexplained shortages.",
+    "glAccounts": [
+      "1120 Petty Cash",
+      "6110 Repairs & Maintenance",
+      "6410 Administrative"
+    ],
+    "gaap": [
+      "COSO 2013 — safeguarding assets"
+    ],
+    "stakeholders": [
+      "Property manager",
+      "Site staff",
+      "Offshore property accountant",
+      "Treasury"
+    ],
+    "reports": [
+      "Petty cash card transactions"
+    ],
+    "redFlags": [
+      "Card spend without receipts or categories"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_configuring_debit_cards_for_petty_cash": {
+    "purpose": "Configures the petty cash debit card program — expense categories, funding bank accounts and reimbursement settings.",
+    "outcome": "Card spending maps to GL expense accounts and reimbursements draw from the right bank account.",
+    "rootCause": "Without configured categories and funding, card spending cannot be coded or replenished correctly.",
+    "ifSkipped": "Card spending is uncoded and reimbursements post incorrectly.",
+    "glAccounts": [
+      "1120 Petty Cash",
+      "6410 Administrative"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Treasury"
+    ],
+    "reports": [
+      "Petty cash configuration"
+    ],
+    "redFlags": [
+      "Categories mapped to capital accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_enabling_debit_cards_for_petty_cash": {
+    "purpose": "Turns on petty cash debit cards and defines expense categories (e.g., office supplies, resident events, minor repairs) that staff choose when spending.",
+    "outcome": "Staff can use cards with spending categorized for GL coding.",
+    "rootCause": "Categories drive coding of card spend to the right expense accounts for budget reporting.",
+    "ifSkipped": "Card spend lands in a single miscellaneous account.",
+    "glAccounts": [
+      "6410 Administrative",
+      "6310 Marketing",
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Petty cash card transactions"
+    ],
+    "redFlags": [
+      "Too few categories to support budget reporting"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_enabling_bank_accounts_for_petty_cash_reimbursements": {
+    "purpose": "Enables the specific property operating bank accounts that fund replenishment of petty cash debit cards, so reloads draw from the property whose staff spent the money.",
+    "outcome": "Card replenishments come from the correct property's operating account.",
+    "rootCause": "Replenishing from the wrong account charges one owner's cash for another property's spending. Trust or reserve accounts must never be used for this.",
+    "ifSkipped": "Replenishments fail, or they draw from the wrong property's or a restricted account.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013",
+      "State trust account restrictions"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Petty cash reimbursements"
+    ],
+    "redFlags": [
+      "Security deposit trust accounts enabled for petty cash replenishment"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_setting_up_permissions_for_petty_cash_debit_cards": {
+    "purpose": "Sets which users can issue cards, load funds, view transactions and approve reimbursements.",
+    "outcome": "Segregated duties across card issuance, spending and reimbursement approval.",
+    "rootCause": "If the same person issues, spends and approves reimbursement, card programs become a fraud channel.",
+    "ifSkipped": "One person controls the whole card cycle.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — segregation of duties"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Property manager"
+    ],
+    "reports": [
+      "User permissions"
+    ],
+    "redFlags": [
+      "Cardholders who can approve their own reimbursements"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_configuring_approvals_for_petty_cash_reimbursements": {
+    "purpose": "Configures an approval workflow so petty cash card reimbursements require approval before funds are loaded.",
+    "outcome": "Card replenishments are reviewed before more money is loaded.",
+    "rootCause": "Approval before replenishment is the key control: it forces review of what was spent before more funds are made available.",
+    "ifSkipped": "Cards are reloaded automatically without review of prior spending.",
+    "glAccounts": [
+      "1120 Petty Cash",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization"
+    ],
+    "stakeholders": [
+      "Property manager",
+      "Regional manager"
+    ],
+    "reports": [
+      "Approval workflow"
+    ],
+    "redFlags": [
+      "Reimbursements approved by the cardholder"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_issue_card_page": {
+    "purpose": "Page for issuing prepaid petty cash debit cards to authorized site staff or properties, setting limits and categories.",
+    "outcome": "Cards issued with defined limits to named holders.",
+    "rootCause": "Issuing cards to named individuals with limits creates accountability and caps exposure.",
+    "ifSkipped": "Cards shared among staff with no accountability.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Property manager"
+    ],
+    "reports": [
+      "Issued cards list"
+    ],
+    "redFlags": [
+      "Cards issued to properties rather than named individuals without controls"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_issuing_a_pc_card": {
+    "purpose": "Procedure for issuing a petty cash card to a property and cardholder, with initial funding.",
+    "outcome": "A funded card ready for site purchases.",
+    "rootCause": "Initial funding must be recorded as a transfer to petty cash so the card balance is tracked in the GL.",
+    "ifSkipped": "Card funding is recorded as expense, overstating expenses.",
+    "glAccounts": [
+      "1120 Petty Cash",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Issued cards list"
+    ],
+    "redFlags": [
+      "Card funding expensed at issue"
+    ],
+    "confidence": "high"
+  }
+}

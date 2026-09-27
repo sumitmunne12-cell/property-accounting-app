@@ -1,0 +1,677 @@
+{
+  "scr_cash_find_match_page": {
+    "purpose": "Matching aid in the new reconciliation tool that, for a selected imported bank transaction, searches G/L cash transactions for candidates by amount, date and reference so the preparer can pick the right match.",
+    "outcome": "Hard-to-find matches (a bank debit that corresponds to a check keyed with a slightly different date) are located and cleared quickly.",
+    "rootCause": "When auto-matching fails, the preparer needs a targeted search rather than scrolling the whole ledger. Find Match narrows candidates to plausible ones.",
+    "ifSkipped": "Preparers give up on hard matches and carry them as reconciling items.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation (new)"
+    ],
+    "redFlags": [
+      "Matches selected with different payees"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_excluding_bank_transactions_2": {
+    "purpose": "In the new tool, excludes bank transactions that should not be reconciled — duplicate feed lines or informational entries — from the matching list.",
+    "outcome": "Only relevant bank activity remains for matching.",
+    "rootCause": "Bank feeds sometimes include duplicates or memo lines; excluding them prevents false exceptions. Excluding real transactions, however, hides activity, so it requires justification.",
+    "ifSkipped": "False exceptions clutter the rec; misuse hides real bank debits.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Bank reconciliation (new)"
+    ],
+    "redFlags": [
+      "Excluded items that appear on the bank statement with real amounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_marking_bank_transactions_as_reconciling_items_2": {
+    "purpose": "In the new tool, marks an unresolved bank transaction as a reconciling item so the rec can be finalized with the item tracked for follow-up.",
+    "outcome": "Unresolved items are listed and aged rather than forced.",
+    "rootCause": "Some items (unidentified deposits, bank errors pending correction) cannot be resolved by the deadline; tracking them keeps the rec honest and forces follow-up.",
+    "ifSkipped": "Unresolved items are plugged or forgotten, and errors or fraud stay hidden in the difference.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — follow-up of exceptions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Reconciling items list"
+    ],
+    "redFlags": [
+      "Reconciling items carried more than 60 days"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_creating_transactions_or_journal_entries_for_unmatched_transacti_2": {
+    "purpose": "From the Find Match page, creates the G/L transaction or journal entry for a bank-only item — bank fee, interest, NSF return, lender auto-debit — so it can be matched immediately.",
+    "outcome": "Bank-originated items are recorded in the right accounts and cleared in the same reconciliation.",
+    "rootCause": "Bank-only items only become known at reconciliation; creating the entry from within the match page records and clears them in one step.",
+    "ifSkipped": "Bank-only items remain unrecorded and the rec does not balance.",
+    "glAccounts": [
+      "6420 Bank Charges",
+      "4100 Other Income",
+      "1210 Resident/Tenant A/R",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 305"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Adjusted items report"
+    ],
+    "redFlags": [
+      "NSF returns booked to bank charges"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_bank_transaction_to_include_in_your_reconciliation": {
+    "purpose": "Manually adds a bank transaction to the reconciliation when it is missing from the imported bank file — for example a late-posting item visible only on the PDF statement.",
+    "outcome": "The bank side of the rec is complete even when the file was incomplete.",
+    "rootCause": "Bank files occasionally omit transactions (late adjustments, cut-off timing). Adding them from the statement completes the bank side.",
+    "ifSkipped": "The bank side is incomplete and the rec cannot balance.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Bank reconciliation (new)"
+    ],
+    "redFlags": [
+      "Manually added bank transactions not on the statement"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_alternate_bank_accounts_2": {
+    "purpose": "In the new tool, views balances and activity of alternate bank accounts to find items posted to the wrong account.",
+    "outcome": "Cross-account mis-postings are found and corrected.",
+    "rootCause": "Deposits recorded to operating instead of the trust account (or vice versa) create offsetting exceptions in two recs; viewing the other account shows the pair.",
+    "ifSkipped": "Two recs carry offsetting items and the trust account appears underfunded.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "COSO 2013",
+      "State security deposit trust requirements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation (new)"
+    ],
+    "redFlags": [
+      "Security deposits recorded in operating cash"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_finalizing_the_reconciliation_2": {
+    "purpose": "Finalizes a reconciliation in the new tool once all appropriate transactions are matched and the difference is zero.",
+    "outcome": "A locked reconciliation ready for submission and approval.",
+    "rootCause": "Finalizing freezes the result so later edits cannot silently alter it, and marks the point at which the preparer asserts the account is reconciled for the period.",
+    "ifSkipped": "Recs stay open and can change after review.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reconciliation report"
+    ],
+    "redFlags": [
+      "Finalized with open exceptions not marked as reconciling items"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_troubleshooting_reconciliations": {
+    "purpose": "Troubleshooting guidance for differences in the new tool — wrong statement balance, prior-period changes, duplicate imports, missing bank lines.",
+    "outcome": "Preparers find root causes rather than plugging differences.",
+    "rootCause": "The new tool introduces its own failure modes (duplicate imports, rule mis-matches) in addition to classic ones; a checklist speeds diagnosis.",
+    "ifSkipped": "Differences are plugged and real errors remain.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation (new)"
+    ],
+    "redFlags": [
+      "Duplicate bank file imports"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_print_payment_copies_page": {
+    "purpose": "Page for printing or emailing copies of vendor payments (checks and electronic payments) for a chosen period and range.",
+    "outcome": "Payment copies for vendors, files or audit samples.",
+    "rootCause": "Proof-of-payment requests from vendors and auditors are routine; a dedicated page answers them from system records.",
+    "ifSkipped": "Proof-of-payment requests are slow and vendors may resubmit invoices.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "AU-C 500"
+    ],
+    "stakeholders": [
+      "A/P team",
+      "Vendors",
+      "External auditor"
+    ],
+    "reports": [
+      "Payment copies"
+    ],
+    "redFlags": [
+      "Copies produced for voided payments without noting void status"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_the_print_payment_copies": {
+    "purpose": "Views the payment copies selected before printing or emailing to confirm the correct payments are included.",
+    "outcome": "Only intended payments are sent.",
+    "rootCause": "Sending the wrong payment copy to a vendor exposes other vendors' payment and bank information.",
+    "ifSkipped": "Wrong payment copies reach vendors, disclosing other vendors' payment details.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — information security"
+    ],
+    "stakeholders": [
+      "A/P team"
+    ],
+    "reports": [
+      "Payment copies"
+    ],
+    "redFlags": [
+      "Copies including other vendors' payments"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_setting_up_the_search_parameters": {
+    "purpose": "Selects the period and range of payments (check numbers, vendors, bank accounts) to find payment copies.",
+    "outcome": "A targeted search returning exactly the requested payments.",
+    "rootCause": "Precise search parameters produce exactly the payments requested, avoiding over-disclosure.",
+    "ifSkipped": "Searches return too many or the wrong payments.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "A/P team"
+    ],
+    "reports": [
+      "Payment copies"
+    ],
+    "redFlags": [
+      "Broad searches emailed to a vendor"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_printing_payment_copies": {
+    "purpose": "Two-step process — search for payments, then print their copies — used to produce physical or PDF proof of vendor payments for files, vendors or auditors.",
+    "outcome": "Printed payment copies ready for the requester or the disbursement file.",
+    "rootCause": "Some vendors, auditors and owners still require printed or PDF payment copies for their records. Producing them from the system ensures they match what was actually paid.",
+    "ifSkipped": "File support for payments is incomplete and audit disbursement testing takes longer.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Record retention",
+      "AU-C 500"
+    ],
+    "stakeholders": [
+      "A/P team",
+      "External auditor"
+    ],
+    "reports": [
+      "Payment copies"
+    ],
+    "redFlags": [
+      "Printed copies stored without access control"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_setting_the_time_period": {
+    "purpose": "Chooses a predefined (this month, last month) or custom date range for the payment copies search, matching the period a vendor or auditor asked about.",
+    "outcome": "Output limited to payments within the requested dates.",
+    "rootCause": "Vendor and audit requests are usually for specific months; limiting by period avoids irrelevant results.",
+    "ifSkipped": "Irrelevant payments are included in the output.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "A/P team"
+    ],
+    "reports": [
+      "Payment copies"
+    ],
+    "redFlags": [
+      "Period not matching the request"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_setting_print_filters": {
+    "purpose": "Filters the payment copy search by vendor, bank account, property or payment type.",
+    "outcome": "Output limited to the requested vendor or account.",
+    "rootCause": "Filtering prevents disclosing one vendor's payments to another and keeps outputs focused.",
+    "ifSkipped": "Output includes unrelated vendors' payments and may be sent to the wrong party.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "A/P team"
+    ],
+    "reports": [
+      "Payment copies"
+    ],
+    "redFlags": [
+      "Missing vendor filter when responding to a vendor"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_sorting_payments": {
+    "purpose": "Controls the check number range and sort order (by check number, vendor or date) of the payment copies output, so reviewers and auditors can find specific payments quickly.",
+    "outcome": "Output ordered for easy review (by check number or vendor).",
+    "rootCause": "Auditors sample by check number; sorting by number makes it easy to locate samples.",
+    "ifSkipped": "Output is hard to navigate for sampling.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "AU-C 530 — audit sampling"
+    ],
+    "stakeholders": [
+      "A/P team",
+      "External auditor"
+    ],
+    "reports": [
+      "Payment copies"
+    ],
+    "redFlags": [
+      "Gaps in check number sequence in output"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_sending_payment_notification_emails": {
+    "purpose": "Sends payment notification emails (remittance advice) to vendors with details of the invoices a payment covers.",
+    "outcome": "Vendors know which invoices were paid, reducing inquiries and misapplied payments on their side.",
+    "rootCause": "Electronic payments arrive without paper stubs; without remittance advice vendors cannot apply payments and keep calling or re-billing.",
+    "ifSkipped": "Vendor inquiries and duplicate invoices increase.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "NACHA — remittance information (CCD+/CTX)"
+    ],
+    "stakeholders": [
+      "A/P team",
+      "Vendors"
+    ],
+    "reports": [
+      "Payment notifications"
+    ],
+    "redFlags": [
+      "Notifications sent to addresses not on the vendor record"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_applying_the_search_parameters": {
+    "purpose": "Runs the payment copies search with the chosen parameters and displays the results.",
+    "outcome": "The list of matching payments to print or email.",
+    "rootCause": "Reviewing results before output is the check that the parameters captured exactly the intended payments.",
+    "ifSkipped": "The wrong payments are printed or emailed without anyone checking the result set.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "A/P team"
+    ],
+    "reports": [
+      "Payment copies"
+    ],
+    "redFlags": [
+      "Results not reviewed before emailing"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_reports": {
+    "purpose": "Reports section of Cash Management — available cash, cash balances, cash analysis, cash visibility, PC card reports, bank transaction summary and bank, check and deposit registers.",
+    "outcome": "Cash evidence for owner packages, treasury decisions and audit.",
+    "rootCause": "Owner packages need cash balances and reconciled registers; treasury needs available cash for distributions and funding.",
+    "ifSkipped": "Owner packages lack cash support and treasury decisions lack data.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "ASC 230 / ASC 305"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Treasury",
+      "Asset manager"
+    ],
+    "reports": [
+      "Cash reports"
+    ],
+    "redFlags": [
+      "Cash reports run before recs are finalized"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_my_stored_reports_list": {
+    "purpose": "Lists cash reports the user has run and stored — bank registers, cash balances, available cash — with the date each was generated.",
+    "outcome": "Point-in-time copies of cash reports available without rerunning.",
+    "rootCause": "Cash balances change daily; a stored month-end cash balances or available cash report preserves exactly what supported the close or a distribution decision.",
+    "ifSkipped": "The evidence behind a distribution decision cannot be reproduced once later transactions post.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Record retention for close evidence"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Treasury"
+    ],
+    "reports": [
+      "My Stored Reports"
+    ],
+    "redFlags": [
+      "Stored reports without period in the name"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_storing_standard_reports_and_charts": {
+    "purpose": "Explains storing cash reports and charts — generated in the background and saved — rather than viewing them live.",
+    "outcome": "Large cash registers run without timing out and are kept for reference.",
+    "rootCause": "Portfolio-wide bank registers are large and time out when viewed live; storing them also freezes month-end evidence.",
+    "ifSkipped": "Large reports fail and month-end evidence is not retained.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Stored reports"
+    ],
+    "redFlags": [
+      "Month-end cash reports not stored"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_a_stored_report": {
+    "purpose": "Opens a stored cash report — for example the month-end Cash Balances or Available Cash report — once the system has finished generating it in the background.",
+    "outcome": "Access to the saved output for review or distribution.",
+    "rootCause": "Stored reports are the frozen version used as evidence; viewing them rather than rerunning ensures consistency with what was reported.",
+    "ifSkipped": "Reports are rerun and differ from what was used at close.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Stored reports"
+    ],
+    "redFlags": [
+      "Reviewers using rerun reports instead of stored month-end versions"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_choosing_file_types_to_store_reports_and_charts": {
+    "purpose": "Chooses the file format (PDF, Excel, CSV) in which a cash report or chart is stored — PDF for owner-facing packages, Excel or CSV for analysis and reconciliation work.",
+    "outcome": "Reports stored in the format their audience needs — PDF for owner packages, Excel for analysis.",
+    "rootCause": "Owners want tamper-evident PDFs while accountants need Excel to analyze; picking the right format avoids rework.",
+    "ifSkipped": "Reports must be rerun in another format.",
+    "glAccounts": [],
+    "gaap": [
+      "Owner reporting conventions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Stored reports"
+    ],
+    "redFlags": [
+      "Editable formats sent as final owner deliverables"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_deleting_a_stored_report": {
+    "purpose": "Deletes a stored cash report that is no longer needed (reports are kept until deleted).",
+    "outcome": "Stored report lists stay manageable.",
+    "rootCause": "Unmanaged stored reports accumulate, making the right month-end version hard to find; but deleting close evidence breaks retention.",
+    "ifSkipped": "Clutter; if misused, loss of retained evidence.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention requirements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Stored reports"
+    ],
+    "redFlags": [
+      "Deleting month-end cash reports within the retention period"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_storage_options_page": {
+    "purpose": "Chooses where a cash report is stored when processed — My Stored Reports, a cloud storage target or the Reporting Portal.",
+    "outcome": "Reports land where their audience can access them (e.g., the owner's portal).",
+    "rootCause": "Owner packages increasingly go to portals or shared cloud storage; storing directly avoids manual uploads and version confusion.",
+    "ifSkipped": "Reports are downloaded and uploaded manually, risking wrong versions.",
+    "glAccounts": [],
+    "gaap": [
+      "Owner reporting requirements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Stored reports"
+    ],
+    "redFlags": [
+      "Reports stored to shared locations without access restrictions"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_storing_a_report_in_my_stored_reports": {
+    "purpose": "Stores a processed cash report — bank register, cash balances, available cash — in the user's My Stored Reports so the exact month-end output can be reopened later.",
+    "outcome": "A personal, retained copy of the cash report.",
+    "rootCause": "Preparers need a retained copy of the exact cash report they used for reconciliation or distribution support.",
+    "ifSkipped": "The preparer cannot reproduce the report used.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "My Stored Reports"
+    ],
+    "redFlags": [
+      "Only personal copies kept, not shared close evidence"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_storing_a_report_in_a_cloud_storage_target": {
+    "purpose": "Stores a processed cash report in a configured cloud storage location (e.g., SharePoint or other cloud targets).",
+    "outcome": "Cash reports saved automatically to the team's or owner's document repository.",
+    "rootCause": "Many offshore teams deliver month-end packages via SharePoint; direct storage removes the manual upload step that often gets missed.",
+    "ifSkipped": "Owner folders miss cash reports or contain outdated ones.",
+    "glAccounts": [],
+    "gaap": [
+      "Owner reporting requirements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Cloud-stored reports"
+    ],
+    "redFlags": [
+      "Cloud targets with broad access"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_storing_a_report_in_reporting_portal": {
+    "purpose": "Stores a processed cash report in the RealPage Reporting Portal for distribution to owners and investors.",
+    "outcome": "Owners access cash reports through the portal.",
+    "rootCause": "The Reporting Portal is the owner-facing distribution channel; storing there publishes the report to the right audience.",
+    "ifSkipped": "Owners do not receive cash reports through their expected channel.",
+    "glAccounts": [],
+    "gaap": [
+      "Owner reporting requirements"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Investors"
+    ],
+    "reports": [
+      "Reporting Portal"
+    ],
+    "redFlags": [
+      "Draft reports published to the portal"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_memorized_reports": {
+    "purpose": "Explains memorized cash reports — saved report settings (accounts, filters, columns) that can be rerun or scheduled.",
+    "outcome": "Standard cash reports can be regenerated identically each month.",
+    "rootCause": "Consistency month to month matters for owner packages; memorized settings prevent parameter drift.",
+    "ifSkipped": "Cash reports vary by preparer and month, and owners see inconsistent packages.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — consistent reporting"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Memorized reports"
+    ],
+    "redFlags": [
+      "Owner package reports run with ad hoc settings"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_memorizing_a_report_or_chart": {
+    "purpose": "Saves the current settings of a cash report or chart — bank accounts, date basis, columns, grouping — as a memorized report for reuse.",
+    "outcome": "A reusable, consistent definition of a standard cash report.",
+    "rootCause": "Rebuilding complex cash report settings every month wastes time and invites mistakes such as leaving out the trust account or using the wrong date basis.",
+    "ifSkipped": "Parameters are rebuilt monthly and errors slip into owner packages.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Memorized reports"
+    ],
+    "redFlags": [
+      "Memorized reports with hard-coded prior periods"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_memorized_reports_list": {
+    "purpose": "Lists memorized cash reports with actions to run, edit, schedule or delete, forming the team's library of standard cash reports for the close.",
+    "outcome": "A library of standard cash reports for the team.",
+    "rootCause": "Shared libraries ensure every preparer uses the same report definitions for the close.",
+    "ifSkipped": "Preparers use different definitions and owner packages differ between properties.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore team"
+    ],
+    "reports": [
+      "Memorized reports"
+    ],
+    "redFlags": [
+      "Duplicate memorized reports with different settings"
+    ],
+    "confidence": "high"
+  }
+}

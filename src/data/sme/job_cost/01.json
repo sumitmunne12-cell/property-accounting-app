@@ -1,0 +1,62 @@
+{
+  "scr_job_cost_draws": {
+    "purpose": "The curated workflow for compiling a replacement reserve draw request to the lender or servicer — paid capital invoices, proof of payment (cleared checks or ACH confirmations), contractor lien waivers and completion photos — to be reimbursed from the lender-held reserve account.",
+    "outcome": "A complete draw package that the servicer approves, releasing reserve funds back to the property's operating account.",
+    "rootCause": "Agency (Fannie Mae, Freddie Mac, HUD) and many CMBS loans require monthly deposits into a replacement reserve held by the servicer. The property must front the cost of qualifying capital repairs and then request reimbursement with strict documentation. Incomplete packages are rejected, leaving the property cash-short.",
+    "ifSkipped": "The property funds capital repairs from operating cash without reimbursement, reserve balances build up unused, and owners may need to fund capital calls unnecessarily.",
+    "glAccounts": ["1340 Replacement Reserve Escrow", "1110 Operating Cash", "1530 Building Improvements", "6110 Repairs & Maintenance"],
+    "gaap": ["Loan agreement replacement reserve provisions (Fannie Mae/Freddie Mac/HUD)", "ASC 230 — restricted cash transfers"],
+    "stakeholders": ["Offshore property accountant", "Asset manager", "Loan servicer", "Contractors (lien waivers)", "Property manager"],
+    "reports": ["Draw request package", "Replacement reserve roll-forward", "Capex tracking"],
+    "redFlags": ["Invoices submitted that were already reimbursed in a prior draw", "Missing unconditional lien waivers", "Non-qualifying items (routine repairs) included in the draw"],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_job_cost_draw": {
+    "purpose": "Creates a draw against a construction or renovation job — grouping job-cost invoices, retainage and supporting documents — to request funding from a construction lender, owner or equity partner, individually or via CSV import.",
+    "outcome": "A documented funding request tied to specific job-cost invoices, enabling the lender or owner to fund the project.",
+    "rootCause": "Construction and major renovation projects are funded in draws; lenders and equity partners require support for each dollar requested. Tracking draws in the system ties funding to costs and prevents double-drawing.",
+    "ifSkipped": "Projects are underfunded or double-funded, and construction lender reconciliations fail.",
+    "glAccounts": ["1410 Construction in Progress", "2210 Mortgage/Construction Loan Payable", "2015 Retainage Payable", "3010 Partners' Capital"],
+    "gaap": ["ASC 360-10-30 — capitalized costs", "ASC 835-20 — capitalized interest during construction"],
+    "stakeholders": ["Construction manager", "Construction lender", "Equity partner", "Offshore property accountant"],
+    "reports": ["Draw register", "Job cost report", "Construction loan reconciliation"],
+    "redFlags": ["Costs drawn twice", "Draws exceeding the budgeted line items"],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_replacement_reserve_draw": {
+    "purpose": "Creates a replacement reserve draw record in the Draw Workbench, selecting paid qualifying invoices to include in the reimbursement request to the loan servicer.",
+    "outcome": "Invoices are tagged to a reserve draw, preventing them from being submitted twice and giving a record of reimbursement status.",
+    "rootCause": "Reserve draws involve many invoices over time, and servicers reject duplicates. Recording each draw in the system tracks which invoices were claimed and when funds were received.",
+    "ifSkipped": "Duplicate claims or missed claims, and reserve balances that cannot be reconciled with servicer statements.",
+    "glAccounts": ["1340 Replacement Reserve Escrow", "1110 Operating Cash"],
+    "gaap": ["Loan agreement reserve provisions"],
+    "stakeholders": ["Offshore property accountant", "Loan servicer", "Asset manager"],
+    "reports": ["Draw register", "Reserve roll-forward"],
+    "redFlags": ["Draws marked funded without a bank deposit", "Draw receipts not recorded against 1340"],
+    "confidence": "high"
+  },
+  "scr_jobcost_lien_releases": {
+    "purpose": "Creates and packages lien releases (waivers) for job-cost payments, documenting that contractors and suppliers waive mechanics' lien rights for amounts paid.",
+    "outcome": "Evidence that paid contractors cannot place liens on the property, required for draws and title insurance.",
+    "rootCause": "State mechanics' lien laws let unpaid contractors and suppliers place liens on the property, clouding title and blocking refinancing or sale. Lenders and title insurers require lien waivers with each payment.",
+    "ifSkipped": "Liens are filed against the property, draws are rejected, and sales or refinancings are delayed.",
+    "glAccounts": ["2010 Accounts Payable", "2015 Retainage Payable", "1410 Construction in Progress"],
+    "gaap": ["State mechanics' lien statutes", "Title insurance requirements"],
+    "stakeholders": ["Construction manager", "Contractors", "Lenders", "Title company"],
+    "reports": ["Lien waiver log", "Draw package"],
+    "redFlags": ["Payments without conditional or unconditional waivers", "Waivers from the GC but not subcontractors"],
+    "confidence": "high"
+  },
+  "scr_jobcost_retainage_register_report": {
+    "purpose": "Tracks invoices with retainage withheld (typically 5-10% of contractor billings) and retainage paid, showing open retainage balances by contractor and job.",
+    "outcome": "A reconciled retainage payable balance and a list of retainage due for release at project completion.",
+    "rootCause": "Retainage protects the owner until work is complete, but it is a real liability. It must be tracked so it is paid on completion (some states have prompt-pay laws) and reported correctly.",
+    "ifSkipped": "Retainage liabilities are understated, contractors are paid late (penalties under prompt-pay acts), or retainage is paid twice.",
+    "glAccounts": ["2015 Retainage Payable", "1410 Construction in Progress"],
+    "gaap": ["ASC 405 — liabilities", "State prompt payment acts"],
+    "stakeholders": ["Construction manager", "Offshore property accountant", "Contractors"],
+    "reports": ["Retainage register", "Balance Sheet (2015)", "Job cost report"],
+    "redFlags": ["Retainage register not tying to 2015", "Completed jobs with unreleased retainage"],
+    "confidence": "high"
+  }
+}

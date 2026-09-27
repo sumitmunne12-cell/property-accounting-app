@@ -1,0 +1,123 @@
+{
+  "scr_cash_adding_a_deposit": {
+    "purpose": "Records the bank deposit of resident and other receipts that were first received into 1130 Undeposited Funds — rent checks, money orders, application fees and cashier's checks collected at the leasing office — moving them into the operating (or security deposit) bank account as one deposit batch that matches the bank's deposit line.",
+    "outcome": "Receipts move from 1130 Undeposited Funds to 1110 Operating Cash (or 1115 Security Deposit Trust Cash) as a single deposit whose total matches the deposit slip and the bank statement, making the bank rec match one-to-one.",
+    "rootCause": "Individual resident payments post to the ledger one by one, but the bank sees a single deposit per day. Without a deposit batch that groups the receipts, the bank rec would require matching dozens of resident payments to one bank line. Undeposited Funds also exists as a control over cash handled at the site, which is a known fraud area in property management (lapping, skimming money orders).",
+    "ifSkipped": "Undeposited Funds grows with receipts that never reach the bank, the bank rec shows unexplained deposits in transit, and site-level cash misappropriation can go undetected for months.",
+    "glAccounts": ["1130 Undeposited Funds", "1110 Operating Cash", "1115 Security Deposit Trust Cash", "1210 Resident/Tenant A/R", "2110 Resident Security Deposits"],
+    "gaap": ["ASC 230 — cash receipts classification", "COSO 2013 — safeguarding of assets (cash handling and deposit controls)", "State landlord-tenant law — security deposits deposited to a separate trust account where required"],
+    "stakeholders": ["Leasing office / property manager (prepares deposit)", "Offshore property accountant", "Regional property manager", "Onshore reviewer"],
+    "reports": ["Deposit register", "Bank reconciliation", "Undeposited funds aging", "Cash receipts journal"],
+    "redFlags": ["Undeposited Funds balance older than 2-3 business days", "Deposit amount in RealPage differs from the bank-credited amount", "Security deposit receipts deposited to the operating account in a trust-account state", "Deposit dates that lag receipt dates by several days"],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_funds_transfer": {
+    "purpose": "Records movement of cash between two bank accounts the company controls — operating to security-deposit trust, depository to operating, operating to reserve, or property to a pooled payroll account — posting both sides in one transaction so each account's book balance matches its bank.",
+    "outcome": "Both GL cash accounts reflect the transfer on the same date, and any cross-entity leg records the matching Due To / Due From, keeping both bank recs clean.",
+    "rootCause": "Banks show a transfer as a debit in one account and a credit in another, often on different statements. If the accountant records only one side, or records it with a JE to the wrong entity, one bank rec shows an outstanding item that never clears. Because RealPage funds transfers cannot be edited or voided once saved (only reversed), the screen enforces a deliberate, auditable movement of cash.",
+    "ifSkipped": "Cash is overstated in one account and understated in another, intercompany balances drift, and security deposit trust accounts may appear underfunded — a compliance exposure in states that require full segregation.",
+    "glAccounts": ["1110 Operating Cash", "1115 Security Deposit Trust Cash", "1340 Replacement Reserve Escrow", "1230 Due From Affiliates", "2130 Due To Affiliates"],
+    "gaap": ["ASC 230-10-45 — transfers between cash accounts are not cash flows", "ASC 810-10-45-1 — intercompany balances eliminated in consolidation"],
+    "stakeholders": ["Offshore property accountant", "Treasury / cash management", "Onshore reviewer", "Asset manager (approves reserve funding)"],
+    "reports": ["Bank reconciliations for both accounts", "Intercompany Due To/Due From schedule", "Cash & Cash Equivalents report"],
+    "redFlags": ["Transfer recorded on a different date than the bank posting, creating recurring timing items", "Intercompany transfer without matching Due To and Due From on each entity", "Transfers out of the security deposit trust account not tied to resident refunds or forfeitures"],
+    "confidence": "high"
+  },
+  "scr_cash_bank_rec": {
+    "purpose": "The core monthly control that proves each property bank account's GL cash balance equals the bank statement balance after accounting for outstanding checks, deposits in transit, bank fees, returned (NSF) items, interest and sweeps — performed for every account: operating, security deposit trust, payroll, and reserve.",
+    "outcome": "A signed bank reconciliation per account per month, with the adjusted bank balance equal to the adjusted book balance and every reconciling item explained and aged.",
+    "rootCause": "Cash is the account most exposed to fraud and error: unauthorized ACH debits, duplicate vendor payments, resident NSF returns, and bank fees the site never records. Every lender, auditor and owner requires monthly reconciliations; most management agreements and loan documents make them a reporting covenant. It is also how accounting discovers transactions the site team forgot to enter.",
+    "ifSkipped": "Unrecorded bank activity (NSF items, fees, ACH debits) goes unnoticed, cash is misstated on the balance sheet, stale checks are never escheated, and fraud can run for months. Missing recs are a top audit finding and a common trigger for owners to replace a management company.",
+    "glAccounts": ["1110 Operating Cash", "1115 Security Deposit Trust Cash", "6420 Bank Charges", "1210 Resident/Tenant A/R (NSF reversals)", "4100 Other Income (interest/NSF fees)"],
+    "gaap": ["ASC 305-10 — cash and cash equivalents", "COSO 2013 — bank reconciliation as a key detective control", "State unclaimed property statutes — stale outstanding checks"],
+    "stakeholders": ["Offshore property accountant (preparer)", "Onshore reviewer", "Accounting manager (approver)", "Property manager (NSF follow-up)", "External auditor"],
+    "reports": ["Bank reconciliation report", "Outstanding checks list", "Cash & Cash Equivalents report", "Month-end work paper package"],
+    "redFlags": ["Outstanding checks older than 90-180 days", "Reconciling items labeled 'unknown' or plugged to balance", "Deposits in transit that do not clear in the first days of the next month", "Same reconciling amount carried forward for multiple months"],
+    "confidence": "high",
+    "yardi": "Yardi: Financials > Bank Reconciliation > Bank Rec (select bank, statement date and ending balance, clear items, Post) — or the Bank Rec Workbench / Bank Rec Import for auto-matching BAI2 files."
+  },
+  "scr_cash_bank_reconciliation_new": {
+    "purpose": "The newer RealPage bank reconciliation workspace where the accountant selects the bank account and statement date, loads the bank's transaction file (BAI2/CSV) and lets the system auto-match bank lines to posted checks, deposits and transfers, leaving only true exceptions to clear or book.",
+    "outcome": "Most of the month's transactions are matched automatically, unmatched bank and book items are isolated for resolution, and the reconciliation can be submitted for approval with a smaller exception list.",
+    "rootCause": "Manual tick-and-tie reconciliations do not scale across hundreds of property accounts with thousands of resident ACH receipts. Bank-file matching reduces preparer time and makes reconciling items objective (matched or not matched). It exists because offshore teams must deliver dozens of recs by business day 3-5.",
+    "ifSkipped": "Accountants fall back to manual matching, errors rise (a check matched to the wrong bank line), and day-5 reconciliation deadlines slip across the portfolio.",
+    "glAccounts": ["1110 Operating Cash", "1115 Security Deposit Trust Cash", "6420 Bank Charges"],
+    "gaap": ["ASC 305-10 — cash", "COSO 2013 — automated vs. manual reconciliation controls (IT general controls over the bank feed)"],
+    "stakeholders": ["Offshore property accountant", "Onshore reviewer", "Treasury (bank file setup)", "RealPage support / system administrator"],
+    "reports": ["Bank reconciliation (new)", "Unmatched transactions list", "Outstanding items report"],
+    "redFlags": ["Auto-matches where amount matched but the payee or date is clearly wrong", "Bank file imported for the wrong account or statement period", "Initial open items loaded without support when migrating from the old rec tool"],
+    "confidence": "high"
+  },
+  "scr_cash_creating_transactions_or_journal_entries_for_unmatched_transacti": {
+    "purpose": "From inside the bank reconciliation, books GL entries for bank-only items that have no book side — monthly service fees, analysis charges, interest earned, NSF returns, lender auto-debits, merchant (credit-card) fees — so they clear in the same reconciliation.",
+    "outcome": "Bank-originated activity is recorded to the right expense, income or receivable account in the correct period, and the reconciliation closes with no unexplained bank items.",
+    "rootCause": "Banks initiate transactions the property never approved through A/P or A/R: fees, interest, chargebacks, returned resident payments and servicer auto-drafts. These only become visible on the statement, so the reconciliation is where they must be recorded; otherwise the book balance never agrees with the bank.",
+    "ifSkipped": "Bank fees and interest are missing from the P&L, NSF resident payments stay applied to resident ledgers (overstating collections and understating A/R), and reconciling items grow each month.",
+    "glAccounts": ["6420 Bank Charges", "4100 Other Income (interest income, NSF fees)", "1210 Resident/Tenant A/R", "1110 Operating Cash", "7010 Interest Expense"],
+    "gaap": ["ASC 305-10 — cash", "ASC 606 / ASC 310 — reinstating resident receivables when payments are returned"],
+    "stakeholders": ["Offshore property accountant", "Property manager (NSF resident follow-up)", "Onshore reviewer"],
+    "reports": ["Bank reconciliation", "Resident ledger / A/R aging", "Income Statement (bank charges)"],
+    "redFlags": ["NSF returns booked to bank charges instead of re-charging the resident", "Large 'miscellaneous' JEs created to force the rec to balance", "Lender auto-debits booked entirely to interest without splitting principal and escrow"],
+    "confidence": "high"
+  },
+  "scr_cash_escheatment_workbench": {
+    "purpose": "Tracks aged, uncashed payments — vendor checks never deposited and, most commonly, resident security deposit refund checks mailed to former residents who moved — through state due-diligence notices, reissue or void, and remittance to the state as unclaimed property.",
+    "outcome": "Stale outstanding checks are resolved in line with each state's dormancy period (typically 1-5 years), due-diligence letters are documented, and unclaimed amounts are moved to 2170 Unclaimed Property Payable and reported to the state.",
+    "rootCause": "Every US state's unclaimed property law requires holders to report and remit property that has been dormant beyond the statutory period. Multifamily properties generate many small refund checks to residents who moved and never cash them. States actively audit property managers, often using third-party contingency-fee auditors, with look-back periods of 10+ years and interest and penalties.",
+    "ifSkipped": "Stale checks sit as outstanding items forever (inflating the bank rec), the company fails to file unclaimed property reports, and a state audit can assess years of unremitted balances plus penalties and interest; voiding stale checks back to income is a known escheat violation.",
+    "glAccounts": ["2170 Unclaimed Property Payable", "1110 Operating Cash", "1115 Security Deposit Trust Cash", "2110 Resident Security Deposits", "2010 Accounts Payable"],
+    "gaap": ["State Uniform Unclaimed Property Acts (1981/1995/2016 versions adopted by states)", "ASC 405-20 — liabilities are extinguished only on payment or legal release, not by aging"],
+    "stakeholders": ["Offshore property accountant", "Compliance / escheat team", "Treasury", "Onshore reviewer", "State unclaimed property office"],
+    "reports": ["Escheatment workbench aging", "Outstanding checks list", "State unclaimed property report (annual)", "Bank reconciliation"],
+    "redFlags": ["Stale checks voided to income or back to the expense account instead of escheat", "No evidence of due-diligence letters before remittance", "Refund checks to former residents older than the dormancy period still outstanding", "Unclaimed property reported to the wrong state (should follow owner's last known address)"],
+    "confidence": "high"
+  },
+  "scr_cash_manually_generating_a_positive_pay_file": {
+    "purpose": "Creates, on demand, the positive pay file of issued checks (check number, date, amount, payee) and transmits it to the bank so the bank will only honor checks that match — used when the scheduled file failed, a check run was produced outside normal hours, or a manual check was cut.",
+    "outcome": "The bank holds an up-to-date issued-check list and will reject or flag altered, counterfeit or duplicate checks before cash leaves the account.",
+    "rootCause": "Check fraud (washed checks, counterfeit copies of real vendor checks) is one of the most common frauds against property management companies, and banks shift liability for fraudulent checks onto account holders who decline positive pay. If a check run is not on the file, the bank will return legitimate vendor checks, damaging vendor relationships.",
+    "ifSkipped": "Legitimate vendor checks bounce as exceptions (late fees, vendors putting the property on hold) or, worse, fraudulent checks clear because the file was never transmitted, and the loss may not be recoverable from the bank under UCC 4-406 because positive pay was not used.",
+    "glAccounts": ["1110 Operating Cash", "2010 Accounts Payable"],
+    "gaap": ["UCC Article 3/4 — check liability and customer duty to examine statements (§4-406)", "COSO 2013 — fraud risk and safeguarding controls"],
+    "stakeholders": ["Offshore property accountant / A/P team", "Treasury", "Bank treasury services", "Onshore reviewer"],
+    "reports": ["Positive pay file", "Check register", "Positive pay exception report (bank)"],
+    "redFlags": ["Manual checks written with no positive pay file sent", "Positive pay exceptions approved at the bank without comparing to the check register", "Voided checks not sent as voids, so they remain payable"],
+    "confidence": "high"
+  },
+  "scr_cash_submitting_bank_reconciliations_for_approval": {
+    "purpose": "Sends a completed bank reconciliation into the approval workflow so a reviewer — usually onshore — can inspect the reconciling items and sign off, locking the reconciliation as period-end evidence.",
+    "outcome": "Every bank rec carries a preparer and an independent approver with timestamps, satisfying segregation-of-duties requirements.",
+    "rootCause": "A reconciliation prepared and approved by the same person is not a control. Owners, auditors and SOC 1 reports require evidence of independent review, particularly where offshore preparers handle cash. The submit step also stops the preparer from changing the reconciliation after review.",
+    "ifSkipped": "Recs exist but are not evidenced as reviewed, auditors treat the control as not operating, and errors or improper reconciling items are never challenged by a second person.",
+    "glAccounts": ["1110 Operating Cash", "1115 Security Deposit Trust Cash"],
+    "gaap": ["COSO 2013 Principle 10 — segregation of duties", "SOC 1 Type II — evidence of review for outsourced accounting"],
+    "stakeholders": ["Offshore property accountant (preparer)", "Onshore reviewer / approver", "Accounting manager", "External auditor"],
+    "reports": ["Bank reconciliation approval status", "Close checklist", "Final work paper package"],
+    "redFlags": ["Recs approved without reviewer comments on items older than 60 days", "Approval before month-end journal entries affecting cash were posted", "Recs rejected and resubmitted with plugs instead of fixes"],
+    "confidence": "high"
+  },
+  "scr_cash_sweeps": {
+    "purpose": "Records the automatic movements that the bank makes between property depository accounts and a concentration or operating account (daily zero-balance sweeps, investment sweeps into money-market funds), so each account's book balance tracks what the bank actually holds.",
+    "outcome": "Sweep activity is recorded daily or in a monthly summary per account, keeping both the depository and concentration bank recs clean and the intercompany balance correct when accounts belong to different entities.",
+    "rootCause": "Institutional owners use zero-balance or target-balance sweeps to concentrate cash from many properties for investment or debt service. The bank executes these without any transaction in RealPage. Unless the sweep is booked, every depository rec shows unexplained withdrawals and the concentration account shows unexplained deposits.",
+    "ifSkipped": "Dozens of recurring reconciling items per month, cash reported in the wrong entity, Due To/Due From balances that never agree, and a real risk of distributing or spending cash that has already been swept.",
+    "glAccounts": ["1110 Operating Cash", "1230 Due From Affiliates", "2130 Due To Affiliates", "Cash — Concentration / Money Market account"],
+    "gaap": ["ASC 230 — sweeps between cash accounts are not operating cash flows", "ASC 810 — eliminate intercompany sweep balances on consolidation", "ASC 305 — cash equivalents (money-market sweep investments)"],
+    "stakeholders": ["Offshore property accountant", "Treasury / cash management", "Asset manager", "Onshore reviewer"],
+    "reports": ["Bank reconciliations (depository and concentration)", "Intercompany Due To/Due From reconciliation", "Cash & Cash Equivalents report"],
+    "redFlags": ["Sweeps booked as a monthly net amount when the bank swept daily, obscuring errors", "Sweep booked to income or expense instead of a balance sheet account", "Due From on the property not matching Due To on the concentration entity"],
+    "confidence": "high"
+  },
+  "scr_cash_why_doesnt_my_bank_reconciliation_balance_match_the_bank_stateme": {
+    "purpose": "A diagnostic guide for the most common reason a reconciliation will not balance: the beginning balance, statement ending balance or cleared items do not agree with the bank — for example a prior-month reconciliation was edited, a cleared item was un-cleared, a transaction was backdated into a reconciled period, or the wrong statement date was used.",
+    "outcome": "The accountant pinpoints the specific break (changed prior rec, backdated entry, wrong ending balance, duplicate clearing) and fixes it instead of forcing the reconciliation with a plug.",
+    "rootCause": "Reconciliations chain month to month: this month's beginning balance is last month's ending. Any change to a reconciled period — a voided check dated last month, a JE posted into a reconciled period, a deleted deposit — breaks the chain. These breaks are common when site teams or other accountants post into periods that should have been locked.",
+    "ifSkipped": "Accountants plug the difference into a suspense or bank-charge account, hiding real errors or fraud, and the break compounds every month until an auditor finds it.",
+    "glAccounts": ["1110 Operating Cash", "1115 Security Deposit Trust Cash", "Suspense / clearing account (should be zero)"],
+    "gaap": ["ASC 250 — errors in previously reconciled periods", "COSO 2013 — change management over reconciled periods"],
+    "stakeholders": ["Offshore property accountant", "Onshore reviewer", "Site team (backdated entries)", "System administrator (audit trail)"],
+    "reports": ["Bank reconciliation history", "GL detail for cash account", "Audit trail / change log"],
+    "redFlags": ["Reconciliation 'balanced' with a round-dollar adjustment", "Prior-period reconciliations reopened without approval", "Transactions dated in a reconciled month but entered this month"],
+    "confidence": "high"
+  }
+}

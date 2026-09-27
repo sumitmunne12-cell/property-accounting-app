@@ -1,0 +1,998 @@
+{
+  "scr_ar_duplicating_a_customer_group": {
+    "purpose": "Creates a new customer group by copying an existing one — for example copying 'Retail Tenants' to build 'Retail Tenants — Phase 2' for a newly delivered retail podium.",
+    "outcome": "A related grouping set up quickly with the same filters as its source.",
+    "rootCause": "Many customer groups differ only slightly; copying preserves filter logic that already works and reduces the chance of building a group that silently excludes customers.",
+    "ifSkipped": "Similar groups are rebuilt from scratch with inconsistent filters.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer groups list"
+    ],
+    "redFlags": [
+      "Duplicated groups left with the source's name"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_customer_group_details": {
+    "purpose": "Prints a customer group's definition and members for documentation, for example to show an owner exactly which tenants are included in the 'Affiliates' receivable line.",
+    "outcome": "A documented record of how a reporting category is composed.",
+    "rootCause": "When owners question a category total, a printed membership list shows exactly which customers were included and answers the question without system access.",
+    "ifSkipped": "Category totals cannot be explained to owners without extra work.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1230 Due From Affiliates"
+    ],
+    "gaap": [
+      "COSO 2013 — documentation"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Customer group details"
+    ],
+    "redFlags": [
+      "Printed membership differing from current membership"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_exporting_customer_group_details": {
+    "purpose": "Exports a customer group's definition and members to a file for review or reuse in another company.",
+    "outcome": "Group membership available for bulk review in a spreadsheet.",
+    "rootCause": "Reviewing large groups for misclassified customers is easier in a spreadsheet, particularly after acquisitions add many new tenants at once.",
+    "ifSkipped": "Misclassified customers in large groups go unnoticed.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer group export"
+    ],
+    "redFlags": [
+      "Exports not reconciled back after cleanup"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_customer_types_list": {
+    "purpose": "Lists customer types — classifications such as Commercial Tenant, Affiliate, Ancillary Vendor, Insurance Carrier — with actions to add, edit, duplicate, print and export.",
+    "outcome": "A consistent classification scheme for non-resident customers.",
+    "rootCause": "Customer type drives default accounts and reporting; a consistent list ensures, for example, that every affiliate posts to Due From Affiliates rather than trade receivables.",
+    "ifSkipped": "Similar customers are classified differently and post to different accounts.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1230 Due From Affiliates"
+    ],
+    "gaap": [
+      "ASC 850 — related-party classification"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "System administrator"
+    ],
+    "reports": [
+      "Customer types list"
+    ],
+    "redFlags": [
+      "Affiliates typed as commercial customers"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_adding_customer_types": {
+    "purpose": "Adds a customer type — for example 'Cell Tower Licensee' — with any defaults it should carry.",
+    "outcome": "New customer categories available for classification.",
+    "rootCause": "New revenue streams (EV charging operators, solar lease partners) need their own type so their receivables and revenue are reported separately.",
+    "ifSkipped": "New revenue streams are lumped into generic categories.",
+    "glAccounts": [
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Customer types list"
+    ],
+    "redFlags": [
+      "Types added without default accounts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_customer_type_information_page": {
+    "purpose": "The customer type record page with its name, description and any default settings.",
+    "outcome": "A complete definition of the customer category.",
+    "rootCause": "Clear definitions let staff classify new customers consistently, which keeps category reporting reliable over time.",
+    "ifSkipped": "Customers are classified inconsistently.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Customer types list"
+    ],
+    "redFlags": [
+      "Types without descriptions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_editing_and_viewing_customer_types": {
+    "purpose": "Edits or views a customer type's name, description and defaults — for example changing the 'Affiliate' type's default receivable to Due From Affiliates.",
+    "outcome": "Customer type definitions stay aligned with reporting needs.",
+    "rootCause": "Changing a type's defaults affects future invoices for every customer of that type, so edits must be deliberate and coordinated with accounting.",
+    "ifSkipped": "Outdated type defaults keep sending revenue to wrong accounts.",
+    "glAccounts": [
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "COSO 2013 — change control"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Customer types list"
+    ],
+    "redFlags": [
+      "Default changes mid-period"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deleting_customer_types": {
+    "purpose": "Deletes a customer type that no customer uses — for example a type created during setup testing — so staff cannot classify new customers into it.",
+    "outcome": "Only active categories remain selectable.",
+    "rootCause": "Unused types clutter selection lists and invite misclassification of new customers; types in use are protected from deletion.",
+    "ifSkipped": "New customers are assigned obsolete types.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Customer types list"
+    ],
+    "redFlags": [
+      "Near-duplicate types retained"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_customer_types": {
+    "purpose": "Prints the list of customer types and their definitions, creating a record for documentation or training.",
+    "outcome": "A reference sheet of customer categories for staff.",
+    "rootCause": "Offshore staff classifying new customers need a clear reference; printed definitions reduce inconsistent classification.",
+    "ifSkipped": "Staff guess at categories and classification drifts.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — training"
+    ],
+    "stakeholders": [
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Customer types list"
+    ],
+    "redFlags": [
+      "Printed references out of date"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_duplicating_customer_types": {
+    "purpose": "Adds a customer type by copying an existing one and editing it — for example creating 'Office Tenant' from 'Retail Tenant' with the same defaults.",
+    "outcome": "Related types created quickly with consistent settings.",
+    "rootCause": "Copying keeps defaults consistent across related types, for example two kinds of commercial tenant.",
+    "ifSkipped": "Related types are created with inconsistent defaults.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Customer types list"
+    ],
+    "redFlags": [
+      "Duplicates left with source names"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_exporting_customer_types": {
+    "purpose": "Exports customer types to CSV or other formats for review or transfer to another company.",
+    "outcome": "Customer type setup available outside the system.",
+    "rootCause": "Standardizing customer types across companies (e.g., after a merger of management platforms) requires moving definitions between them.",
+    "ifSkipped": "Types are re-keyed manually across companies.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Customer types export"
+    ],
+    "redFlags": [
+      "Exported and re-imported types creating duplicates"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_customers_in_a_multi_entity_shared_company": {
+    "purpose": "Explains how customers work in a multi-entity shared company — one customer list across many legal entities, with visibility restrictions controlling which entities can bill each customer.",
+    "outcome": "Users understand how to share or restrict customers across owners' entities.",
+    "rootCause": "Management companies run many owners' properties in one shared company. Without restrictions, any entity could invoice any customer, putting revenue in the wrong owner's books.",
+    "ifSkipped": "Revenue and receivables land in the wrong legal entity.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1230 Due From Affiliates"
+    ],
+    "gaap": [
+      "ASC 810 — separate entity accounting"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Customer visibility list"
+    ],
+    "redFlags": [
+      "Property-specific customers visible company-wide"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_enabling_customer_restrictions": {
+    "purpose": "Enables customer visibility restrictions in the Multi Entity Console, which requires administrator-level access.",
+    "outcome": "Customer visibility can be limited by entity.",
+    "rootCause": "Restrictions are off by default; until enabled, every entity sees every customer, which is inappropriate for multi-owner management companies.",
+    "ifSkipped": "Customers remain visible and billable by all entities.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Restrictions never enabled in multi-owner companies"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_multi_entity_customer_restrictions": {
+    "purpose": "Describes how customer restrictions limit invoicing and reporting of a customer to specific entities.",
+    "outcome": "Each customer is billed only by the entities it has contracts with.",
+    "rootCause": "A retail tenant has a lease with one property's entity; only that entity should invoice it and carry its receivable.",
+    "ifSkipped": "Tenants are invoiced by the wrong entity and revenue is misallocated between owners.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Customer visibility list"
+    ],
+    "redFlags": [
+      "Invoices to restricted customers from other entities"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_displaying_the_customer_visibility_list": {
+    "purpose": "Opens the Customer Visibility list showing which entities can see each customer.",
+    "outcome": "A reviewable map of customer-to-entity access.",
+    "rootCause": "Periodic review of visibility catches customers that became visible too broadly after setup changes.",
+    "ifSkipped": "Visibility drifts and cross-entity billing errors appear.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Customer visibility list"
+    ],
+    "redFlags": [
+      "Customers visible to all entities"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_customer_visibility_list": {
+    "purpose": "Lists customers with their visibility restrictions by entity, where restrictions are viewed, edited and exported.",
+    "outcome": "Central control over which entities can bill each customer.",
+    "rootCause": "In portfolios with many owners, visibility is the primary control keeping one owner's tenants out of another owner's receivables.",
+    "ifSkipped": "Cross-owner billing errors occur and require intercompany corrections.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Customer visibility list"
+    ],
+    "redFlags": [
+      "Unrestricted customers with property-specific leases"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_creating_the_list_view_that_includes_the_data_you_want_to_export": {
+    "purpose": "Configures the Customer Visibility list view (columns and filters) before exporting it.",
+    "outcome": "Exports contain exactly the visibility data needed for review.",
+    "rootCause": "A tailored view keeps the export focused on the restriction fields that auditors and administrators review.",
+    "ifSkipped": "Exports are cluttered or miss key fields.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Customer visibility export"
+    ],
+    "redFlags": [
+      "Views missing entity columns"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_exporting_the_customer_restrictions_list": {
+    "purpose": "Exports the customer restrictions (visibility) list to a spreadsheet for an access review of which entities can bill which customers.",
+    "outcome": "Customer visibility reviewable offline.",
+    "rootCause": "Periodic access reviews of who can bill whom are easier in a spreadsheet, especially in large multi-owner companies.",
+    "ifSkipped": "Periodic access reviews of customer visibility are not performed.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — periodic access review"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Customer restrictions export"
+    ],
+    "redFlags": [
+      "No annual visibility review"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_and_editing_a_customers_visibility_restrictions": {
+    "purpose": "Views or changes which entities can see and bill a specific customer — for example restricting a tenant to the property entity named on its lease.",
+    "outcome": "Customer visibility matches contractual relationships.",
+    "rootCause": "Restrictions must mirror contracts; when a lease is assigned to a new entity after a sale or recapitalization, visibility must change too.",
+    "ifSkipped": "The old entity keeps billing a customer it no longer has a contract with.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Customer visibility list"
+    ],
+    "redFlags": [
+      "Visibility not updated after property sales"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_required_fields_for_new_customer_restrictions": {
+    "purpose": "Lists the fields required when adding a new customer restriction (customer, entity, access type).",
+    "outcome": "Restrictions are created completely and correctly.",
+    "rootCause": "Incomplete restrictions may fail silently or apply too broadly; knowing the required fields avoids both.",
+    "ifSkipped": "Restrictions are incomplete and do not protect entity boundaries.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Customer visibility list"
+    ],
+    "redFlags": [
+      "Restrictions missing entity values"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_guidelines_for_updating_customer_restrictions": {
+    "purpose": "Guidelines for changing customer restrictions safely, including effects on open invoices and reporting.",
+    "outcome": "Restriction changes do not strand open receivables.",
+    "rootCause": "Restricting a customer away from an entity that still has open invoices can hide those receivables from that entity's users.",
+    "ifSkipped": "Open receivables become invisible to the entity that must collect them.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Customer visibility list"
+    ],
+    "redFlags": [
+      "Restrictions changed while invoices are open"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_customer_visibility_details": {
+    "purpose": "Prints customer visibility details — which entities can see and bill each customer — as retained evidence for SOC or internal audit access reviews.",
+    "outcome": "Evidence of customer access controls for auditors.",
+    "rootCause": "SOC and internal audits test logical access controls, including which entities can transact with which customers.",
+    "ifSkipped": "Access control evidence is unavailable at audit.",
+    "glAccounts": [],
+    "gaap": [
+      "SOC 1 — logical access controls"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Internal audit"
+    ],
+    "reports": [
+      "Customer visibility details"
+    ],
+    "redFlags": [
+      "No retained evidence of access reviews"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_updating_multiple_customer_visibility_records": {
+    "purpose": "Updates visibility restrictions for many customers at once — typically after a portfolio sale or entity restructuring.",
+    "outcome": "Bulk changes to customer access applied consistently.",
+    "rootCause": "Portfolio transactions change entity relationships for many customers at once; bulk updates avoid missing some.",
+    "ifSkipped": "Some customers keep outdated entity access after the transaction.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Customer visibility list"
+    ],
+    "redFlags": [
+      "Bulk updates not validated afterwards"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_billing": {
+    "purpose": "Chapter on billing non-resident customers in A/R — sales invoices, recurring invoices, and bill-backs of utilities and shared expenses to tenants and affiliates.",
+    "outcome": "Non-resident revenue and cost recoveries are invoiced and tracked as receivables.",
+    "rootCause": "Commercial rent, CAM recoveries, ancillary contract revenue and affiliate bill-backs are contractual amounts owed to the property; unless invoiced through A/R, they are neither recognized nor collected.",
+    "ifSkipped": "Revenue and cost recoveries are missed or collected informally without records.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1230 Due From Affiliates",
+      "4100 Other Income",
+      "4110 Utility Reimbursement"
+    ],
+    "gaap": [
+      "ASC 606",
+      "ASC 842-30"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Commercial property manager"
+    ],
+    "reports": [
+      "A/R invoices list",
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Bill-backs not tying to underlying expenses"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_a_r_invoices_list_a_r_sales_invoices": {
+    "purpose": "Lists A/R sales invoices with customer, date, amount, state (draft, posted, partially paid, paid, reversed) and actions to add, view, edit, reverse or delete.",
+    "outcome": "A register of everything billed to non-resident customers and its status.",
+    "rootCause": "Tracking invoice state is how accountants know what is outstanding, what has been paid, and what needs follow-up before month-end.",
+    "ifSkipped": "Unpaid invoices are not followed up and drafts are never posted.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Draft invoices older than the current period"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_managing_a_r_invoices": {
+    "purpose": "Explains managing A/R invoices — adding, editing, deleting, reversing — and how each action affects the GL.",
+    "outcome": "Invoices are corrected using the right method for their state.",
+    "rootCause": "Drafts can be edited or deleted freely, but posted invoices need reversal to preserve the audit trail; using the wrong method corrupts the ledger.",
+    "ifSkipped": "Posted invoices are altered incorrectly and the subledger breaks.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Posted invoices deleted"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_viewing_the_a_r_invoices_list": {
+    "purpose": "Views and filters the A/R invoices list, drilling into invoices from the top level.",
+    "outcome": "Quick identification of invoices by customer, state or date.",
+    "rootCause": "Month-end review of open and draft invoices begins with a filtered list; drafts left unposted mean revenue is missing, and open invoices past due need collection follow-up before the aging goes to the owner.",
+    "ifSkipped": "Open or draft invoices are overlooked at close.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Drafts dated in closed periods"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_an_a_r_invoice": {
+    "purpose": "Opens an A/R invoice to see header, line items, GL distribution, payments applied and state.",
+    "outcome": "Complete detail for one billing.",
+    "rootCause": "Customer disputes and audit samples require the invoice detail, including which accounts it credited and what has been paid.",
+    "ifSkipped": "Disputes and audit requests take longer to answer.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "AU-C 500"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Invoice detail"
+    ],
+    "redFlags": [
+      "Invoices without supporting documents"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_adding_an_a_r_invoice_workflow": {
+    "purpose": "Describes the workflow for adding an A/R sales invoice: header, default line information, line items, then finish as draft or post.",
+    "outcome": "Invoices entered consistently with correct defaults.",
+    "rootCause": "Following the same workflow ensures each invoice carries the right customer, terms, accounts and dimensions.",
+    "ifSkipped": "Invoices are entered inconsistently and post to wrong accounts.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Invoices posted without line dimensions"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_entering_basic_information_about_the_invoice_a_r_sales_invoice": {
+    "purpose": "Enters the invoice header — customer, invoice date, due date, terms, reference and description.",
+    "outcome": "A correctly dated and addressed invoice header.",
+    "rootCause": "Invoice date determines the revenue period and due date drives aging; errors here misstate both.",
+    "ifSkipped": "Revenue lands in the wrong period and aging is wrong.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 606 — timing of recognition"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Invoice dates in prior closed periods"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_selecting_default_information_for_line_items": {
+    "purpose": "Sets default values (GL account, location, department) applied to all invoice lines.",
+    "outcome": "Faster, consistent line entry.",
+    "rootCause": "Defaults reduce keying and ensure all lines of an invoice (e.g., a CAM bill with several components) post to the same property and department.",
+    "ifSkipped": "Lines are coded inconsistently within one invoice.",
+    "glAccounts": [
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Invoice detail"
+    ],
+    "redFlags": [
+      "Defaults set to the wrong location"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_entering_line_items_in_an_a_r_invoice_a_r_sales_invoice": {
+    "purpose": "Enters invoice lines — description, quantity, amount, revenue account, location and dimensions — for each item billed.",
+    "outcome": "Each billed item is recorded to the correct revenue or recovery account.",
+    "rootCause": "Different items on one invoice (base rent, CAM estimate, utility recovery) belong in different revenue accounts; line-level coding keeps revenue analysis accurate.",
+    "ifSkipped": "Revenue categories such as base rent, CAM and utility recovery are misstated.",
+    "glAccounts": [
+      "4100 Other Income",
+      "4110 Utility Reimbursement",
+      "Commercial rental income"
+    ],
+    "gaap": [
+      "ASC 606",
+      "ASC 842-10-15 — lease vs non-lease components"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Invoice detail"
+    ],
+    "redFlags": [
+      "All lines coded to one revenue account"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_finish_the_invoice": {
+    "purpose": "Completes the invoice — adding rows, attachments and choosing to save as draft or post.",
+    "outcome": "The invoice is either held for review or posted to the GL.",
+    "rootCause": "Posting recognizes revenue and the receivable; review before posting catches errors while they are still easy to fix.",
+    "ifSkipped": "Invoices stay in draft and revenue is missing, or errors are posted without review.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Invoices posted without attachments"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_saving_a_transaction_as_a_draft": {
+    "purpose": "Saves an A/R invoice as a draft — with no GL effect until posted — so a large or unusual billing such as an annual CAM reconciliation can be reviewed first.",
+    "outcome": "Invoices can be prepared and reviewed before affecting the books.",
+    "rootCause": "Draft status allows a reviewer to check large or unusual invoices (e.g., annual CAM reconciliations) before revenue is recognized.",
+    "ifSkipped": "Unreviewed invoices post directly, or drafts are forgotten and never posted.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — review"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Drafts left unposted across month-end"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_editing_an_a_r_invoice": {
+    "purpose": "Edits an A/R invoice — freely while draft; for posted invoices, only fields allowed without reversal.",
+    "outcome": "Invoice corrections made through the appropriate path.",
+    "rootCause": "Posted invoices affect the GL and customer ledgers; restricting edits preserves the audit trail.",
+    "ifSkipped": "Errors persist, or posted invoices are altered in ways that break reconciliations.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Amount changes on posted invoices"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_importing_a_r_invoices": {
+    "purpose": "Imports A/R invoices in bulk from a template — for example monthly utility bill-backs to many commercial tenants or opening balances at onboarding.",
+    "outcome": "Large billing runs created accurately in one step.",
+    "rootCause": "Bill-backs and onboarding balances involve many invoices; importing avoids keying errors and missed customers.",
+    "ifSkipped": "Bill-backs are keyed manually and some are missed.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4110 Utility Reimbursement"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Import totals not tied to source expense"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_deleting_or_reversing_invoices": {
+    "purpose": "Explains when to delete an invoice (drafts) versus reverse it (posted), preserving the audit trail.",
+    "outcome": "Incorrect invoices removed through the proper method.",
+    "rootCause": "Deleting posted invoices would remove revenue and receivables with no trace; reversal records the correction.",
+    "ifSkipped": "Posted invoices vanish without trace, or wrong invoices remain.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Frequent reversals for the same customer"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_viewing_an_invoices_state": {
+    "purpose": "Shows an invoice's state — draft, posted, partially paid, paid, reversed — from the invoices list.",
+    "outcome": "Clarity on which correction path applies and whether follow-up is needed.",
+    "rootCause": "The allowed actions depend on state; knowing it prevents attempts to edit paid invoices or chase paid balances.",
+    "ifSkipped": "Wrong corrections are attempted and paid customers are chased.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Partially paid invoices with no follow-up"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_configuring_invoices_for_reversal": {
+    "purpose": "Configures A/R so posted invoices can be reversed, including unpaid invoice reversal settings.",
+    "outcome": "Posted invoice errors can be corrected with an audit trail.",
+    "rootCause": "Without reversal enabled, accountants resort to manual credit adjustments that obscure what was corrected.",
+    "ifSkipped": "Corrections are made by ad hoc adjustments that are hard to audit.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "A/R configuration"
+    ],
+    "redFlags": [
+      "Reversal disabled while errors are corrected by adjustments"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_clearing_a_negative_invoice": {
+    "purpose": "Clears a negative invoice (a credit) by applying it against positive invoices or refunding it.",
+    "outcome": "Customer credits are used or refunded rather than left open.",
+    "rootCause": "Negative invoices represent money owed back to the customer; left open, they distort aging and may become unclaimed property.",
+    "ifSkipped": "Credits linger, aging is misstated and escheat exposure grows.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "2170 Unclaimed Property Payable"
+    ],
+    "gaap": [
+      "State unclaimed property laws"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Old negative invoices never cleared"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_reversing_an_invoice": {
+    "purpose": "Reverses a posted invoice, creating offsetting entries so revenue and the receivable are removed with an audit trail.",
+    "outcome": "An incorrect invoice is cancelled cleanly.",
+    "rootCause": "Invoices billed to the wrong customer or amount must be removed without destroying history; reversal does that.",
+    "ifSkipped": "Wrong invoices remain in revenue and receivables.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606",
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Reversals dated in closed periods"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_enabling_invoice_reversal": {
+    "purpose": "Turns on invoice reversal in A/R configuration (Enable Functionality) so posted invoices billed in error can be reversed with an audit trail instead of manual adjustments.",
+    "outcome": "Users can reverse posted invoices.",
+    "rootCause": "The reversal function must be switched on before posted invoice errors can be corrected with a trail.",
+    "ifSkipped": "Errors are corrected with manual adjustments instead.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "A/R configuration"
+    ],
+    "redFlags": [
+      "Reversal enabled without permission restrictions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_reversing_a_paid_invoice": {
+    "purpose": "Reverses an invoice that is partially paid or paid, which requires first dealing with the associated payment (reversing or reapplying it).",
+    "outcome": "Paid invoices billed in error are corrected along with their payments.",
+    "rootCause": "A paid invoice has a payment attached; reversing the invoice alone would leave an unapplied payment and a misstated ledger.",
+    "ifSkipped": "Payments become orphaned and customer balances are wrong.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer ledger"
+    ],
+    "redFlags": [
+      "Unapplied payments after invoice reversals"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_reversing_an_unpaid_a_r_invoice": {
+    "purpose": "Reverses an unpaid posted A/R invoice from Search & Find, removing it from revenue and receivables.",
+    "outcome": "Unpaid erroneous invoices cancelled cleanly.",
+    "rootCause": "Unpaid invoices raised in error overstate revenue and receivables and lead to collection calls on amounts not owed.",
+    "ifSkipped": "Customers are chased for invalid charges and revenue is overstated.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Reversals without documented reason"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_deleting_an_a_r_invoice": {
+    "purpose": "Deletes an A/R invoice record — only appropriate for drafts or invoices entered in error before any activity.",
+    "outcome": "Erroneous draft invoices removed.",
+    "rootCause": "Deleting is safe only when the invoice never affected the GL; otherwise reversal is required to keep the trail.",
+    "ifSkipped": "Duplicate draft invoices are posted by mistake.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Deleting invoices that were posted"
+    ],
+    "confidence": "high"
+  }
+}

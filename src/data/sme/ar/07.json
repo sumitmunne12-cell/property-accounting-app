@@ -1,0 +1,996 @@
+{
+  "scr_ar_clearing_an_a_r_credit_adjustment": {
+    "purpose": "Clears an open A/R credit adjustment by applying it against the customer's open invoices, so the credit and the invoice net off instead of both remaining open.",
+    "outcome": "Customer credits are consumed and the aging shows a true net balance.",
+    "rootCause": "A credit adjustment posted but never applied leaves the invoice showing as overdue and the credit showing as owed back, which inflates both receivables and credit balances.",
+    "ifSkipped": "The aging overstates what the customer owes, and collections chase a balance that has already been credited.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — accuracy of subledger balances"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer aging",
+      "Customer ledger"
+    ],
+    "redFlags": [
+      "Open credit adjustments older than 60 days"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_deleting_adjustments": {
+    "purpose": "Deletes A/R adjustments that are still drafts or were entered in error before affecting the GL; posted adjustments must be reversed instead.",
+    "outcome": "Erroneous draft adjustments removed without leaving false credits.",
+    "rootCause": "Draft adjustments left in the system can be posted by mistake later, crediting customers who were never owed anything.",
+    "ifSkipped": "Stale draft credits are posted accidentally and reduce revenue.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Adjustments list"
+    ],
+    "redFlags": [
+      "Attempts to delete posted adjustments"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_reversing_adjustments": {
+    "purpose": "Reverses a posted A/R adjustment — for example a credit issued in error — creating an offsetting entry and reinstating the customer's balance.",
+    "outcome": "Wrong credits or debits are undone with an audit trail.",
+    "rootCause": "Posted adjustments have changed revenue and the customer ledger; reversal is the only way to correct them without destroying history.",
+    "ifSkipped": "Incorrect credits remain, understating revenue and receivables.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4040 Concessions"
+    ],
+    "gaap": [
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Adjustments list"
+    ],
+    "redFlags": [
+      "Reversals of credits approved by management without documentation"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_other_ways_to_reverse_a_transaction": {
+    "purpose": "Explains alternatives for reversing A/R transactions — reversing the invoice, the payment or the adjustment — depending on what went wrong.",
+    "outcome": "The correct reversal method is chosen for each error.",
+    "rootCause": "Reversing the wrong object (the invoice instead of the misapplied payment) creates new errors; understanding the options prevents that.",
+    "ifSkipped": "Corrections create secondary errors in customer ledgers.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Multiple reversals on the same transaction"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_finding_draft_or_posted_transactions_2": {
+    "purpose": "Searches adjustments and other A/R transactions by state (draft or posted), customer, date or amount from the adjustments area.",
+    "outcome": "Draft adjustments awaiting posting or review are found quickly.",
+    "rootCause": "Drafts left unposted at month-end mean approved credits are missing from the books; searching by state surfaces them.",
+    "ifSkipped": "Approved credits are never posted and customers dispute balances.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Adjustments list"
+    ],
+    "redFlags": [
+      "Drafts older than the current period"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_turning_on_the_deletion_warning": {
+    "purpose": "Turns on a confirmation warning that appears before a user deletes an A/R transaction such as a draft invoice or adjustment, adding a checkpoint against accidental deletion.",
+    "outcome": "Accidental deletions are reduced.",
+    "rootCause": "One-click deletion of drafts can remove the wrong record; a warning adds a checkpoint before data is lost.",
+    "ifSkipped": "Transactions are deleted by accident and must be re-entered.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Warnings disabled"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_an_adjustment": {
+    "purpose": "Prints an A/R adjustment record — customer, amount, reason and approval — for the customer file or approval evidence.",
+    "outcome": "A printed record supporting the credit or debit.",
+    "rootCause": "Credits to customers need documented approval; printing supports the file and audit review of credits.",
+    "ifSkipped": "Approval evidence for credits is missing at audit.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "AU-C 500"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Adjustment detail"
+    ],
+    "redFlags": [
+      "Credits without approval signatures"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_a_r_adjustment_page": {
+    "purpose": "The A/R adjustment page showing the key adjustment information — customer, type, date, amount, reason and GL lines.",
+    "outcome": "A complete record for entering or reviewing an adjustment.",
+    "rootCause": "Reviewers need the reason and offset account alongside the amount to judge whether a credit was appropriate.",
+    "ifSkipped": "Adjustments are reviewed without their reasons and offsets.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4040 Concessions",
+      "4050 Bad Debt"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Adjustment detail"
+    ],
+    "redFlags": [
+      "Offset accounts inconsistent with reasons"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_saving_an_a_r_transaction_as_a_draft": {
+    "purpose": "Saves an A/R transaction (adjustment or invoice) as a draft so it can be completed or approved before posting.",
+    "outcome": "Transactions are held without GL impact until reviewed.",
+    "rootCause": "Credits and unusual charges often need approval; drafting separates preparation from posting.",
+    "ifSkipped": "Unapproved customer credits post immediately and reduce revenue without review.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Adjustments list"
+    ],
+    "redFlags": [
+      "Drafts never reviewed"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_posting_an_a_r_adjustment": {
+    "purpose": "Posts a draft A/R adjustment (Post or Post & New), updating the customer's balance and the GL.",
+    "outcome": "The approved credit or debit takes effect.",
+    "rootCause": "Adjustments only change balances once posted; approved credits left in draft mean customers are still billed amounts they were told were forgiven.",
+    "ifSkipped": "Approved credits never reach the customer's balance.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4040 Concessions"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer ledger"
+    ],
+    "redFlags": [
+      "Posting without approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_duplicating_an_a_r_adjustment": {
+    "purpose": "Creates a new A/R adjustment by copying an existing one — for example a recurring monthly concession agreed in a lease amendment.",
+    "outcome": "Similar adjustments created quickly with consistent coding.",
+    "rootCause": "Recurring concessions need identical coding each month; copying keeps them consistent.",
+    "ifSkipped": "Recurring adjustments are coded inconsistently.",
+    "glAccounts": [
+      "4040 Concessions"
+    ],
+    "gaap": [
+      "ASC 842-30 — lease incentives"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Adjustments list"
+    ],
+    "redFlags": [
+      "Copies continuing after the concession period ended"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_a_transaction": {
+    "purpose": "Prints an A/R transaction after creation for the file or to send to the customer.",
+    "outcome": "A printed copy of the transaction.",
+    "rootCause": "Customers and auditors sometimes require paper or PDF evidence of specific transactions.",
+    "ifSkipped": "Transaction evidence must be recreated when requested.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "AU-C 500"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Transaction detail"
+    ],
+    "redFlags": [
+      "Printed copies sent to customers before posting"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_how_to_refund_a_credit_memo": {
+    "purpose": "Explains refunding a customer who holds a credit memo and prefers cash back rather than a credit against future invoices.",
+    "outcome": "Customer credits returned as cash and cleared from the ledger.",
+    "rootCause": "Customers leaving a property or ending a contract are owed their credits back; unrefunded credits become unclaimed property after the dormancy period.",
+    "ifSkipped": "Credits linger and become escheat obligations.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "2010 Accounts Payable",
+      "2170 Unclaimed Property Payable"
+    ],
+    "gaap": [
+      "State unclaimed property laws"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "A/P team"
+    ],
+    "reports": [
+      "Customer aging (credit balances)"
+    ],
+    "redFlags": [
+      "Credit balances for inactive customers"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_applying_credit_to_an_invoice": {
+    "purpose": "Applies a customer's available credit to an open invoice from the Receive a Payment page.",
+    "outcome": "The customer's credit and open invoice net off in the ledger.",
+    "rootCause": "An unapplied credit leaves the invoice looking overdue and the credit looking owed back; applying it is what makes the aging show the customer's true net position for collections.",
+    "ifSkipped": "Both the credit and invoice stay open and the aging is overstated.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Credits applied to disputed invoices without agreement"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_selecting_invoices": {
+    "purpose": "Filters and selects customer invoices to apply a payment or credit to on the Receive a Payment page.",
+    "outcome": "The right invoices are chosen quickly for application.",
+    "rootCause": "Customers with many open invoices need fast filtering so payments are applied exactly as remitted.",
+    "ifSkipped": "Payments are applied to the wrong invoices.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Applications contradicting remittance advice"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_applying_credits_without_recording_a_payment_receipt_2": {
+    "purpose": "Applies existing customer credits to invoices without entering a new receipt, from the Enter Payments area.",
+    "outcome": "Credits consumed against invoices with no cash movement.",
+    "rootCause": "Many credit applications involve no new money; this path clears both items without a fake receipt.",
+    "ifSkipped": "Users create zero-dollar receipts or leave items open.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Zero-dollar receipts used to apply credits"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_applying_credits_along_with_recording_a_payment_receipt": {
+    "purpose": "Applies customer credits together with a new payment so both settle the selected invoices at once.",
+    "outcome": "Short payments from customers who deducted credits are fully reconciled.",
+    "rootCause": "Customers frequently pay the invoice total minus their credit; applying both together matches their remittance.",
+    "ifSkipped": "Invoices remain partially open despite the customer having paid in full after credits.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Receipts register"
+    ],
+    "redFlags": [
+      "Credits applied without customer remittance support"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_refunding_a_customer": {
+    "purpose": "Refunds a customer who has a negative balance (credit) — typically after an overpayment or a billing correction — by issuing payment through A/P.",
+    "outcome": "The customer is repaid and the credit cleared.",
+    "rootCause": "A negative balance is money owed to the customer; holding it indefinitely is both a customer-relations problem and an unclaimed property exposure.",
+    "ifSkipped": "Credits age into escheatable balances and customers complain.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "State unclaimed property laws"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "A/P team"
+    ],
+    "reports": [
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Refunds paid to parties other than the customer"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_changing_the_amount_credited_after_applying_it_2": {
+    "purpose": "Changes the amount of a credit applied to an invoice after application, where configuration permits.",
+    "outcome": "Credit application errors corrected without reversing payments.",
+    "rootCause": "Over- or under-applying a credit is a common keying error; correcting the application directly is cleaner than reversing and redoing.",
+    "ifSkipped": "Errors persist or payments are unnecessarily reversed.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer ledger"
+    ],
+    "redFlags": [
+      "Repeated changes on the same customer"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_subledgers": {
+    "purpose": "Chapter on the A/R subledger — opening and closing the A/R books by period and working with summaries (groups of transactions that post to the GL together).",
+    "outcome": "Users understand how A/R activity reaches the GL and how periods are locked.",
+    "rootCause": "The A/R subledger posts to the GL through summaries; controlling which summaries are open is how accounting prevents late transactions from changing reported receivables.",
+    "ifSkipped": "Late A/R activity posts into reported periods.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — cutoff"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Summaries list"
+    ],
+    "redFlags": [
+      "A/R periods left open after reporting"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_subledgers_2": {
+    "purpose": "Explains summaries — collections of the same type of A/R transactions (invoices, payments, adjustments) grouped by period that post to the GL together.",
+    "outcome": "A/R postings organized by period and type.",
+    "rootCause": "Grouping transactions into period summaries allows whole periods to be closed and gives a clear trail from subledger to GL.",
+    "ifSkipped": "Transactions post without period control.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Summaries list"
+    ],
+    "redFlags": [
+      "Summaries spanning multiple periods"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_about_a_r_summaries": {
+    "purpose": "Describes A/R summaries in more detail — how they are created (automatically or manually), what they contain and how they relate to GL posting.",
+    "outcome": "Users can trace A/R transactions to their GL summary.",
+    "rootCause": "When A/R and GL differ, the investigation goes summary by summary; understanding them is prerequisite.",
+    "ifSkipped": "Subledger-to-GL differences are hard to investigate.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Summaries list"
+    ],
+    "redFlags": [
+      "Manual summaries with unusual dates"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_importing_summaries": {
+    "purpose": "Imports A/R summaries — typically when migrating historical activity or loading opening balances.",
+    "outcome": "Historical or opening activity grouped into proper summaries.",
+    "rootCause": "Migrations need imported transactions assigned to the right period summaries for the GL to reflect them correctly.",
+    "ifSkipped": "Imported activity posts to wrong periods.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — conversion controls"
+    ],
+    "stakeholders": [
+      "Transition team"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Imported summaries in closed periods"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_opening_and_closing_summaries": {
+    "purpose": "Explains opening and closing A/R summaries — closing prevents further posting to a period; opening allows it again.",
+    "outcome": "Period control over A/R postings.",
+    "rootCause": "Closing summaries at month-end is how A/R cutoff is enforced; reopening must be exceptional and controlled.",
+    "ifSkipped": "A/R cutoff is not enforced and reported receivables change.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — cutoff",
+      "ASC 855"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Summaries list"
+    ],
+    "redFlags": [
+      "Summaries reopened without approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_closing_a_r_summaries": {
+    "purpose": "Closes A/R summaries for a period from Month End > Close Subledger so no further invoices, payments or adjustments post to it.",
+    "outcome": "A/R for the period is locked before the GL close.",
+    "rootCause": "Closing A/R before the GL ensures the receivable balance reported to owners cannot be changed by late activity.",
+    "ifSkipped": "Late A/R activity changes reported receivables.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — cutoff"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Close checklist"
+    ],
+    "redFlags": [
+      "A/R closed after the GL"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_closing_a_r_summaries_2": {
+    "purpose": "Procedure for closing A/R summaries either by period (all summaries for the month) or by summary name (one specific summary), from Month End > Close Subledger.",
+    "outcome": "The chosen summaries are closed.",
+    "rootCause": "Closing by period guarantees every invoice, payment and adjustment summary for the month is locked together; closing individually risks leaving one summary open to late postings.",
+    "ifSkipped": "Some summaries stay open and receive late postings.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Summaries list"
+    ],
+    "redFlags": [
+      "Open summaries in closed periods"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_opening_a_r_summaries": {
+    "purpose": "Opens A/R summaries through Month End > Open Subledger, allowing postings again to a closed period.",
+    "outcome": "A controlled window to correct A/R in a closed period.",
+    "rootCause": "Material A/R corrections sometimes must be posted in the original period; reopening allows it but changes reported numbers.",
+    "ifSkipped": "Corrections are forced into later periods; uncontrolled reopening changes reported receivables.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 250",
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Summaries list"
+    ],
+    "redFlags": [
+      "Reopenings after owner reporting"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_open_the_a_r_subledger_page": {
+    "purpose": "The Open A/R Subledger page, restricted by permission, used to reopen a closed A/R period or specific summaries for an approved correction.",
+    "outcome": "Controlled reopening of A/R periods.",
+    "rootCause": "Reopening is high-risk; a dedicated page restricted by permissions limits who can change closed periods.",
+    "ifSkipped": "Closed A/R periods are reopened casually and reported receivables change.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Broad permissions to reopen"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_opening_the_a_r_subledger": {
+    "purpose": "Procedure for reopening the A/R subledger for a closed period — selecting the period or summaries, documenting the reason, and re-closing after the correction posts.",
+    "outcome": "The period accepts A/R postings again.",
+    "rootCause": "Reopening must follow a defined procedure with approval because it can change reported receivables.",
+    "ifSkipped": "Reopening happens without documentation.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Periods left open after the correction"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_finding_which_periods_are_closed": {
+    "purpose": "Checks which periods are closed in the books (General Ledger > Books > Close) before posting A/R activity.",
+    "outcome": "Users know which dates are available for posting.",
+    "rootCause": "Attempting to post into closed periods fails; knowing the status avoids wasted effort and backdating attempts.",
+    "ifSkipped": "Users try to post into closed periods or request unnecessary reopenings.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Books status"
+    ],
+    "redFlags": [
+      "Frequent requests to reopen"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_reopening_the_a_r_books": {
+    "purpose": "Reopens the books in General Ledger for a period so A/R corrections can post — a permission typically restricted to accounting managers.",
+    "outcome": "Books reopened for an approved correction.",
+    "rootCause": "Reopening books changes the ability to post in every application; restricted permissions ensure only authorized, documented corrections.",
+    "ifSkipped": "Material corrections cannot be made in the right period; uncontrolled reopening changes reported results.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "3100 Retained Earnings"
+    ],
+    "gaap": [
+      "ASC 250",
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Controller"
+    ],
+    "reports": [
+      "Books status"
+    ],
+    "redFlags": [
+      "Books reopened without approval records"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_summaries_list": {
+    "purpose": "Lists A/R summaries (invoice, payment and adjustment groupings by period) with their status and totals, used at month-end to confirm the period's summaries are complete and closed.",
+    "outcome": "Visibility of which A/R periods and summaries are open.",
+    "rootCause": "Before closing the month, accounting confirms all A/R summaries for the period are closed and totals agree with the GL.",
+    "ifSkipped": "Open summaries in closed periods go unnoticed.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Summaries list"
+    ],
+    "redFlags": [
+      "Open summaries for prior months"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_the_summaries_list": {
+    "purpose": "Opens and filters the A/R summaries list by period, transaction type or status to review a month's summaries before closing A/R.",
+    "outcome": "Summaries for the close are found quickly.",
+    "rootCause": "Month-end requires reviewing all A/R summaries for the period to confirm they are complete and closed.",
+    "ifSkipped": "Some summaries for the month are missed and stay open after close.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Summaries list"
+    ],
+    "redFlags": [
+      "Summaries with unexpected dates"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_a_summary": {
+    "purpose": "Manually adds an A/R summary for a period and transaction type, when automatic summaries are not used.",
+    "outcome": "A container for posting a period's transactions.",
+    "rootCause": "Without automatic summaries, a summary must exist for each period and type before transactions can post.",
+    "ifSkipped": "Transactions cannot post or are grouped incorrectly.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Summaries list"
+    ],
+    "redFlags": [
+      "Manual summaries in wrong periods"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_information_about_a_summary": {
+    "purpose": "Views one A/R summary's details — period, type, status, totals and transactions — typically while investigating a difference between the A/R subledger and the GL.",
+    "outcome": "Understanding of what a summary contains and its GL impact.",
+    "rootCause": "Investigating A/R-to-GL differences requires opening summaries to see their transactions and totals.",
+    "ifSkipped": "Subledger-to-GL differences cannot be traced to specific transactions.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Summary detail"
+    ],
+    "redFlags": [
+      "Summary totals not equal to GL postings"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_editing_a_summarys_details": {
+    "purpose": "Edits an open A/R summary's name, date or settings — for example correcting a summary dated in the next month before any more transactions are added.",
+    "outcome": "Summary attributes corrected before closing.",
+    "rootCause": "A summary dated in the wrong period posts all its transactions to that period; correcting it before closing avoids misstatement.",
+    "ifSkipped": "A whole summary posts to the wrong period.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — cutoff"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Summaries list"
+    ],
+    "redFlags": [
+      "Summary date changes after transactions posted"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deleting_summaries": {
+    "purpose": "Deletes empty or duplicate A/R summaries so that month-end reviews only show summaries that actually hold transactions.",
+    "outcome": "Unused summaries removed from the list.",
+    "rootCause": "Empty or duplicate summaries confuse close reviews and can capture postings by mistake.",
+    "ifSkipped": "Stray summaries collect transactions in wrong periods.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Summaries list"
+    ],
+    "redFlags": [
+      "Deleting summaries with transactions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deactivating_or_closing_a_summary": {
+    "purpose": "Deactivates or closes a specific A/R summary so it no longer accepts transactions.",
+    "outcome": "Individual summaries locked as needed.",
+    "rootCause": "Closing individual summaries allows finer control — for example locking invoices while payments for the period are still being posted.",
+    "ifSkipped": "Summaries remain open longer than intended.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Summaries list"
+    ],
+    "redFlags": [
+      "Summaries closed out of order"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_creating_automatic_summaries": {
+    "purpose": "Configures A/R to create summaries automatically (recommended) so each period and transaction type gets its summary without manual setup.",
+    "outcome": "Consistent period grouping of A/R transactions.",
+    "rootCause": "Manual summaries are error-prone (wrong dates, missing types); automatic creation removes that risk.",
+    "ifSkipped": "Manual summary errors misplace transactions in periods.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — automated controls"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Summaries list"
+    ],
+    "redFlags": [
+      "Automatic summaries disabled"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_summary_information_page": {
+    "purpose": "The A/R summary record page showing its name, period, transaction type, status and totals, used as evidence that a period's A/R activity is complete and locked.",
+    "outcome": "A complete view of one A/R summary.",
+    "rootCause": "Summary status and totals are the evidence that a period's A/R activity is complete and locked.",
+    "ifSkipped": "Close evidence for the A/R period is incomplete.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Summary detail"
+    ],
+    "redFlags": [
+      "Status open for closed periods"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_transactions_list_of_a_summary": {
+    "purpose": "Lists every transaction inside an A/R summary — invoices, payments or adjustments — making up the total that posted to the GL.",
+    "outcome": "Detail behind a summary's total.",
+    "rootCause": "Tracing a GL posting back to individual A/R transactions requires the summary's transaction list.",
+    "ifSkipped": "GL postings cannot be traced to transactions.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Summary transactions"
+    ],
+    "redFlags": [
+      "Transactions dated outside the summary period"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_transactions_to_a_summary": {
+    "purpose": "Adds A/R transactions to an open summary so they post to the GL in that summary's period.",
+    "outcome": "Transactions grouped into the correct period summary.",
+    "rootCause": "Transactions must belong to a summary to post; adding them to the right one places them in the correct period.",
+    "ifSkipped": "Transactions sit unposted or in the wrong period.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Summary transactions"
+    ],
+    "redFlags": [
+      "Transactions added to closed-period summaries"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_the_list_of_transactions_in_a_summary": {
+    "purpose": "Views the transactions contained in a summary to confirm completeness before closing.",
+    "outcome": "Confidence that the summary contains exactly the period's activity.",
+    "rootCause": "Reviewing a summary's contents before closing is the last chance to catch transactions dated in the wrong month; once closed, they can only be corrected by reversals in a later period.",
+    "ifSkipped": "Misdated transactions are locked into the wrong period.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — cutoff"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Summary transactions"
+    ],
+    "redFlags": [
+      "Prior-period transactions in current summary"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_importing_transactions_into_a_summary": {
+    "purpose": "Imports A/R transactions from a file directly into a chosen summary, placing bulk billings or migrated history into the intended period.",
+    "outcome": "Bulk transactions loaded into the correct period summary.",
+    "rootCause": "Migrations and bulk billings need to land in specific period summaries; importing targets them directly.",
+    "ifSkipped": "Bulk transactions land in default summaries and wrong periods.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Imports into closed summaries"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_editing_the_transactions_in_a_summary": {
+    "purpose": "Edits transactions inside an open A/R summary — correcting dates, references or coding — before the summary is closed for the period.",
+    "outcome": "Transaction errors corrected before the summary closes.",
+    "rootCause": "Once closed, corrections require reversals in later periods; editing while open keeps corrections in the right period.",
+    "ifSkipped": "Errors are locked into closed summaries.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Summary transactions"
+    ],
+    "redFlags": [
+      "Amount edits on posted transactions"
+    ],
+    "confidence": "medium"
+  }
+}

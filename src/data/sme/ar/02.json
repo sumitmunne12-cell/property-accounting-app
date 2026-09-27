@@ -1,0 +1,939 @@
+{
+  "scr_ar_introduction_to_accounts_receivable": {
+    "purpose": "Introduces the Financial Suite Accounts Receivable application, which bills and collects from non-resident customers — commercial and retail tenants, affiliates, ancillary vendors (laundry, cable, cell towers), insurance carriers and management-company bill-backs — separately from resident rent billed in OneSite.",
+    "outcome": "Accountants understand which receivables live in Financial Suite A/R versus the resident ledger in OneSite, and where each posts in the GL.",
+    "rootCause": "Multifamily properties have two very different receivable streams: thousands of resident ledgers managed by site staff in OneSite, and a handful of contractual, often larger, non-resident receivables managed by accounting. Mixing them hides commercial and affiliate balances inside resident delinquency.",
+    "ifSkipped": "Non-resident receivables are billed from spreadsheets, collections are not followed up, and affiliate balances never reconcile.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1230 Due From Affiliates",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606 — revenue from contracts with customers",
+      "ASC 842-30 — lessor receivables for commercial leases"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Commercial property manager",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Customer aging",
+      "A/R ledger"
+    ],
+    "redFlags": [
+      "Commercial tenant charges posted as resident charges in OneSite"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_accounts_receivable_overview": {
+    "purpose": "Overview of what must be set up before using A/R — configuration, customer records, customer types, and GL accounts for receivables and revenue — and the flow from invoice to payment to deposit.",
+    "outcome": "A/R is configured so invoices post to the right receivable and revenue accounts from the first transaction.",
+    "rootCause": "A/R postings depend on default accounts and customer setup. Starting to invoice before configuration sends revenue and receivables to wrong accounts that must later be reclassed.",
+    "ifSkipped": "Early invoices post to wrong receivable or revenue accounts and the A/R subledger never ties to the GL.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "COSO 2013 — configuration controls"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "A/R configuration"
+    ],
+    "redFlags": [
+      "Invoices entered before default accounts were configured"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_accounts_receivable_home_page": {
+    "purpose": "The A/R home page linking to customers, invoices, recurring invoices, payments, deposits, adjustments and reports.",
+    "outcome": "Fast access to daily and monthly receivable tasks.",
+    "rootCause": "Receivable work is a cycle — bill, collect, deposit, age, follow up. A home page organized around that cycle helps accountants complete every step each month.",
+    "ifSkipped": "Steps like following up aged receivables are skipped because they are hard to find.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Aged receivables with no follow-up activity"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_accounts_receivable_menu": {
+    "purpose": "Describes the A/R menu structure — Search & Find, Daily Tasks, Periodic Tasks, Reports and Setup — and what each contains.",
+    "outcome": "Users know where each receivable function lives.",
+    "rootCause": "New offshore staff need to navigate A/R efficiently during close; a menu map reduces errors like entering payments in the wrong place.",
+    "ifSkipped": "Users record transactions in the wrong screens and break the subledger.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "New offshore accountants"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Payments recorded as other receipts instead of A/R payments"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_using_accounts_receivable": {
+    "purpose": "Section on operating A/R — managing customers, billing, payments, deposits, adjustments and periodic tasks.",
+    "outcome": "A map of the receivable workflow for non-resident customers.",
+    "rootCause": "Consistent use of A/R functions keeps the subledger reconcilable and collections traceable.",
+    "ifSkipped": "Receivables are handled inconsistently across properties.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1230 Due From Affiliates"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Receivables tracked outside A/R"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_customers": {
+    "purpose": "Chapter on customers — the non-resident parties the property bills (commercial tenants, affiliates, ancillary contractors) — and how their records are set up and maintained.",
+    "outcome": "Every non-resident payer has a customer record with terms, contacts and GL defaults.",
+    "rootCause": "Invoices, payments, aging and collections all key off the customer record; without clean records, receivables cannot be tracked or collected.",
+    "ifSkipped": "Receivables from non-residents are untracked and uncollected.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1230 Due From Affiliates"
+    ],
+    "gaap": [
+      "ASC 606",
+      "ASC 842-30"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Commercial property manager"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "Duplicate customers for the same tenant"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_customers_overview": {
+    "purpose": "Explains the Customers list as the place to add any company or individual the property invoices — for example the retail tenant in suite 101, the laundry route operator, or an affiliated property owing a bill-back.",
+    "outcome": "Clarity on who should be set up as an A/R customer versus a OneSite resident.",
+    "rootCause": "Confusion about where to bill non-resident parties leads to commercial rent inside resident ledgers or affiliates billed by email with no receivable recorded.",
+    "ifSkipped": "Non-resident billings are recorded inconsistently or not at all.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1230 Due From Affiliates"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "Affiliate bill-backs without customer records"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_guidelines_for_updating_customer_records": {
+    "purpose": "Guidelines for changing customer records safely — which fields can be changed after transactions exist and how changes affect open invoices.",
+    "outcome": "Customer updates do not corrupt historical invoices or tax reporting.",
+    "rootCause": "Changing a customer's name, tax ID or default accounts after invoicing can misstate history or send new revenue to wrong accounts; guidelines prevent that.",
+    "ifSkipped": "Customer edits break historical reporting or misdirect future postings.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — master data change control"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer change log"
+    ],
+    "redFlags": [
+      "Default revenue accounts changed mid-lease"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_customers_list": {
+    "purpose": "Lists A/R customers with status, type, balance and credit status, with actions to add, view, edit, duplicate or inactivate.",
+    "outcome": "A maintained roster of non-resident payers with visible balances.",
+    "rootCause": "Reviewing customers with balances and their status is the starting point for collections and cleanup of inactive customers.",
+    "ifSkipped": "Inactive customers with balances are overlooked and receivables go stale.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 326 — collectibility of receivables"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "Inactive customers with open balances"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_adding_customers": {
+    "purpose": "Creates a customer record — legal name, billing address, contacts, terms, customer type, default revenue and receivable accounts, and tax information.",
+    "outcome": "A new payer ready to be invoiced with correct defaults.",
+    "rootCause": "Correct defaults at setup (e.g., a commercial tenant's rent posting to commercial rental income) determine every future posting for that customer.",
+    "ifSkipped": "Invoices for the customer post to generic accounts and need reclassing.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606",
+      "ASC 842-30"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "Customers created without payment terms"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_viewing_or_editing_a_customer": {
+    "purpose": "Views or edits a non-resident customer's details — billing contacts, payment terms, default revenue accounts and credit limit — for example updating a retail tenant's accounts-payable email after they change systems.",
+    "outcome": "Customer information kept current for billing and collections.",
+    "rootCause": "Outdated billing contacts are a common reason commercial invoices go unpaid; keeping records current directly affects collections.",
+    "ifSkipped": "Invoices go to the wrong contacts and collections slow down.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "Undeliverable billing addresses"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_customer_information_page": {
+    "purpose": "The customer record page with tabs for customer details, additional information (credit), contacts and restrictions.",
+    "outcome": "All attributes of one payer in one place.",
+    "rootCause": "Billing, credit and entity restrictions all live on the customer; reviewing them together prevents conflicting settings.",
+    "ifSkipped": "Settings conflict (e.g., credit hold on a customer who should be billed).",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer information"
+    ],
+    "redFlags": [
+      "Missing tax identification"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_customer_tab": {
+    "purpose": "The Customer tab holding company and contact information — legal name, billing address, phone, email, primary contact.",
+    "outcome": "Correct billing identity for invoices and statements.",
+    "rootCause": "Invoices must be addressed to the legal entity on the lease or contract for enforceability and collection.",
+    "ifSkipped": "Invoices are addressed incorrectly and disputes delay payment.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer information"
+    ],
+    "redFlags": [
+      "Customer name differing from lease tenant name"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_deleting_or_inactivating_a_customer": {
+    "purpose": "Deletes a customer created in error or inactivates one that is no longer billed (lease ended, contract terminated) while keeping its history.",
+    "outcome": "Only active payers can be invoiced, while history is preserved.",
+    "rootCause": "Inactivating former tenants prevents accidental new invoices; deleting customers with history would erase receivable records needed for audits and disputes.",
+    "ifSkipped": "Former customers are billed by mistake, or history is lost.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "Inactivating customers with open balances"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_additional_information_tab": {
+    "purpose": "The Additional Information tab for customer terms, credit limit, credit hold and default accounts.",
+    "outcome": "Credit and posting rules defined per customer.",
+    "rootCause": "Commercial tenants and vendors have different credit risk and terms; per-customer settings enforce them in billing and order entry.",
+    "ifSkipped": "Credit risk is unmanaged and postings use generic defaults.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 326 — credit risk"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer information"
+    ],
+    "redFlags": [
+      "No credit limit for large commercial tenants"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_defining_a_credit_limit_for_a_customer": {
+    "purpose": "Sets a credit limit for a customer so the system warns or blocks when their open balance would exceed it.",
+    "outcome": "Exposure to any single customer is capped.",
+    "rootCause": "Unchecked balances with ancillary or commercial customers grow into uncollectible amounts; a limit forces a decision before exposure grows further.",
+    "ifSkipped": "Balances grow beyond what the customer can pay and become bad debt.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1215 Allowance for Doubtful Accounts"
+    ],
+    "gaap": [
+      "ASC 326 — expected credit losses"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Customer credit report"
+    ],
+    "redFlags": [
+      "Limits set far above typical monthly billing"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_placing_a_customers_credit_on_hold": {
+    "purpose": "Places a customer on credit hold so new invoices or orders are blocked until the account is brought current.",
+    "outcome": "Further exposure to a delinquent customer stops.",
+    "rootCause": "Continuing to bill services to a customer who is not paying adds to losses; a hold forces resolution before more is extended.",
+    "ifSkipped": "New charges keep accruing to a customer who is not paying, and losses grow.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 326"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [
+      "Customer credit status"
+    ],
+    "redFlags": [
+      "Holds released without payment"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_viewing_customer_credit_limits_and_on_hold_status": {
+    "purpose": "Views customers' credit limits and hold status to monitor exposure across all non-resident customers.",
+    "outcome": "Visibility of credit risk concentration.",
+    "rootCause": "Periodic review of credit status catches customers who have exceeded limits or should be put on hold.",
+    "ifSkipped": "Customers over their credit limit keep being billed and exposure builds unnoticed.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 326"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer credit status"
+    ],
+    "redFlags": [
+      "Balances over limit without holds"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_contact_list_tab": {
+    "purpose": "The Contact List tab where categories of contacts (billing, legal notices, operations) are recorded for a customer.",
+    "outcome": "Invoices, statements and default notices go to the right people.",
+    "rootCause": "Commercial leases often require notices to a specific legal address; sending defaults to the wrong contact can make them ineffective.",
+    "ifSkipped": "Notices are sent to wrong contacts and legal remedies may be delayed.",
+    "glAccounts": [],
+    "gaap": [
+      "Lease notice provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Commercial property manager"
+    ],
+    "reports": [
+      "Customer information"
+    ],
+    "redFlags": [
+      "No legal-notice contact for commercial tenants"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_restrictions_tab": {
+    "purpose": "In a multi-entity shared company, the Restrictions tab limits which entities or locations can see and bill a customer.",
+    "outcome": "Customers are visible only to the entities that should bill them.",
+    "rootCause": "Shared customer lists across many owners risk one owner's property billing another owner's tenant; restrictions prevent cross-entity errors.",
+    "ifSkipped": "Invoices are raised by the wrong entity and revenue lands with the wrong owner.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 810 — entity-level accounting"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Customer visibility list"
+    ],
+    "redFlags": [
+      "Unrestricted customers in multi-owner companies"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_setting_up_customers_in_a_multi_entity_shared_company": {
+    "purpose": "Sets up customers in a multi-entity shared company, deciding which entities share a customer and which are restricted.",
+    "outcome": "Customers correctly shared or restricted across entities.",
+    "rootCause": "Some customers (a laundry operator serving many properties) are legitimately shared; others (a single property's retail tenant) are not. Setup must reflect that.",
+    "ifSkipped": "Revenue and receivables post to the wrong entities.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Customer visibility list"
+    ],
+    "redFlags": [
+      "Property-specific tenants visible to all entities"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_printing_customer_details": {
+    "purpose": "Prints a customer's setup details — legal name, terms, credit limit, default accounts — for the lease file or for auditors reviewing related-party and commercial customers.",
+    "outcome": "A record of customer setup for files or auditors.",
+    "rootCause": "Auditors and owners sometimes request evidence of customer setup and terms, particularly for related-party customers.",
+    "ifSkipped": "Customer setup evidence is unavailable when requested.",
+    "glAccounts": [],
+    "gaap": [
+      "ASC 850 — related parties"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "External auditor"
+    ],
+    "reports": [
+      "Customer details"
+    ],
+    "redFlags": [
+      "Related-party customers without documented terms"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_exporting_customer_details": {
+    "purpose": "Exports customer records to a spreadsheet for bulk review — typically an annual cleanup of duplicate customers, missing terms or outdated contacts.",
+    "outcome": "Customer data available for bulk review.",
+    "rootCause": "Periodic cleanup of customer master data (duplicates, missing terms) is easier in a spreadsheet.",
+    "ifSkipped": "Master data problems such as duplicates and missing terms accumulate unnoticed.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — master data"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer export"
+    ],
+    "redFlags": [
+      "Exports containing tax IDs shared insecurely"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_duplicating_a_customer_record": {
+    "purpose": "Creates a new customer by copying an existing one — for example a second location of the same retail chain — then editing the differences.",
+    "outcome": "Similar customers set up quickly and consistently.",
+    "rootCause": "Copying preserves correct defaults and terms, but must be followed by changes to name and address to avoid two identical customers.",
+    "ifSkipped": "Setup is slower; misuse creates near-duplicate customers.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "Duplicates left with the original's name"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_the_customers_total_due": {
+    "purpose": "Shows the total amount a customer currently owes across all open invoices, net of unapplied credits, as the starting figure for a collection call or credit decision.",
+    "outcome": "A quick answer to 'how much does this customer owe?'.",
+    "rootCause": "Collection calls and credit decisions start with the total due; seeing it directly avoids adding up invoices.",
+    "ifSkipped": "Collections conversations use inaccurate totals.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [
+      "Customer total due"
+    ],
+    "redFlags": [
+      "Unapplied credits reducing total due without review"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_viewing_the_a_r_ledger_for_a_customer": {
+    "purpose": "Views a customer's A/R ledger — invoices, payments, adjustments and running balance.",
+    "outcome": "A full transaction history for disputes and collections.",
+    "rootCause": "Customer disputes are resolved by walking through the ledger; the ledger also reveals misapplied payments.",
+    "ifSkipped": "Disputes drag on without a clear transaction history.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R ledger"
+    ],
+    "redFlags": [
+      "Payments applied to wrong invoices"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_viewing_and_organizing_related_customers_in_a_hierarchical_view": {
+    "purpose": "Organizes related customers in a parent-child hierarchy — for example a national retailer's individual store locations — to view combined exposure.",
+    "outcome": "Total exposure to a corporate group visible at once.",
+    "rootCause": "Credit risk sits with the parent company; seeing all related locations together reveals concentration.",
+    "ifSkipped": "Exposure to a struggling corporate group is underestimated.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 326 — concentration of credit risk"
+    ],
+    "stakeholders": [
+      "Asset manager"
+    ],
+    "reports": [
+      "Customer hierarchy"
+    ],
+    "redFlags": [
+      "Related customers not linked"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_reactivating_a_customer": {
+    "purpose": "Reactivates an inactive customer who is billed again — for example a returning seasonal vendor or a tenant re-leasing space.",
+    "outcome": "Returning customers billed on their existing record and history.",
+    "rootCause": "Reactivating rather than creating a new record keeps history together and avoids duplicates.",
+    "ifSkipped": "Duplicate records split a customer's history.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "Reactivated customers with old unresolved balances"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_customer_a_r_ledger": {
+    "purpose": "The A/R Ledger report listing detailed customer account activity — invoices, payments, credits and adjustments — for one or more customers and a period.",
+    "outcome": "Printable account history for statements, disputes or audits.",
+    "rootCause": "Commercial tenants and affiliates request statements; auditors confirm receivables using ledger detail. The report provides both from the subledger.",
+    "ifSkipped": "Statements are compiled manually and disputes take longer.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1230 Due From Affiliates"
+    ],
+    "gaap": [
+      "AU-C 505 — external confirmations"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "External auditor"
+    ],
+    "reports": [
+      "A/R ledger"
+    ],
+    "redFlags": [
+      "Ledger balance not equal to aging balance"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_customer_groups": {
+    "purpose": "Explains customer groups — dimension groups of customers (e.g., all retail tenants, all affiliates) used to filter reports.",
+    "outcome": "Receivables can be reported by category of customer.",
+    "rootCause": "Owners want receivables split by type (commercial vs affiliate vs ancillary); groups provide that without separate GL accounts.",
+    "ifSkipped": "Receivable reporting by category is manual.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1230 Due From Affiliates"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer group reports"
+    ],
+    "redFlags": [
+      "Groups not maintained as customers change"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_customer_groups_list": {
+    "purpose": "Lists customer groups — dimension groups such as 'Retail Tenants', 'Affiliates' or 'Ancillary Vendors' — used to filter receivable reports by category of customer.",
+    "outcome": "Maintained customer groupings for reporting.",
+    "rootCause": "Owners often want receivables reported by category (commercial vs affiliate vs ancillary). Groups provide that split without creating extra GL accounts, but they must be maintained or reports silently omit customers.",
+    "ifSkipped": "Receivable reports by customer category are incomplete or have to be built by hand.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer groups list"
+    ],
+    "redFlags": [
+      "Static groups missing new customers"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_customer_groups": {
+    "purpose": "Creates a customer group by selecting members manually or by defining filter criteria (for example all customers of type 'Commercial'), for use in A/R reports.",
+    "outcome": "A new customer grouping for reports.",
+    "rootCause": "Filter-based groups update automatically as customers are added; manually selected groups need maintenance.",
+    "ifSkipped": "Reporting by customer category is unavailable.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer groups list"
+    ],
+    "redFlags": [
+      "Manual groups for categories that change often"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_filtering_groups": {
+    "purpose": "Uses filters on dimension groups to control membership — for example all customers of type 'Commercial'.",
+    "outcome": "Groups stay current automatically.",
+    "rootCause": "Filter-based membership avoids forgetting to add new customers to reporting groups.",
+    "ifSkipped": "Groups miss new customers and category reports undercount receivables.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer groups"
+    ],
+    "redFlags": [
+      "Filters excluding inactive customers with balances"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_creating_a_dimension_group_filter_for_both_active_and_inactive_m": {
+    "purpose": "Creates a customer group filter that includes both active and inactive customers, so former tenants who vacated owing money still appear in receivable reports for that group.",
+    "outcome": "Reports include former customers who still owe money.",
+    "rootCause": "Inactive customers can still have balances (e.g., a tenant who vacated owing rent); excluding them hides collectible receivables.",
+    "ifSkipped": "Receivables from former customers disappear from reports.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 326"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer groups"
+    ],
+    "redFlags": [
+      "Aging by group not matching total aging"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_determining_whats_in_the_dimension_group": {
+    "purpose": "Checks which customers a filter-based dimension group currently includes, to confirm that group-based receivable reports cover exactly the intended customers.",
+    "outcome": "Confidence that group-based reports include the right customers.",
+    "rootCause": "Filter logic can include or exclude unexpectedly; checking membership validates reports built on the group.",
+    "ifSkipped": "Group reports quietly include wrong customers.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer groups"
+    ],
+    "redFlags": [
+      "Unexpected members in groups"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_editing_and_viewing_customer_group_details": {
+    "purpose": "Edits or views a customer group's name, description, filters and members — for example splitting affiliates into their own group when a new owner asks for separate reporting.",
+    "outcome": "Customer groups kept aligned with reporting needs.",
+    "rootCause": "Reporting needs change (a new owner wants affiliates split out); groups must be edited to follow.",
+    "ifSkipped": "Customer groups no longer match reporting needs and category reports mislead.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer groups"
+    ],
+    "redFlags": [
+      "Group edits changing historical reports"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_a_list_of_customer_group_members": {
+    "purpose": "Lists all customers currently in a customer group, with their status and balances, to review membership before running category reports.",
+    "outcome": "Clear view of who is in each group.",
+    "rootCause": "Group-based reports are only reliable if membership is right; reviewing the member list catches customers from other entities or customers missing from the group.",
+    "ifSkipped": "Group reports omit customers without anyone noticing.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer group members"
+    ],
+    "redFlags": [
+      "Members from other entities"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_editing_a_customer_groups_member_details": {
+    "purpose": "Edits details of a customer's membership within a customer group, such as the order in which it appears or its attributes in the group context.",
+    "outcome": "Member settings in the group corrected.",
+    "rootCause": "Member-level details affect how customers appear in group reports; corrections keep reports accurate.",
+    "ifSkipped": "Group reports show inaccurate member details.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer groups"
+    ],
+    "redFlags": [
+      "Edits by users without master data rights"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deleting_a_customer_group": {
+    "purpose": "Deletes a customer group that no report or memorized report uses any longer, such as a grouping created for a one-time owner request.",
+    "outcome": "Obsolete customer groupings no longer clutter report setup.",
+    "rootCause": "Unused customer groups remain selectable when reports are built; choosing an outdated group produces receivable reports that silently omit or include the wrong customers.",
+    "ifSkipped": "Reports are built on outdated groups and give misleading receivable totals.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer groups list"
+    ],
+    "redFlags": [
+      "Deleting groups used by memorized reports"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_customer_group_information_page": {
+    "purpose": "The page for creating, editing or viewing a customer group, its filters and members.",
+    "outcome": "A complete definition of one customer group.",
+    "rootCause": "The filters and members defined on this page decide exactly which customers appear in every category-level receivable report built on the group.",
+    "ifSkipped": "Category reports are incomplete or wrong.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer groups"
+    ],
+    "redFlags": [
+      "Groups without descriptions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_a_customer_to_a_customer_group": {
+    "purpose": "Adds a customer to a manually maintained customer group — for example adding a newly signed retail tenant to the 'Retail Tenants' group used in the owner's receivable report.",
+    "outcome": "New customers included in category reporting.",
+    "rootCause": "Manual groups do not update themselves; new customers must be added to appear in group reports.",
+    "ifSkipped": "New customers are missing from category reports.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer groups"
+    ],
+    "redFlags": [
+      "New customers not added to groups"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_a_customer_members_details": {
+    "purpose": "Views a member customer's details from within a customer group, to confirm the customer belongs in that category before it is included in reports.",
+    "outcome": "Member information available from the group context.",
+    "rootCause": "Reviewing members within the group helps verify the group's purpose and membership.",
+    "ifSkipped": "Misclassified customers stay in the group and distort category reports.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer groups"
+    ],
+    "redFlags": [
+      "Members inconsistent with group purpose"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_removing_a_customer_from_a_customer_group": {
+    "purpose": "Removes a customer from a customer group — for example when a tenant is reclassified from retail to office.",
+    "outcome": "Groups reflect current classifications.",
+    "rootCause": "When a tenant's category changes (for example from retail to office use) or it leaves, it must be removed from the old group; otherwise category-level receivable and revenue reports misstate each category.",
+    "ifSkipped": "Category reports include misclassified customers.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer groups"
+    ],
+    "redFlags": [
+      "Removals affecting prior-period comparisons"
+    ],
+    "confidence": "medium"
+  }
+}

@@ -1,0 +1,891 @@
+{
+  "scr_cash_editing_a_memorized_report": {
+    "purpose": "Changes the saved settings of a memorized cash report — for example adding a newly opened reserve account to the month-end Cash Balances report used in owner packages.",
+    "outcome": "Standard cash reports stay complete as the portfolio's bank accounts change.",
+    "rootCause": "Memorized reports freeze their account selection. When a property opens a new trust or reserve account, the memorized report silently excludes it until someone edits it.",
+    "ifSkipped": "Owner packages omit new bank accounts and cash is understated in the package without anyone noticing.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "COSO 2013 — completeness of reporting"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Memorized reports",
+      "Cash Balances report"
+    ],
+    "redFlags": [
+      "Memorized report account count lower than active bank accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_running_a_memorized_report_or_chart": {
+    "purpose": "Runs a memorized cash report or chart with its saved settings, adjusting only the period — the standard way to produce the monthly cash reports for the close package.",
+    "outcome": "Identical, consistent cash reports every month with minimal effort.",
+    "rootCause": "Owners compare month to month; running from a memorized definition guarantees the same accounts, columns and grouping each time.",
+    "ifSkipped": "Reports are rebuilt ad hoc and differ between months, confusing owners.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — consistency"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Memorized reports"
+    ],
+    "redFlags": [
+      "Period not updated before running"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_scheduling_a_memorized_report_or_chart": {
+    "purpose": "Schedules a memorized cash report to run automatically — for example a daily Cash Visibility report emailed to treasury each morning or a month-end Cash Balances report stored for the package.",
+    "outcome": "Cash reports are delivered on schedule without manual runs.",
+    "rootCause": "Daily cash monitoring and month-end reporting are recurring; scheduling removes dependence on someone remembering, across offshore and onshore time zones.",
+    "ifSkipped": "Daily cash monitoring lapses and treasury decisions are made on stale balances.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — monitoring"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Scheduled reports"
+    ],
+    "redFlags": [
+      "Scheduled reports emailed to former employees"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_a_memorized_report_or_chart": {
+    "purpose": "Deletes a memorized cash report or chart that is obsolete or duplicated — for example an old Cash Balances definition that still excludes the new reserve account.",
+    "outcome": "The memorized report library contains only current, approved definitions.",
+    "rootCause": "Duplicate and obsolete memorized reports lead preparers — especially new offshore staff — to run the wrong version for the owner package, producing cash figures that differ from last month's package.",
+    "ifSkipped": "Preparers pick outdated definitions and owner packages become inconsistent from month to month.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — consistency of reporting"
+    ],
+    "stakeholders": [
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Memorized reports"
+    ],
+    "redFlags": [
+      "Deleting memorized reports that have active schedules"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_edit_memorized_report_page": {
+    "purpose": "The page used to change a memorized cash report's name, parameters, sharing and default output.",
+    "outcome": "Memorized report definitions are maintained in one controlled place.",
+    "rootCause": "Report definitions need a clear editor so changes (accounts, filters, sharing) are deliberate and visible to the team that relies on them.",
+    "ifSkipped": "Definitions drift without anyone knowing what changed.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — change management"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Memorized reports"
+    ],
+    "redFlags": [
+      "Shared reports edited without notifying the team"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_schedule_memorized_report_page": {
+    "purpose": "The page used to set the frequency, time, recipients and output format of a scheduled memorized cash report.",
+    "outcome": "Automated distribution of cash reports to the right people at the right time.",
+    "rootCause": "Scheduling details (recipients, timing relative to bank feeds) decide whether a report is useful; a daily cash report sent before the bank feed imports shows yesterday's data.",
+    "ifSkipped": "Scheduled reports go to wrong recipients or run before data is ready.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Scheduled reports"
+    ],
+    "redFlags": [
+      "External recipients on scheduled cash reports"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_adjusted_available_cash_report": {
+    "purpose": "Shows true available cash per property — book cash plus external balances, less holdbacks such as security deposits, outstanding payables, lender-required minimums and operating reserves — as the basis for owner distributions and funding requests.",
+    "outcome": "A defensible figure for how much cash can be distributed to the owner or how much must be funded.",
+    "rootCause": "Book cash overstates what is free to distribute. Institutional owners distribute excess cash monthly or quarterly and need a calculation that respects loan covenants, resident trust obligations and upcoming payables.",
+    "ifSkipped": "Distributions are made from restricted or committed cash, leading to emergency capital calls, loan covenant breaches or trust shortfalls.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable",
+      "2110 Resident Security Deposits",
+      "1340 Replacement Reserve Escrow",
+      "3020 Distributions"
+    ],
+    "gaap": [
+      "Operating agreement distribution provisions",
+      "Loan agreement cash management and reserve covenants"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Treasury",
+      "Offshore property accountant",
+      "Fund accountant"
+    ],
+    "reports": [
+      "Adjusted Available Cash report",
+      "Distribution notice",
+      "Capital call request"
+    ],
+    "redFlags": [
+      "Available cash positive while A/P past due is large",
+      "Holdbacks not updated for the current month"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_customizing_and_running_the_adjusted_available_cash_report": {
+    "purpose": "Sets the parameters — locations or groups, as-of date, holdback categories, footer text — and runs the Adjusted Available Cash report.",
+    "outcome": "An available cash figure scoped to the right properties and date for a distribution decision.",
+    "rootCause": "The as-of date must reflect posted month-end payables and deposits; running it too early overstates available cash.",
+    "ifSkipped": "Distributions are decided on a figure that excludes recent payables.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "Operating agreement distribution provisions"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Asset manager"
+    ],
+    "reports": [
+      "Adjusted Available Cash report"
+    ],
+    "redFlags": [
+      "Report run before A/P cutoff for the month"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adjusted_available_cash_report_columns": {
+    "purpose": "Explains the Adjusted Available Cash columns — G/L cash, external balances, each holdback category, and the resulting available cash.",
+    "outcome": "Reviewers can see exactly which holdbacks reduce distributable cash and by how much.",
+    "rootCause": "Asset managers challenge distribution figures; column transparency lets the accountant show how each deduction was derived.",
+    "ifSkipped": "Distribution recommendations cannot be defended to the asset manager.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2110 Resident Security Deposits"
+    ],
+    "gaap": [
+      "Operating agreement distribution provisions"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Treasury"
+    ],
+    "reports": [
+      "Adjusted Available Cash report"
+    ],
+    "redFlags": [
+      "Security deposit holdback lower than the 2110 liability"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_cash_balances_report": {
+    "purpose": "Shows the balance of each cash account (operating, trust, payroll, reserve, money market) and totals by property as of a date.",
+    "outcome": "A snapshot of cash by account for the owner package and treasury monitoring.",
+    "rootCause": "Owners and lenders look first at cash by account; restricted accounts must be distinguishable from operating cash.",
+    "ifSkipped": "Owner packages lack account-level cash detail and restricted cash is hidden in totals.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash",
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "ASC 230 / ASU 2016-18 — restricted cash disclosure"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Treasury",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Cash Balances report",
+      "Owner monthly package"
+    ],
+    "redFlags": [
+      "Negative cash balances on any account"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_customizing_and_running_the_cash_balances_report": {
+    "purpose": "Chooses accounts, locations, as-of date and grouping and runs the Cash Balances report.",
+    "outcome": "Cash balances for exactly the scope requested.",
+    "rootCause": "Balances must be run as of the period end and include every cash account, or the owner package understates cash.",
+    "ifSkipped": "Balances omit accounts or use the wrong date.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 305"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Cash Balances report"
+    ],
+    "redFlags": [
+      "Report total not equal to cash on the balance sheet"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_cash_balances_report_columns": {
+    "purpose": "Explains the Cash Balances columns — account, bank, G/L balance, and totals by location.",
+    "outcome": "Correct reading of cash by account.",
+    "rootCause": "Understanding that balances are G/L (book) balances, not bank balances, avoids comparing them directly to bank statements without reconciling items.",
+    "ifSkipped": "Book balances are mistaken for bank balances in treasury decisions.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 305"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Cash Balances report"
+    ],
+    "redFlags": [
+      "Balances used for wires without checking outstanding checks"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_cash_analysis_report": {
+    "purpose": "Shows balances and activity for selected checking and savings accounts over a period — beginning balance, deposits, disbursements, transfers and ending balance.",
+    "outcome": "A cash roll-forward per account explaining how cash moved in the period.",
+    "rootCause": "Asset managers ask why cash dropped or rose; a roll-forward by account answers it and supports the cash flow statement.",
+    "ifSkipped": "Cash movements cannot be explained quickly to the owner.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "ASC 230 — statement of cash flows"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Cash Analysis report",
+      "Statement of Cash Flows"
+    ],
+    "redFlags": [
+      "Ending balance not equal to next period's beginning balance"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_customizing_and_running_the_cash_analysis_report": {
+    "purpose": "Selects the checking and savings accounts, the period and footer text, then runs the Cash Analysis report to produce a cash roll-forward for the owner package or an asset manager question.",
+    "outcome": "A cash roll-forward for exactly the accounts and period being asked about.",
+    "rootCause": "The roll-forward only ties to the balance sheet if every relevant account (including trust and reserve accounts) and the exact period are selected; leaving one out produces a roll-forward that does not explain the balance change.",
+    "ifSkipped": "Roll-forwards omit accounts and the asset manager's question about the cash movement cannot be answered.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "ASC 230 — statement of cash flows"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Cash Analysis report"
+    ],
+    "redFlags": [
+      "Period spanning closed and open periods without a note"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_cash_analysis_report_columns": {
+    "purpose": "Explains the Cash Analysis columns — beginning balance, receipts, disbursements, transfers in and out, and ending balance per account.",
+    "outcome": "Correct interpretation of cash movement components.",
+    "rootCause": "Distinguishing transfers from operating receipts and disbursements matters for the cash flow statement.",
+    "ifSkipped": "Transfers are mistaken for operating inflows or outflows.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 230-10-45 — classification of cash flows"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Cash Analysis report"
+    ],
+    "redFlags": [
+      "Transfers classified as operating activity"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_pc_cards_report": {
+    "purpose": "Lists all issued and cancelled petty cash debit cards with holder, property, limit, status and balance.",
+    "outcome": "An inventory of the petty cash card program for oversight and audit.",
+    "rootCause": "Every card is spending authority; auditors and regional managers need the full list to confirm cards match current staff and policy limits.",
+    "ifSkipped": "Cards held by departed staff or with excessive limits go unnoticed.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — safeguarding assets"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Regional manager",
+      "Internal audit"
+    ],
+    "reports": [
+      "PC Cards report"
+    ],
+    "redFlags": [
+      "Active cards for terminated employees",
+      "Limits above policy"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_customizing_and_running_the_pc_cards_report": {
+    "purpose": "Sets filters (card status, property, holder) and runs the PC Cards report — typically all active cards for a region — to support the quarterly access review of petty cash cards.",
+    "outcome": "A targeted card inventory to compare against current site staff rosters.",
+    "rootCause": "Quarterly access reviews require matching every active card to a current employee. Filtering by property and status gives regional managers a list they can actually verify.",
+    "ifSkipped": "Access reviews are skipped or incomplete, and cards held by departed staff stay active.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — periodic access review"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Regional manager"
+    ],
+    "reports": [
+      "PC Cards report"
+    ],
+    "redFlags": [
+      "No access review evidence for the quarter"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_pc_cards_report_columns": {
+    "purpose": "Defines the PC Cards report columns — card ID, holder, property, status, limit and balance.",
+    "outcome": "Correct reading of the card inventory.",
+    "rootCause": "Card ID and status columns are needed to match cards to holders and confirm cancellations took effect.",
+    "ifSkipped": "Cancelled cards not confirmed as cancelled.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "PC Cards report"
+    ],
+    "redFlags": [
+      "Status 'active' for cards reported lost"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_pc_card_transactions_report": {
+    "purpose": "Lists petty cash card transactions across cards and properties with merchant, amount, date, status and coding.",
+    "outcome": "Transaction-level visibility of card spending for review and audit.",
+    "rootCause": "Misuse shows up in transaction patterns (personal merchants, split purchases, weekend spending) that only a transaction report reveals.",
+    "ifSkipped": "Card misuse goes undetected until a large loss or an audit finding.",
+    "glAccounts": [
+      "1120 Petty Cash",
+      "6410 Administrative"
+    ],
+    "gaap": [
+      "COSO 2013 — monitoring"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Regional manager",
+      "Internal audit"
+    ],
+    "reports": [
+      "PC Card Transactions report"
+    ],
+    "redFlags": [
+      "Personal merchants",
+      "Transactions just under limits"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_customizing_and_running_the_pc_card_transactions_report": {
+    "purpose": "Sets parameters (date range, cards, status) and runs the PC Card Transactions report.",
+    "outcome": "A focused list of card transactions for a review period.",
+    "rootCause": "Monthly card reviews need transactions for one period and property; broad reports hide issues in volume.",
+    "ifSkipped": "Reviews are too broad to be effective and misuse hides in the volume.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "PC Card Transactions report"
+    ],
+    "redFlags": [
+      "Open (unsubmitted) transactions older than 30 days"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_pc_card_transactions_report_columns": {
+    "purpose": "Defines the PC Card Transactions columns — card ID, merchant, amount, date, status and GL coding.",
+    "outcome": "Correct interpretation of card transaction detail.",
+    "rootCause": "Status and coding columns reveal which spending has been accounted for and which has not.",
+    "ifSkipped": "Unaccounted spending is misread as submitted.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "PC Card Transactions report"
+    ],
+    "redFlags": [
+      "Transactions with no coding"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_pc_cards_billing_report": {
+    "purpose": "Lists petty cash cards that were billed — program fees charged per card — for allocation to properties.",
+    "outcome": "Card program fees are charged to the properties that hold cards.",
+    "rootCause": "Card programs carry per-card fees; allocating them correctly keeps each owner paying only for its own cards.",
+    "ifSkipped": "Program fees sit in a corporate account or are charged to the wrong owner.",
+    "glAccounts": [
+      "6420 Bank Charges",
+      "6410 Administrative"
+    ],
+    "gaap": [
+      "Management agreement reimbursable-cost provisions"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "PC Cards Billing report"
+    ],
+    "redFlags": [
+      "Fees billed for cancelled cards"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_customizing_and_running_the_pc_cards_billing_report": {
+    "purpose": "Selects the billing period and properties and runs the PC Cards Billing report to list per-card program fees for the period before they are allocated to properties.",
+    "outcome": "A billing list for the period's card fees that can be checked against the program provider's invoice.",
+    "rootCause": "Program fees must be verified against the provider's invoice before being paid and allocated; the billing report is the independent count of billable cards.",
+    "ifSkipped": "Card program invoices are paid without verification, including fees for cancelled cards.",
+    "glAccounts": [
+      "6420 Bank Charges"
+    ],
+    "gaap": [
+      "COSO 2013 — invoice verification"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "PC Cards Billing report"
+    ],
+    "redFlags": [
+      "Report totals not matching the program invoice"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_pc_cards_billing_report_columns": {
+    "purpose": "Defines the PC Cards Billing columns — system card ID, property, billing period and fee — used to allocate card program fees to the owners whose sites hold the cards.",
+    "outcome": "Card program fees are charged to the correct property and owner.",
+    "rootCause": "Management companies pay the card program centrally but must charge each owner only for its own cards. The property and card ID columns drive that allocation.",
+    "ifSkipped": "Fees are allocated to the wrong properties, and owners pay for cards at sites they do not own.",
+    "glAccounts": [
+      "6420 Bank Charges"
+    ],
+    "gaap": [
+      "Management agreement reimbursable-cost provisions"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "PC Cards Billing report"
+    ],
+    "redFlags": [
+      "Cards without property assignment"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_cash_visibility_report": {
+    "purpose": "Compares G/L bank balances with the latest bank-reported balances from bank feeds for each account, highlighting differences.",
+    "outcome": "Daily early warning of cash differences — unrecorded debits, fraud, or unrecorded deposits — before month-end.",
+    "rootCause": "Waiting for month-end recs means unauthorized debits can go unnoticed for weeks. Comparing book to bank daily catches them within the NACHA return window.",
+    "ifSkipped": "Unauthorized ACH debits are found after the 60-day return window closes and the loss becomes unrecoverable.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "NACHA — unauthorized debit return windows",
+      "UCC 4-406"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Cash Visibility report"
+    ],
+    "redFlags": [
+      "Persistent unexplained differences on an account"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_customizing_and_running_the_cash_visibility_report": {
+    "purpose": "Chooses the bank accounts and comparison options and runs the Cash Visibility report, usually each morning after bank feeds import, to compare G/L cash with bank-reported balances.",
+    "outcome": "A daily book-versus-bank comparison for the monitored accounts.",
+    "rootCause": "Treasury runs this daily for high-risk accounts (operating accounts that receive resident ACH and pay vendors). The parameters decide which accounts are watched, so a missed account is simply not monitored.",
+    "ifSkipped": "High-risk accounts are not monitored daily and unauthorized debits are discovered weeks later.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — monitoring"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Cash Visibility report"
+    ],
+    "redFlags": [
+      "Accounts with feeds excluded from monitoring"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_cash_visibility_report_columns": {
+    "purpose": "Explains the Cash Visibility columns, which vary by comparison option — G/L balance, bank balance, difference and feed date.",
+    "outcome": "Correct interpretation of book-bank differences.",
+    "rootCause": "The feed date column shows whether the bank balance is current; stale feeds make differences meaningless.",
+    "ifSkipped": "Stale feed data is mistaken for real differences.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Cash Visibility report"
+    ],
+    "redFlags": [
+      "Feed dates more than a day old"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_bank_transactions_summary_report": {
+    "purpose": "Summarizes bank transactions (from feeds or imports) by account and type — deposits, checks, ACH debits, fees — for a period.",
+    "outcome": "A view of bank-side activity by type, useful for spotting unusual debits or fee spikes.",
+    "rootCause": "Summarizing bank activity by type highlights anomalies (a new ACH originator debiting the account, a jump in fees) that line-level matching can miss.",
+    "ifSkipped": "Unusual bank activity patterns go unnoticed.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "6420 Bank Charges"
+    ],
+    "gaap": [
+      "COSO 2013 — monitoring"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Bank Transactions Summary report"
+    ],
+    "redFlags": [
+      "New ACH debit originators"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_customizing_and_running_the_bank_transactions_summary_report": {
+    "purpose": "Selects bank accounts and a period and runs the Bank Transactions Summary report, which totals bank-side activity by transaction type for treasury review.",
+    "outcome": "Bank activity summarized by type for the review period, ready for the monthly treasury check.",
+    "rootCause": "Periodic review of bank activity by type is a treasury control that complements reconciliations: a new ACH originator or a spike in returned items is easier to see in a summary than line by line.",
+    "ifSkipped": "The treasury review is not performed and unusual bank activity patterns go unnoticed.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Bank Transactions Summary report"
+    ],
+    "redFlags": [
+      "Summary not reviewed monthly"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_bank_transactions_summary_report_columns": {
+    "purpose": "Defines the Bank Transactions Summary columns — account, transaction type (deposit, check, ACH debit, ACH credit, fee, return), count and total — for reading bank activity patterns.",
+    "outcome": "Correct reading of bank activity by type and volume.",
+    "rootCause": "Counts by type reveal volume anomalies: a sudden rise in ACH debits or returned items is an early fraud or process-failure signal that totals alone can hide.",
+    "ifSkipped": "Volume anomalies such as new unauthorized ACH debits are missed.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Bank Transactions Summary report"
+    ],
+    "redFlags": [
+      "Unexplained increases in debit counts"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_bank_register_report": {
+    "purpose": "Lists every book transaction affecting a bank account — checks, deposits, transfers, fees, JEs — in detail or summary mode for a period.",
+    "outcome": "The book-side register of cash activity, used for reconciliation support and audit.",
+    "rootCause": "Auditors and reviewers test cash activity from the bank register; it also shows JEs posted directly to cash, which bypass normal controls.",
+    "ifSkipped": "Cash activity cannot be reviewed in one place and direct JEs to cash go unnoticed.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "AU-C 500",
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "External auditor"
+    ],
+    "reports": [
+      "Bank Register report"
+    ],
+    "redFlags": [
+      "Manual JEs to cash accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_customizing_and_running_the_bank_register_report": {
+    "purpose": "Chooses bank accounts, date range and detail or summary mode and runs the Bank Register report.",
+    "outcome": "A bank register for the requested accounts and period.",
+    "rootCause": "Detail mode is needed for reconciliation support; summary mode suits monthly review of activity totals.",
+    "ifSkipped": "The wrong level of detail is produced for the purpose.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank Register report"
+    ],
+    "redFlags": [
+      "Register period different from the reconciliation period"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_bank_register_report_columns": {
+    "purpose": "Defines the Bank Register columns — date, type, reference, payee or payer, amount and running balance.",
+    "outcome": "Correct interpretation of register detail.",
+    "rootCause": "Transaction type and reference columns let reviewers separate routine activity from unusual entries such as manual JEs posted directly to cash.",
+    "ifSkipped": "Unusual entries to cash are not spotted during review.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank Register report"
+    ],
+    "redFlags": [
+      "Entries without references"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_check_register_report": {
+    "purpose": "Lists vendor payments (checks and electronic) by bank account with payee, number, date, amount and status (outstanding, cleared, voided).",
+    "outcome": "A disbursement register for payment review, reconciliation and audit sampling.",
+    "rootCause": "Disbursements are a primary fraud area; reviewers scan the check register for unusual payees, sequence gaps and duplicate amounts.",
+    "ifSkipped": "Unusual payments and sequence gaps go unreviewed.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — disbursement review",
+      "AU-C 240 — fraud risk"
+    ],
+    "stakeholders": [
+      "A/P team",
+      "Onshore reviewer",
+      "External auditor"
+    ],
+    "reports": [
+      "Check Register report"
+    ],
+    "redFlags": [
+      "Gaps in check sequence",
+      "Payees not in the vendor master"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_customizing_and_running_the_check_register_report": {
+    "purpose": "Chooses bank accounts, date range, payment types and status and runs the Check Register report.",
+    "outcome": "A disbursement register scoped to the review.",
+    "rootCause": "Reviews and audits need registers for specific accounts and periods; the right filters keep them focused.",
+    "ifSkipped": "Registers are too broad or miss payment types.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "A/P team"
+    ],
+    "reports": [
+      "Check Register report"
+    ],
+    "redFlags": [
+      "Electronic payments excluded from review"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_check_register_report_columns": {
+    "purpose": "Defines the Check Register columns — bank, payment number, date, payee, amount, status and cleared date.",
+    "outcome": "Correct reading of payment status for reconciliation and escheat review.",
+    "rootCause": "The cleared date and status columns identify stale outstanding checks that need follow-up or escheatment.",
+    "ifSkipped": "Stale checks are not identified and escheat deadlines pass.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2170 Unclaimed Property Payable"
+    ],
+    "gaap": [
+      "State unclaimed property laws"
+    ],
+    "stakeholders": [
+      "A/P team"
+    ],
+    "reports": [
+      "Check Register report"
+    ],
+    "redFlags": [
+      "Outstanding checks older than 180 days"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deposits_register_report": {
+    "purpose": "Lists deposits by bank and date with their totals and contents, supporting the deposit side of the bank reconciliation.",
+    "outcome": "A deposits register used to match deposits in transit and investigate missing deposits.",
+    "rootCause": "Site-level cash misappropriation often shows up as late or missing deposits; the register lets reviewers check deposit timing and completeness.",
+    "ifSkipped": "Late or missing site deposits go unnoticed, and so does possible skimming.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013 — cash receipts"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [
+      "Deposits Register report"
+    ],
+    "redFlags": [
+      "Gaps of several days between deposits at an active property"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_customizing_and_running_the_deposits_register_report": {
+    "purpose": "Chooses the bank account, period and detail level and runs the Deposits Register report, typically per property per month to review deposit frequency and completeness.",
+    "outcome": "A deposits register scoped to the review period.",
+    "rootCause": "Deposit reviews are done by property and month so that gaps in deposit frequency at a specific leasing office stand out; portfolio-wide output buries them.",
+    "ifSkipped": "Deposit reviews are unfocused or skipped.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposits Register report"
+    ],
+    "redFlags": [
+      "Register not tied to bank credits"
+    ],
+    "confidence": "high"
+  }
+}

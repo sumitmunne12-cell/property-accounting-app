@@ -1,0 +1,1072 @@
+{
+  "scr_budgeting_departments": {
+    "purpose": "Explains departments — an optional dimension (e.g., Leasing, Maintenance, Administration, Amenities) used to filter and categorize transactions and budgets within a property.",
+    "outcome": "Budgets and actuals can be analyzed by department, showing which team drives cost.",
+    "rootCause": "Large or mixed-use properties want to know whether a cost overrun came from maintenance or leasing. Department tagging answers that without splitting the chart of accounts into dozens of department-specific accounts.",
+    "ifSkipped": "Cost overruns cannot be attributed to a team and the chart of accounts is bloated with department variants.",
+    "glAccounts": [
+      "6010 Payroll",
+      "6110 Repairs & Maintenance",
+      "6310 Marketing"
+    ],
+    "gaap": [
+      "COSO 2013 — management reporting"
+    ],
+    "stakeholders": [
+      "Property manager",
+      "Offshore property accountant",
+      "System administrator"
+    ],
+    "reports": [
+      "Department BVA"
+    ],
+    "redFlags": [
+      "Transactions posted without departments at properties that budget by department"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_importing_departments": {
+    "purpose": "Imports department records from a template, used when rolling out departmental reporting across a portfolio.",
+    "outcome": "Consistent department codes loaded across all properties in one step.",
+    "rootCause": "Departmental reporting only works if every property uses the same codes. Importing a standard list avoids each property creating its own variations.",
+    "ifSkipped": "Department codes differ between properties and portfolio-level department reports cannot be produced.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Import results",
+      "Departments list"
+    ],
+    "redFlags": [
+      "Near-duplicate department names"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_departments_list": {
+    "purpose": "Lists department records available for budgeting and posting, with actions to add, edit and delete.",
+    "outcome": "A maintained set of departments for tagging budgets and transactions.",
+    "rootCause": "Department lists drift as staff create ad hoc departments; reviewing the list keeps departmental reports clean and comparable.",
+    "ifSkipped": "Ad hoc departments fragment reporting and make departmental BVA unreliable.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Departments list"
+    ],
+    "redFlags": [
+      "Departments with no activity"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_and_editing_departments": {
+    "purpose": "Adds or edits a department record — code, name, parent — for use in budgets and transaction coding.",
+    "outcome": "New organizational units can be budgeted and tracked.",
+    "rootCause": "Operating model changes (a new amenities team, centralized leasing) need new departments so their costs are visible separately from existing teams.",
+    "ifSkipped": "New teams' costs are mixed into existing departments and cannot be evaluated.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Departments list"
+    ],
+    "redFlags": [
+      "Department renames that change historical reports"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_deleting_a_department": {
+    "purpose": "Deletes a department that has no transactions or budgets, such as one created in error.",
+    "outcome": "Unused departments removed without affecting history.",
+    "rootCause": "Unused departments are selected by mistake and scatter costs into codes nobody reports on; departments with history must be kept or inactivated instead.",
+    "ifSkipped": "Costs are coded to meaningless departments and drop out of departmental reports.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Departments list"
+    ],
+    "redFlags": [
+      "Deleting departments with posted activity"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_department_information_page": {
+    "purpose": "The department record page with code, name, parent department and status, defining how a department such as Maintenance rolls up under Operations in departmental budget and BVA reports.",
+    "outcome": "Complete department definitions that roll up correctly in reports.",
+    "rootCause": "Parent relationships determine how departments roll up (e.g., Maintenance under Operations); wrong parents put costs in the wrong subtotal.",
+    "ifSkipped": "Departmental subtotals are wrong because departments roll into the wrong parent.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Departments list"
+    ],
+    "redFlags": [
+      "Departments without parent assignment in a hierarchy"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_locations": {
+    "purpose": "Explains locations — the dimension representing properties (and often buildings or phases) organized in a hierarchy of regions, portfolios and owners.",
+    "outcome": "Budgets and actuals roll up from property to region, owner and fund.",
+    "rootCause": "Institutional reporting is hierarchical: asset managers review by fund, regional managers by region, site teams by property. The location hierarchy makes those roll-ups automatic.",
+    "ifSkipped": "Regional and fund-level budget reports must be assembled by hand.",
+    "glAccounts": [],
+    "gaap": [
+      "ASC 810 — reporting entity structure"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Asset manager"
+    ],
+    "reports": [
+      "Portfolio BVA",
+      "Regional reports"
+    ],
+    "redFlags": [
+      "Properties not placed in the hierarchy"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_importing_locations": {
+    "purpose": "Imports location records from a CSV file, used when onboarding a portfolio of properties.",
+    "outcome": "Many properties created consistently with their hierarchy.",
+    "rootCause": "Portfolio take-overs bring dozens of properties at once; importing them with parents avoids manual setup errors.",
+    "ifSkipped": "Properties are created manually with inconsistent codes and parents.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Transition team",
+      "System administrator"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Imported locations without parents"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_locations_list": {
+    "purpose": "Lists the locations (properties, buildings, phases) available to Forecasting & Planning with their parent in the hierarchy and active status, used to confirm every property can be budgeted.",
+    "outcome": "A view of all properties that budgets can be built for.",
+    "rootCause": "Before budget season, confirming every active property exists as a location avoids missing budgets for newly acquired properties.",
+    "ifSkipped": "New properties have no budget because they were never set up as locations.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Locations list"
+    ],
+    "redFlags": [
+      "Sold properties still active"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_and_editing_locations": {
+    "purpose": "Adds or edits a location — code, name, parent, entity and status — for use in budgets and transactions.",
+    "outcome": "Properties set up correctly in the reporting hierarchy.",
+    "rootCause": "A location placed under the wrong parent or entity rolls its budget and actuals into the wrong owner's reports.",
+    "ifSkipped": "Budgets and actuals roll into the wrong owner or region.",
+    "glAccounts": [],
+    "gaap": [
+      "ASC 810 — entity reporting"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Locations list"
+    ],
+    "redFlags": [
+      "Locations mapped to the wrong entity"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_deleting_a_location": {
+    "purpose": "Deletes a location record that never received transactions or budgets — for example a property code created twice during onboarding — while locations with history are inactivated instead.",
+    "outcome": "Unused locations removed without affecting reporting history.",
+    "rootCause": "Locations with history must be inactivated rather than deleted; deleting is only safe for records that never received transactions or budgets.",
+    "ifSkipped": "Erroneous locations remain selectable and receive postings by mistake.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Locations list"
+    ],
+    "redFlags": [
+      "Deleting locations with history"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_location_information_page": {
+    "purpose": "The location record page holding the property's code, name, parent in the hierarchy, legal entity, address and status, which together determine how its budget and actuals roll up.",
+    "outcome": "Complete property definitions for reporting.",
+    "rootCause": "Entity and parent on this page drive how each property's budget and actuals roll up into owner and fund reports.",
+    "ifSkipped": "Roll-ups are incorrect and fund reports misstate totals.",
+    "glAccounts": [],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Locations list"
+    ],
+    "redFlags": [
+      "Missing entity assignment"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_changing_the_parent_of_a_location": {
+    "purpose": "Moves a location under a different parent in the hierarchy — for example when a property moves to a different region or fund.",
+    "outcome": "The property rolls into its new region or fund in reports going forward.",
+    "rootCause": "Properties move between regions and funds after reorganizations or recapitalizations; the hierarchy must follow or reports show them in the old group.",
+    "ifSkipped": "Regional and fund reports include properties that no longer belong to them.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Asset manager"
+    ],
+    "reports": [
+      "Regional reports",
+      "Fund reports"
+    ],
+    "redFlags": [
+      "Parent changes mid-year affecting year-to-date comparisons"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_inactivating_a_location": {
+    "purpose": "Inactivates a location after a property is sold or management ends, preserving its history but preventing new budgets or postings.",
+    "outcome": "Sold properties stop appearing in active budgets while history is kept.",
+    "rootCause": "After disposition, the property must not receive new budgets or transactions, but its history is needed for final reporting and audits.",
+    "ifSkipped": "Sold properties appear in next year's budgets or receive stray postings.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Locations list"
+    ],
+    "redFlags": [
+      "Inactivating before final closing entries are posted"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_setting_up_segments_for_forecasting_and_planning": {
+    "purpose": "Sets up segments — additional user-defined classifications (e.g., renovation program, unit type, fund) — so budgets and actuals can be analyzed along them.",
+    "outcome": "Budgets can be sliced by owner-specific classifications without changing the chart of accounts.",
+    "rootCause": "Owners often want analysis by attributes like renovated vs classic units or capital program; segments provide that dimension without multiplying GL accounts.",
+    "ifSkipped": "Owner-requested analyses require manual tagging in spreadsheets.",
+    "glAccounts": [
+      "4010 Gross Potential Rent",
+      "1530 Building Improvements"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Asset manager"
+    ],
+    "reports": [
+      "Segment reports"
+    ],
+    "redFlags": [
+      "Segments enabled but not used consistently"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_segments": {
+    "purpose": "Describes segments as user-defined dimensions that tag transactions and budgets for analysis.",
+    "outcome": "Users understand when to use segments instead of new accounts.",
+    "rootCause": "Creating new GL accounts for every analysis need bloats the chart; segments are the intended tool for analytical tagging.",
+    "ifSkipped": "The chart of accounts is bloated with analysis-specific accounts.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Segment reports"
+    ],
+    "redFlags": [
+      "GL accounts created for purposes segments should serve"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_segments_overview": {
+    "purpose": "Overview of how segments work — segment types, values, and how they appear on transactions, budgets and reports.",
+    "outcome": "A shared understanding of segments before enabling them.",
+    "rootCause": "Segments affect data entry for every transaction once enabled; understanding them first prevents inconsistent tagging.",
+    "ifSkipped": "Segments are enabled and tagged inconsistently, producing unreliable analysis.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Segment reports"
+    ],
+    "redFlags": [
+      "No tagging guidance for staff"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_enabling_segments": {
+    "purpose": "Enables segments in General Ledger configuration so they can be used on transactions and budgets.",
+    "outcome": "Segments available across the system.",
+    "rootCause": "Segments must be enabled centrally; partial enabling leads to some transactions tagged and others not.",
+    "ifSkipped": "Segment analysis is impossible or incomplete.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Segments enabled mid-year without backfilling tags"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_reports_that_use_segments": {
+    "purpose": "Lists which financial and budget reports can filter or group by segments, so accountants know where segment tagging (e.g., renovated vs classic units) can actually be analyzed.",
+    "outcome": "Users know where segment analysis is available.",
+    "rootCause": "Tagging only has value if reports use it; knowing which reports support segments helps plan analysis.",
+    "ifSkipped": "Segments are tagged diligently but never used in any report, wasting data-entry effort.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Segment-enabled reports"
+    ],
+    "redFlags": [
+      "Segment tagging with no reporting use"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_segments_list": {
+    "purpose": "Lists segment types (e.g., Renovation Status, Fund, Unit Type) and their values under Company > Segments, where segments are added and maintained for tagging budgets and transactions.",
+    "outcome": "A maintained catalog of segment values.",
+    "rootCause": "Uncontrolled segment values multiply and fragment analysis; a maintained list keeps tagging consistent.",
+    "ifSkipped": "Segment values proliferate and analysis becomes unreliable.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Segments list"
+    ],
+    "redFlags": [
+      "Duplicate segment values"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_adding_segments": {
+    "purpose": "Adds segment types and their values — for example a 'Renovation Status' segment with values Classic, Renovated, In Progress.",
+    "outcome": "New analysis dimensions available for tagging.",
+    "rootCause": "New owner analyses (e.g., premium on renovated units) need new segments before tagging can begin.",
+    "ifSkipped": "Requested analyses cannot be produced from system data.",
+    "glAccounts": [
+      "4010 Gross Potential Rent"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Segments list"
+    ],
+    "redFlags": [
+      "Segments added without tagging guidance"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_importing_segments": {
+    "purpose": "Imports segment types and their values from a template through Company > Import Data, used when a new owner requires a segment with many values.",
+    "outcome": "Large segment catalogs loaded in one step.",
+    "rootCause": "Segments with many values (e.g., one per building) are impractical to key manually.",
+    "ifSkipped": "Segment catalogs are incomplete or keyed with errors.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Import not reconciled to the source list"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_viewing_and_editing_segments": {
+    "purpose": "Views or edits a segment type and its list of values — for example adding a new renovation phase value as a value-add program progresses.",
+    "outcome": "The segment catalog stays current with the programs it tracks.",
+    "rootCause": "As programs evolve (renovation phases), segment values must be updated for tagging to stay meaningful.",
+    "ifSkipped": "Segment values become outdated and misleading.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Segments list"
+    ],
+    "redFlags": [
+      "Renaming values that change historical meaning"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_segment_information_page": {
+    "purpose": "The segment record page for adding, viewing or editing a segment type and its values.",
+    "outcome": "Each segment has a clear definition and complete list of values for consistent tagging.",
+    "rootCause": "Clear definitions and value lists are needed for consistent tagging by many users.",
+    "ifSkipped": "Users tag inconsistently and segment reports are unreliable.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Segments list"
+    ],
+    "redFlags": [
+      "Segments without descriptions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_importing_segment_values": {
+    "purpose": "Imports additional values into an existing segment type from a file — for example one value per building on a large garden-style campus.",
+    "outcome": "Segment values populated in bulk.",
+    "rootCause": "Adding many values (e.g., every building on a campus) by hand is slow and error-prone.",
+    "ifSkipped": "Values are missing and transactions cannot be tagged.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Segment values list"
+    ],
+    "redFlags": [
+      "Duplicate values after import"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_searching_the_list_of_segment_values": {
+    "purpose": "Searches the value list of a segment type when adding or viewing values, so users can find the right value quickly in lists with hundreds of entries.",
+    "outcome": "Faster tagging and maintenance for large segment lists.",
+    "rootCause": "Segments with hundreds of values are unusable without search; wrong values get picked when users scroll.",
+    "ifSkipped": "Users pick wrong values from long lists.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Segment values list"
+    ],
+    "redFlags": [
+      "Frequent retagging due to wrong value selection"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_appendices": {
+    "purpose": "Appendices to the Forecasting & Planning guide containing reference material, especially the import instructions used during budget season.",
+    "outcome": "Reference instructions available for less frequent tasks like bulk imports.",
+    "rootCause": "Budget imports happen once or twice a year, so staff rarely remember the steps; reference material prevents repeated errors.",
+    "ifSkipped": "Import errors repeat each budget season.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Repeated import failures each season"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_importing": {
+    "purpose": "Appendix on importing data into RealPage for budgeting — templates, CSV preparation, the import process and error resolution.",
+    "outcome": "A reliable procedure for bulk-loading budgets and master data.",
+    "rootCause": "Most budgets are loaded by import; failed or partial imports are the main source of budget-in-system errors.",
+    "ifSkipped": "Budgets are loaded partially or incorrectly.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Imports not reconciled to source totals"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_the_import_process": {
+    "purpose": "Describes the import process end to end: download template, fill data, save as CSV, upload, review results and fix errors.",
+    "outcome": "Imports follow a consistent, checkable process.",
+    "rootCause": "Skipping the review-results step is how partial loads slip through; a defined process makes it mandatory.",
+    "ifSkipped": "Partial imports go unnoticed and budgets are missing lines that nobody knows failed to load.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "No results review after import"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_downloading_a_template_from_the_import_data_page": {
+    "purpose": "Downloads the import template for the record type (budgets, accounts, locations) from Company > Import Data.",
+    "outcome": "A correctly structured starting file for imports.",
+    "rootCause": "Templates carry required columns and formats; using old or custom files is the leading cause of import errors.",
+    "ifSkipped": "Imports fail or map columns incorrectly.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import template"
+    ],
+    "redFlags": [
+      "Templates reused from previous years without refresh"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_filling_in_an_import_template_with_data": {
+    "purpose": "Fills the import template with budget or master data following column rules (required fields, codes, date formats).",
+    "outcome": "Import files that load cleanly.",
+    "rootCause": "Codes must match system values exactly (account numbers, location IDs); typos cause row rejections that are easy to miss.",
+    "ifSkipped": "Rows are rejected and budgets are incomplete.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import template"
+    ],
+    "redFlags": [
+      "Account numbers typed with extra spaces or formatting"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_preparing_your_csv_file_for_import": {
+    "purpose": "Explains saving the template as CSV correctly — no formulas, correct encoding, no extra rows — before upload.",
+    "outcome": "Files the importer can read reliably.",
+    "rootCause": "Excel artifacts (formulas, hidden rows, formatted numbers) break CSV imports or silently change values such as leading zeros in account numbers.",
+    "ifSkipped": "Imports fail or silently load altered values such as account codes with leading zeros removed.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Leading zeros stripped from codes"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_importing_a_budget": {
+    "purpose": "Imports a complete budget from a CSV template — often the easiest way to load an owner-approved budget built in Excel.",
+    "outcome": "The approved budget loaded into the system for BVA reporting.",
+    "rootCause": "Owners approve budgets in Excel; importing that exact file ensures the system budget matches the approved one.",
+    "ifSkipped": "The approved budget is re-keyed with errors or not loaded before January reporting.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "Management agreement budget approval"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget report",
+      "Budget vs Actual"
+    ],
+    "redFlags": [
+      "Imported totals not tied to the approved file"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_resolving_errors": {
+    "purpose": "Resolves import errors — reviewing rejected records, correcting them in the file and re-importing only the failed rows.",
+    "outcome": "All rows loaded without duplicating those that already succeeded.",
+    "rootCause": "Re-importing the whole file after a partial failure duplicates successful rows; correcting only failures prevents doubled budgets.",
+    "ifSkipped": "Budgets are either incomplete or duplicated.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import error log"
+    ],
+    "redFlags": [
+      "Full file re-imported after partial success"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_common_errors": {
+    "purpose": "Lists common import errors (invalid account or location codes, wrong date formats, missing required fields) and how to avoid them.",
+    "outcome": "Fewer import failures during budget season.",
+    "rootCause": "The same errors recur every season; a checklist of known pitfalls prevents them.",
+    "ifSkipped": "Budget loads fail repeatedly under deadline.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import error log"
+    ],
+    "redFlags": [
+      "Same error types every season"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_about_the_forecasting_and_planning_application": {
+    "purpose": "Quick Steps overview of Forecasting & Planning — building working budgets, calculating payroll and management fees, comparing versions and publishing the approved budget.",
+    "outcome": "New staff understand the budget cycle in the system quickly.",
+    "rootCause": "Budget season is short and new offshore staff often join mid-year; a condensed overview gets them productive before the deadline.",
+    "ifSkipped": "New staff make structural mistakes during budget season.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013 — competence"
+    ],
+    "stakeholders": [
+      "New offshore accountants"
+    ],
+    "reports": [],
+    "redFlags": [
+      "First-time preparers publishing budgets without review"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_setting_up_dimensions": {
+    "purpose": "Quick Steps for setting up dimensions (locations, departments, employees, vendors, customers) when the company uses them for budgeting.",
+    "outcome": "Dimensions ready before budgets are built.",
+    "rootCause": "Budgets by department or location need those dimensions in place first; a short checklist prevents starting budgets without them.",
+    "ifSkipped": "Budgets must be rebuilt after dimensions are added.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Dimensions added after budgets were built"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_setting_up_segments": {
+    "purpose": "Quick Steps for setting up segment types and values when segments are enabled, so budgets and transactions can be tagged for owner-specific analysis such as renovation premiums.",
+    "outcome": "Segments available for tagging budgets.",
+    "rootCause": "Segments must exist before budgets and transactions can be tagged for owner-requested analysis.",
+    "ifSkipped": "Segment analysis requested by owners cannot be produced.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Segments list"
+    ],
+    "redFlags": [
+      "Segments without values"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_adding_a_working_budget_2": {
+    "purpose": "Quick Steps for creating a working budget for properties and a fiscal year, choosing the seed (actuals, prior budget or blank).",
+    "outcome": "A new draft budget ready for assumptions.",
+    "rootCause": "Choosing the right seed is the first key decision of the budget; the quick path highlights it so drafts start from a sound base.",
+    "ifSkipped": "Drafts start from the wrong seed and need rework.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budgets list"
+    ],
+    "redFlags": [
+      "Seeded from partial-year actuals without annualizing"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_the_working_budget_summary": {
+    "purpose": "Quick Steps for opening the working budget summary to review totals by account and period.",
+    "outcome": "Fast top-level review of a draft.",
+    "rootCause": "Reviewers need a fast way to check the headline totals — revenue growth, controllable expenses, NOI — before spending time on individual lines, because an unrealistic NOI invalidates line-level work.",
+    "ifSkipped": "Unrealistic totals are missed while reviewing lines.",
+    "glAccounts": [
+      "4010 Gross Potential Rent"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget summary"
+    ],
+    "redFlags": [
+      "NOI change not explained"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_an_account_to_a_working_budget_2": {
+    "purpose": "Quick Steps for adding an account that the seed did not include to a working budget.",
+    "outcome": "New revenue or cost activities are included in the draft budget.",
+    "rootCause": "Seeds miss accounts without history; new revenue or cost lines must be added explicitly.",
+    "ifSkipped": "New activities are unbudgeted and create variances all year.",
+    "glAccounts": [
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget summary"
+    ],
+    "redFlags": [
+      "Known new items missing"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_publishing_a_working_budget_2": {
+    "purpose": "Quick Steps for publishing the approved working budget to the GL budget used in BVA reports and budget checks.",
+    "outcome": "The owner-approved budget is live in the GL.",
+    "rootCause": "Publishing is the control point between drafts and official reporting; a clear procedure prevents publishing the wrong draft or target.",
+    "ifSkipped": "BVA runs against the wrong budget or no budget at all.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "Management agreement budget approval"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Budget vs Actual"
+    ],
+    "redFlags": [
+      "Publishing before written owner approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_calculating_the_budget_increase_for_an_account_2": {
+    "purpose": "Quick Steps for applying a percentage or amount increase to an account's budget base.",
+    "outcome": "Escalators applied consistently.",
+    "rootCause": "Escalators are the most common budget adjustment; a quick procedure ensures they are applied to the right base.",
+    "ifSkipped": "Escalators are applied to the wrong base and the budget line is over- or understated.",
+    "glAccounts": [
+      "6610 Insurance",
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Account detail"
+    ],
+    "redFlags": [
+      "Escalator applied twice"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adjusting_a_working_budget_by_account_2": {
+    "purpose": "Quick Steps for adjusting one account's working budget by an amount or percentage after review feedback, with a comment recording why.",
+    "outcome": "Feedback applied quickly and documented.",
+    "rootCause": "Review feedback usually targets specific lines; a quick adjustment path keeps review rounds moving.",
+    "ifSkipped": "Review feedback is applied late or not at all, and the published budget differs from what was agreed.",
+    "glAccounts": [
+      "6310 Marketing"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Account detail"
+    ],
+    "redFlags": [
+      "Adjustments without comments"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_advancing_year_to_date_actuals_2": {
+    "purpose": "Quick Steps for bringing year-to-date actuals into a reforecast so completed months show actual results.",
+    "outcome": "A reforecast anchored on reported actuals.",
+    "rootCause": "Reforecasts shared with investors must reconcile to reported results; advancing actuals from the GL ensures it.",
+    "ifSkipped": "Reforecast actuals differ from reported financials.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reforecast"
+    ],
+    "redFlags": [
+      "Advancing unclosed months"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_comparing_budgets_in_the_workbench": {
+    "purpose": "Quick Steps for comparing two budget versions, or a budget with actuals, in the workbench.",
+    "outcome": "Differences between versions explained quickly.",
+    "rootCause": "Asset managers want to see what changed between drafts; a quick comparison procedure makes that easy.",
+    "ifSkipped": "Changes between drafts go unexplained and the asset manager loses confidence in the budget.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Budget comparison"
+    ],
+    "redFlags": [
+      "Large unexplained changes"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_and_calculating_a_payroll_2": {
+    "purpose": "Quick Steps for creating a property's payroll budget and calculating wages, taxes, benefits and workers' comp.",
+    "outcome": "A calculated payroll budget ready to publish.",
+    "rootCause": "Payroll is the largest controllable expense; a short procedure keeps calculation consistent across properties.",
+    "ifSkipped": "Payroll is estimated inconsistently across properties and cannot be explained line by line.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll budget"
+    ],
+    "redFlags": [
+      "Calculated before rate tables updated"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_an_employee_to_a_payroll": {
+    "purpose": "Quick Steps for adding an employee or a planned open position to a property's payroll budget, such as a seasonal pool attendant or an additional maintenance technician.",
+    "outcome": "Planned staffing included in payroll.",
+    "rootCause": "Staffing plans change during budget season; the quick path keeps the payroll budget aligned.",
+    "ifSkipped": "Planned hires are missing from payroll and the property's payroll is under-budgeted.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payroll budget"
+    ],
+    "redFlags": [
+      "Additions not approved by the regional manager"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_publishing_a_payroll_to_a_working_budget_2": {
+    "purpose": "Quick Steps for publishing a calculated payroll into the working budget's payroll accounts.",
+    "outcome": "Operating budget payroll matches the payroll model.",
+    "rootCause": "Publishing links payroll detail to the operating budget; forgetting it leaves stale payroll lines.",
+    "ifSkipped": "Operating budget payroll differs from the model.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget"
+    ],
+    "redFlags": [
+      "Payroll not republished after changes"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_calculating_management_fees_2": {
+    "purpose": "Quick Steps for calculating budgeted management fees from budgeted revenue and the contract percentage.",
+    "outcome": "Fee budgets consistent with revenue and the management agreement.",
+    "rootCause": "Fees must move with revenue; recalculating after revenue changes keeps the budget consistent.",
+    "ifSkipped": "Fee budgets do not match final revenue and the budget is internally inconsistent.",
+    "glAccounts": [
+      "6510 Management Fees"
+    ],
+    "gaap": [
+      "Management agreement fee provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Management fee budget"
+    ],
+    "redFlags": [
+      "Fee base inconsistent with the agreement"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_publishing_management_fees_to_a_working_budget_2": {
+    "purpose": "Quick Steps for publishing the calculated management fee into the management fee account of the working budget after revenue assumptions are final.",
+    "outcome": "Fee lines in the budget match the calculation.",
+    "rootCause": "Publishing links fee calculations to the budget; skipping it leaves stale fee lines after revenue changes.",
+    "ifSkipped": "Budget fee lines are inconsistent with revenue.",
+    "glAccounts": [
+      "6510 Management Fees"
+    ],
+    "gaap": [
+      "Management agreement fee provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working budget"
+    ],
+    "redFlags": [
+      "Fees not republished after revenue revisions"
+    ],
+    "confidence": "high"
+  }
+}

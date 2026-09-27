@@ -6,6 +6,7 @@ import { RADII } from '../theme/layout';
 import { MULTIFAMILY_TERMS } from '../data/glossaryData';
 import { useScreenDetail } from '../utils/useModuleData';
 import RegulatoryGuardrailCard from './RegulatoryGuardrailCard';
+import SmeAnalysisCard from './SmeAnalysisCard';
 import GaapButton from './gaap/GaapButton';
 import { getScreenEntry } from '../utils/screenIndex';
 import { ascLinksForScreen } from '../utils/ascLinks';
@@ -41,8 +42,12 @@ function ScreenDetail({ screen, accent = COLORS.info }) {
         <Breadcrumbs parts={screen.navigation} accent={accent} />
       </View>
 
+      <SmeAnalysisCard sme={screen.sme} />
+
       <View style={styles.section}>
-        <SectionLabel icon="information-circle-outline">Screen & report purpose</SectionLabel>
+        <SectionLabel icon="information-circle-outline">
+          {screen.sme ? 'What the RealPage manual says' : 'Screen & report purpose'}
+        </SectionLabel>
         <Text style={styles.purposeText}>{screen.purpose}</Text>
       </View>
 
@@ -76,7 +81,9 @@ function ScreenDetail({ screen, accent = COLORS.info }) {
       )}
 
       <View style={styles.section}>
-        <SectionLabel icon="alert-circle-outline" color={COLORS.danger}>Why records are here (root cause)</SectionLabel>
+        <SectionLabel icon="alert-circle-outline" color={COLORS.danger}>
+          {screen.sme ? 'Why records are here (manual prerequisites & triggers)' : 'Why records are here (root cause)'}
+        </SectionLabel>
         {why.map((reason, idx) => (
           <View key={idx} style={styles.bulletRow}>
             <View style={styles.bulletDot} />

@@ -1,0 +1,1094 @@
+{
+  "scr_budgeting_account_group_examples": {
+    "purpose": "Worked examples of account groups — Total Rental Revenue (GPR less vacancy, concessions and bad debt), Controllable Expenses, Total Operating Expenses and NOI — showing how members and signs combine into owner-style subtotals.",
+    "outcome": "Accountants can build or check groups that produce the NOI and expense subtotals asset managers expect.",
+    "rootCause": "Getting sign conventions wrong (adding concessions instead of subtracting) is the most common account group error and silently overstates revenue on every report built from the group.",
+    "ifSkipped": "Groups are built with wrong signs and revenue or NOI is misstated in owner packages.",
+    "glAccounts": [
+      "4010 Gross Potential Rent",
+      "4040 Concessions",
+      "4050 Bad Debt",
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "NAREIT / owner NOI definitions"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Income Statement",
+      "Budget vs Actual"
+    ],
+    "redFlags": [
+      "Contra-revenue accounts added rather than subtracted"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_account_groups_and_normal_balance": {
+    "purpose": "Explains how an account group's normal balance (debit or credit) determines whether members display as positive or negative, so revenue shows positive and expenses show positive in their own sections.",
+    "outcome": "Report subtotals display with the sign conventions owners expect.",
+    "rootCause": "Revenue accounts carry credit balances in the ledger. Without a credit normal balance on the revenue group, revenue shows as negative and NOI formulas invert.",
+    "ifSkipped": "Revenue appears negative, NOI calculations flip sign and owner reports look wrong.",
+    "glAccounts": [
+      "4010 Gross Potential Rent",
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "ASC 205 — financial statement presentation"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Financial reports"
+    ],
+    "redFlags": [
+      "Revenue groups with debit normal balance"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_organize_through_account_groups": {
+    "purpose": "Describes using account groups to organize accounts for different audiences — an owner view, a lender view, a management view — without changing the chart of accounts.",
+    "outcome": "One chart of accounts serves multiple reporting formats.",
+    "rootCause": "Lenders, JV partners and asset managers each want different groupings (lenders may exclude capex from opex; owners may want R&M split). Groups provide these views without duplicate charts.",
+    "ifSkipped": "Separate reports are built by hand for each audience, with inconsistent numbers.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "Loan agreement reporting definitions",
+      "Owner reporting conventions"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Asset manager",
+      "Lender"
+    ],
+    "reports": [
+      "Owner report",
+      "Lender report"
+    ],
+    "redFlags": [
+      "Lender NOI group including items the loan agreement excludes"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_multi_entity_report_structures": {
+    "purpose": "Multi-Entity Report Structures (a Multi-Entity Shared subscription) let account groups and report structures be shared across entities, so a portfolio of separate legal entities reports on one consistent structure.",
+    "outcome": "Portfolio and fund-level reports roll up consistently across entities.",
+    "rootCause": "Institutional portfolios hold each property in its own LLC. Consolidated or fund-level reporting needs identical structures in every entity, which is impractical to maintain entity by entity.",
+    "ifSkipped": "Each entity's structure drifts and fund-level roll-ups do not tie.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "ASC 810 — consolidation consistency"
+    ],
+    "stakeholders": [
+      "Fund accountant",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Portfolio reports",
+      "Consolidated reports"
+    ],
+    "redFlags": [
+      "Entities using local report structures instead of shared ones"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_importing_account_groups": {
+    "purpose": "Imports and exports account group definitions from templates — used when onboarding a new owner's reporting structure or copying groups between companies.",
+    "outcome": "A new owner's reporting hierarchy is loaded accurately in one step.",
+    "rootCause": "New management contracts come with the owner's required reporting structure. Keying dozens of groups by hand is error-prone; import reproduces the structure exactly.",
+    "ifSkipped": "Owner reporting structures are keyed manually with errors and the first owner package is wrong.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "Owner reporting requirements"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Transition team"
+    ],
+    "reports": [
+      "Account groups list"
+    ],
+    "redFlags": [
+      "Imported groups not tested against a sample report"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_importing_account_group_members": {
+    "purpose": "Imports the GL account membership of account groups from a template, assigning many accounts to groups at once.",
+    "outcome": "Group memberships are populated or updated in bulk.",
+    "rootCause": "When a chart of accounts changes (new owner mapping, new accounts), many group memberships change together; bulk import avoids missing accounts.",
+    "ifSkipped": "Accounts are left out of groups and their balances vanish from subtotals.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Account-to-group map"
+    ],
+    "redFlags": [
+      "Accounts with balances not in any group"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_the_account_groups_list": {
+    "purpose": "Opens the Account Groups list to see all groups and their types, as the starting point for maintaining reporting structures.",
+    "outcome": "A full view of existing groups before creating new ones.",
+    "rootCause": "Reviewing existing groups first prevents duplicate NOI or revenue groups that would give different answers in different reports.",
+    "ifSkipped": "Duplicate groups are created and reports disagree.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Account groups list"
+    ],
+    "redFlags": [
+      "Several groups with near-identical names"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_account_groups_list": {
+    "purpose": "The Account Groups list with two views (list and hierarchy) for adding, editing, exporting and deleting groups.",
+    "outcome": "Groups are maintained from one place with visibility of their hierarchy.",
+    "rootCause": "The hierarchy view shows how a change to one group ripples up to NOI and net income, which the flat list does not.",
+    "ifSkipped": "Changes are made without seeing their effect on higher-level totals.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Account groups list",
+      "Hierarchy report"
+    ],
+    "redFlags": [
+      "Groups not placed in any hierarchy"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_account_groups_workflow": {
+    "purpose": "Describes the typical workflow: start from system account groups in the library, adjust memberships for the owner's chart, build hierarchies, then attach groups to financial reports and budgets.",
+    "outcome": "Reporting structures are built in a sensible order.",
+    "rootCause": "Building reports before groups are finalized leads to reports that must be rebuilt when group definitions change.",
+    "ifSkipped": "Reports are rebuilt repeatedly as groups change.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Financial reports"
+    ],
+    "redFlags": [
+      "Reports built on draft groups"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_an_account_group": {
+    "purpose": "Creates an account group — name, type, normal balance, calculation method (for period, year-to-date or as-of balance) and member accounts.",
+    "outcome": "A new subtotal available to reports and budgets.",
+    "rootCause": "New owner reporting lines (e.g., separate 'Turnover Costs' subtotal) require new groups; the calculation method determines whether the group reports activity or balances.",
+    "ifSkipped": "Owners' requested subtotals cannot be produced.",
+    "glAccounts": [
+      "6110 Repairs & Maintenance",
+      "6310 Marketing"
+    ],
+    "gaap": [
+      "Owner reporting requirements"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Financial reports"
+    ],
+    "redFlags": [
+      "Wrong calculation method for balance sheet groups"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_setting_up_a_computation_account_group": {
+    "purpose": "Sets up a computation group whose value is a formula over other groups — NOI = Total Revenue − Total Operating Expenses, or expense per unit = Total Opex ÷ Units.",
+    "outcome": "Key metrics like NOI and per-unit costs calculated consistently in every report.",
+    "rootCause": "NOI and per-unit metrics drive valuation and benchmarking. Defining them once as formulas guarantees every report uses the same calculation.",
+    "ifSkipped": "NOI and ratios are calculated by hand and differ between reports.",
+    "glAccounts": [
+      "4010 Gross Potential Rent",
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "NAREIT NOI definitions"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Asset manager"
+    ],
+    "reports": [
+      "Income Statement",
+      "Performance cards"
+    ],
+    "redFlags": [
+      "NOI formula including depreciation or interest"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_and_editing_account_groups": {
+    "purpose": "Views or edits an account group — including finding accounts missing from it — when a report subtotal does not match the trial balance.",
+    "outcome": "Group memberships are corrected so subtotals are complete.",
+    "rootCause": "When new accounts are added to the chart but not to groups, their balances silently drop out of report totals. Editing groups is how that is fixed.",
+    "ifSkipped": "Report totals exclude new accounts and do not tie to the trial balance.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Financial reports"
+    ],
+    "redFlags": [
+      "Report totals not tying to trial balance"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_a_missing_account_to_an_account_group": {
+    "purpose": "Adds an account that was left out of a group — typically a newly created GL account — so its balance is included in subtotals.",
+    "outcome": "Subtotals include all relevant accounts and tie to the trial balance.",
+    "rootCause": "Adding accounts to the chart does not automatically add them to groups; each new account must be placed in the reporting structure.",
+    "ifSkipped": "The new account's activity is invisible in owner reports.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013 — completeness"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Account-to-group map"
+    ],
+    "redFlags": [
+      "Accounts with balances in no group"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_deleting_an_account_group": {
+    "purpose": "Deletes an account group that no report, budget or other group uses — typically a duplicate or a group built for an owner who is no longer managed.",
+    "outcome": "Obsolete groups removed without breaking reports.",
+    "rootCause": "Unused groups clutter the structure and are selected by mistake when building reports; groups in use are protected from deletion.",
+    "ifSkipped": "Obsolete groups are used in new reports, producing wrong subtotals.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Account groups list"
+    ],
+    "redFlags": [
+      "Duplicate groups retained"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_exporting_from_the_account_groups_list": {
+    "purpose": "Exports account groups and their members to a file for review, documentation or transfer.",
+    "outcome": "Reporting structure documented for owners, auditors or another company.",
+    "rootCause": "Owners and auditors ask how report lines are built; an export of groups and members is the documentation.",
+    "ifSkipped": "Report construction cannot be documented.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013 — documentation"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "External auditor"
+    ],
+    "reports": [
+      "Account groups export"
+    ],
+    "redFlags": [
+      "No documentation of NOI definition"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_account_to_account_group_map_list": {
+    "purpose": "The flip view of account groups: for each GL account it shows every group the account belongs to, so accounts in no group or in conflicting groups stand out.",
+    "outcome": "Accounts missing from groups — or in conflicting groups — are easy to spot.",
+    "rootCause": "An account in both 'Controllable' and 'Non-controllable' groups double-counts; an account in neither disappears. The flip view shows both problems.",
+    "ifSkipped": "Double-counted or missing accounts distort reports.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Account-to-group map"
+    ],
+    "redFlags": [
+      "Accounts in mutually exclusive groups"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_how_accounts_are_mapped_to_account_groups": {
+    "purpose": "Procedure for using the flip view to review how each GL account maps into account groups — normally done after chart of accounts changes or before a new owner's first report.",
+    "outcome": "Mapping review completed before reports are published.",
+    "rootCause": "A periodic mapping review, especially after chart changes, is how structural reporting errors are caught.",
+    "ifSkipped": "Structural mapping errors persist for months and distort every report built on the groups.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Account-to-group map"
+    ],
+    "redFlags": [
+      "No mapping review after chart changes"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_account_group_information_page": {
+    "purpose": "The record page for an account group — name, type, normal balance, calculation method, members and report filters.",
+    "outcome": "A complete definition of one subtotal.",
+    "rootCause": "Every attribute on this page changes the numbers on reports; reviewers need to see the full definition to trust a subtotal.",
+    "ifSkipped": "Subtotal definitions stay opaque and reviewers cannot verify how NOI or opex were built.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Financial reports"
+    ],
+    "redFlags": [
+      "Groups without descriptions"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_account_group_managers": {
+    "purpose": "Explains account group managers — people assigned responsibility for the accounts in a group (e.g., the maintenance director for R&M) for budgeting and variance accountability.",
+    "outcome": "Each budget area has a named owner responsible for variances.",
+    "rootCause": "Variance explanations are faster and better when a named person owns each area; without ownership, variance notes are vague.",
+    "ifSkipped": "Nobody owns variances and explanations are generic.",
+    "glAccounts": [
+      "6110 Repairs & Maintenance",
+      "6310 Marketing",
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013 — accountability"
+    ],
+    "stakeholders": [
+      "Property manager",
+      "Department heads",
+      "Regional manager"
+    ],
+    "reports": [
+      "Variance commentary"
+    ],
+    "redFlags": [
+      "Groups with no manager assigned"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_creating_an_account_group_manager": {
+    "purpose": "Assigns a manager to an account group so they receive budget and variance responsibility for it.",
+    "outcome": "A named person accountable for each area's budget.",
+    "rootCause": "Assigning managers enables routing of budget review and variance questions to the right person.",
+    "ifSkipped": "Budget questions go to the wrong people.",
+    "glAccounts": [
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Regional manager"
+    ],
+    "reports": [
+      "Account group managers"
+    ],
+    "redFlags": [
+      "Managers assigned to groups outside their responsibility"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_editing_an_account_group_manager": {
+    "purpose": "Updates who is assigned as manager of an account group (e.g., the R&M group moves to a new maintenance director), so budget and variance questions route to the right person.",
+    "outcome": "Budget responsibility stays with current staff.",
+    "rootCause": "Turnover at property and regional level is frequent; stale assignments route budget questions to people who have left.",
+    "ifSkipped": "Variance questions go to people who have left and remain unanswered at month-end.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Regional manager"
+    ],
+    "reports": [
+      "Account group managers"
+    ],
+    "redFlags": [
+      "Assignments to terminated users"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_deleting_an_account_group_manager": {
+    "purpose": "Removes an account group manager assignment that no longer applies, for example after a regional reorganization that consolidated two maintenance territories.",
+    "outcome": "Only current responsibilities remain.",
+    "rootCause": "Outdated assignments confuse routing of budget reviews and variance requests, especially after reorganizations.",
+    "ifSkipped": "Budget review and variance requests are routed to the wrong people after reorganizations.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Regional manager"
+    ],
+    "reports": [
+      "Account group managers"
+    ],
+    "redFlags": [
+      "Groups left without any manager after deletion"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_an_account_group_to_a_financial_report": {
+    "purpose": "Adds an account group as a row in a financial report so its subtotal appears in the owner's income statement or BVA.",
+    "outcome": "Reports show the subtotals owners require.",
+    "rootCause": "Report rows are built from groups; adding the right group is how a requested subtotal (e.g., 'Total Turnover Costs') appears.",
+    "ifSkipped": "Requested subtotals are missing from owner reports.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "Owner reporting requirements"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Financial reports"
+    ],
+    "redFlags": [
+      "Groups added twice to the same report"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_report_filters_on_the_account_group_information_page": {
+    "purpose": "Report filters on an account group restrict which books, locations or dimensions the group includes when used in reports.",
+    "outcome": "Groups can be limited, for example to the accrual book only.",
+    "rootCause": "Without book filters, a group can sum GAAP adjustments and accrual activity together, double-counting.",
+    "ifSkipped": "Report totals double-count across books.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Financial reports"
+    ],
+    "redFlags": [
+      "Groups without book filters in multi-book companies"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_account_groups_library": {
+    "purpose": "The library of system-provided account groups (standard multifamily structures such as revenue, operating expenses and NOI) that can be installed and adapted.",
+    "outcome": "A tested starting structure instead of building groups from scratch.",
+    "rootCause": "Building a full reporting hierarchy from scratch is slow and error-prone; system groups provide a standard base.",
+    "ifSkipped": "Companies build inconsistent structures from scratch.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "Industry-standard multifamily reporting"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Account groups library"
+    ],
+    "redFlags": [
+      "System groups installed without adapting to the owner's chart"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_the_accounts_group_library": {
+    "purpose": "Browses the account groups library to see which standard groups are available and installed.",
+    "outcome": "Users know which standard structures they can use.",
+    "rootCause": "Knowing which standard groups already exist — and which are installed — prevents accountants from building custom duplicates that produce slightly different subtotals from the system versions.",
+    "ifSkipped": "Custom groups duplicate standard ones and reports disagree on totals.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Account groups library"
+    ],
+    "redFlags": [
+      "Duplicates of standard groups"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_installing_system_account_groups": {
+    "purpose": "Installs selected standard account groups from the library (e.g., the system revenue, operating expense and NOI groups) into the company so standard reports and performance cards have their subtotals.",
+    "outcome": "Standard groups available for reports and budgets.",
+    "rootCause": "Many standard reports depend on system groups being installed; without them the reports show blank rows.",
+    "ifSkipped": "Standard reports show blank or missing subtotal rows.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Financial reports"
+    ],
+    "redFlags": [
+      "Installed groups missing accounts specific to the owner"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_account_groups_hierarchy_report": {
+    "purpose": "Shows the full account group hierarchy with values — how accounts roll into groups and groups into totals — for a period.",
+    "outcome": "A visual check that the reporting structure produces the right totals.",
+    "rootCause": "Hierarchy errors (groups in the wrong parent, missing children) are easiest to spot with values shown at each level.",
+    "ifSkipped": "Hierarchy errors such as a group under the wrong parent reach owner reports.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Account Groups Hierarchy report"
+    ],
+    "redFlags": [
+      "Totals at the top not matching net income"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_customizing_and_running_the_account_groups_hierarchy_report": {
+    "purpose": "Sets parameters (groups, period, locations) and runs the Account Groups Hierarchy report.",
+    "outcome": "A hierarchy report scoped to the structure under review.",
+    "rootCause": "Reviewing one branch at a time (e.g., operating expenses) makes structural issues easier to see.",
+    "ifSkipped": "Structure reviews are unfocused and errors in one branch are overlooked.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Account Groups Hierarchy report"
+    ],
+    "redFlags": [
+      "Report run on the wrong book"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_a_monthly_report": {
+    "purpose": "Views the hierarchy report broken down by month to see how each group's value changed across the year.",
+    "outcome": "Monthly trends by group, useful for budget seeding and seasonality.",
+    "rootCause": "Budgets must reflect seasonality (utilities, turnover); monthly views by group show those patterns.",
+    "ifSkipped": "Budgets spread amounts evenly and miss seasonality.",
+    "glAccounts": [
+      "6210 Utilities",
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Account Groups Hierarchy report"
+    ],
+    "redFlags": [
+      "Seasonal lines budgeted flat"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_account_groups_hierarchy_report_columns": {
+    "purpose": "Explains the hierarchy report columns — group name, hierarchy level, values by period and totals — used to trace how each group rolls into its parent.",
+    "outcome": "Correct interpretation of the hierarchy output.",
+    "rootCause": "Reading the level column correctly tells the reviewer which parent subtotal a value rolls into, which is how misplaced groups (a below-NOI item inside NOI) are identified.",
+    "ifSkipped": "Values are attributed to the wrong subtotal.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Account Groups Hierarchy report"
+    ],
+    "redFlags": [
+      "Levels not matching the intended structure"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_periodic_tasks": {
+    "purpose": "Periodic Tasks section of budgeting — creating, modifying, uploading and reporting on budgets through the annual cycle.",
+    "outcome": "The budget cycle tasks are grouped for the budget season.",
+    "rootCause": "Budget work is periodic (annual build, mid-year reforecast); grouping the tasks supports the cycle.",
+    "ifSkipped": "Budget cycle steps are missed and the approved budget is not loaded before January reporting.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "Management agreement budget deadlines"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budgets list"
+    ],
+    "redFlags": [
+      "Budget not loaded before January close"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_budgets_list": {
+    "purpose": "Lists all budgets (by year, version and status) with actions to create, view, modify, export, upload and delete them.",
+    "outcome": "A register of budget versions showing which is approved for BVA reporting.",
+    "rootCause": "Multiple versions exist each year (draft, revised, approved, reforecast). BVA must use the approved version; the list is where that is controlled.",
+    "ifSkipped": "BVA reports use the wrong budget version.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "Management agreement budget approval"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Budgets list"
+    ],
+    "redFlags": [
+      "Several versions flagged as current"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_the_budgets_list": {
+    "purpose": "Opens the budgets list to confirm which budget versions exist and which is designated for reporting.",
+    "outcome": "Clarity on which version BVA reports will use.",
+    "rootCause": "Before running BVA or loading changes, the accountant must know which version is live.",
+    "ifSkipped": "Changes are applied to the wrong version.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budgets list"
+    ],
+    "redFlags": [
+      "Approved version not identifiable"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_a_budget": {
+    "purpose": "Creates a new budget, either blank or based on an existing budget or actuals, for a fiscal year and set of locations.",
+    "outcome": "A new budget version ready to populate.",
+    "rootCause": "Each fiscal year and each reforecast needs its own version so the approved budget is never overwritten.",
+    "ifSkipped": "The approved budget is overwritten during reforecasts.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "Management agreement budget provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budgets list"
+    ],
+    "redFlags": [
+      "Reforecast built by editing the approved budget"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_creating_a_budget_manually": {
+    "purpose": "Builds a budget by typing amounts directly by account and month, used for small properties, special projects or a handful of lines where a model or import is unnecessary.",
+    "outcome": "A budget created directly in the system, typically for small properties or specific lines.",
+    "rootCause": "Some budgets (small properties, special projects) are simple enough to enter directly; manual entry must still be checked for seasonality and completeness.",
+    "ifSkipped": "Small budgets are kept outside the system and BVA cannot run.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget details"
+    ],
+    "redFlags": [
+      "Annual totals keyed into one month"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_creating_a_budget_by_modifying_an_existing_budget": {
+    "purpose": "Creates a new budget by copying an existing budget and applying changes — the common way to build next year's budget from this year's or a reforecast from the approved budget.",
+    "outcome": "A new version that keeps structure and only changes what should change.",
+    "rootCause": "Most budget lines carry forward with escalators; copying preserves structure and reduces effort while protecting the original.",
+    "ifSkipped": "Budgets are rebuilt from scratch with inconsistent structure.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budgets list"
+    ],
+    "redFlags": [
+      "Copied budgets not updated for known changes (tax reassessment)"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_existing_budgets": {
+    "purpose": "Views loaded budgets at account or detail level to confirm that what is in the system matches the owner-approved budget file, total by total.",
+    "outcome": "Loaded budgets verified against the approved file.",
+    "rootCause": "After loading, the system budget must match the owner-approved budget; viewing it is the check.",
+    "ifSkipped": "Load errors go unnoticed until BVA looks wrong.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget details"
+    ],
+    "redFlags": [
+      "System totals different from approved file totals"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_budget_details": {
+    "purpose": "Views the budget amounts by account and month for one location, to check monthly phasing of items like insurance, taxes and seasonal utilities.",
+    "outcome": "Monthly budget amounts can be checked line by line.",
+    "rootCause": "Monthly phasing matters for BVA; an annual amount in the wrong month creates large monthly variances.",
+    "ifSkipped": "Phasing errors produce misleading monthly variances.",
+    "glAccounts": [
+      "6610 Insurance",
+      "6620 Real Estate Taxes"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget details"
+    ],
+    "redFlags": [
+      "Annual items budgeted in one month instead of monthly accrual"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_exporting_a_budget_to_be_viewed_in_a_spreadsheet": {
+    "purpose": "Exports a budget to a spreadsheet so the asset manager or regional manager can review it offline, clearly labeled with version and export date.",
+    "outcome": "Budget shared with reviewers in Excel.",
+    "rootCause": "Asset managers typically review budgets in Excel; the export must carry version identity to avoid confusion.",
+    "ifSkipped": "Budgets are shared by re-keying or screenshots, and reviewers comment on the wrong version.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013 — version control"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Budget export"
+    ],
+    "redFlags": [
+      "Exports without version labels"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_modifying_a_budget_manually": {
+    "purpose": "Changes budget amounts manually in the budget details list — for example after the asset manager adjusts a line during review.",
+    "outcome": "Approved changes reflected in the system budget.",
+    "rootCause": "Review adjustments must be applied to the system version, or BVA uses a budget different from what the owner approved.",
+    "ifSkipped": "The system budget differs from the approved budget.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "Management agreement budget approval"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget details"
+    ],
+    "redFlags": [
+      "Changes to the approved budget without approval evidence"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_uploading_changes_to_a_budget": {
+    "purpose": "Uploads a modified budget spreadsheet back into the system to apply many changes at once.",
+    "outcome": "Bulk budget changes applied accurately.",
+    "rootCause": "Budget review cycles produce many line changes in Excel. Uploading applies them all accurately, whereas re-keying them invites errors that make the system budget differ from what the owner approved.",
+    "ifSkipped": "Changes are re-keyed with errors or not applied.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget details"
+    ],
+    "redFlags": [
+      "Upload totals not matching the approved file"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_deleting_budgets": {
+    "purpose": "Deletes a budget version, considering the implications for reports and comparisons that use it.",
+    "outcome": "Obsolete draft versions removed.",
+    "rootCause": "Deleting a budget used in BVA or comparisons breaks those reports; only unused drafts should be deleted.",
+    "ifSkipped": "Clutter; misuse deletes the approved budget.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budgets list"
+    ],
+    "redFlags": [
+      "Deleting approved or prior-year budgets"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_troubleshooting_budget_import_errors": {
+    "purpose": "Guidance for resolving budget import errors — invalid accounts, locations, periods or formats in the upload file.",
+    "outcome": "Budget imports succeed without partial loads.",
+    "rootCause": "Import errors often cause partial loads where some lines load and others do not, leaving the budget incomplete without obvious signs.",
+    "ifSkipped": "Budgets are partially loaded and BVA shows false variances.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Loaded totals lower than the file"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_budget_report": {
+    "purpose": "Analyzes budget information by account, location and period, with comparison to actuals where available.",
+    "outcome": "Budget detail and comparison for review and owner reporting.",
+    "rootCause": "Owners need budget detail by period to understand expected performance and later variances.",
+    "ifSkipped": "Budget detail must be assembled manually.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Budget report"
+    ],
+    "redFlags": [
+      "Report run on the wrong budget version"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_customizing_and_running_the_budget_report": {
+    "purpose": "Sets budget report parameters — budget version, period, locations, account groups — and runs it.",
+    "outcome": "A budget report scoped to the review.",
+    "rootCause": "Choosing the right budget version and groups ensures the report matches what the owner approved.",
+    "ifSkipped": "Budget reports show the wrong version and owners see numbers they never approved.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget report"
+    ],
+    "redFlags": [
+      "Draft version selected for owner reports"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_budget_report_columns": {
+    "purpose": "Explains the budget report columns — account, period budgets, totals and drill links.",
+    "outcome": "Correct reading of budget output.",
+    "rootCause": "Drill links allow checking how a budget line was built; columns show phasing across periods.",
+    "ifSkipped": "Phasing and build-up errors are missed until monthly variances appear.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget report"
+    ],
+    "redFlags": [
+      "Uneven phasing on items that accrue evenly"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_budget_information_page": {
+    "purpose": "Page for adding a budget — name, fiscal year, locations, basis (blank, copy of a budget, or actuals).",
+    "outcome": "A budget shell defined correctly before amounts are entered.",
+    "rootCause": "Choosing the correct year, locations and basis up front avoids rebuilding the budget later.",
+    "ifSkipped": "Budgets are created for the wrong year or locations.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budgets list"
+    ],
+    "redFlags": [
+      "Budget fiscal year different from the owner's fiscal year"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_budget_details_list": {
+    "purpose": "Lists budget amounts by account and period for a budget, where details are managed and edited.",
+    "outcome": "The line-level budget data maintained in one place.",
+    "rootCause": "BVA reports read from these details; errors here directly become BVA variance errors.",
+    "ifSkipped": "Line errors flow straight into every budget-vs-actual report for the year.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget details"
+    ],
+    "redFlags": [
+      "Lines with zero budget on accounts with regular spend"
+    ],
+    "confidence": "high"
+  }
+}

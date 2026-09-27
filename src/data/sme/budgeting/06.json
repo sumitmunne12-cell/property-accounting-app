@@ -1,0 +1,955 @@
+{
+  "scr_budgeting_memorizing_a_report_or_chart": {
+    "purpose": "Saves the settings of a budget or budget-vs-actual report — budget version, account groups, periods, properties — as a memorized report so the same package can be regenerated every month or budget cycle.",
+    "outcome": "A reusable definition of the owner's standard budget report that produces identical layouts each time.",
+    "rootCause": "Asset managers compare this year's budget package with last year's and each month's BVA with the prior month's. Rebuilding report settings by hand each time introduces differences (a missing group, a different version) that look like real changes.",
+    "ifSkipped": "Budget packages differ in layout and content between cycles, and reviewers waste time on differences caused by report settings rather than performance.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013 — consistency of reporting"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Memorized reports",
+      "Budget vs Actual"
+    ],
+    "redFlags": [
+      "Memorized reports hard-coded to a prior budget version"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_memorized_reports_list": {
+    "purpose": "Lists memorized budget reports and charts available to the user or shared with the team, with actions to run, edit, schedule or delete them.",
+    "outcome": "A shared library of standard budget and BVA report definitions for the team.",
+    "rootCause": "When every preparer runs budget reports from the same shared definitions, owner packages look the same across properties. Personal, ad hoc definitions produce inconsistent packages that asset managers notice.",
+    "ifSkipped": "Different preparers run different definitions and owner packages vary between properties.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore team"
+    ],
+    "reports": [
+      "Memorized reports"
+    ],
+    "redFlags": [
+      "Several near-identical memorized budget reports"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_editing_a_memorized_report": {
+    "purpose": "Changes a memorized budget report's saved settings — most often switching it to the new fiscal year's approved budget version when the budget cycle rolls over.",
+    "outcome": "Standard budget reports point to the current approved budget.",
+    "rootCause": "Memorized reports keep whatever budget version they were saved with. If nobody updates them at the new year, January BVA packages compare actuals to last year's budget.",
+    "ifSkipped": "BVA packages compare the new year's actuals to the wrong budget, producing meaningless variances.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Memorized reports"
+    ],
+    "redFlags": [
+      "January BVA run against prior-year budget"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_running_a_memorized_report_or_chart": {
+    "purpose": "Runs a memorized budget report or chart with its saved settings, changing only the period — the routine way to produce monthly BVA packages.",
+    "outcome": "Monthly budget reports produced quickly and consistently.",
+    "rootCause": "Monthly BVA is recurring close work for every property; running from a memorized definition keeps it fast and consistent across dozens of properties.",
+    "ifSkipped": "BVA reports are rebuilt manually every month, slowing the close and introducing inconsistencies.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget vs Actual"
+    ],
+    "redFlags": [
+      "Period not updated before running"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_scheduling_a_memorized_report_or_chart": {
+    "purpose": "Schedules a memorized budget report to run automatically — for example a monthly BVA delivered to regional managers after close.",
+    "outcome": "Budget reports delivered on schedule without manual runs.",
+    "rootCause": "Regional and asset managers want BVA as soon as the close is final; scheduling removes dependence on someone remembering across time zones.",
+    "ifSkipped": "BVA delivery depends on manual runs and arrives late or inconsistently.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Regional manager"
+    ],
+    "reports": [
+      "Scheduled reports"
+    ],
+    "redFlags": [
+      "Schedules running before the period is closed"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_deleting_a_memorized_report_or_chart": {
+    "purpose": "Deletes a memorized budget report or chart that is obsolete, duplicated or tied to a discontinued owner format.",
+    "outcome": "The memorized library contains only current definitions.",
+    "rootCause": "Obsolete definitions remain selectable and new staff pick them by mistake, producing budget packages in a format the owner no longer uses.",
+    "ifSkipped": "Outdated definitions are used and owners receive packages in superseded formats.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Memorized reports"
+    ],
+    "redFlags": [
+      "Deleting definitions with active schedules"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_edit_memorized_report_page": {
+    "purpose": "The page used to change a memorized budget report's name, parameters, sharing and default output format.",
+    "outcome": "Memorized report definitions maintained in one controlled place.",
+    "rootCause": "Shared definitions are used by the whole team; edits on this page change every package built from them, so they need to be deliberate and communicated.",
+    "ifSkipped": "Definitions change silently and packages shift without anyone knowing why.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — change management"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Memorized reports"
+    ],
+    "redFlags": [
+      "Shared reports edited without notifying the team"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_schedule_memorized_report_page": {
+    "purpose": "The page where the frequency, time, recipients and output format of a scheduled memorized budget report are set.",
+    "outcome": "Automated distribution of budget reports to the right people.",
+    "rootCause": "Recipients and timing determine whether scheduled BVA is useful; sending before close finishes distributes preliminary numbers as if final.",
+    "ifSkipped": "Preliminary BVA reaches owners, or reports go to people who have left.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Scheduled reports"
+    ],
+    "redFlags": [
+      "External recipients on preliminary reports"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_working_budget_report": {
+    "purpose": "Reports a working budget's amounts by account and period, optionally compared to actuals or another budget, for review before publishing.",
+    "outcome": "A printable or exportable view of a draft budget for review meetings.",
+    "rootCause": "Budget review meetings with regional and asset managers need a clean report of the draft, not a system screen; this report provides it directly from the working budget.",
+    "ifSkipped": "Drafts are reviewed from ad hoc exports that may not match the system version.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Regional manager",
+      "Asset manager"
+    ],
+    "reports": [
+      "Working Budget report"
+    ],
+    "redFlags": [
+      "Report run on the wrong working budget"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_customizing_and_running_the_working_budget_report": {
+    "purpose": "Selects the working budget, properties, accounts, periods and comparison columns and runs the Working Budget report.",
+    "outcome": "A review report scoped to exactly what the meeting will discuss.",
+    "rootCause": "Review meetings focus on specific properties and account groups; well-chosen parameters produce a short, relevant report instead of a data dump.",
+    "ifSkipped": "Review reports are too broad and important lines are lost in them.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working Budget report"
+    ],
+    "redFlags": [
+      "Comparison columns omitted"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_using_the_select_multiple_accounts_box": {
+    "purpose": "Selects several GL accounts at once for the Working Budget report — for example all utility accounts or all payroll-related accounts.",
+    "outcome": "Focused reports on a chosen set of accounts.",
+    "rootCause": "Reviewers often focus on a category spread across several accounts; selecting them together avoids running multiple reports.",
+    "ifSkipped": "Category reviews require several separate reports and are slower.",
+    "glAccounts": [
+      "6210 Utilities",
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working Budget report"
+    ],
+    "redFlags": [
+      "Accounts missed in the selection"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_working_budget_report_columns": {
+    "purpose": "Explains the Working Budget report columns — account, periods, totals, comparison budget or actuals, and variance.",
+    "outcome": "Reviewers read draft budgets and their comparisons correctly.",
+    "rootCause": "Misreading which column is the draft and which is the comparison leads to discussions about the wrong numbers in review meetings.",
+    "ifSkipped": "Review decisions are based on misread columns.",
+    "glAccounts": [
+      "All operating accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Working Budget report"
+    ],
+    "redFlags": [
+      "Column headers not labeled with version names"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_account_groups_hierarchy_report_2": {
+    "purpose": "Runs the Account Groups Hierarchy report from the Reports area of Forecasting & Planning to check how accounts roll up into groups used in budgets and BVA reports.",
+    "outcome": "Budget reporting structures verified before the budget cycle.",
+    "rootCause": "Budget reports use account groups; if a group is missing accounts, the budget package understates totals. Checking the hierarchy before budget season prevents that.",
+    "ifSkipped": "Budget packages have incomplete subtotals that are only discovered during owner review.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Account Groups Hierarchy report"
+    ],
+    "redFlags": [
+      "Hierarchy totals not tying to trial balance"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_customizing_and_running_the_account_groups_hierarchy_report_2": {
+    "purpose": "Chooses the groups, period and locations and runs the Account Groups Hierarchy report from the budgeting Reports area.",
+    "outcome": "A focused hierarchy check for the groups used in budgeting.",
+    "rootCause": "Checking only the groups used by the budget package keeps the review manageable and targeted before budget season.",
+    "ifSkipped": "Hierarchy reviews are skipped because the full report is too large.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Account Groups Hierarchy report"
+    ],
+    "redFlags": [
+      "Report run for a period with no activity"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_account_groups_hierarchy_columns": {
+    "purpose": "Explains the columns of the hierarchy report when run from budgeting — group, level, members and values.",
+    "outcome": "Correct interpretation of how budget subtotals are built.",
+    "rootCause": "Understanding levels and members lets the accountant confirm that NOI and category subtotals in budget reports contain exactly the intended accounts.",
+    "ifSkipped": "Subtotal composition errors go unnoticed.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Account Groups Hierarchy report"
+    ],
+    "redFlags": [
+      "Accounts appearing in two sibling groups"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_chart_of_accounts_report": {
+    "purpose": "Lists the chart of accounts — numbers, names, types, normal balances and statuses — used to confirm the account structure before building budgets.",
+    "outcome": "A verified chart of accounts for budgeting.",
+    "rootCause": "Budgets built on inactive or wrongly typed accounts never match actuals; reviewing the chart first prevents that.",
+    "ifSkipped": "Budget lines are built on accounts that will never receive actuals.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013 — chart of accounts control"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Chart of Accounts report"
+    ],
+    "redFlags": [
+      "Active accounts with no activity for years"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_customizing_and_running_the_chart_of_accounts_report": {
+    "purpose": "Sets filters (account ranges, types, status) and runs the Chart of Accounts report.",
+    "outcome": "A chart listing for the account ranges relevant to the review.",
+    "rootCause": "Reviewing the operating expense range separately from balance sheet ranges keeps budget-structure reviews focused.",
+    "ifSkipped": "Chart reviews are too broad to be useful.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Chart of Accounts report"
+    ],
+    "redFlags": [
+      "Inactive accounts included in budget ranges"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_chart_of_accounts_columns": {
+    "purpose": "Explains the Chart of Accounts report columns — number, name, type, normal balance, category and status.",
+    "outcome": "Correct reading of account attributes.",
+    "rootCause": "Type and normal balance columns reveal misconfigured accounts that would display with wrong signs in budget and financial reports.",
+    "ifSkipped": "Misconfigured accounts produce wrong signs in reports.",
+    "glAccounts": [
+      "All GL accounts"
+    ],
+    "gaap": [
+      "ASC 205 — presentation"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Chart of Accounts report"
+    ],
+    "redFlags": [
+      "Revenue accounts with debit normal balance"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_setting_up_forecasting_and_planning": {
+    "purpose": "Chapter on setting up Forecasting & Planning — subscription, permissions, dimensions and segments — before budgeting begins.",
+    "outcome": "A configured planning application aligned with the company's structure.",
+    "rootCause": "Budgets depend on dimensions (locations, departments) and permissions being correct; setup mistakes surface only when budgets are built, under deadline.",
+    "ifSkipped": "Budget season starts with missing dimensions or access, delaying the budget.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — control implementation"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Onshore accounting manager"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Setup started after budget season began"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_setting_up_the_forecasting_and_planning_application": {
+    "purpose": "Explains the application-level settings of Forecasting & Planning — how working budgets are seeded, which GL budget they publish to and how actuals are advanced — configured once before the first budget cycle.",
+    "outcome": "The application is ready for budget creation.",
+    "rootCause": "Application settings determine how working budgets behave (seeding, publishing targets); they must be configured once, deliberately.",
+    "ifSkipped": "Working budgets behave unexpectedly, for example publishing to the wrong GL budget.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Default publish targets not reviewed"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_forecasting_and_planning_setup_workflow": {
+    "purpose": "The setup workflow: subscribe, assign permissions, set up dimensions and segments, then configure payroll and fee tables before building budgets.",
+    "outcome": "Setup performed in the right order.",
+    "rootCause": "Later steps depend on earlier ones (payroll needs employees and locations); following the order avoids rework.",
+    "ifSkipped": "Setup steps fail because prerequisites are missing, and budget season starts with the application half-configured.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Payroll configured before locations exist"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_subscribing_to_forecasting_and_planning": {
+    "purpose": "Enables the Forecasting & Planning subscription under Company > Setup > Subscriptions so the application becomes available.",
+    "outcome": "The planning application is available to licensed users.",
+    "rootCause": "Without the subscription, working budgets, payroll planning and management fee planning are unavailable and budgeting falls back to spreadsheets.",
+    "ifSkipped": "Budgeting is done in spreadsheets outside the system.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Subscription enabled without permissions configured"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_setting_up_permissions_for_forecasting_and_planning": {
+    "purpose": "Assigns permissions for Forecasting & Planning — who can create working budgets, edit them, publish them and view payroll detail.",
+    "outcome": "Budget editing and publishing restricted to the right roles, and payroll detail protected.",
+    "rootCause": "Publishing overwrites the official GL budget and payroll planning exposes individual salaries; both need restricted access.",
+    "ifSkipped": "Anyone can publish budgets or view salaries.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — segregation of duties",
+      "Privacy of employee compensation data"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "HR"
+    ],
+    "reports": [
+      "User permissions"
+    ],
+    "redFlags": [
+      "Offshore preparers with publish rights and no reviewer"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_setting_up_dimensions_for_forecasting_and_planning": {
+    "purpose": "Sets up the dimensions used in budgeting — vendors, customers, employees, departments and locations — so budgets can be built and analyzed at those levels.",
+    "outcome": "Budgets can be planned by location, department or other dimensions.",
+    "rootCause": "Owners often want budgets by building or department; that requires the dimensions to exist before budgeting.",
+    "ifSkipped": "Budgets cannot be built or analyzed by building, department or location, which many owners require.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Dimensions not aligned between actuals and budgets"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_vendors": {
+    "purpose": "The Vendors dimension as used in budgeting — allowing budgets or analysis by vendor, such as contract services by vendor.",
+    "outcome": "Contract-driven budget lines can be tied to specific vendors.",
+    "rootCause": "Many budget lines are driven by vendor contracts (landscaping, elevator, pest control); linking to vendors makes the basis clear.",
+    "ifSkipped": "Contract budgets cannot be traced to vendors.",
+    "glAccounts": [
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Vendor-level analysis"
+    ],
+    "redFlags": [
+      "Contract budgets without vendor references"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_vendors_suppliers_list": {
+    "purpose": "The vendors list reached from planning setup, used to confirm vendors exist before budgeting by vendor.",
+    "outcome": "Vendor records available for vendor-level planning.",
+    "rootCause": "Vendor-level budgets need vendor records; checking the list avoids creating duplicates from planning.",
+    "ifSkipped": "Duplicate vendors are created, which later cause A/P duplicate payment risk.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — vendor master controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Vendors list"
+    ],
+    "redFlags": [
+      "Vendors created from planning without master data review"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_adding_vendor_supplier_records": {
+    "purpose": "Adds a vendor record from the planning setup area, for example a new contractor included in next year's budget.",
+    "outcome": "The vendor exists for planning and later for A/P.",
+    "rootCause": "New contracts planned for the budget year may involve new vendors; adding them must still follow vendor master controls (W-9, verification).",
+    "ifSkipped": "Vendors are created without verification, bypassing A/P vendor controls.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — vendor master controls",
+      "IRS W-9 requirements"
+    ],
+    "stakeholders": [
+      "Vendor master team"
+    ],
+    "reports": [
+      "Vendors list"
+    ],
+    "redFlags": [
+      "Vendors added without TIN"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_editing_vendor_records": {
+    "purpose": "Edits a vendor record from the Forecasting & Planning setup area — for example updating contract terms that drive a contract-services budget line — subject to the same vendor master controls as A/P.",
+    "outcome": "Vendor details stay current for both planning and payment.",
+    "rootCause": "Vendor edits affect payments and 1099s; even when made from planning they must follow vendor change controls.",
+    "ifSkipped": "Vendor changes made from planning bypass A/P change controls, including bank-detail verification.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — vendor change controls"
+    ],
+    "stakeholders": [
+      "Vendor master team"
+    ],
+    "reports": [
+      "Vendor change log"
+    ],
+    "redFlags": [
+      "Bank detail changes made from planning screens"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_viewing_vendor_supplier_records": {
+    "purpose": "Views vendor records from planning to confirm vendor details used in budget assumptions.",
+    "outcome": "Budget assumptions tied to correct vendor information.",
+    "rootCause": "Checking vendor records confirms the right contractor is associated with contract-based budget lines.",
+    "ifSkipped": "Budget lines reference the wrong vendor.",
+    "glAccounts": [
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Vendors list"
+    ],
+    "redFlags": [
+      "Inactive vendors referenced in budgets"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_deleting_or_inactivating_a_vendor": {
+    "purpose": "Deletes or inactivates a vendor from the planning setup area — inactivating vendors with payment history, and deleting only records created in error.",
+    "outcome": "Inactive vendors are no longer used in plans or payments.",
+    "rootCause": "Vendors with payment history must be inactivated rather than deleted to preserve A/P and 1099 history.",
+    "ifSkipped": "Obsolete vendors remain usable or history is lost.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "Record retention",
+      "IRS 1099 records"
+    ],
+    "stakeholders": [
+      "Vendor master team"
+    ],
+    "reports": [
+      "Vendors list"
+    ],
+    "redFlags": [
+      "Deleting vendors with payment history"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_vendor_supplier_information_page": {
+    "purpose": "The vendor record page reached from planning setup, showing contact, payment terms and contract details that planners use to budget contract services such as landscaping or elevator maintenance.",
+    "outcome": "Full vendor detail available during planning.",
+    "rootCause": "Planners need vendor details (contract terms, payment terms) to budget contract services accurately.",
+    "ifSkipped": "Contract budgets built without contract detail.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Vendors list"
+    ],
+    "redFlags": [
+      "Vendor records missing contract information"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_customers": {
+    "purpose": "The Customers dimension as used in budgeting — for commercial tenants, affiliates or ancillary contract partners whose revenue is budgeted by customer.",
+    "outcome": "Revenue from specific customers (e.g., a laundry contractor or cell tower) budgeted and tracked individually.",
+    "rootCause": "Ancillary revenue contracts have specific terms and escalations; budgeting them by customer ties the budget to the contract.",
+    "ifSkipped": "Contract revenue is budgeted as a lump and escalations are missed.",
+    "glAccounts": [
+      "4100 Other Income",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 606 / ASC 842 — contract revenue"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer-level revenue budget"
+    ],
+    "redFlags": [
+      "Contract escalations not reflected"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_customers_list": {
+    "purpose": "The customers list reached from planning setup to confirm customers exist for customer-level budgets.",
+    "outcome": "Customer records available for revenue planning.",
+    "rootCause": "Customer-level revenue budgets require customer records; checking prevents duplicates.",
+    "ifSkipped": "Duplicate customers created, complicating A/R.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "Duplicate customers"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_adding_customers": {
+    "purpose": "Adds a customer record from planning, for example a new ancillary services partner included in next year's revenue budget.",
+    "outcome": "New revenue partners exist for planning and billing.",
+    "rootCause": "New contracts planned for the year need customer records before revenue can be budgeted and later billed.",
+    "ifSkipped": "Planned revenue cannot be tied to a customer.",
+    "glAccounts": [
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "Customers created without contract terms"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_viewing_or_editing_a_customer": {
+    "purpose": "Views or edits a customer record from planning setup — for example updating a laundry or cell-tower contract's escalation terms that drive next year's ancillary revenue budget.",
+    "outcome": "Customer details kept current for planning and billing.",
+    "rootCause": "Contract changes (renewals, rate changes) must be reflected on the customer record to budget and bill correctly.",
+    "ifSkipped": "Revenue budgets and billing continue on outdated contract terms.",
+    "glAccounts": [
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "Expired contracts still active"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_deleting_or_inactivating_a_customer": {
+    "purpose": "Deletes or inactivates a customer record from planning setup when a contract ends, inactivating customers with A/R history rather than deleting them.",
+    "outcome": "Only active customers used in planning.",
+    "rootCause": "Customers with invoices and payments must be inactivated so A/R history, aging and audit trails remain intact; deleting them would orphan their transaction history.",
+    "ifSkipped": "Obsolete customers budgeted or A/R history lost.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "Deleting customers with open balances"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_customer_information_page": {
+    "purpose": "The customer record page reached from planning, with contact, terms and document settings.",
+    "outcome": "Full customer detail available for revenue planning.",
+    "rootCause": "Revenue planning for contract customers depends on accurate terms stored on the customer record.",
+    "ifSkipped": "Revenue budgets built without contract terms.",
+    "glAccounts": [
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "Missing billing terms"
+    ],
+    "confidence": "medium"
+  },
+  "scr_budgeting_employees": {
+    "purpose": "The Employees dimension used to create and edit employee records so payroll can be planned and reported by employee.",
+    "outcome": "Employee records available for payroll planning and allocation.",
+    "rootCause": "Payroll planning needs an employee dimension to budget and allocate each person's cost to properties.",
+    "ifSkipped": "Payroll cannot be planned or allocated by employee, so payroll budgets are rough totals.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR",
+      "System administrator"
+    ],
+    "reports": [
+      "Employees list"
+    ],
+    "redFlags": [
+      "Employees without property assignment"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_importing_employees": {
+    "purpose": "Imports employee records in bulk from a template, typically from the HR or payroll system at budget season.",
+    "outcome": "An up-to-date employee roster loaded for payroll planning.",
+    "rootCause": "Rosters change constantly; importing from HR is the only practical way to start the payroll budget from current staff.",
+    "ifSkipped": "Payroll budgets start from outdated rosters.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Import not reconciled to HR headcount"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_employees_list_2": {
+    "purpose": "The employees list within Forecasting & Planning dimensions setup, used to confirm which employee records exist, their positions and locations before payroll is calculated.",
+    "outcome": "Visibility of employee records available to planning.",
+    "rootCause": "Confirming the roster before payroll calculation catches missing or terminated staff.",
+    "ifSkipped": "Payroll is calculated on a roster that still includes departed staff or misses new hires.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Employees list"
+    ],
+    "redFlags": [
+      "Terminated employees still active"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_adding_an_employee": {
+    "purpose": "Adds an employee in dimensions setup — for planned hires or when HR import is not used.",
+    "outcome": "Planned staff available for payroll budgets.",
+    "rootCause": "Planned hires and open positions must exist as employee records before the payroll model can budget them; otherwise the payroll budget reflects only current staff and understates next year's cost.",
+    "ifSkipped": "Planned hires are omitted and payroll is under-budgeted.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Employees list"
+    ],
+    "redFlags": [
+      "Manual employees duplicating imported ones"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_viewing_and_editing_employees": {
+    "purpose": "Views or edits an employee's dimension record — position, home location, status and department — which determines where that person's payroll is budgeted.",
+    "outcome": "Employee attributes correct for planning.",
+    "rootCause": "Location and status drive where payroll is budgeted; errors send payroll to the wrong property.",
+    "ifSkipped": "Payroll is budgeted at the wrong property or department.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Employees list"
+    ],
+    "redFlags": [
+      "Employees assigned to sold properties"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_deleting_employees": {
+    "purpose": "Deletes employee dimension records created in error, such as duplicates from a manual entry and a later HR import of the same person.",
+    "outcome": "Erroneous employees removed from planning.",
+    "rootCause": "Duplicate employee records double-count that person's wages, taxes and benefits in the payroll budget, overstating payroll for the property.",
+    "ifSkipped": "Payroll is overstated by duplicate employees and the property budget looks unaffordable.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Employees list"
+    ],
+    "redFlags": [
+      "Deleting employees with payroll history"
+    ],
+    "confidence": "high"
+  },
+  "scr_budgeting_employee_information_page": {
+    "purpose": "The employee record page in dimensions setup holding position, location, department and status — the attributes the payroll model uses to calculate and place each person's cost.",
+    "outcome": "Complete employee attributes for planning.",
+    "rootCause": "Employee attributes drive payroll calculation and allocation; completeness matters.",
+    "ifSkipped": "Payroll calculations miss attributes and place costs at the wrong property or department.",
+    "glAccounts": [
+      "6010 Payroll"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "HR"
+    ],
+    "reports": [
+      "Employees list"
+    ],
+    "redFlags": [
+      "Missing location or position"
+    ],
+    "confidence": "high"
+  }
+}

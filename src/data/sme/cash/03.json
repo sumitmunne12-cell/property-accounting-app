@@ -1,0 +1,1202 @@
+{
+  "scr_cash_about_manual_payments": {
+    "purpose": "Explains when to deviate from the normal A/P payment cycle and record a manual payment — a wire to a tax collector, a handwritten emergency check to a plumber, or an online payment to a utility to avoid shutoff.",
+    "outcome": "Staff know that off-cycle payments must still be recorded against the invoice, so the vendor balance and bank rec stay correct.",
+    "rootCause": "Emergencies force payments outside the check run. These are exactly the payments most likely to be duplicated later (the invoice still looks open) or to escape approval, so the process for recording them must be explicit.",
+    "ifSkipped": "The invoice is paid again in the next check run, and the bank rec shows an unexplained withdrawal.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash",
+      "6210 Utilities",
+      "6620 Real Estate Taxes"
+    ],
+    "gaap": [
+      "COSO 2013 — duplicate payment prevention",
+      "UCC Article 4A — wire transfers"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "A/P team",
+      "Property manager"
+    ],
+    "reports": [
+      "Manual payments list",
+      "Vendor aging",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Manual payments without an approved invoice",
+      "Manual payments recorded days after the bank debit"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_manual_payments_list": {
+    "purpose": "Lists manual payments — wires, handwritten checks and online payments recorded outside the A/P payment run — with status (draft, posted, voided) for review and follow-up.",
+    "outcome": "A register of off-cycle disbursements that can be reviewed for approval and matched to the bank.",
+    "rootCause": "Manual payments bypass the controls built into check runs (batch approval, positive pay file). A dedicated list lets reviewers inspect them separately, which auditors expect.",
+    "ifSkipped": "Off-cycle payments escape review, a common path for fraudulent disbursements.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — review of non-routine disbursements"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Onshore reviewer",
+      "A/P team"
+    ],
+    "reports": [
+      "Manual payments list"
+    ],
+    "redFlags": [
+      "Draft manual payments left unposted after the bank debit cleared"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_manual_payment": {
+    "purpose": "Records a manual payment — payee, bank account, method (wire, handwritten check, online bill pay), date, amount and the specific A/P invoices it settles, adding rows when one payment covers several invoices.",
+    "outcome": "The off-cycle payment closes the exact invoices it paid and reduces cash on the date the bank actually debited it.",
+    "rootCause": "Linking the manual payment to the invoices is the only thing that stops those invoices from being selected again in the next scheduled check run. Recording the true bank date keeps the bank reconciliation matching.",
+    "ifSkipped": "The same invoice is paid twice — once by wire, once by check — and recovering the duplicate from the vendor can take months.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — duplicate payment prevention"
+    ],
+    "stakeholders": [
+      "A/P team",
+      "Treasury"
+    ],
+    "reports": [
+      "Manual payments list",
+      "Vendor ledger",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Manual payments posted 'on account' without invoice links",
+      "Payment date different from the bank debit date"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_posting_a_manual_payment": {
+    "purpose": "Posts a manual payment to the GL; how it posts depends on whether it pays existing A/P invoices (DR A/P / CR Cash) or is a direct expense payment (DR Expense / CR Cash).",
+    "outcome": "The payment reaches the GL with the correct offset.",
+    "rootCause": "Direct expense postings skip A/P and its controls; paying through invoices keeps vendor history and 1099 data complete.",
+    "ifSkipped": "Draft manual payments never reach the GL and the bank rec shows unexplained debits.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash",
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "IRC §6041 — 1099 reporting depends on payments recorded against vendors"
+    ],
+    "stakeholders": [
+      "A/P team",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "GL Detail",
+      "1099 vendor report"
+    ],
+    "redFlags": [
+      "Direct-expense manual payments to 1099 vendors"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_voiding_a_manual_payment": {
+    "purpose": "Voids a posted manual payment — returned wire, stopped check, duplicate entry — reopening the invoices it paid, since manual payments cannot be edited or deleted after posting.",
+    "outcome": "The payment's effect is reversed with an audit trail and the invoices are payable again.",
+    "rootCause": "Posted payments are locked to protect the cash audit trail; voiding is the controlled correction.",
+    "ifSkipped": "Returned or duplicate payments stay recorded, overstating payments and understating A/P.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "A/P team",
+      "Treasury"
+    ],
+    "reports": [
+      "Manual payments list",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Voids without bank evidence of return"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_editing_or_deleting_manual_payments": {
+    "purpose": "Explains which manual payments can be edited or deleted — only drafts — and that posted payments must be voided instead.",
+    "outcome": "Users correct draft errors freely but use voids for posted payments.",
+    "rootCause": "Allowing edits to posted cash transactions would let recorded disbursements be altered invisibly.",
+    "ifSkipped": "Users attempt workarounds (JEs) that break the payment history.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — change controls on posted transactions"
+    ],
+    "stakeholders": [
+      "A/P team"
+    ],
+    "reports": [
+      "Manual payments list"
+    ],
+    "redFlags": [
+      "Correcting JEs posted against cash instead of voids"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_a_manual_payment": {
+    "purpose": "Views a manual payment's details — payee, method, invoices paid, GL postings, status.",
+    "outcome": "Reviewers and vendor inquiries can confirm exactly what was paid off-cycle.",
+    "rootCause": "Manual payments get scrutiny from reviewers and auditors; detail must be available on demand.",
+    "ifSkipped": "Questions about off-cycle payments cannot be answered quickly.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "AU-C 500 — audit evidence"
+    ],
+    "stakeholders": [
+      "Onshore reviewer",
+      "A/P team"
+    ],
+    "reports": [
+      "Manual payment detail"
+    ],
+    "redFlags": [
+      "Manual payments without attached approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reclassifying_an_a_p_invoice_paid_by_a_manual_payment": {
+    "purpose": "Reclassifies the coding (property, GL account) of an invoice that was paid manually, without affecting the payment.",
+    "outcome": "Expense coding is corrected while the payment history stays intact.",
+    "rootCause": "Emergency payments are often coded hastily; reclassing corrects the expense without voiding and re-paying.",
+    "ifSkipped": "Mis-coded emergency payments distort budget variances.",
+    "glAccounts": [
+      "6110 Repairs & Maintenance",
+      "6210 Utilities",
+      "1530 Building Improvements"
+    ],
+    "gaap": [
+      "ASC 250 — correction of classification errors"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Budget vs Actual",
+      "GL Detail"
+    ],
+    "redFlags": [
+      "Reclasses into closed periods"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_manual_payment_page": {
+    "purpose": "The page for recording a manual payment's header (payee, bank, method, date) and lines (invoices or accounts paid).",
+    "outcome": "A complete manual payment record ready to post.",
+    "rootCause": "Capturing method and reference (wire confirmation number, check number) supports matching to the bank statement.",
+    "ifSkipped": "Manual payments lack references and are hard to match.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "A/P team",
+      "Treasury"
+    ],
+    "reports": [
+      "Manual payments list"
+    ],
+    "redFlags": [
+      "Missing wire confirmation references"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_void_payment_date_box": {
+    "purpose": "Dialog to choose the void date for a manual payment, which determines the period in which the reversal posts.",
+    "outcome": "Voids post in the correct period — the current open period for returned payments, not a closed one.",
+    "rootCause": "Voiding into a closed or reconciled period breaks prior bank recs and reported financials; choosing the date deliberately avoids that.",
+    "ifSkipped": "Voids land in reconciled periods and prior recs no longer balance.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 250 — period of correction",
+      "COSO 2013 — cutoff"
+    ],
+    "stakeholders": [
+      "A/P team"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Void dates in closed periods"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_other_receipts": {
+    "purpose": "Explains other receipts — cash received that is not tied to a customer invoice, such as insurance claim proceeds, vendor refunds, utility deposit refunds, laundry income, interest or owner contributions.",
+    "outcome": "Miscellaneous cash receipts are recorded to the right income, liability or equity account.",
+    "rootCause": "Not every receipt comes through resident A/R. Without a dedicated receipt type, these appear as unexplained bank deposits.",
+    "ifSkipped": "Bank recs show unexplained deposits and income is misclassified.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "4100 Other Income",
+      "3010 Partners' Capital"
+    ],
+    "gaap": [
+      "ASC 606 / ASC 610-30 — classification of receipts",
+      "ASC 230 — cash flow classification"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Other receipts list",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Owner contributions recorded as income"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_other_receipts_list": {
+    "purpose": "Lists other (non-customer) receipts — insurance proceeds, vendor refunds, laundry and vending income, interest, owner contributions — with actions to add, import, edit, delete or reverse.",
+    "outcome": "A separate register of non-routine receipts that reviewers can inspect for classification.",
+    "rootCause": "Non-routine receipts are where income misclassification happens. A separate list lets the reviewer check each one, rather than having them buried among hundreds of resident payments.",
+    "ifSkipped": "Material one-off receipts are never reviewed, and equity or liability receipts end up in income.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "4100 Other Income",
+      "3010 Partners' Capital"
+    ],
+    "gaap": [
+      "COSO 2013 — review of non-routine transactions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Other receipts list"
+    ],
+    "redFlags": [
+      "Large receipts coded to miscellaneous income without explanation"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_receipt": {
+    "purpose": "Records a non-customer receipt — source, bank account, amount, date and GL distribution.",
+    "outcome": "The receipt is recorded in cash and the correct offsetting account.",
+    "rootCause": "Correct classification at entry is essential: insurance proceeds may offset a casualty receivable, vendor refunds reduce expense, contributions increase equity.",
+    "ifSkipped": "Receipts post to wrong accounts, distorting income and equity.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "4100 Other Income",
+      "Insurance claims receivable",
+      "3010 Partners' Capital"
+    ],
+    "gaap": [
+      "ASC 610-30 — insurance recoveries",
+      "ASC 505 — equity contributions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Other receipts list"
+    ],
+    "redFlags": [
+      "Vendor refunds recorded as income instead of expense reduction"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_or_editing_a_receipt": {
+    "purpose": "Views or edits an other receipt before it posts — payer, date, bank account and GL distribution — to correct classification or amounts.",
+    "outcome": "Receipt coding is corrected before it reaches the GL, avoiding reversal entries.",
+    "rootCause": "Classification of unusual receipts is often decided after the reviewer weighs in (is an insurance check a recovery of a casualty receivable or business-interruption income?). Editing before posting lets that decision be applied cleanly.",
+    "ifSkipped": "Wrong coding is posted and must be reversed, adding noise to the audit trail.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "4100 Other Income",
+      "Insurance claims receivable"
+    ],
+    "gaap": [
+      "ASC 610-30 — insurance recoveries"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Other receipts list"
+    ],
+    "redFlags": [
+      "Edits made after the receipt was matched to the bank"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reversing_a_receipt": {
+    "purpose": "Reverses a posted other receipt, creating an offsetting entry that keeps the audit trail.",
+    "outcome": "Incorrect receipts are cancelled visibly.",
+    "rootCause": "Posted cash receipts must remain traceable; reversal cancels their effect without deleting history.",
+    "ifSkipped": "Wrong receipts remain in cash and income.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Other receipts list"
+    ],
+    "redFlags": [
+      "Reversals dated in reconciled periods"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_a_receipt": {
+    "purpose": "Deletes an other receipt that is still in Approved status (not yet applied or posted) — for example an insurance check entered twice or entered on the wrong property.",
+    "outcome": "Erroneous or duplicate receipts disappear before they ever affect cash or the GL.",
+    "rootCause": "Before posting, a receipt has no GL effect, so deleting it leaves no gap in the audit trail. After posting, the same correction must be a reversal. The status rule keeps that line clear.",
+    "ifSkipped": "Duplicate receipts inflate cash and income, and the bank rec shows a book deposit that never reaches the bank.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "COSO 2013 — correction of unposted transactions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Other receipts list"
+    ],
+    "redFlags": [
+      "Deleted receipts that had already been matched in a bank rec"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_other_receipts_information_page": {
+    "purpose": "The record page for a non-customer receipt showing payer, bank account, date, amount, GL distribution lines, status and attachments such as the insurance settlement letter or vendor refund notice.",
+    "outcome": "One place that documents what the receipt was and why it was coded where it was.",
+    "rootCause": "Other receipts are frequently large and unusual (insurance claim proceeds, tax refunds, utility rebates). Reviewers and auditors need the source document next to the coding to judge whether income, a receivable or equity was credited.",
+    "ifSkipped": "Unusual receipts cannot be supported during review, and misclassification (e.g., owner contributions booked as income) goes undetected.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "4100 Other Income",
+      "Insurance claims receivable",
+      "3010 Partners' Capital"
+    ],
+    "gaap": [
+      "ASC 610-30 — insurance recoveries",
+      "ASC 505 — contributions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Other receipts list"
+    ],
+    "redFlags": [
+      "Receipts over a materiality threshold without an attachment"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_available_cash_locations_list": {
+    "purpose": "Lists locations (properties) set up for available cash reporting — cash on hand less holdbacks such as security deposits, reserves, payables and required working capital — used to decide distributions or funding requests.",
+    "outcome": "A per-property view of how much cash is actually available to distribute to owners or how much funding is needed.",
+    "rootCause": "Book cash is not free cash: security deposits, lender reserves, outstanding payables and minimum working capital must be held back. Owners want monthly distributions of excess cash and need a reliable calculation.",
+    "ifSkipped": "Distributions are made from cash that is restricted or needed for payables, forcing emergency capital calls.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable",
+      "2110 Resident Security Deposits",
+      "3020 Distributions"
+    ],
+    "gaap": [
+      "Operating agreement distribution provisions",
+      "Loan agreement cash management requirements"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Treasury",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Available cash report",
+      "Distribution calculation"
+    ],
+    "redFlags": [
+      "Distributions exceeding available cash",
+      "Properties with negative available cash not flagged for funding"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_configuring_available_cash_in_cash_management": {
+    "purpose": "Configures the available cash calculation — which balances count, which holdbacks subtract, and any custom fields for entity-specific holdbacks.",
+    "outcome": "An available cash formula that reflects each owner's distribution policy.",
+    "rootCause": "Owners define available cash differently (some hold one month of operating expenses, others a fixed reserve). Configuration encodes those rules.",
+    "ifSkipped": "Available cash is calculated inconsistently with owner agreements.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "Operating agreement distribution waterfall"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Holdbacks missing security deposit liabilities"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_an_available_cash_location": {
+    "purpose": "Adds a property to available cash reporting with its bank accounts and holdback settings.",
+    "outcome": "The property's distributable cash can be calculated monthly.",
+    "rootCause": "New acquisitions need to be included in distribution calculations from their first month.",
+    "ifSkipped": "New properties are excluded from distributions or funding analysis.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Operating agreement distribution provisions"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Properties with cash but no available cash setup"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_and_editing_an_available_cash_location": {
+    "purpose": "Reviews or updates a property's available cash setup — which bank accounts count, which holdbacks apply, and which external balances (lender reserves) are included.",
+    "outcome": "The property's available cash reflects current loan and owner requirements.",
+    "rootCause": "A refinancing often changes reserve requirements and bank accounts. If the setup is not updated, available cash is calculated against the old loan's rules.",
+    "ifSkipped": "Distributions are calculated on outdated holdbacks, either trapping cash or releasing cash that the new loan restricts.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve requirements"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Asset manager"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Setup unchanged after a refinancing or new loan"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_an_available_cash_location": {
+    "purpose": "Removes a location from available cash reporting, typically after the property is sold.",
+    "outcome": "Sold properties no longer appear in distribution calculations.",
+    "rootCause": "Sold properties clutter available cash reports and can be mistakenly included in distributions.",
+    "ifSkipped": "Stale locations confuse distribution decisions.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Locations deleted before final distributions and close-out"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_available_cash_location_page": {
+    "purpose": "The page where a location's bank accounts, holdbacks and external balances are defined for available cash.",
+    "outcome": "A complete definition of the property's distributable cash inputs.",
+    "rootCause": "Each input (bank balances, holdbacks, external balances like lender-held reserves) must be defined for the calculation to be accurate.",
+    "ifSkipped": "Available cash omits inputs and misstates distributable cash.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2110 Resident Security Deposits"
+    ],
+    "gaap": [
+      "Operating agreement distribution provisions"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Missing bank accounts in the location setup"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_printing_or_exporting_the_available_cash_report_for_a_location": {
+    "purpose": "Prints or exports one property's available cash report — book cash less holdbacks, plus external balances — to attach to a distribution recommendation or a funding request to the owner.",
+    "outcome": "A documented calculation the asset manager can approve for a distribution or a capital call.",
+    "rootCause": "Owners approve distributions and fund shortfalls based on written support. The export captures the calculation at the moment of the decision, which matters because cash changes daily.",
+    "ifSkipped": "Distribution and funding requests go out without support and are delayed or challenged by the owner.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "3020 Distributions",
+      "3010 Partners' Capital"
+    ],
+    "gaap": [
+      "Operating agreement distribution provisions"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Treasury"
+    ],
+    "reports": [
+      "Available cash report",
+      "Distribution request"
+    ],
+    "redFlags": [
+      "Report run before month-end payables were posted"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_recalculating_available_cash_locations": {
+    "purpose": "Recalculates available cash after new transactions post, since balances change throughout the month.",
+    "outcome": "Available cash reflects the latest cash and payables before a distribution decision.",
+    "rootCause": "Distribution decisions made on stale calculations can over-distribute when large payables post after the last calculation.",
+    "ifSkipped": "Over-distribution and subsequent funding shortfalls.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "Operating agreement distribution provisions"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Distribution approved from a calculation more than a few days old"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_removing_and_hiding_holdbacks_from_the_available_cash_report": {
+    "purpose": "Removes or hides a holdback line from the available cash report — for example after a lender releases a reserve requirement or an operating reserve policy changes.",
+    "outcome": "The report stops withholding cash that is no longer restricted, releasing it for distribution.",
+    "rootCause": "Obsolete holdbacks trap cash and delay distributions owners are entitled to. But hiding a holdback that is still required is the most direct way to over-distribute restricted cash, so removals need documented approval.",
+    "ifSkipped": "Either cash is held unnecessarily, or a required holdback is hidden and restricted cash is distributed in breach of the loan agreement.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "3020 Distributions"
+    ],
+    "gaap": [
+      "Loan agreement reserve release provisions"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Asset manager"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Holdbacks hidden without lender release or owner approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_transferring_holdbacks_to_a_separate_cash_account": {
+    "purpose": "Moves held-back funds into a separate bank account — for example sweeping security deposits into a trust account or funding a reserve account.",
+    "outcome": "Restricted funds are physically segregated from operating cash.",
+    "rootCause": "Many states and lenders require restricted funds to be held in separate accounts, not just earmarked on a report.",
+    "ifSkipped": "Restricted funds remain commingled, violating trust or loan requirements.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash",
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "State security deposit trust requirements",
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Funds transfer list",
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Trust cash lower than deposit liability after transfer"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_available_cash_location_groups": {
+    "purpose": "Groups locations for available cash reporting — e.g., all properties of one owner or fund — to calculate distributions at owner level.",
+    "outcome": "Owner-level available cash for portfolio distributions.",
+    "rootCause": "Owners with multiple properties often distribute at fund level; grouping supports that view.",
+    "ifSkipped": "Portfolio distributions calculated manually.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "3020 Distributions"
+    ],
+    "gaap": [
+      "Fund operating agreement"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Treasury"
+    ],
+    "reports": [
+      "Available cash by group"
+    ],
+    "redFlags": [
+      "Groups mixing properties of different owners"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_an_available_cash_location_group": {
+    "purpose": "Creates an available cash location group by selecting the properties that belong to one owner, fund or JV, so distributable cash can be calculated at the level where distribution decisions are actually made.",
+    "outcome": "A named group (e.g., 'Fund III — Texas assets') whose combined available cash supports a single fund-level distribution or capital call.",
+    "rootCause": "Many institutional owners distribute or fund at the fund level, not property by property; a property with surplus cash may offset one with a shortfall under the fund's cash management policy. The group makes that consolidated view reproducible.",
+    "ifSkipped": "Fund-level distributions are calculated in spreadsheets from property reports, with a higher risk of omitting properties or double counting.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "3020 Distributions",
+      "3010 Partners' Capital"
+    ],
+    "gaap": [
+      "Fund / JV operating agreement distribution provisions"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Asset manager",
+      "Fund accountant"
+    ],
+    "reports": [
+      "Available cash by group",
+      "Distribution notice"
+    ],
+    "redFlags": [
+      "Group includes properties owned by a different fund",
+      "Newly acquired fund properties missing from the group"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_and_editing_an_available_cash_location_group": {
+    "purpose": "Reviews or changes which properties belong to an available cash location group, typically after an acquisition joins a fund or a disposition leaves it.",
+    "outcome": "Group membership matches the owner's current portfolio before the next distribution.",
+    "rootCause": "Portfolio composition changes constantly in institutional funds. A group that still includes a sold property, or misses a new one, produces the wrong fund-level distribution.",
+    "ifSkipped": "Fund distributions include cash from sold properties or exclude new ones.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "3020 Distributions"
+    ],
+    "gaap": [
+      "Fund operating agreement"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Asset manager"
+    ],
+    "reports": [
+      "Available cash by group"
+    ],
+    "redFlags": [
+      "Group changes not confirmed with the asset manager"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_an_available_cash_location_group": {
+    "purpose": "Deletes an available cash location group that is no longer used — for example after an owner sells its portfolio or a fund is wound down.",
+    "outcome": "Obsolete groups no longer appear when treasury selects a group for a distribution calculation.",
+    "rootCause": "Stale groups remain selectable and can be picked by mistake, especially by offshore staff unfamiliar with an owner's history, leading to distribution calculations for the wrong set of properties.",
+    "ifSkipped": "Distribution calculations run against obsolete groupings, and cash is proposed for distribution from properties that are no longer in the fund.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "3020 Distributions"
+    ],
+    "gaap": [
+      "COSO 2013 — master data maintenance"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Available cash by group"
+    ],
+    "redFlags": [
+      "Deleting groups still referenced by scheduled reports"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_available_cash_location_group_page": {
+    "purpose": "The group record page showing the member properties and settings of an available cash location group, used to confirm exactly which properties roll into an owner- or fund-level distributable cash figure.",
+    "outcome": "A transparent definition of group membership that the asset manager can verify before approving a distribution.",
+    "rootCause": "Distribution approvals depend on trusting that the group contains exactly the owner's properties. Membership errors move one owner's cash into another's distribution calculation.",
+    "ifSkipped": "Distributions are approved on groups whose membership nobody verified.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "3020 Distributions"
+    ],
+    "gaap": [
+      "Fund operating agreement"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Asset manager"
+    ],
+    "reports": [
+      "Available cash by group"
+    ],
+    "redFlags": [
+      "Group without an owner/fund identifier in its name"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_printing_or_exporting_the_available_cash_report_for_a_location_g": {
+    "purpose": "Prints or exports the available cash report for a location group to support a fund- or owner-level distribution or capital call.",
+    "outcome": "Group-level support for a consolidated distribution decision.",
+    "rootCause": "Fund-level distribution decisions need one document summarizing all properties' available cash. The group export provides it straight from the system rather than a hand-built roll-up.",
+    "ifSkipped": "Fund distributions are supported by spreadsheets that may not tie to property-level reports.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "3020 Distributions"
+    ],
+    "gaap": [
+      "Fund operating agreement"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Fund accountant",
+      "Treasury"
+    ],
+    "reports": [
+      "Available cash by group"
+    ],
+    "redFlags": [
+      "Group total not equal to the sum of property-level reports"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_bank_account_holdbacks_page": {
+    "purpose": "Enters holdbacks (amounts that must stay in the account, such as minimum balances, security deposits or reserve requirements) and external balances (e.g., lender-held reserves) per bank account.",
+    "outcome": "Available cash reflects both restrictions on book cash and cash held outside the property's accounts.",
+    "rootCause": "Some restrictions are not in the GL (a bank minimum balance) and some cash is held externally (lender reserves). Recording them here completes the available cash picture.",
+    "ifSkipped": "Available cash is overstated or understated.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "External balances not updated from servicer statements"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_defining_custom_names_for_bank_account_holdbacks": {
+    "purpose": "Renames the default holdback categories to match the company's terminology (e.g., 'Operating Reserve', 'Lender Minimum Balance').",
+    "outcome": "Holdbacks on reports are labeled in terms owners recognize.",
+    "rootCause": "Owners review available cash reports; unfamiliar labels cause questions and delays.",
+    "ifSkipped": "Confusing labels on owner-facing reports.",
+    "glAccounts": [],
+    "gaap": [
+      "Owner reporting conventions"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Asset manager"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Custom names inconsistent across properties"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_manually_entering_and_editing_bank_account_holdbacks_and_externa": {
+    "purpose": "Manually enters or updates holdback and external balance amounts per bank account.",
+    "outcome": "Current holdback and external balances in available cash.",
+    "rootCause": "External balances (lender reserves) change monthly per servicer statements and must be updated manually.",
+    "ifSkipped": "Available cash uses stale external balances.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "1330 Tax & Insurance Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reporting"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "External balances not matching servicer statements"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_importing_bank_account_holdbacks_and_external_balances": {
+    "purpose": "Imports holdbacks (minimum balances, reserve requirements) and external balances (lender-held reserve and escrow balances from servicer statements) for many bank accounts at once from a template.",
+    "outcome": "Available cash for the whole portfolio reflects current servicer balances and holdbacks after one import.",
+    "rootCause": "External balances change monthly with each servicer statement, and portfolios may have hundreds of accounts. Manual updates get skipped, leaving available cash on stale figures.",
+    "ifSkipped": "Available cash is calculated on out-of-date reserve balances, and distributions are over- or under-stated.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "1330 Tax & Insurance Escrow",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Loan agreement reserve reporting"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results",
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Import totals not tied to servicer statements"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_generate_file_list": {
+    "purpose": "Lists approved vendor electronic payments (ACH/EFT) awaiting inclusion in a payment file to be sent to the bank.",
+    "outcome": "A queue of electronic payments ready for file generation before the bank cut-off.",
+    "rootCause": "Electronic payments must be batched into a NACHA-format file for the bank. The list shows what will go in the next file so nothing is missed or sent twice.",
+    "ifSkipped": "Approved electronic payments are not transmitted and vendors are paid late.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "NACHA Operating Rules"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "A/P team"
+    ],
+    "reports": [
+      "Generate file list"
+    ],
+    "redFlags": [
+      "Payments waiting in the list past their due date"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_generating_a_payment_file": {
+    "purpose": "Generates the electronic payment (ACH) file from selected payments for transmission to the bank.",
+    "outcome": "A bank-ready payment file that pays vendors electronically.",
+    "rootCause": "Banks accept ACH instructions only in NACHA format files. Generating from the system ensures payments match approved invoices.",
+    "ifSkipped": "Vendors are not paid or payments are keyed manually into bank portals, bypassing controls.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "NACHA Operating Rules",
+      "COSO 2013 — payment authorization"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "A/P team"
+    ],
+    "reports": [
+      "Payment file"
+    ],
+    "redFlags": [
+      "Files generated by the same person who approved the invoices"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_generate_file_page": {
+    "purpose": "Filters the list of approved electronic payments by bank account, payment date and payee before generating an ACH file, so each file contains only one bank account's payments for one cut-off.",
+    "outcome": "Clean, single-account payment files that the bank will accept.",
+    "rootCause": "ACH files are tied to one originating bank account. Mixing accounts, or pulling in payments dated for next week, causes bank rejections or premature payment and cash shortfalls.",
+    "ifSkipped": "Files are rejected, or vendors are paid early from accounts without enough funds.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "NACHA Operating Rules"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Generate file list"
+    ],
+    "redFlags": [
+      "Files spanning multiple originating accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_customizing_the_generate_file_list": {
+    "purpose": "Customizes the columns and filters on the ACH generate file list so the reviewer sees payee, payee bank details, amount, bank account and due date before releasing payments.",
+    "outcome": "An effective pre-release review screen that makes wrong payees, wrong amounts and changed bank details visible.",
+    "rootCause": "The generate file list is the last checkpoint before money leaves. Business email compromise frauds work by quietly changing a vendor's bank details; a review view that shows payee bank information makes that change visible.",
+    "ifSkipped": "Reviewers approve files from a view that hides the information needed to spot fraud or errors, and misdirected payments are rarely recoverable.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — review before disbursement",
+      "NACHA account validation rules"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Generate file list"
+    ],
+    "redFlags": [
+      "Review view without payee bank account columns"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_payment_file_list": {
+    "purpose": "Lists generated electronic payment files with status — generated, downloaded, uploaded, confirmed.",
+    "outcome": "Visibility of which files reached the bank and which were confirmed.",
+    "rootCause": "Files can be generated but never uploaded, or uploaded twice. Tracking status prevents missed or duplicate payments.",
+    "ifSkipped": "Duplicate uploads pay vendors twice; missed uploads leave vendors unpaid.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — duplicate payment prevention"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Payment file list"
+    ],
+    "redFlags": [
+      "Files generated but not confirmed"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_the_details_of_a_payment_file": {
+    "purpose": "Shows the payments contained in a file — payee, amount, account — to verify before or after transmission.",
+    "outcome": "File content can be checked against approved payments.",
+    "rootCause": "Verifying file contents catches tampering or errors between generation and upload.",
+    "ifSkipped": "Altered files could be sent without detection.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — fraud controls"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Payment file detail"
+    ],
+    "redFlags": [
+      "File totals different from the approved batch"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_downloading_a_payment_file": {
+    "purpose": "Downloads a generated ACH payment file so it can be uploaded manually through the bank's treasury portal when direct SFTP transmission is not set up.",
+    "outcome": "The payment file reaches the bank through the portal before the ACH cut-off.",
+    "rootCause": "Many regional banks used by property owners only accept portal uploads. A downloaded file is a plain-text instruction to move money, so it must be handled so no one can alter payee accounts between download and upload.",
+    "ifSkipped": "Vendors are not paid on time, or a file altered on a shared drive sends money to a fraudster's account.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — file integrity and IT general controls"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Payment file list"
+    ],
+    "redFlags": [
+      "Downloaded files saved to shared network drives",
+      "Portal upload totals different from the generated file"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_confirming_an_electronic_payment": {
+    "purpose": "Marks electronic (ACH/EFT) payments in a file as confirmed once the bank acknowledges receipt and acceptance of the file, moving them from 'sent' to 'completed'.",
+    "outcome": "Only payments the bank actually accepted are treated as completed and matched in the bank reconciliation.",
+    "rootCause": "A generated file is not a completed payment: banks can reject whole files (format errors, missing approvals) or individual entries. Confirmation against the bank's acknowledgment is the step that proves the vendor will be paid.",
+    "ifSkipped": "Rejected files go unnoticed, vendors remain unpaid while the books show them paid, and late fees or service holds follow.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "NACHA Operating Rules — file acknowledgments and rejects"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "A/P team"
+    ],
+    "reports": [
+      "Payment file list",
+      "Bank acknowledgment report"
+    ],
+    "redFlags": [
+      "Payments confirmed without a bank acknowledgment on file"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_uploading_payment_files_to_sftp": {
+    "purpose": "Transmits generated ACH payment files directly to the bank over SFTP from RealPage, avoiding manual download and portal upload.",
+    "outcome": "Payment files reach the bank unaltered and on schedule without passing through a user's desktop.",
+    "rootCause": "Every manual touch of a payment file is an opportunity to alter payee accounts. Direct system-to-bank transmission removes that risk and is a control many owners and auditors expect.",
+    "ifSkipped": "Files go through manual handling, where they can be altered or delayed past the ACH cut-off.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — IT general controls over interfaces"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "IT / system administrator"
+    ],
+    "reports": [
+      "Payment file list"
+    ],
+    "redFlags": [
+      "SFTP credentials shared or not rotated"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_a_payment_file": {
+    "purpose": "Deletes a generated electronic payment file that has not been sent to the bank, returning its payments to the generate list so a corrected file can be created.",
+    "outcome": "An incorrect file is removed before transmission, with its payments available for regeneration.",
+    "rootCause": "When a file is generated with the wrong bank account or payments, it must be removed before a replacement is created — otherwise both files may be uploaded, paying every vendor in it twice.",
+    "ifSkipped": "Two files for the same payments exist and a double upload pays vendors twice; recovering ACH duplicates requires vendor cooperation.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — duplicate payment prevention"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Payment file list"
+    ],
+    "redFlags": [
+      "Deleting a file the bank already acknowledged"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_payment_file_details": {
+    "purpose": "Shows file-level details of an electronic payment file — description, originating bank account, creation date, total amount and number of entries — used to match against the bank's file acknowledgment.",
+    "outcome": "Evidence that the bank received the complete file (same total and entry count) that the system generated.",
+    "rootCause": "Banks acknowledge files by control totals and entry counts. Comparing these is how treasury proves no entries were dropped or added between generation and processing.",
+    "ifSkipped": "Partial file processing or tampering goes unnoticed, and some vendors are unpaid without anyone knowing.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "NACHA Operating Rules — batch control totals"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Payment file details",
+      "Bank acknowledgment"
+    ],
+    "redFlags": [
+      "Entry count or total different from the bank acknowledgment"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_voiding_electronic_payments": {
+    "purpose": "Voids electronic payments that were rejected or returned by the bank (wrong account, closed account) so the invoices can be repaid.",
+    "outcome": "Returned ACH payments are reversed and invoices reopened.",
+    "rootCause": "ACH returns happen days after transmission. Unless voided, the vendor looks paid while the money came back.",
+    "ifSkipped": "Vendors remain unpaid while books show them paid; cash is understated.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "NACHA return codes (R01-R85)"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "A/P team"
+    ],
+    "reports": [
+      "Bank reconciliation",
+      "Vendor aging"
+    ],
+    "redFlags": [
+      "ACH returns on the bank statement not voided in the system"
+    ],
+    "confidence": "high"
+  }
+}

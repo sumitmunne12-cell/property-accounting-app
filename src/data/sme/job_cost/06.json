@@ -1,0 +1,865 @@
+{
+  "scr_jobcost_tracking_job_expenses_for_a_unit": {
+    "purpose": "Tracks the job costs incurred for a specific unit — for example what was spent renovating unit 214 — using the units linked to a renovation job.",
+    "outcome": "Unit-level renovation cost that can be compared with the rent premium achieved after the upgrade.",
+    "rootCause": "Value-add business plans promise a return on cost per renovated unit (e.g., $12,000 spend for a $150 monthly premium). Only unit-level cost tracking lets the asset manager prove or disprove that thesis.",
+    "ifSkipped": "Renovation ROI is estimated from averages, hiding units that cost far more than planned.",
+    "glAccounts": [
+      "1530 Building Improvements",
+      "1410 Construction in Progress",
+      "4010 Gross Potential Rent"
+    ],
+    "gaap": [
+      "ASC 360-10-30 — capitalized renovation costs"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Construction manager",
+      "Revenue management"
+    ],
+    "reports": [
+      "Unit renovation cost",
+      "Renovation ROI analysis"
+    ],
+    "redFlags": [
+      "Renovated units with costs far above the program average"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_funding_sources_to_a_job": {
+    "purpose": "Assigns funding sources to a job — construction loan, equity contribution, replacement reserve, operating cash — with commitment amounts or percentages.",
+    "outcome": "Draws and funding inquiries know which sources pay for the project and in what share.",
+    "rootCause": "Draws cannot be prepared or allocated until the job knows its funders. Loan agreements often fix funding ratios, which must be encoded on the job.",
+    "ifSkipped": "Draws cannot be allocated correctly and the project's funding position is unknown.",
+    "glAccounts": [
+      "2210 Mortgage/Construction Loan Payable",
+      "3010 Partners' Capital",
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement funding provisions",
+      "Operating agreement capital contributions"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Funding source inquiry"
+    ],
+    "redFlags": [
+      "Funding commitments totaling less than the job budget"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_syncing_a_job_to_procore": {
+    "purpose": "Synchronizes a RealPage job with Procore (construction management software) so budgets, commitments and costs stay aligned between the two systems.",
+    "outcome": "Construction managers working in Procore and accountants working in RealPage see the same project numbers.",
+    "rootCause": "Construction teams manage contracts and change orders in Procore while accounting pays invoices in RealPage. Without syncing, the two sets of numbers diverge and neither side trusts the other.",
+    "ifSkipped": "Budgets and commitments differ between Procore and RealPage, and draws are built on inconsistent figures.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013 — interface controls"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Offshore property accountant",
+      "System administrator"
+    ],
+    "reports": [
+      "Job status inquiry",
+      "External queue exceptions"
+    ],
+    "redFlags": [
+      "Sync errors left unresolved"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_draw_information_page": {
+    "purpose": "The draw record page — draw number, job or reserve, period, status, items, funding allocation, receipts and attachments — used to build, submit and track a draw.",
+    "outcome": "A complete record of one funding request from preparation to receipt.",
+    "rootCause": "Each draw is a claim for money from a lender or partner; the record must show exactly what was requested, what was funded and what was excluded.",
+    "ifSkipped": "Draw status and contents are unclear, and partially funded draws go unreconciled.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "2210 Mortgage/Construction Loan Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Loan agreement draw provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Draw detail"
+    ],
+    "redFlags": [
+      "Funded amount different from requested without explanation"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_posting_a_draw_schedule": {
+    "purpose": "Posts a draw schedule — the planned sequence and amounts of draws for a project — to the GL or tracking records.",
+    "outcome": "Planned funding recorded for monitoring against actual draws.",
+    "rootCause": "Construction loans typically follow a draw schedule tied to milestones; recording it lets the team see whether funding is keeping pace with spending.",
+    "ifSkipped": "Funding shortfalls against the schedule are not visible until the project runs short of cash.",
+    "glAccounts": [
+      "2210 Mortgage/Construction Loan Payable"
+    ],
+    "gaap": [
+      "Construction loan agreement"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw schedule report"
+    ],
+    "redFlags": [
+      "Draw schedule not updated after budget change orders"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_printing_or_exporting_a_draw_schedule_report": {
+    "purpose": "Prints or exports the draw schedule report — draws by date and amount against the project budget — for lender and owner review.",
+    "outcome": "A funding timeline document for the project.",
+    "rootCause": "Lenders and equity partners plan their funding against the draw schedule; sharing it keeps everyone aligned on timing.",
+    "ifSkipped": "Funders are surprised by the timing and size of draws.",
+    "glAccounts": [
+      "2210 Mortgage/Construction Loan Payable"
+    ],
+    "gaap": [
+      "Construction loan agreement"
+    ],
+    "stakeholders": [
+      "Lender",
+      "Asset manager"
+    ],
+    "reports": [
+      "Draw schedule report"
+    ],
+    "redFlags": [
+      "Schedule totals not equal to committed funding"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_printing_or_exporting_a_draw_schedule_detail_report": {
+    "purpose": "Prints or exports the detailed draw schedule — each draw's items and allocations — for lender review.",
+    "outcome": "Line-level detail of planned and actual draws.",
+    "rootCause": "Lenders' construction consultants review draw detail line by line against the budget and site progress; the detail report supports their inspection.",
+    "ifSkipped": "Lender inspections are delayed waiting for detail.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Construction loan agreement"
+    ],
+    "stakeholders": [
+      "Lender",
+      "Construction consultant"
+    ],
+    "reports": [
+      "Draw schedule detail report"
+    ],
+    "redFlags": [
+      "Items without cost codes"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_printing_or_exporting_a_summary_by_invoice_report": {
+    "purpose": "Prints or exports a draw summary organized by invoice — vendor, invoice number, amount and funding split.",
+    "outcome": "An invoice-level summary that lenders tick against the invoice copies in the package.",
+    "rootCause": "Servicers and lenders reconcile draws invoice by invoice; a summary by invoice is the index they work from.",
+    "ifSkipped": "Lenders cannot easily reconcile draw totals to invoices and return the package.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Loan agreement documentation requirements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Lender"
+    ],
+    "reports": [
+      "Summary by invoice"
+    ],
+    "redFlags": [
+      "Summary total not equal to draw total"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_generating_and_downloading_a_draw_package": {
+    "purpose": "Generates a complete draw package — summary, detail, invoice images, proof of payment, lien waivers — and downloads it for submission.",
+    "outcome": "A single, lender-ready file for the draw request.",
+    "rootCause": "Assembling invoices, payment proof and waivers manually for every draw is slow and error-prone; incomplete packages are the main cause of rejected or delayed draws.",
+    "ifSkipped": "Packages are assembled manually, items are missing and reimbursement is delayed.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Loan agreement draw documentation requirements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Loan servicer"
+    ],
+    "reports": [
+      "Draw package"
+    ],
+    "redFlags": [
+      "Packages missing lien waivers or proof of payment"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_assigning_cost_codes_to_job_cost_draw_model_details": {
+    "purpose": "Maps cost codes to the lines of a job cost draw model — the lender's required draw format — so costs roll into the lender's categories automatically.",
+    "outcome": "Draws are produced in the lender's own line structure without manual re-sorting.",
+    "rootCause": "Construction lenders require draws in their budget format (hard costs, soft costs, contingency lines). Mapping cost codes once lets every draw roll up correctly.",
+    "ifSkipped": "Each draw is manually re-sorted into the lender's format, introducing errors.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Construction loan agreement budget format"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Lender"
+    ],
+    "reports": [
+      "Draw detail"
+    ],
+    "redFlags": [
+      "Cost codes unmapped to draw model lines"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_assigning_reserve_accounts_to_draw_model_details": {
+    "purpose": "Maps reserve accounts to the lines of a replacement reserve draw model so reserve draws follow the servicer's required structure.",
+    "outcome": "Reserve draws produced in the servicer's format automatically.",
+    "rootCause": "Servicers categorize reserve draws by repair type; mapping reserve accounts once produces compliant draws every time.",
+    "ifSkipped": "Reserve draws are re-sorted manually and rejected for format errors.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Replacement reserve draw detail"
+    ],
+    "redFlags": [
+      "Unmapped reserve accounts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_receiving_and_posting_draw_receipts": {
+    "purpose": "Records the funds received for a draw — date, amount, funding source — and posts the receipt (DR Cash / CR Replacement Reserve Escrow, or loan payable for construction draws).",
+    "outcome": "Funded draws are reflected in cash and in the reserve or loan balances.",
+    "rootCause": "Draw proceeds arrive by wire, often partially. Posting the receipt against the draw ties cash to the reimbursement and keeps reserve and loan balances correct.",
+    "ifSkipped": "Draw proceeds sit as unexplained deposits on the bank rec, and reserve or loan balances are misstated.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1340 Replacement Reserve Escrow",
+      "2210 Mortgage/Construction Loan Payable"
+    ],
+    "gaap": [
+      "ASC 230 — restricted cash releases",
+      "ASC 470 — loan advances"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Treasury"
+    ],
+    "reports": [
+      "Draw register",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Partial fundings not reconciled to excluded items"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_and_editing_excluded_items_on_draws": {
+    "purpose": "Shows items the lender or servicer excluded from a draw — and why — so they can be corrected (e.g., adding a missing lien waiver) and resubmitted in a later draw.",
+    "outcome": "Rejected items are tracked and recovered rather than forgotten.",
+    "rootCause": "Lenders routinely exclude items for missing documentation or ineligibility. Unless tracked, those costs are never reclaimed and the property absorbs them.",
+    "ifSkipped": "Excluded costs are never resubmitted and the property loses reimbursements.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Loan agreement draw provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw detail"
+    ],
+    "redFlags": [
+      "Excluded items not resubmitted within 60 days"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_purchase_orders_list": {
+    "purpose": "The Spend Management purchase orders list viewed from job cost, filtered to job-related POs so construction managers can see commitments by job.",
+    "outcome": "Job commitments visible in one list for follow-up and closing.",
+    "rootCause": "Open job POs are commitments against project budgets; reviewing them by job reveals stale POs inflating commitments.",
+    "ifSkipped": "Stale job POs keep project budgets artificially committed.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Purchase orders list"
+    ],
+    "redFlags": [
+      "Job POs open after job completion"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_new_purchase_order": {
+    "purpose": "Creates a purchase order coded to a job and segment — for example appliances for a renovation phase — committing budget before ordering.",
+    "outcome": "Project purchases committed against the right trade budget.",
+    "rootCause": "Committing before ordering lets budget checks and approvals operate while the purchase can still be stopped.",
+    "ifSkipped": "Purchases are made without budget visibility and overrun the trade budget.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "1540 FF&E"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Commitments"
+    ],
+    "redFlags": [
+      "Job POs without segment coding"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_applying_a_saved_item_to_a_purchase_order": {
+    "purpose": "Adds a saved catalog item (e.g., standard appliance package or flooring per unit) to a job PO instead of keying details each time.",
+    "outcome": "Standard renovation items ordered consistently at agreed prices.",
+    "rootCause": "Renovation programs buy the same packages repeatedly; saved items enforce negotiated pricing and consistent coding.",
+    "ifSkipped": "Prices and coding vary across POs for identical items.",
+    "glAccounts": [
+      "1540 FF&E",
+      "1530 Building Improvements"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Purchasing"
+    ],
+    "reports": [
+      "Purchase orders list"
+    ],
+    "redFlags": [
+      "Catalog prices not updated to current contracts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_editing_a_purchase_order": {
+    "purpose": "Edits a job purchase order before it is approved or fully received — correcting quantities, coding or vendor details.",
+    "outcome": "Job POs reflect the correct scope and coding before commitment.",
+    "rootCause": "Errors caught before approval are easy to fix; after approval, changes should go through change orders for traceability.",
+    "ifSkipped": "Wrong coding or quantities become approved commitments.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Purchase orders list"
+    ],
+    "redFlags": [
+      "Edits to approved POs without change orders"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_a_purchase_order": {
+    "purpose": "Opens a job purchase order to see its lines, approvals, receipts and invoices matched.",
+    "outcome": "Full status of one project commitment.",
+    "rootCause": "When a vendor invoice arrives, the accountant checks the PO for price, quantity and receipt before approving payment.",
+    "ifSkipped": "Invoices are paid without checking against the PO.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — three-way match"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Purchase order detail"
+    ],
+    "redFlags": [
+      "Invoices exceeding PO amounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_change_order_for_a_purchase_order": {
+    "purpose": "Adds an approved change order to a job PO when scope or quantities change — for example additional units added to a flooring order.",
+    "outcome": "The PO's committed amount reflects the approved change.",
+    "rootCause": "Scope changes on projects are common; recording them on the PO keeps commitments accurate and the approval trail intact.",
+    "ifSkipped": "Invoices exceed PO values and fail matching, or overruns go unapproved.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Change order log"
+    ],
+    "redFlags": [
+      "Change orders added after invoicing"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_receiving_goods_for_a_purchase_order": {
+    "purpose": "Records receipt of goods or completed services against a job PO — for example appliances delivered for Phase 2 units.",
+    "outcome": "Evidence that materials were received before payment and a basis for accruing received-not-invoiced items.",
+    "rootCause": "Paying for undelivered materials is a common project loss; receipt confirmation is the check. Receipts also indicate costs incurred for month-end accrual.",
+    "ifSkipped": "The property pays for goods never delivered, and incurred costs are not accrued.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "2020 Accrued Expenses"
+    ],
+    "gaap": [
+      "ASC 405 — liability on receipt",
+      "COSO 2013 — three-way match"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Property manager"
+    ],
+    "reports": [
+      "Receiving log"
+    ],
+    "redFlags": [
+      "Receipts entered by the PO approver"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_creating_an_a_p_invoice_for_a_purchase_order": {
+    "purpose": "Creates the A/P invoice from a job PO, carrying over job and segment coding and matching against the PO and receipt.",
+    "outcome": "Project invoices posted with correct coding and matched to commitments.",
+    "rootCause": "Creating invoices from the PO keeps coding consistent and converts commitments to costs without double counting.",
+    "ifSkipped": "Invoices are coded inconsistently and commitments remain open after billing.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Job cost activity"
+    ],
+    "redFlags": [
+      "Invoice amounts above PO without change orders"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_closing_a_purchase_order": {
+    "purpose": "Closes a job PO when all goods are received and invoiced, or when the remaining balance will not be used.",
+    "outcome": "Unused commitment released back to the job budget.",
+    "rootCause": "POs left open with unused balances overstate commitments and block budget for other needs.",
+    "ifSkipped": "Budgets appear fully committed when they are not.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Purchase orders list"
+    ],
+    "redFlags": [
+      "Fully invoiced POs left open"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_deleting_a_purchase_order": {
+    "purpose": "Deletes a draft job purchase order created in error — for example a duplicate appliance order — before it is approved and becomes a commitment against the project budget.",
+    "outcome": "Erroneous commitments removed before they affect budgets.",
+    "rootCause": "Draft POs created by mistake can still show as pending commitments; deleting them keeps the budget picture accurate.",
+    "ifSkipped": "Duplicate draft POs show as pending commitments and overstate spend in the job status inquiry.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Purchase orders list"
+    ],
+    "redFlags": [
+      "Deleting approved POs instead of closing them"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_approval_workbench": {
+    "purpose": "The Approval Workbench as used for job cost transactions — POs, subcontracts, change orders, invoices and draws awaiting approval.",
+    "outcome": "Project approvals handled in one queue.",
+    "rootCause": "Capital projects generate many approval requests across construction and asset management; a single queue prevents items stalling.",
+    "ifSkipped": "Project approvals stall and contractors wait for payment.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Asset manager"
+    ],
+    "reports": [
+      "Approval workbench"
+    ],
+    "redFlags": [
+      "Job transactions pending more than a week"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_the_approval_workbench": {
+    "purpose": "Views pending job cost approvals — POs, subcontracts, change orders, pay applications — with their status and the approver currently holding each item.",
+    "outcome": "Visibility of which project items are waiting on whom.",
+    "rootCause": "Contractor payments and lien exposure depend on timely approvals; seeing who holds each item enables follow-up.",
+    "ifSkipped": "Contractors are paid late, increasing lien and prompt-pay exposure.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "State prompt payment acts"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Approval workbench"
+    ],
+    "redFlags": [
+      "Pay applications held past prompt-pay deadlines"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_filtering_transactions_in_the_approval_workbench": {
+    "purpose": "Filters the Approval Workbench by transaction type, job, property or approver — for example all pay applications waiting on one construction manager.",
+    "outcome": "Focused approval queues, for example all pay applications for one project.",
+    "rootCause": "Approvers handle many item types; filtering by project lets them review related items together.",
+    "ifSkipped": "Related project items are approved inconsistently.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Approval workbench"
+    ],
+    "redFlags": [
+      "Filters hiding urgent items"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_using_the_approval_workbench": {
+    "purpose": "Explains using the Approval Workbench for job cost items — reviewing detail, budget impact and attachments before approving.",
+    "outcome": "Approvers make informed decisions on project spend.",
+    "rootCause": "Approvals are only meaningful if the approver checks budget availability and support; the workbench presents both.",
+    "ifSkipped": "Approvals become rubber stamps given without checking budget or support.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Approvers"
+    ],
+    "reports": [
+      "Approval workbench"
+    ],
+    "redFlags": [
+      "Approvals without viewing attachments"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_approving_and_declining_transactions": {
+    "purpose": "Approves or declines job cost transactions in the Approval Workbench, recording comments that explain the decision for the requester and the audit trail.",
+    "outcome": "Documented authorization or rejection of project spend.",
+    "rootCause": "Every capital commitment and payment needs documented authorization for owners, lenders and auditors.",
+    "ifSkipped": "No evidence that project spend was authorized.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization"
+    ],
+    "stakeholders": [
+      "Approvers"
+    ],
+    "reports": [
+      "Approval history"
+    ],
+    "redFlags": [
+      "Declines without comments"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_reviewing_and_approving_a_p_invoices": {
+    "purpose": "Reviews job invoices in the workbench — checking PO match, receipt, budget and support — before approving for payment.",
+    "outcome": "Only valid, matched project invoices are paid.",
+    "rootCause": "Project invoices are large and prone to overbilling; review against PO, receipt and remaining budget is the key control.",
+    "ifSkipped": "Contractor overbillings and duplicate invoices are paid on capital projects.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — three-way match"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Approval workbench"
+    ],
+    "redFlags": [
+      "Invoices approved above PO value"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_exporting_transactions_to_excel": {
+    "purpose": "Exports the approval queue to Excel for follow-up with approvers or for reporting on approval delays.",
+    "outcome": "A list of pending project items to chase.",
+    "rootCause": "Onshore managers often chase approvals by email; an export provides the list with ages.",
+    "ifSkipped": "Follow-up on pending approvals is ad hoc.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Approval export"
+    ],
+    "redFlags": [
+      "Exports shared with external parties"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_saving_a_custom_workbench_view": {
+    "purpose": "Saves a custom Approval Workbench view — filters and columns — for recurring project approval reviews.",
+    "outcome": "Approvers return to a consistent view of their project items.",
+    "rootCause": "Construction managers review project approvals daily; a saved view saves time and avoids missed items.",
+    "ifSkipped": "Approvers rebuild filters daily and miss items.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Approval workbench"
+    ],
+    "redFlags": [
+      "Saved views excluding some transaction types"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_viewing_and_editing_transactions_in_the_approval_workbench": {
+    "purpose": "Views and, where permitted, edits a transaction from the workbench — for example correcting a segment code before approving.",
+    "outcome": "Minor coding errors fixed without sending items back.",
+    "rootCause": "Small coding fixes at approval time avoid a full decline-and-resubmit cycle, but edits by approvers must be traceable.",
+    "ifSkipped": "Minor errors cause long delays through declines.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Approvers"
+    ],
+    "reports": [
+      "Approval history"
+    ],
+    "redFlags": [
+      "Approvers changing amounts, not just coding"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_an_approver_to_a_transaction": {
+    "purpose": "Adds an extra approver to a job transaction — for example routing a large change order to the asset manager.",
+    "outcome": "Unusual items receive additional oversight.",
+    "rootCause": "Some items warrant review beyond the standard policy (unusual vendors, large amounts); adding approvers provides it.",
+    "ifSkipped": "Unusual items pass with standard approval only.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Approvers",
+      "Asset manager"
+    ],
+    "reports": [
+      "Approval history"
+    ],
+    "redFlags": [
+      "Approvers added who lack authority"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_sending_a_transaction_back_to_the_previous_approver": {
+    "purpose": "Returns a job transaction to the previous approver for clarification rather than declining it outright.",
+    "outcome": "Questions resolved without restarting the approval chain.",
+    "rootCause": "Many approval questions are simple clarifications (which unit, which phase). Sending the item back one step keeps it moving, whereas declining it restarts the entire approval chain and delays contractor payment.",
+    "ifSkipped": "Items are declined unnecessarily and restart approval.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Approvers"
+    ],
+    "reports": [
+      "Approval history"
+    ],
+    "redFlags": [
+      "Items bounced repeatedly"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_viewing_an_attachment_for_a_transaction": {
+    "purpose": "Opens attachments — invoices, pay applications, lien waivers, change order backup — from the workbench.",
+    "outcome": "Approvers see the evidence before approving.",
+    "rootCause": "Approving project spend without the pay application or waiver defeats the control and increases lien risk.",
+    "ifSkipped": "Project spend is approved without seeing the pay application or lien waiver.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Approvers"
+    ],
+    "reports": [
+      "Approval workbench"
+    ],
+    "redFlags": [
+      "Pay applications without waivers attached"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_the_available_budget_for_a_transaction": {
+    "purpose": "Shows the remaining budget for the job segment affected by a transaction, directly in the workbench.",
+    "outcome": "Approvers see whether the item fits within budget before approving.",
+    "rootCause": "The budget check is most effective at approval time; showing remaining budget there prevents overruns.",
+    "ifSkipped": "Items are approved without knowing they exceed budget.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013 — preventive controls"
+    ],
+    "stakeholders": [
+      "Approvers"
+    ],
+    "reports": [
+      "Approval workbench"
+    ],
+    "redFlags": [
+      "Approvals where remaining budget is negative"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_the_approval_history_of_a_transaction": {
+    "purpose": "Shows the full approval history of one job cost transaction — each approver, action, date and comment — from the Approval Workbench.",
+    "outcome": "A complete audit trail for that single project transaction.",
+    "rootCause": "Lenders and auditors test approvals on sampled project transactions; history provides the evidence.",
+    "ifSkipped": "Approval evidence cannot be produced for samples.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "External auditor"
+    ],
+    "reports": [
+      "Approval history"
+    ],
+    "redFlags": [
+      "Gaps in the approval chain"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_including_declined_transactions_in_the_approval_workbench": {
+    "purpose": "Shows declined job transactions in the workbench so they can be followed up and corrected.",
+    "outcome": "Declined items are tracked to resolution.",
+    "rootCause": "Declined items often need correction and resubmission; hiding them means contractor payments or commitments fall through the cracks.",
+    "ifSkipped": "Declined items are forgotten and contractors go unpaid.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Approval workbench"
+    ],
+    "redFlags": [
+      "Declined items older than two weeks"
+    ],
+    "confidence": "medium"
+  }
+}

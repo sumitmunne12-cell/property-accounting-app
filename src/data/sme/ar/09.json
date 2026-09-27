@@ -1,0 +1,1375 @@
+{
+  "scr_ar_resolving_errors": {
+    "purpose": "Explains how to resolve A/R import errors — reading the error file, correcting the rejected rows and re-importing only those rows so nothing is loaded twice.",
+    "outcome": "Every rejected customer or invoice row is corrected and loaded exactly once.",
+    "rootCause": "An A/R import is rarely clean on the first pass during a property takeover; if rejected rows are not worked back in, the opening aging silently understates what residents and tenants owe the new owner.",
+    "ifSkipped": "Rejected invoices never load, so opening A/R falls short of the seller's aging and the GL tie-out fails.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "3900 Opening Balance Equity"
+    ],
+    "gaap": [
+      "COSO 2013 — conversion completeness controls"
+    ],
+    "stakeholders": [
+      "Transition team",
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Import results",
+      "A/R aging"
+    ],
+    "redFlags": [
+      "Error files sitting unworked after go-live",
+      "Whole file re-imported instead of only failed rows, creating duplicates"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_import_error_notification": {
+    "purpose": "The notification RealPage sends when an A/R import finishes with errors, linking to the error file that lists each rejected row and the reason it failed.",
+    "outcome": "The importer is alerted immediately that part of the load failed.",
+    "rootCause": "Offline and automated imports run unattended; without a notification, a partially failed customer or invoice load looks successful and nobody reconciles the shortfall until an auditor or owner does.",
+    "ifSkipped": "Partial imports go unnoticed and receivables are understated for months.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — monitoring activities"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "System administrator"
+    ],
+    "reports": [
+      "Import results",
+      "Import error file"
+    ],
+    "redFlags": [
+      "Notifications routed to a departed user's mailbox",
+      "Error notifications with no follow-up ticket"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_common_errors": {
+    "purpose": "Catalogues the most frequent A/R import errors — unknown customer IDs, inactive GL accounts, invalid dates, closed periods, mismatched entity/location codes — and how to prevent each.",
+    "outcome": "Import files built right the first time, cutting rework during onboarding.",
+    "rootCause": "Most A/R import rejections come from a handful of predictable mistakes; knowing them before loading a portfolio avoids days of back-and-forth during a management transition.",
+    "ifSkipped": "The same avoidable errors recur on every property takeover and delay the first close.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Transition team",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import error file"
+    ],
+    "redFlags": [
+      "Invoices dated into closed periods",
+      "Location codes that do not match the entity structure"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_handling_import_errors": {
+    "purpose": "Procedure for handling an A/R import that returned errors — downloading the error file, fixing source data, and confirming the corrected totals tie to the seller's aging.",
+    "outcome": "A complete, reconciled A/R load after errors are worked.",
+    "rootCause": "Fixing rows is not enough; the finished import must be proven complete by tying loaded invoice totals to the source aging, otherwise small losses of rows stay hidden inside a large balance.",
+    "ifSkipped": "Loaded A/R never gets reconciled to the source aging and differences surface at audit.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "3900 Opening Balance Equity"
+    ],
+    "gaap": [
+      "COSO 2013 — conversion controls"
+    ],
+    "stakeholders": [
+      "Transition team",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Import results",
+      "A/R aging"
+    ],
+    "redFlags": [
+      "No signed tie-out of loaded A/R to source aging"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_a_r_and_payments": {
+    "purpose": "Chapter covering the A/R settings that affect payments across RealPage Accounting — payment configuration, A/R terms and account labels.",
+    "outcome": "A/R payment behaviour configured consistently for every entity.",
+    "rootCause": "Terms and labels drive due dates, discounts and the revenue accounts invoices hit; configuring them once and correctly prevents systematic misposting across the portfolio.",
+    "ifSkipped": "Due dates, discounts and revenue coding vary by user and aging is unreliable.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4010 Commercial Base Rent",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606 — payment terms"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Controller"
+    ],
+    "reports": [
+      "A/R aging"
+    ],
+    "redFlags": [
+      "Terms set up differently per property with no rationale"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_about_accounts_receivable_and_payments": {
+    "purpose": "Introduces how A/R configuration ties to payments — how terms set due dates and discounts, and how account labels map invoice lines to revenue GL accounts.",
+    "outcome": "Users understand which setup controls due dates and revenue coding.",
+    "rootCause": "When aging buckets or revenue coding look wrong, the cause is usually in terms or labels; knowing the linkage speeds diagnosis and prevents fixing symptoms transaction by transaction.",
+    "ifSkipped": "Users correct individual invoices repeatedly instead of fixing the setup cause.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R aging"
+    ],
+    "redFlags": [
+      "Recurring manual recoding of invoice lines"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_configuring_a_r_payments": {
+    "purpose": "Configures A/R payment settings — default deposit account, undeposited-funds handling, overpayment treatment and payment methods accepted.",
+    "outcome": "Customer receipts flow to the correct cash and clearing accounts.",
+    "rootCause": "Payment configuration decides whether receipts go straight to operating cash or through 1130 Undeposited Funds; a wrong default breaks deposit matching and the bank reconciliation for every property.",
+    "ifSkipped": "Receipts hit the wrong cash account and bank recs carry unexplained differences.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1130 Undeposited Funds",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — application controls"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Controller",
+      "Treasury"
+    ],
+    "reports": [
+      "Bank reconciliation",
+      "Deposit register"
+    ],
+    "redFlags": [
+      "Receipts defaulting to operating cash while deposits run through undeposited funds"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_an_a_r_term": {
+    "purpose": "Adds an A/R payment term (e.g., Net 30, Due on Receipt, 2/10 Net 30) that sets invoice due dates and early-payment discounts, available to all entities or one.",
+    "outcome": "Consistent due dates and discounts applied to customer invoices.",
+    "rootCause": "Aging buckets and late-fee eligibility are measured from the due date; terms set incorrectly move invoices between buckets and change both collection priorities and the ASC 326 reserve.",
+    "ifSkipped": "Due dates are wrong, aging is misstated and late fees are charged too early or too late.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income (late fees)"
+    ],
+    "gaap": [
+      "ASC 326 — aging-based estimates",
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Controller"
+    ],
+    "reports": [
+      "A/R aging",
+      "Penalty register"
+    ],
+    "redFlags": [
+      "Discount terms on rent invoices",
+      "Terms longer than lease payment clauses allow"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_account_labels": {
+    "purpose": "Adds A/R account labels — friendly names such as 'CAM Recovery' or 'Parking' mapped to specific revenue GL accounts — for use on invoice lines.",
+    "outcome": "Invoice lines post to the correct revenue accounts without users knowing account numbers.",
+    "rootCause": "Site and offshore staff billing charges should not choose raw GL numbers; labels constrain choices to the right revenue accounts and keep recovery income separate from base rent.",
+    "ifSkipped": "Charges are coded to wrong revenue accounts, distorting NOI lines and CAM reconciliations.",
+    "glAccounts": [
+      "4010 Commercial Base Rent",
+      "4020 CAM Recovery",
+      "4030 Real Estate Tax Recovery",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 842-30 — lease vs non-lease components"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Controller"
+    ],
+    "reports": [
+      "Income statement",
+      "CAM reconciliation"
+    ],
+    "redFlags": [
+      "Labels mapped to balance sheet accounts",
+      "Duplicate labels pointing to different accounts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_configuration": {
+    "purpose": "Chapter on configuring A/R features — segments, functionality toggles, accounting settings, document sequencing, GL overrides and intercompany bill-backs.",
+    "outcome": "A/R configured to match the company's accounting policies.",
+    "rootCause": "A/R configuration is set once but affects every invoice and receipt thereafter; a deliberate, documented setup avoids systemic misstatements that are expensive to unwind later.",
+    "ifSkipped": "Settings drift from policy and systematic posting errors accumulate.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — IT general controls"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Controller"
+    ],
+    "reports": [
+      "Configuration audit trail"
+    ],
+    "redFlags": [
+      "Configuration changes without change-management approval"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_segments_overview": {
+    "purpose": "Explains segments — custom reporting tags (for example building, unit type or fund) that can be added to A/R transactions beyond the standard entity and account dimensions.",
+    "outcome": "Receivables and revenue can be reported by attributes the owner cares about.",
+    "rootCause": "Institutional owners ask for revenue and delinquency by building or fund; segments capture that at transaction time instead of relying on offline spreadsheets.",
+    "ifSkipped": "Owner-requested segment reporting has to be rebuilt manually every month.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4010 Commercial Base Rent"
+    ],
+    "gaap": [
+      "ASC 280 — segment information (where applicable)"
+    ],
+    "stakeholders": [
+      "Controller",
+      "Asset manager"
+    ],
+    "reports": [
+      "Segment activity report"
+    ],
+    "redFlags": [
+      "Segments added mid-year with no backfill"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_enabling_segments": {
+    "purpose": "Enables segments in General Ledger configuration so A/R and other applications can tag transactions with them.",
+    "outcome": "Segment fields available on A/R invoices and receipts.",
+    "rootCause": "Segments must be switched on centrally before any transaction can carry them; enabling late leaves earlier periods untagged and breaks year-over-year comparisons.",
+    "ifSkipped": "Segment reports show gaps for periods before enablement.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Segment activity report"
+    ],
+    "redFlags": [
+      "Segments enabled after the fiscal year started"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_configuring_a_r_functionality": {
+    "purpose": "Turns A/R features on or off — recurring invoices, penalties, statements, deposits, advances — to match how the company bills customers.",
+    "outcome": "Only the A/R features the company uses are active.",
+    "rootCause": "Features left off (e.g., penalties or advances) force workarounds such as manual journal entries, which bypass the subledger and break the A/R-to-GL tie-out.",
+    "ifSkipped": "Needed features are missing and staff post workarounds outside the subledger.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "2310 Prepaid Rent"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Controller"
+    ],
+    "reports": [
+      "Configuration audit trail"
+    ],
+    "redFlags": [
+      "Manual JEs to A/R control account because a feature is disabled"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_configuring_a_r_accounting_settings": {
+    "purpose": "Sets A/R accounting defaults — the A/R control account, advances (prepaid rent) liability account, write-off account and overpayment handling.",
+    "outcome": "Every A/R posting lands on the correct control and liability accounts.",
+    "rootCause": "The subledger only reconciles to the GL if all A/R activity posts to one control account; wrong defaults scatter receivables across accounts and break the monthly A/R-to-GL reconciliation.",
+    "ifSkipped": "The aging no longer ties to 1210 and prepaid rent is misclassified.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "2310 Prepaid Rent",
+      "6810 Bad Debt Expense"
+    ],
+    "gaap": [
+      "ASC 326",
+      "ASC 842-30"
+    ],
+    "stakeholders": [
+      "Controller",
+      "System administrator"
+    ],
+    "reports": [
+      "A/R aging",
+      "Trial balance"
+    ],
+    "redFlags": [
+      "Two different A/R control accounts in use",
+      "Advances posting to revenue"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_configuring_a_r_document_sequencing": {
+    "purpose": "Configures automatic numbering for A/R documents — invoices, adjustments, receipts — so each has a unique sequential number.",
+    "outcome": "Gapless, unique document numbers for audit trails.",
+    "rootCause": "Auditors test completeness by looking for gaps and duplicates in invoice sequences; manual numbering makes that test impossible and invites duplicate billing.",
+    "ifSkipped": "Duplicate or missing invoice numbers undermine completeness testing.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — completeness assertion"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "External auditor"
+    ],
+    "reports": [
+      "Invoice register"
+    ],
+    "redFlags": [
+      "Manual invoice numbering allowed",
+      "Sequence resets mid-year"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_overriding_the_g_l_account_in_a_r_transactions": {
+    "purpose": "Explains when and how a user can override the default GL account on an A/R transaction line — for example coding a one-off insurance recovery to a non-standard account.",
+    "outcome": "Legitimate exceptions coded correctly without changing defaults.",
+    "rootCause": "Overrides are necessary for unusual charges but also the main route to misposting; controlling who can override and reviewing overrides keeps revenue classification reliable.",
+    "ifSkipped": "Uncontrolled overrides misclassify revenue and distort NOI lines.",
+    "glAccounts": [
+      "4100 Other Income",
+      "4020 CAM Recovery"
+    ],
+    "gaap": [
+      "COSO 2013 — override controls"
+    ],
+    "stakeholders": [
+      "Controller",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Invoice register",
+      "Income statement"
+    ],
+    "redFlags": [
+      "Frequent overrides by a single user",
+      "Overrides to balance sheet accounts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_configuring_intercompany_bill_backs": {
+    "purpose": "Overview of setting up intercompany bill-backs — where one entity pays a shared cost and bills other entities, creating matching A/R and A/P between them.",
+    "outcome": "Shared costs recovered from sister entities with matching intercompany balances.",
+    "rootCause": "Shared payroll, insurance and software are often paid by one entity; without formal bill-backs, costs sit in the wrong property's P&L and intercompany balances do not eliminate on consolidation.",
+    "ifSkipped": "Shared costs stay with the paying entity and intercompany accounts do not net to zero.",
+    "glAccounts": [
+      "1410 Due From Affiliates",
+      "2410 Due To Affiliates",
+      "6410 Administrative"
+    ],
+    "gaap": [
+      "ASC 810 — intercompany eliminations",
+      "ASC 850 — related parties"
+    ],
+    "stakeholders": [
+      "Controller",
+      "Consolidation accountant"
+    ],
+    "reports": [
+      "Intercompany reconciliation"
+    ],
+    "redFlags": [
+      "Due From and Due To balances that do not mirror"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_enabling_the_intercompany_bill_back_feature": {
+    "purpose": "Enables the intercompany bill-back subscription in Company setup, a prerequisite before bill-back templates and transactions can be used.",
+    "outcome": "The bill-back feature available to authorised users.",
+    "rootCause": "Bill-backs are an optional subscription; until it is enabled, staff resort to manual intercompany journal entries that are harder to reconcile and eliminate.",
+    "ifSkipped": "Intercompany charges are posted by manual JEs with no matching A/R and A/P.",
+    "glAccounts": [
+      "1410 Due From Affiliates",
+      "2410 Due To Affiliates"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Intercompany reconciliation"
+    ],
+    "redFlags": [
+      "Manual intercompany JEs after the feature is available"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_granting_permissions_to_bill_back_templates": {
+    "purpose": "Grants users or roles permission to use bill-back templates, restricting who can create intercompany charges between entities.",
+    "outcome": "Only authorised staff can move costs between entities.",
+    "rootCause": "Bill-backs shift expenses between ownership groups; unrestricted access lets costs be moved to entities with different investors, a related-party and fiduciary risk.",
+    "ifSkipped": "Anyone can shift costs between owners, creating disputes and fiduciary exposure.",
+    "glAccounts": [
+      "1410 Due From Affiliates",
+      "2410 Due To Affiliates"
+    ],
+    "gaap": [
+      "ASC 850",
+      "COSO 2013 — segregation of duties"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Controller"
+    ],
+    "reports": [
+      "User permissions report"
+    ],
+    "redFlags": [
+      "Site-level users with bill-back rights"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_create_vendors_and_customers_for_bill_backs": {
+    "purpose": "Creates the vendor and customer records that represent each entity in a bill-back pair — the billing entity as a vendor and the billed entity as a customer.",
+    "outcome": "Each entity can be billed and paid through normal A/R and A/P.",
+    "rootCause": "Bill-backs generate a real invoice and bill; without dedicated intercompany vendor and customer records they post against outside parties and cannot be eliminated.",
+    "ifSkipped": "Intercompany charges mix with third-party balances and eliminations fail.",
+    "glAccounts": [
+      "1410 Due From Affiliates",
+      "2410 Due To Affiliates"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customers list",
+      "Vendors list"
+    ],
+    "redFlags": [
+      "Intercompany customers without an intercompany flag"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_associating_a_vendor_and_customer_to_an_entity": {
+    "purpose": "Links the intercompany vendor and customer records to their entity on the entity record so bill-backs route automatically between the right books.",
+    "outcome": "Bill-backs create the matching bill in the correct receiving entity.",
+    "rootCause": "The association tells RealPage which entity a customer or vendor represents; missing links mean the matching payable is never created on the other side.",
+    "ifSkipped": "One side of the bill-back posts and the intercompany balance never mirrors.",
+    "glAccounts": [
+      "1410 Due From Affiliates",
+      "2410 Due To Affiliates"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Intercompany reconciliation"
+    ],
+    "redFlags": [
+      "Entities missing vendor/customer association"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_creating_bill_back_templates": {
+    "purpose": "Creates bill-back templates that define which expense and revenue accounts are used when one entity bills another — for example shared payroll billed as a management charge.",
+    "outcome": "Intercompany charges coded consistently on both sides.",
+    "rootCause": "Templates fix the account mapping so the billing entity records a recovery and the billed entity an expense in agreed accounts, rather than users choosing different accounts each time.",
+    "ifSkipped": "Each bill-back is coded differently and property P&Ls are inconsistent.",
+    "glAccounts": [
+      "6410 Administrative",
+      "6210 Payroll",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 810",
+      "ASC 850"
+    ],
+    "stakeholders": [
+      "Controller"
+    ],
+    "reports": [
+      "Bill-back templates list"
+    ],
+    "redFlags": [
+      "Templates mapping to revenue on the billed side"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_territories": {
+    "purpose": "Optional territories (e.g., regions or portfolios) that can be assigned to customers for grouping in reports and assigning collection responsibility.",
+    "outcome": "Customers grouped for regional reporting and collections ownership.",
+    "rootCause": "Regional managers are accountable for delinquency in their area; territories let aging and collection reports be cut by region without spreadsheets.",
+    "ifSkipped": "Regional delinquency cannot be reported or assigned cleanly.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Regional manager",
+      "Collections"
+    ],
+    "reports": [
+      "A/R aging by territory"
+    ],
+    "redFlags": [
+      "Customers without a territory"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_reports": {
+    "purpose": "Chapter overview of A/R reports — aging, customer ledgers, invoice and receipt registers, and segment activity — used in close and collections.",
+    "outcome": "Users know which A/R report answers which close or collections question.",
+    "rootCause": "Close reviewers and owners rely on specific A/R reports (aging tie-out, delinquency, receipt registers); knowing them avoids ad-hoc exports that do not tie to the GL.",
+    "ifSkipped": "Staff build unreconciled spreadsheets instead of using tie-able reports.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "A/R aging",
+      "Customer ledger",
+      "Invoice register"
+    ],
+    "redFlags": [
+      "Owner packages built from exports rather than standard reports"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_list_of_standard_accounts_receivable_reports": {
+    "purpose": "Lists the standard A/R reports available — aging, customer ledger, invoice register, receipt register, deposit detail — with what each shows.",
+    "outcome": "The right standard report chosen for each close and review task.",
+    "rootCause": "Standard reports are tied to the subledger and reproducible; relying on them makes month-end tie-outs repeatable and auditable.",
+    "ifSkipped": "Custom exports are used and results cannot be reproduced for audit.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R aging",
+      "Receipt register",
+      "Deposit detail"
+    ],
+    "redFlags": [
+      "Aging run at a date other than month-end for tie-out"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_segment_activity_report": {
+    "purpose": "The Segment Activity report in Financial Analytics, showing GL activity by segment (e.g., building or fund) for A/R revenue and receivables.",
+    "outcome": "Revenue and receivables reported by owner-defined segment.",
+    "rootCause": "Owners with multiple buildings or funds in one entity need results by segment; this report provides it from posted data instead of manual allocation.",
+    "ifSkipped": "Segment results are estimated offline and may not tie to the GL.",
+    "glAccounts": [
+      "4010 Commercial Base Rent",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 280 (where applicable)"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Controller"
+    ],
+    "reports": [
+      "Segment activity report"
+    ],
+    "redFlags": [
+      "Segment totals not equal to entity totals"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_customizing_and_running_the_segment_activity_report": {
+    "purpose": "Customizes and runs the Segment Activity report — choosing segments, accounts, periods and columns — to answer a specific owner or asset manager question.",
+    "outcome": "A tailored segment report that still ties to posted GL activity.",
+    "rootCause": "Asset managers ask different questions each month; customizing a GL-tied report beats building one-off spreadsheets that drift from the books.",
+    "ifSkipped": "One-off spreadsheets answer owner questions with numbers that do not tie.",
+    "glAccounts": [
+      "4010 Commercial Base Rent"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Segment activity report"
+    ],
+    "redFlags": [
+      "Saved versions filtering out untagged transactions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_segment_activity_columns": {
+    "purpose": "Defines the columns available on the Segment Activity report — beginning balance, debits, credits, net change, ending balance by segment.",
+    "outcome": "Users read segment activity figures correctly.",
+    "rootCause": "Misreading net change as ending balance (or vice versa) leads to wrong owner commentary; clear column definitions prevent that.",
+    "ifSkipped": "Segment figures are misinterpreted in owner reporting.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Asset manager"
+    ],
+    "reports": [
+      "Segment activity report"
+    ],
+    "redFlags": [
+      "Commentary citing activity columns as balances"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_about_dimensions": {
+    "purpose": "Explains dimensions — categories such as entity, location, department, customer or segment — used to slice A/R reports and financial statements.",
+    "outcome": "Users understand how to cut A/R data by the dimensions that exist.",
+    "rootCause": "Every report filter relies on dimensions being populated consistently; understanding them explains why some transactions drop out of a filtered report.",
+    "ifSkipped": "Filtered reports silently exclude transactions missing a dimension value.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Dimension-filtered reports"
+    ],
+    "redFlags": [
+      "Transactions missing location or department values"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_limiting_members_in_dimension_structures": {
+    "purpose": "Limits which members of a dimension structure appear in reports — for example showing only the properties in one owner's portfolio.",
+    "outcome": "Reports scoped exactly to the owner or region being reviewed.",
+    "rootCause": "Owner reports must not include properties the owner does not own; limiting dimension members enforces that scope and protects confidentiality.",
+    "ifSkipped": "Owner reports include other owners' properties, a confidentiality breach.",
+    "glAccounts": [],
+    "gaap": [
+      "Management agreement confidentiality"
+    ],
+    "stakeholders": [
+      "Controller",
+      "Asset manager"
+    ],
+    "reports": [
+      "Owner financial package"
+    ],
+    "redFlags": [
+      "Portfolio structures not updated after dispositions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_attachments": {
+    "purpose": "Chapter on attaching supporting documents — leases, CAM calculations, correspondence, check images — to A/R records.",
+    "outcome": "Evidence stored with the transactions it supports.",
+    "rootCause": "Auditors and owners ask for support behind invoices, credits and write-offs; keeping it attached to the record avoids hunting through shared drives at audit time.",
+    "ifSkipped": "Support for credits and write-offs cannot be produced when auditors request it.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — information and communication"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "External auditor"
+    ],
+    "reports": [
+      "Attachments list"
+    ],
+    "redFlags": [
+      "Write-offs with no attachment"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_attachments_overview": {
+    "purpose": "Overview of how RealPage stores attachments centrally and links them to A/R records such as customers, invoices and adjustments.",
+    "outcome": "Users understand one document can support several records.",
+    "rootCause": "A single lease or settlement letter can support multiple invoices and credits; central storage avoids duplicate uploads and conflicting versions.",
+    "ifSkipped": "Documents are uploaded repeatedly and versions conflict.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Attachments list"
+    ],
+    "redFlags": [
+      "Several versions of the same lease attached"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_an_attachment_to_the_system": {
+    "purpose": "Uploads a new attachment into Company storage so it can be linked to A/R records later — for example a signed lease amendment.",
+    "outcome": "A document stored and ready to link.",
+    "rootCause": "Uploading once to central storage with a clear name and folder makes support retrievable by anyone reviewing the account, not only the person who received it.",
+    "ifSkipped": "Support lives in personal inboxes and is lost when staff change.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Attachments list"
+    ],
+    "redFlags": [
+      "Attachments with generic names like 'scan1.pdf'"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_a_new_attachment_to_a_record": {
+    "purpose": "Uploads and links a new attachment directly to an A/R record, such as attaching the tenant's approval email to a rent concession credit.",
+    "outcome": "The transaction and its evidence stored together.",
+    "rootCause": "Credits and concessions reduce revenue and are high-risk; attaching approval at the time of entry is the simplest evidence of authorization.",
+    "ifSkipped": "Concessions cannot be proven as approved during audit.",
+    "glAccounts": [
+      "4010 Commercial Base Rent",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization evidence"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "External auditor"
+    ],
+    "reports": [
+      "Adjustments register"
+    ],
+    "redFlags": [
+      "Credits over threshold with no attachment"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_an_existing_attachment_to_a_record": {
+    "purpose": "Links an attachment already in storage to another A/R record — for example linking one lease to several recurring invoices.",
+    "outcome": "Shared support linked without duplicate uploads.",
+    "rootCause": "Reusing the stored document keeps one authoritative version across related records and saves storage and review time.",
+    "ifSkipped": "Duplicate uploads create conflicting versions of support.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Attachments list"
+    ],
+    "redFlags": [
+      "Superseded lease versions linked to current invoices"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_an_attachment": {
+    "purpose": "Opens an attachment from Company storage and shows every A/R record it supports, such as the lease behind several recurring invoices.",
+    "outcome": "Quick access to support for review and audit requests.",
+    "rootCause": "Reviewers and auditors need to open support on demand during PBC fieldwork; direct viewing avoids emailing documents around.",
+    "ifSkipped": "Audit requests take longer as documents are hunted down.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore reviewer",
+      "External auditor"
+    ],
+    "reports": [
+      "Attachments list"
+    ],
+    "redFlags": [
+      "Attachments that fail to open or are corrupted"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_editing_an_attachment": {
+    "purpose": "Edits an attachment's name, description or folder in Company storage to keep support organized and searchable.",
+    "outcome": "Attachments named and filed so they can be found later.",
+    "rootCause": "Consistent naming (property, customer, document type, date) is what makes support searchable years later during audits or disputes.",
+    "ifSkipped": "Support exists but cannot be located when needed.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Attachments list"
+    ],
+    "redFlags": [
+      "Renaming attachments to obscure their content"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deleting_or_removing_an_attachment": {
+    "purpose": "Removes an attachment from a record or deletes it from storage when it was attached in error.",
+    "outcome": "Wrong documents no longer mislead reviewers.",
+    "rootCause": "Wrongly attached documents (another tenant's lease) mislead reviewers and may expose personal data; removal must be controlled so real support is not destroyed.",
+    "ifSkipped": "Misattached documents mislead reviewers or expose other customers' data.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention policies"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Compliance"
+    ],
+    "reports": [
+      "Attachments audit trail"
+    ],
+    "redFlags": [
+      "Deletion of support for write-offs or credits"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_miscellaneous_common_tasks": {
+    "purpose": "Chapter on everyday A/R housekeeping — naming conventions, default line values, managing lists and views, exporting, audit trails and terminology.",
+    "outcome": "Consistent everyday use of A/R across the offshore team.",
+    "rootCause": "Small inconsistencies (IDs, list filters, views) compound across thousands of customers; shared conventions keep data clean and reviews efficient.",
+    "ifSkipped": "Data conventions drift and reviewers waste time interpreting inconsistent records.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "No documented naming convention"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_about_this_chapter": {
+    "purpose": "Introduces the miscellaneous common tasks chapter and the housekeeping procedures it covers for A/R users.",
+    "outcome": "Users know where to find routine A/R housekeeping guidance.",
+    "rootCause": "Housekeeping tasks are learned informally and inconsistently; a clear pointer to the reference reduces variation between offshore team members.",
+    "ifSkipped": "Each user follows their own habits and records become inconsistent.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Training materials not referencing standard procedures"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_best_practices_for_creating_names_and_ids": {
+    "purpose": "Best practices for customer and record IDs — stable, unique, meaningful codes (e.g., property code + tenant suite) that never get reused.",
+    "outcome": "Customer IDs that stay unique and traceable across years.",
+    "rootCause": "Customer IDs link invoices, receipts and history; reused or ad-hoc IDs merge different tenants' histories and corrupt collections and audit trails.",
+    "ifSkipped": "Two tenants share an ID history and balances are misattributed.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — master data"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "System administrator"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "IDs reused after a tenant moves out"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_setting_default_line_item_values": {
+    "purpose": "Sets default values (account label, location, department) that pre-fill new A/R invoice lines to reduce keying and miscoding.",
+    "outcome": "Faster, more consistent invoice line coding.",
+    "rootCause": "Defaults reduce errors on repetitive billing but also propagate a wrong code everywhere if set incorrectly, so they must be chosen and reviewed deliberately.",
+    "ifSkipped": "Users key codes manually each time and coding varies.",
+    "glAccounts": [
+      "4010 Commercial Base Rent",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Invoice register"
+    ],
+    "redFlags": [
+      "Default location set to the wrong property"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_managing_lists": {
+    "purpose": "How to work with A/R list pages — customers, invoices, receipts — using sort, filter, views and export to find records quickly.",
+    "outcome": "Efficient location of the records needed for reviews and collections.",
+    "rootCause": "Collections and close reviews start from lists; efficient list use cuts time finding overdue invoices or unapplied receipts.",
+    "ifSkipped": "Reviews are slower and exceptions are missed in long lists.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R list pages"
+    ],
+    "redFlags": [
+      "Persistent filters hiding records"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_sorting_lists": {
+    "purpose": "Sorts A/R lists by column — for example invoices by due date or amount — to prioritise collections and reviews.",
+    "outcome": "The oldest or largest items surfaced first.",
+    "rootCause": "Collections effort is best spent on the largest and oldest balances; sorting surfaces them immediately.",
+    "ifSkipped": "Collectors work alphabetically and large overdue balances wait.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Collections"
+    ],
+    "reports": [
+      "Invoices list"
+    ],
+    "redFlags": [
+      "Largest items not reviewed first"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_filtering_lists": {
+    "purpose": "Uses column filters on A/R lists to narrow records — for example open invoices over 90 days for one property.",
+    "outcome": "A focused list of the records that need action.",
+    "rootCause": "Portfolios hold thousands of invoices; filters isolate the exceptions a reviewer or collector must act on.",
+    "ifSkipped": "Exceptions are lost among routine records.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Collections"
+    ],
+    "reports": [
+      "Invoices list"
+    ],
+    "redFlags": [
+      "Filters left on that hide exceptions from later users"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_examples_of_using_filters_with_field_values": {
+    "purpose": "Worked examples of filter syntax — ranges, wildcards, blanks — for A/R fields like amount, date and customer name.",
+    "outcome": "Users build precise filters for exception review.",
+    "rootCause": "Imprecise filters (e.g., missing blanks) exclude records silently; examples teach filters that capture every exception.",
+    "ifSkipped": "Filters miss records and reviews are incomplete.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R list pages"
+    ],
+    "redFlags": [
+      "Filters excluding blank values unintentionally"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_list_views": {
+    "purpose": "Explains list views — saved combinations of columns, sorts and filters — used for recurring A/R reviews such as 'unapplied receipts'.",
+    "outcome": "Recurring reviews run from the same view each month.",
+    "rootCause": "Using the same saved view each month makes reviews repeatable and comparable, which reviewers and auditors rely on.",
+    "ifSkipped": "Each month's review uses different criteria and exceptions slip through.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Saved list views"
+    ],
+    "redFlags": [
+      "Review views edited without notice"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_drop_down_list_controls": {
+    "purpose": "Explains drop-down controls on A/R forms — searching, selecting and adding values such as customers or account labels inline.",
+    "outcome": "Correct values selected quickly on A/R forms.",
+    "rootCause": "Inline 'add new' in drop-downs can create duplicate customers or labels; knowing the controls prevents accidental master data creation.",
+    "ifSkipped": "Duplicate customers and labels are created from forms.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — master data"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "Customers created via drop-down with incomplete data"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_custom_list_views": {
+    "purpose": "Explains custom list views that users create for their own A/R work — for example a collections view showing balance, last payment and contact.",
+    "outcome": "Views tailored to each person's A/R tasks.",
+    "rootCause": "Standard views rarely show everything needed for collections calls; custom views bring the relevant fields together.",
+    "ifSkipped": "Users export to spreadsheets to see needed fields together.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Collections"
+    ],
+    "reports": [
+      "Saved list views"
+    ],
+    "redFlags": [
+      "Shared views changed by individuals"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_a_new_custom_view": {
+    "purpose": "Creates and saves a new custom A/R list view with chosen columns, filters and sort order, optionally shared with the team.",
+    "outcome": "A reusable view available to the team.",
+    "rootCause": "A shared custom view standardises how the team reviews open items, so every property is checked the same way.",
+    "ifSkipped": "Review criteria differ between team members.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Saved list views"
+    ],
+    "redFlags": [
+      "Team views owned by departed users"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_exporting_lists": {
+    "purpose": "Exports an A/R list to CSV or Excel for analysis, collections work or evidence packages.",
+    "outcome": "A/R data available for offline analysis.",
+    "rootCause": "Exports are often needed for owner questions or audits, but they leave the system; they must be tied back to reports and handled securely.",
+    "ifSkipped": "Analysis is manual; or exports circulate without tying to the GL.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Exported lists"
+    ],
+    "redFlags": [
+      "Exports containing resident personal data emailed externally"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_audit_trails": {
+    "purpose": "Explains A/R audit trails — the log of who created, edited, posted or deleted each record and when.",
+    "outcome": "Every change to receivables is traceable to a user and time.",
+    "rootCause": "Auditors and owners rely on audit trails to test that credits, write-offs and edits were made by authorized people; without them, fraud and error cannot be investigated.",
+    "ifSkipped": "Unauthorized changes to receivables cannot be traced.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013",
+      "SOC 1 — change logging"
+    ],
+    "stakeholders": [
+      "External auditor",
+      "Compliance"
+    ],
+    "reports": [
+      "Audit trail"
+    ],
+    "redFlags": [
+      "Edits to posted invoices by users without that role"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_viewing_audit_trails": {
+    "purpose": "Views a record's audit trail — each action, field changed, old and new values, user and time.",
+    "outcome": "Investigation of who changed what on a receivable.",
+    "rootCause": "When a customer disputes a balance or a credit appears unexpectedly, the audit trail is the first evidence to establish what happened.",
+    "ifSkipped": "Disputes and anomalies cannot be investigated with evidence.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore reviewer",
+      "Compliance"
+    ],
+    "reports": [
+      "Audit trail"
+    ],
+    "redFlags": [
+      "Changes made outside business hours"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_exporting_a_records_audit_trail": {
+    "purpose": "Exports a record's audit trail for audit evidence, investigations or dispute files.",
+    "outcome": "Portable evidence of record history.",
+    "rootCause": "Auditors and legal counsel need audit history outside the system; exporting preserves it as evidence.",
+    "ifSkipped": "Evidence cannot be provided to auditors or counsel.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "External auditor",
+      "Legal"
+    ],
+    "reports": [
+      "Audit trail export"
+    ],
+    "redFlags": [
+      "Audit trails requested but not exported"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_terminology_list": {
+    "purpose": "Shows the Terminology page listing system terms that can be renamed — for example renaming 'Customer' to 'Tenant' or 'Location' to 'Property'.",
+    "outcome": "Screens use the vocabulary the company uses.",
+    "rootCause": "Property managers think in tenants and properties; matching terminology reduces confusion and training time for site and offshore staff.",
+    "ifSkipped": "Generic terms confuse users and mismatch owner reporting.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Terminology list"
+    ],
+    "redFlags": [
+      "Renamed terms not reflected in training material"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_changing_a_realpage_accounting_term": {
+    "purpose": "Changes a system term — for example renaming 'Location' to 'Property' — across all screens and reports.",
+    "outcome": "Consistent company-specific terms on screens and reports.",
+    "rootCause": "Term changes appear on owner-facing reports too; changing deliberately avoids confusing labels in financial packages.",
+    "ifSkipped": "Terms are inconsistent across reports and screens.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Controller"
+    ],
+    "reports": [
+      "Owner financial package"
+    ],
+    "redFlags": [
+      "Term changes that make reports ambiguous"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_roles_and_permissions": {
+    "purpose": "Explains roles and permissions for A/R — who can create invoices, post credits, apply receipts, write off balances and change setup.",
+    "outcome": "A/R access aligned to job duties with segregation of duties.",
+    "rootCause": "The same person billing, receiving cash and writing off balances can conceal misappropriation (lapping); roles enforce segregation required by SOC 1 and owner agreements.",
+    "ifSkipped": "One user can post cash and write off the related receivable, enabling concealed theft.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "6810 Bad Debt Expense"
+    ],
+    "gaap": [
+      "COSO 2013 — segregation of duties",
+      "SOC 1"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Controller",
+      "External auditor"
+    ],
+    "reports": [
+      "User permissions report"
+    ],
+    "redFlags": [
+      "Users with both receipt and write-off rights"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_duplicating_records": {
+    "purpose": "Creates a new record (such as a role or customer) by duplicating an existing one and changing only what differs.",
+    "outcome": "Faster setup of similar records.",
+    "rootCause": "Duplicating speeds setup but copies every attribute, including permissions or tax settings that may be wrong for the new record; each copy needs review.",
+    "ifSkipped": "Similar records are keyed from scratch with inconsistencies.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Audit trail"
+    ],
+    "redFlags": [
+      "Roles duplicated from administrator roles"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_a_g_l_account": {
+    "purpose": "Adds a GL account needed for A/R — for example a new revenue account for EV-charging income — and assigns chart types.",
+    "outcome": "New revenue or receivable accounts available for A/R coding.",
+    "rootCause": "New income streams need their own account so they appear separately in the income statement and owner reports rather than being buried in other income.",
+    "ifSkipped": "New revenue is buried in generic accounts and owner reporting lacks detail.",
+    "glAccounts": [
+      "4100 Other Income",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 606 — disaggregation of revenue"
+    ],
+    "stakeholders": [
+      "Controller"
+    ],
+    "reports": [
+      "Chart of accounts",
+      "Income statement"
+    ],
+    "redFlags": [
+      "Accounts added without mapping to owner reporting"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_a_contact": {
+    "purpose": "Adds a contact record (name, email, phone, address) that can be linked to customers as billing or statement contacts.",
+    "outcome": "Correct people receive invoices and statements.",
+    "rootCause": "Invoices and statements are delivered to contacts; accurate contacts are what make billing reach the person who pays.",
+    "ifSkipped": "Invoices go nowhere and collections are delayed.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Contacts list"
+    ],
+    "redFlags": [
+      "Contacts with no email for emailed statements"
+    ],
+    "confidence": "medium"
+  }
+}

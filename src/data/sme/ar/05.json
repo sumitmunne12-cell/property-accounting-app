@@ -1,0 +1,1034 @@
+{
+  "scr_ar_defining_transaction_allocations": {
+    "purpose": "Enables transaction allocations (in A/P configuration's Enable Functionality) and defines allocation rules that split a transaction across locations, departments or projects by fixed percentages.",
+    "outcome": "Reusable allocation rules available to A/R invoices, A/P invoices and journal entries.",
+    "rootCause": "Shared revenues and costs recur with the same split every month; defining the rule once guarantees each property receives its agreed share without recalculating each time.",
+    "ifSkipped": "Shared amounts are split by hand each month with inconsistent percentages.",
+    "glAccounts": [
+      "4100 Other Income",
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "ASC 810 — intercompany",
+      "Management agreement cost-sharing provisions"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Allocation register"
+    ],
+    "redFlags": [
+      "Allocation rules not totaling 100%"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_where_to_apply_allocations": {
+    "purpose": "Explains where allocations can be applied — A/R invoice lines, A/P invoice lines, journal entries — and at what level.",
+    "outcome": "Users apply allocations in the right place for each shared transaction.",
+    "rootCause": "Applying allocations at the wrong level (header versus line) can split amounts that should stay with one property.",
+    "ifSkipped": "Allocations are applied inconsistently and property results are misstated.",
+    "glAccounts": [
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Allocation register"
+    ],
+    "redFlags": [
+      "Allocations applied to property-specific charges"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_a_transaction_allocation": {
+    "purpose": "Creates a transaction allocation in General Ledger setup — name, dimensions and percentages — for use on invoices and entries.",
+    "outcome": "A new allocation rule ready to apply.",
+    "rootCause": "New shared arrangements (a shared amenity, a shared staff member billed to tenants) need a defined split before billing starts.",
+    "ifSkipped": "The first billings under a new arrangement are split ad hoc.",
+    "glAccounts": [
+      "4100 Other Income",
+      "1230 Due From Affiliates"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Allocation register"
+    ],
+    "redFlags": [
+      "Percentages not supported by an agreement or basis (units, square feet)"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_applying_an_allocation": {
+    "purpose": "Applies an existing allocation to an A/R invoice line so its amount is split automatically.",
+    "outcome": "Shared billings post to each property in the agreed proportions.",
+    "rootCause": "Applying a predefined rule removes manual calculation errors from recurring shared billings.",
+    "ifSkipped": "Shared revenue lands at one property and the other properties' NOI is understated.",
+    "glAccounts": [
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606",
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Invoice detail"
+    ],
+    "redFlags": [
+      "Wrong allocation chosen for the transaction"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_creating_an_allocation_split": {
+    "purpose": "Creates a one-off allocation split on a transaction when no predefined allocation fits.",
+    "outcome": "Unusual shared amounts are split correctly for that transaction only.",
+    "rootCause": "Some shared charges are one-time (a joint marketing event); an ad hoc split handles them without creating a permanent rule.",
+    "ifSkipped": "One-off shared amounts are recorded at a single property.",
+    "glAccounts": [
+      "4100 Other Income",
+      "6310 Marketing"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Invoice detail"
+    ],
+    "redFlags": [
+      "Ad hoc splits used repeatedly instead of a defined rule"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_overriding_a_line_allocation": {
+    "purpose": "Overrides the default allocation on a specific invoice line when that line should be split differently or not at all.",
+    "outcome": "Exceptions to the standard split handled line by line.",
+    "rootCause": "A shared invoice may include one property-specific charge; overriding that line prevents it being spread to other properties.",
+    "ifSkipped": "Property-specific charges are spread across properties.",
+    "glAccounts": [
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Invoice detail"
+    ],
+    "redFlags": [
+      "Frequent overrides of the same rule (rule is wrong)"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_restrictions_on_applying_allocations": {
+    "purpose": "Describes restrictions on allocations — for example with multi-currency transactions or entities that cannot transact with each other.",
+    "outcome": "Users know when allocations cannot be used and what to do instead.",
+    "rootCause": "Allocating across entities creates intercompany entries; restrictions prevent splits that would break entity boundaries or currency rules.",
+    "ifSkipped": "Users attempt invalid allocations and create unbalanced entities.",
+    "glAccounts": [
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "ASC 810",
+      "ASC 830"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Intercompany imbalances after allocations"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_intercompany_billing": {
+    "purpose": "Intercompany billing (available at top level) creates a matched pair of transactions — an A/R invoice in the billing entity and an A/P invoice in the billed entity — for charges between related entities.",
+    "outcome": "Both sides of an affiliate charge are recorded at once and stay in balance.",
+    "rootCause": "Management companies routinely charge properties for shared services (payroll, insurance, IT). Recording each side separately leads to mismatched Due To and Due From balances that never reconcile.",
+    "ifSkipped": "Intercompany receivables and payables drift apart and consolidation eliminations fail.",
+    "glAccounts": [
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates",
+      "6010 Payroll",
+      "6610 Insurance"
+    ],
+    "gaap": [
+      "ASC 810-10-45-1 — intercompany elimination",
+      "ASC 850 — related-party transactions"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Intercompany reconciliation"
+    ],
+    "redFlags": [
+      "Intercompany balances not equal and opposite"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_viewing_the_list_of_intercompany_invoices": {
+    "purpose": "Views the list of intercompany billing transactions with their status and paired A/R and A/P invoices.",
+    "outcome": "Visibility of all affiliate billings and whether they are settled.",
+    "rootCause": "Unsettled intercompany balances accumulate quietly; reviewing the list drives monthly settlement.",
+    "ifSkipped": "Affiliate balances grow unsettled and look like undisclosed loans between entities.",
+    "glAccounts": [
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Intercompany billing list"
+    ],
+    "redFlags": [
+      "Intercompany invoices unpaid for months"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_intercompany_billing_list": {
+    "purpose": "Lists intercompany billing records with actions to add, edit, view, duplicate and delete.",
+    "outcome": "A managed register of affiliate charges.",
+    "rootCause": "A single register of affiliate charges supports monthly intercompany reconciliation and owner scrutiny of related-party charges.",
+    "ifSkipped": "Related-party charges are hard to review and reconcile.",
+    "glAccounts": [
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "ASC 850"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Intercompany billing list"
+    ],
+    "redFlags": [
+      "Drafts never posted"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_creating_an_intercompany_bill": {
+    "purpose": "Creates an intercompany bill — billing entity, billed entity, lines, amounts — saved as draft or posted to generate both sides.",
+    "outcome": "Matched A/R and A/P records between affiliates.",
+    "rootCause": "Creating both sides from one entry guarantees they match in amount, date and description.",
+    "ifSkipped": "Affiliate charges are recorded on one side only.",
+    "glAccounts": [
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Intercompany billing list"
+    ],
+    "redFlags": [
+      "Charges not supported by the management agreement"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_editing_and_viewing_intercompany_billing_transactions": {
+    "purpose": "Edits an intercompany billing while it is still a draft, or views a posted one, to confirm the billing entity, billed entity, lines and amounts match the agreed charge.",
+    "outcome": "Affiliate charges corrected before posting or reviewed afterwards.",
+    "rootCause": "Correcting before posting keeps both sides aligned; after posting, reversal is needed.",
+    "ifSkipped": "Errors are posted to both entities and must be reversed on both sides.",
+    "glAccounts": [
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Intercompany billing list"
+    ],
+    "redFlags": [
+      "Edits after one side was paid"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_paying_an_intercompany_invoice": {
+    "purpose": "Pays the A/P side of an intercompany invoice from the billed entity's bank account, settling the affiliate charge in cash.",
+    "outcome": "The affiliate charge is settled in cash.",
+    "rootCause": "Owners expect intercompany balances to be settled regularly; long-open balances look like undisclosed loans between entities.",
+    "ifSkipped": "Intercompany balances accumulate and raise related-party questions.",
+    "glAccounts": [
+      "2130 Due To Affiliates",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 850"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Intercompany reconciliation"
+    ],
+    "redFlags": [
+      "Payments not matched on the receiving side"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_applying_a_payment_to_an_intercompany_bill": {
+    "purpose": "Applies the payment received by the billing entity to the A/R side of an intercompany bill, so both entities show the charge as settled.",
+    "outcome": "Both sides of the affiliate charge show as settled.",
+    "rootCause": "If the payment is recorded on one side only, balances diverge and the intercompany reconciliation fails.",
+    "ifSkipped": "The receivable stays open after payment and balances do not match.",
+    "glAccounts": [
+      "1230 Due From Affiliates",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Intercompany reconciliation"
+    ],
+    "redFlags": [
+      "Unapplied intercompany receipts"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_duplicating_an_intercompany_billing_transaction": {
+    "purpose": "Copies an existing intercompany bill for a recurring affiliate charge — for example the next month's shared payroll billing.",
+    "outcome": "Recurring affiliate charges created consistently.",
+    "rootCause": "Affiliate charges often repeat monthly with similar lines; copying keeps coding consistent.",
+    "ifSkipped": "Recurring charges are rebuilt with inconsistent coding.",
+    "glAccounts": [
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Intercompany billing list"
+    ],
+    "redFlags": [
+      "Copies with last month's amounts unchanged"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deleting_an_intercompany_billing_transaction": {
+    "purpose": "Deletes a draft intercompany billing entered in error — for example a shared-payroll charge keyed twice — before it posts to either entity.",
+    "outcome": "Erroneous affiliate charges removed before posting.",
+    "rootCause": "Duplicate affiliate charges inflate both entities' balances and must be removed before they post to either side.",
+    "ifSkipped": "Duplicate charges post to both entities.",
+    "glAccounts": [
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Intercompany billing list"
+    ],
+    "redFlags": [
+      "Deleting posted intercompany bills"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_intercompany_billing_page": {
+    "purpose": "The page for adding or changing an intercompany billing — entities, lines and the generated A/R and A/P invoice information.",
+    "outcome": "Complete definition of an affiliate charge and both sides it creates.",
+    "rootCause": "Seeing the A/R and A/P sides on one page before posting is what guarantees the two entities record identical amounts, dates and descriptions, which is required for intercompany balances to eliminate on consolidation.",
+    "ifSkipped": "Mismatched sides are posted and the intercompany reconciliation fails.",
+    "glAccounts": [
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Intercompany billing list"
+    ],
+    "redFlags": [
+      "Different descriptions on the two sides"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_inter_company_bill_back": {
+    "purpose": "The inter-company bill-back feature automatically creates an A/R invoice to recover a cost when an A/P invoice is recorded for an expense belonging to another entity.",
+    "outcome": "Costs paid on behalf of affiliates are billed back automatically.",
+    "rootCause": "Management companies frequently pay vendors on behalf of properties (or vice versa). Without automation, bill-backs are forgotten and the paying entity absorbs the cost.",
+    "ifSkipped": "Costs paid on behalf of affiliates are never recovered.",
+    "glAccounts": [
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "ASC 810",
+      "ASC 850"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Bill-back register"
+    ],
+    "redFlags": [
+      "Costs paid for affiliates without bill-backs"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_what_does_inter_company_bill_back_do": {
+    "purpose": "Explains how bill-back works: an A/P invoice flagged for bill-back generates a corresponding A/R invoice to the responsible entity, optionally with markup.",
+    "outcome": "Users understand the automatic link between payable and recovery.",
+    "rootCause": "Understanding the mechanism helps accountants flag the right invoices and reconcile the resulting receivables.",
+    "ifSkipped": "Invoices are not flagged and recoveries are missed.",
+    "glAccounts": [
+      "1230 Due From Affiliates"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bill-back register"
+    ],
+    "redFlags": [
+      "Markups not authorized by agreements"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_bill_back_feature_configuration_workflow": {
+    "purpose": "The configuration workflow for bill-back — enabling the feature, mapping accounts and setting customer relationships between entities.",
+    "outcome": "Bill-back produces correct receivables in the right entities.",
+    "rootCause": "Bill-back depends on account and customer mappings; incomplete configuration produces invoices to the wrong entity or account.",
+    "ifSkipped": "Bill-backs are created incorrectly or not at all.",
+    "glAccounts": [
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Configuration"
+    ],
+    "redFlags": [
+      "Entities without customer mappings"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_using_the_inter_company_bill_back_workflow": {
+    "purpose": "Uses the bill-back workflow day to day — flagging A/P invoices for bill-back and reviewing generated A/R invoices.",
+    "outcome": "Routine recovery of costs paid for other entities.",
+    "rootCause": "Consistent use ensures every cost paid for another entity is recovered in the same period.",
+    "ifSkipped": "Costs paid on behalf of affiliates are recovered late or never.",
+    "glAccounts": [
+      "1230 Due From Affiliates"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bill-back register"
+    ],
+    "redFlags": [
+      "Bill-backs generated in a later period than the cost"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_managing_inter_company_bill_back_invoices": {
+    "purpose": "Manages bill-back invoices — creating, viewing, and disabling bill-back transactions.",
+    "outcome": "Bill-back receivables tracked and maintained.",
+    "rootCause": "Bill-back receivables must be followed to collection like any other receivable, and incorrect ones removed.",
+    "ifSkipped": "Bill-back receivables from affiliates go uncollected and age on the balance sheet.",
+    "glAccounts": [
+      "1230 Due From Affiliates"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bill-back register"
+    ],
+    "redFlags": [
+      "Aged bill-back receivables"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_creating_a_bill_back_invoice": {
+    "purpose": "Creates a bill-back invoice from an A/P invoice so the responsible entity is billed for the cost.",
+    "outcome": "A receivable from the affiliate matching the cost paid.",
+    "rootCause": "Linking the bill-back to the original A/P invoice provides support and prevents double billing.",
+    "ifSkipped": "Costs are not recovered or recovered twice.",
+    "glAccounts": [
+      "1230 Due From Affiliates",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bill-back register"
+    ],
+    "redFlags": [
+      "Bill-backs without source invoice links"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_an_a_p_invoice_created_with_the_bill_back_feature": {
+    "purpose": "Views the A/P invoice created on the billed entity's side by the bill-back feature.",
+    "outcome": "The payable side of the bill-back is visible for approval and payment.",
+    "rootCause": "The receiving entity must approve and pay the bill-back; seeing it confirms both sides exist.",
+    "ifSkipped": "Receiving entities never pay bill-backs.",
+    "glAccounts": [
+      "2130 Due To Affiliates",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bill-back register"
+    ],
+    "redFlags": [
+      "Payable side unapproved"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_disabling_inter_company_bill_back_transactions": {
+    "purpose": "Disables bill-back for transactions that should not be recovered — for example costs the management company agreed to absorb.",
+    "outcome": "Only intended recoveries are billed.",
+    "rootCause": "Some costs are non-reimbursable under the management agreement; disabling bill-back prevents billing owners for them.",
+    "ifSkipped": "Owners are billed for non-reimbursable costs.",
+    "glAccounts": [
+      "1230 Due From Affiliates"
+    ],
+    "gaap": [
+      "Management agreement reimbursable-cost provisions"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Bill-back register"
+    ],
+    "redFlags": [
+      "Disabled bill-backs for reimbursable costs"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_payments": {
+    "purpose": "Chapter on A/R payments — receiving and applying customer payments and advances, deposits, adjustments and write-offs.",
+    "outcome": "A complete process for turning receivables into cash.",
+    "rootCause": "Collections, application, deposit and write-off must follow a consistent process for the aging and cash to be reliable.",
+    "ifSkipped": "Receipts are handled inconsistently and aging becomes unreliable.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1130 Undeposited Funds",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 310",
+      "ASC 326"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Receipts register",
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Unapplied receipts"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_payments_2": {
+    "purpose": "Section on receiving customer payments and applying them to invoices, including overpayments, credits and other receipts.",
+    "outcome": "Customer payments recorded against the right invoices.",
+    "rootCause": "Correct application determines what remains outstanding and what is chased; misapplication creates false delinquency.",
+    "ifSkipped": "Customers are chased for invoices they have already paid.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Receipts register"
+    ],
+    "redFlags": [
+      "Payments on account without invoices"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_receiving_payments_q_and_a": {
+    "purpose": "Answers common questions about receiving payments — how to enter unapplied payments, partial payments, overpayments and payments without an invoice.",
+    "outcome": "Accountants handle unusual receipts consistently.",
+    "rootCause": "Unusual receipts are where most application errors happen; clear answers reduce misapplied cash.",
+    "ifSkipped": "Unusual receipts are recorded inconsistently.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Overpayments recorded as income"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_select_invoices_for_payment_page": {
+    "purpose": "The page used to receive a payment and select which open invoices it pays, with amounts applied per invoice.",
+    "outcome": "Each receipt is matched to specific invoices.",
+    "rootCause": "Commercial tenants often pay several invoices with one check and specify which; applying accordingly keeps both sides' records aligned.",
+    "ifSkipped": "Applications differ from the customer's remittance and disputes follow.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Receipts register"
+    ],
+    "redFlags": [
+      "Applications ignoring customer remittance advice"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_receiving_a_payment_2": {
+    "purpose": "Records a customer check or electronic payment, entering payer, amount, reference and deposit account before applying it to invoices.",
+    "outcome": "The receipt is recorded and ready for deposit and application.",
+    "rootCause": "Recording the check number and payer precisely allows matching to the bank deposit and resolving any dispute.",
+    "ifSkipped": "Receipts cannot be traced to bank deposits or resolved in disputes.",
+    "glAccounts": [
+      "1130 Undeposited Funds",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Receipts register"
+    ],
+    "redFlags": [
+      "Receipts without references"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_entering_an_overpayment": {
+    "purpose": "Records a payment larger than the amount due, leaving the excess as a customer credit.",
+    "outcome": "Overpayments are held as credits owed to the customer, not taken to income.",
+    "rootCause": "Overpaid amounts belong to the customer until applied or refunded; recording them as income overstates revenue and creates unclaimed property exposure.",
+    "ifSkipped": "Overpayments are hidden in income and never refunded.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "2120 Prepaid Rent"
+    ],
+    "gaap": [
+      "ASC 606 — customer deposits are liabilities",
+      "State unclaimed property laws"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer aging (credit balances)"
+    ],
+    "redFlags": [
+      "Old customer credit balances"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_refunding_an_overpayment": {
+    "purpose": "Refunds a customer's overpayment or credit balance by creating a refund through A/P, clearing the credit from the customer's account.",
+    "outcome": "Customer credits are returned and cleared.",
+    "rootCause": "Credits left unrefunded eventually become unclaimed property owed to the state; refunding promptly clears the liability.",
+    "ifSkipped": "Credit balances age into escheat obligations.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "State unclaimed property laws"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "A/P team"
+    ],
+    "reports": [
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Refunds to different payees than the original payer"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_applying_a_credit_memo_to_an_invoice": {
+    "purpose": "Applies a customer's credit memo (from a returned charge or billing correction) against an open invoice.",
+    "outcome": "Credits reduce open invoices instead of sitting separately.",
+    "rootCause": "Unapplied credits make both the invoice and the credit look open, overstating receivables and liabilities.",
+    "ifSkipped": "Aging shows offsetting open items and customers dispute balances.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Credits applied to the wrong customer's invoices"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_applying_credits_without_recording_a_payment_receipt": {
+    "purpose": "Applies existing credits to invoices without a new payment, for example matching an old overpayment to this month's invoice.",
+    "outcome": "Credits and invoices net off cleanly.",
+    "rootCause": "Credits often need to be applied without any cash changing hands; this path clears both items.",
+    "ifSkipped": "Credits and invoices both remain open, overstating the aging.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Credits applied across different entities"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_applying_credits_as_you_record_a_payment_receipt": {
+    "purpose": "Applies available credits while recording a new payment, so the payment plus credits settle the selected invoices.",
+    "outcome": "Payment and credits combined to settle invoices in one step.",
+    "rootCause": "Customers often short-pay by the amount of credits they expect to be applied; applying credits at receipt matches their remittance.",
+    "ifSkipped": "Short payments leave invoices partially open while credits remain unused.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Receipts register"
+    ],
+    "redFlags": [
+      "Credits applied that the customer did not claim"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_changing_the_amount_credited_after_applying_it": {
+    "purpose": "Changes how much of a credit was applied after application, where configuration allows.",
+    "outcome": "Credit applications corrected without reversing payments.",
+    "rootCause": "Applying the wrong credit amount is a common error; correcting it directly avoids reversing and re-entering the payment.",
+    "ifSkipped": "Errors persist or payments are reversed unnecessarily.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer ledger"
+    ],
+    "redFlags": [
+      "Frequent changes to credit applications"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_receiving_other_payments": {
+    "purpose": "Records other payment types — manual deposits and payments not tied to specific invoices — through the Receive a Payment page.",
+    "outcome": "Unusual receipts are recorded in A/R rather than outside it.",
+    "rootCause": "Not every customer receipt matches an invoice (deposits, prepayments); recording them in A/R keeps the customer ledger complete.",
+    "ifSkipped": "Customer receipts are recorded elsewhere and the ledger is incomplete.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "2120 Prepaid Rent"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Receipts register"
+    ],
+    "redFlags": [
+      "Receipts recorded without customers"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_applying_a_payment_to_an_invoice": {
+    "purpose": "Applies a recorded customer payment to one or more open invoices so they show as paid and the customer's balance is reduced.",
+    "outcome": "Invoices marked paid and aging reduced.",
+    "rootCause": "A payment recorded but not applied leaves both an open invoice and an unapplied credit, overstating the customer's delinquency.",
+    "ifSkipped": "Customers look delinquent while holding unapplied payments.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Unapplied payments older than one month"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_turning_off_auto_payment_suggestions": {
+    "purpose": "Turns off automatic payment application suggestions so users apply payments manually.",
+    "outcome": "Payments are applied only as the customer remitted.",
+    "rootCause": "Auto-suggestions apply to the oldest invoice by default, which may contradict the customer's remittance and cause disputes.",
+    "ifSkipped": "Payments are applied against customer instructions.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Frequent reapplication of payments"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_posted_payments_list_accounts_receivable": {
+    "purpose": "Lists posted customer payments with payer, date, amount, deposit status and application.",
+    "outcome": "A register of collections for review and reconciliation.",
+    "rootCause": "Posted payments must tie to deposits and bank credits; the list supports that matching and investigation of disputes.",
+    "ifSkipped": "Payments cannot be efficiently matched to deposits.",
+    "glAccounts": [
+      "1130 Undeposited Funds",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Receipts register"
+    ],
+    "redFlags": [
+      "Posted payments not yet deposited after several days"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_viewing_a_list_of_posted_payments": {
+    "purpose": "Opens the posted payments list and filters it by customer, date range or amount to find specific receipts — typically to answer a customer's 'did you receive our payment?' inquiry.",
+    "outcome": "Specific payments located quickly.",
+    "rootCause": "Customer inquiries ('did you receive our payment?') require locating payments quickly.",
+    "ifSkipped": "Payment inquiries go unanswered or take too long.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Receipts register"
+    ],
+    "redFlags": [
+      "Duplicate payments from the same customer"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_posted_payments": {
+    "purpose": "Views a posted customer payment's details — payer, method, reference, invoices applied and deposit — to resolve disputes or misapplications.",
+    "outcome": "The full record of how one receipt was handled.",
+    "rootCause": "Resolving disputes and misapplications requires seeing exactly how a payment was applied.",
+    "ifSkipped": "Misapplied payments go unnoticed and disputes drag on.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payment detail"
+    ],
+    "redFlags": [
+      "Payments applied to another customer's invoice"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_reversing_posted_payments": {
+    "purpose": "Reverses a posted customer payment from Search & Find — for a returned check or a payment applied to the wrong customer.",
+    "outcome": "The payment's effect is undone and the invoices reopen.",
+    "rootCause": "Returned or misapplied payments must be undone with a trail so the customer balance and cash are correct.",
+    "ifSkipped": "Returned payments stay credited and A/R is understated.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 310"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer ledger"
+    ],
+    "redFlags": [
+      "Reversals without bank evidence"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_reversing_a_payment_from_the_receipts_register_report": {
+    "purpose": "Reverses a customer payment directly from the Receipts Register report while reviewing receipts, without navigating to the payment record.",
+    "outcome": "Payments reversed from the register while reviewing receipts.",
+    "rootCause": "Errors are often spotted while reviewing the register; reversing from there saves navigating to the payment.",
+    "ifSkipped": "Errors spotted in review are not corrected promptly.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Receipts register"
+    ],
+    "redFlags": [
+      "Reversals in closed periods"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_how_to_access_the_invoice_again_to_apply_the_correct_payment": {
+    "purpose": "Explains how to reopen an invoice after reversing a misapplied payment so the correct payment can be applied.",
+    "outcome": "Misapplied payments are reapplied correctly.",
+    "rootCause": "After reversal, the invoice must be located again and the right payment applied; missing this step leaves the invoice open.",
+    "ifSkipped": "Invoices stay open after a reversal and customers are chased.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer ledger"
+    ],
+    "redFlags": [
+      "Reversed payments never reapplied"
+    ],
+    "confidence": "medium"
+  }
+}

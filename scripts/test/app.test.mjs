@@ -15,7 +15,7 @@ import {
   MODULES,
   getSubmoduleEntries,
 } from '../../src/utils/screenIndex.js';
-import { loadModule, isModuleLoaded, MODULE_IDS } from '../../src/data/moduleLoader.js';
+import { loadModule, isModuleLoaded, MODULE_IDS, loadSmeAnalysis } from '../../src/data/moduleLoader.js';
 import {
   phaseStatuses,
   nextTask,
@@ -165,6 +165,15 @@ test('lazy loading pulls in one module and resolves full screen detail', async (
   assert.ok(!isModuleLoaded('gl'), 'loading cash must not load other modules');
   assert.equal(getScreenById('scr_cash_bank_reconciliation_new'), a);
   assert.equal(await loadScreenById('scr_does_not_exist'), null);
+});
+
+test('loading a module attaches the hand-written SME analysis to its screens', async () => {
+  const rec = await loadScreenById('scr_cash_bank_rec');
+  assert.ok(rec.sme, 'bank rec screen should carry SME analysis');
+  for (const k of ['purpose', 'outcome', 'rootCause', 'ifSkipped']) assert.ok(rec.sme[k].length > 30, k);
+  assert.ok(['high', 'medium'].includes(rec.sme.confidence));
+  const sme = await loadSmeAnalysis('cash');
+  for (const [id, a] of Object.entries(sme)) assert.equal((await loadScreenById(id)).sme, a, id);
 });
 
 test('search index and manifest match the module files exactly', async () => {

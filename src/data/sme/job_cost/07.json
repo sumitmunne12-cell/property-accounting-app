@@ -1,0 +1,1112 @@
+{
+  "scr_jobcost_lien_releases_list": {
+    "purpose": "Lists lien releases (waivers) generated or received for job cost payments — contractor, job, amount covered, conditional or unconditional, status — so every payment has its waiver on file.",
+    "outcome": "A register proving that paid contractors and suppliers have waived lien rights for the amounts paid.",
+    "rootCause": "State mechanics' lien laws let unpaid contractors, subcontractors and suppliers lien the property. Lenders and title insurers require waivers for each payment; the list is how the accountant confirms none are missing before a draw or a sale.",
+    "ifSkipped": "Missing waivers surface when a lien is filed, a draw is rejected or a sale closing is delayed by a title exception.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "2015 Retainage Payable",
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "State mechanics' lien statutes",
+      "Title insurance requirements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Construction manager",
+      "Lender",
+      "Title company"
+    ],
+    "reports": [
+      "Lien waiver log",
+      "Draw package"
+    ],
+    "redFlags": [
+      "Payments without unconditional waivers after the check cleared",
+      "Waivers from the GC but none from lower-tier subs"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_generating_a_lien_release_package": {
+    "purpose": "Generates a package of lien release documents for selected job payments, merged from templates with vendor, amount, job and date details, ready for contractors to sign.",
+    "outcome": "Correctly completed waiver forms issued with each payment, reducing back-and-forth with contractors.",
+    "rootCause": "Many states prescribe statutory waiver forms (conditional on progress payment, unconditional on final payment). Generating them from payment data avoids errors in amounts and dates that make waivers invalid.",
+    "ifSkipped": "Waivers are prepared by hand with wrong amounts or forms and may not protect the owner.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "State statutory lien waiver forms (e.g., CA Civil Code §8132-8138, TX Property Code §53.284)"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Contractors"
+    ],
+    "reports": [
+      "Lien release package"
+    ],
+    "redFlags": [
+      "Unconditional waivers issued before payment clears"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_creating_and_uploading_a_lien_release_template": {
+    "purpose": "Creates a Word lien release template with merge fields and uploads it so the system can generate waivers in the state-required format.",
+    "outcome": "State-compliant waiver templates available for every property's jurisdiction.",
+    "rootCause": "Statutory waiver language varies by state and non-compliant forms may be unenforceable. Templates encode the correct language once for reuse.",
+    "ifSkipped": "Waivers use generic language that may not protect the owner in statutory-form states.",
+    "glAccounts": [],
+    "gaap": [
+      "State statutory lien waiver requirements"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Legal / compliance"
+    ],
+    "reports": [
+      "Lien release templates"
+    ],
+    "redFlags": [
+      "One template used for properties in states with statutory forms"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_downloading_and_installing_the_word_merge_tool": {
+    "purpose": "Downloads and installs the Word Merge tool used to insert RealPage merge fields into lien release and other document templates.",
+    "outcome": "Template designers can build merge-enabled documents.",
+    "rootCause": "Merge fields must be inserted with the tool for templates to populate correctly from payment data.",
+    "ifSkipped": "Templates cannot be built or maintained, and waivers are prepared manually.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Templates edited without the tool, breaking merge fields"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_logging_in_to_the_word_merge_tool": {
+    "purpose": "Logs in to the Word Merge tool with RealPage credentials so templates can be linked to the company's data fields.",
+    "outcome": "The tool is connected to the company's field definitions.",
+    "rootCause": "Merge fields are company-specific; the tool must connect to the right company to offer valid fields.",
+    "ifSkipped": "Templates reference invalid fields and generate blank documents.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — access controls"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Shared credentials used for the tool"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_choosing_a_word_file_for_your_document_template": {
+    "purpose": "Selects the Word file that will become a document template, such as the state's statutory waiver form.",
+    "outcome": "The correct base document is used for the template.",
+    "rootCause": "Starting from the official statutory form ensures the template's legal language is correct before merge fields are added.",
+    "ifSkipped": "Templates are built from outdated or non-compliant forms.",
+    "glAccounts": [],
+    "gaap": [
+      "State statutory lien waiver requirements"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Templates based on superseded statutory forms"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_using_the_word_merge_tool_to_insert_merge_fields": {
+    "purpose": "Inserts merge fields (vendor, amount, job, property, dates) into the Word template.",
+    "outcome": "Templates populate automatically with payment details.",
+    "rootCause": "Accurate field placement guarantees that the amount and date on each waiver match the payment it covers — the key requirement for a valid waiver.",
+    "ifSkipped": "Waiver amounts or dates are typed manually and may not match payments.",
+    "glAccounts": [],
+    "gaap": [
+      "State lien waiver requirements"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Amount fields mapped to invoice total instead of payment amount"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_syncing_a_document_template_with_realpage_accounting": {
+    "purpose": "Syncs a finished Word template back to RealPage Accounting so it is available for generating documents.",
+    "outcome": "Updated templates are live for waiver generation.",
+    "rootCause": "Template changes (a statutory form update) have no effect until synced; unsynced templates leave users generating the old version.",
+    "ifSkipped": "Waivers continue to be generated on outdated templates.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Template changes not synced"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_setting_up_job_cost_and_reserves": {
+    "purpose": "Section on setting up Job Cost & Reserves — configuration, permits, segments, cost structures, job types, cost codes, reserve schedules, reporting codes, draw models and funding sources.",
+    "outcome": "A configured project accounting structure ready for jobs and draws.",
+    "rootCause": "Every draw and project report depends on this setup; building it thoughtfully once avoids restructuring projects mid-flight.",
+    "ifSkipped": "Projects are set up inconsistently and draws must be reformatted manually for each lender.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Construction manager",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Setup lists"
+    ],
+    "redFlags": [
+      "Setup not aligned with lender draw formats"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_configuration": {
+    "purpose": "The Configuration section of Job Cost & Reserves setup, controlling application-wide settings such as integrations, budget checks and default accounts.",
+    "outcome": "Job cost behaves consistently with company policy.",
+    "rootCause": "Settings such as whether budget checks block over-budget commitments determine how strong project controls are.",
+    "ifSkipped": "Project controls operate inconsistently or not at all.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Configuration"
+    ],
+    "redFlags": [
+      "Budget checks disabled"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_configure_job_cost_and_reserves_page": {
+    "purpose": "The Configure page for Job Cost & Reserves where default accounts, integration options and control settings are set.",
+    "outcome": "Company-wide job cost settings defined in one place.",
+    "rootCause": "Default accounts (e.g., CIP, retainage payable) drive postings for every job; errors here misstate balance sheets across the portfolio.",
+    "ifSkipped": "Job postings hit wrong default accounts.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "2015 Retainage Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Configuration"
+    ],
+    "redFlags": [
+      "Retainage default mapped to A/P"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_configuring_job_cost": {
+    "purpose": "Procedure for configuring Job Cost from Setup > Configuration — default CIP and retainage accounts, budget-check behavior, integration options — before the first job is created.",
+    "outcome": "Job cost configured before first use.",
+    "rootCause": "Every job created afterwards inherits these settings. Configuring first avoids reposting costs or restructuring jobs when a default (such as the retainage payable account) turns out to be wrong after projects are underway.",
+    "ifSkipped": "Jobs are created under defaults that later need correcting.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Configuration"
+    ],
+    "redFlags": [
+      "Configuration changed after jobs exist without review"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_integrating_job_cost_with_procore": {
+    "purpose": "Sets up the integration between RealPage Job Cost and Procore so jobs, budgets, commitments and costs flow between them.",
+    "outcome": "Construction and accounting work from synchronized project data.",
+    "rootCause": "Construction teams live in Procore and accounting in RealPage; without integration, the two diverge and reconciliation becomes a monthly manual exercise.",
+    "ifSkipped": "Project data diverges and draws are built on inconsistent figures.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013 — interface controls"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Construction manager"
+    ],
+    "reports": [
+      "External queue exceptions"
+    ],
+    "redFlags": [
+      "Integration errors unmonitored"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_permits": {
+    "purpose": "Explains permits — categories used to organize job attachments such as building permits, inspection certificates and certificates of occupancy.",
+    "outcome": "Regulatory documents for projects are organized and retrievable.",
+    "rootCause": "Lenders and municipalities require proof of permits and inspections for capital work; organizing them by category makes them available for draws and closeouts.",
+    "ifSkipped": "Permit documents are scattered and draws or closeouts are delayed.",
+    "glAccounts": [],
+    "gaap": [
+      "Local building code requirements"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job attachments"
+    ],
+    "redFlags": [
+      "Major projects without permit documents"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_permits_list": {
+    "purpose": "Lists the permit categories (building permit, electrical permit, final inspection, certificate of occupancy) used to classify documents attached to jobs.",
+    "outcome": "A consistent set of document categories across projects.",
+    "rootCause": "Consistent categories let anyone find a project's building permit or final inspection quickly during a draw or audit.",
+    "ifSkipped": "Documents are mislabeled and hard to find.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Permits list"
+    ],
+    "redFlags": [
+      "Duplicate permit categories"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_permit": {
+    "purpose": "Adds a permit category for job attachments, for example 'Roofing Permit' or 'Final Inspection'.",
+    "outcome": "New document types can be classified on jobs.",
+    "rootCause": "New project types may require new permit categories so documents stay organized.",
+    "ifSkipped": "New document types are filed under generic categories.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Permits list"
+    ],
+    "redFlags": [
+      "Categories added without naming conventions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_viewing_a_permit": {
+    "purpose": "Views a permit category's name and description to confirm which documents belong in it before filing a job attachment.",
+    "outcome": "Clarity on how a category should be used.",
+    "rootCause": "Users need to know what belongs in each category to file documents consistently.",
+    "ifSkipped": "Permit documents are filed under the wrong category and cannot be found for a draw or closeout.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Permits list"
+    ],
+    "redFlags": [
+      "Categories without descriptions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_deleting_a_permit": {
+    "purpose": "Deletes a permit category that is no longer used, for example a category created for a one-off municipal inspection type.",
+    "outcome": "Only relevant categories remain.",
+    "rootCause": "Unused permit categories clutter the selection list and lead staff to file building permits or inspection certificates under the wrong heading, which slows retrieval when a lender asks for them.",
+    "ifSkipped": "Users misfile documents under obsolete categories.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Permits list"
+    ],
+    "redFlags": [
+      "Deleting categories with attached documents"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_permit_information_page": {
+    "purpose": "The permit category record page holding the category name and description that users select when attaching permits and inspection documents to jobs.",
+    "outcome": "A defined category for job documents.",
+    "rootCause": "Clear definitions support consistent document organization across properties and projects.",
+    "ifSkipped": "Categories are applied inconsistently and project documents are hard to retrieve.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Permits list"
+    ],
+    "redFlags": [
+      "Vague category names"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_segments": {
+    "purpose": "Explains job segments — the breakdown of a job into parts (cost codes, phases, buildings) against which budgets and costs are tracked.",
+    "outcome": "Projects are tracked at the level of detail owners and lenders need.",
+    "rootCause": "A $2M renovation cannot be managed as one number; segments let the team control each trade or phase separately.",
+    "ifSkipped": "Projects are tracked only in total and overruns in specific trades are hidden.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job segments"
+    ],
+    "redFlags": [
+      "Jobs without segments"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_job_segments_list": {
+    "purpose": "Lists the job segments (cost codes, phases or buildings) set up in Job Cost & Reserves, with codes and descriptions, as the catalog used when defining segments on each job.",
+    "outcome": "A catalog of segments for consistent budgeting.",
+    "rootCause": "Reusing standard segments across jobs is what makes projects comparable — two roof jobs with the same segments can be benchmarked; two with ad hoc segments cannot.",
+    "ifSkipped": "Each job invents segments and comparisons fail.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job segments list"
+    ],
+    "redFlags": [
+      "Near-duplicate segments"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_defining_job_segments_for_a_job": {
+    "purpose": "Defines which segments apply to a specific job — for example the trades involved in a roof replacement.",
+    "outcome": "The job has exactly the segments its scope requires.",
+    "rootCause": "Defining segments per job keeps budgets focused on the trades actually involved.",
+    "ifSkipped": "Jobs carry irrelevant segments or miss needed ones.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job segments"
+    ],
+    "redFlags": [
+      "Segments missing for trades in the contract"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_editing_a_job_segment": {
+    "purpose": "Edits a job segment's description or settings — for example renaming 'Phase 2' to 'Phase 2 — Buildings 5-8' so draws and reports are clearer.",
+    "outcome": "Segment definitions stay accurate.",
+    "rootCause": "Segment names appear on draws and capex reports seen by lenders and owners. Unclear or outdated names cause questions and slow approvals.",
+    "ifSkipped": "Draws and capex reports show confusing segment labels that lenders question.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job segments"
+    ],
+    "redFlags": [
+      "Segment changes after draws submitted"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_viewing_a_job_segment": {
+    "purpose": "Views a job segment's details and the jobs using it, typically before changing or deleting it.",
+    "outcome": "Understanding of how a segment is applied across jobs.",
+    "rootCause": "A segment may be used on many jobs; changing it without seeing where it is used can alter active projects' budgets and draws unexpectedly.",
+    "ifSkipped": "Segment changes affect jobs unexpectedly.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job segments"
+    ],
+    "redFlags": [
+      "Segments used inconsistently across jobs"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_job_segment_information_page": {
+    "purpose": "The job segment record page holding the segment code, description and settings that control how costs are grouped in job reports and draws.",
+    "outcome": "A complete definition of a segment.",
+    "rootCause": "Segment settings decide how costs group on job status reports and lender draws; a wrong setting misplaces costs in every report that uses the segment.",
+    "ifSkipped": "Costs group incorrectly on job reports and lender draws.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Job segments"
+    ],
+    "redFlags": [
+      "Missing descriptions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_cost_structure_definition": {
+    "purpose": "Explains cost structures — the hierarchy that organizes cost codes into categories (e.g., hard costs > roofing > materials) for reporting and draws.",
+    "outcome": "Project costs roll up into categories lenders and owners recognize.",
+    "rootCause": "Lenders review draws in categories (hard costs, soft costs, contingency). A cost structure makes that roll-up automatic.",
+    "ifSkipped": "Costs must be re-categorized manually for each lender report.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Construction loan budget formats"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "System administrator"
+    ],
+    "reports": [
+      "Cost Code Structure report"
+    ],
+    "redFlags": [
+      "Structures inconsistent with lender budget categories"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_cost_structures_list": {
+    "purpose": "Lists cost structures — the hierarchies that roll cost codes up into categories such as hard costs, soft costs and contingency — with actions to add, duplicate, edit, view or delete.",
+    "outcome": "Maintained cost hierarchies for different project types.",
+    "rootCause": "Construction, renovation and reserve work may need different structures; the list manages them.",
+    "ifSkipped": "One structure is forced on all project types.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Cost structures list"
+    ],
+    "redFlags": [
+      "Unused structures cluttering selection"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_duplicating_or_editing_a_cost_structure": {
+    "purpose": "Adds a new cost structure, duplicates an existing one as a starting point, or edits a structure's hierarchy.",
+    "outcome": "Cost structures tailored to project types or lender formats.",
+    "rootCause": "A new lender or project type may need a variant structure; duplicating keeps the standard base.",
+    "ifSkipped": "Structures are rebuilt from scratch with inconsistencies.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Cost structures list"
+    ],
+    "redFlags": [
+      "Edits to structures used by active jobs"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_viewing_a_cost_structure": {
+    "purpose": "Views a cost structure's hierarchy of categories and cost codes to understand how project costs roll up on reports and lender draws.",
+    "outcome": "Clarity on which category each cost code rolls into.",
+    "rootCause": "When a lender asks why a cost appears under soft costs instead of hard costs, the answer lies in the cost structure. Viewing it lets the accountant explain or correct the roll-up.",
+    "ifSkipped": "Draw categories cannot be explained to the lender and questioned items delay funding.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Cost structures list"
+    ],
+    "redFlags": [
+      "Codes outside any category"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_deleting_a_cost_structure": {
+    "purpose": "Deletes a cost structure that no job uses, such as a draft hierarchy that was replaced before go-live.",
+    "outcome": "Only active structures remain.",
+    "rootCause": "Obsolete cost structures remain selectable when new jobs are set up; choosing one produces reports and draws in a category layout no lender or owner expects.",
+    "ifSkipped": "New jobs are set up on obsolete structures.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Cost structures list"
+    ],
+    "redFlags": [
+      "Deleting structures in use"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_cost_structure_information_page": {
+    "purpose": "The cost structure record page defining its hierarchy levels and which cost codes sit under each category.",
+    "outcome": "A complete definition of a cost hierarchy.",
+    "rootCause": "The hierarchy defined here drives every roll-up in job status reports and draws. A code placed under the wrong category misstates hard versus soft costs for every job using the structure.",
+    "ifSkipped": "Roll-ups are wrong across all reports and draws that use the structure.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Cost structures list"
+    ],
+    "redFlags": [
+      "Levels without codes"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_job_types": {
+    "purpose": "Explains job types — classifications (capex improvement, replacement reserve repair, construction, tenant improvement) that carry default GL accounts and cost codes.",
+    "outcome": "Jobs inherit the right accounts and codes by type.",
+    "rootCause": "Job type determines whether costs capitalize, which reserve can fund them, and what codes apply; setting it drives consistent accounting.",
+    "ifSkipped": "Jobs use wrong accounts, for example reserve-eligible repairs posted as ordinary capex.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "1530 Building Improvements",
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "ASC 360-10 vs ASC 720 — capital vs expense"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Construction manager"
+    ],
+    "reports": [
+      "Job types list"
+    ],
+    "redFlags": [
+      "Expense-type jobs posting to capital accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_job_types_list": {
+    "purpose": "Lists job types (capital improvement, replacement reserve repair, ground-up construction, tenant improvement) with their default GL accounts and cost codes.",
+    "outcome": "A catalog of project classifications.",
+    "rootCause": "Reviewing job types periodically ensures their default accounts still align with the capitalization policy and chart of accounts; outdated defaults silently misclassify every new job.",
+    "ifSkipped": "New jobs inherit outdated defaults and post capital work to the wrong accounts.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Job types list"
+    ],
+    "redFlags": [
+      "Job types without default accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_job_type": {
+    "purpose": "Adds a job type — for example 'EV Charger Installation' or 'Solar Retrofit' — with its default GL accounts for recording job costs and the cost codes that apply.",
+    "outcome": "A new project classification with correct accounting defaults.",
+    "rootCause": "New project kinds (e.g., EV charger installations) need types with correct capital accounts.",
+    "ifSkipped": "New kinds of projects post to generic accounts and cannot be reported as a category.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "1540 FF&E"
+    ],
+    "gaap": [
+      "ASC 360-10"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Job types list"
+    ],
+    "redFlags": [
+      "Defaults not reviewed by accounting"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_or_editing_a_job_type": {
+    "purpose": "Views or edits a job type's default GL accounts and cost codes — typically after chart of accounts changes or a capitalization policy update.",
+    "outcome": "Job type defaults kept current.",
+    "rootCause": "Chart of accounts changes require job type defaults to be updated or new jobs post to obsolete accounts.",
+    "ifSkipped": "New jobs post to inactive or obsolete accounts.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Job types list"
+    ],
+    "redFlags": [
+      "Defaults pointing to inactive accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_deleting_a_job_type": {
+    "purpose": "Deletes a job type that no job uses, for example a type created during setup testing.",
+    "outcome": "Only current project classifications remain selectable.",
+    "rootCause": "Obsolete job types stay selectable for new jobs and apply outdated default accounts and cost codes, misclassifying new projects from their first cost.",
+    "ifSkipped": "New jobs inherit outdated defaults from obsolete types.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Job types list"
+    ],
+    "redFlags": [
+      "Deleting types in use"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_managing_cost_codes_for_a_job_type": {
+    "purpose": "Manages which cost codes apply to a job type so new jobs of that type start with the right codes.",
+    "outcome": "Consistent cost codes across jobs of the same type.",
+    "rootCause": "Standardizing codes by job type makes projects of the same kind comparable, such as roof replacements across properties.",
+    "ifSkipped": "Similar projects use different codes and cannot be compared.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Construction manager"
+    ],
+    "reports": [
+      "Cost codes list"
+    ],
+    "redFlags": [
+      "Job types with no cost codes"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_job_type_information_page": {
+    "purpose": "The job type record page with its name, default GL accounts (CIP, expense, retainage) and assigned cost codes.",
+    "outcome": "A complete definition of the job type.",
+    "rootCause": "Defaults on this page are copied to every new job of the type; a wrong default account here misposts the costs of every future project of that kind.",
+    "ifSkipped": "Errors spread to all new jobs of that type.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Job types list"
+    ],
+    "redFlags": [
+      "Missing default accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_cost_codes_list": {
+    "purpose": "Lists cost codes available to job types, used to track budgets and costs by trade.",
+    "outcome": "A maintained catalog of cost codes.",
+    "rootCause": "Cost codes are the backbone of project tracking; a clean list prevents duplicates and coding errors.",
+    "ifSkipped": "Duplicate codes split costs and confuse reports.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Cost codes list"
+    ],
+    "redFlags": [
+      "Duplicate cost codes"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_cost_code": {
+    "purpose": "Adds a cost code (e.g., 07-310 Shingle Roofing) to a job type for budget and cost tracking.",
+    "outcome": "A new trade category available on jobs.",
+    "rootCause": "New scopes of work — for example adding EV chargers to a renovation — need a cost code before they can be budgeted and tracked separately. Without one, the cost is coded to an unrelated trade and distorts that trade's budget.",
+    "ifSkipped": "New scope is coded to unrelated trades and distorts their budgets.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Cost codes list"
+    ],
+    "redFlags": [
+      "Codes not following the CSI MasterFormat convention used by the company"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_or_editing_a_cost_code": {
+    "purpose": "Views or edits a cost code's description and settings so site teams and accountants code invoices to the right trade.",
+    "outcome": "Cost code definitions kept accurate.",
+    "rootCause": "Vague cost code descriptions are a leading cause of mis-coded project invoices; clarifying them improves coding accuracy across every job that uses the code.",
+    "ifSkipped": "Invoices continue to be mis-coded because the code's meaning is unclear.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Cost codes list"
+    ],
+    "redFlags": [
+      "Edits changing meaning of codes with history"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_importing_cost_codes": {
+    "purpose": "Imports cost codes from a template, typically a standard code list such as CSI MasterFormat.",
+    "outcome": "A full code catalog loaded accurately.",
+    "rootCause": "Standard code lists such as CSI MasterFormat have hundreds of codes. Importing reproduces them exactly; keying them by hand introduces duplicates and typos that split costs across near-identical codes.",
+    "ifSkipped": "Cost codes are keyed by hand with duplicates and typos.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Cost codes list"
+    ],
+    "redFlags": [
+      "Duplicate codes after import"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_deleting_cost_codes": {
+    "purpose": "Deletes cost codes that no job budget or transaction uses, keeping the list that site teams choose from short and accurate.",
+    "outcome": "The cost code list contains only codes that are actually used.",
+    "rootCause": "Long lists of unused codes increase the chance of picking a wrong but similar-looking code when coding project invoices, which misstates trade budgets.",
+    "ifSkipped": "Project invoices are coded to obsolete or wrong codes.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Cost codes list"
+    ],
+    "redFlags": [
+      "Deleting codes with history"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_cost_code_information_page": {
+    "purpose": "The cost code record page holding the code, description and settings used whenever a budget line or invoice is coded to that trade.",
+    "outcome": "A complete definition of one cost code.",
+    "rootCause": "Consistent, clear definitions on this page are what allow many people across properties to code project costs the same way.",
+    "ifSkipped": "Coding becomes inconsistent across jobs and properties.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Cost codes list"
+    ],
+    "redFlags": [
+      "Codes without descriptions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_reserve_account_schedule": {
+    "purpose": "Explains reserve account schedules — the schedule of required monthly deposits into a lender replacement reserve, and how deposits are tracked against it.",
+    "outcome": "Required reserve deposits tracked so the property stays compliant with its loan.",
+    "rootCause": "Loan documents set a monthly reserve deposit (often $250-$400 per unit per year). Missing deposits or incorrect amounts are covenant issues flagged by servicers.",
+    "ifSkipped": "Reserve deposits are not tracked against requirements and shortfalls are flagged by the servicer.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Loan agreement reserve deposit covenants"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager",
+      "Loan servicer"
+    ],
+    "reports": [
+      "Reserve account schedule"
+    ],
+    "redFlags": [
+      "Deposits below the required schedule"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_reserve_account_schedules_list": {
+    "purpose": "Lists reserve account schedules by property and reserve with required deposits and effective dates.",
+    "outcome": "A portfolio view of reserve deposit obligations.",
+    "rootCause": "Deposit requirements change at loan modification or refinancing; the list keeps current obligations visible.",
+    "ifSkipped": "Outdated deposit requirements are followed.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reserve account schedules"
+    ],
+    "redFlags": [
+      "Schedules not updated after refinancing"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_reserve_account_schedule": {
+    "purpose": "Adds a reserve deposit schedule for a property's reserve — monthly amount, start date and end date.",
+    "outcome": "Required deposits defined for tracking.",
+    "rootCause": "Each loan's deposit terms must be recorded so actual deposits can be compared with requirements.",
+    "ifSkipped": "Compliance with deposit terms cannot be tracked.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reserve account schedules"
+    ],
+    "redFlags": [
+      "Amounts not matching loan documents"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_editing_a_reserve_account_schedule": {
+    "purpose": "Edits a reserve account deposit schedule when the servicer changes the required monthly replacement reserve deposit after a loan modification or property reanalysis.",
+    "outcome": "Deposit schedules match current loan terms.",
+    "rootCause": "Loan modifications and servicer reanalysis change deposits; schedules must follow.",
+    "ifSkipped": "Deposits tracked against wrong requirements.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reserve account schedules"
+    ],
+    "redFlags": [
+      "Edits without servicer documentation"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_a_reserve_account_schedule": {
+    "purpose": "Views a reserve account deposit schedule and its history of required monthly amounts, used when reconciling actual deposits to the servicer's statement.",
+    "outcome": "Clarity on required deposits over time.",
+    "rootCause": "Reconciling to servicer statements requires knowing the required deposit for each period.",
+    "ifSkipped": "Differences with servicer statements are not explained.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reserve account schedules"
+    ],
+    "redFlags": [
+      "Gaps in schedule periods"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_deleting_a_reserve_account_schedule": {
+    "purpose": "Deletes a reserve account deposit schedule that was created in error, such as a duplicate schedule for the same reserve and period.",
+    "outcome": "Only valid deposit schedules drive reserve compliance tracking.",
+    "rootCause": "A duplicate schedule doubles the required deposit shown for the reserve, so compliance tracking reports false shortfalls to the asset manager and servicer.",
+    "ifSkipped": "Compliance reports show false shortfalls.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reserve account schedules"
+    ],
+    "redFlags": [
+      "Deleting schedules with history"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_reserve_account_schedule_information_page": {
+    "purpose": "The reserve account schedule record page with deposit amount, frequency and dates.",
+    "outcome": "A complete definition of the deposit requirement.",
+    "rootCause": "Accurate schedule data is the basis for reserve compliance reporting to servicers.",
+    "ifSkipped": "Reserve compliance reporting to the servicer is inaccurate.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reserve account schedules"
+    ],
+    "redFlags": [
+      "Missing end dates"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_job_reporting_codes": {
+    "purpose": "Explains job reporting codes — user-defined codes that group jobs for reporting (e.g., by capital program, fund or year).",
+    "outcome": "Jobs can be reported by program, fund or other groupings.",
+    "rootCause": "Owners review capital by program (e.g., '2026 Value-Add Program'); reporting codes group jobs accordingly without restructuring.",
+    "ifSkipped": "Program-level reporting requires manual grouping.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "System administrator"
+    ],
+    "reports": [
+      "Program reports"
+    ],
+    "redFlags": [
+      "Jobs without reporting codes"
+    ],
+    "confidence": "medium"
+  }
+}

@@ -1,0 +1,1488 @@
+{
+  "scr_cash_bank_feed_configurations_list": {
+    "purpose": "Lists bank feed configurations — connections that bring bank transactions into RealPage daily — with status and linked accounts.",
+    "outcome": "Treasury sees which accounts have working feeds and which do not.",
+    "rootCause": "Daily feeds drive reconciliation automation and fraud detection; a broken or missing feed silently stops both.",
+    "ifSkipped": "Accounts without working feeds fall back to manual processes unnoticed.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — IT general controls over interfaces"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "System administrator"
+    ],
+    "reports": [
+      "Bank feed configurations"
+    ],
+    "redFlags": [
+      "Feeds in error status"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_bank_feed_configuration": {
+    "purpose": "Creates a bank feed connection and maps imported bank accounts to RealPage bank accounts.",
+    "outcome": "Bank transactions for the mapped accounts flow in daily.",
+    "rootCause": "Feeds must be mapped to the right RealPage accounts or transactions land in the wrong reconciliation.",
+    "ifSkipped": "Accounts lack daily data or receive another account's transactions.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Bank feeds list"
+    ],
+    "redFlags": [
+      "Mappings not verified against account numbers"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_a_bank_feed_configuration": {
+    "purpose": "Views a bank feed configuration's connection status and the mapping between the bank's accounts and RealPage bank accounts.",
+    "outcome": "Mappings can be verified when transactions appear in the wrong reconciliation.",
+    "rootCause": "When a property's bank transactions show up in another property's rec, the feed mapping is almost always the cause; viewing it is the first diagnostic step.",
+    "ifSkipped": "Mapping errors take longer to find and two recs stay broken.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Bank feed configurations"
+    ],
+    "redFlags": [
+      "Accounts mapped to closed RealPage bank accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_a_bank_feed_configuration": {
+    "purpose": "Deletes a bank feed configuration when a banking relationship ends or accounts are closed, so the feed stops importing transactions into RealPage.",
+    "outcome": "Obsolete feeds stop importing data.",
+    "rootCause": "Feeds left in place for closed or transferred accounts can keep importing transactions, sometimes into RealPage accounts that have since been re-mapped, which pollutes reconciliations.",
+    "ifSkipped": "Obsolete transactions continue to import and confuse active reconciliations.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Bank feed configurations"
+    ],
+    "redFlags": [
+      "Deleting feeds still needed for open reconciliations"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_updating_bank_feed_connections": {
+    "purpose": "Edits a bank feed connection — refreshing credentials or updating account mappings after bank changes.",
+    "outcome": "Feeds resume after credential expiry or account changes.",
+    "rootCause": "Feed connections break when bank credentials expire or accounts change; they must be updated promptly.",
+    "ifSkipped": "Feeds stay broken and daily monitoring stops.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "System administrator"
+    ],
+    "reports": [
+      "Bank feed configurations"
+    ],
+    "redFlags": [
+      "Feeds broken for several days"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_bank_feeds": {
+    "purpose": "Views transactions imported through bank feeds within the reconciliation area, ready for matching.",
+    "outcome": "Preparers see current bank activity without downloading statements.",
+    "rootCause": "Continuous access to bank data lets preparers reconcile weekly rather than only at month-end, spreading the workload.",
+    "ifSkipped": "All reconciliation work is compressed into month-end.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank feeds list"
+    ],
+    "redFlags": [
+      "Feed transactions unreviewed for weeks"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_notifying_users_when_bank_feeds_fail": {
+    "purpose": "Sets up users (via their roles) to receive notifications when a bank feed fails.",
+    "outcome": "Feed failures are noticed and fixed quickly.",
+    "rootCause": "Feed failures are silent; without notifications, days of bank activity are missing before anyone notices.",
+    "ifSkipped": "Daily monitoring stops without anyone knowing.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — monitoring of automated controls"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "System administrator"
+    ],
+    "reports": [
+      "Feed failure notifications"
+    ],
+    "redFlags": [
+      "No users assigned to receive failure notifications"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_bank_feed_configuration_page": {
+    "purpose": "The page for creating or viewing a bank feed connection and its account mappings.",
+    "outcome": "A complete feed configuration record.",
+    "rootCause": "Accurate mapping on this page determines which reconciliation each bank transaction lands in.",
+    "ifSkipped": "Feeds are mis-mapped and transactions land in the wrong property's reconciliation.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Bank feed configurations"
+    ],
+    "redFlags": [
+      "Unmapped bank accounts in the feed"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_positive_pay_configuration_list": {
+    "purpose": "Lists positive pay configurations — the file layouts and transmission settings each bank requires — for accounts that issue checks.",
+    "outcome": "Every check-issuing account has a positive pay setup.",
+    "rootCause": "Positive pay only works if configured for each issuing account in the bank's required format; gaps leave accounts exposed to check fraud.",
+    "ifSkipped": "Some accounts issue checks without positive pay protection.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "UCC 3-406 / 4-406 — loss allocation for check fraud"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Positive pay configurations"
+    ],
+    "redFlags": [
+      "Check-issuing accounts missing from the list"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_positive_pay_overview": {
+    "purpose": "Explains positive pay: an automated fraud prevention service where the company sends the bank a list of issued checks and the bank only pays checks that match number, amount (and often payee).",
+    "outcome": "Users understand why every check run must be reported to the bank.",
+    "rootCause": "Check fraud (altered, counterfeit, washed checks) is widespread; banks increasingly shift losses to customers who do not use positive pay.",
+    "ifSkipped": "Accounts remain exposed to check fraud with little recourse against the bank.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "UCC Articles 3 and 4"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "A/P team"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Payee positive pay not enabled where the bank offers it"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_positive_pay_configuration": {
+    "purpose": "Creates a positive pay configuration for a bank account — file layout, transmission method and schedule.",
+    "outcome": "Positive pay files are generated for the account automatically.",
+    "rootCause": "Each bank specifies its own positive pay format; configuration makes files acceptable to the bank.",
+    "ifSkipped": "Files cannot be generated for the account.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "UCC 4-406"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Positive pay configurations"
+    ],
+    "redFlags": [
+      "Configurations not tested with the bank"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_overriding_bank_layout_specifications_for_positive_pay_csv_files": {
+    "purpose": "Overrides the standard CSV layout for positive pay files to match a bank's specific requirements (column order, date format, void indicators).",
+    "outcome": "Positive pay files are accepted by banks with non-standard formats.",
+    "rootCause": "Banks, especially regional ones, use custom CSV specs; without overrides files are rejected and checks are unprotected.",
+    "ifSkipped": "Positive pay files are rejected and checks go unprotected.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Positive pay files"
+    ],
+    "redFlags": [
+      "Void indicators missing, so voided checks remain payable"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_or_editing_a_positive_pay_configuration": {
+    "purpose": "Reviews or updates a positive pay configuration — file layout, included accounts, transmission method and schedule — when the bank changes its format or cut-off.",
+    "outcome": "Positive pay continues working after bank changes.",
+    "rootCause": "Banks periodically change positive pay file formats, upload channels and daily cut-off times. If the configuration is not updated to match, files are rejected or arrive late and the day's checks are unprotected.",
+    "ifSkipped": "Files fail silently and checks lose protection.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Positive pay configurations"
+    ],
+    "redFlags": [
+      "Edits without confirming acceptance by the bank"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_and_inactivating_positive_pay_configurations": {
+    "purpose": "Deletes or inactivates positive pay configurations for accounts that no longer issue checks.",
+    "outcome": "Positive pay setup reflects current check-issuing accounts.",
+    "rootCause": "Inactivating configurations for closed accounts avoids failed transmissions; inactivating one for an active account would remove fraud protection.",
+    "ifSkipped": "Failed transmissions for closed accounts; misuse removes protection.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "UCC 4-406"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Positive pay configurations"
+    ],
+    "redFlags": [
+      "Inactivated configurations on accounts still issuing checks"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_positive_pay_configuration_page": {
+    "purpose": "The page defining a positive pay configuration — bank, accounts, layout, transmission and schedule.",
+    "outcome": "A complete positive pay setup for the selected accounts.",
+    "rootCause": "Every element (accounts included, schedule) determines whether checks are protected when issued.",
+    "ifSkipped": "Accounts or schedules are incomplete and some checks go out unprotected.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "UCC 4-406"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Positive pay configurations"
+    ],
+    "redFlags": [
+      "Schedules running after the bank's positive pay cut-off"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_check_update_page": {
+    "purpose": "Page to change the signatures and templates printed on checks for bank accounts.",
+    "outcome": "Checks carry current authorized signatures and correct templates.",
+    "rootCause": "When authorized signers change (a controller leaves), checks must stop printing the old signature immediately; signature images are sensitive controls.",
+    "ifSkipped": "Checks print with signatures of people no longer authorized.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization",
+      "Bank signature card requirements"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Controller"
+    ],
+    "reports": [
+      "Check update audit trail"
+    ],
+    "redFlags": [
+      "Signature updates without matching bank signature card changes"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_updating_a_check_signature": {
+    "purpose": "Uploads or replaces the signature image printed on checks for a bank account — for example when a controller or authorized signer leaves and the bank signature card changes.",
+    "outcome": "Checks carry the current authorized signer's signature.",
+    "rootCause": "Signature images must match the bank's signature card; changes are security-sensitive because anyone with access can print signed checks.",
+    "ifSkipped": "Checks are signed by unauthorized or former signers.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — access controls over signature images"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Controller"
+    ],
+    "reports": [
+      "Check update audit trail"
+    ],
+    "redFlags": [
+      "Signature changes by users without treasury authority"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_updating_a_check_template": {
+    "purpose": "Changes the check template (layout, MICR placement, logo) used for printing checks from a bank account.",
+    "outcome": "Checks print in a format the bank accepts.",
+    "rootCause": "Incorrect MICR placement causes bank processing failures; templates must match check stock and bank specs.",
+    "ifSkipped": "Checks are rejected or processed incorrectly.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ANSI X9 MICR standards"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Check templates"
+    ],
+    "redFlags": [
+      "Template changes not tested on sample checks"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_design_custom_check_layouts_list": {
+    "purpose": "Lists the custom check layouts designed for the company's own check stock (for example security stock with watermark and branded header), for viewing, editing or deleting.",
+    "outcome": "Available layouts for printing checks on custom stock.",
+    "rootCause": "Companies with branded or security-feature check stock need custom layouts that align fields with the stock.",
+    "ifSkipped": "Checks print misaligned on custom stock.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Custom check layouts"
+    ],
+    "redFlags": [
+      "Unused layouts left active"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_designing_a_custom_check_layout": {
+    "purpose": "Designs a custom check layout — uploading the company's layout and positioning fields such as payee, amount, date and MICR line.",
+    "outcome": "Checks print correctly on the company's check stock.",
+    "rootCause": "Custom stock with security features requires precise field placement for bank processing and fraud resistance.",
+    "ifSkipped": "Checks are unreadable by bank scanners or misaligned.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ANSI X9 MICR standards"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Custom check layouts"
+    ],
+    "redFlags": [
+      "MICR line position not validated with the bank"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_custom_check_components": {
+    "purpose": "Describes the components of a custom check (payee, amount in words and figures, date, memo, signature, MICR) and how they appear.",
+    "outcome": "Designers include every required component.",
+    "rootCause": "Missing or misplaced components (like amount in words) make checks non-negotiable or easier to alter.",
+    "ifSkipped": "Checks missing required components are rejected.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "UCC Article 3 — negotiable instruments"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Custom check layouts"
+    ],
+    "redFlags": [
+      "Layouts missing the amount in words"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_fixing_check_alignment": {
+    "purpose": "Adjusts check layout offsets so printed text aligns with the fields on the check stock.",
+    "outcome": "Checks print cleanly within the pre-printed fields.",
+    "rootCause": "Printer differences shift output; misaligned checks are rejected by vendors' banks or look altered.",
+    "ifSkipped": "Checks are reprinted, wasting stock and creating void sequence gaps.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — check stock control"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "A/P team"
+    ],
+    "reports": [
+      "Check register (voids)"
+    ],
+    "redFlags": [
+      "Frequent voids due to misprints"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_updating_the_company_name_or_address_on_printed_checks": {
+    "purpose": "Updates the payer name or address printed on checks for a bank account, typically after an entity name change or relocation.",
+    "outcome": "Checks show the correct legal entity and address.",
+    "rootCause": "Checks must show the legal entity that owns the account; mismatches confuse vendors and banks and can cause returns.",
+    "ifSkipped": "Checks show outdated entity names, causing confusion and potential rejections.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Bank account information"
+    ],
+    "redFlags": [
+      "Entity name on checks different from bank account title"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_a_custom_check_layout": {
+    "purpose": "Opens an existing custom check layout to check the position of payee, amount, date, signature and MICR fields before a check run is printed.",
+    "outcome": "Layouts can be reviewed before use or during troubleshooting of misprints.",
+    "rootCause": "Reviewing a layout before a large check run avoids printing, voiding and reprinting hundreds of checks — and the gaps in check sequence that follow, which auditors then question.",
+    "ifSkipped": "Layout problems are found only after printing a run.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Custom check layouts"
+    ],
+    "redFlags": [
+      "Layouts changed without review"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_editing_a_custom_check_layout": {
+    "purpose": "Edits the fields or positions of a custom check layout — for example after the company orders new check stock from a different printer.",
+    "outcome": "Layouts corrected for stock or bank changes before the next check run.",
+    "rootCause": "New check stock or new bank MICR requirements shift where fields must print. Editing the layout, and test-printing it, prevents a whole check run from being misprinted.",
+    "ifSkipped": "Checks print incorrectly on the new stock and must be voided and reprinted.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Custom check layouts"
+    ],
+    "redFlags": [
+      "Edits without test prints"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_deleting_a_custom_check_layout": {
+    "purpose": "Deletes a custom check layout that is no longer used, such as one designed for check stock the company has retired.",
+    "outcome": "Only current layouts can be selected for printing.",
+    "rootCause": "Obsolete layouts remain selectable and can be picked by mistake during a check run, printing fields in the wrong places on the current stock.",
+    "ifSkipped": "A retired layout is used for a check run and the checks must be voided and reprinted.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Custom check layouts"
+    ],
+    "redFlags": [
+      "Deleting layouts assigned to active accounts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_design_custom_check_layout_page": {
+    "purpose": "The designer page for creating or viewing a custom check layout, where each check component is positioned precisely on the company's check stock.",
+    "outcome": "A precise layout definition for printing.",
+    "rootCause": "A dedicated designer allows exact positioning for security stock and MICR compliance.",
+    "ifSkipped": "Layouts are approximated and checks misprint.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ANSI X9 MICR standards"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Custom check layouts"
+    ],
+    "redFlags": [
+      "Layouts without MICR validation"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_owner_distribution_list": {
+    "purpose": "Lists owner distribution records — the details of distributions of property cash to owners or partners (amount, date, owner, bank account).",
+    "outcome": "A record of cash returned to owners that ties to equity and cash.",
+    "rootCause": "Distributions reduce partners' capital and must follow the operating agreement's waterfall; a record is needed for capital account reporting and K-1s.",
+    "ifSkipped": "Distributions are recorded inconsistently and capital accounts cannot be reconciled.",
+    "glAccounts": [
+      "3020 Distributions",
+      "3010 Partners' Capital",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 505 — equity distributions",
+      "Operating agreement waterfall"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Treasury",
+      "Fund accountant"
+    ],
+    "reports": [
+      "Owner distribution list",
+      "Capital account statements"
+    ],
+    "redFlags": [
+      "Distributions without owner approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_an_owner_distribution": {
+    "purpose": "Records an owner distribution — owner, amount, date and source bank account — posting DR Distributions / CR Cash.",
+    "outcome": "The distribution is reflected in cash and equity.",
+    "rootCause": "Distributions must be recorded as equity reductions, not expenses, and tied to approved available cash calculations.",
+    "ifSkipped": "Distributions are misrecorded as expenses or not recorded.",
+    "glAccounts": [
+      "3020 Distributions",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 505"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Asset manager"
+    ],
+    "reports": [
+      "Owner distribution list"
+    ],
+    "redFlags": [
+      "Distribution exceeding available cash"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_an_owner_distribution": {
+    "purpose": "Views the details of a recorded owner distribution — owner or partner, amount, date and source bank account — to answer partner inquiries or reconcile capital accounts.",
+    "outcome": "Distribution details are available for owner inquiries and capital account reconciliations.",
+    "rootCause": "Partners and fund accountants reconcile capital accounts quarterly and at year-end for K-1s; they need distribution detail that ties to the cash that left the property.",
+    "ifSkipped": "Distribution inquiries take longer and capital account differences go unresolved.",
+    "glAccounts": [
+      "3020 Distributions",
+      "3010 Partners' Capital"
+    ],
+    "gaap": [
+      "ASC 505"
+    ],
+    "stakeholders": [
+      "Fund accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Owner distribution list"
+    ],
+    "redFlags": [
+      "Distributions without supporting approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_an_owner_distribution": {
+    "purpose": "Deletes an owner distribution record that was entered in error (duplicate or wrong owner) before it affects equity reporting.",
+    "outcome": "Erroneous distribution records removed.",
+    "rootCause": "Duplicate distribution records overstate distributions and misstate partners' capital accounts, which flow to K-1s and investor statements.",
+    "ifSkipped": "Capital accounts are misstated for distributions that never happened.",
+    "glAccounts": [
+      "3020 Distributions"
+    ],
+    "gaap": [
+      "ASC 505"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Owner distribution list"
+    ],
+    "redFlags": [
+      "Deleting distributions that were actually paid"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_owner_distribution_page": {
+    "purpose": "The page used to record an owner distribution's details — owner, amount, distribution date, source bank account and memo.",
+    "outcome": "A complete distribution record that supports capital account statements.",
+    "rootCause": "Complete records (owner, date, amount, bank) are needed for capital account statements, waterfall calculations and K-1 preparation.",
+    "ifSkipped": "Incomplete distribution records make capital accounts and K-1s hard to support.",
+    "glAccounts": [
+      "3020 Distributions",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 505"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Owner distribution list"
+    ],
+    "redFlags": [
+      "Missing owner identification"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_holdback_categories": {
+    "purpose": "Manages categories of holdbacks — security deposits, operating reserves, lender minimums, accrued payables — used in available cash.",
+    "outcome": "Consistent holdback categories across properties.",
+    "rootCause": "Standard categories make available cash comparable across properties and understandable to owners.",
+    "ifSkipped": "Holdbacks are labeled inconsistently and owners cannot compare properties.",
+    "glAccounts": [
+      "2110 Resident Security Deposits",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Operating agreement distribution provisions"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Missing security deposit category"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_holdback_category": {
+    "purpose": "Adds a new holdback category — for example 'Insurance Deductible Reserve' after an owner raises its deductible, or 'Tax Appeal Reserve' during a property tax appeal.",
+    "outcome": "New types of cash restrictions can be tracked.",
+    "rootCause": "Owners and lenders introduce new cash restrictions over time — a higher insurance deductible, a tax appeal, a lender-required operating reserve. Each needs its own category so available cash withholds it explicitly.",
+    "ifSkipped": "New restrictions are not reflected in available cash.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Operating agreement / loan agreement requirements"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Categories added without owner direction"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_editing_a_holdback_category": {
+    "purpose": "Edits a holdback category's name or settings, for example renaming a generic reserve category to match the owner's terminology.",
+    "outcome": "Holdback categories stay aligned with current policies.",
+    "rootCause": "Policies evolve; category settings must follow so available cash remains accurate.",
+    "ifSkipped": "Outdated categories distort available cash.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Category changes affecting historical reports"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_a_holdback_category": {
+    "purpose": "Deletes a holdback category that is no longer used, such as a reserve requirement from a loan that has been repaid.",
+    "outcome": "Obsolete categories removed from available cash.",
+    "rootCause": "Unused categories clutter reports; deleting one in use would remove a restriction from available cash.",
+    "ifSkipped": "Clutter; misuse overstates available cash.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Deleting categories with active holdbacks"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_holdbacks": {
+    "purpose": "Manages holdbacks — amounts of cash designated to pay anticipated obligations (upcoming tax installment, insurance renewal, capital project) — that reduce available cash.",
+    "outcome": "Known upcoming obligations are protected from distribution.",
+    "rootCause": "Large known payments (semi-annual taxes, insurance renewals) must be reserved in advance; otherwise cash is distributed and a capital call follows.",
+    "ifSkipped": "Cash is distributed and the property cannot pay its tax or insurance bill.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "6620 Real Estate Taxes",
+      "6610 Insurance"
+    ],
+    "gaap": [
+      "Operating agreement distribution provisions"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Asset manager"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "No holdback ahead of a known tax installment"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_holdback": {
+    "purpose": "Adds a holdback — an anticipated obligation amount — for a location, reducing its available cash.",
+    "outcome": "Available cash reflects upcoming commitments.",
+    "rootCause": "Anticipated obligations are not yet in A/P; holdbacks capture them for distribution decisions.",
+    "ifSkipped": "Distributions ignore upcoming commitments.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Operating agreement distribution provisions"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Holdbacks without end dates"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_and_editing_holdbacks": {
+    "purpose": "Views or updates holdbacks for a location as obligations change or are paid — for example releasing the tax installment holdback once the tax bill is paid.",
+    "outcome": "Holdbacks reflect current commitments.",
+    "rootCause": "Once an obligation is paid, its holdback must be released or cash is withheld unnecessarily.",
+    "ifSkipped": "Paid obligations keep reducing available cash.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Holdbacks for obligations already paid"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_about_cash_management": {
+    "purpose": "Quick Steps overview of Cash Management for managing corporate cash accounts, deposits, transfers, payments and reconciliations.",
+    "outcome": "New users get a condensed map of cash tasks.",
+    "rootCause": "Offshore staff rotate often; a short overview gets them productive on cash tasks quickly.",
+    "ifSkipped": "New staff misuse screens and create rec breaks.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — competence"
+    ],
+    "stakeholders": [
+      "New offshore accountants"
+    ],
+    "reports": [],
+    "redFlags": [
+      "New staff posting cash via JEs"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_bank_account_2": {
+    "purpose": "Quick Steps for adding a bank account: enter bank details, map the GL cash account and posting journals, set entity restrictions and check/electronic payment settings.",
+    "outcome": "A new account set up quickly with correct GL mapping and restrictions.",
+    "rootCause": "Acquisitions and refinancings require new accounts on short notice. The quick path focuses on the settings that cause the most damage when wrong — GL mapping and entity restriction.",
+    "ifSkipped": "Accounts are set up with wrong mappings, misposting every future transaction.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Bank accounts list"
+    ],
+    "redFlags": [
+      "Trust accounts mapped to operating cash"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_credit_card_account_2": {
+    "purpose": "Quick Steps for creating a credit card account — card ID, last four digits, issuer and liability GL — so card charges can be entered and reconciled.",
+    "outcome": "Card accounts ready for recording and reconciling charges.",
+    "rootCause": "A card account must exist in RealPage before any charges can be recorded, coded to properties and reconciled to the issuer statement; cards issued before setup create a backlog of unrecorded spend.",
+    "ifSkipped": "Card charges pile up unrecorded until the account is created, then land in the wrong month.",
+    "glAccounts": [
+      "2140 Credit Card Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Credit card accounts list"
+    ],
+    "redFlags": [
+      "Card accounts without liability mapping"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_deposit_2": {
+    "purpose": "Quick Steps for creating a deposit from payments sitting in undeposited funds, so the deposit in RealPage matches the deposit slip and the bank's credit.",
+    "outcome": "Receipts moved to the bank account in a deposit that matches the bank.",
+    "rootCause": "Daily deposits are routine for site staff; a short, consistent procedure keeps deposits matching bank credits and keeps undeposited funds near zero.",
+    "ifSkipped": "Undeposited funds accumulate and deposits no longer match bank credits.",
+    "glAccounts": [
+      "1130 Undeposited Funds",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Property staff"
+    ],
+    "reports": [
+      "Deposits list"
+    ],
+    "redFlags": [
+      "Deposits not made daily"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_transferring_funds": {
+    "purpose": "Quick Steps for moving funds between the company's bank accounts, including cash sweeps to concentration accounts and funding for owner distributions.",
+    "outcome": "Transfers recorded on both sides consistently.",
+    "rootCause": "Transfers are frequent; the quick path ensures both legs are recorded in one transaction.",
+    "ifSkipped": "One-sided transfers break two bank reconciliations at once.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 230"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Funds transfer list"
+    ],
+    "redFlags": [
+      "Transfers recorded by JE"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reversing_a_deposit_or_transfer": {
+    "purpose": "Quick Steps for correcting a deposit or transfer by reversing it and entering the correct one.",
+    "outcome": "Corrections preserve the audit trail.",
+    "rootCause": "Cash transactions cannot be edited after saving; reversal is the standard correction.",
+    "ifSkipped": "Errors remain or are fixed with untraceable JEs.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposits list",
+      "Funds transfer list"
+    ],
+    "redFlags": [
+      "Reversals without replacement entries"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_manual_payment_2": {
+    "purpose": "Quick Steps for using a manual payment to quickly add a bill and record its payment in one step.",
+    "outcome": "Urgent payments recorded against invoices.",
+    "rootCause": "Urgent payments happen outside the check run; the quick path makes recording them easy so they are not skipped.",
+    "ifSkipped": "Urgent payments go unrecorded and are paid twice.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "A/P team"
+    ],
+    "reports": [
+      "Manual payments list"
+    ],
+    "redFlags": [
+      "Manual payments without approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_generating_a_payment_file_2": {
+    "purpose": "Quick Steps for generating the ACH or electronic payment file that contains approved vendor payments, ready for transmission to the bank before the cut-off.",
+    "outcome": "Payment files created before bank cut-off.",
+    "rootCause": "ACH files must reach the bank before its cut-off to settle on the intended date. A short, repeatable procedure reduces the delays that occur when file generation depends on someone looking up the steps each time.",
+    "ifSkipped": "Late payment files mean vendors are paid a day or more late.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "NACHA Operating Rules"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Payment file list"
+    ],
+    "redFlags": [
+      "Files generated after cut-off"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_receipt_2": {
+    "purpose": "Quick Steps for recording miscellaneous revenue that cannot be booked in Leasing & Rents — laundry, vending, insurance proceeds, vendor refunds.",
+    "outcome": "Non-resident receipts recorded promptly and correctly.",
+    "rootCause": "Non-resident receipts do not flow through Leasing & Rents; without a quick path they become unexplained bank deposits.",
+    "ifSkipped": "Unexplained deposits appear on bank recs and income is understated.",
+    "glAccounts": [
+      "4100 Other Income",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Other receipts list"
+    ],
+    "redFlags": [
+      "Contributions booked as income"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_credit_card_transaction_2": {
+    "purpose": "Quick Steps for recording a charge against a company credit card — card, date, merchant, amount, property and GL coding — as soon as the purchase is made.",
+    "outcome": "Card charges recorded and coded to the right property in the month they occur.",
+    "rootCause": "Card statements arrive weeks after purchases. Recording charges as they happen puts the expense in the correct month and lets managers review spending before the statement is paid.",
+    "ifSkipped": "Card expenses land a month late and unreviewed spending is paid with the statement.",
+    "glAccounts": [
+      "2140 Credit Card Payable",
+      "6410 Administrative"
+    ],
+    "gaap": [
+      "ASC 405"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Credit card transactions"
+    ],
+    "redFlags": [
+      "Charges recorded without receipts"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_charge_payoff_2": {
+    "purpose": "Quick Steps for selecting the credit card charges to be paid and recording the payment to the card issuer against those specific charges.",
+    "outcome": "Card balances paid against identified charges.",
+    "rootCause": "Paying the issuer a lump sum without tying it to charges leaves the card liability impossible to reconcile to the statement; selecting charges keeps unpaid items visible before late fees accrue.",
+    "ifSkipped": "Lump-sum payments cannot be reconciled to statements.",
+    "glAccounts": [
+      "2140 Credit Card Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 405-20"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Charge payoffs"
+    ],
+    "redFlags": [
+      "Payoffs not matching statement due"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_customizing_and_running_a_register_report": {
+    "purpose": "Quick Steps for running bank, check, deposit, receipts or credit card registers with the right filters.",
+    "outcome": "Register reports produced for reconciliation and review.",
+    "rootCause": "Registers support reconciliations and audits; the quick path makes them easy to produce correctly.",
+    "ifSkipped": "Registers are run with wrong filters and do not support the reconciliation.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "AU-C 500"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Register reports"
+    ],
+    "redFlags": [
+      "Register periods not matching the reconciliation"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_bank_interest_and_charges": {
+    "purpose": "Quick Steps for entering bank service charges, wire fees, analysis fees and interest earned from the monthly bank statement, so they are recorded before the reconciliation.",
+    "outcome": "Bank-originated items recorded monthly so the reconciliation can clear.",
+    "rootCause": "Bank fees and interest never pass through A/P or A/R; they become recurring reconciling items unless someone records them from the statement every month.",
+    "ifSkipped": "The same fee items reappear as reconciling items every month and bank charges are missing from the P&L.",
+    "glAccounts": [
+      "6420 Bank Charges",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 305"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank interest and charges list"
+    ],
+    "redFlags": [
+      "Fees not recorded monthly"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_credit_card_charges_and_fees": {
+    "purpose": "Quick Steps for entering the monthly interest and fees shown on company credit card statements — late fees, annual fees, finance charges — before reconciling the card.",
+    "outcome": "Card fees and interest recorded so the card reconciliation balances.",
+    "rootCause": "Card fees appear only on issuer statements and must be entered before the reconciliation; recurring late fees also signal that card payments are being made late.",
+    "ifSkipped": "Card reconciliations do not balance and late-payment patterns go unnoticed.",
+    "glAccounts": [
+      "2140 Credit Card Payable",
+      "6420 Bank Charges"
+    ],
+    "gaap": [
+      "ASC 405"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Credit card charges and fees list"
+    ],
+    "redFlags": [
+      "Recurring late fees"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reconciling_a_bank_account": {
+    "purpose": "Quick Steps for making sure the monthly bank statement matches the books — select the account, load statement data, match, resolve differences and finalize.",
+    "outcome": "A completed monthly bank reconciliation.",
+    "rootCause": "Bank recs are the most important monthly cash control; a quick guide keeps the process consistent across preparers.",
+    "ifSkipped": "Recs performed inconsistently and errors missed.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Recs finalized with plugs"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reconciling_a_credit_card": {
+    "purpose": "Quick Steps for reconciling a company credit card: enter miscellaneous statement charges and fees, then match recorded transactions to the issuer statement until the balance agrees.",
+    "outcome": "Card liability agrees with the issuer statement.",
+    "rootCause": "Company cards bypass purchase orders and invoice approval. Monthly reconciliation to the issuer statement is where unrecorded, duplicated or unauthorized charges are caught before they become a pattern.",
+    "ifSkipped": "Card liabilities misstated and misuse undetected.",
+    "glAccounts": [
+      "2140 Credit Card Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Credit card reconciliation"
+    ],
+    "redFlags": [
+      "Card recs not performed monthly"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_creating_reconciliation_rules": {
+    "purpose": "Quick Steps for setting up reconciliation rules and pairing them into rule sets for bank accounts.",
+    "outcome": "Auto-matching configured for the accounts.",
+    "rootCause": "Rules are the key to reconciling at scale; a quick guide encourages consistent setup.",
+    "ifSkipped": "Accounts remain on manual matching and recs miss the close deadline.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Rule list"
+    ],
+    "redFlags": [
+      "Rules created without testing on a prior month"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_escheating_invoices": {
+    "purpose": "Quick Steps for escheating aged, unclaimed payments — moving them to aged payables, performing due diligence, remitting to the state and marking them escheated.",
+    "outcome": "Unclaimed property handled in line with state law.",
+    "rootCause": "Unclaimed property compliance is legally required and audited by states; a quick guide keeps the multi-step process consistent.",
+    "ifSkipped": "Stale items remain or are voided to income, creating state audit exposure.",
+    "glAccounts": [
+      "2170 Unclaimed Property Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "State unclaimed property laws"
+    ],
+    "stakeholders": [
+      "Escheat / compliance team"
+    ],
+    "reports": [
+      "Escheatment workbench"
+    ],
+    "redFlags": [
+      "Stale checks voided to income"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_scheduling_positive_pay_files": {
+    "purpose": "Quick Steps for setting up positive pay to generate or schedule issued-check files to the bank.",
+    "outcome": "Positive pay files sent automatically after check runs.",
+    "rootCause": "Scheduled positive pay removes reliance on manual generation after every check run.",
+    "ifSkipped": "Some check runs are not reported and checks are unprotected.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "UCC 4-406"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Positive pay file list"
+    ],
+    "redFlags": [
+      "Schedules after the bank cut-off"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_calculating_a_locations_available_cash": {
+    "purpose": "Quick Steps for calculating a property's available cash — cash less holdbacks plus external balances — for distributions or funding.",
+    "outcome": "A quick available cash figure for a decision.",
+    "rootCause": "Asset managers request available cash frequently; the quick path gives a consistent calculation.",
+    "ifSkipped": "Available cash calculated inconsistently in spreadsheets.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "3020 Distributions"
+    ],
+    "gaap": [
+      "Operating agreement distribution provisions"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Asset manager"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Calculations ignoring security deposit holdbacks"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_bank_reconciliations": {
+    "purpose": "Bank reconciliation quick help: what to do when the Amount to Reconcile is not zero — confirm the beginning balance, statement date and ending balance, compare book to G/L, and find missing transactions.",
+    "outcome": "A structured path to find why a rec does not balance.",
+    "rootCause": "Unbalanced recs are the most common cash problem; a fixed diagnostic sequence gets preparers to the cause without guessing.",
+    "ifSkipped": "Preparers guess at the cause or plug the difference to a suspense account.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Plugs to make recs balance"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_step_1_confirm_the_beginning_balance": {
+    "purpose": "Diagnostic step 1: confirm the rec's beginning balance equals the prior reconciliation's ending balance and the bank's prior statement ending balance.",
+    "outcome": "Breaks caused by changes to prior periods are identified immediately.",
+    "rootCause": "Beginning balance mismatches mean a prior rec was changed or a transaction was posted into a reconciled period — a different problem from current-month errors.",
+    "ifSkipped": "Preparers search the current month for an error that actually sits in a prior period.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reconciliation histories"
+    ],
+    "redFlags": [
+      "Beginning balance different from prior ending balance"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_step_2_confirm_the_statement_ending_date_and_ending_balance": {
+    "purpose": "Diagnostic step 2: confirm the statement ending date and ending balance keyed into the rec match the bank statement exactly.",
+    "outcome": "Keying errors in statement data are eliminated as a cause.",
+    "rootCause": "Keying the wrong ending balance (e.g., the available balance instead of the ledger balance) is a frequent cause of unbalanced recs.",
+    "ifSkipped": "Preparers chase transaction differences caused by a typo.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Available balance used instead of ledger balance"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_step_3_compare_the_book_balance_to_the_g_l_balance": {
+    "purpose": "Diagnostic step 3: compare the reconciliation's book balance to the G/L cash account balance for the same date.",
+    "outcome": "Differences caused by entries dated outside the period or posted to cash outside Cash Management are identified.",
+    "rootCause": "JEs posted directly to cash, or transactions dated after the statement date, make the book balance differ from the G/L.",
+    "ifSkipped": "Book-to-G/L differences remain hidden and the rec does not tie to the balance sheet.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "GL Detail",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Manual JEs to cash accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_step_4_identify_missing_transactions": {
+    "purpose": "Diagnostic step 4: find transactions on the bank statement not in the books (fees, NSF returns, auto-debits) or in the books but not at the bank.",
+    "outcome": "Missing transactions are recorded or explained.",
+    "rootCause": "After data-entry causes are ruled out, remaining differences are almost always missing transactions on one side.",
+    "ifSkipped": "Missing transactions stay unrecorded and the rec remains out of balance.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "6420 Bank Charges",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 305"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Unrecorded NSF returns"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_faqs": {
+    "purpose": "Bank reconciliation FAQs, including the AUTO CONTRA entry that appears on the first reconciliation representing the net of prior activity.",
+    "outcome": "Users understand system-generated entries on first reconciliations.",
+    "rootCause": "The AUTO CONTRA entry confuses new users; understanding it prevents incorrect adjustments on first recs.",
+    "ifSkipped": "Users reverse or adjust AUTO CONTRA entries incorrectly.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Manual adjustments against AUTO CONTRA"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_summary": {
+    "purpose": "One-page summary of what to check when a bank reconciliation's Amount to Reconcile is not zero: beginning balance, statement ending date and balance, book versus G/L, and missing transactions — in that order.",
+    "outcome": "Preparers have a short, memorable checklist to follow before escalating an unbalanced rec.",
+    "rootCause": "Under close pressure, preparers skip straight to searching transactions. A short checklist enforces the order that finds the cause fastest — most differences are in the first two checks.",
+    "ifSkipped": "Diagnosis is haphazard, recs are escalated prematurely, and some are plugged instead of fixed.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Recs escalated without completing the checklist"
+    ],
+    "confidence": "high"
+  }
+}

@@ -1,0 +1,1139 @@
+{
+  "scr_cash_introduction_to_cash_management": {
+    "purpose": "Introduces Cash Management — the RealPage application for bank accounts, deposits, funds transfers, manual and electronic payments, other receipts, available cash, positive pay, escheatment and bank reconciliation for every property bank account.",
+    "outcome": "Accountants understand that every movement of property cash that is not a routine A/P check or A/R receipt is recorded and reconciled here.",
+    "rootCause": "Multifamily properties hold several restricted and unrestricted accounts (operating, security deposit trust, payroll, reserves). Cash is the asset most exposed to fraud and the one owners check first, so a dedicated application controls its setup, movement and reconciliation.",
+    "ifSkipped": "Cash activity is recorded inconsistently across modules, bank recs break, and restricted cash is mixed with operating cash.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash",
+      "1130 Undeposited Funds",
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "ASC 305 — cash and cash equivalents",
+      "ASC 230 / ASU 2016-18 — restricted cash"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Treasury / cash management",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Bank reconciliation",
+      "Available cash report",
+      "Cash & Cash Equivalents"
+    ],
+    "redFlags": [
+      "Cash movements recorded as manual JEs instead of Cash Management transactions"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_cash_management_home_page": {
+    "purpose": "The Cash Management home page with icon navigation to bank accounts, deposits, transfers, electronic payments, available cash and reconciliation.",
+    "outcome": "Quick access to the daily and monthly cash tasks from one landing page.",
+    "rootCause": "Cash tasks are frequent and time-sensitive (daily deposits, payment file uploads before bank cut-off). A task-oriented home page reduces the chance of missing a cut-off.",
+    "ifSkipped": "Users hunt through menus and miss bank cut-off times for ACH and positive pay files.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "NACHA operating rules — file submission windows"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Treasury"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Payment files uploaded after the bank's same-day cut-off"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_cash_management_all_tab": {
+    "purpose": "The All tab of Cash Management listing Search & Find (bank and credit card accounts), Periodic Tasks (deposits, transfers, manual payments, other receipts, available cash, payment files, positive pay, reconciliation) and Reports.",
+    "outcome": "All operational cash functions are reachable in one tab.",
+    "rootCause": "Cash work is a daily routine with many small tasks; grouping them keeps the routine consistent across properties.",
+    "ifSkipped": "Some routine cash tasks are forgotten, especially positive pay and payment confirmations.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013 — cash controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Cash reports"
+    ],
+    "redFlags": [
+      "Positive pay not in the daily routine"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_cash_management_setup_tab": {
+    "purpose": "The Setup tab where Cash Management configuration lives — escheatment account, holdback names, available cash fields, reconciliation permissions and electronic payment settings.",
+    "outcome": "Cash processes behave according to company policy (e.g., which account escheated funds go to, which holdbacks reduce available cash).",
+    "rootCause": "Settings like the escheatment liability account and holdback definitions determine how cash is reported to owners; they must be configured deliberately by administrators.",
+    "ifSkipped": "Escheated items post to the wrong account and available cash overstates what can be distributed.",
+    "glAccounts": [
+      "2170 Unclaimed Property Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "State unclaimed property laws",
+      "COSO 2013 — configuration controls"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Onshore accounting manager",
+      "Treasury"
+    ],
+    "reports": [
+      "Configuration audit trail"
+    ],
+    "redFlags": [
+      "No escheatment account configured while escheatment workbench is in use"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_using_cash_management": {
+    "purpose": "Overview of the operational tasks in Cash Management — escheatment, bank and card accounts, deposits, transfers, manual payments, receipts, available cash, electronic payments, positive pay and reconciliations.",
+    "outcome": "A map of which cash task solves which operational need.",
+    "rootCause": "Bank recs are the most frequent month-end finding; most rec breaks trace back to cash activity recorded in the wrong place. Knowing the right tool for each cash event prevents them.",
+    "ifSkipped": "Cash events recorded via JEs or wrong screens, leaving the bank rec unmatched.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "ASC 305",
+      "COSO 2013 — bank reconciliation"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "High volume of unmatched bank lines every month"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_escheatment_workbench_page": {
+    "purpose": "The workbench page listing uncashed items by escheatment stage — outstanding, aged payable, due for escheat, escheated — with filters and actions to move items through the process.",
+    "outcome": "A single queue of stale checks and credits that must be resolved under state unclaimed property rules.",
+    "rootCause": "Stale items sit in outstanding-check lists across dozens of bank accounts. Without a consolidated queue, due-diligence deadlines and state reporting dates (often November 1 or March 1) are missed.",
+    "ifSkipped": "State reports are late or incomplete, exposing the company to penalties and interest in unclaimed property audits.",
+    "glAccounts": [
+      "2170 Unclaimed Property Payable",
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "State unclaimed property statutes",
+      "ASC 405-20 — liabilities not extinguished by aging"
+    ],
+    "stakeholders": [
+      "Escheat / compliance team",
+      "Offshore property accountant",
+      "Treasury"
+    ],
+    "reports": [
+      "Escheatment workbench export",
+      "State unclaimed property report"
+    ],
+    "redFlags": [
+      "Items past dormancy with no due-diligence letter",
+      "Resident refund checks older than state dormancy"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_filtering_the_escheatment_workbench": {
+    "purpose": "Filters the escheatment workbench by item type (four types, such as outstanding checks and aged payables), property, state and age to focus on items approaching each state's dormancy period.",
+    "outcome": "The accountant works items by state deadline rather than scrolling the whole portfolio.",
+    "rootCause": "Dormancy periods and report dates differ by state (e.g., 3 years for most property in many states, shorter for wages). Filtering by state and age is how compliance teams meet each state's cycle.",
+    "ifSkipped": "Items for states with earlier deadlines are missed while effort goes to others.",
+    "glAccounts": [
+      "2170 Unclaimed Property Payable"
+    ],
+    "gaap": [
+      "State-specific dormancy periods and reporting deadlines"
+    ],
+    "stakeholders": [
+      "Escheat / compliance team",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Escheatment workbench"
+    ],
+    "redFlags": [
+      "No filter by owner's last-known-address state (priority rule)"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_marking_an_invoice_as_an_aged_payable": {
+    "purpose": "Moves an uncashed payment back to a liability — the check is voided in cash and the obligation is recorded as an aged payable — so the bank rec no longer carries it as outstanding while the owed amount remains a liability until claimed or escheated.",
+    "outcome": "Stale checks leave the bank reconciliation, and the money owed stays correctly recorded as a liability.",
+    "rootCause": "Stale outstanding checks clutter bank recs, but voiding them to income or expense is an escheat violation. Converting them to aged payables keeps the liability while cleaning the rec.",
+    "ifSkipped": "Either the rec carries years of stale items, or accountants void them to income, creating unclaimed property exposure.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable",
+      "2170 Unclaimed Property Payable"
+    ],
+    "gaap": [
+      "State unclaimed property laws",
+      "ASC 405-20"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Escheat / compliance team"
+    ],
+    "reports": [
+      "Escheatment workbench",
+      "Outstanding checks list",
+      "Vendor aging"
+    ],
+    "redFlags": [
+      "Stale checks voided without being converted to aged payables"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_configuring_an_escheatment_account": {
+    "purpose": "Sets up the GL account used when aged payables are escheated — typically a liability such as Unclaimed Property Payable — in Cash Management configuration.",
+    "outcome": "Escheated amounts post consistently to a dedicated liability until remitted to the state.",
+    "rootCause": "Escheat postings need a controlled liability account so the amount due to states can be reconciled to state reports and remittances.",
+    "ifSkipped": "Escheated items post to miscellaneous accounts and state remittances cannot be reconciled.",
+    "glAccounts": [
+      "2170 Unclaimed Property Payable"
+    ],
+    "gaap": [
+      "State unclaimed property laws"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Unclaimed property reconciliation"
+    ],
+    "redFlags": [
+      "Escheat account set to an income account"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reverting_an_aged_payable_to_a_posted_or_paid_invoice": {
+    "purpose": "Reverses an aged payable back to its original posted or paid state — used when the payee finally cashes the check, or the item was aged in error.",
+    "outcome": "The payment status and cash position reflect that the payee has claimed the funds.",
+    "rootCause": "Payees sometimes deposit old checks or contact the property after items are aged. The system must restore the original transaction rather than creating a second payment.",
+    "ifSkipped": "Duplicate payments are issued or bank recs break when an old check clears.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — duplicate payment prevention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Treasury"
+    ],
+    "reports": [
+      "Escheatment workbench",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Reissued payment while the original check is still negotiable"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_including_aged_invoices_in_the_vendor_aging_report": {
+    "purpose": "Option in the Vendor Aging report to include aged payables so the A/P aging reflects stale obligations moved out of cash.",
+    "outcome": "The A/P aging agrees with the GL when aged payables sit in the A/P or unclaimed property accounts.",
+    "rootCause": "Aged payables are still liabilities. Excluding them from the aging makes the A/P tie-out fail or hides the liability from reviewers.",
+    "ifSkipped": "A/P subledger and GL don't tie, or stale liabilities are invisible in the aging.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "2170 Unclaimed Property Payable"
+    ],
+    "gaap": [
+      "ASC 405 — completeness of liabilities"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Vendor aging",
+      "A/P tie-out"
+    ],
+    "redFlags": [
+      "Aging run without aged items while GL includes them"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_marking_an_aged_payable_as_escheated": {
+    "purpose": "After funds are remitted to the state, marks the aged payable as escheated, clearing it from the liability and recording the remittance.",
+    "outcome": "The liability is extinguished only when the state has received the funds, with a record of the remittance.",
+    "rootCause": "Holders are released from liability when they remit to the state. Marking items escheated at that point keeps the books aligned with the state filing.",
+    "ifSkipped": "Liabilities remain after remittance, or are cleared without remittance.",
+    "glAccounts": [
+      "2170 Unclaimed Property Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "State unclaimed property laws — holder release on remittance"
+    ],
+    "stakeholders": [
+      "Escheat / compliance team",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "State unclaimed property report",
+      "Escheatment workbench"
+    ],
+    "redFlags": [
+      "Items marked escheated with no remittance evidence"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_exporting_transactions_from_the_escheatment_workbench": {
+    "purpose": "Exports workbench items for due-diligence mailings and preparation of state unclaimed property reports (often in NAUPA format).",
+    "outcome": "Data for due-diligence letters and state filings, pulled directly from the workbench.",
+    "rootCause": "States require holder reports with owner name, last address, amount and dates. Exporting from the system avoids re-keying and omissions.",
+    "ifSkipped": "State reports are compiled manually with missing items.",
+    "glAccounts": [
+      "2170 Unclaimed Property Payable"
+    ],
+    "gaap": [
+      "NAUPA reporting standard",
+      "State due-diligence notice requirements"
+    ],
+    "stakeholders": [
+      "Escheat / compliance team"
+    ],
+    "reports": [
+      "NAUPA holder report",
+      "Due-diligence letter list"
+    ],
+    "redFlags": [
+      "Exports missing last-known addresses"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_search_and_find": {
+    "purpose": "Search & Find menus for bank accounts and credit card accounts — the master records every cash transaction references.",
+    "outcome": "Accountants locate and maintain the account records behind cash activity.",
+    "rootCause": "Bank and card account master data (GL mapping, restrictions, check numbering) drives how every payment and receipt posts; it needs a controlled maintenance point.",
+    "ifSkipped": "Account master data errors propagate into every transaction.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2140 Credit Card Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — master data controls"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank accounts list"
+    ],
+    "redFlags": [
+      "Accounts with outdated GL mappings"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_bank_accounts_list": {
+    "purpose": "Lists all company bank accounts — operating, security deposit trust, payroll, reserve, money market — with their GL cash accounts and entities, for viewing and maintenance.",
+    "outcome": "A complete inventory of bank accounts mapped to GL accounts and entities.",
+    "rootCause": "Every bank account must be reconciled monthly and mapped to the correct entity. An inventory ensures no account is left unreconciled and none is mapped to the wrong owner.",
+    "ifSkipped": "Accounts opened at the bank are never set up or reconciled, a common way fraud and errors go undetected.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash",
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "ASC 305",
+      "COSO 2013 — completeness of reconciliations"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Bank accounts list",
+      "Bank reconciliation status"
+    ],
+    "redFlags": [
+      "Bank accounts in the list with no reconciliation for recent months",
+      "Bank statements received for accounts not in the list"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_bank_account": {
+    "purpose": "Sets up a new bank account — bank, routing and account number, GL cash account, entity, check numbering, and electronic payment settings — typically when a property is acquired or a new trust or reserve account is opened.",
+    "outcome": "The account can be used for payments and deposits and reconciled from its first month.",
+    "rootCause": "New acquisitions and new lender-required accounts must be set up before any activity; incorrect GL mapping here misstates cash for every future transaction.",
+    "ifSkipped": "Activity in the new account is recorded elsewhere or not at all, and its first reconciliation fails.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — bank account opening controls",
+      "State trust account requirements for security deposits"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Bank accounts list"
+    ],
+    "redFlags": [
+      "Security deposit trust account mapped to the operating cash GL"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_private_entity_level_bank_account": {
+    "purpose": "Designates a bank account as private to one entity so only that entity's invoices can be paid from it — used for owner-specific operating and trust accounts.",
+    "outcome": "One owner's cash cannot be used to pay another owner's bills.",
+    "rootCause": "Management companies hold accounts for many owners. Paying one owner's invoice from another's account is a fiduciary breach and creates intercompany balances between unrelated owners.",
+    "ifSkipped": "Cross-owner payments occur, requiring reimbursement and damaging owner trust.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "Management agreement fiduciary provisions",
+      "ASC 810 — separate entity accounting"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Bank accounts list"
+    ],
+    "redFlags": [
+      "Owner accounts left unrestricted"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_or_editing_a_bank_account": {
+    "purpose": "Opens a bank account record to review or update details — GL mapping, check numbers, electronic payment settings, restrictions.",
+    "outcome": "Bank account setup stays accurate as banking relationships change.",
+    "rootCause": "Banks change routing numbers after mergers, check stock is reordered, and positive pay settings change. Edits must be controlled because they affect where payments draw from.",
+    "ifSkipped": "Payments fail or draw from the wrong account after bank changes.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — change controls over bank master data"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "System administrator"
+    ],
+    "reports": [
+      "Bank account audit trail"
+    ],
+    "redFlags": [
+      "Bank detail changes without dual approval"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_a_bank_account": {
+    "purpose": "Deletes a bank account record that has no activity — typically one set up in error. Closed accounts with history should be inactivated, not deleted.",
+    "outcome": "Erroneous records removed without losing history of real accounts.",
+    "rootCause": "Deleting accounts with history would remove the audit trail of cash activity; deletion is only safe for unused records.",
+    "ifSkipped": "Duplicate or erroneous accounts cause payments to be drawn from the wrong record.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Record retention requirements"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "System administrator"
+    ],
+    "reports": [
+      "Bank accounts list"
+    ],
+    "redFlags": [
+      "Attempts to delete closed accounts with history"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_bank_account_information_page": {
+    "purpose": "The bank account record page holding bank details, GL account, entity restrictions, check settings, electronic payment and positive pay configuration.",
+    "outcome": "All settings governing how one bank account is used are defined in one place.",
+    "rootCause": "Positive pay, ACH origination and check printing all depend on bank account settings; errors here cause payments to be rejected or unprotected.",
+    "ifSkipped": "Positive pay not set up, leaving the account exposed to check fraud.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "UCC 4-406 — customer duty and bank liability for fraud",
+      "NACHA rules"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Bank account information"
+    ],
+    "redFlags": [
+      "Positive pay disabled on accounts issuing checks"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_printing_wiring_instructions_for_bank_accounts": {
+    "purpose": "Prints wiring instructions for a bank account to give to parties sending funds — owners funding capital calls, lenders releasing reserve draws, insurance carriers paying claims.",
+    "outcome": "Inbound wires go to the correct account.",
+    "rootCause": "Wire fraud schemes impersonate property managers and send fake instructions. Official instructions generated from the system, sent through verified channels, reduce misdirected funds.",
+    "ifSkipped": "Funds are wired to wrong or fraudulent accounts.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "3010 Partners' Capital"
+    ],
+    "gaap": [
+      "COSO 2013 — fraud risk",
+      "UCC Article 4A — wire transfers"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Asset manager",
+      "Lender"
+    ],
+    "reports": [
+      "Wiring instructions"
+    ],
+    "redFlags": [
+      "Wiring instructions sent by unverified email"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_restricting_a_bank_account_to_one_or_more_entities_locations": {
+    "purpose": "Limits a bank account so only selected entities or locations can use it for payments and deposits.",
+    "outcome": "Cash usage is confined to the owners and properties the account belongs to.",
+    "rootCause": "Pooled and shared accounts are common in management companies, but each must be limited to its intended entities to avoid commingling owner funds.",
+    "ifSkipped": "Commingling of owner funds and unexpected intercompany balances.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "Management agreement — no commingling of owner funds",
+      "State real estate broker trust rules"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Bank accounts list"
+    ],
+    "redFlags": [
+      "Trust accounts available to all entities"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_credit_card_accounts_list": {
+    "purpose": "Lists corporate credit card accounts used by property staff, with their liability GL accounts and cardholders.",
+    "outcome": "An inventory of cards so each statement can be reconciled and charges coded to properties.",
+    "rootCause": "Site teams use cards for small purchases outside the PO process. Every card is a spending channel that must be reconciled and approved monthly.",
+    "ifSkipped": "Card statements go unreconciled and personal or unapproved charges are paid.",
+    "glAccounts": [
+      "2140 Credit Card Payable",
+      "6110 Repairs & Maintenance",
+      "6310 Marketing"
+    ],
+    "gaap": [
+      "COSO 2013 — purchasing card controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property managers (cardholders)",
+      "Treasury"
+    ],
+    "reports": [
+      "Credit card reconciliation"
+    ],
+    "redFlags": [
+      "Cards assigned to terminated employees"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_credit_card_account": {
+    "purpose": "Sets up a credit card account with ID, last four digits, issuer and liability GL account so card charges can be recorded and paid.",
+    "outcome": "Card charges post to the right liability and can be reconciled to the issuer's statement.",
+    "rootCause": "Card liabilities must be tracked separately from vendor A/P so statement balances can be reconciled and paid on time.",
+    "ifSkipped": "Card charges are recorded ad hoc and the card liability is unreconciled.",
+    "glAccounts": [
+      "2140 Credit Card Payable"
+    ],
+    "gaap": [
+      "ASC 405 — liabilities"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Credit card accounts list"
+    ],
+    "redFlags": [
+      "Card accounts mapped to A/P rather than a card liability"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_or_editing_a_credit_card_account": {
+    "purpose": "Reviews or updates a card account's details, while locked fields (ID, last four digits) protect the link to posted transactions.",
+    "outcome": "Card account details stay current without breaking transaction history.",
+    "rootCause": "Card reissues and GL changes happen; locking identifiers prevents altering historical records.",
+    "ifSkipped": "Card changes are not reflected and statements fail to reconcile.",
+    "glAccounts": [
+      "2140 Credit Card Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — master data change control"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Credit card account page"
+    ],
+    "redFlags": [
+      "GL mapping changes mid-period"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_inactivating_or_deleting_a_credit_card_account": {
+    "purpose": "Inactivates a card account when a card is cancelled (preserving history) or deletes one created in error.",
+    "outcome": "Cancelled cards cannot be used for new charges, while history remains.",
+    "rootCause": "Cards of terminated employees must be shut off promptly to prevent unauthorized charges.",
+    "ifSkipped": "Charges continue on cards that should be closed.",
+    "glAccounts": [
+      "2140 Credit Card Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — access termination"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "HR"
+    ],
+    "reports": [
+      "Credit card accounts list"
+    ],
+    "redFlags": [
+      "Inactive cards with new charges"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_credit_card_account_page": {
+    "purpose": "Card account record page for adding, viewing and editing card details and GL mapping.",
+    "outcome": "A complete card record supporting reconciliation and payment.",
+    "rootCause": "Accurate card records are the basis of monthly card reconciliations and cardholder accountability.",
+    "ifSkipped": "Card reconciliation lacks a reliable master record.",
+    "glAccounts": [
+      "2140 Credit Card Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Credit card accounts list"
+    ],
+    "redFlags": [
+      "Cards with no assigned cardholder"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_periodic_tasks": {
+    "purpose": "Periodic Tasks section covering the recurring cash activities: deposits, funds transfers, manual payments, other receipts, available cash, holdbacks, payment files, positive pay and reconciliations.",
+    "outcome": "A defined set of recurring cash activities performed on schedule.",
+    "rootCause": "Cash tasks are recurring and deadline-driven (daily deposits, bank cut-offs, monthly recs). Grouping them supports a daily and monthly routine.",
+    "ifSkipped": "Recurring cash tasks are missed, causing rec breaks and payment delays.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013 — cash controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Deposits not recorded daily"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deposits": {
+    "purpose": "Explains deposits: grouping multiple payments (resident checks, money orders) into one deposit that matches what the bank shows on the statement.",
+    "outcome": "Deposit records that mirror bank deposit lines one to one.",
+    "rootCause": "Banks show deposits as totals; grouping receipts the same way makes the bank reconciliation match line for line.",
+    "ifSkipped": "Bank recs require matching many small receipts to one deposit, and errors hide inside the totals.",
+    "glAccounts": [
+      "1130 Undeposited Funds",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — cash receipt controls"
+    ],
+    "stakeholders": [
+      "Property staff",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposits list",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Deposits not matching deposit slips"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deposits_workflow": {
+    "purpose": "Diagram of the deposits workflow: payment received into undeposited funds, grouped into a deposit, deposited at the bank, and matched in reconciliation.",
+    "outcome": "Users understand where each receipt sits between collection and the bank.",
+    "rootCause": "Receipts pass through several states; knowing the flow helps trace missing deposits, a common sign of cash misappropriation at the site.",
+    "ifSkipped": "Missing deposits are not traced back to the receipts they came from.",
+    "glAccounts": [
+      "1130 Undeposited Funds",
+      "1110 Operating Cash",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — segregation in cash handling"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [
+      "Undeposited funds",
+      "Deposits list"
+    ],
+    "redFlags": [
+      "Receipts in undeposited funds for more than a few days"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_undeposited_funds_accounts": {
+    "purpose": "Configures the undeposited funds account in A/R that holds checks and cash received but not yet deposited.",
+    "outcome": "A holding account whose balance shows receipts awaiting deposit.",
+    "rootCause": "Receipts and deposits happen at different times. An undeposited funds account makes the gap visible so aged, undeposited receipts can be investigated.",
+    "ifSkipped": "Receipts post straight to cash, hiding undeposited items and making the bank rec harder.",
+    "glAccounts": [
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013 — cash handling controls"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Undeposited funds balance"
+    ],
+    "redFlags": [
+      "Undeposited funds account not configured"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deposits_list": {
+    "purpose": "Lists every deposit recorded through Cash Management with date, bank account, amount and status, for review, printing and reversal.",
+    "outcome": "The book-side deposit register used to match against bank statement credits.",
+    "rootCause": "Deposits in transit at month-end must be listed individually on the bank rec. The deposit list is where those items come from and where missing or duplicated deposits are spotted.",
+    "ifSkipped": "Deposits in transit cannot be supported and missing site deposits (a key fraud red flag) go unnoticed.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013 — bank reconciliation"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [
+      "Deposits list",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Deposits recorded but not cleared at the bank after several days"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_and_verifying_deposits": {
+    "purpose": "Opens a deposit to verify its payments and total against the deposit slip and bank credit.",
+    "outcome": "Deposit errors (missing checks, wrong amounts) are caught before the bank rec.",
+    "rootCause": "Deposit discrepancies at the site are an early fraud indicator and a common source of rec breaks.",
+    "ifSkipped": "Discrepancies surface only at month-end.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013 — cash controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [
+      "Deposit detail"
+    ],
+    "redFlags": [
+      "Deposit totals different from bank credits"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_printing_deposit_details": {
+    "purpose": "Prints the detail of a deposit — each payment, payer, check number and amount — to accompany the physical deposit or to support a deposit line on the bank reconciliation.",
+    "outcome": "A document proving which resident payments made up each bank deposit.",
+    "rootCause": "When a resident claims they paid and the ledger disagrees, or an auditor tests cash receipts, the deposit detail is the evidence connecting individual payments to the bank credit.",
+    "ifSkipped": "Resident payment disputes and audit samples cannot be resolved from bank records alone, since the bank shows only deposit totals.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "AU-C 500 — audit evidence for cash receipts"
+    ],
+    "stakeholders": [
+      "Property staff",
+      "Offshore property accountant",
+      "External auditor"
+    ],
+    "reports": [
+      "Deposit detail",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Deposit detail totals not equal to the bank credit"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reversing_deposits": {
+    "purpose": "Explains that deposits cannot be deleted — only reversed — to keep an audit trail of cash activity.",
+    "outcome": "Deposit corrections always leave a visible trail.",
+    "rootCause": "Deleting deposits would allow cash records to be altered invisibly, a classic concealment method. Reversal preserves evidence.",
+    "ifSkipped": "Deposit history could be altered without trace.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposits list"
+    ],
+    "redFlags": [
+      "Frequent deposit reversals at one property"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reversing_a_deposit": {
+    "purpose": "Reverses a whole deposit (recorded to the wrong bank account or date), creating an offsetting line so the payments return to undeposited funds for re-deposit.",
+    "outcome": "The erroneous deposit is cancelled and the payments can be deposited correctly.",
+    "rootCause": "Deposits recorded to the wrong account break two bank recs. Reversal moves payments back without losing history.",
+    "ifSkipped": "Deposits stay in the wrong account and both recs break.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013 — corrections with audit trail"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposits list",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Reversal dated in a reconciled period"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reversing_a_payment_in_a_deposit": {
+    "purpose": "Reverses one payment within a deposit — typically a resident check returned NSF — without reversing the whole deposit.",
+    "outcome": "The bounced payment is reinstated on the resident's account while the rest of the deposit stays intact.",
+    "rootCause": "NSF returns affect individual payments. Reversing only that payment keeps the deposit matched to the bank and re-opens the resident's balance for collection and NSF fees.",
+    "ifSkipped": "Bounced payments remain credited; A/R and cash are overstated.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1110 Operating Cash",
+      "4100 Other Income (NSF fees)"
+    ],
+    "gaap": [
+      "ASC 310 — reinstating receivables"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager"
+    ],
+    "reports": [
+      "Resident ledger",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "NSF items reversed without charging NSF fees per lease"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deposit_page": {
+    "purpose": "The page used to record a bank deposit: choose the bank account and deposit date, then select the undeposited resident and other payments included in the physical or remote deposit.",
+    "outcome": "A deposit record whose total matches the deposit slip and the bank credit line, moving receipts from Undeposited Funds to cash.",
+    "rootCause": "The bank credits one total per deposit. Recording deposits exactly as they were made (same date, same checks) is what lets the bank rec match one book line to one bank line.",
+    "ifSkipped": "Receipts sit in Undeposited Funds, cash is understated, and deposits must be matched to the bank by guesswork.",
+    "glAccounts": [
+      "1130 Undeposited Funds",
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — cash receipts controls"
+    ],
+    "stakeholders": [
+      "Property staff",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposits list",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Deposit date different from the bank credit date",
+      "Security deposits included in operating deposits"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_funds_transfer": {
+    "purpose": "Explains funds transfers — moving money between two cash accounts the company controls — as distinct from payments to third parties.",
+    "outcome": "Internal cash movements are recorded on both sides consistently.",
+    "rootCause": "Transfers are not income or expense, but they affect two bank recs. A dedicated transaction type ensures both sides are recorded together.",
+    "ifSkipped": "One-sided transfer entries break bank recs.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "ASC 230 — internal transfers"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Treasury"
+    ],
+    "reports": [
+      "Funds transfer list"
+    ],
+    "redFlags": [
+      "Transfers recorded via JE"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_funds_transfer_list": {
+    "purpose": "Lists all recorded funds transfers — from account, to account, amount, date — for review, bank matching and reversal.",
+    "outcome": "A register of internal cash movements that should appear as matching debits and credits on two bank statements.",
+    "rootCause": "Each transfer must clear on both statements. The list is where accountants confirm both legs cleared and spot one-sided transfers.",
+    "ifSkipped": "One-sided transfers linger as reconciling items on two bank recs.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — reconciliation"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Treasury"
+    ],
+    "reports": [
+      "Funds transfer list",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Transfers cleared in one account but not the other"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_importing_funds_transfers": {
+    "purpose": "Imports many funds transfers from a template — e.g., daily sweeps for dozens of properties from the bank's sweep report.",
+    "outcome": "High-volume transfers recorded quickly and consistently.",
+    "rootCause": "Sweep structures generate a transfer per property per day; manual entry is impractical.",
+    "ifSkipped": "Sweeps are recorded late or netted monthly, obscuring errors.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "ASC 230"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results",
+      "Funds transfer list"
+    ],
+    "redFlags": [
+      "Import totals not matching the bank sweep report"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reversing_a_funds_transfer": {
+    "purpose": "Reverses a funds transfer that was recorded incorrectly, since transfers cannot be edited or voided.",
+    "outcome": "The wrong transfer is cancelled with an audit trail, and a correct one can be entered.",
+    "rootCause": "Locking transfers against edits preserves cash audit trails; reversal is the controlled correction path.",
+    "ifSkipped": "Wrong transfers remain and both bank recs break.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Funds transfer list"
+    ],
+    "redFlags": [
+      "Reversals without a replacement entry"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_funds_transfer_page": {
+    "purpose": "Page to record a transfer: from account, to account, amount, date and memo, with intercompany entries generated when entities differ.",
+    "outcome": "A balanced transfer that updates both cash accounts and any Due To/Due From.",
+    "rootCause": "Cross-entity transfers need intercompany entries to keep each entity balanced; the page generates them automatically.",
+    "ifSkipped": "Entities become unbalanced after cross-entity transfers.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "ASC 810 — intercompany"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Funds transfer list"
+    ],
+    "redFlags": [
+      "Cross-owner transfers without authorization"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_bulk_funds_transfer_page": {
+    "purpose": "Transfers funds from one account to many accounts in one action — e.g., funding several property operating accounts from an owner's concentration account after a capital call.",
+    "outcome": "Multi-property funding recorded in one step with consistent dates.",
+    "rootCause": "Owner funding and payroll funding often go from one account to many; bulk entry prevents missing properties.",
+    "ifSkipped": "Some properties' funding is not recorded, breaking their recs.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "3010 Partners' Capital",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "ASC 230"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Asset manager"
+    ],
+    "reports": [
+      "Funds transfer list"
+    ],
+    "redFlags": [
+      "Bulk totals not matching the bank's outgoing transfer"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_transferring_funds_in_bulk": {
+    "purpose": "Procedure for a bulk funds transfer: choose the source account (e.g., owner concentration account), add each destination property account and amount, and save as one transaction set.",
+    "outcome": "Owner or payroll funding to many properties is recorded in one step, matching the bank's outgoing transfers.",
+    "rootCause": "Owner funding after a capital call and payroll pre-funding go from one account to many. Entering them one at a time risks missing a property or keying a wrong amount.",
+    "ifSkipped": "Some property accounts show unexplained deposits on their recs and the source account shows an unexplained withdrawal total.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "ASC 230 — internal transfers",
+      "ASC 810 — intercompany"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Funds transfer list",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Bulk total different from the bank's outgoing total"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_manual_payments": {
+    "purpose": "Section on recording and managing manual payments — payments made outside the normal A/P check run (wires, handwritten checks, online bill pay).",
+    "outcome": "Off-cycle payments are captured in A/P and cash.",
+    "rootCause": "Urgent payments (tax bills, utility shutoffs, insurance premiums) bypass the check run. Unless recorded, vendors look unpaid and cash does not reconcile.",
+    "ifSkipped": "Duplicate payments and unreconciled cash.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — payment controls"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "A/P team"
+    ],
+    "reports": [
+      "Manual payments list"
+    ],
+    "redFlags": [
+      "High volume of manual payments"
+    ],
+    "confidence": "high"
+  }
+}

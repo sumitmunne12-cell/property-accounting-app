@@ -1,0 +1,1086 @@
+{
+  "scr_cash_voiding_pending_payments": {
+    "purpose": "Voids one or more pending electronic payments inside a payment file that has not yet been confirmed — for example a vendor payment pulled because of a dispute or a bank-detail change that needs verification.",
+    "outcome": "The specific payment is removed from the pending file and its invoice returns to open status, while the rest of the file proceeds.",
+    "rootCause": "Problems with individual payments (a disputed invoice, a suspicious bank-detail change) are often found after the file is generated. Voiding one pending payment avoids holding up every other vendor in the file.",
+    "ifSkipped": "Either the whole file is held and all vendors are paid late, or a questionable payment goes out and may be unrecoverable.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "NACHA Operating Rules",
+      "COSO 2013 — fraud response controls"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "A/P team"
+    ],
+    "reports": [
+      "Payment file list",
+      "Vendor aging"
+    ],
+    "redFlags": [
+      "Pending payments voided after the bank already processed the file"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_voiding_payments_from_the_check_register": {
+    "purpose": "Voids a check or electronic payment from the check register view by bank account — the standard route for lost checks, returned ACH payments, or payments issued in error.",
+    "outcome": "The payment is reversed in cash and A/P, and the invoice can be reissued or closed.",
+    "rootCause": "The check register is where accountants find payments by bank account and number when a vendor reports non-receipt or the bank returns an item. Voiding from there keeps the check sequence and bank rec aligned.",
+    "ifSkipped": "Lost or returned payments remain as outstanding items and the vendor stays unpaid.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "UCC Article 4 — stop payment orders",
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "A/P team",
+      "Treasury"
+    ],
+    "reports": [
+      "Check register",
+      "Outstanding checks list"
+    ],
+    "redFlags": [
+      "Voided checks without a bank stop-payment or positive pay void"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_voiding_a_confirmed_electronic_payment": {
+    "purpose": "Voids an electronic payment that the bank already confirmed — used when an ACH return (R01 insufficient funds, R03 no account, R04 invalid account) arrives days later or when funds were recovered from the vendor.",
+    "outcome": "The returned funds are reflected in cash and the invoice is reopened for repayment.",
+    "rootCause": "ACH returns arrive up to two banking days (and unauthorized returns up to 60 days) after settlement. The books show the vendor paid until the confirmed payment is voided.",
+    "ifSkipped": "Vendors remain unpaid while the books show them paid, and returned cash sits as an unexplained deposit on the bank rec.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "NACHA return reason codes and timeframes"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "A/P team",
+      "Vendor"
+    ],
+    "reports": [
+      "Check register",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "ACH returns on the bank statement not reflected in the check register"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_schedule_ach_file_generation_list": {
+    "purpose": "Lists scheduled ACH file generation jobs — which bank accounts, what time, how often — that automatically build payment files from approved payments.",
+    "outcome": "Visibility of automated payment runs so treasury knows when files will be created and sent.",
+    "rootCause": "Automated file schedules remove manual work but also remove a human checkpoint. Treasury needs to see and control every schedule that can move money.",
+    "ifSkipped": "Unknown or forgotten schedules send payments at unexpected times or from the wrong account.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — IT general controls over automated jobs"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "System administrator"
+    ],
+    "reports": [
+      "Schedule list",
+      "Execution logs"
+    ],
+    "redFlags": [
+      "Schedules owned by terminated users",
+      "Schedules on accounts that no longer exist"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_scheduling_an_ach_payment_file": {
+    "purpose": "Creates a schedule for automatic ACH file generation — selecting bank accounts, frequency and time before the bank's cut-off.",
+    "outcome": "Approved vendor payments are packaged into files automatically and reliably before the cut-off.",
+    "rootCause": "Manual file generation depends on someone remembering before cut-off, which fails across time zones. A schedule makes payment timing predictable for vendors.",
+    "ifSkipped": "Payments miss cut-offs and vendors are paid a day or more late.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "NACHA settlement windows"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Schedule list"
+    ],
+    "redFlags": [
+      "Schedule time set after the bank's same-day ACH cut-off"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_or_editing_a_scheduled_ach_payment_file": {
+    "purpose": "Reviews or changes a scheduled ACH file generation job — which originating bank accounts it covers, the run time relative to the bank's ACH cut-off, and its frequency.",
+    "outcome": "Automated payment runs stay aligned with current bank cut-offs and the accounts that actually pay vendors.",
+    "rootCause": "Banks move cut-off times and properties change banks after refinancing. A schedule left on the old settings either misses the cut-off (late payments) or tries to pay from an account that no longer exists.",
+    "ifSkipped": "Scheduled runs keep firing against outdated accounts or times, and vendors are paid late without anyone noticing.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — change management over automated jobs"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Schedule list",
+      "Execution logs"
+    ],
+    "redFlags": [
+      "Schedule edits made without a second approver"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_execution_logs_for_a_scheduled_ach_payment_file": {
+    "purpose": "Shows the run history of a scheduled ACH job — when it ran, how many payments were included, and whether it succeeded or failed.",
+    "outcome": "Treasury can confirm each scheduled run produced the expected file and investigate failures quickly.",
+    "rootCause": "Automated jobs fail silently (expired credentials, empty batches). Logs are the only evidence that payments actually went out as scheduled.",
+    "ifSkipped": "Failed runs go unnoticed and vendors are not paid.",
+    "glAccounts": [
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — monitoring of automated controls"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "System administrator"
+    ],
+    "reports": [
+      "Execution logs"
+    ],
+    "redFlags": [
+      "Consecutive failed runs without follow-up"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_turning_a_payment_file_schedule_on_or_off": {
+    "purpose": "Pauses or resumes a scheduled ACH file job — for example during a bank migration, a suspected fraud investigation or a holiday.",
+    "outcome": "Automated payments can be stopped immediately without deleting the schedule setup.",
+    "rootCause": "When fraud is suspected or bank details are changing, automated payment flows must be halted quickly and restarted cleanly afterward.",
+    "ifSkipped": "Payments continue during an investigation or bank migration, possibly to compromised accounts.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — incident response controls"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Schedule list"
+    ],
+    "redFlags": [
+      "Schedules left off after the reason was resolved, delaying vendor payments"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_a_scheduled_ach_payment_file": {
+    "purpose": "Deletes a scheduled ACH file job that is no longer needed, such as after a bank account is closed or a property is sold.",
+    "outcome": "Obsolete schedules cannot trigger unexpected payment files.",
+    "rootCause": "Every active schedule is a standing instruction to move money. Removing those that no longer apply reduces the risk of unexpected payments.",
+    "ifSkipped": "Old schedules may run against reused or re-mapped accounts.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — access and job maintenance"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "System administrator"
+    ],
+    "reports": [
+      "Schedule list"
+    ],
+    "redFlags": [
+      "Schedules remaining for sold properties"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_credit_card_transactions_list": {
+    "purpose": "Lists transactions recorded against company credit card accounts — purchases by site staff, card payments to vendors, and payments of the card balance.",
+    "outcome": "A register of card activity that can be matched to the issuer's monthly statement and coded to properties.",
+    "rootCause": "Card purchases bypass POs and invoice approval. Recording them individually with coding is how they get reviewed and charged to the right property.",
+    "ifSkipped": "Card charges are paid in one lump from the statement without property coding or review.",
+    "glAccounts": [
+      "2140 Credit Card Payable",
+      "6110 Repairs & Maintenance",
+      "6310 Marketing",
+      "6410 Administrative"
+    ],
+    "gaap": [
+      "COSO 2013 — purchasing card controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property managers (cardholders)"
+    ],
+    "reports": [
+      "Credit card transactions",
+      "Credit card reconciliation"
+    ],
+    "redFlags": [
+      "Card transactions without receipts",
+      "Split transactions to avoid card limits"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_credit_card_transaction": {
+    "purpose": "Records a card purchase — card account, date, merchant, amount, property and GL coding — so the expense and card liability are recognized when incurred.",
+    "outcome": "Card spending is recorded in the right property and period with the card liability.",
+    "rootCause": "Card statements arrive after month-end. Recording transactions as they occur puts the expense in the right month and allows review before payment.",
+    "ifSkipped": "Card expenses are recorded a month late and without review.",
+    "glAccounts": [
+      "2140 Credit Card Payable",
+      "6110 Repairs & Maintenance",
+      "6410 Administrative"
+    ],
+    "gaap": [
+      "ASC 405 — liabilities when incurred"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Cardholders"
+    ],
+    "reports": [
+      "Credit card transactions"
+    ],
+    "redFlags": [
+      "Personal merchants (restaurants, retail) coded to operating expenses"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_editing_a_credit_card_transaction": {
+    "purpose": "Edits a card transaction entered directly in Cash Management (not one generated from A/P) — correcting coding, date or amount.",
+    "outcome": "Card transaction coding is corrected before statement reconciliation.",
+    "rootCause": "Direct entries can be corrected in place; transactions tied to A/P invoice payments must be corrected in A/P to keep the invoice trail intact.",
+    "ifSkipped": "Coding errors persist or corrections break the link to A/P invoices.",
+    "glAccounts": [
+      "2140 Credit Card Payable",
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Credit card transactions"
+    ],
+    "redFlags": [
+      "Edits after the statement was reconciled"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reversing_a_credit_card_transaction": {
+    "purpose": "Reverses a card transaction entered in error or refunded by the merchant; transactions tied to A/P invoice payments are reversed through the payment instead.",
+    "outcome": "The card liability and expense are corrected with an audit trail.",
+    "rootCause": "Merchant refunds and duplicate entries must reduce both the expense and the card liability so the card reconciles to the statement.",
+    "ifSkipped": "The card account shows a higher balance than the issuer and expenses are overstated.",
+    "glAccounts": [
+      "2140 Credit Card Payable",
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Credit card reconciliation"
+    ],
+    "redFlags": [
+      "Refunds on the statement not reflected"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_credit_card_transaction_information_page": {
+    "purpose": "The record page for a card transaction showing card account, merchant, date, amount, distribution and attachments such as the receipt.",
+    "outcome": "Full detail and receipt for each card charge, supporting review and audit.",
+    "rootCause": "Auditors and reviewers test card charges for business purpose; the receipt and coding must sit together.",
+    "ifSkipped": "Card charges lack evidence of business purpose.",
+    "glAccounts": [
+      "2140 Credit Card Payable"
+    ],
+    "gaap": [
+      "IRS substantiation rules for business expenses (IRC §274(d))"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Credit card transactions"
+    ],
+    "redFlags": [
+      "Missing receipts on charges over the policy threshold"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_charge_payoffs_list": {
+    "purpose": "Lists card charges that need to be paid off — the charges that make up the card statement balance — used to record the payment to the card issuer against specific charges.",
+    "outcome": "Card balances are paid down against identified charges, keeping the card liability detail clean.",
+    "rootCause": "Paying the issuer a lump sum without tying it to charges leaves the liability detail unreconcilable. Charge payoffs match payments to what was charged.",
+    "ifSkipped": "The card liability account accumulates unmatched charges and payments.",
+    "glAccounts": [
+      "2140 Credit Card Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 405-20 — extinguishment of liabilities"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Treasury"
+    ],
+    "reports": [
+      "Charge payoffs",
+      "Credit card reconciliation"
+    ],
+    "redFlags": [
+      "Old unpaid charges remaining on the list"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_charge_payoff": {
+    "purpose": "Records a payment to the credit card issuer and selects the specific card charges it pays off, so the card liability detail shows exactly which purchases have been settled.",
+    "outcome": "The card liability is reduced charge by charge, and any charges left unpaid stand out before late fees and interest accrue.",
+    "rootCause": "Paying the issuer a lump sum without tying it to charges leaves the card liability impossible to reconcile to the statement, and unpaid charges hide inside the balance until interest appears.",
+    "ifSkipped": "Card payments cannot be matched to statements, late fees accrue on overlooked balances, and the card liability drifts from the issuer's figure.",
+    "glAccounts": [
+      "2140 Credit Card Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 405-20 — extinguishment of liabilities"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Charge payoffs",
+      "Credit card reconciliation"
+    ],
+    "redFlags": [
+      "Payoff amount different from the statement's amount due"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reversing_a_charge_payoff": {
+    "purpose": "Reverses a charge payoff (it cannot be edited because the system generates its entries), for example when the payment to the issuer was returned or recorded for the wrong charges.",
+    "outcome": "The card liability and cash are restored and the payoff can be re-entered correctly.",
+    "rootCause": "System-generated postings are locked to protect the audit trail; reversal is the controlled correction.",
+    "ifSkipped": "Returned card payments remain recorded as paid.",
+    "glAccounts": [
+      "2140 Credit Card Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Charge payoffs"
+    ],
+    "redFlags": [
+      "Reversals without re-entry"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_charge_payoffs_information": {
+    "purpose": "Explains the charge payoff record — payment date, amount, issuer and the charges covered.",
+    "outcome": "Clear understanding of how card payments link to charges.",
+    "rootCause": "Users need to know the payoff structure to reconcile the card liability and answer cardholder or issuer questions.",
+    "ifSkipped": "Card reconciliations are performed without understanding which payments covered which charges.",
+    "glAccounts": [
+      "2140 Credit Card Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Charge payoffs"
+    ],
+    "redFlags": [
+      "Payoffs with no linked charges"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_positive_pay_file_list": {
+    "purpose": "Lists positive pay files generated for each bank account — the issued-check lists sent to banks — and allows manual generation when the automatic file did not run.",
+    "outcome": "Treasury can confirm every check run and manual check was reported to the bank before the checks were presented.",
+    "rootCause": "Positive pay only protects checks that are on the file. The list is where treasury confirms files went out for every issuing account every day checks were written.",
+    "ifSkipped": "Checks are issued without positive pay coverage, exposing the account to counterfeit and altered checks.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "UCC 3-406 / 4-406 — loss allocation for check fraud"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "A/P team"
+    ],
+    "reports": [
+      "Positive pay file list"
+    ],
+    "redFlags": [
+      "Check run dates with no corresponding positive pay file"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_a_positive_pay_file": {
+    "purpose": "Deletes a positive pay file from the list — typically one generated with errors — so it can be regenerated correctly.",
+    "outcome": "The bank receives an accurate issued-check list rather than a wrong one.",
+    "rootCause": "A wrong positive pay file causes legitimate checks to be rejected or fraudulent ones to be accepted; replacing it requires removing the wrong version first.",
+    "ifSkipped": "Incorrect files stay on record and may be resent.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — fraud controls"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Positive pay file list"
+    ],
+    "redFlags": [
+      "Files deleted after transmission without notifying the bank"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_generate_positive_pay_file_page": {
+    "purpose": "The page to manually generate a positive pay file for selected bank accounts and date ranges.",
+    "outcome": "An on-demand issued-check file covering checks not included in automatic files.",
+    "rootCause": "Manual checks and off-schedule runs are the checks most likely to be missing from automatic positive pay files.",
+    "ifSkipped": "Manual checks are not protected and legitimate ones may be rejected.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "UCC 4-406"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Positive pay file"
+    ],
+    "redFlags": [
+      "Date ranges that skip days"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_bank_interest_and_charges_list": {
+    "purpose": "Lists bank interest earned and bank charges (service fees, analysis fees, wire fees) recorded from bank statements for each account.",
+    "outcome": "A register of bank-originated income and fees recorded in the correct period and property.",
+    "rootCause": "Banks post interest and fees that never pass through A/P or A/R. Unless recorded, they remain reconciling items and are missing from the P&L.",
+    "ifSkipped": "Bank fees and interest are missing from the income statement and recs show recurring unexplained items.",
+    "glAccounts": [
+      "6420 Bank Charges",
+      "4100 Other Income (interest)",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 305",
+      "State rules on interest owed to residents on security deposits"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank interest and charges list",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Interest on security deposit trust accounts recorded as property income where state law requires it be credited to residents"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_bank_interest_or_charges": {
+    "purpose": "Records bank interest or charges from the statement — account, date, amount and GL account — with defaults available for recurring items.",
+    "outcome": "Bank-originated activity is booked so the reconciliation clears.",
+    "rootCause": "Defaults for recurring charges make monthly entry quick and consistent across accounts.",
+    "ifSkipped": "Recurring bank fees remain unrecorded reconciling items.",
+    "glAccounts": [
+      "6420 Bank Charges",
+      "4100 Other Income",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 305"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank interest and charges list"
+    ],
+    "redFlags": [
+      "Fees coded to administrative expense instead of bank charges"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_editing_a_bank_interest_or_charge": {
+    "purpose": "Edits an unposted or editable bank interest or charge entry to fix amount, date or GL coding.",
+    "outcome": "Bank fee entries match the statement exactly.",
+    "rootCause": "Small keying errors in bank fees prevent the reconciliation from balancing to the penny.",
+    "ifSkipped": "Recs do not balance and preparers force them with plugs.",
+    "glAccounts": [
+      "6420 Bank Charges"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Edits after the reconciliation was finalized"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reversing_a_bank_interest_or_charge": {
+    "purpose": "Reverses a posted bank interest or charge — for example a fee the bank later refunded or one recorded twice.",
+    "outcome": "Duplicate or refunded fees are removed with an audit trail.",
+    "rootCause": "Banks refund disputed fees; recording the refund as a reversal keeps the fee history clear.",
+    "ifSkipped": "Fees are overstated and the rec shows an unexplained credit.",
+    "glAccounts": [
+      "6420 Bank Charges",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank interest and charges list"
+    ],
+    "redFlags": [
+      "Reversals without bank evidence"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_bank_interest_and_charges_information_page": {
+    "purpose": "The record page for a bank interest or charge with account, date, amount and GL distribution.",
+    "outcome": "Complete detail for each bank-originated entry.",
+    "rootCause": "Reviewers need to trace each fee or interest entry to the statement line it came from.",
+    "ifSkipped": "Fee entries cannot be traced to statements.",
+    "glAccounts": [
+      "6420 Bank Charges"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank interest and charges list"
+    ],
+    "redFlags": [
+      "Entries without statement references"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_credit_card_charges_and_other_fees_list": {
+    "purpose": "Lists fees charged on company credit cards — annual fees, late fees, interest, foreign transaction fees — recorded from card statements.",
+    "outcome": "Card fees are recorded as expenses so card accounts reconcile.",
+    "rootCause": "Card fees appear only on statements; like bank fees, they must be booked to reconcile the card liability.",
+    "ifSkipped": "Card liability does not tie to the statement.",
+    "glAccounts": [
+      "2140 Credit Card Payable",
+      "6420 Bank Charges",
+      "7010 Interest Expense"
+    ],
+    "gaap": [
+      "ASC 405"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Credit card reconciliation"
+    ],
+    "redFlags": [
+      "Recurring late fees indicating payment process failures"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_credit_card_charge_or_fee": {
+    "purpose": "Records a fee or interest charge that appears on a company credit card statement — annual fee, late fee, foreign transaction fee or finance charge — against the card account.",
+    "outcome": "The card liability matches the issuer statement and the fee is expensed in the right period.",
+    "rootCause": "Issuer fees and interest are only visible on the statement; nothing in A/P generates them. Until recorded, the card reconciliation is off by exactly those amounts, and recurring late fees point to a broken payment routine.",
+    "ifSkipped": "Card reconciliations fail by the unrecorded fees, and repeated late fees go unnoticed.",
+    "glAccounts": [
+      "2140 Credit Card Payable",
+      "6420 Bank Charges",
+      "7010 Interest Expense"
+    ],
+    "gaap": [
+      "ASC 405 — liabilities"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Credit card charges and fees list",
+      "Credit card reconciliation"
+    ],
+    "redFlags": [
+      "Finance charges recorded as bank charges",
+      "Late fees recurring on the same card"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_editing_a_credit_card_charge_or_fee": {
+    "purpose": "Edits a recorded card fee to correct amount, date or coding before reconciliation.",
+    "outcome": "Card fees match the statement exactly.",
+    "rootCause": "Small keying errors keep the card reconciliation from balancing and lead to plugs.",
+    "ifSkipped": "Card reconciliation differences persist.",
+    "glAccounts": [
+      "2140 Credit Card Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Credit card reconciliation"
+    ],
+    "redFlags": [
+      "Edits after reconciliation finalized"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reversing_a_credit_card_charge_or_fee": {
+    "purpose": "Reverses a recorded card fee — for example when the issuer waives a late fee after a dispute, or when a fee was entered twice.",
+    "outcome": "Waived or duplicate fees are removed from expense and the card liability with a clear trail.",
+    "rootCause": "Issuers often refund fees on request; the refund appears as a credit on the next statement. Reversing the original fee keeps expense and the card liability aligned with the issuer.",
+    "ifSkipped": "Card liability and bank-charge expense stay overstated and the next reconciliation shows an unexplained credit.",
+    "glAccounts": [
+      "2140 Credit Card Payable",
+      "6420 Bank Charges"
+    ],
+    "gaap": [
+      "COSO 2013 — audit trail"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Credit card reconciliation"
+    ],
+    "redFlags": [
+      "Reversals not supported by a statement credit"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_credit_card_charges_and_other_fees_information_page": {
+    "purpose": "The record page for a card fee or interest charge, showing the card account, statement date, amount and GL distribution, so each fee can be traced to the issuer statement line.",
+    "outcome": "Traceable, reviewable detail for every card fee posted.",
+    "rootCause": "Reviewers test card fees for legitimacy and for signs of process failures (late fees, over-limit fees). Each fee must be traceable to the statement to support that review.",
+    "ifSkipped": "Card fee entries cannot be verified and patterns like recurring late fees are hard to spot.",
+    "glAccounts": [
+      "2140 Credit Card Payable",
+      "6420 Bank Charges"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Credit card charges and fees list"
+    ],
+    "redFlags": [
+      "Fees without a statement reference"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reconciliation_box": {
+    "purpose": "Opening dialog of the new bank reconciliation tool where the accountant selects the bank account and statement date, sets up a first-time reconciliation, adds initial open items and imports the bank file.",
+    "outcome": "The reconciliation session starts with the right account, the right statement period and the bank's transactions loaded.",
+    "rootCause": "Starting with the wrong account or statement date is the root of many unbalanced recs. The box forces those choices up front and loads the bank data the matching depends on.",
+    "ifSkipped": "Recs are started against the wrong period or without bank data, forcing manual matching.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "ASC 305",
+      "COSO 2013 — bank reconciliation"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation (new)"
+    ],
+    "redFlags": [
+      "Statement ending balance keyed rather than taken from the bank file"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reconciling_a_bank_account_for_the_first_time": {
+    "purpose": "Procedure for the first reconciliation of an account in the new tool — entering the starting statement balance and loading outstanding checks and deposits in transit from the prior system or prior reconciliation.",
+    "outcome": "A correct starting point so every later reconciliation rolls forward cleanly.",
+    "rootCause": "When a property is onboarded or migrated from Yardi or another system, the outstanding items from the last prior-system reconciliation must be loaded. A wrong opening position breaks every future month.",
+    "ifSkipped": "The first rec is forced with a plug and the error carries forward indefinitely.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — conversion controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Transition team"
+    ],
+    "reports": [
+      "Initial open items",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "First reconciliation balanced with an unexplained adjustment"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_selecting_an_account_to_reconcile": {
+    "purpose": "Selects the checking or savings account and statement date to reconcile in the new tool, and triggers first-time setup if the account has never been reconciled.",
+    "outcome": "The correct account and period are chosen for the reconciliation.",
+    "rootCause": "Portfolios hold many similarly named accounts (operating and trust accounts at the same bank). Selecting the wrong one produces a meaningless reconciliation.",
+    "ifSkipped": "Reconciliations are performed on the wrong account.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Account last-four digits not matching the statement"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_initial_open_items": {
+    "purpose": "Enters the outstanding checks and deposits in transit that existed before the first reconciliation in the new tool.",
+    "outcome": "Prior outstanding items are carried into the new reconciliation so they can clear when they hit the bank.",
+    "rootCause": "Items issued before the migration will clear afterwards. Without being loaded, they appear as unexplained bank activity.",
+    "ifSkipped": "Pre-migration items show up as unmatched bank transactions for months.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — conversion controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Transition team"
+    ],
+    "reports": [
+      "Initial open items"
+    ],
+    "redFlags": [
+      "Initial open items total not equal to the prior system's outstanding list"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_importing_initial_open_items": {
+    "purpose": "Imports the initial outstanding items list from a file — usually the last outstanding check list from the prior system.",
+    "outcome": "Large lists of outstanding items are loaded accurately in one step.",
+    "rootCause": "Acquired properties can carry hundreds of outstanding items; keying them invites errors.",
+    "ifSkipped": "Manually keyed items contain errors that break the first reconciliation.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Transition team",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Initial open items"
+    ],
+    "redFlags": [
+      "Import totals not reconciled to the source list"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_exporting_the_initial_open_items_list": {
+    "purpose": "Exports the initial open items loaded into the new reconciliation tool so they can be checked against the prior system's final outstanding check and deposit list.",
+    "outcome": "Independent verification that the migrated outstanding items are complete and accurate.",
+    "rootCause": "Opening items are loaded once, during conversion, often under deadline. An exported list lets a second person compare them to the prior system before they become the base for every future reconciliation.",
+    "ifSkipped": "Conversion errors in opening items go unverified and later surface as unexplained reconciling items that nobody can trace.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — conversion verification"
+    ],
+    "stakeholders": [
+      "Onshore reviewer",
+      "Transition team"
+    ],
+    "reports": [
+      "Initial open items export"
+    ],
+    "redFlags": [
+      "No evidence that opening items were verified"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_importing_a_bank_file": {
+    "purpose": "Imports the bank's transaction file (CSV or BAI) into the new reconciliation so bank lines can be matched to book transactions automatically.",
+    "outcome": "Bank activity is loaded exactly as the bank recorded it, enabling auto-matching.",
+    "rootCause": "Keying bank transactions by hand introduces errors and is slow. Importing the bank's own data makes the bank side of the reconciliation objective.",
+    "ifSkipped": "Manual keying errors and slow reconciliations.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — data integrity"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Bank file date range not matching the statement period"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_bank_reconciliation_legacy": {
+    "purpose": "The legacy bank reconciliation tool still used for some accounts, where the accountant selects the account, enters statement information and matches book transactions to the bank.",
+    "outcome": "Accounts not yet moved to the new tool still get a complete monthly reconciliation.",
+    "rootCause": "Companies migrate to the new tool gradually; the legacy tool remains for accounts with open history there. Both must produce equally reliable reconciliations.",
+    "ifSkipped": "Accounts left on the legacy tool are skipped during migration and go unreconciled.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "ASC 305",
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Bank reconciliation (legacy)"
+    ],
+    "redFlags": [
+      "Accounts reconciled in both tools for the same period"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reconciliation_box_2": {
+    "purpose": "Opening dialog of the legacy reconciliation tool where the accountant selects the bank account, enters the statement date and ending balance, sets up a first-time rec and imports the bank file.",
+    "outcome": "A legacy reconciliation session started with the correct account, period and bank data.",
+    "rootCause": "In the legacy tool, the choice of account and statement ending balance is where most unbalanced recs begin — keying the ending balance from the wrong page of a statement is a classic error.",
+    "ifSkipped": "Legacy recs are started on wrong periods or balances and preparers force them with plugs.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — bank reconciliation"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation (legacy)"
+    ],
+    "redFlags": [
+      "Ending balance not matching the bank statement"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reconciling_a_bank_account_for_the_first_time_2": {
+    "purpose": "Legacy-tool procedure for the first reconciliation of an account, setting the opening balance and loading pre-existing outstanding items.",
+    "outcome": "A correct opening position for legacy reconciliations.",
+    "rootCause": "First reconciliations in the legacy tool carry the same conversion risk: a wrong opening position breaks all later months.",
+    "ifSkipped": "Plugs at the first reconciliation that persist.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — conversion controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation (legacy)"
+    ],
+    "redFlags": [
+      "Opening differences not documented"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_selecting_an_account_to_reconcile_2": {
+    "purpose": "Selects the checking or savings account to reconcile in the legacy tool, launching first-time setup if the account has never been reconciled there.",
+    "outcome": "The correct account is reconciled for the period in the legacy tool.",
+    "rootCause": "Properties often have an operating account and a security deposit trust account at the same bank with near-identical names. Selecting by account number rather than name prevents reconciling the wrong one.",
+    "ifSkipped": "The wrong account is reconciled and the real one goes unreconciled for the month.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation (legacy)"
+    ],
+    "redFlags": [
+      "Account last-four digits not matching the statement"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_initial_open_items_2": {
+    "purpose": "Legacy-tool entry of outstanding items that existed before the first reconciliation in RealPage Accounting.",
+    "outcome": "Pre-existing outstanding checks and deposits are carried into the legacy reconciliation.",
+    "rootCause": "Without opening items, pre-conversion checks clearing later look like unexplained withdrawals.",
+    "ifSkipped": "Unmatched bank items for pre-conversion activity.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Initial open items"
+    ],
+    "redFlags": [
+      "Opening items not tied to the prior reconciliation"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_importing_initial_open_items_2": {
+    "purpose": "Imports the list of pre-existing outstanding checks and deposits in transit into the legacy reconciliation tool from a file, typically the last outstanding list from the prior system.",
+    "outcome": "Opening outstanding items are loaded accurately and completely in one step.",
+    "rootCause": "Acquired or migrated properties can carry hundreds of outstanding checks. Keying them is slow and error-prone, and any error becomes a permanent reconciling difference.",
+    "ifSkipped": "Keyed errors in opening items create reconciling differences that persist for months.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — conversion controls"
+    ],
+    "stakeholders": [
+      "Transition team",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Initial open items"
+    ],
+    "redFlags": [
+      "Import totals not reconciled to the source list"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_exporting_the_initial_open_items_list_2": {
+    "purpose": "Exports initial open items from the legacy tool, in CSV for moving to the new tool or for verification.",
+    "outcome": "Opening items can be carried to the new tool or reviewed.",
+    "rootCause": "Migrating from the legacy to the new reconciliation tool requires carrying outstanding items across accurately.",
+    "ifSkipped": "Outstanding items lost in migration between tools.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — conversion controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Initial open items export"
+    ],
+    "redFlags": [
+      "Export not reconciled after import into the new tool"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_importing_a_bank_file_2": {
+    "purpose": "Imports a CSV or BAI bank file into the legacy reconciliation to load the bank's transactions for matching.",
+    "outcome": "Bank activity is loaded exactly as the bank recorded it for legacy matching.",
+    "rootCause": "Manually keying bank activity into the legacy tool is slow and introduces errors that make the reconciliation fail. Importing the bank's own data keeps the bank side objective.",
+    "ifSkipped": "Keying errors lead to unbalanced recs and plugs.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — data integrity"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation (legacy)"
+    ],
+    "redFlags": [
+      "The same bank file imported twice"
+    ],
+    "confidence": "high"
+  }
+}

@@ -1,0 +1,1049 @@
+{
+  "scr_jobcost_viewing_approver_details_from_approval_history": {
+    "purpose": "Views who approved a job cost transaction at each step — name, role, date and comments — from its approval history in the Approval Workbench.",
+    "outcome": "Evidence of which individual authorized a capital commitment, change order or draw.",
+    "rootCause": "Lenders, owners and auditors test not only that approval happened but that it came from someone with authority under the delegation of authority matrix. Approver details provide that evidence.",
+    "ifSkipped": "Approvals by people without authority go unnoticed until an audit or owner dispute.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization",
+      "Management agreement delegation of authority"
+    ],
+    "stakeholders": [
+      "External auditor",
+      "Asset manager",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Approval history"
+    ],
+    "redFlags": [
+      "Approvals by delegates with lower authority limits"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_budgets": {
+    "purpose": "Section on managing job budgets — adding, viewing, editing and deleting budgets, closing cost codes, and processing budget change orders.",
+    "outcome": "A consistent process for setting and changing project budgets.",
+    "rootCause": "Job budgets are the baseline for every capex report, draw and approval; how they are set and changed must be controlled and traceable.",
+    "ifSkipped": "Project budgets change informally and lose credibility with owners and lenders.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Job budgets"
+    ],
+    "redFlags": [
+      "Budget changes without change orders"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_budgets_list": {
+    "purpose": "Lists job budgets across jobs under Periodic Tasks, with original, revised and status, for adding and managing budgets.",
+    "outcome": "A portfolio view of project budgets and their changes.",
+    "rootCause": "Asset managers review capital budgets across properties; the list shows which projects have grown through change orders and by how much.",
+    "ifSkipped": "Budget growth across the capital program is not visible in one place.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Construction manager"
+    ],
+    "reports": [
+      "Budgets list"
+    ],
+    "redFlags": [
+      "Revised budgets materially above original"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_job_budget": {
+    "purpose": "Adds a budget to a job by cost code, establishing the approved project budget that commitments, costs and draws are measured against.",
+    "outcome": "An approved baseline for the capital project.",
+    "rootCause": "Without a budget, job status shows costs with nothing to compare to, and budget checks on POs cannot operate.",
+    "ifSkipped": "Project spending has no baseline and overruns cannot be detected.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job budgets"
+    ],
+    "redFlags": [
+      "Budget total different from the owner-approved capex budget"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_a_job_budget": {
+    "purpose": "Opens a job budget to see amounts by cost code, change orders and revised totals.",
+    "outcome": "Budget detail available for reviews and lender questions.",
+    "rootCause": "Lenders reviewing draws compare billed amounts to the approved budget by line; the budget detail answers those questions directly.",
+    "ifSkipped": "Draw reviews are delayed by budget questions nobody can answer quickly.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Lender"
+    ],
+    "reports": [
+      "Job budgets"
+    ],
+    "redFlags": [
+      "Budgets without change order history"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_editing_a_job_budget": {
+    "purpose": "Edits a job budget — typically to correct setup errors; approved scope changes should instead be recorded as change orders.",
+    "outcome": "Setup errors corrected without disturbing the change order trail.",
+    "rootCause": "Direct budget edits are appropriate for keying corrections but not for scope growth, which owners and lenders expect to see as approved change orders.",
+    "ifSkipped": "Setup errors persist, or scope growth is hidden in direct edits without approval evidence.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job budgets"
+    ],
+    "redFlags": [
+      "Large direct edits after the project started"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_budget_change_orders_for_a_job_budget": {
+    "purpose": "Lists the change orders that have modified a job budget, with amounts, reasons and approvals.",
+    "outcome": "A clear history of how and why the budget grew.",
+    "rootCause": "Owners and lenders ask why a project costs more than originally approved; the change order history is the answer.",
+    "ifSkipped": "Budget growth cannot be explained or defended.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Loan agreement change order provisions"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Lender"
+    ],
+    "reports": [
+      "Change order log"
+    ],
+    "redFlags": [
+      "Change orders without stated reasons"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_deleting_a_job_budget": {
+    "purpose": "Deletes a job budget created in error, before commitments or costs reference it.",
+    "outcome": "Duplicate or erroneous budgets removed.",
+    "rootCause": "Duplicate budgets on the same job inflate the total and make the project appear under budget, masking real overruns.",
+    "ifSkipped": "Job budgets are overstated and overruns are hidden.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Budgets list"
+    ],
+    "redFlags": [
+      "Deleting budgets with commitments against them"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_budget_page": {
+    "purpose": "The page for creating and managing a job budget — cost codes, amounts, status and change orders.",
+    "outcome": "A single place to maintain the project's approved spending plan.",
+    "rootCause": "Keeping budget lines, status and change orders together ensures the revised budget always reflects approved changes.",
+    "ifSkipped": "Budget information is scattered and revised totals are unreliable.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job budgets"
+    ],
+    "redFlags": [
+      "Cost codes without amounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_closing_or_reopening_cost_codes_for_job_budgets": {
+    "purpose": "Closes cost codes on a job budget when that trade's work is complete (stopping further costs) or reopens them if late costs legitimately arrive.",
+    "outcome": "Completed trades stop receiving new costs, protecting the final cost figure.",
+    "rootCause": "Once a trade is complete and its retainage released, stray invoices coded to it are usually errors; closing the code blocks them.",
+    "ifSkipped": "Costs keep posting to finished trades, distorting final project cost and capitalization.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "1530 Building Improvements"
+    ],
+    "gaap": [
+      "ASC 360-10-35 — placed in service"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Job status inquiry"
+    ],
+    "redFlags": [
+      "Codes reopened repeatedly without explanation"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_budget_change_orders_page": {
+    "purpose": "Lists and manages budget change orders for a job — adding, viewing, editing and deleting them.",
+    "outcome": "Controlled, documented changes to project budgets.",
+    "rootCause": "Change orders are how scope growth is authorized; managing them in one place keeps the trail complete for lenders and owners.",
+    "ifSkipped": "Budget changes are undocumented and cannot be defended to lenders or owners.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Asset manager"
+    ],
+    "reports": [
+      "Change order log"
+    ],
+    "redFlags": [
+      "Pending change orders older than 30 days"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_budget_change_order": {
+    "purpose": "Adds a budget change order to a job — amount, affected cost codes, reason (unforeseen conditions, owner-requested scope) — submitted for approval.",
+    "outcome": "A proposed budget increase or decrease routed for authorization.",
+    "rootCause": "Unforeseen conditions (hidden water damage, code upgrades) require more budget; the change order documents the reason and gets approval before money is committed.",
+    "ifSkipped": "Scope changes proceed without approval and owners refuse to fund them.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Asset manager"
+    ],
+    "reports": [
+      "Change order log"
+    ],
+    "redFlags": [
+      "Change orders created after the work was done"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_a_budget_change_order": {
+    "purpose": "Opens a budget change order to see its amounts, reason, affected cost codes and approval status.",
+    "outcome": "Details of a specific budget change available for review.",
+    "rootCause": "Reviewers and lenders examine individual change orders to judge whether the reason justifies the added cost.",
+    "ifSkipped": "Questionable change orders are not scrutinized.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Lender"
+    ],
+    "reports": [
+      "Change order detail"
+    ],
+    "redFlags": [
+      "Vague reasons such as 'additional work'"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_editing_a_budget_change_order": {
+    "purpose": "Edits a pending budget change order before approval — adjusting amounts or cost code allocations after negotiation with the contractor.",
+    "outcome": "Change orders reflect the negotiated amount before approval.",
+    "rootCause": "Change order amounts are often negotiated down; editing before approval keeps the record accurate. Editing after approval would undermine the authorization.",
+    "ifSkipped": "Approved amounts differ from negotiated amounts, or edits after approval bypass authorization.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Change order log"
+    ],
+    "redFlags": [
+      "Edits to approved change orders"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_deleting_a_budget_change_order": {
+    "purpose": "Deletes a change order that was rejected, withdrawn or created in error, before it affects the budget.",
+    "outcome": "Only valid change orders remain in the log.",
+    "rootCause": "Rejected or duplicate change orders left in the log confuse budget history and may be approved by mistake later.",
+    "ifSkipped": "Invalid change orders linger and risk accidental approval.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Change order log"
+    ],
+    "redFlags": [
+      "Deleting approved change orders"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_reserves": {
+    "purpose": "Section on replacement reserves — setting up reserve records that mirror lender-held reserve accounts, tracking deposits, disbursements and draws.",
+    "outcome": "Lender-held reserve balances tracked alongside the capital work they fund.",
+    "rootCause": "Agency and CMBS loans require monthly reserve deposits held by the servicer. The property needs its own record of the balance and eligible uses to claim reimbursements and to reconcile to servicer statements.",
+    "ifSkipped": "Reserve balances are known only from servicer statements and reimbursements are missed.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement replacement reserve provisions",
+      "ASC 230 — restricted cash"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Loan servicer"
+    ],
+    "reports": [
+      "Replacement reserve status"
+    ],
+    "redFlags": [
+      "Reserve records not reconciled to servicer statements"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_reserves_list": {
+    "purpose": "Lists reserve records by property — reserve type, lender, required deposit, balance — for managing lender-held reserves.",
+    "outcome": "A portfolio inventory of lender reserves.",
+    "rootCause": "Each loan may carry several reserves (replacement, immediate repair, tax and insurance); an inventory ensures none is overlooked in draws or reconciliations.",
+    "ifSkipped": "Some reserves are never reconciled or drawn.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "1330 Tax & Insurance Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Reserves list"
+    ],
+    "redFlags": [
+      "Loans with reserves missing from the list"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_reserve": {
+    "purpose": "Adds a reserve record for a property — lender, reserve type, required monthly deposit and GL account.",
+    "outcome": "A new lender reserve tracked from loan closing.",
+    "rootCause": "At loan closing or acquisition, reserve requirements begin immediately; setting up the record allows deposits and draws to be tracked from day one.",
+    "ifSkipped": "Early deposits and eligible costs are not tracked and later reconciliation is difficult.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reserves list"
+    ],
+    "redFlags": [
+      "Required deposit different from loan documents"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_a_reserve": {
+    "purpose": "Opens a reserve record to see its settings, balance history, deposits and draws.",
+    "outcome": "A complete view of one lender reserve.",
+    "rootCause": "Reconciling to servicer statements and preparing draws requires the reserve's full activity history.",
+    "ifSkipped": "Reserve reconciliations lack detail and differences go unexplained.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reserve detail"
+    ],
+    "redFlags": [
+      "Balance different from servicer statement"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_reserve_information_page": {
+    "purpose": "The reserve record page with lender, type, required deposit, GL mapping and status.",
+    "outcome": "A complete definition of one lender reserve.",
+    "rootCause": "GL mapping and required deposit on this page determine how deposits and draws post and how the reserve is reconciled.",
+    "ifSkipped": "Reserve activity posts to wrong accounts.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Reserves list"
+    ],
+    "redFlags": [
+      "Reserve mapped to operating cash"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_external_commitments": {
+    "purpose": "Explains external commitments — contracts and POs managed outside RealPage (e.g., by a general contractor's system) recorded in Job Cost so they count against budgets.",
+    "outcome": "Commitments made outside RealPage still reduce remaining job budget.",
+    "rootCause": "On larger projects the general contractor manages subcontracts; the owner's books must still reflect those commitments to show true remaining budget.",
+    "ifSkipped": "Remaining budget is overstated by commitments made outside the system.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "External commitments"
+    ],
+    "redFlags": [
+      "GC-managed contracts not recorded"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_job_cost_external_commitments_list": {
+    "purpose": "Lists external commitments recorded against jobs — contracts and POs issued outside RealPage, typically by a general contractor — with vendor, amount, segment and status.",
+    "outcome": "Visibility of commitments not managed in Spend Management.",
+    "rootCause": "External commitments need their own list for periodic reconciliation to the GC's commitment log.",
+    "ifSkipped": "External commitments drift from the GC's records.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "External commitments"
+    ],
+    "redFlags": [
+      "List not reconciled to GC commitment log"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_an_external_commitment": {
+    "purpose": "Records a commitment made outside RealPage against a job segment — vendor, amount, reference.",
+    "outcome": "The external commitment counts against the project budget.",
+    "rootCause": "Commitments must be counted regardless of where they were issued; otherwise remaining budget is overstated.",
+    "ifSkipped": "Remaining budget is overstated and more work is committed than the budget allows.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "External commitments"
+    ],
+    "redFlags": [
+      "External commitments without supporting contracts"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_importing_external_commitments": {
+    "purpose": "Imports external commitments from a template, typically the GC's commitment log.",
+    "outcome": "Many external commitments loaded accurately.",
+    "rootCause": "GC commitment logs can contain many subcontracts; importing keeps RealPage aligned with the GC's records.",
+    "ifSkipped": "Commitments are keyed manually with errors.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Duplicate imports of the same log"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_or_editing_an_external_commitment": {
+    "purpose": "Views or updates an external commitment when the GC reports changes (change orders, cancellations).",
+    "outcome": "External commitments stay aligned with the GC's log.",
+    "rootCause": "GC-managed contracts change through their own change orders; RealPage must be updated to reflect them.",
+    "ifSkipped": "External commitments become outdated and budget remaining is misstated.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "External commitments"
+    ],
+    "redFlags": [
+      "Commitments not updated for GC change orders"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_deleting_an_external_commitment": {
+    "purpose": "Deletes an external commitment that the general contractor cancelled or that was recorded in error, so it stops reducing the job's remaining budget.",
+    "outcome": "Only valid external commitments count against budget.",
+    "rootCause": "Cancelled commitments left in place understate remaining budget and may block legitimate new commitments.",
+    "ifSkipped": "Remaining budget is understated and valid work is held up.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "External commitments"
+    ],
+    "redFlags": [
+      "Deleting commitments with invoices against them"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_job_cost_external_commitment_page": {
+    "purpose": "The record page for an external commitment — job, segment, vendor, amount and reference to the external contract.",
+    "outcome": "A complete record of a commitment made outside RealPage.",
+    "rootCause": "The external reference ties the record to the GC's contract for reconciliation and lender review.",
+    "ifSkipped": "External commitments cannot be traced to contracts.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "External commitments"
+    ],
+    "redFlags": [
+      "Missing external references"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_close_job": {
+    "purpose": "Explains closing a job when the capital project is complete — stopping further costs, finalizing commitments and triggering capitalization into fixed assets.",
+    "outcome": "Completed projects are closed and ready to be placed in service as assets.",
+    "rootCause": "Depreciation should start when the project is ready for use. Closing the job marks completion, prevents stray costs and prompts asset activation.",
+    "ifSkipped": "Completed projects sit in CIP, depreciation starts late, and late invoices keep changing the project cost.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "1530 Building Improvements",
+      "7110 Depreciation Expense"
+    ],
+    "gaap": [
+      "ASC 360-10-35 — depreciation begins when ready for use"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Close job",
+      "Fixed asset register"
+    ],
+    "redFlags": [
+      "Jobs completed months ago still open"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_close_job_page": {
+    "purpose": "The Close Job page listing jobs eligible to close with their final budget, cost and open commitment position.",
+    "outcome": "A controlled view of jobs ready for closing.",
+    "rootCause": "Closing a job with open commitments or unreleased retainage leaves liabilities unresolved; the page shows the position before closing.",
+    "ifSkipped": "Jobs are closed with open commitments or unreleased retainage, leaving liabilities unresolved.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "2015 Retainage Payable"
+    ],
+    "gaap": [
+      "ASC 360-10"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Close job"
+    ],
+    "redFlags": [
+      "Jobs closed with open retainage"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_closing_a_job": {
+    "purpose": "Closes a job after confirming the work is complete, the final pay application is processed and retainage is released, so no further costs can post.",
+    "outcome": "The job stops accepting costs and its total is final for capitalization.",
+    "rootCause": "The asset's depreciable basis must be a final, locked project cost. Closing the job freezes that cost so late or stray invoices cannot change the basis after the asset is placed in service.",
+    "ifSkipped": "Project costs keep changing after assets are placed in service.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "1530 Building Improvements"
+    ],
+    "gaap": [
+      "ASC 360-10-30"
+    ],
+    "stakeholders": [
+      "Construction manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Close job"
+    ],
+    "redFlags": [
+      "Closing before final pay application is processed"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_preserving_job_information_when_closing_accounts": {
+    "purpose": "Explains how job cost detail is preserved when job-related GL accounts are closed or balances are transferred to fixed assets.",
+    "outcome": "Project history remains available after capitalization.",
+    "rootCause": "After CIP is transferred to building improvements, auditors and future buyers still need the project's cost detail; preserving it avoids losing the support.",
+    "ifSkipped": "Project cost detail is lost after capitalization and cannot be produced in audits or sale due diligence.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "1530 Building Improvements"
+    ],
+    "gaap": [
+      "Record retention",
+      "AU-C 500"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "External auditor"
+    ],
+    "reports": [
+      "Job cost activity"
+    ],
+    "redFlags": [
+      "Job detail purged after closing"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_generate_tenant_invoice": {
+    "purpose": "Explains generating tenant invoices from job costs — billing commercial tenants for tenant improvement work or reimbursable project costs under their lease.",
+    "outcome": "Recoverable project costs are billed to tenants.",
+    "rootCause": "Commercial leases often make tenants responsible for certain improvements or overages above a TI allowance; billing from job costs ties the charge to actual cost.",
+    "ifSkipped": "Recoverable costs are never billed and the owner absorbs them.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income",
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "ASC 842 — lessor accounting for tenant improvements",
+      "Lease reimbursement provisions"
+    ],
+    "stakeholders": [
+      "Commercial property manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Tenant invoices"
+    ],
+    "redFlags": [
+      "TI overages not billed"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_generate_tenant_invoice_page": {
+    "purpose": "The page for selecting job costs to bill to a tenant and generating the invoice.",
+    "outcome": "Tenant invoices based on selected, supported job costs.",
+    "rootCause": "Tenants dispute charges without support; generating from actual job costs attaches that support.",
+    "ifSkipped": "Tenant bill-backs are disputed or uncollectible.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "Lease reimbursement provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Tenant invoices"
+    ],
+    "redFlags": [
+      "Costs billed twice to tenants"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_generating_a_tenant_invoice": {
+    "purpose": "Procedure for creating a tenant invoice from selected job costs — for example billing a retail tenant for tenant-improvement overages above its lease allowance.",
+    "outcome": "A receivable from the tenant for reimbursable project costs.",
+    "rootCause": "Recovering costs from tenants requires a formal invoice consistent with lease terms.",
+    "ifSkipped": "Costs owed by tenants are not recovered.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 842"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Tenant invoices"
+    ],
+    "redFlags": [
+      "Invoices not following lease markup provisions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_reports": {
+    "purpose": "Reports section of Job Cost & Reserves — job setup, activity, cost code structure, budgets, draw details, status, WIP reconciliation, open invoices and retainage.",
+    "outcome": "Project accounting evidence for owners, lenders and auditors.",
+    "rootCause": "Capital projects are scrutinized by lenders and auditors; standard reports produce the evidence consistently.",
+    "ifSkipped": "Project reporting is assembled manually and inconsistently.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "2015 Retainage Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager",
+      "Lender"
+    ],
+    "reports": [
+      "Job cost reports"
+    ],
+    "redFlags": [
+      "WIP reconciliation not run monthly"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_my_stored_reports_list": {
+    "purpose": "Lists job cost reports the user has stored — draw detail packages, job status reports, WIP reconciliations — with generation dates.",
+    "outcome": "Retained copies of the exact reports sent to lenders with each draw.",
+    "rootCause": "When a lender later questions a funded draw, the stored draw detail report shows exactly what was submitted.",
+    "ifSkipped": "Submitted draw packages cannot be reproduced.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "My Stored Reports"
+    ],
+    "redFlags": [
+      "Draw packages not stored"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_storing_standard_reports_and_charts": {
+    "purpose": "Explains storing job cost reports and charts — background generation and saved outputs.",
+    "outcome": "Large project reports run reliably and are retained.",
+    "rootCause": "Portfolio capex reports are large; storing them avoids timeouts and preserves month-end versions.",
+    "ifSkipped": "Large reports fail and month-end capex evidence is not retained.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Stored reports"
+    ],
+    "redFlags": [
+      "No stored month-end capex reports"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_a_stored_report": {
+    "purpose": "Opens a stored job cost report — for example last month's capex status package — after background generation finishes.",
+    "outcome": "Access to the saved project report exactly as produced.",
+    "rootCause": "Discussions with lenders about a past draw should refer to the stored version, not a regenerated one reflecting later reclasses.",
+    "ifSkipped": "Regenerated reports differ from what the lender received, causing confusion.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Stored reports"
+    ],
+    "redFlags": [
+      "Regenerated reports used for past draw questions"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_choosing_file_types_to_store_reports_and_charts": {
+    "purpose": "Chooses the file format for stored job cost reports — PDF for lender draw packages, Excel for analysis.",
+    "outcome": "Reports stored in the format each audience requires.",
+    "rootCause": "Lenders typically require PDF draw packages, while construction managers analyze in Excel; choosing formats up front avoids reruns.",
+    "ifSkipped": "Reports must be rerun in another format under draw deadlines.",
+    "glAccounts": [],
+    "gaap": [
+      "Loan agreement documentation requirements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Stored reports"
+    ],
+    "redFlags": [
+      "Editable formats sent as final draw packages"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_deleting_a_stored_report": {
+    "purpose": "Deletes stored job cost reports no longer needed, keeping submitted draw packages for retention.",
+    "outcome": "Stored report lists stay manageable while evidence is kept.",
+    "rootCause": "Clutter makes it hard to find the draw package a lender asks about, but deleting submitted packages loses evidence.",
+    "ifSkipped": "Stored reports pile up; if misused, submitted draw evidence is deleted.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Stored reports"
+    ],
+    "redFlags": [
+      "Deleting submitted draw packages"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_storage_options_page": {
+    "purpose": "Chooses where a processed job cost report is stored — My Stored Reports, cloud storage, or the Reporting Portal.",
+    "outcome": "Draw packages and capex reports delivered where lenders and owners access them.",
+    "rootCause": "Lenders and owners increasingly receive packages via portals or shared folders; direct storage avoids manual uploads.",
+    "ifSkipped": "Packages are uploaded manually and wrong versions are sent.",
+    "glAccounts": [],
+    "gaap": [
+      "Owner and lender reporting requirements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Stored reports"
+    ],
+    "redFlags": [
+      "Draft packages stored to lender-facing locations"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_storing_a_report_in_my_stored_reports": {
+    "purpose": "Stores a processed job cost report — such as a draw detail report — in My Stored Reports for later reference.",
+    "outcome": "A retained personal copy of the report.",
+    "rootCause": "Preparers need the exact draw package they submitted when the servicer asks questions weeks later.",
+    "ifSkipped": "Submitted draw details cannot be reproduced.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "My Stored Reports"
+    ],
+    "redFlags": [
+      "Only personal copies of lender packages"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_storing_a_report_in_a_cloud_storage_target": {
+    "purpose": "Stores a processed job cost report directly to a configured cloud location, such as the owner's capex SharePoint folder.",
+    "outcome": "Capex reports saved automatically where owners expect them.",
+    "rootCause": "Many owners receive monthly capex packages through a shared folder. Storing reports there directly from RealPage removes the manual download-and-upload step where packages are forgotten or the wrong version is posted.",
+    "ifSkipped": "Owner folders lack current capex reports.",
+    "glAccounts": [],
+    "gaap": [
+      "Owner reporting requirements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Cloud-stored reports"
+    ],
+    "redFlags": [
+      "Cloud targets shared too broadly"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_storing_a_report_in_reporting_portal": {
+    "purpose": "Stores a processed job cost report in the Reporting Portal for owner and investor access.",
+    "outcome": "Owners access capex reporting through the portal.",
+    "rootCause": "The portal is the owner-facing channel; publishing capex reports there keeps owners on the official version.",
+    "ifSkipped": "Owners receive capex reports ad hoc with version risk.",
+    "glAccounts": [],
+    "gaap": [
+      "Owner reporting requirements"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Investors"
+    ],
+    "reports": [
+      "Reporting Portal"
+    ],
+    "redFlags": [
+      "Preliminary capex reports published"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_memorized_reports": {
+    "purpose": "Explains memorized job cost reports — saved settings for capex and draw reports that can be rerun or scheduled.",
+    "outcome": "Project reports produced consistently month to month.",
+    "rootCause": "Lenders and owners compare monthly capex reports; memorized settings keep layouts consistent.",
+    "ifSkipped": "Report layouts change month to month and confuse reviewers.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Memorized reports"
+    ],
+    "redFlags": [
+      "Memorized reports pointing to closed jobs"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_memorizing_a_report_or_chart": {
+    "purpose": "Saves the settings of a job cost report — jobs, segments, columns, date basis — as a memorized report.",
+    "outcome": "A reusable definition for recurring capex reporting.",
+    "rootCause": "Capex reports for each lender use specific jobs and columns; memorizing them prevents rebuilding and inconsistency.",
+    "ifSkipped": "Reports are rebuilt monthly with inconsistent settings.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Memorized reports"
+    ],
+    "redFlags": [
+      "Hard-coded date ranges"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_memorized_reports_list": {
+    "purpose": "Lists memorized job cost reports — standard capex status, draw detail and WIP reports — with actions to run, edit, schedule or delete them.",
+    "outcome": "A library of standard project reports.",
+    "rootCause": "Shared definitions ensure every accountant produces the same capex package format for each lender.",
+    "ifSkipped": "Lender and owner capex packages vary by preparer and month.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore team"
+    ],
+    "reports": [
+      "Memorized reports"
+    ],
+    "redFlags": [
+      "Duplicate definitions"
+    ],
+    "confidence": "high"
+  }
+}

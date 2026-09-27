@@ -1,0 +1,388 @@
+{
+  "scr_close_about_financial_close_management": {
+    "purpose": "Quick Steps summary of what Financial Close Management does — reconcile balance-sheet work papers for month-end and year-end close and route them through review — for users who need the essentials during a live close rather than the full guide.",
+    "outcome": "A new offshore accountant understands, in one page, how their close tasks connect to the work paper package and review chain.",
+    "rootCause": "Offshore teams onboard new staff frequently and cannot absorb the full manual before their first close. A condensed overview gets them productive while the full guide remains for reference.",
+    "ifSkipped": "New staff skip steps (e.g., submitting packages) because they do not understand the lifecycle.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — training and competence (Principle 4)"
+    ],
+    "stakeholders": [
+      "New offshore accountants",
+      "Offshore team lead"
+    ],
+    "reports": [],
+    "redFlags": [
+      "New staff preparing packages without training"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_configuring_financial_close_management": {
+    "purpose": "Quick Steps for the two configuration actions that must happen before any close runs in the tool: add unrestricted users (portfolio-wide reviewers and managers) and enable the properties that should produce work papers.",
+    "outcome": "A portfolio is ready for its first close in the tool, with every property in scope and every reviewer able to see it.",
+    "rootCause": "Onboarding a new owner or a take-over portfolio happens under deadline, usually days before the first close. A short checklist prevents the two classic misses: properties not enabled and reviewers without visibility.",
+    "ifSkipped": "The first close in the tool produces packages for only part of the portfolio, and reviewers cannot approve what they cannot see.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — control implementation",
+      "SOC 1 — user provisioning"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Onshore accounting manager",
+      "Transition / onboarding team"
+    ],
+    "reports": [
+      "Configuration audit trail",
+      "Enabled property list"
+    ],
+    "redFlags": [
+      "Enabled property count lower than the owner's property list",
+      "Unrestricted access granted to preparers"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_adding_or_editing_a_work_paper_configuration": {
+    "purpose": "Quick Steps for building or changing a work paper configuration: pick the properties, the frequency and the specific reconciliations (cash, A/R, A/P, deposits, escrow, prepaids, accruals) the owner's reporting requires, then save.",
+    "outcome": "A configuration that produces exactly the reconciliations the owner and lender require, ready for the next close.",
+    "rootCause": "The key decision in a configuration is which reconciliations to include, and that is driven by owner and lender requirements (an agency-financed property needs the reserve escrow roll-forward; a commercial component needs CAM A/R). The quick path keeps that decision front and centre for experienced users.",
+    "ifSkipped": "Configurations built from habit omit owner-specific reconciliations, and the gap is discovered only when the asset manager asks for a missing schedule.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "1330 Tax & Insurance Escrow",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "Management agreement reporting requirements",
+      "Loan agreement reporting requirements"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Asset manager (requirements)"
+    ],
+    "reports": [
+      "Work paper configuration",
+      "Work paper package"
+    ],
+    "redFlags": [
+      "Configuration missing a reconciliation the management agreement lists",
+      "Configuration edited mid-close, changing the package after review started"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_duplicating_a_work_paper_configuration_2": {
+    "purpose": "Quick Steps for copying an existing configuration to create a variant — for example a quarterly lender package that adds the reserve escrow roll-forward and debt schedule to the standard monthly set.",
+    "outcome": "Variant packages are built on the standard package, so the base reconciliations stay identical across owner and lender versions.",
+    "rootCause": "Lenders (agency, CMBS, life company) often require quarterly packages that extend the owner's monthly set. Starting from a copy keeps the base consistent and avoids re-selecting dozens of work papers.",
+    "ifSkipped": "Lender packages are built from scratch and diverge from the owner package, causing inconsistent numbers between owner and lender reporting.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow",
+      "2210 Mortgage/Construction Loan Payable"
+    ],
+    "gaap": [
+      "Loan agreement quarterly reporting covenants"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Debt / asset manager"
+    ],
+    "reports": [
+      "Work paper configuration",
+      "Lender reporting package"
+    ],
+    "redFlags": [
+      "Duplicated configuration still pointing to the original property group"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_generating_a_task_qs": {
+    "purpose": "Quick Steps for adding a task to the close task library — name, instructions, frequency — so it can be assigned on checklists, e.g. a new 'Record servicer tax disbursement' task after an audit finding.",
+    "outcome": "A new recurring requirement becomes a tracked, assignable close task.",
+    "rootCause": "Close requirements grow from audit findings, owner requests and new loan covenants. Unless each becomes a task, it depends on someone remembering it every month, which fails when staff rotate.",
+    "ifSkipped": "Audit findings recur because the fix was never embedded in the close, and new covenant reporting is missed.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — remediation of deficiencies",
+      "COSO 2013 Principle 12 — policies and procedures"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Task library",
+      "Close checklist"
+    ],
+    "redFlags": [
+      "Tasks created without instructions",
+      "Audit findings with no corresponding task"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_viewing_adding_or_editing_a_close_checklist_qs": {
+    "purpose": "Quick Steps covering the three most frequent checklist actions during close — viewing status, creating the period's checklist, and editing assignments or due dates.",
+    "outcome": "Team leads maintain the close calendar quickly while the close is in progress.",
+    "rootCause": "During close, team leads adjust checklists daily for leave, escalations and one-off tasks such as a refinancing or disposition. A condensed guide keeps those edits quick and consistent.",
+    "ifSkipped": "Checklists fall out of date mid-close, tasks sit with absent staff, and SLA reporting is wrong.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — monitoring"
+    ],
+    "stakeholders": [
+      "Offshore team lead",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Close checklist"
+    ],
+    "redFlags": [
+      "Tasks assigned to staff on leave",
+      "Due dates moved past the owner reporting deadline"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_duplicating_exporting_or_deleting_a_close_checklist_qs": {
+    "purpose": "Quick Steps for copying a checklist to a new period, exporting results as evidence, or removing an erroneous checklist.",
+    "outcome": "Checklists roll forward month to month and evidence is retained.",
+    "rootCause": "Most months reuse the prior month's checklist; duplication plus export covers the monthly cycle.",
+    "ifSkipped": "Checklists recreated manually each month; evidence not retained.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention for control evidence"
+    ],
+    "stakeholders": [
+      "Offshore team lead",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Close checklist export"
+    ],
+    "redFlags": [
+      "Deleting instead of exporting completed checklists"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_working_with_monthly_checklists": {
+    "purpose": "Quick Steps for assigning and tracking intra-month recurring tasks — payment runs, deposit reviews, lender reporting, sales-tax filings — on the monthly checklist.",
+    "outcome": "In-month obligations with external deadlines are assigned and visible alongside month-end work.",
+    "rootCause": "Intra-month deadlines are set by lenders, tax authorities and owners, not by the close calendar. A quick guide encourages teams to track them in the system rather than in personal calendars.",
+    "ifSkipped": "Lender reports and tax filings are missed while the team is focused on the prior month's close, triggering penalties or reporting defaults.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable",
+      "2210 Mortgage/Construction Loan Payable"
+    ],
+    "gaap": [
+      "Loan agreement reporting covenants",
+      "State tax filing deadlines"
+    ],
+    "stakeholders": [
+      "Offshore team lead",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Monthly checklist"
+    ],
+    "redFlags": [
+      "Lender reporting not on the monthly checklist"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_viewing_the_workbench_qs": {
+    "purpose": "Quick Steps for a preparer to open the workbench and see every close task assigned to them across all their properties, sorted by due date.",
+    "outcome": "Preparers work their queue in due-date order, starting with prerequisite tasks such as bank recs.",
+    "rootCause": "An offshore accountant may own 20+ properties. Without a personal queue, smaller properties' tasks get forgotten while attention goes to the largest ones.",
+    "ifSkipped": "Small properties close late and become the ones flagged on the client SLA report.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — assignment of responsibility"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Workbench"
+    ],
+    "redFlags": [
+      "Overdue tasks on the preparer's workbench at end of shift"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_viewing_the_console_qs": {
+    "purpose": "Quick Steps for managers to open the close console and read portfolio progress by status, assignee and entity.",
+    "outcome": "Daily close calls start from system status rather than self-reported updates.",
+    "rootCause": "Onshore managers and client controllers ask for close status every day of the close. Self-reported status is optimistic; the console shows what is actually complete.",
+    "ifSkipped": "Status calls rely on self-reporting, and late properties are discovered after the deadline.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 Principle 16 — monitoring"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Offshore team lead",
+      "Client controller"
+    ],
+    "reports": [
+      "Close console"
+    ],
+    "redFlags": [
+      "Console shows tasks overdue that were reported complete on the call"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_generating_a_work_paper_package_2": {
+    "purpose": "Quick Steps for generating a work paper package: choose configuration, period and mode, then generate.",
+    "outcome": "Packages generated correctly with minimal steps.",
+    "rootCause": "Generation happens many times during close; a quick reference avoids wrong-mode or wrong-period generation.",
+    "ifSkipped": "Packages generated for the wrong period or mode.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — reconciliation controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountants"
+    ],
+    "reports": [
+      "Work paper packages"
+    ],
+    "redFlags": [
+      "Final mode used on the first pass"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_uploading_a_full_work_paper_package_for_a_final_work_paper_packa": {
+    "purpose": "Quick Steps for uploading a complete, externally prepared work paper workbook to replace or supplement the system-generated final package — used when reconciliations were completed offline in Excel.",
+    "outcome": "The final package contains the fully worked reconciliations the reviewer will approve.",
+    "rootCause": "Preparers often complete reconciliations in the downloaded workbook; uploading it back makes the worked version the official evidence.",
+    "ifSkipped": "The official package lacks the preparer's explanations and support.",
+    "glAccounts": [],
+    "gaap": [
+      "AU-C 230 — audit documentation"
+    ],
+    "stakeholders": [
+      "Offshore property accountants",
+      "Onshore reviewers"
+    ],
+    "reports": [
+      "Final work paper package"
+    ],
+    "redFlags": [
+      "Uploaded workbook balances differing from system-generated balances"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_uploading_an_attachment_for_a_final_work_paper_package": {
+    "purpose": "Quick Steps for attaching one supporting document to a final package — typically the item a reviewer asked for, such as the bank statement, servicer escrow statement or utility accrual calculation.",
+    "outcome": "The specific missing evidence is added without regenerating the package, and review resumes.",
+    "rootCause": "Reviews most often stall on one missing document. External documents (bank and servicer statements) are the evidence auditors rely on most, so they must sit with the reconciliation they support.",
+    "ifSkipped": "Reviews stall or are approved without the external evidence, weakening the control for audit purposes.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1330 Tax & Insurance Escrow"
+    ],
+    "gaap": [
+      "AU-C 500 — reliability of external audit evidence"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Final work paper package"
+    ],
+    "redFlags": [
+      "Bank rec work papers without bank statements attached"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_submitting_a_work_paper_package_for_approval": {
+    "purpose": "Quick Steps for the preparer to submit a final work paper package from the Work papers page, freezing it and notifying the reviewer.",
+    "outcome": "The package enters review on time and cannot be altered after submission.",
+    "rootCause": "Across time zones, an offshore package finished in the Indian evening must reach the onshore reviewer by their morning. Packages that are completed but never formally submitted are a common, invisible cause of missed close deadlines.",
+    "ifSkipped": "Finished packages sit unsubmitted, reviewers never get notified, and the owner package deadline slips.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — review controls",
+      "SOC 1 — evidence of review"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Work paper status"
+    ],
+    "redFlags": [
+      "Packages in final status but not submitted at end of offshore shift"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_approving_or_declining_a_work_paper_package": {
+    "purpose": "Quick Steps for reviewers and approvers to accept a package or send it back with comments.",
+    "outcome": "Review decisions are recorded quickly.",
+    "rootCause": "Reviewers process many packages at close; a quick path speeds decisions while keeping them documented.",
+    "ifSkipped": "Decisions communicated outside the system without evidence.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — review evidence"
+    ],
+    "stakeholders": [
+      "Onshore reviewers",
+      "Approvers"
+    ],
+    "reports": [
+      "Work paper status"
+    ],
+    "redFlags": [
+      "Approvals without comments on material items"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_regenerating_a_declined_work_paper_package": {
+    "purpose": "Quick Steps for regenerating a work paper package after the reviewer declined it, so the package reflects the correcting entries the preparer has since posted, then resubmitting it.",
+    "outcome": "The reviewer re-reviews a package built from the corrected ledger, not the stale one they rejected.",
+    "rootCause": "Declined packages are snapshots of the ledger at generation time. If the preparer posts fixes but resubmits without regenerating, the reviewer sees the same errors and the review loop repeats, eating days of the close calendar.",
+    "ifSkipped": "Review cycles repeat, packages miss the day-7 or day-10 deadline, and owner reporting is delayed.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — remediation of identified errors"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Regenerated work paper package"
+    ],
+    "redFlags": [
+      "Package regenerated with no ledger changes since the decline",
+      "Multiple declines for the same issue"
+    ],
+    "confidence": "high"
+  },
+  "scr_close_generating_a_report_2": {
+    "purpose": "Quick Steps for running one Financial Close report (e.g., Security Deposits or Accounts Payable) for a single property and period from the Reports page, to investigate a package variance in detail.",
+    "outcome": "The preparer isolates the property and transactions behind a package variance without regenerating the whole package.",
+    "rootCause": "Package-level variances across many properties do not show which property is at fault. Running the single report at property level is the fastest diagnostic step during the close crunch.",
+    "ifSkipped": "Preparers regenerate full packages repeatedly or escalate vague variances to site teams, slowing the close.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "2010 Accounts Payable",
+      "2110 Resident Security Deposits"
+    ],
+    "gaap": [
+      "COSO 2013 — investigation of reconciling differences"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Financial Close reports",
+      "Preliminary work paper package"
+    ],
+    "redFlags": [
+      "Report run for a different period than the package being investigated"
+    ],
+    "confidence": "high"
+  }
+}

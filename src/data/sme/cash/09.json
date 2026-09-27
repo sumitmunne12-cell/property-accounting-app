@@ -1,0 +1,899 @@
+{
+  "scr_cash_deposits_register_report_columns": {
+    "purpose": "Defines the Deposits Register columns — bank, deposit date, deposit number, receipts included, amount and cleared status — used to match deposits to bank credits.",
+    "outcome": "Preparers can tell which deposits have cleared and which are still in transit.",
+    "rootCause": "The cleared status and date columns identify deposits in transit at month-end, which must clear in the first days of the next month or be investigated.",
+    "ifSkipped": "Stale deposits in transit are carried without investigation, hiding possible misappropriation.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013 — cash receipts"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Deposits Register report"
+    ],
+    "redFlags": [
+      "Deposits in transit older than five business days"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_receipts_register_report": {
+    "purpose": "Lists receipts recorded in Accounts Receivable — customer, date, method, amount and the invoices each receipt was applied to — with navigation to the underlying invoices.",
+    "outcome": "A cash receipts register tying collections to invoices and deposits.",
+    "rootCause": "Receipts must be traceable from customer to invoice to deposit; the register is the evidence chain used in audits of cash receipts and in resolving customer disputes.",
+    "ifSkipped": "Collections cannot be traced to deposits and customer disputes are harder to resolve.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1130 Undeposited Funds",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "AU-C 500 — cash receipts testing"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "External auditor"
+    ],
+    "reports": [
+      "Receipts Register report"
+    ],
+    "redFlags": [
+      "Receipts applied on account without invoices"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_customizing_and_running_the_receipts_register_report": {
+    "purpose": "Chooses customers, dates, methods and properties and runs the Receipts Register report.",
+    "outcome": "A receipts register for the requested scope.",
+    "rootCause": "Receipts reviews are typically by property and month; filtering by method helps spot unusual cash receipts at sites.",
+    "ifSkipped": "Reviews of cash receipts by method are not possible.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Receipts Register report"
+    ],
+    "redFlags": [
+      "High volume of cash (currency) receipts at a site"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_receipts_register_report_columns": {
+    "purpose": "Defines the Receipts Register columns — customer, receipt date, method, reference, amount and applied invoices.",
+    "outcome": "Correct reading of receipts and their application.",
+    "rootCause": "The applied-invoices column shows whether receipts were applied correctly, which drives aging accuracy and late-fee assessment.",
+    "ifSkipped": "Misapplied receipts go unnoticed and customers are dunned for balances they paid.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Receipts Register report"
+    ],
+    "redFlags": [
+      "Receipts with unapplied balances"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_credit_card_register_report": {
+    "purpose": "Lists charges, fees and payments recorded against company credit card accounts for a period.",
+    "outcome": "A card activity register for reconciliation to issuer statements and spend review.",
+    "rootCause": "Card spending bypasses POs; a register lets reviewers see all card activity and reconcile it to statements.",
+    "ifSkipped": "Card activity escapes review and reconciliation.",
+    "glAccounts": [
+      "2140 Credit Card Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — purchasing card controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Treasury"
+    ],
+    "reports": [
+      "Credit Card Register report"
+    ],
+    "redFlags": [
+      "Charges without coding"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_customizing_and_running_the_credit_card_register_report": {
+    "purpose": "Selects card accounts and the issuer's statement period and runs the Credit Card Register report to support the monthly card reconciliation.",
+    "outcome": "Card activity for exactly the statement period.",
+    "rootCause": "Issuer statement cycles often close mid-month (e.g., the 18th), not at month-end. Running the register for the calendar month instead of the statement cycle makes the reconciliation fail.",
+    "ifSkipped": "Register periods do not align with statements and reconciliations fail.",
+    "glAccounts": [
+      "2140 Credit Card Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Credit Card Register report"
+    ],
+    "redFlags": [
+      "Register period not matching statement cycle"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_credit_card_register_report_columns": {
+    "purpose": "Defines the Credit Card Register columns — card, date, merchant, type (charge, fee, payment) and amount.",
+    "outcome": "Correct interpretation of card activity.",
+    "rootCause": "Separating charges, fees and payments is necessary to reconcile to the statement's sections.",
+    "ifSkipped": "Card reconciliations mix activity types and fail.",
+    "glAccounts": [
+      "2140 Credit Card Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Credit Card Register report"
+    ],
+    "redFlags": [
+      "Payments recorded as negative charges"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_setting_up_cash_management": {
+    "purpose": "Section on setting up Cash Management — configuration (journals, undeposited funds, available cash fields), accounts, reconciliation rules, and the More menu (ACH, electronic payments, bank feeds, positive pay, check layouts, owner distributions, holdbacks).",
+    "outcome": "A fully configured cash application aligned with the company's banks and controls.",
+    "rootCause": "Every cash control (positive pay, bank feeds, reconciliation rules, ACH) depends on setup. Missed setup means the control silently does not operate.",
+    "ifSkipped": "Controls like positive pay or bank feeds never operate for some accounts.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013 — control implementation"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Treasury",
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Configuration audit trail"
+    ],
+    "redFlags": [
+      "Bank accounts without positive pay or feed configuration"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_configuration": {
+    "purpose": "The Configuration menu of Cash Management setup, where company-wide cash settings are maintained.",
+    "outcome": "Company-wide cash behaviors are defined once.",
+    "rootCause": "Settings such as posting journals and escheat accounts apply to every property; central configuration keeps them consistent.",
+    "ifSkipped": "Cash postings vary between properties and journals.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Configuration audit trail"
+    ],
+    "redFlags": [
+      "Configuration changes without documentation"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_configure_cash_management_page": {
+    "purpose": "The Configure page where the journal for cash postings, undeposited funds handling, escheatment account and available cash fields are set.",
+    "outcome": "Cash transactions post to the intended journal and accounts.",
+    "rootCause": "Posting cash activity to the correct journal makes it identifiable in the GL and reviewable separately from other activity.",
+    "ifSkipped": "Cash activity is mixed into general journals, complicating review.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2170 Unclaimed Property Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Configuration"
+    ],
+    "redFlags": [
+      "Cash journal set to the general journal"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_configuring_cash_management": {
+    "purpose": "Procedure for configuring Cash Management, including creating fields for entering available cash information by location.",
+    "outcome": "Available cash inputs and cash posting settings are configured.",
+    "rootCause": "Owners' distribution policies differ; configurable fields capture property-specific holdback information.",
+    "ifSkipped": "Available cash cannot reflect property-specific requirements.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "Operating agreement distribution provisions"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Treasury"
+    ],
+    "reports": [
+      "Available cash report"
+    ],
+    "redFlags": [
+      "Fields created but never populated"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_accounts": {
+    "purpose": "The Accounts section of Cash Management setup covering bank and credit card account master records.",
+    "outcome": "Bank and card accounts set up with correct GL mapping and restrictions.",
+    "rootCause": "Account master data determines where every cash transaction posts; setup errors affect all activity on the account.",
+    "ifSkipped": "Transactions post to wrong GL accounts or entities.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2140 Credit Card Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — master data"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "System administrator"
+    ],
+    "reports": [
+      "Bank accounts list"
+    ],
+    "redFlags": [
+      "Accounts without entity restrictions"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reconciliation_rules": {
+    "purpose": "The Reconciliation Rules section of setup, where intelligent bank matching rules and rule sets are defined.",
+    "outcome": "Automatic matching logic configured for the portfolio's bank accounts.",
+    "rootCause": "Rules let offshore teams reconcile high volumes consistently; they must be designed carefully to avoid false matches.",
+    "ifSkipped": "Matching remains manual and slow, and recs across hundreds of accounts miss the close deadline.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — automated controls"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Rule list"
+    ],
+    "redFlags": [
+      "Rules never reviewed after creation"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_intelligent_bank_matching_for_bank_reconciliations": {
+    "purpose": "Explains intelligent bank matching — rules that match bank and book transactions on amount, date tolerance, check number, reference and description, including one-to-many matches.",
+    "outcome": "Users understand how auto-matching decides and when it may mismatch.",
+    "rootCause": "Auto-matching is only reliable if users understand its logic; misunderstood rules produce wrong matches that hide exceptions.",
+    "ifSkipped": "Rules are set up poorly and produce wrong matches.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Bank reconciliation (new)"
+    ],
+    "redFlags": [
+      "Rules with loose tolerances"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_default_rules_for_checks_and_deposits": {
+    "purpose": "Describes the default matching rules for checks (check number and amount) and deposits (amount and date) that apply before custom rules.",
+    "outcome": "Routine checks and deposits match automatically.",
+    "rootCause": "Checks and deposits are the bulk of activity; sensible defaults handle most of it without custom setup.",
+    "ifSkipped": "Users create redundant or conflicting custom rules.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Rule list"
+    ],
+    "redFlags": [
+      "Custom rules overriding defaults without reason"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_example_of_a_one_to_many_rule": {
+    "purpose": "Worked example of a one-to-many rule — one bank credit matched to several book deposits, as happens with remote deposit capture or card processor settlements.",
+    "outcome": "Users can build rules for batched bank credits.",
+    "rootCause": "Card processors and some banks settle several days of receipts in one credit; without one-to-many rules these always need manual matching.",
+    "ifSkipped": "Batched credits remain manual exceptions every month.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Rule list"
+    ],
+    "redFlags": [
+      "One-to-many rules matching unrelated deposits"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_rule_set_list": {
+    "purpose": "Lists rule sets — ordered collections of matching rules — and which bank accounts each applies to.",
+    "outcome": "Each bank account uses the right set of matching rules.",
+    "rootCause": "Different account types (operating vs trust vs payroll) need different matching logic; rule sets assign logic per account.",
+    "ifSkipped": "Accounts use inappropriate rules and mismatch.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Rule set list"
+    ],
+    "redFlags": [
+      "Accounts with no rule set assigned"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_rule_set": {
+    "purpose": "Creates a rule set, ordering rules (e.g., match checks by number first, then deposits by amount and date) and assigning it to bank accounts.",
+    "outcome": "A prioritized matching sequence for the assigned accounts.",
+    "rootCause": "Rule order matters: stricter rules should run first so loose rules do not grab items that a strict rule would match correctly.",
+    "ifSkipped": "Loose rules run first and create wrong matches.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — control design"
+    ],
+    "stakeholders": [
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Rule set list"
+    ],
+    "redFlags": [
+      "Loose amount-only rules ordered before check-number rules"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_or_editing_a_rule_set": {
+    "purpose": "Reviews or changes a rule set's rules, their order, or the bank accounts assigned to it — for example adding a rule for a new rent-payment processor's settlement pattern.",
+    "outcome": "Rule sets stay effective as banks and transaction patterns change.",
+    "rootCause": "New payment channels (e.g., a new rent payment processor) change bank patterns; rule sets must be updated to keep matching accurate.",
+    "ifSkipped": "Matching rates drop and manual work rises.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — change management"
+    ],
+    "stakeholders": [
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Rule set list"
+    ],
+    "redFlags": [
+      "Rule set changes without testing"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_or_inactivating_a_rule_set": {
+    "purpose": "Deletes or inactivates a rule set that is no longer used — for example the set built for a bank the portfolio has left.",
+    "outcome": "Obsolete matching logic stops affecting reconciliations.",
+    "rootCause": "Obsolete rule sets that remain assigned to accounts can keep producing wrong matches after transaction patterns change, and the errors are invisible because matches look complete.",
+    "ifSkipped": "Outdated rules continue to run and silently mis-match transactions.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Rule set list"
+    ],
+    "redFlags": [
+      "Inactivating a rule set still assigned to active accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_rule_set_information_page": {
+    "purpose": "The rule set record page showing its rules, their order of evaluation and the bank accounts it is assigned to.",
+    "outcome": "A clear definition of matching logic per account group.",
+    "rootCause": "Reviewers need to see the full matching logic to trust auto-matched reconciliations; an approver signing off a rec with 900 auto-matches must know what rules produced them.",
+    "ifSkipped": "Auto-matching is trusted without understanding and rule weaknesses go unchallenged.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Rule set list"
+    ],
+    "redFlags": [
+      "Rule sets without descriptions"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_rule_list": {
+    "purpose": "Lists individual intelligent bank matching rules — conditions on amount, date range, reference and description — available to include in rule sets.",
+    "outcome": "A library of matching rules for the portfolio.",
+    "rootCause": "Rules are reusable across rule sets; a library avoids duplicate or conflicting rules.",
+    "ifSkipped": "Duplicate rules with slightly different logic proliferate.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Rule list"
+    ],
+    "redFlags": [
+      "Duplicate rules"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_a_rule": {
+    "purpose": "Creates a matching rule with operators (equals, within range) on fields like amount, date and description — for example matching a lender's monthly auto-debit by description 'LOAN PMT'.",
+    "outcome": "Recurring bank patterns match automatically.",
+    "rootCause": "Recurring bank items (loan debits, payroll funding, card settlements) are predictable; rules eliminate repetitive manual matching.",
+    "ifSkipped": "Recurring items require manual matching every month.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2210 Mortgage/Construction Loan Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Rule list"
+    ],
+    "redFlags": [
+      "Description rules broad enough to catch unrelated debits"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_or_editing_a_rule": {
+    "purpose": "Reviews or changes one matching rule's conditions — fields, operators and tolerances — for example after a bank renames the description of its loan payment debits.",
+    "outcome": "Rules stay accurate as bank descriptions and patterns change.",
+    "rootCause": "Banks change transaction descriptions without notice; rules keyed to descriptions stop matching until updated.",
+    "ifSkipped": "Rules stop working after bank changes and recurring items fall back to manual matching.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Rule list"
+    ],
+    "redFlags": [
+      "Edits widening tolerances without review"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_or_inactivating_a_rule": {
+    "purpose": "Deletes or inactivates a matching rule that is obsolete or producing wrong matches.",
+    "outcome": "Faulty rules stop affecting reconciliations.",
+    "rootCause": "A rule that mismatches silently degrades every reconciliation it touches; removing it restores accuracy.",
+    "ifSkipped": "Wrong matches continue each month and hide real exceptions.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Rule list"
+    ],
+    "redFlags": [
+      "Rules with high unmatch rates still active"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_rule_information_page": {
+    "purpose": "The rule record page where a matching rule's conditions, operators (equals, within range) and tolerances for amount and date are defined.",
+    "outcome": "A precise definition of one matching rule.",
+    "rootCause": "Precision in conditions determines whether the rule matches only what it should; a date tolerance of 10 days on amount-only matching will pair unrelated identical rent payments.",
+    "ifSkipped": "Imprecise rules cause false matches that hide real exceptions.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Rule list"
+    ],
+    "redFlags": [
+      "Tolerance fields left at wide defaults"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_more": {
+    "purpose": "The More section of Cash Management setup covering ACH and electronic payment bank configurations, bank feeds, positive pay, check updates and layouts, owner distributions and holdbacks.",
+    "outcome": "Access to the setup of payment, fraud and distribution controls.",
+    "rootCause": "Payment and fraud controls (ACH, positive pay, check layouts with MICR) are configured here; they must be complete for every issuing account.",
+    "ifSkipped": "Payment controls are missing for some accounts.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "System administrator"
+    ],
+    "reports": [
+      "Configuration lists"
+    ],
+    "redFlags": [
+      "Issuing accounts without positive pay configuration"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_ach_bank_configurations_list": {
+    "purpose": "Lists ACH bank configurations — the origination settings (company ID, immediate origin and destination, file format) that each bank requires for ACH payment files.",
+    "outcome": "Each originating bank has correct ACH file settings.",
+    "rootCause": "Banks reject ACH files with incorrect header information; configurations must match each bank's specifications.",
+    "ifSkipped": "ACH files are rejected and vendors are not paid.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "NACHA Operating Rules — file header requirements"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "ACH bank configurations"
+    ],
+    "redFlags": [
+      "Configurations with outdated company IDs"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_ach_frequently_asked_questions": {
+    "purpose": "Answers common ACH questions — paying vendors by ACH, prenotes, returns, file timing and which accounts can originate.",
+    "outcome": "Users resolve routine ACH questions without escalation.",
+    "rootCause": "ACH rules (prenotes, return timeframes, same-day windows) are unfamiliar to many accountants, especially new offshore staff.",
+    "ifSkipped": "ACH mistakes (missing prenotes, late files) recur.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "NACHA Operating Rules"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "A/P team"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Repeated ACH returns for the same reason"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_an_ach_bank_configuration": {
+    "purpose": "Adds a bank's ACH configuration so accounts at that bank can originate ACH payment files.",
+    "outcome": "Vendors can be paid by ACH from accounts at a new bank.",
+    "rootCause": "A new banking relationship (after refinancing or acquisition) needs ACH origination set up before electronic payments can be made.",
+    "ifSkipped": "Accounts at the new bank cannot pay vendors electronically.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "NACHA Operating Rules"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "ACH bank configurations"
+    ],
+    "redFlags": [
+      "Configurations not tested with a prenote or test file"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_editing_an_ach_bank_configuration": {
+    "purpose": "Edits an ACH bank configuration when the bank changes file specifications or company IDs.",
+    "outcome": "ACH files continue to be accepted after bank changes.",
+    "rootCause": "Bank mergers and system upgrades change ACH specs; outdated configurations cause file rejections.",
+    "ifSkipped": "File rejections and late vendor payments.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "NACHA Operating Rules"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "ACH bank configurations"
+    ],
+    "redFlags": [
+      "Changes without bank confirmation"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_an_ach_bank_configuration": {
+    "purpose": "Views an ACH bank configuration's settings — company ID, immediate origin and destination, file format — to verify them or troubleshoot a rejected ACH file.",
+    "outcome": "Settings can be checked against the bank's specification when a file is rejected.",
+    "rootCause": "When a bank rejects an ACH file, comparing the configuration to the bank's current specification is the first diagnostic step; most rejections trace to a header field.",
+    "ifSkipped": "Rejections take longer to diagnose and vendor payments are delayed.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "NACHA Operating Rules"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "ACH bank configurations"
+    ],
+    "redFlags": [
+      "Configuration differs from bank's current spec"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_an_ach_bank_configuration": {
+    "purpose": "Deletes an ACH origination configuration for a bank the company no longer uses, for example after all property accounts moved to a new treasury bank.",
+    "outcome": "Obsolete origination settings cannot be selected for payment files.",
+    "rootCause": "Leaving configurations for closed relationships risks generating files to the wrong bank.",
+    "ifSkipped": "Files may be generated with obsolete settings and rejected.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "ACH bank configurations"
+    ],
+    "redFlags": [
+      "Deleting configurations still linked to active accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_ach_bank_configuration_page": {
+    "purpose": "The page for entering ACH origination details — company name and ID, originating bank routing, file format options.",
+    "outcome": "A complete ACH origination profile for a bank.",
+    "rootCause": "Each field maps to NACHA file headers; errors cause rejections or misrouted files.",
+    "ifSkipped": "Files cannot be generated or are rejected.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "NACHA Operating Rules"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "ACH bank configurations"
+    ],
+    "redFlags": [
+      "Immediate origin/destination fields swapped"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_electronic_payment_bank_configurations_list": {
+    "purpose": "Lists electronic payment bank configurations — settings for non-ACH electronic payment services (e.g., virtual card or payment service providers) by bank.",
+    "outcome": "Each electronic payment channel is configured per bank.",
+    "rootCause": "Companies use multiple electronic payment channels; each requires its own configuration to generate files correctly.",
+    "ifSkipped": "Electronic payments through those channels fail.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Electronic payment configurations"
+    ],
+    "redFlags": [
+      "Channels configured but unused"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_adding_an_electronic_payment_bank_configuration": {
+    "purpose": "Adds an electronic payment bank configuration so a bank account can issue payments through that channel.",
+    "outcome": "A new electronic payment channel is available for vendor payments.",
+    "rootCause": "New payment channels (e.g., virtual card programs that earn rebates) require setup before use.",
+    "ifSkipped": "Channel cannot be used, forgoing efficiencies or rebates.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Electronic payment configurations"
+    ],
+    "redFlags": [
+      "Configurations not tested before live use"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_editing_an_electronic_bank_payment_configuration": {
+    "purpose": "Edits an electronic payment configuration when provider or bank settings change.",
+    "outcome": "Electronic payments continue after provider changes.",
+    "rootCause": "Provider specification changes break file generation unless configurations are updated.",
+    "ifSkipped": "Payments through that channel fail after the provider changes its specification.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Electronic payment configurations"
+    ],
+    "redFlags": [
+      "Edits without provider confirmation"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_viewing_an_electronic_payment_bank_configuration": {
+    "purpose": "Views an electronic payment bank configuration — provider identifiers, originating account and file settings — to verify it or to diagnose a failed payment batch.",
+    "outcome": "Configuration can be checked quickly when a batch of electronic payments fails.",
+    "rootCause": "Failed electronic payment batches usually trace to configuration mismatches with the provider; viewing the settings is the first diagnostic step before contacting the provider.",
+    "ifSkipped": "Failures take longer to diagnose and vendor payments are delayed.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Electronic payment configurations"
+    ],
+    "redFlags": [
+      "Configuration inconsistent with provider records"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_deleting_an_electronic_payment_bank_configuration": {
+    "purpose": "Deletes an electronic payment configuration for a payment channel or provider that is no longer used.",
+    "outcome": "Obsolete channels cannot be selected for payments.",
+    "rootCause": "Removing unused channels prevents payments being routed through a discontinued provider.",
+    "ifSkipped": "Payments may be routed to an inactive channel and fail.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Electronic payment configurations"
+    ],
+    "redFlags": [
+      "Deleting configurations with pending payments"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_electronic_payment_bank_configuration_page": {
+    "purpose": "The page for entering an electronic payment channel's settings for a bank — provider IDs, originating account and file options — before payments can be sent through it.",
+    "outcome": "A complete configuration for the channel.",
+    "rootCause": "Complete, accurate settings are required for the provider to accept payment files; a single wrong identifier rejects the whole batch.",
+    "ifSkipped": "Files are rejected by the provider and vendors go unpaid.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Electronic payment configurations"
+    ],
+    "redFlags": [
+      "Missing provider identifiers"
+    ],
+    "confidence": "medium"
+  }
+}

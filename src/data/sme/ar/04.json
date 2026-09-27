@@ -1,0 +1,1463 @@
+{
+  "scr_ar_preventing_unpaid_invoice_deletion": {
+    "purpose": "Company-level setting that stops users from deleting posted but unpaid A/R invoices, forcing them to reverse invoices instead so every billing change leaves an audit trail.",
+    "outcome": "No posted receivable can disappear without a recorded reversal.",
+    "rootCause": "Deleting a posted invoice removes revenue and a receivable with no trace — the same pattern used to hide misappropriated collections. Blocking deletion is a standard anti-fraud control that auditors look for.",
+    "ifSkipped": "Posted invoices can be deleted silently, weakening fraud controls and audit evidence over revenue.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "COSO 2013 — audit trail and fraud prevention",
+      "AU-C 240 — revenue fraud risk"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Onshore accounting manager",
+      "External auditor"
+    ],
+    "reports": [
+      "A/R audit trail"
+    ],
+    "redFlags": [
+      "Setting disabled in production"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_transaction_reversal_date_box": {
+    "purpose": "Dialog for choosing the reversal date (and therefore period) when reversing an A/R or A/P transaction.",
+    "outcome": "Reversals post in the intended open period.",
+    "rootCause": "Reversing into a closed or already reported period changes numbers owners have received; picking the date deliberately keeps corrections in the current period unless a prior-period correction is approved.",
+    "ifSkipped": "Reversals land in reported periods and change delivered financials.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "2010 Accounts Payable"
+    ],
+    "gaap": [
+      "ASC 250 — period of correction"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Journal detail"
+    ],
+    "redFlags": [
+      "Reversal dates in closed periods"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_a_r_invoice_a_r_sales_invoice_page": {
+    "purpose": "The A/R invoice page used to add, view and edit non-resident invoices — header, lines, allocations, attachments and totals.",
+    "outcome": "A single place to build and review each receivable billing.",
+    "rootCause": "Having all invoice elements on one page (including allocations across properties) lets the accountant verify an invoice completely before posting.",
+    "ifSkipped": "Invoices are posted without a full review of lines and allocations.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Invoice detail"
+    ],
+    "redFlags": [
+      "Invoices with allocations not summing to 100%"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_using_transaction_allocations": {
+    "purpose": "Applies a transaction allocation to an A/R invoice so one billing is split across several properties or departments by a set percentage — for example a shared parking license billed once but earned by three properties.",
+    "outcome": "Revenue from shared arrangements lands in each property's books in the agreed proportions.",
+    "rootCause": "Some contracts serve several properties under one invoice. Without allocation, all revenue lands at one property and the others understate income.",
+    "ifSkipped": "Shared revenue is recorded at one property, misstating NOI for all involved.",
+    "glAccounts": [
+      "4100 Other Income",
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "ASC 606",
+      "ASC 810 — intercompany"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Allocation register"
+    ],
+    "redFlags": [
+      "Allocation percentages not matching the contract"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_invoice_draft_or_posted_page": {
+    "purpose": "The invoice page shown after saving, where a draft can be edited or posted and a posted invoice can be viewed, printed, reclassified or reversed.",
+    "outcome": "The next action on the invoice is available based on its state.",
+    "rootCause": "Separating draft and posted states enforces that posted billings are corrected by reversal or reclass, not by editing amounts.",
+    "ifSkipped": "Users try to change posted amounts and break the audit trail.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Invoice detail"
+    ],
+    "redFlags": [
+      "Drafts left unposted over month-end"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_posting_an_invoice": {
+    "purpose": "Posts a draft A/R invoice, recognizing the receivable and revenue in the GL (DR 1210 A/R / CR revenue or recovery account).",
+    "outcome": "The billing becomes an official receivable and revenue for its period.",
+    "rootCause": "Revenue and receivables are only in the financial statements once invoices post; drafts left unposted at month-end understate revenue.",
+    "ifSkipped": "Revenue is missing from the month and the tenant is never dunned.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income",
+      "4110 Utility Reimbursement"
+    ],
+    "gaap": [
+      "ASC 606 — recognition when performance obligations are satisfied",
+      "ASC 842-30 — lease income"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Income Statement",
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Posting dates in the wrong period"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_editing_an_invoice": {
+    "purpose": "Edits the most frequently changed elements of an A/R invoice — description, reference, due date and lines while still in draft.",
+    "outcome": "Invoice details corrected before or without affecting posted amounts.",
+    "rootCause": "Minor corrections (reference numbers, descriptions) should be quick; amount changes on posted invoices must go through reversal to keep the ledger honest.",
+    "ifSkipped": "Invoices go out with wrong references and are disputed or misapplied by the customer.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Invoice detail"
+    ],
+    "redFlags": [
+      "Due dates extended repeatedly for the same customer"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_and_emailing_a_r_and_a_p_invoices": {
+    "purpose": "Prints or emails A/R invoices to customers (and A/P invoices for records) from Search & Find.",
+    "outcome": "Customers receive their invoices promptly and in a professional format.",
+    "rootCause": "Commercial tenants and affiliates pay against the invoice they receive; late or missing delivery is a common reason receivables age.",
+    "ifSkipped": "Customers never receive invoices and receivables age for reasons unrelated to credit.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Customers"
+    ],
+    "reports": [
+      "Invoice copies"
+    ],
+    "redFlags": [
+      "Invoices posted but never sent"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_reclassifying_invoices": {
+    "purpose": "Reclassifies a posted A/R invoice's coding — revenue account, location, department — without changing its amount, typically to fix a mis-coded revenue line.",
+    "outcome": "Revenue is moved to the correct account or property with an audit trail.",
+    "rootCause": "Invoices are sometimes coded to the wrong revenue account or property; reclassifying corrects the GL while preserving the customer ledger and payment history.",
+    "ifSkipped": "Revenue categories and property NOI remain misstated.",
+    "glAccounts": [
+      "4100 Other Income",
+      "4110 Utility Reimbursement"
+    ],
+    "gaap": [
+      "ASC 250 — correction of classification errors"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Income Statement"
+    ],
+    "redFlags": [
+      "Reclasses into closed periods"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_why_you_cant_find_the_reclassify_option": {
+    "purpose": "Explains why Reclassify may be unavailable — the feature not enabled, the invoice in a closed period, or a payment deposited in a way that locks the invoice.",
+    "outcome": "Users understand the constraint and choose the correct alternative (reversal, adjustment or reopening the period).",
+    "rootCause": "Reclassification is restricted in closed periods and certain payment states to protect reported numbers; knowing why prevents workarounds that break controls.",
+    "ifSkipped": "Users post manual JEs to 'fix' coding, breaking the link between customer ledger and GL.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — period controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Manual JEs to revenue accounts replacing reclasses"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_multi_entity_or_multi_currency_restrictions": {
+    "purpose": "Describes restrictions on editing or reclassifying invoices that involve multiple entities or currencies.",
+    "outcome": "Users know which invoices require reversal rather than reclass.",
+    "rootCause": "Multi-entity invoices generate intercompany entries and multi-currency invoices carry exchange rates; editing them directly could unbalance entities or misstate FX.",
+    "ifSkipped": "Entities become unbalanced or FX is misstated after edits.",
+    "glAccounts": [
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
+    ],
+    "gaap": [
+      "ASC 810",
+      "ASC 830 — foreign currency"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Intercompany balances out of balance after edits"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_reclassifying_one_invoice": {
+    "purpose": "Reclassifies a single A/R invoice's account, location or dimension coding through the Reclassify action, without touching the amount or payment date.",
+    "outcome": "One invoice's coding corrected with a traceable reclass entry.",
+    "rootCause": "Coding errors on individual invoices are common; a targeted reclass fixes them faster and more cleanly than reversing and re-entering a paid invoice.",
+    "ifSkipped": "Coding errors remain or paid invoices are reversed unnecessarily.",
+    "glAccounts": [
+      "4100 Other Income",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 250"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "GL Detail"
+    ],
+    "redFlags": [
+      "Reclasses without explanation"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_troubleshooting_reclassification": {
+    "purpose": "Troubleshoots reclassification failures — configuration not enabled, period closed, payment state preventing reclass.",
+    "outcome": "Reclass problems resolved without resorting to manual journal entries.",
+    "rootCause": "When reclassification fails, users often fall back on manual JEs, which separate the GL from the customer subledger; troubleshooting keeps corrections in the subledger.",
+    "ifSkipped": "Manual JEs break the A/R subledger-to-GL tie.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R tie-out"
+    ],
+    "redFlags": [
+      "A/R subledger differences after manual corrections"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_duplicating_an_invoice": {
+    "purpose": "Creates a new A/R invoice by copying an existing one — useful for recurring but irregular billings such as quarterly CAM estimates.",
+    "outcome": "Similar invoices created quickly with consistent coding.",
+    "rootCause": "Copying keeps customer, accounts and descriptions consistent; the preparer only updates dates and amounts.",
+    "ifSkipped": "Invoices are rebuilt manually with inconsistent coding.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Duplicated invoices with prior-period dates"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_creating_a_recurring_transaction_from_an_existing_transaction": {
+    "purpose": "Turns an existing A/R invoice into a recurring template so it generates automatically on a schedule — for example monthly base rent for a retail tenant.",
+    "outcome": "Regular billings generate automatically without re-entry.",
+    "rootCause": "Monthly contractual billings are easy to forget when entered manually; converting a correct invoice into a recurring one prevents missed months.",
+    "ifSkipped": "Monthly contractual charges are occasionally missed.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 842-30 — lease income recognition"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Recurring templates without end dates"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_displaying_customer_totals": {
+    "purpose": "Displays a customer's totals — invoiced, paid, credits and balance due — from the Customers list.",
+    "outcome": "A quick financial summary of the customer relationship.",
+    "rootCause": "Before billing more or discussing a dispute, the accountant needs to see the customer's overall position.",
+    "ifSkipped": "Decisions about billing or credit are made without the full picture.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer totals"
+    ],
+    "redFlags": [
+      "Large unapplied credits"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_the_customers_total": {
+    "purpose": "Shows the customer's total outstanding balance while an A/R invoice is being entered or edited, so the preparer sees existing exposure before adding another charge.",
+    "outcome": "The preparer sees existing exposure before adding a new charge.",
+    "rootCause": "Adding charges to a customer who is already far behind should prompt a credit review or hold before billing more.",
+    "ifSkipped": "More charges are added to delinquent customers without review.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 326"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer totals"
+    ],
+    "redFlags": [
+      "Billing customers already over their credit limit"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_finding_draft_or_posted_transactions": {
+    "purpose": "Searches for draft or posted A/R transactions by customer, date, reference or amount.",
+    "outcome": "Specific billings located quickly for review, disputes or duplicates.",
+    "rootCause": "Before entering a new invoice or answering a customer, the accountant checks whether one already exists to avoid duplicate billing.",
+    "ifSkipped": "Duplicate invoices are issued and customers are billed twice.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Duplicate references for the same customer"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_applying_payments": {
+    "purpose": "Applies a received payment directly to an open A/R invoice from the invoices list.",
+    "outcome": "The invoice is marked paid and the customer's balance reduced.",
+    "rootCause": "Applying payments to the right invoice keeps aging accurate and prevents dunning customers for invoices they paid.",
+    "ifSkipped": "Paid invoices remain open, aging is overstated and customers are chased incorrectly.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer aging",
+      "Receipts register"
+    ],
+    "redFlags": [
+      "Payments applied to the wrong invoice"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_recording_a_subsidy_payment": {
+    "purpose": "Records a subsidy payment — for example a housing authority (HAP) payment covering part of a tenant's rent — against the customer's invoices.",
+    "outcome": "Subsidy receipts reduce the right receivables and are identifiable by source.",
+    "rootCause": "Affordable and HUD properties receive large monthly payments from housing authorities covering many tenants' rent shares. They must be applied to the correct tenant charges or both tenant and subsidy balances are misstated.",
+    "ifSkipped": "Subsidy payments sit unapplied and tenant balances look delinquent when they are not.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1110 Operating Cash",
+      "4010 Gross Potential Rent"
+    ],
+    "gaap": [
+      "HUD Housing Assistance Payment (HAP) contract terms",
+      "ASC 842-30"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Property manager",
+      "Housing authority"
+    ],
+    "reports": [
+      "Subsidy reconciliation",
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Unapplied subsidy payments"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_billing_a_customer_for_an_a_p_invoice": {
+    "purpose": "Bills a customer for costs the property paid on an A/P invoice — for example re-billing a retail tenant for a plumbing repair caused by the tenant, or an affiliate for its share of a shared service.",
+    "outcome": "Recoverable costs are invoiced to the responsible party and tied to the original expense.",
+    "rootCause": "Leases and affiliate agreements often make other parties responsible for specific costs. Billing from the A/P invoice links the recovery to the cost so nothing is missed or double-billed.",
+    "ifSkipped": "Recoverable costs are absorbed by the owner.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "6110 Repairs & Maintenance",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606 — principal vs agent for reimbursed costs",
+      "Lease reimbursement provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Commercial property manager"
+    ],
+    "reports": [
+      "Bill-back register"
+    ],
+    "redFlags": [
+      "Recoverable repairs never billed"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_packaging_invoices": {
+    "purpose": "Explains packaging invoices — bundling several A/R invoices and their support into one package for a customer or reviewer.",
+    "outcome": "Customers or owners receive grouped billings with support in one file.",
+    "rootCause": "Affiliates and commercial tenants often want one monthly package of all charges with backup (e.g., CAM detail) rather than separate invoices.",
+    "ifSkipped": "Customers receive fragmented billings and delay payment while asking for support.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Customers"
+    ],
+    "reports": [
+      "Invoice package"
+    ],
+    "redFlags": [
+      "Packages missing supporting documents"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_creating_a_r_invoice_packages": {
+    "purpose": "Creates an invoice package by selecting A/R invoices in Search & Find and using Package Invoices.",
+    "outcome": "A single deliverable containing multiple invoices and attachments.",
+    "rootCause": "Monthly bill-backs to affiliates can involve many invoices; packaging them reduces back-and-forth and speeds payment.",
+    "ifSkipped": "Bill-backs are sent piecemeal and paid slowly.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1230 Due From Affiliates"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Invoice package"
+    ],
+    "redFlags": [
+      "Packages sent to the wrong customer contact"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_moving_in_and_out_of_packaging_invoices_mode": {
+    "purpose": "Enters or leaves packaging mode in the invoices list, where selected invoices are added to a package.",
+    "outcome": "Users can switch between normal invoice work and package building.",
+    "rootCause": "Packaging mode changes what list actions do; knowing how to enter and exit it prevents invoices being added to packages by accident.",
+    "ifSkipped": "Invoices are accidentally included in or left out of packages.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Invoice package"
+    ],
+    "redFlags": [
+      "Packages containing unrelated invoices"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_multiple_invoices_quick_invoice_entry": {
+    "purpose": "Quick A/R Invoice Entry — entering many invoices rapidly at entity level, for example monthly utility bill-backs to a list of commercial tenants.",
+    "outcome": "High-volume billings entered efficiently.",
+    "rootCause": "Full invoice entry is slow for many similar invoices; quick entry keeps month-end billing on schedule.",
+    "ifSkipped": "Month-end billing runs late and revenue is recorded late.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4110 Utility Reimbursement"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Quick-entry invoices without supporting calculations"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_quick_invoice_entry_preferences_and_entry_pages": {
+    "purpose": "Describes Quick Invoice Entry session preferences (defaults for date, account, location) and the entry pages.",
+    "outcome": "Users configure quick entry to minimize keying.",
+    "rootCause": "Correct session defaults prevent repeated coding errors across a batch of invoices.",
+    "ifSkipped": "A whole batch is coded with a wrong default.",
+    "glAccounts": [
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Batch posted with wrong default date"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_setting_up_your_quick_invoice_entry_session_preferences": {
+    "purpose": "Sets session preferences for Quick A/R Invoice Entry — default invoice date, revenue account, location and terms for the batch.",
+    "outcome": "Each invoice in the batch starts with correct defaults.",
+    "rootCause": "In a batch of 50 bill-backs, one wrong default repeats 50 times; setting preferences carefully up front avoids mass reclasses.",
+    "ifSkipped": "Batch-wide coding errors require many reclasses.",
+    "glAccounts": [
+      "4110 Utility Reimbursement"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Defaults left from a previous session"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_quick_a_r_invoice_entry_page": {
+    "purpose": "The Quick Invoice Entry page — a grid for keying many A/R invoices in one session, each row a customer billing with date, account and amount.",
+    "outcome": "Many similar invoices entered in a single, fast session.",
+    "rootCause": "A grid layout suits repetitive billings like monthly recoveries, reducing time and keystroke errors.",
+    "ifSkipped": "Repetitive monthly billings take much longer and slip past month-end.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Batch totals not checked before posting"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_creating_multiple_invoices": {
+    "purpose": "Creates several A/R invoices in one Quick Entry session, one row per customer — typically a month's utility or CAM recoveries across all commercial tenants.",
+    "outcome": "A batch of invoices created in one session.",
+    "rootCause": "Month-end recoveries across many tenants need to be billed together so none is missed.",
+    "ifSkipped": "Some tenants' recoveries are forgotten when invoices are entered one at a time.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4110 Utility Reimbursement"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Batch count not matching tenant list"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_editing_a_quick_a_r_entry_invoice_while_in_quick_entry_mode": {
+    "purpose": "Edits an invoice row while still inside the Quick Entry session — correcting an amount or account before the batch is saved and posted.",
+    "outcome": "Errors fixed in the batch before posting.",
+    "rootCause": "Fixing errors inside the session is faster than reversing posted invoices later.",
+    "ifSkipped": "Batch errors are posted and must be reversed invoice by invoice.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Posted batch errors corrected by adjustments"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deleting_an_invoice_created_with_quick_a_r_invoice_entry": {
+    "purpose": "Deletes an invoice created through Quick A/R Invoice Entry — for example a duplicate row keyed twice — while it can still be deleted rather than reversed.",
+    "outcome": "Erroneous quick-entry invoices removed.",
+    "rootCause": "Quick entry makes duplicates easy; deleting erroneous drafts prevents double billing.",
+    "ifSkipped": "Duplicate invoices reach customers and damage credibility.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "A/R invoices list"
+    ],
+    "redFlags": [
+      "Deleting posted invoices instead of reversing"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_batch_entry_splits_box": {
+    "purpose": "Dialog for adding multiple line items (splits) to an invoice during batch entry — for example base rent, CAM and tax recovery on one commercial invoice.",
+    "outcome": "Multi-component invoices entered with correct revenue coding per component.",
+    "rootCause": "Commercial invoices combine charges that belong to different revenue accounts; splits keep each component coded correctly.",
+    "ifSkipped": "Multi-component invoices are coded to a single account.",
+    "glAccounts": [
+      "4100 Other Income",
+      "Commercial rental income",
+      "Tax & insurance recovery income"
+    ],
+    "gaap": [
+      "ASC 842-10-15 — lease and non-lease components"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Invoice detail"
+    ],
+    "redFlags": [
+      "Split totals not equal to invoice total"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_multiple_charges_to_an_invoice": {
+    "purpose": "Adds several charges to one A/R invoice through the splits box — for example base rent, CAM estimate and real estate tax recovery on one retail tenant's monthly invoice.",
+    "outcome": "One invoice carries all of a customer's charges for the period, each correctly coded.",
+    "rootCause": "Customers prefer one invoice per period; combining charges with correct coding supports both customer convenience and revenue analysis.",
+    "ifSkipped": "Customers receive several invoices or components are mis-coded.",
+    "glAccounts": [
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Invoice detail"
+    ],
+    "redFlags": [
+      "Charges duplicated across splits"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_recurring_invoices": {
+    "purpose": "Explains recurring A/R invoices — templates that generate invoices on a schedule (monthly rent, license fees, affiliate charges); the option appears only when enabled and at entity level.",
+    "outcome": "Contractual billings generate automatically and consistently.",
+    "rootCause": "Fixed contractual billings are the most commonly missed when entered by hand each month; recurring invoices remove that risk.",
+    "ifSkipped": "Contractual revenue is occasionally unbilled.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 842-30",
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Contracts billed manually instead of recurring"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_recurring_invoice_workflow": {
+    "purpose": "Describes the recurring invoice setup workflow: invoice details, payment method (online or offline), schedule, then save.",
+    "outcome": "Recurring billings set up completely in the right order.",
+    "rootCause": "Missing the schedule or payment tab leaves templates that never generate or generate incorrectly.",
+    "ifSkipped": "Templates are saved but never produce invoices.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Templates without schedules"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_a_new_a_r_recurring_invoice": {
+    "purpose": "Adds a recurring A/R invoice template — customer, lines, amounts, schedule and payment method — for a contractual billing.",
+    "outcome": "A contractual charge generates automatically for its term.",
+    "rootCause": "Setting up the template at lease or contract signing ensures billing starts on time and follows the contract's escalations and end date.",
+    "ifSkipped": "Billing starts late or continues after the contract ends.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 842-30"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "End date later than the contract term"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_setting_up_online_payments_for_a_recurring_invoice": {
+    "purpose": "Sets a recurring invoice to be paid online — for example automatic ACH debit from a commercial tenant who authorized auto-pay.",
+    "outcome": "Recurring charges are collected automatically on schedule.",
+    "rootCause": "Auto-pay reduces late payments, but requires valid authorization and bank details; setup must match the tenant's signed authorization.",
+    "ifSkipped": "Tenants who authorized auto-pay are billed manually and pay late.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "NACHA — debit authorization requirements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Customers"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Auto-pay without signed authorization"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_setting_up_the_recurring_invoice_for_offline_payments": {
+    "purpose": "Sets a recurring invoice to be paid offline — the customer pays by check or wire after receiving the invoice.",
+    "outcome": "Recurring invoices generate and are sent for manual payment.",
+    "rootCause": "Most commercial tenants pay by check or wire; offline setup produces the invoice without attempting an automatic debit.",
+    "ifSkipped": "Invoices generate with wrong payment expectations.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Offline invoices never sent to customers"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_setting_up_the_recurrence_schedule": {
+    "purpose": "Defines when a recurring invoice generates — frequency, start date, end date or number of occurrences.",
+    "outcome": "Billing follows the contract's term exactly.",
+    "rootCause": "Schedules that run past a lease end or start late misstate revenue and create disputes.",
+    "ifSkipped": "Invoices generate outside the contract term.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 842-30 — lease term"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Schedules without end dates"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_completing_the_recurring_invoice": {
+    "purpose": "Completes and saves a recurring A/R invoice template after the invoice, payment and schedule tabs are filled, making it active so invoices start generating.",
+    "outcome": "The template starts generating invoices on schedule.",
+    "rootCause": "Templates left incomplete never generate, so contractual billings are silently missed.",
+    "ifSkipped": "Templates are saved incomplete and generate nothing.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Inactive templates for active contracts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_a_recurring_a_r_invoice": {
+    "purpose": "Opens a recurring A/R invoice template to review its lines, amounts, payment method and schedule — typically during an annual check of escalations against leases.",
+    "outcome": "Confirmation that a contractual billing is set up correctly.",
+    "rootCause": "Periodic review of templates catches escalations not applied and contracts that ended but still bill.",
+    "ifSkipped": "Templates drift from contract terms and escalations are missed.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 842-30"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Amounts not reflecting scheduled escalations"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_the_list_of_transactions_created_by_the_recurring_invoic": {
+    "purpose": "Lists every invoice a recurring template has generated, with dates and amounts, to confirm each billing period was invoiced exactly once.",
+    "outcome": "Evidence of which periods were billed.",
+    "rootCause": "Confirming that each month was billed, especially after schedule changes, catches gaps and duplicates.",
+    "ifSkipped": "Missed or duplicate periods go unnoticed.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoice history"
+    ],
+    "redFlags": [
+      "Gaps in monthly billing"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_editing_a_recurring_invoice": {
+    "purpose": "Edits a recurring invoice template — amount changes for escalations, new end dates for renewals, updated coding.",
+    "outcome": "Future generated invoices reflect current contract terms.",
+    "rootCause": "Leases escalate and renew; templates must be updated or tenants are under- or over-billed.",
+    "ifSkipped": "Escalations are missed and revenue is lost.",
+    "glAccounts": [
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 842-30"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Escalations applied late without catch-up billing"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_reversing_failed_recurring_invoices": {
+    "purpose": "Reverses invoices that a recurring run created incorrectly (failed or erroneous generation).",
+    "outcome": "Erroneous generated invoices removed with an audit trail.",
+    "rootCause": "Scheduler failures can create partial or duplicate invoices that must be reversed to keep revenue and receivables correct.",
+    "ifSkipped": "Duplicate or partial invoices remain in revenue and receivables.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Execution log"
+    ],
+    "redFlags": [
+      "Duplicate invoices from repeated runs"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deleting_a_recurring_invoice": {
+    "purpose": "Deletes a recurring invoice template that is no longer needed, if no transactions depend on it.",
+    "outcome": "Obsolete templates stop generating invoices.",
+    "rootCause": "Recurring templates for leases or contracts that have ended keep generating invoices to former customers unless removed, creating false revenue and receivables that later have to be reversed.",
+    "ifSkipped": "Former customers keep receiving invoices.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Templates for terminated leases still active"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_turning_a_recurring_schedule_on_or_off": {
+    "purpose": "Pauses or resumes a recurring invoice schedule — for example pausing billing during an approved rent abatement.",
+    "outcome": "Billing stops and restarts without rebuilding the template.",
+    "rootCause": "Abatements and disputes temporarily suspend billing; pausing keeps the template ready to resume.",
+    "ifSkipped": "Abated periods are billed and must be reversed.",
+    "glAccounts": [
+      "4040 Concessions",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 842-30 — lease incentives and abatements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Schedules left off after abatement ends"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_the_recurring_invoice_execution_log_list": {
+    "purpose": "Views the execution log of recurring invoice runs — which ran, succeeded or failed.",
+    "outcome": "Failed billing runs identified quickly.",
+    "rootCause": "Recurring runs fail silently (inactive customer, closed period); the log is the only way to know billings were skipped.",
+    "ifSkipped": "Failed runs leave contractual revenue unbilled.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — monitoring automated controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Execution log"
+    ],
+    "redFlags": [
+      "Failed runs not investigated"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_troubleshooting_recurring_invoices": {
+    "purpose": "Troubleshoots recurring invoice failures — closed periods, inactive customers, invalid accounts — so runs can be fixed and re-run.",
+    "outcome": "Recurring billing restored after failures.",
+    "rootCause": "Each failure type has a specific fix; knowing them shortens the time contractual billings are missing.",
+    "ifSkipped": "Recurring failures persist month after month.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Execution log"
+    ],
+    "redFlags": [
+      "Same failure recurring"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_exporting_the_execution_log_list": {
+    "purpose": "Exports the recurring invoice execution log — runs, results and errors — to a spreadsheet for reviewing failures across many templates at once.",
+    "outcome": "A file of run results to investigate failures across many templates.",
+    "rootCause": "Large portfolios have many templates; reviewing failures in a spreadsheet is faster.",
+    "ifSkipped": "Failures across many templates are hard to review.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Execution log export"
+    ],
+    "redFlags": [
+      "Exports not followed up"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_execution_log_list": {
+    "purpose": "Lists recurring invoice execution results with success or failure and links to error details.",
+    "outcome": "Visibility of every scheduled billing run's outcome.",
+    "rootCause": "Automated billing needs monitoring; the log is the evidence that recurring revenue was actually billed.",
+    "ifSkipped": "Revenue gaps from failed runs go unnoticed.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Execution log"
+    ],
+    "redFlags": [
+      "Failures older than one billing cycle"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deleting_an_execution_log": {
+    "purpose": "Deletes old recurring invoice execution log entries that have been reviewed and resolved, keeping the log focused on current runs.",
+    "outcome": "Execution logs stay manageable.",
+    "rootCause": "Old logs clutter monitoring, but deleting unresolved failures removes evidence of missed billings.",
+    "ifSkipped": "Logs clutter; misuse hides unresolved failures.",
+    "glAccounts": [],
+    "gaap": [
+      "Record retention"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Execution log"
+    ],
+    "redFlags": [
+      "Deleting logs with unresolved failures"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_error_scheduler_log_page": {
+    "purpose": "Shows the detailed error for a failed recurring invoice run — for example 'customer inactive' or 'period closed' — so the cause can be fixed and the run repeated.",
+    "outcome": "The specific cause of a billing failure identified.",
+    "rootCause": "Fixing failures requires the exact error (e.g., customer inactive, period closed).",
+    "ifSkipped": "Failures are fixed by guesswork or not at all.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Execution log"
+    ],
+    "redFlags": [
+      "Errors marked resolved without re-running"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_recurring_a_r_invoices_page": {
+    "purpose": "The recurring A/R invoice record page (entity level) with Invoice, Payment and Schedule tabs.",
+    "outcome": "Complete definition of one recurring billing.",
+    "rootCause": "All three tabs must be correct for a recurring billing to generate the right invoice at the right time.",
+    "ifSkipped": "Recurring billings generate incorrectly.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Templates created at top level where entity is required"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_invoice_tab": {
+    "purpose": "The Invoice tab of a recurring invoice — customer, lines, amounts and coding for the generated invoice.",
+    "outcome": "Generated invoices carry correct charges and coding.",
+    "rootCause": "Every invoice the template generates copies these lines exactly, so a wrong amount or revenue account here repeats on every monthly invoice until someone notices.",
+    "ifSkipped": "The same error repeats on every generated invoice.",
+    "glAccounts": [
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Lines coded to wrong revenue accounts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_payment_tab": {
+    "purpose": "The Payment tab of a recurring invoice setting whether it is paid online (auto-debit) or offline.",
+    "outcome": "Collection method defined for the recurring charge.",
+    "rootCause": "The payment method determines whether the system attempts an automatic debit; it must match the customer's authorization.",
+    "ifSkipped": "Debits are attempted without authorization or not attempted when authorized.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "NACHA authorization requirements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Online payment without authorization on file"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_schedule_tab": {
+    "purpose": "The Schedule tab of a recurring A/R invoice where frequency, start date and end date (or number of occurrences) are set to match the lease or contract term.",
+    "outcome": "Billing timing matches the contract.",
+    "rootCause": "The schedule controls how long billing continues; it must reflect the lease or contract term.",
+    "ifSkipped": "Billing continues past the contract or starts late.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 842-30"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Open-ended schedules for fixed-term contracts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_duplicating_a_recurring_invoice": {
+    "purpose": "Creates a new recurring invoice by copying an existing template — for example a new tenant with the same charge structure.",
+    "outcome": "Similar recurring billings set up quickly.",
+    "rootCause": "Copying keeps coding consistent across similar contracts; the preparer must update customer, amounts and dates.",
+    "ifSkipped": "Similar templates are built inconsistently.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Duplicates left pointing to the original customer"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_saving_an_invoice_as_a_draft": {
+    "purpose": "Saves a recurring invoice template as a draft while details are still being confirmed.",
+    "outcome": "Incomplete templates do not generate invoices.",
+    "rootCause": "Templates should only activate once contract terms are confirmed; draft status prevents premature billing.",
+    "ifSkipped": "Templates activate before terms are final and bill incorrectly.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Recurring invoices"
+    ],
+    "redFlags": [
+      "Drafts never activated for signed contracts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_penalties": {
+    "purpose": "Explains penalties — late fees applied to overdue customer invoices, which create new charges automatically.",
+    "outcome": "Late payment is charged consistently according to contract terms.",
+    "rootCause": "Commercial leases and contracts specify late fees; applying them consistently protects revenue and encourages timely payment.",
+    "ifSkipped": "Contractual late fees go uncharged and late payment is not discouraged.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income (late fees)"
+    ],
+    "gaap": [
+      "ASC 606 — variable consideration",
+      "Lease late charge provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Commercial property manager"
+    ],
+    "reports": [
+      "Penalty register"
+    ],
+    "redFlags": [
+      "Late fees exceeding lease or statutory limits"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_apply_penalties_page": {
+    "purpose": "Page to set how penalties are calculated (percentage or flat, on what balance) and apply them to selected overdue invoices.",
+    "outcome": "Penalties calculated according to terms and applied in bulk.",
+    "rootCause": "Consistent calculation per contract avoids disputes and ensures fairness across tenants.",
+    "ifSkipped": "Penalties are calculated inconsistently and disputed.",
+    "glAccounts": [
+      "4100 Other Income (late fees)"
+    ],
+    "gaap": [
+      "Lease late charge provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Penalty register"
+    ],
+    "redFlags": [
+      "Penalty rates not matching contracts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_applying_invoice_penalties": {
+    "purpose": "Applies late-fee penalties to selected overdue invoices, choosing the invoice amount to penalize.",
+    "outcome": "Late fee charges created on overdue accounts.",
+    "rootCause": "Applying penalties monthly according to terms keeps late payment costly for the customer rather than the owner.",
+    "ifSkipped": "Owners lose late-fee revenue and tenants learn that paying late has no cost.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income (late fees)"
+    ],
+    "gaap": [
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Penalty register"
+    ],
+    "redFlags": [
+      "Penalties applied on disputed invoices"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_setting_and_applying_the_filters": {
+    "purpose": "Sets filters (customers, due date ranges, minimum amounts) to select which overdue invoices receive penalties.",
+    "outcome": "Penalties target only qualifying overdue invoices.",
+    "rootCause": "Grace periods and exemptions (disputed invoices, affiliates) mean not every overdue invoice should be penalized.",
+    "ifSkipped": "Penalties hit exempt customers or disputed invoices.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "Lease provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Penalty selection"
+    ],
+    "redFlags": [
+      "Affiliates penalized"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_select_invoices_to_penalize_list": {
+    "purpose": "Lists overdue invoices matching the filters so the accountant can choose which to penalize.",
+    "outcome": "A reviewed list of invoices before penalties are applied.",
+    "rootCause": "Reviewing the list before applying catches invoices under dispute or with payment arrangements.",
+    "ifSkipped": "Penalties are applied to invoices that should be exempt.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Penalty selection"
+    ],
+    "redFlags": [
+      "Invoices with payment plans included"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_selecting_invoices_to_penalize": {
+    "purpose": "Selects specific invoices from the list to receive penalties, with an option to send notices.",
+    "outcome": "Penalties applied only to chosen invoices with customer notification.",
+    "rootCause": "Customers are more likely to pay a late fee they were told about. Sending a notice with the penalty supports collection and reduces disputes that end in the fee being waived.",
+    "ifSkipped": "Penalties surprise customers and cause disputes.",
+    "glAccounts": [
+      "4100 Other Income (late fees)"
+    ],
+    "gaap": [
+      "Lease notice provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Penalty register"
+    ],
+    "redFlags": [
+      "Penalties without notices"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_transaction_allocations": {
+    "purpose": "Explains transaction allocations in A/R — predefined splits applied to invoices so amounts are distributed across properties, departments or projects.",
+    "outcome": "Shared revenue and recoveries distributed consistently.",
+    "rootCause": "Shared arrangements (a cell tower on a building shared by two phases) need consistent splits every month; allocations encode them once.",
+    "ifSkipped": "Shared revenue is split inconsistently or not at all.",
+    "glAccounts": [
+      "4100 Other Income",
+      "1230 Due From Affiliates"
+    ],
+    "gaap": [
+      "ASC 810"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Allocation register"
+    ],
+    "redFlags": [
+      "Manual splits instead of allocations"
+    ],
+    "confidence": "high"
+  }
+}

@@ -1,0 +1,1217 @@
+{
+  "scr_jobcost_job_reporting_codes_list": {
+    "purpose": "Lists job reporting codes — user-defined groupings such as '2026 Value-Add Program', 'Fund III' or 'Life-Safety Upgrades' — used to report capital spending across many jobs as one program.",
+    "outcome": "Capital programs can be reported as a whole across properties and years.",
+    "rootCause": "Asset managers approve and monitor capital by program, not by individual job. Reporting codes group jobs into those programs without changing job types or cost structures.",
+    "ifSkipped": "Program-level capital reporting has to be assembled by hand from individual jobs.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "1530 Building Improvements"
+    ],
+    "gaap": [
+      "COSO 2013 — management reporting"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "System administrator"
+    ],
+    "reports": [
+      "Program capex reports"
+    ],
+    "redFlags": [
+      "Active jobs without a program reporting code"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_or_duplicating_job_reporting_codes": {
+    "purpose": "Adds a new job reporting code, or duplicates an existing one as a template, for a new capital program or fund grouping.",
+    "outcome": "A new program grouping available to tag jobs.",
+    "rootCause": "Each annual capital plan or new fund needs its own grouping so its spending can be tracked against its approved program budget separately from prior programs.",
+    "ifSkipped": "New programs are mixed with old ones in reports and program budgets cannot be monitored.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Asset manager"
+    ],
+    "reports": [
+      "Job reporting codes list"
+    ],
+    "redFlags": [
+      "Codes duplicated without renaming"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_viewing_a_job_reporting_code": {
+    "purpose": "Views a job reporting code's definition and the jobs assigned to it, to confirm program membership before reporting.",
+    "outcome": "Confidence that a program report includes exactly the intended jobs.",
+    "rootCause": "Program reports are only as accurate as their membership; viewing the code before reporting catches jobs tagged to the wrong program.",
+    "ifSkipped": "Program reports include or omit the wrong jobs.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Job reporting codes"
+    ],
+    "redFlags": [
+      "Jobs from another owner tagged to the program"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_deleting_a_job_reporting_code": {
+    "purpose": "Deletes a job reporting code that no job uses, such as a program that was cancelled before any job was created.",
+    "outcome": "Only active program groupings remain selectable.",
+    "rootCause": "Obsolete program codes remain selectable and new jobs get tagged to cancelled programs, making program reports unreliable.",
+    "ifSkipped": "New jobs are tagged to obsolete programs.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Job reporting codes list"
+    ],
+    "redFlags": [
+      "Deleting codes assigned to jobs"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_job_reporting_codes_page": {
+    "purpose": "The job reporting code record page with the code, description and settings used to group jobs for program reporting.",
+    "outcome": "A clear definition of each capital program grouping.",
+    "rootCause": "Clear definitions keep different preparers tagging jobs to programs consistently, which is what makes program-level capex reports trustworthy.",
+    "ifSkipped": "Jobs are tagged inconsistently and program totals are wrong.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Job reporting codes list"
+    ],
+    "redFlags": [
+      "Codes without descriptions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_draw_models": {
+    "purpose": "Explains draw models — templates that define the line structure of a draw request in the format a specific lender or servicer requires, with cost codes or reserve accounts mapped to each line.",
+    "outcome": "Draws are produced automatically in each lender's required format.",
+    "rootCause": "Every construction lender and servicer has its own draw format. Draw models encode that format once so each draw rolls job costs into the lender's lines without manual re-sorting.",
+    "ifSkipped": "Every draw is re-sorted manually into the lender's format, introducing errors and delays.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement draw format requirements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Lender / servicer"
+    ],
+    "reports": [
+      "Draw detail"
+    ],
+    "redFlags": [
+      "Lenders without a draw model"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_draw_models_list_job_cost": {
+    "purpose": "Lists job cost draw models — one per construction lender or equity partner format — with actions to add, view, edit and inactivate.",
+    "outcome": "A catalog of draw formats for construction and equity funders.",
+    "rootCause": "Portfolios with several construction lenders need a model per lender; the list ensures each active loan has one.",
+    "ifSkipped": "Draws for some lenders are built manually.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Construction loan agreements"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw models list"
+    ],
+    "redFlags": [
+      "Models for repaid loans still active"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_job_cost_draw_model": {
+    "purpose": "Creates a job cost draw model matching a construction lender's budget and draw format (for example the lender's G702/G703-style line items).",
+    "outcome": "Draws for that lender generated in the required format.",
+    "rootCause": "Setting up the model when the loan closes means the first draw — often urgent — is produced correctly rather than rebuilt by hand.",
+    "ifSkipped": "The first draws on a new loan are delayed while the format is recreated manually.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "2210 Mortgage/Construction Loan Payable"
+    ],
+    "gaap": [
+      "Construction loan agreement"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Construction lender"
+    ],
+    "reports": [
+      "Draw models list"
+    ],
+    "redFlags": [
+      "Model lines not matching the loan budget"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_viewing_or_editing_a_job_cost_draw_model": {
+    "purpose": "Views or edits a job cost draw model when the lender changes its draw format or the loan budget is reallocated.",
+    "outcome": "Draw models stay aligned with the lender's current requirements.",
+    "rootCause": "Loan budget reallocations (moving contingency to hard costs) change the lender's line structure; the model must follow or draws are rejected.",
+    "ifSkipped": "Draws are produced on an outdated structure and returned by the lender.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Construction loan agreement"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw models list"
+    ],
+    "redFlags": [
+      "Edits without lender confirmation"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_deleting_or_inactivating_a_job_cost_draw_model": {
+    "purpose": "Deletes or inactivates a job cost draw model once the related loan is repaid or the format is retired.",
+    "outcome": "Only active draw formats remain selectable.",
+    "rootCause": "Retired models left active can be picked by mistake, producing a draw in a format the current lender does not accept.",
+    "ifSkipped": "Draws are produced on retired formats and returned.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw models list"
+    ],
+    "redFlags": [
+      "Deleting models with draw history"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_draw_model_page_job_cost": {
+    "purpose": "The job cost draw model record page holding the model name, the construction lender or equity partner it serves, and the list of draw lines that mirror that funder's approved budget.",
+    "outcome": "A complete definition of one lender's draw format.",
+    "rootCause": "The header and lines on this page determine how every draw for that lender is structured, so they must mirror the lender's approved loan budget.",
+    "ifSkipped": "Draws do not match the lender's budget lines.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Construction loan agreement"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw models list"
+    ],
+    "redFlags": [
+      "Models without lender identification"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_draw_model_details_list_job_cost": {
+    "purpose": "Lists the line details of a job cost draw model — each lender budget line and the cost codes mapped to it.",
+    "outcome": "Visibility of how cost codes feed each lender draw line.",
+    "rootCause": "Unmapped cost codes drop out of draws; reviewing the details list confirms every code has a home in the lender format.",
+    "ifSkipped": "Costs on unmapped codes are left out of draws and never funded.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Construction loan agreement"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw model details"
+    ],
+    "redFlags": [
+      "Cost codes with costs but no mapping"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_job_cost_draw_model_details_job_cost": {
+    "purpose": "Adds a line to a job cost draw model — for example 'Hard Costs — Roofing' or 'Soft Costs — Architect' — matching the lender's budget.",
+    "outcome": "The draw model covers every line in the lender's budget.",
+    "rootCause": "Each lender budget line must exist in the model for costs to be requested against it; missing lines leave costs unrequested.",
+    "ifSkipped": "Costs for missing lines are never drawn.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Construction loan agreement"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw model details"
+    ],
+    "redFlags": [
+      "Model lines not in the lender budget"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_viewing_or_editing_draw_model_details": {
+    "purpose": "Views or edits the lines of a job cost draw model — their names, order and mapped cost codes — when the lender reallocates its loan budget.",
+    "outcome": "Draw lines stay aligned with lender budget changes.",
+    "rootCause": "Lender budget reallocations must be mirrored in the model lines or draws will request funds against lines that no longer have budget.",
+    "ifSkipped": "Draws request funds on lines without remaining lender budget.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Construction loan agreement"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw model details"
+    ],
+    "redFlags": [
+      "Line edits after draws were submitted"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_importing_job_cost_draw_model_details": {
+    "purpose": "Imports draw model lines from a template, usually the lender's budget spreadsheet.",
+    "outcome": "The lender's full budget structure loaded accurately.",
+    "rootCause": "Construction loan budgets can have many lines; importing avoids keying errors that would misalign draws with the lender's budget.",
+    "ifSkipped": "Draw models are keyed with errors and draws are rejected.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Construction loan agreement"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Imported totals not equal to the loan budget"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_deleting_draw_model_details": {
+    "purpose": "Deletes lines from a job cost draw model that the lender has removed from its budget, such as a contingency line fully reallocated to hard costs.",
+    "outcome": "Draw models contain only current lender lines.",
+    "rootCause": "Removed lender lines left in the model invite requests against lines the lender will reject.",
+    "ifSkipped": "Draws include lines the lender no longer funds.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw model details"
+    ],
+    "redFlags": [
+      "Deleting lines with draw history"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_draw_model_detail_page_job_cost": {
+    "purpose": "The record page for one job cost draw model line, holding its description, order and mapped cost codes.",
+    "outcome": "A precise definition of one lender draw line.",
+    "rootCause": "The cost codes mapped here decide which project costs are requested on this lender line.",
+    "ifSkipped": "Project costs roll into the wrong lender line and the draw is questioned.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Construction loan agreement"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw model details"
+    ],
+    "redFlags": [
+      "Lines with no mapped codes"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_assign_cost_codes_page": {
+    "purpose": "The page used to assign each project cost code to one line of a job cost draw model, so costs roll into the lender's budget categories automatically on every draw.",
+    "outcome": "Each cost code is mapped to exactly one lender draw line.",
+    "rootCause": "A code mapped to no line drops out of draws; a code mapped to two lines double-requests. Assignment on this page prevents both.",
+    "ifSkipped": "Costs are omitted from draws or requested twice.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Construction loan agreement"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw model details"
+    ],
+    "redFlags": [
+      "Codes assigned to multiple lines"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_draw_models_list_replacement_reserves": {
+    "purpose": "Lists replacement reserve draw models — one per servicer format (for example Fannie Mae DUS or Freddie Mac servicer forms).",
+    "outcome": "A catalog of reserve draw formats by servicer.",
+    "rootCause": "Each servicer has its own reimbursement request format; a model per servicer ensures compliant reserve draws.",
+    "ifSkipped": "Reserve draws are formatted manually and returned for errors.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw models list"
+    ],
+    "redFlags": [
+      "Servicers without a draw model"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_replacement_reserve_draw_model": {
+    "purpose": "Creates a replacement reserve draw model that reproduces a loan servicer's reimbursement request format and repair categories, for use on every reserve draw for that loan.",
+    "outcome": "Reserve draws for that servicer generated correctly.",
+    "rootCause": "Setting up the model when the loan closes lets the first reserve reimbursement go out in the servicer's format without rework.",
+    "ifSkipped": "Early reserve draws are delayed while the format is built manually.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw models list"
+    ],
+    "redFlags": [
+      "Model categories not matching servicer repair categories"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_viewing_or_editing_a_replacement_reserve_draw_model": {
+    "purpose": "Views or edits a replacement reserve draw model when the servicer changes its request format.",
+    "outcome": "Reserve draw models match current servicer requirements.",
+    "rootCause": "Servicers update request forms; outdated models produce packages that are returned.",
+    "ifSkipped": "Reserve draws are returned for format problems.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw models list"
+    ],
+    "redFlags": [
+      "Edits without servicer guidance"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_deleting_a_replacement_reserve_draw_model": {
+    "purpose": "Deletes a replacement reserve draw model after the loan is repaid or the servicer format is retired.",
+    "outcome": "Only current reserve formats remain.",
+    "rootCause": "Retired models can be selected by mistake, producing reserve draws in formats the current servicer rejects.",
+    "ifSkipped": "Reserve draws are produced in retired formats.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw models list"
+    ],
+    "redFlags": [
+      "Deleting models with history"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_draw_model_page_replacement_reserves": {
+    "purpose": "The replacement reserve draw model record page with its servicer and line structure.",
+    "outcome": "A complete definition of one servicer's reserve draw format.",
+    "rootCause": "Line structure here must mirror the servicer's repair categories so eligible costs are requested under the right category.",
+    "ifSkipped": "Reserve costs are requested under wrong categories and questioned.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw models list"
+    ],
+    "redFlags": [
+      "Models without servicer identification"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_draw_model_details_list_replacement_reserves": {
+    "purpose": "Lists the lines of a reserve draw model and the reserve accounts mapped to each.",
+    "outcome": "Visibility of how reserve accounts feed servicer draw lines.",
+    "rootCause": "Unmapped reserve accounts drop costs out of reimbursement requests; reviewing the list catches gaps.",
+    "ifSkipped": "Eligible reserve costs are left out of draws.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw model details"
+    ],
+    "redFlags": [
+      "Reserve accounts without mapping"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_replacement_reserve_draw_model_details": {
+    "purpose": "Adds a line to a reserve draw model — for example 'Roof Replacement' or 'HVAC' — matching the servicer's repair categories.",
+    "outcome": "The model covers every repair category the servicer uses.",
+    "rootCause": "Each servicer category needs a model line so eligible costs can be requested under it.",
+    "ifSkipped": "Costs in missing categories are never requested.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw model details"
+    ],
+    "redFlags": [
+      "Lines not recognized by the servicer"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_importing_replacement_reserve_draw_model_details": {
+    "purpose": "Imports reserve draw model lines from a template, such as the servicer's repair schedule from the property condition assessment.",
+    "outcome": "Reserve draw structures loaded accurately.",
+    "rootCause": "Servicer repair schedules can list many categories; importing mirrors them exactly.",
+    "ifSkipped": "Reserve draw models are keyed with errors.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Imported categories differing from the servicer schedule"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_draw_model_detail_page_replacement_reserves": {
+    "purpose": "The record page for one reserve draw model line with its description and mapped reserve accounts.",
+    "outcome": "A precise definition of one servicer draw line.",
+    "rootCause": "The accounts mapped here decide which reserve-eligible costs appear on this servicer line.",
+    "ifSkipped": "Reserve costs roll to the wrong servicer category and the reimbursement is questioned.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw model details"
+    ],
+    "redFlags": [
+      "Lines without mapped accounts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_assign_reserve_accounts_page": {
+    "purpose": "The page used to assign reserve accounts to the lines of a replacement reserve draw model, so eligible repair costs appear in the servicer's repair categories on each draw.",
+    "outcome": "Each reserve account maps to exactly one servicer draw line.",
+    "rootCause": "Unmapped accounts drop out of reimbursement requests and double-mapped accounts request twice; assignment prevents both.",
+    "ifSkipped": "Reserve costs are omitted or double-requested.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw model details"
+    ],
+    "redFlags": [
+      "Accounts assigned to multiple lines"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_funding_sources": {
+    "purpose": "Explains funding sources — the lenders, equity partners, reserves and operating accounts that pay for jobs — and how they are set up for draws and funding inquiries.",
+    "outcome": "Every source of project money is defined for allocation and tracking.",
+    "rootCause": "Projects are funded from several sources with different rules (loan ratios, reserve eligibility). Defining sources is the prerequisite for allocating draws and tracking remaining availability.",
+    "ifSkipped": "Draws cannot be allocated and funding availability is unknown.",
+    "glAccounts": [
+      "2210 Mortgage/Construction Loan Payable",
+      "3010 Partners' Capital",
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan and operating agreement funding provisions"
+    ],
+    "stakeholders": [
+      "Asset manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Funding source inquiry"
+    ],
+    "redFlags": [
+      "Projects with undefined funding"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_funding_source_list_job_cost": {
+    "purpose": "Lists job cost funding sources — construction loans, equity partners, grants — with commitment amounts and GL accounts.",
+    "outcome": "A catalog of project funders and their commitments.",
+    "rootCause": "Tracking committed funding by source shows when a project will need a new capital call or loan modification.",
+    "ifSkipped": "Funding gaps are discovered when a draw cannot be funded.",
+    "glAccounts": [
+      "2210 Mortgage/Construction Loan Payable",
+      "3010 Partners' Capital"
+    ],
+    "gaap": [
+      "Loan agreement provisions"
+    ],
+    "stakeholders": [
+      "Asset manager"
+    ],
+    "reports": [
+      "Funding source list"
+    ],
+    "redFlags": [
+      "Sources with commitments exceeded"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_job_cost_funding_source": {
+    "purpose": "Adds a job cost funding source — for example a construction loan with its commitment amount and loan payable GL account, or an equity partner's committed capital.",
+    "outcome": "A new funder available for job allocations and draws.",
+    "rootCause": "New loans or capital commitments must be set up before any draw can be allocated to them.",
+    "ifSkipped": "Draws against the new source cannot be prepared.",
+    "glAccounts": [
+      "2210 Mortgage/Construction Loan Payable",
+      "3010 Partners' Capital"
+    ],
+    "gaap": [
+      "ASC 470 — debt",
+      "ASC 505 — equity contributions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Asset manager"
+    ],
+    "reports": [
+      "Funding source list"
+    ],
+    "redFlags": [
+      "Commitment amounts not matching loan documents"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_viewing_or_editing_a_funding_source": {
+    "purpose": "Views or edits a funding source's commitment, accounts or terms — for example after a loan modification increases the construction loan amount.",
+    "outcome": "Funding availability reflects current agreements.",
+    "rootCause": "Loan modifications and additional equity commitments change available funding; the source must be updated for availability to be correct.",
+    "ifSkipped": "Availability is misstated and capital calls are mistimed.",
+    "glAccounts": [
+      "2210 Mortgage/Construction Loan Payable"
+    ],
+    "gaap": [
+      "ASC 470"
+    ],
+    "stakeholders": [
+      "Asset manager"
+    ],
+    "reports": [
+      "Funding source inquiry"
+    ],
+    "redFlags": [
+      "Commitment changes without supporting amendments"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_deleting_a_funding_source": {
+    "purpose": "Deletes a funding source that was set up in error and has no allocations or draws.",
+    "outcome": "Only real funders remain selectable.",
+    "rootCause": "Phantom funding sources overstate project funding availability and can receive draw allocations by mistake.",
+    "ifSkipped": "Phantom funders overstate the project's available funding.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Funding source list"
+    ],
+    "redFlags": [
+      "Deleting sources with draw history"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_funding_source_information_job_cost": {
+    "purpose": "The job cost funding source record page with funder, commitment amount, GL account and terms.",
+    "outcome": "A complete definition of one project funder.",
+    "rootCause": "The GL account and commitment here drive how draws post and how much funding remains.",
+    "ifSkipped": "Draw proceeds post to wrong accounts and availability is wrong.",
+    "glAccounts": [
+      "2210 Mortgage/Construction Loan Payable",
+      "3010 Partners' Capital"
+    ],
+    "gaap": [
+      "ASC 470",
+      "ASC 505"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Funding source list"
+    ],
+    "redFlags": [
+      "Loan source mapped to an equity account"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_funding_source_list_replacement_reserves": {
+    "purpose": "Lists replacement reserve funding sources — the lender-held reserves that reimburse eligible repairs — with their GL accounts.",
+    "outcome": "Reserves set up as funding sources for reserve draws.",
+    "rootCause": "Reserve-funded jobs need the reserve defined as a source so draws can be allocated and tracked against it.",
+    "ifSkipped": "Reserve draws cannot be allocated to the reserve.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Funding source list"
+    ],
+    "redFlags": [
+      "Reserves missing from the list"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_replacement_reserve_funding_source": {
+    "purpose": "Adds a replacement reserve as a funding source, linked to its reserve escrow GL account.",
+    "outcome": "Reserve-funded jobs can draw on the reserve.",
+    "rootCause": "Defining the reserve as a source is required before reserve draws can be created and allocated.",
+    "ifSkipped": "Reserve reimbursements cannot be processed in the system.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Funding source list"
+    ],
+    "redFlags": [
+      "Reserve source mapped to operating cash"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_funding_source_information_replacement_reserve": {
+    "purpose": "The replacement reserve funding source record page with its reserve, servicer and GL account.",
+    "outcome": "A complete definition of a reserve funder.",
+    "rootCause": "Mapping to 1340 Replacement Reserve Escrow ensures reimbursements reduce the reserve balance correctly when funded.",
+    "ifSkipped": "Reserve balances are not reduced when reimbursements are received.",
+    "glAccounts": [
+      "1340 Replacement Reserve Escrow"
+    ],
+    "gaap": [
+      "Loan agreement reserve provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Funding source list"
+    ],
+    "redFlags": [
+      "Missing servicer reference"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_about_job_cost": {
+    "purpose": "Quick Steps overview of job cost: job costs are expenses of property improvements and construction tracked by job, budget, commitment and funding source through to draws.",
+    "outcome": "New staff grasp the job cost cycle quickly.",
+    "rootCause": "Capital projects are high-value and high-scrutiny; staff new to a property's capital program need the essentials before coding their first project invoice.",
+    "ifSkipped": "New staff mis-code capital invoices and miss reimbursements.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "ASC 360-10"
+    ],
+    "stakeholders": [
+      "New offshore accountants"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Capital invoices coded without jobs by new staff"
+    ],
+    "confidence": "high"
+  },
+  "scr_jobcost_adding_a_cost_structure": {
+    "purpose": "Quick Steps for setting up at least one cost structure — the hierarchy that organizes cost codes — before creating jobs.",
+    "outcome": "A cost hierarchy ready for job budgets and draws.",
+    "rootCause": "Jobs cannot be budgeted meaningfully until costs have a structure; the quick path ensures it exists before the first project.",
+    "ifSkipped": "Jobs are created without a cost structure and must be rebuilt.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Cost structures list"
+    ],
+    "redFlags": [
+      "Jobs created before any cost structure exists"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_job_type_2": {
+    "purpose": "Quick Steps for adding job types that record the GL accounts used by jobs of that kind (capital improvement, reserve repair, construction).",
+    "outcome": "Job types with correct default accounts ready for new jobs.",
+    "rootCause": "Default accounts on job types decide whether project costs capitalize or expense; setting them up first avoids misposting.",
+    "ifSkipped": "Early jobs post capital work to the wrong accounts.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "ASC 360-10"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Job types list"
+    ],
+    "redFlags": [
+      "Types without default accounts"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_cost_code_2": {
+    "purpose": "Quick Steps for adding a cost code to track a job's budget, commitments and costs for a trade.",
+    "outcome": "Trade-level tracking available on jobs.",
+    "rootCause": "Cost codes are how project budgets are controlled by trade; adding them is prerequisite to budgeting.",
+    "ifSkipped": "Projects can only be tracked in total, hiding trade overruns.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Cost codes list"
+    ],
+    "redFlags": [
+      "Codes duplicated across structures"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_job_cost_draw_model_2": {
+    "purpose": "Quick Steps for adding a job cost draw model that defines a lender's draw format.",
+    "outcome": "Draws can be generated in the lender's format.",
+    "rootCause": "Draw models must exist before the first draw on a construction loan; the quick path helps set them up at loan closing.",
+    "ifSkipped": "The first draws on a new construction loan are built manually and delayed.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Construction loan agreement"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw models list"
+    ],
+    "redFlags": [
+      "Models not matching loan budgets"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_draw_model_details": {
+    "purpose": "Quick Steps for adding line details to a job cost draw model to mirror the lender's budget lines.",
+    "outcome": "Complete lender line structures in the model.",
+    "rootCause": "Missing lines leave costs unrequested; adding all lines up front avoids funding gaps.",
+    "ifSkipped": "Costs on missing lender lines are never drawn or reimbursed.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Construction loan agreement"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw model details"
+    ],
+    "redFlags": [
+      "Model lines fewer than lender budget lines"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_assigning_cost_codes_to_draw_model_details": {
+    "purpose": "Quick Steps for mapping cost codes to draw model lines so costs roll into the lender's categories.",
+    "outcome": "Automatic roll-up of job costs into lender draw lines.",
+    "rootCause": "Mapping each cost code to a lender line once means every future draw rolls costs into the lender's format automatically; without it, each draw must be re-sorted by hand under deadline.",
+    "ifSkipped": "Every draw is re-sorted by hand and errors slip into lender packages.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "Construction loan agreement"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw model details"
+    ],
+    "redFlags": [
+      "Unmapped cost codes"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_job_cost_funding_source_2": {
+    "purpose": "Quick Steps for adding a job cost funding source such as a construction loan or equity commitment.",
+    "outcome": "Funders defined for draws and availability tracking.",
+    "rootCause": "Draws are allocated to funders; until a construction loan or equity commitment exists as a funding source, no draw can be prepared against it and its remaining availability cannot be tracked.",
+    "ifSkipped": "Draws against the new funder cannot be prepared.",
+    "glAccounts": [
+      "2210 Mortgage/Construction Loan Payable",
+      "3010 Partners' Capital"
+    ],
+    "gaap": [
+      "ASC 470",
+      "ASC 505"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Funding source list"
+    ],
+    "redFlags": [
+      "Commitment amounts not from executed documents"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_job_2": {
+    "purpose": "Quick Steps for entering a job's details to manage its status and budget — property, type, dates, manager and funding.",
+    "outcome": "A project record ready for budgets and costs.",
+    "rootCause": "Jobs should exist before any commitment so all project costs are captured from the start.",
+    "ifSkipped": "Early costs are coded outside the job and must be reclassed.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "ASC 360-10"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Jobs list"
+    ],
+    "redFlags": [
+      "Jobs created after invoices arrived"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_viewing_the_job_status": {
+    "purpose": "Quick Steps for customizing and viewing the Job Status Inquiry — budget, commitments, costs and remaining by segment.",
+    "outcome": "Quick answers on project financial status.",
+    "rootCause": "Asset managers ask for project status frequently; a quick procedure gives a reliable answer.",
+    "ifSkipped": "Project status is estimated rather than read from the system.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Job status inquiry"
+    ],
+    "redFlags": [
+      "Status reviewed without commitments"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_approving_or_declining_a_budget_change_order": {
+    "purpose": "Quick Steps for approving or declining a job budget change order in the approval workflow, with a comment recording the reason for the decision.",
+    "outcome": "Budget changes authorized or rejected with a record.",
+    "rootCause": "Change orders commit additional money; quick, documented decisions keep projects moving without losing control.",
+    "ifSkipped": "Change orders stall or are applied without authorization.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization"
+    ],
+    "stakeholders": [
+      "Asset manager"
+    ],
+    "reports": [
+      "Change order log"
+    ],
+    "redFlags": [
+      "Self-approved change orders"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_job_budget_2": {
+    "purpose": "Quick Steps for adding a budget by cost code to jobs in Pending or Active status, establishing the approved baseline for commitments and costs.",
+    "outcome": "Jobs have an approved baseline for tracking.",
+    "rootCause": "Budget checks on POs and subcontracts only work once a budget exists. Adding it before the first commitment lets the system flag over-budget commitments from day one.",
+    "ifSkipped": "Commitments are made without budget checks.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job budgets"
+    ],
+    "redFlags": [
+      "Active jobs without budgets"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_budget_change_order_2": {
+    "purpose": "Quick Steps for adding a budget change order to a job with its amount and reason.",
+    "outcome": "Scope changes submitted for approval.",
+    "rootCause": "Documenting change orders promptly keeps budgets and approvals in sync with site reality.",
+    "ifSkipped": "Project scope grows without documentation or approval.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Change order log"
+    ],
+    "redFlags": [
+      "Change orders without reasons"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_closing_a_job_2": {
+    "purpose": "Quick Steps for closing a job — used sparingly because closing creates credits that reverse remaining open amounts and finalizes the job.",
+    "outcome": "Completed jobs closed with open amounts resolved.",
+    "rootCause": "Closing reverses remaining commitments and stops postings; doing it prematurely can erase commitments still owed to contractors.",
+    "ifSkipped": "Completed jobs linger open; premature closing erases real obligations.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "2015 Retainage Payable"
+    ],
+    "gaap": [
+      "ASC 360-10"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Close job"
+    ],
+    "redFlags": [
+      "Jobs closed with unpaid retainage"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_permit_2": {
+    "purpose": "Quick Steps for creating permit categories to organize job attachments such as building permits and inspection sign-offs.",
+    "outcome": "Project documents organized for draws and closeouts.",
+    "rootCause": "Lenders and municipalities ask for permits and inspections; categories make them quick to retrieve.",
+    "ifSkipped": "Permit documents are scattered and hard to find.",
+    "glAccounts": [],
+    "gaap": [
+      "Local building code requirements"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Permits list"
+    ],
+    "redFlags": [
+      "Projects without permit documents"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_job_segment_budget_2": {
+    "purpose": "Quick Steps for adding a budget for one segment (trade, phase or building) of a job, so costs for that segment can be controlled separately from the job total.",
+    "outcome": "Trade-level budgets in place on the job before commitments start.",
+    "rootCause": "A job total can look healthy while one trade is far over budget. Segment budgets let the construction manager see and act on trade-level overruns early.",
+    "ifSkipped": "Trade-level overruns stay hidden until the project finishes over budget.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Job segment budgets"
+    ],
+    "redFlags": [
+      "Segments without budgets"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_job_segment_budget_change_order": {
+    "purpose": "Quick Steps for adding a change order to one segment's budget — for example increasing the electrical segment after an approved code upgrade.",
+    "outcome": "Trade-level scope changes documented and submitted.",
+    "rootCause": "Scope changes usually hit one trade. Recording the change order on that segment keeps trade budgets accurate and gives lenders a clear reason for the increase.",
+    "ifSkipped": "Segment budgets diverge from actual scope and overruns appear unexplained.",
+    "glAccounts": [
+      "1410 Construction in Progress"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Construction manager"
+    ],
+    "reports": [
+      "Change order log"
+    ],
+    "redFlags": [
+      "Segment change orders without approval"
+    ],
+    "confidence": "medium"
+  },
+  "scr_jobcost_adding_a_job_cost_draw_2": {
+    "purpose": "Quick Steps for creating a job cost draw that summarizes invoiced costs for funding by a lender or partner.",
+    "outcome": "A draw ready to populate and submit.",
+    "rootCause": "Draws are how projects get funded, and lenders fund on their own cycles. A short, repeatable procedure gets draws submitted on time so contractors are paid without the property advancing its own cash.",
+    "ifSkipped": "Draws are delayed and projects wait for funds.",
+    "glAccounts": [
+      "1410 Construction in Progress",
+      "2210 Mortgage/Construction Loan Payable"
+    ],
+    "gaap": [
+      "Construction loan agreement"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Draw register"
+    ],
+    "redFlags": [
+      "Draws including unapproved invoices"
+    ],
+    "confidence": "medium"
+  }
+}

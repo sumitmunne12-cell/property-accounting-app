@@ -1,0 +1,62 @@
+{
+  "scr_rep_mor_package": {
+    "purpose": "The curated workflow for compiling the Monthly Operating Report package for the owner — balance sheet, income statement with budget comparison, T12, cash flow, bank reconciliations, rent roll, aging reports and variance commentary — as a report group run in one pass.",
+    "outcome": "A standardized, complete owner package delivered by the management agreement deadline (typically 15-20 days after month-end).",
+    "rootCause": "Management agreements require monthly financial reporting in a specified format. Asset managers consolidate these packages across their portfolio for investors and lenders; missing or inconsistent reports delay their reporting and erode trust in the management company.",
+    "ifSkipped": "The management company breaches reporting covenants, asset managers cannot report to investors, and owners may impose penalties or replace the manager.",
+    "glAccounts": ["All GL accounts via financial statements"],
+    "gaap": ["Management agreement reporting provisions", "Loan agreement financial reporting covenants"],
+    "stakeholders": ["Asset manager", "Onshore reviewer", "Offshore property accountant", "Property manager", "Investors / lenders"],
+    "reports": ["Balance Sheet", "Income Statement / BVA", "T12", "Bank recs", "Rent roll", "Aging reports", "Variance commentary"],
+    "redFlags": ["Package reports run on different as-of dates or books", "Variance commentary missing for lines over threshold", "Package sent before final close approval"],
+    "confidence": "high"
+  },
+  "scr_reporting_lost_rent_summary_report": {
+    "purpose": "Reconciles lost revenue by unit — vacancy loss, concessions, miscellaneous credits, loss to lease — showing market rent versus what was actually charged, to explain the gap between gross potential rent and actual rental income.",
+    "outcome": "A unit-level explanation of revenue leakage that supports the GPR tie-out and asset management analysis of pricing and occupancy.",
+    "rootCause": "Asset managers evaluate revenue management and leasing performance by analyzing loss components. Without a unit-level report, it is impossible to tell whether revenue shortfalls come from vacancy, discounting or pricing below market.",
+    "ifSkipped": "Revenue leakage goes unexplained, and GPR-basis revenue reporting cannot be supported.",
+    "glAccounts": ["4010 Gross Potential Rent", "4040 Concessions", "Vacancy loss", "Loss to lease"],
+    "gaap": ["ASC 842-30 — lease income"],
+    "stakeholders": ["Asset manager", "Revenue management", "Property manager", "Offshore property accountant"],
+    "reports": ["Lost rent summary", "GPR tie-out", "Income Statement"],
+    "redFlags": ["Lost rent totals not matching GL contra-revenue accounts", "Large miscellaneous credits without explanation"],
+    "confidence": "high"
+  },
+  "scr_reporting_resident_deposit_audit_by_fiscal_period_report": {
+    "purpose": "Audits resident security deposit activity by fiscal period — deposits collected, applied, refunded, forfeited — to reconcile the deposit liability and investigate discrepancies.",
+    "outcome": "Period-specific support for 2110 Resident Security Deposits, identifying deposits that were mishandled at move-in or move-out.",
+    "rootCause": "Deposit balances often fail to tie because of move-out processing errors or deposits posted to the wrong period. Period-based auditing isolates when the error occurred, which matters for state compliance.",
+    "ifSkipped": "Deposit liability discrepancies persist, and state compliance violations (late or incorrect refunds) go unnoticed.",
+    "glAccounts": ["2110 Resident Security Deposits", "1115 Security Deposit Trust Cash"],
+    "gaap": ["State security deposit statutes"],
+    "stakeholders": ["Offshore property accountant", "Property manager", "Compliance"],
+    "reports": ["Deposit audit report", "Security deposit register"],
+    "redFlags": ["Deposit activity posted to prior periods", "Move-outs without deposit disposition"],
+    "confidence": "high"
+  },
+  "scr_reporting_running_consolidations": {
+    "purpose": "Runs Global Consolidations to combine the financials of multiple entities and translate foreign-currency entities into the reporting currency, producing consolidated statements for a fund or owner group.",
+    "outcome": "Consolidated, currency-translated financial statements with intercompany balances eliminated, for fund-level or investor reporting.",
+    "rootCause": "Institutional owners with multiple entities (and sometimes international holdings) must report consolidated results. Consolidation requires translation at the correct rates and elimination of intercompany balances such as pooled payroll and centralized payables.",
+    "ifSkipped": "Fund-level reporting is inaccurate, intercompany balances inflate assets and liabilities, and translation differences are misstated.",
+    "glAccounts": ["1230 Due From Affiliates", "2130 Due To Affiliates", "Cumulative translation adjustment (OCI)"],
+    "gaap": ["ASC 810 — consolidation", "ASC 830 — foreign currency translation"],
+    "stakeholders": ["Fund accountant", "Onshore accounting manager", "Investors", "External auditor"],
+    "reports": ["Consolidated financial statements", "Elimination schedule"],
+    "redFlags": ["Intercompany balances not eliminating to zero", "Wrong exchange rates used for translation"],
+    "confidence": "medium"
+  },
+  "scr_reporting_storing_a_report_in_my_stored_reports": {
+    "purpose": "Runs a report and stores the output in My Stored Reports instead of viewing it immediately — useful for large reports (portfolio aging, GL detail) or for keeping a period-end snapshot.",
+    "outcome": "A retained copy of a report as it stood when run, available later without re-running.",
+    "rootCause": "Many reports change as data changes. Month-end close evidence requires the report as it was at close, and large reports time out when viewed live.",
+    "ifSkipped": "Close evidence is lost when the report is re-run after later postings, and large reports repeatedly time out.",
+    "glAccounts": [],
+    "gaap": ["Record retention requirements for close evidence"],
+    "stakeholders": ["Offshore property accountant", "Onshore reviewer", "Auditors"],
+    "reports": ["Stored reports library", "Close evidence"],
+    "redFlags": ["Stored reports not named with period and property", "Relying on stored reports from before final adjustments"],
+    "confidence": "high"
+  }
+}

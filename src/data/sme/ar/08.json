@@ -1,0 +1,967 @@
+{
+  "scr_ar_payment_summaries_list": {
+    "purpose": "Lists A/R payment summaries — groupings of customer payments by period or batch that post to the GL together — with status, totals and actions.",
+    "outcome": "Visibility of which customer payment batches are open, closed and posted.",
+    "rootCause": "Customer receipts post to the GL through payment summaries; month-end requires every payment summary for the period to be complete and closed so cash and receivables agree with the bank and aging.",
+    "ifSkipped": "Open payment summaries accept late receipts into reported periods and the cash-to-A/R tie-out breaks.",
+    "glAccounts": [
+      "1130 Undeposited Funds",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — cutoff"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payment summaries list"
+    ],
+    "redFlags": [
+      "Open payment summaries for prior months"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_creating_automatic_payment_summaries_workflow": {
+    "purpose": "Workflow for configuring automatic payment summaries so customer receipts are grouped into period summaries without manual setup.",
+    "outcome": "Receipts consistently grouped by period for posting and close.",
+    "rootCause": "Manually created payment summaries are easy to misdate, sending a whole batch of receipts into the wrong month; automation removes that risk.",
+    "ifSkipped": "Receipt batches are misdated and cash is reported in the wrong period.",
+    "glAccounts": [
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013 — automated controls"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Payment summaries list"
+    ],
+    "redFlags": [
+      "Automatic summaries disabled"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_creating_a_payment_summary_manually": {
+    "purpose": "Creates a payment summary manually to group a specific set of customer receipts, for example a single large wire batch.",
+    "outcome": "A defined batch of receipts ready to post.",
+    "rootCause": "Some receipt batches need their own summary for traceability (e.g., a subsidy batch); manual creation must use the correct period date.",
+    "ifSkipped": "Special receipt batches mix with routine receipts and are hard to trace.",
+    "glAccounts": [
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payment summaries list"
+    ],
+    "redFlags": [
+      "Manual summaries dated in the wrong period"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_editing_payment_summaries": {
+    "purpose": "Edits an open A/R payment summary's name, posting date or settings before it is closed, so the receipts it holds land in the intended accounting period.",
+    "outcome": "Payment summary attributes corrected before posting is final.",
+    "rootCause": "A payment summary dated incorrectly moves every receipt in it to the wrong period; editing while open fixes that cleanly.",
+    "ifSkipped": "A misdated summary posts every receipt in it to the wrong month and breaks the bank rec.",
+    "glAccounts": [
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013 — cutoff"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payment summaries list"
+    ],
+    "redFlags": [
+      "Date edits after the bank rec was finalized"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deleting_a_payment_summary": {
+    "purpose": "Deletes an empty or erroneously created A/R payment summary so that stray batches cannot capture customer receipts in unintended periods.",
+    "outcome": "Only valid receipt batches remain.",
+    "rootCause": "Stray empty summaries can capture receipts by mistake and confuse month-end reviews of receipt batches.",
+    "ifSkipped": "Receipts land in stray summaries in unintended periods.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payment summaries list"
+    ],
+    "redFlags": [
+      "Deleting summaries containing payments"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_information_about_a_payment_summary": {
+    "purpose": "Views a payment summary's details — period, status, total and the payments it contains.",
+    "outcome": "Understanding of one receipt batch and its GL posting.",
+    "rootCause": "When cash in A/R and cash in the bank rec disagree, investigating payment summaries shows which batch caused the difference.",
+    "ifSkipped": "Receipt batch differences cannot be traced.",
+    "glAccounts": [
+      "1130 Undeposited Funds",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payment summary detail"
+    ],
+    "redFlags": [
+      "Summary totals not equal to deposits"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_payment_summary_information_page": {
+    "purpose": "The payment summary record page showing the summary name, posting date, open/closed status and receipt totals for one batch of customer payments.",
+    "outcome": "A complete record of one batch of customer receipts.",
+    "rootCause": "Summary status and totals evidence that the period's receipts are complete and locked for reporting.",
+    "ifSkipped": "Evidence of receipt cutoff is incomplete at close.",
+    "glAccounts": [
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payment summary detail"
+    ],
+    "redFlags": [
+      "Open status for closed periods"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_transactions_list_of_payment_summaries": {
+    "purpose": "Lists every customer payment included in a payment summary, with customer, reference, date and amount, supporting the batch total posted to 1130 Undeposited Funds.",
+    "outcome": "The detail behind a receipt batch total.",
+    "rootCause": "Tracing a GL cash posting back to individual customer receipts requires the summary's payment list.",
+    "ifSkipped": "Cash postings cannot be traced to specific customer payments.",
+    "glAccounts": [
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payment summary transactions"
+    ],
+    "redFlags": [
+      "Payments dated outside the summary period"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_the_payments_in_a_payment_summary": {
+    "purpose": "Views the individual payments inside a payment summary to confirm the batch before closing.",
+    "outcome": "Confidence that each receipt is in the right batch and period.",
+    "rootCause": "Misdated receipts in a batch shift cash between months; reviewing before closing prevents that.",
+    "ifSkipped": "Misdated receipts are locked into the wrong period.",
+    "glAccounts": [
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013 — cutoff"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payment summary transactions"
+    ],
+    "redFlags": [
+      "Prior-month receipts in current batch"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_transactions_to_a_payment_summary": {
+    "purpose": "Adds received customer payments to an open payment summary so they post to the GL with that batch and inherit its accounting period.",
+    "outcome": "Payments grouped into the correct receipt batch.",
+    "rootCause": "Payments must belong to a summary to post; adding them to the right summary places them in the correct period.",
+    "ifSkipped": "Payments remain unposted or post to the wrong period.",
+    "glAccounts": [
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payment summary transactions"
+    ],
+    "redFlags": [
+      "Payments added to closed-period summaries"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_reversing_a_payment_in_a_summary": {
+    "purpose": "Reverses one payment inside a payment summary — for example a returned check — without reversing the whole batch.",
+    "outcome": "The returned payment is reinstated on the customer and the batch stays otherwise intact.",
+    "rootCause": "Returned checks affect single payments; reversing only that payment keeps the rest of the batch matched to the bank deposit.",
+    "ifSkipped": "Returned payments remain credited and A/R is understated.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 310"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer ledger"
+    ],
+    "redFlags": [
+      "Returned checks not reversed promptly"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_applying_an_overpayment_an_invoice_in_a_summary": {
+    "purpose": "Applies an overpayment sitting in a payment summary to another open invoice for the same customer.",
+    "outcome": "Overpaid amounts consumed against open invoices.",
+    "rootCause": "Overpayments left as unapplied credits overstate both receivables and customer credits; applying them clears both.",
+    "ifSkipped": "Unapplied credits and open invoices both remain on the aging.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer aging"
+    ],
+    "redFlags": [
+      "Overpayments applied to other customers"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_receive_payments_list": {
+    "purpose": "The Receive Payments list reached from a payment summary, showing payments available to add or apply within that batch.",
+    "outcome": "Payments managed in the context of their batch.",
+    "rootCause": "Working payments from their batch keeps application and period control together.",
+    "ifSkipped": "Payments are applied without regard to their batch and period.",
+    "glAccounts": [
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Payment summary transactions"
+    ],
+    "redFlags": [
+      "Payments outside any summary"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_account_maintenance": {
+    "purpose": "Chapter on A/R account maintenance — penalties (late fees), printing or emailing invoices, and customer statements.",
+    "outcome": "Routine customer account upkeep performed consistently each month.",
+    "rootCause": "Collections depend on customers receiving invoices and statements and on late fees being applied per contract; account maintenance is where that routine lives.",
+    "ifSkipped": "Customers are not reminded of balances and late fees go uncharged.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income (late fees)"
+    ],
+    "gaap": [
+      "Lease late charge provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Statements",
+      "Penalty register"
+    ],
+    "redFlags": [
+      "No statements sent to delinquent customers"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_about_the_account_maintenance_chapter": {
+    "purpose": "Introduces the Account Maintenance options and when each is used in the monthly A/R cycle.",
+    "outcome": "Users know which maintenance tasks to perform each month.",
+    "rootCause": "Maintenance tasks are easy to skip under close pressure; a clear overview anchors them in the monthly routine.",
+    "ifSkipped": "Statements and late fees are skipped in busy months.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Maintenance tasks not on the monthly checklist"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_penalties_2": {
+    "purpose": "The Penalties menu option under Account Maintenance used to apply late fees to overdue customer invoices.",
+    "outcome": "Late fees applied as part of monthly account maintenance.",
+    "rootCause": "Applying penalties monthly, right after the grace period, keeps late fees consistent and defensible under lease terms.",
+    "ifSkipped": "Late fees are missed or applied inconsistently and disputed.",
+    "glAccounts": [
+      "4100 Other Income (late fees)",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "Lease late charge provisions",
+      "ASC 606"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Penalty register"
+    ],
+    "redFlags": [
+      "Late fees exceeding lease or state caps"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_print_or_email_a_r_invoices": {
+    "purpose": "Account Maintenance option to print or email posted A/R invoices in bulk — CAM reconciliations, bill-backs, ancillary charges — to customers' billing contacts.",
+    "outcome": "All period invoices delivered to customers promptly.",
+    "rootCause": "Invoices that are posted but never delivered do not get paid; bulk delivery ensures every customer receives their bill.",
+    "ifSkipped": "Customers do not receive invoices and receivables age unnecessarily.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Invoice delivery log"
+    ],
+    "redFlags": [
+      "Posted invoices never delivered"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_printing_or_emailing_a_r_invoices": {
+    "purpose": "Procedure for selecting invoices and printing or emailing them to customers' billing contacts.",
+    "outcome": "Invoices sent to the right contacts.",
+    "rootCause": "Sending to the correct billing contact (often a tenant's accounts-payable department) is what gets invoices into the customer's payment process.",
+    "ifSkipped": "Invoices go to the wrong people and sit unpaid.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Invoice delivery log"
+    ],
+    "redFlags": [
+      "Emails bouncing without follow-up"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_print_or_email_statements": {
+    "purpose": "Account Maintenance option to print or email customer statements summarizing open invoices, payments and balance due.",
+    "outcome": "Customers receive a periodic summary of what they owe.",
+    "rootCause": "Statements prompt payment of forgotten invoices and surface disputes early, before balances become uncollectible.",
+    "ifSkipped": "Old invoices are forgotten by customers and become harder to collect.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 326 — collection efforts"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer statements"
+    ],
+    "redFlags": [
+      "Statements not sent to customers over 60 days"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_statements": {
+    "purpose": "Explains customer statements (entity level required) — what they show and how they are generated.",
+    "outcome": "Users understand statement content and prerequisites.",
+    "rootCause": "Statements must be run at entity level so each customer's balance reflects the right entity's receivables.",
+    "ifSkipped": "Statements are run incorrectly or not at all.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer statements"
+    ],
+    "redFlags": [
+      "Statements generated at top level mixing entities"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_creating_statements": {
+    "purpose": "Generates customer statements as of a statement date for a selected set of customers, listing open invoices, unapplied credits and the aged balance due.",
+    "outcome": "A batch of statements ready to print or email.",
+    "rootCause": "Generating statements as of month-end gives customers a balance that agrees with the property's aging.",
+    "ifSkipped": "Customers receive no statement or one that disagrees with the aging.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer statements"
+    ],
+    "redFlags": [
+      "Statement date not equal to month-end"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_selecting_statements_to_print_or_email": {
+    "purpose": "Selects which customers' statements to print or email — for example only customers with balances over 30 days.",
+    "outcome": "Statements sent to the customers who need them.",
+    "rootCause": "Targeting statements at customers with balances focuses collection effort and avoids sending zero-balance statements.",
+    "ifSkipped": "Statements go to everyone or to no one, diluting collection efforts.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer statements"
+    ],
+    "redFlags": [
+      "Delinquent customers excluded from selection"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_when_to_print_statements": {
+    "purpose": "Guidance on when to print statements — typically after month-end close, once all payments and adjustments are posted.",
+    "outcome": "Statements reflect final balances.",
+    "rootCause": "Statements sent before all payments post show incorrect balances and trigger unnecessary disputes.",
+    "ifSkipped": "Customers receive statements showing amounts they already paid.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer statements"
+    ],
+    "redFlags": [
+      "Statements run before payments posted"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_statements": {
+    "purpose": "Prints customer statements for mailing to commercial tenants, housing agencies and other customers whose AP departments require paper statements.",
+    "outcome": "Paper statements ready for customers who require mail.",
+    "rootCause": "Some commercial tenants and agencies require mailed statements; printing supports those customers.",
+    "ifSkipped": "Customers who require paper statements receive nothing.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer statements"
+    ],
+    "redFlags": [
+      "Printed statements not mailed"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_emailing_statements": {
+    "purpose": "Emails customer statements as PDFs to each customer's billing contact, giving a faster, trackable delivery than mail for collection follow-up.",
+    "outcome": "Statements delivered electronically and quickly.",
+    "rootCause": "Email delivery is faster and trackable, speeding up collections from customers with electronic AP processes.",
+    "ifSkipped": "Statements are delayed and collections slow down.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer statements"
+    ],
+    "redFlags": [
+      "Statements emailed to outdated addresses"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_sending_statements_to_multiple_email_addresses": {
+    "purpose": "Sends a customer's statement to several email addresses — for example the tenant's accounts-payable inbox and its property contact.",
+    "outcome": "Statements reach everyone involved in the customer's payment process.",
+    "rootCause": "Commercial tenants often route invoices through several people; copying all of them reduces 'we never received it' delays.",
+    "ifSkipped": "Statements stall with one recipient and payment is delayed.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer statements"
+    ],
+    "redFlags": [
+      "Personal email addresses on corporate customers"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_print_email_statements_page": {
+    "purpose": "The page for setting statement options — date, customers, format — and printing or emailing them.",
+    "outcome": "Statements produced with consistent settings.",
+    "rootCause": "Consistent statement settings each month make balances comparable and reduce customer confusion.",
+    "ifSkipped": "Statement formats and dates vary month to month.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customer statements"
+    ],
+    "redFlags": [
+      "Inconsistent statement dates"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_pex_import": {
+    "purpose": "PEX Import brings transactions from PEX — a platform managing employee expense cards, vendor payments and prepaid cards — into RealPage in batches.",
+    "outcome": "PEX card activity recorded in the books without manual keying.",
+    "rootCause": "Companies using PEX prepaid cards for site purchases need that spending in the GL with property coding; importing is the only practical way at volume.",
+    "ifSkipped": "PEX card spending is missing from the books or keyed manually with errors.",
+    "glAccounts": [
+      "1120 Petty Cash",
+      "6110 Repairs & Maintenance",
+      "6410 Administrative"
+    ],
+    "gaap": [
+      "COSO 2013 — interface controls"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Treasury"
+    ],
+    "reports": [
+      "PEX import list"
+    ],
+    "redFlags": [
+      "PEX batches not reconciled to PEX statements"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_importing_pex_transactions": {
+    "purpose": "Imports a batch of PEX transactions for a date, creating the corresponding accounting entries.",
+    "outcome": "A period's PEX activity loaded into RealPage.",
+    "rootCause": "PEX card swipes happen daily at the site level; importing them by posting date is what places card spending in the correct accounting period and keeps petty cash reconciled to the PEX funding balance.",
+    "ifSkipped": "PEX spending lands in the wrong period or is omitted.",
+    "glAccounts": [
+      "1120 Petty Cash",
+      "6410 Administrative"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "PEX import list"
+    ],
+    "redFlags": [
+      "Duplicate imports of the same date range"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_pex_import_list": {
+    "purpose": "Lists every batch of transactions imported from PEX with posting date, transaction count and total, used to reconcile imports back to PEX's own activity reports.",
+    "outcome": "A record of every PEX import for reconciliation.",
+    "rootCause": "Each import batch must be reconciled to PEX's own records to confirm completeness and prevent duplicates.",
+    "ifSkipped": "Missing or duplicate PEX batches go unnoticed.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "PEX import list"
+    ],
+    "redFlags": [
+      "Gaps between import dates"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_pex_import_box": {
+    "purpose": "Dialog for creating a PEX import batch and setting the date that imported transactions are posted.",
+    "outcome": "PEX batches posted to the intended date.",
+    "rootCause": "The posting date determines the accounting period of card spending; choosing it deliberately avoids period misstatement.",
+    "ifSkipped": "Card spending posts to the wrong period.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — cutoff"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "PEX import list"
+    ],
+    "redFlags": [
+      "Batch dates in closed periods"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_common_tasks": {
+    "purpose": "Supplemental A/R reference material on tasks common across applications, chiefly importing data.",
+    "outcome": "A reference for less frequent A/R tasks.",
+    "rootCause": "Imports and similar tasks happen rarely (onboarding, cleanups) so steps are not remembered; reference material prevents repeated errors.",
+    "ifSkipped": "Rare tasks such as bulk imports are done inconsistently and produce data errors.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Repeated import failures"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_importing_data": {
+    "purpose": "Chapter on importing A/R data — customers, open invoices, adjustments and summaries — typically when onboarding a new property or management contract.",
+    "outcome": "A/R master data and opening balances loaded accurately at go-live.",
+    "rootCause": "Taking over management of a property means loading its customers and open receivables from the prior manager; errors at this stage carry into every future aging and collection.",
+    "ifSkipped": "Opening receivables are wrong and the subledger never ties to the acquired balance sheet.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — conversion controls"
+    ],
+    "stakeholders": [
+      "Transition team",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Opening A/R not tied to the acquisition balance sheet"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_overview_of_importing_data_into_realpage_accounting": {
+    "purpose": "Overview of RealPage imports — templates, file formats, validation and results — as used for A/R data.",
+    "outcome": "Users understand the import mechanics before loading receivables.",
+    "rootCause": "Understanding validation and error handling prevents partial loads where some customers or invoices silently fail.",
+    "ifSkipped": "Partial imports go unnoticed and receivables are incomplete.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Imports not checked against source totals"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_best_practices_for_preparing_data_for_import": {
+    "purpose": "Best practices for preparing A/R data for import — clean customer names, consistent IDs, correct dates, reconciled totals.",
+    "outcome": "Import files that load cleanly and tie to source records.",
+    "rootCause": "Most import problems are data problems in the source file; cleaning first avoids duplicates and rejected rows.",
+    "ifSkipped": "Imports produce duplicate customers and rejected invoices.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Transition team"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Source totals not reconciled before import"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_downloading_a_template_from_the_import_data_page": {
+    "purpose": "Downloads the A/R import template (customers, invoices, adjustments) from Company > Import Data.",
+    "outcome": "A correctly structured file to populate.",
+    "rootCause": "Templates define required columns and order; using the current template avoids rejected loads.",
+    "ifSkipped": "Imports fail on column layout mismatches and receivables data is not loaded.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import template"
+    ],
+    "redFlags": [
+      "Old templates reused"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_filling_in_an_import_template_with_data": {
+    "purpose": "Fills the A/R import template with customer or invoice data according to column rules.",
+    "outcome": "A completed file ready for import.",
+    "rootCause": "Codes (customer IDs, account numbers, locations) must exactly match system values or rows are rejected.",
+    "ifSkipped": "Rows are rejected and data is incomplete.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import template"
+    ],
+    "redFlags": [
+      "Codes not matching system values"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_preparing_your_csv_file_for_import": {
+    "purpose": "Saves the A/R template as a clean CSV — no formulas, correct encoding, preserved leading zeros — ready for upload.",
+    "outcome": "A file the importer reads correctly.",
+    "rootCause": "Excel can silently alter data (dropping leading zeros from customer IDs, reformatting dates); proper CSV preparation prevents corrupted loads.",
+    "ifSkipped": "Imported customer IDs and dates are silently corrupted and records mismatch.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Customer IDs losing leading zeros"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_about_csv_templates": {
+    "purpose": "Explains the types of CSV templates available for A/R imports and what each loads.",
+    "outcome": "The right template chosen for each data type.",
+    "rootCause": "Using the wrong template (e.g., adjustments instead of invoices) loads data into the wrong object.",
+    "ifSkipped": "Data loads into the wrong record type, e.g. invoices loaded as adjustments.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [],
+    "redFlags": [
+      "Invoices loaded as adjustments"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_order_of_csv_imports": {
+    "purpose": "Specifies the order in which A/R imports must be run — setup data and customers before invoices, invoices before payments and adjustments.",
+    "outcome": "Dependent records load without reference errors.",
+    "rootCause": "Invoices reference customers and accounts that must already exist; importing out of order causes widespread rejections.",
+    "ifSkipped": "Imports fail because referenced records do not exist yet.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — conversion controls"
+    ],
+    "stakeholders": [
+      "Transition team"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Invoices imported before customers"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_importing_a_csv_file": {
+    "purpose": "Uploads a prepared A/R CSV file (customers, invoices, adjustments or summaries), runs the import and reviews the results page for rejected rows.",
+    "outcome": "Data loaded and import results available for review.",
+    "rootCause": "Reviewing results after each import catches rejected rows before they are forgotten.",
+    "ifSkipped": "Rejected rows are never corrected and opening receivables stay incomplete.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Import results not reviewed"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_importing_offline": {
+    "purpose": "Runs large imports offline (in the background) and notifies the user when complete.",
+    "outcome": "Large A/R loads complete without session timeouts.",
+    "rootCause": "Portfolio onboarding files are large; offline processing avoids browser timeouts that can leave partial loads.",
+    "ifSkipped": "Large imports time out and partially load.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Transition team"
+    ],
+    "reports": [
+      "Import results"
+    ],
+    "redFlags": [
+      "Offline imports not checked for completion"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_automating_imports": {
+    "purpose": "Automates recurring A/R imports — for example a nightly feed of ancillary revenue billings from an external system.",
+    "outcome": "Recurring data flows in without manual uploads.",
+    "rootCause": "External billing systems (utility billing, parking) produce data daily; automation keeps A/R current and avoids missed uploads.",
+    "ifSkipped": "Recurring data is uploaded late or forgotten.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4110 Utility Reimbursement"
+    ],
+    "gaap": [
+      "COSO 2013 — interface controls"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Import logs"
+    ],
+    "redFlags": [
+      "Automated imports failing silently"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_importing_customer_records": {
+    "purpose": "Imports customer master records in bulk — names, billing contacts, payment terms, customer types and default accounts — typically when onboarding a portfolio.",
+    "outcome": "A full customer list loaded for billing.",
+    "rootCause": "Onboarding a portfolio's commercial tenants and vendors one by one is slow and error-prone; importing ensures consistency.",
+    "ifSkipped": "Customers are keyed inconsistently and duplicates appear.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — master data"
+    ],
+    "stakeholders": [
+      "Transition team"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "Duplicate customers after import"
+    ],
+    "confidence": "medium"
+  }
+}

@@ -1,0 +1,745 @@
+{
+  "scr_cash_card_maintenance_list": {
+    "purpose": "Lists every petty cash (PC) debit card issued across properties — cardholder, property, status (active, on hold, cancelled), limit and current balance — as the control register for the card program.",
+    "outcome": "Treasury can see at a glance which cards are live, who holds them and how much each can spend.",
+    "rootCause": "Each active card is a standing spending authority at a site. When staff turn over at leasing offices, cards must be reassigned, held or cancelled; the register is where that is controlled.",
+    "ifSkipped": "Cards stay active with departed employees and continue to be spent without anyone reviewing them.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — safeguarding assets and access termination"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Property manager",
+      "HR"
+    ],
+    "reports": [
+      "PC Cards report"
+    ],
+    "redFlags": [
+      "Active cards assigned to terminated employees"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_issuing_pc_cards_in_bulk_via_import": {
+    "purpose": "Issues many petty cash cards at once from an import template — typically when rolling the program out across a portfolio or onboarding a newly managed group of properties.",
+    "outcome": "Cards for dozens of properties are issued consistently with correct limits and holders in one step.",
+    "rootCause": "Portfolio roll-outs and take-overs require cards for many sites at once. Manual issuance invites inconsistent limits and holder errors.",
+    "ifSkipped": "Roll-outs are slow and limits vary arbitrarily between sites.",
+    "glAccounts": [
+      "1120 Petty Cash",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Transition team"
+    ],
+    "reports": [
+      "Import results",
+      "Card maintenance list"
+    ],
+    "redFlags": [
+      "Imported limits above the petty cash policy"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_viewing_open_transactions_on_a_pc_card": {
+    "purpose": "Shows a card's transactions that have not yet been submitted as expenses — purchases awaiting coding, receipts or approval.",
+    "outcome": "Treasury and managers see spending that has happened but not been accounted for.",
+    "rootCause": "Card purchases hit the balance immediately but are recorded as expenses only when submitted. Open transactions are unaccounted spending and a leading indicator of misuse.",
+    "ifSkipped": "Spending goes unrecorded and unreviewed, and month-end expenses are understated.",
+    "glAccounts": [
+      "1120 Petty Cash",
+      "6410 Administrative",
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "COSO 2013 — timely recording"
+    ],
+    "stakeholders": [
+      "Property manager",
+      "Treasury"
+    ],
+    "reports": [
+      "Card transactions"
+    ],
+    "redFlags": [
+      "Open transactions older than 30 days"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_deleting_an_unissued_pc_card": {
+    "purpose": "Deletes a petty cash card record that was created but never issued to a cardholder — for example set up for the wrong property.",
+    "outcome": "Unused card records are removed so the register reflects only real cards.",
+    "rootCause": "Unissued card records clutter the register and could be activated and issued later without the proper request and approval.",
+    "ifSkipped": "The register contains phantom cards that confuse reviews.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — master data hygiene"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Card maintenance list"
+    ],
+    "redFlags": [
+      "Deleting cards that had funding loaded"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_replacing_a_lost_or_stolen_pc_card": {
+    "purpose": "Cancels a lost or stolen petty cash card and issues a replacement, moving the remaining balance to the new card.",
+    "outcome": "Exposure on the lost card stops immediately while the site keeps its purchasing ability.",
+    "rootCause": "A lost card can be used by whoever finds it until it is cancelled. Replacement must be fast and must carry over the balance so funds are not lost.",
+    "ifSkipped": "Fraudulent charges accumulate on the lost card, and the site is left without a card.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — incident response"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Property manager"
+    ],
+    "reports": [
+      "Card maintenance list"
+    ],
+    "redFlags": [
+      "Charges on the lost card after the reported loss date"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_issue_card_page_card_maintenance": {
+    "purpose": "The card detail page opened from card maintenance, showing holder, property, limits, status and authorized users for an existing card.",
+    "outcome": "All attributes of one card available for review or change.",
+    "rootCause": "Card changes (limits, users, status) must be made on the specific card record with a trail of who changed what.",
+    "ifSkipped": "Card changes are made without a clear record.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Card maintenance list"
+    ],
+    "redFlags": [
+      "Card changes without an approver"
+    ],
+    "confidence": "medium"
+  },
+  "scr_cash_adding_or_removing_authorized_users_on_a_pc_card": {
+    "purpose": "Adds or removes staff authorized to use a property's petty cash card — for example when a leasing agent leaves or a new maintenance supervisor starts.",
+    "outcome": "Only current, authorized staff can use the card.",
+    "rootCause": "Site staff turnover is high in multifamily. Authorized-user lists that are not updated leave former employees able to spend.",
+    "ifSkipped": "Former employees keep access to card funds.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — access management"
+    ],
+    "stakeholders": [
+      "Property manager",
+      "Treasury",
+      "HR"
+    ],
+    "reports": [
+      "Card maintenance list"
+    ],
+    "redFlags": [
+      "Authorized users not updated after terminations"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_increasing_or_decreasing_the_card_limit_for_a_pc_card": {
+    "purpose": "Changes a petty cash card's spending limit — raising it for a busy season (pool opening supplies) or lowering it after misuse.",
+    "outcome": "Card limits match the site's legitimate needs and risk.",
+    "rootCause": "Limits cap potential loss. They must be adjustable but controlled, since raising limits increases exposure.",
+    "ifSkipped": "Limits are either too low for legitimate needs (pushing staff to personal cards) or too high for the risk.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization limits"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Regional manager"
+    ],
+    "reports": [
+      "PC Cards report"
+    ],
+    "redFlags": [
+      "Limit increases approved by the cardholder's own manager only, without treasury"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_adding_funds_to_a_pc_card": {
+    "purpose": "Loads additional funds onto a petty cash card, for users with the Change Funds permission, typically after submitted expenses are approved.",
+    "outcome": "The card is replenished for continued site purchases, with funding recorded from the property's operating account.",
+    "rootCause": "Replenishment is the key control point: funds should be added only after prior spending is submitted and approved, like an imprest petty cash fund.",
+    "ifSkipped": "Cards run dry and staff use personal funds; if done without review, unaccounted spending is refunded blindly.",
+    "glAccounts": [
+      "1120 Petty Cash",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — imprest fund controls"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Property manager"
+    ],
+    "reports": [
+      "PC Cards Billing report"
+    ],
+    "redFlags": [
+      "Funds added while open transactions are unsubmitted"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_putting_a_pc_card_on_hold": {
+    "purpose": "Temporarily freezes a petty cash card — during an investigation, extended staff leave or while receipts are overdue.",
+    "outcome": "Spending stops immediately without cancelling the card.",
+    "rootCause": "Holds give managers leverage to get receipts submitted and a way to stop spending while suspicious activity is reviewed.",
+    "ifSkipped": "Spending continues during investigations or while accountability is lacking.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Property manager"
+    ],
+    "reports": [
+      "Card maintenance list"
+    ],
+    "redFlags": [
+      "Cards on hold for months without resolution"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_canceling_or_inactivating_a_pc_card": {
+    "purpose": "Permanently cancels or inactivates a petty cash card when a site no longer needs it, the holder leaves, or the property is sold.",
+    "outcome": "The card can no longer be used, and any remaining balance is returned to the property.",
+    "rootCause": "Cards for sold properties or departed staff are standing exposure; cancellation removes it and recovers the unspent balance.",
+    "ifSkipped": "Cards remain usable after they should be closed.",
+    "glAccounts": [
+      "1120 Petty Cash",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — access termination"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "PC Cards report"
+    ],
+    "redFlags": [
+      "Remaining balances not recovered on cancelled cards"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_card_transactions_page": {
+    "purpose": "Shows all transactions for a petty cash card, where cardholders code them, attach receipts and submit them as expenses.",
+    "outcome": "Card purchases become coded, receipted expenses ready for approval.",
+    "rootCause": "Card spending needs the same coding and support as any other expense. This page is where the cardholder turns raw card activity into accounted expenses.",
+    "ifSkipped": "Card spending is never coded or supported.",
+    "glAccounts": [
+      "1120 Petty Cash",
+      "6410 Administrative",
+      "6310 Marketing"
+    ],
+    "gaap": [
+      "IRC §274(d) — substantiation of business expenses"
+    ],
+    "stakeholders": [
+      "Cardholders",
+      "Property manager"
+    ],
+    "reports": [
+      "Card transactions"
+    ],
+    "redFlags": [
+      "Transactions submitted without receipts"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_submitting_an_expense_for_a_pc_card": {
+    "purpose": "Submits a coded card transaction, with receipt, as an expense for approval and posting.",
+    "outcome": "The expense is recorded to the right property and GL account once approved.",
+    "rootCause": "Submission moves spending from 'money gone' to 'expense recorded and approved', which is necessary before replenishment.",
+    "ifSkipped": "Expenses are not recorded and replenishment cannot be approved.",
+    "glAccounts": [
+      "1120 Petty Cash",
+      "6110 Repairs & Maintenance"
+    ],
+    "gaap": [
+      "COSO 2013 — authorization"
+    ],
+    "stakeholders": [
+      "Cardholders",
+      "Approvers"
+    ],
+    "reports": [
+      "Card transactions"
+    ],
+    "redFlags": [
+      "Personal-type merchants submitted as business expenses"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_splitting_a_pc_card_transaction": {
+    "purpose": "Splits one card transaction across multiple GL accounts — for example a hardware store purchase that includes both maintenance supplies and office supplies.",
+    "outcome": "Mixed purchases are coded accurately to each expense category.",
+    "rootCause": "Single receipts often cover different expense types; coding everything to one account distorts budget variances.",
+    "ifSkipped": "Budget lines are misstated by mixed purchases.",
+    "glAccounts": [
+      "6110 Repairs & Maintenance",
+      "6410 Administrative"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Cardholders"
+    ],
+    "reports": [
+      "Card transactions"
+    ],
+    "redFlags": [
+      "Splits that do not sum to the transaction total"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_card_transactions_list": {
+    "purpose": "Lists petty cash card transactions across all cards and properties, with status (open, submitted, approved, excluded), for oversight.",
+    "outcome": "Treasury and regional managers can review card spending portfolio-wide.",
+    "rootCause": "Oversight across all cards is needed to spot patterns (split purchases to avoid limits, unusual merchants) that are not visible card by card.",
+    "ifSkipped": "Misuse patterns across cards go unnoticed.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — monitoring"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Regional manager"
+    ],
+    "reports": [
+      "PC Card Transactions report"
+    ],
+    "redFlags": [
+      "Repeated transactions just under the card limit"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_excluding_a_pc_card_transaction": {
+    "purpose": "Excludes a card transaction from expense processing — for example a card load or a merchant refund that should not be treated as an expense.",
+    "outcome": "Non-expense card activity does not flow into the P&L.",
+    "rootCause": "Card activity includes loads and refunds that are not expenses. Excluding them keeps expense reporting accurate, but excluding real purchases would hide spending.",
+    "ifSkipped": "Loads and refunds are treated as expenses; misuse hides real purchases.",
+    "glAccounts": [
+      "1120 Petty Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Treasury"
+    ],
+    "reports": [
+      "Card transactions"
+    ],
+    "redFlags": [
+      "Purchases excluded rather than submitted"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_re_including_an_excluded_pc_card_transaction": {
+    "purpose": "Restores a petty cash card transaction that was excluded from expense processing by mistake, so the cardholder can code it, attach the receipt and submit it.",
+    "outcome": "Real purchases wrongly excluded are brought back into the expense and approval flow.",
+    "rootCause": "Excluded transactions never become expenses and are never reviewed. A real purchase excluded in error is unrecorded spending — the same outcome as misuse — so it must be restorable.",
+    "ifSkipped": "Real spending stays off the books, expenses are understated and nobody reviews the purchase.",
+    "glAccounts": [
+      "1120 Petty Cash",
+      "6410 Administrative"
+    ],
+    "gaap": [
+      "COSO 2013 — completeness of recorded expenses"
+    ],
+    "stakeholders": [
+      "Treasury",
+      "Cardholders"
+    ],
+    "reports": [
+      "Card transactions"
+    ],
+    "redFlags": [
+      "Frequent exclude/re-include cycles on the same card"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_open_subledger": {
+    "purpose": "Re-opens a closed Cash Management period so cash transactions (deposits, transfers, bank fees) can again be posted to it — for example to record a bank fee discovered late.",
+    "outcome": "A controlled window to correct cash activity in a closed period.",
+    "rootCause": "Occasionally a material cash transaction must be recorded in the period it occurred. Reopening is possible but changes reported cash, so it must be deliberate.",
+    "ifSkipped": "Material corrections are forced into the wrong period; if reopening is uncontrolled, reported cash changes after the fact.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "ASC 250 — correction period",
+      "COSO 2013 — close controls"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Period status"
+    ],
+    "redFlags": [
+      "Cash periods reopened after bank recs were approved"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_opening_a_period": {
+    "purpose": "Procedure to open a Cash Management period — both for opening the next period and for reopening a closed one.",
+    "outcome": "The period is available for cash postings.",
+    "rootCause": "Periods must be opened before activity can post; reopening closed ones must follow the same controlled steps.",
+    "ifSkipped": "Cash transactions cannot post or are forced into other periods.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Period status"
+    ],
+    "redFlags": [
+      "Multiple periods left open at once"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_close_subledger": {
+    "purpose": "Closes a Cash Management period independently of other subledgers, preventing further deposits, transfers and bank entries from posting into it.",
+    "outcome": "Reconciled cash periods are locked so recs stay valid.",
+    "rootCause": "Once a bank rec is approved, any new posting in that period breaks it. Closing the cash subledger protects approved reconciliations.",
+    "ifSkipped": "Late cash postings break approved bank recs and next month's beginning balance.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — cutoff"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Period status",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Cash subledger left open after recs approved"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_closing_a_period": {
+    "purpose": "Procedure to close a Cash Management period after bank reconciliations are complete.",
+    "outcome": "The cash period is locked in line with the close calendar.",
+    "rootCause": "Closing in sequence — after recs are approved and before the GL is closed — keeps cash stable for owner reporting.",
+    "ifSkipped": "Cash remains open to backdated postings.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager"
+    ],
+    "reports": [
+      "Period status"
+    ],
+    "redFlags": [
+      "Cash closed before all recs finalized"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_print_payment_copies_results_page": {
+    "purpose": "Shows the results of a payment-copies search — the checks and electronic payments matching the chosen filters — ready to print or email.",
+    "outcome": "A selected set of payment copies for vendors, auditors or files.",
+    "rootCause": "Vendors often ask for proof of payment, and auditors sample disbursements. Copies are produced from the results list.",
+    "ifSkipped": "Proof of payment requests take longer to answer.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "AU-C 500 — disbursement testing"
+    ],
+    "stakeholders": [
+      "A/P team",
+      "Vendors",
+      "External auditor"
+    ],
+    "reports": [
+      "Payment copies"
+    ],
+    "redFlags": [
+      "Results including voided payments sent as proof of payment"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_emailing_and_printing_copies_of_checks": {
+    "purpose": "Emails or prints copies of issued vendor checks — front image and remittance detail — to answer vendor payment inquiries or to file as disbursement evidence.",
+    "outcome": "Vendors receive proof of payment and the file holds disbursement support.",
+    "rootCause": "Vendors frequently claim non-receipt or misapply payments. Sending a copy of the check resolves the inquiry and prevents the vendor from re-billing, which would risk a duplicate payment.",
+    "ifSkipped": "Vendors keep chasing payment, re-bill the same invoice, and duplicate payments become more likely.",
+    "glAccounts": [
+      "2010 Accounts Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — duplicate payment prevention"
+    ],
+    "stakeholders": [
+      "A/P team",
+      "Vendors"
+    ],
+    "reports": [
+      "Payment copies"
+    ],
+    "redFlags": [
+      "Check copies emailed to addresses not on the vendor record"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reconcile_bank_account_page_2": {
+    "purpose": "The matching workspace of the new bank reconciliation tool (Bank - New!), where imported bank transactions are matched to G/L cash transactions with intelligent matching and a running difference.",
+    "outcome": "Bank and book activity are matched with far less manual effort than in the legacy tool.",
+    "rootCause": "The new tool is designed around imported bank data and rule-based matching, so preparers spend their time on exceptions rather than routine matches — important for offshore teams handling many accounts.",
+    "ifSkipped": "Preparers stay on slower manual matching and miss close deadlines.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1115 Security Deposit Trust Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — bank reconciliation"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation (new)"
+    ],
+    "redFlags": [
+      "Large numbers of manual overrides of suggested matches"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_filtering_and_sorting_transactions_2": {
+    "purpose": "Filters and sorts transactions in the new reconciliation tool's matching page to isolate unmatched items by amount, type or date.",
+    "outcome": "Exceptions are found quickly among high-volume activity.",
+    "rootCause": "Even with auto-matching, residual exceptions must be isolated from thousands of matched lines.",
+    "ifSkipped": "Exceptions are overlooked in large accounts.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation (new)"
+    ],
+    "redFlags": [
+      "Filters left on that hide unmatched items at finalization"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reconciling_an_account_manually_2": {
+    "purpose": "Manual matching in the new tool for items auto-matching missed — many-to-one deposits, split transfers, or keying differences.",
+    "outcome": "Remaining exceptions are matched with preparer judgment.",
+    "rootCause": "Some bank-book relationships (one bank credit for several book deposits) cannot be resolved by rules and need a person.",
+    "ifSkipped": "Legitimate items carried as false reconciling items.",
+    "glAccounts": [
+      "1110 Operating Cash",
+      "1130 Undeposited Funds"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation (new)"
+    ],
+    "redFlags": [
+      "Manual matches with amount differences"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_reconciling_accounts_with_intelligent_bank_matching": {
+    "purpose": "Configures reconciliation rules (Setup > Reconciliation Rules) that automatically match bank and G/L transactions — by amount and date tolerance, check number, reference or description patterns.",
+    "outcome": "Most routine matches happen automatically, consistently across all accounts.",
+    "rootCause": "Rules encode the matching logic an experienced accountant applies, so offshore teams can scale across many accounts without losing accuracy.",
+    "ifSkipped": "Matching remains manual and inconsistent across preparers.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013 — automated control design"
+    ],
+    "stakeholders": [
+      "Onshore accounting manager",
+      "Offshore team lead"
+    ],
+    "reports": [
+      "Reconciliation rules",
+      "Bank reconciliation"
+    ],
+    "redFlags": [
+      "Rules with wide date or amount tolerances that create wrong matches"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_matching_bank_transactions_without_matching_to_g_l_transactions": {
+    "purpose": "Matches bank transactions to each other without a G/L transaction — for example a bank debit and its same-day reversal by the bank.",
+    "outcome": "Bank-side pairs that net to zero are cleared without book entries.",
+    "rootCause": "Banks sometimes post and reverse items (errors, returned deposits re-presented). These pairs should cancel on the bank side alone.",
+    "ifSkipped": "Offsetting bank pairs remain unmatched and clutter the rec.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation (new)"
+    ],
+    "redFlags": [
+      "Bank-only matches that do not net to zero"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_matching_different_transaction_types_if_the_amount_to_match_is_z_2": {
+    "purpose": "In the new tool, matches a group of different transaction types whose net is zero — for example a book deposit and its reversal — clearing them together.",
+    "outcome": "Offsetting book entries that never reached the bank are cleared.",
+    "rootCause": "Reversals and voids in the same period create book-only pairs that must be cleared together or they sit as outstanding items forever.",
+    "ifSkipped": "Permanent outstanding items that obscure real ones.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation (new)"
+    ],
+    "redFlags": [
+      "Zero-net matches of unrelated items"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_matching_a_range_of_checks_quick_match_2": {
+    "purpose": "Quick Match in the new tool clears a range of check numbers at once when all cleared at their issued amounts.",
+    "outcome": "Bulk check clearing in seconds.",
+    "rootCause": "High check volume makes one-by-one matching impractical; range matching is efficient but must not mask altered amounts.",
+    "ifSkipped": "Slow check clearing; misuse hides altered checks.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "UCC 4-406"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation (new)"
+    ],
+    "redFlags": [
+      "Quick match used where bank amounts differ from issued amounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_unmatching_a_transaction_2": {
+    "purpose": "Undoes an incorrect match in the new (Bank - New!) reconciliation tool — typically an auto-match that paired two same-amount items that do not belong together — so both return to the unmatched lists.",
+    "outcome": "Wrong matches are corrected before finalizing, keeping real exceptions visible.",
+    "rootCause": "Rule-based matching on amount can pair the wrong items when many transactions share amounts (identical rent payments). A wrong match hides a real unmatched item.",
+    "ifSkipped": "A wrong match hides a genuine exception, such as an unrecorded bank debit, until it surfaces months later.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Bank reconciliation (new)"
+    ],
+    "redFlags": [
+      "Frequent unmatching indicating poorly tuned matching rules"
+    ],
+    "confidence": "high"
+  },
+  "scr_cash_exporting_bank_reconciliation_transactions_to_excel_2": {
+    "purpose": "Exports matched and unmatched transactions from the new tool to Excel for analysis and review.",
+    "outcome": "Portable reconciliation detail for reviewers and follow-up.",
+    "rootCause": "Reviewers and site teams need reconciliation detail outside the system to investigate aged items.",
+    "ifSkipped": "Follow-up on reconciling items is slower.",
+    "glAccounts": [
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "AU-C 500"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Onshore reviewer"
+    ],
+    "reports": [
+      "Reconciliation export"
+    ],
+    "redFlags": [
+      "Exports altered before being shared"
+    ],
+    "confidence": "high"
+  }
+}

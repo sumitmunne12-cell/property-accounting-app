@@ -26,7 +26,7 @@
     "build:modules": "python3 scripts/build_realpage_modules.py",
     "build:asc": "python3 scripts/build_asc_codification.py",
     "lint": "eslint .",
-    "validate": "node scripts/validate_modules.mjs && node --import ./scripts/test/register.mjs --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/validate_app_data.mjs",
+    "validate": "node scripts/validate_modules.mjs && node --import ./scripts/test/register.mjs --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/validate_app_data.mjs && node --import ./scripts/test/register.mjs --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/validate_sme.mjs",
     "test": "node --import ./scripts/test/register.mjs --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test scripts/test/app.test.mjs scripts/test/asc.test.mjs scripts/test/compass.test.mjs scripts/test/properties.test.mjs scripts/test/tasks.test.mjs",
     "test:py": "python3 -m unittest discover -s scripts/test -p \"test_*.py\"",
     "check": "npm run lint && npm run validate && npm test && npm run test:py"

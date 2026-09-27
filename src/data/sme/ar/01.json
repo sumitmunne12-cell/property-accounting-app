@@ -1,0 +1,122 @@
+{
+  "scr_ar_adding_an_a_r_adjustment": {
+    "purpose": "Posts an adjustment to a customer's overall A/R balance — not to a specific invoice — such as a goodwill credit, a correction of a mis-billed utility charge, an approved write-off of a small balance, or a debit to re-bill a missed charge.",
+    "outcome": "The customer's balance is corrected with a documented reason and the offset posted to the right revenue, concession or bad-debt account.",
+    "rootCause": "Resident and commercial tenant balances drift from what is actually owed because of billing errors, disputed charges and negotiated settlements. Adjustments let the balance be corrected without falsifying the original invoices, and they must be controlled because they are a common way to hide skimmed cash (crediting a paid resident's account to cover a diverted payment).",
+    "ifSkipped": "Resident ledgers show incorrect balances, collections chase amounts that are not owed, and uncontrolled credits can conceal misappropriated receipts.",
+    "glAccounts": ["1210 Resident/Tenant A/R", "4040 Concessions", "4050 Bad Debt", "4100 Other Income", "4110 Utility Reimbursement"],
+    "gaap": ["ASC 842-30 — adjustments to lease receivables", "ASC 606-10-32 — price concessions as variable consideration for non-lease charges", "COSO 2013 — authorization of credits (fraud risk)"],
+    "stakeholders": ["Property manager (approves credits)", "Offshore property accountant", "Regional property manager", "Onshore reviewer"],
+    "reports": ["Customer aging", "Adjustment register", "Income Statement (concessions, bad debt)"],
+    "redFlags": ["Credits issued by site staff who also receive payments", "Large or frequent adjustments without documentation", "Adjustments coded to revenue accounts rather than concessions or bad debt"],
+    "confidence": "high"
+  },
+  "scr_ar_adding_an_a_r_invoice": {
+    "purpose": "Creates a receivable invoice to a customer who is billed outside the resident rent cycle — commercial tenants, affiliated entities, laundry or cell-tower licensees, or cost recoveries such as utility and expense bill-backs.",
+    "outcome": "Amounts owed to the property are recorded as receivables and revenue or cost recovery in the correct period.",
+    "rootCause": "Not all property revenue flows through OneSite resident billing. Commercial space, ancillary contracts and recoveries from affiliates must be billed and tracked, or the property loses revenue and cost recoveries go uncollected.",
+    "ifSkipped": "Revenue is understated, cost recoveries are never collected, and receivables from affiliates are not tracked.",
+    "glAccounts": ["1210 Resident/Tenant A/R", "1230 Due From Affiliates", "4100 Other Income", "4110 Utility Reimbursement"],
+    "gaap": ["ASC 606 — revenue from non-lease contracts", "ASC 842-30 — lease income for commercial tenants"],
+    "stakeholders": ["Offshore property accountant", "Property manager", "Commercial tenants / affiliates"],
+    "reports": ["Customer aging", "Income Statement", "Billback reconciliation"],
+    "redFlags": ["Bill-backs that do not tie to the underlying expense invoices", "Invoices to affiliates never settled"],
+    "confidence": "high"
+  },
+  "scr_ar_close_a_r_subledger_page": {
+    "purpose": "Closes A/R summaries for a period so no one posts A/R invoices, payments or adjustments into that period after month-end.",
+    "outcome": "The A/R aging at period end is fixed and agrees with the 1210 balance in reported financials.",
+    "rootCause": "Late payments and adjustments are routinely dated into prior periods. Closing the subledger keeps reported receivables and revenue stable after reporting.",
+    "ifSkipped": "Reported A/R and revenue change after reporting, and the aging no longer ties to the balance sheet.",
+    "glAccounts": ["1210 Resident/Tenant A/R", "4010 Gross Potential Rent"],
+    "gaap": ["COSO 2013 — cutoff controls", "ASC 855 — subsequent events"],
+    "stakeholders": ["Offshore property accountant", "Onshore accounting manager", "Property manager"],
+    "reports": ["Customer aging", "Close checklist"],
+    "redFlags": ["A/R subledger open after GL close", "Summaries reopened without approval"],
+    "confidence": "high"
+  },
+  "scr_ar_customer_aging_report": {
+    "purpose": "Shows receivables by customer aged by due date (current, 30, 60, 90+), used to manage collections, estimate bad debt and reconcile to the A/R control account.",
+    "outcome": "A collection priority list and the basis for the allowance for doubtful accounts, reconciled to 1210.",
+    "rootCause": "Delinquency is a leading indicator of revenue loss. Aging drives collections, eviction decisions and the bad-debt reserve, and must tie to the GL.",
+    "ifSkipped": "Collections are not prioritized, bad debt is under-reserved, and A/R subledger differences go undetected.",
+    "glAccounts": ["1210 Resident/Tenant A/R", "1215 Allowance for Doubtful Accounts", "4050 Bad Debt"],
+    "gaap": ["ASC 842-30-35 — collectibility of lease receivables", "ASC 326 — expected credit losses for non-lease receivables"],
+    "stakeholders": ["Property manager", "Collections team", "Offshore property accountant", "Asset manager"],
+    "reports": ["Customer aging", "Bad debt reserve", "Delinquency report"],
+    "redFlags": ["Aging total not tying to 1210", "Prepaid (credit) balances not reclassed to 2120 Prepaid Rent", "Former residents with balances not sent to collections"],
+    "confidence": "high"
+  },
+  "scr_ar_delinquency_report": {
+    "purpose": "The curated workflow for tracking past-due resident balances aged 30, 60 and 90+ days to calculate bad-debt reserves, drive collection and eviction actions, and write off uncollectible former-resident balances.",
+    "outcome": "Delinquency is actively managed, the allowance reflects expected losses, and uncollectible balances are written off on schedule.",
+    "rootCause": "Rent delinquency directly reduces NOI. Asset managers track delinquency and bad debt as key performance metrics, and GAAP requires recognizing lease income only when collection is probable.",
+    "ifSkipped": "Uncollectible rent stays in revenue, A/R is overstated, and bad debt appears in large lumps when finally written off.",
+    "glAccounts": ["1210 Resident/Tenant A/R", "1215 Allowance for Doubtful Accounts", "4050 Bad Debt"],
+    "gaap": ["ASC 842-30-25-12 — lessor income limited to cash received when collectibility is not probable", "ASC 326 — CECL for non-lease receivables"],
+    "stakeholders": ["Property manager", "Asset manager", "Collections agency", "Offshore property accountant"],
+    "reports": ["Delinquency report", "Bad debt reserve", "Income Statement"],
+    "redFlags": ["Balances over 90 days with no reserve", "Write-offs not sent to collections", "Delinquency concentrated in units with repeated payment plans"],
+    "confidence": "high"
+  },
+  "scr_ar_gpr_tieout": {
+    "purpose": "The curated workflow for reconciling the rent roll to the GL revenue accounts: gross potential rent, loss/gain to lease, vacancy, concessions and employee units, so reported rental revenue matches what the property actually billed and should have billed.",
+    "outcome": "A monthly GPR tie-out that proves revenue in the GL is complete and correctly split among GPR and its contra accounts.",
+    "rootCause": "Institutional owners report revenue on a GPR basis (GPR less vacancy, concessions, loss to lease and bad debt) to analyze performance. The GPR posting is often a manual JE from rent roll data, so a tie-out is needed to prove it matches the rent roll.",
+    "ifSkipped": "Revenue components are misstated, occupancy and loss-to-lease analysis is wrong, and asset managers draw wrong conclusions about pricing and occupancy.",
+    "glAccounts": ["4010 Gross Potential Rent", "4040 Concessions", "Vacancy loss", "Loss to lease", "Employee unit / model unit"],
+    "gaap": ["ASC 842-30 — lease income", "Owner reporting conventions (GPR basis)"],
+    "stakeholders": ["Offshore property accountant", "Asset manager", "Property manager", "Revenue management"],
+    "reports": ["Rent roll", "GPR tie-out", "Income Statement"],
+    "redFlags": ["GPR per GL differs from rent roll market rent", "Vacancy loss inconsistent with occupancy percentage", "Model and employee units not separately tracked"],
+    "confidence": "high"
+  },
+  "scr_ar_intercompany_bill_backs": {
+    "purpose": "Configures and uses intercompany bill-backs, where one entity pays shared costs (payroll, insurance, utilities) and bills them back to related entities, automatically creating receivables and payables between them.",
+    "outcome": "Shared costs are recovered from the entities that incurred them, with matching Due To and Due From balances.",
+    "rootCause": "Shared-service structures mean one entity often pays for others. Billing back correctly ensures each property's P&L carries its costs and affiliated balances are settled.",
+    "ifSkipped": "Costs stay on the paying entity, affiliate balances do not reconcile, and owners are over- or under-charged.",
+    "glAccounts": ["1230 Due From Affiliates", "2130 Due To Affiliates", "6010 Payroll", "6610 Insurance"],
+    "gaap": ["ASC 810 — intercompany elimination", "ASC 850 — related-party disclosures"],
+    "stakeholders": ["Onshore accounting manager", "Offshore property accountant", "Asset manager"],
+    "reports": ["Intercompany reconciliation", "Billback schedule"],
+    "redFlags": ["Billbacks not tying to source invoices", "Affiliate balances aging without settlement"],
+    "confidence": "high"
+  },
+  "scr_ar_receiving_a_payment": {
+    "purpose": "Records a payment from a customer and applies it to specific open invoices, starting from the invoice record, the A/R invoice list or the payment screen.",
+    "outcome": "Customer balances and A/R are reduced, cash is recorded (often to Undeposited Funds), and payment history is traceable to invoices.",
+    "rootCause": "Correct application of payments to invoices matters for aging accuracy, late-fee assessment and dispute resolution. Misapplied payments create false delinquencies and credits.",
+    "ifSkipped": "A/R and cash are misstated, customers are dunned for paid balances, and late fees are charged incorrectly.",
+    "glAccounts": ["1130 Undeposited Funds", "1110 Operating Cash", "1210 Resident/Tenant A/R"],
+    "gaap": ["ASC 310 / ASC 842 — receivable reduction on collection"],
+    "stakeholders": ["Property staff / A/R team", "Offshore property accountant", "Customers"],
+    "reports": ["Cash receipts", "Customer aging", "Deposit register"],
+    "redFlags": ["Payments applied to the oldest balance when the customer specified an invoice", "Unapplied payments left on account"],
+    "confidence": "high"
+  },
+  "scr_ar_recurring_invoices_list": {
+    "purpose": "Automates repeating customer invoices — commercial rent, ancillary licenses, monthly affiliate charges — so they generate on schedule.",
+    "outcome": "Predictable billing with consistent revenue recognition and fewer missed charges.",
+    "rootCause": "Manual monthly billing leads to missed invoices and lost revenue. Automation ensures charges are billed consistently, but the list must be maintained when agreements change.",
+    "ifSkipped": "Charges are missed or continue after agreements end.",
+    "glAccounts": ["1210 Resident/Tenant A/R", "4100 Other Income"],
+    "gaap": ["ASC 606 / ASC 842 — revenue recognized as earned"],
+    "stakeholders": ["Offshore property accountant", "Property manager"],
+    "reports": ["Recurring invoice register", "Income Statement"],
+    "redFlags": ["Recurring invoices for expired agreements", "Escalations not applied"],
+    "confidence": "high"
+  },
+  "scr_ar_reversing_payments": {
+    "purpose": "Reverses a posted customer payment — applied to the wrong customer or date, or returned NSF — reinstating the invoices it paid; reversals cannot be undone, only corrected with a new payment.",
+    "outcome": "Customer balances and cash reflect reality after payment errors or bounced payments.",
+    "rootCause": "Payments get misapplied, and resident payments bounce. Reversal is the controlled way to reinstate the balance and, for NSF, to trigger NSF fees and collection.",
+    "ifSkipped": "Balances remain wrong, NSF payments stay credited, and cash is overstated.",
+    "glAccounts": ["1210 Resident/Tenant A/R", "1110 Operating Cash", "4100 Other Income (NSF fees)"],
+    "gaap": ["ASC 310 — reinstating receivables"],
+    "stakeholders": ["A/R team", "Property manager", "Offshore property accountant"],
+    "reports": ["Payment reversal log", "Customer aging", "Bank reconciliation"],
+    "redFlags": ["Reversals without bank evidence of NSF", "Reversal dated in a reconciled period"],
+    "confidence": "high"
+  }
+}
