@@ -77,3 +77,43 @@ Never import the module files statically from app code: that pulls all 28 MB bac
 | `src/data/exceptionsPlaybookData.js` | 15 exception triage playbooks, each with a diagnostic wizard and balanced adjusting entries. |
 
 Screen ids are derived from manual topic titles, so they only change when the manuals or the builder change. Run `npm run validate` after a rebuild; it names any link that broke.
+
+# US GAAP Codex data pipeline (FASB ASC)
+
+`src/data/asc/` is generated from the FASB Accounting Standards Codification markdown library in
+`asc_codification/markdown/` (99 Topics) — do not hand-edit it. Change the inputs below and re-run:
+
+```bash
+npm run build:asc   # python3 scripts/build_asc_codification.py
+npm test            # includes scripts/test/asc.test.mjs
+```
+
+## Inputs
+
+| File | Role |
+| --- | --- |
+| `asc_codification/markdown/ASC_NNN_*.md` | One file per Topic. `scripts/asc_parse.py` splits it into subtopics → sections (00 Status, 05 Overview, 15 Scope, 20 Glossary, 25 Recognition, 30/35 Measurement, …, S99 SEC Materials) → headings, numbered paragraphs, glossary terms and tables. It strips link markup and glossary tooltips, collapses the export's back-to-back duplicate of every paragraph (18,072 of them; when the two copies differ the longer pending-content copy is kept), and joins inline cross-references ("see paragraphs 842-10-35-4 through 35-5") back into their sentences. No codification wording is dropped. |
+| `scripts/asc_kb/` | Curated first-principles card for every Topic: economic truth, everyday analogy, recognition triggers, measurement basis, balanced journal entries, audit & interview traps, the property-accounting lens and cited key paragraphs. |
+| `asc_codification/README.md` | Declared subtopic counts, used only for the coverage note. The markdown export holds the core subtopics of each Topic; industry cross-reference subtopics (e.g., 970-340, 805-740) are not in it, and the app says so on the Official Text tab. |
+
+The build fails if a Topic has no card or a card field is missing, a journal entry does not balance,
+the economic truth is not 2–3 sentences, a real-estate card has no property lens, or a cited
+paragraph does not exist in the parsed official text.
+
+## Outputs and how the app loads them
+
+| File | Content | Loaded |
+| --- | --- | --- |
+| `src/data/asc/ascIndex.json` | Series table plus one compact entry per Topic (number, title, series, real-estate tier, legacy flag, tagline, aliases, subtopic titles, paragraph/word counts) — about 50 KB. | At startup (search, lists, screen links) |
+| `src/data/asc/asc_100s.json` … `asc_900s.json` | Master cards per FASB series (9 files, 620 KB in total). | `import()` the first time a card in that series is opened |
+| `src/data/asc/text/asc_NNN.json` | Complete official text per Topic (99 files, 13.3 MB; the largest, 815, is 1.7 MB). | `import()` only when the card's Official Text tab is opened |
+| `src/data/asc/ascImporters.js` | Static `import()` maps so Metro emits every file above as its own chunk. | — |
+| `scripts/output/asc_coverage.json` | Per-Topic report: subtopics (source vs. declared), paragraphs (live vs. superseded), glossary terms, tables, pending-content paragraphs, words, text size. | — |
+
+`src/data/asc/ascLoader.js` caches each file and shares concurrent loads; `src/utils/ascIndex.js`
+builds the fuzzy search (Topic number, title, alias such as "VIE", "ROU" or "stock comp", typo
+tolerance, Codification references such as `842-20-25-1`) and the Real Estate / All US GAAP filters;
+`src/utils/ascLinks.js` links catalog screens to Topics (Track A): guardrail citations first, then
+real-estate rules for 842, 970, 606, 360 and 450. The unit tests fail if any ASC file is loaded at
+import time, a Topic is missing, a journal entry does not balance, a cited paragraph is missing from
+the official text, or a core property standard links to fewer than 40 screens.

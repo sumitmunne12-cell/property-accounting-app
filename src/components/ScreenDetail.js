@@ -6,6 +6,9 @@ import { RADII } from '../theme/layout';
 import { MULTIFAMILY_TERMS } from '../data/glossaryData';
 import { useScreenDetail } from '../utils/useModuleData';
 import RegulatoryGuardrailCard from './RegulatoryGuardrailCard';
+import GaapButton from './gaap/GaapButton';
+import { getScreenEntry } from '../utils/screenIndex';
+import { ascLinksForScreen } from '../utils/ascLinks';
 import { Breadcrumbs, StepList, SectionLabel, ModuleLoading } from './ui';
 import { LedgerText } from './Ledger';
 // SOP steps are stored as "1. Do X" — the badge already shows the number.
@@ -27,6 +30,8 @@ export function findAcronyms(screen) {
 function ScreenDetail({ screen, accent = COLORS.info }) {
   const [openAcronym, setOpenAcronym] = useState(null);
   const acronyms = useMemo(() => findAcronyms(screen), [screen]);
+  // Track A: ASC Topics that govern this screen (guardrail citations + real-estate rules).
+  const gaapLinks = useMemo(() => ascLinksForScreen(getScreenEntry(screen.id), screen), [screen]);
   const why = Array.isArray(screen.whyRecordsAreHere) ? screen.whyRecordsAreHere : [screen.whyRecordsAreHere];
 
   return (
@@ -42,6 +47,8 @@ function ScreenDetail({ screen, accent = COLORS.info }) {
       </View>
 
       <RegulatoryGuardrailCard guardrail={screen.regulatoryGuardrail} />
+
+      <GaapButton links={gaapLinks} contextLabel={screen.name} />
 
       {acronyms.length > 0 && (
         <View style={styles.section}>

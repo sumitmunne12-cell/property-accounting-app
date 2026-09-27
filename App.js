@@ -43,6 +43,8 @@ import CommandSearch from './src/components/CommandSearch';
 import YardiAndTools from './src/components/YardiAndTools';
 import CloseCockpit from './src/components/CloseCockpit';
 import ScreenSopModal from './src/components/ScreenSopModal';
+import GaapCodex from './src/components/gaap/GaapCodex';
+import { GaapNavContext } from './src/components/gaap/GaapNavContext';
 import { MODULE_FILE_TO_ID, SCREEN_COUNT } from './src/utils/screenIndex';
 
 const NAV_ITEMS = [
@@ -50,7 +52,8 @@ const NAV_ITEMS = [
   { key: 'close', label: 'Close', icon: 'lock-closed', accent: COLORS.close },
   { key: 'explorer', label: 'RP Explorer', short: 'Explorer', icon: 'desktop', accent: COLORS.info },
   { key: 'search', label: 'Triage & Search', short: 'Triage', icon: 'search', accent: COLORS.danger },
-  { key: 'tools', label: 'Yardi & Terms', short: 'Yardi & Terms', icon: 'layers', accent: COLORS.yardi },
+  { key: 'tools', label: 'Yardi & Terms', short: 'Yardi', icon: 'layers', accent: COLORS.yardi },
+  { key: 'codex', label: 'GAAP Codex', short: 'Codex', icon: 'library', accent: COLORS.gold },
 ];
 
 export default function App() {
@@ -67,7 +70,7 @@ function AppShell() {
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const isDesktop = width >= LAYOUT.DESKTOP_MIN;
-  const [activeTab, setActiveTab] = useState('tasks'); // 'tasks' | 'close' | 'explorer' | 'search' | 'tools'
+  const [activeTab, setActiveTab] = useState('tasks'); // 'tasks' | 'close' | 'explorer' | 'search' | 'tools' | 'codex'
   const [selectedPhase, setSelectedPhase] = useState('All');
   const [selectedPriority, setSelectedPriority] = useState('All');
   const [selectedProperty, setSelectedProperty] = useState('All Properties');
@@ -85,6 +88,8 @@ function AppShell() {
   const [sopScreen, setSopScreen] = useState(null); // { id, context }
   // Deep link into the RP Explorer: { moduleId, screenId, nonce }
   const [explorerFocus, setExplorerFocus] = useState(null);
+  // Deep link into the GAAP Codex: { topic, paragraph, nonce }
+  const [codexFocus, setCodexFocus] = useState(null);
 
   const openScreen = (screenId, context) => setSopScreen({ id: screenId, context });
   const openInExplorer = (moduleId, screenId) => {
@@ -92,6 +97,18 @@ function AppShell() {
     setExplorerFocus({ moduleId, screenId, nonce: Date.now() });
     setActiveTab('explorer');
   };
+  // Any "📖 First-Principles GAAP" pop-up can hand off to the Codex tab.
+  const gaapNav = useMemo(
+    () => ({
+      openInCodex: (topic, paragraph = null) => {
+        setSopScreen(null);
+        setSelectedTaskForMastery(null);
+        setCodexFocus({ topic, paragraph, nonce: Date.now() });
+        setActiveTab('codex');
+      },
+    }),
+    []
+  );
   const openModule = (moduleFile) => {
     const moduleId = MODULE_FILE_TO_ID[moduleFile] || moduleFile;
     setExplorerFocus({ moduleId, screenId: null, nonce: Date.now() });
@@ -179,267 +196,272 @@ function AppShell() {
   const pct = totalCount ? Math.round((completedCount / totalCount) * 100) : 0;
 
   return (
-    <View style={styles.root}>
-      <StatusBar barStyle="light-content" backgroundColor={COLORS.surface} />
-      <View style={styles.frame}>
-        {isDesktop && (
-          <View style={[styles.sidebar, { paddingTop: insets.top + 18, paddingBottom: insets.bottom + 16 }]}>
-            <View style={styles.sideBrand}>
-              <View style={styles.sideLogo}>
-                <Ionicons name="business" size={18} color="#FFFFFF" />
-              </View>
-              <View style={styles.flex}>
-                <Text style={styles.sideTitle}>RealPage Master</Text>
-                <Text style={styles.sideSubtitle}>US Offshore Property Accounting</Text>
-              </View>
-            </View>
-            <Text style={styles.sideSection}>WORKSPACE</Text>
-            {NAV_ITEMS.map((item) => {
-              const on = activeTab === item.key;
-              return (
-                <TouchableOpacity
-                  key={item.key}
-                  style={[styles.sideItem, on && styles.sideItemActive]}
-                  onPress={() => selectTab(item.key)}
-                  accessibilityRole="tab"
-                  accessibilityState={{ selected: on }}
-                >
-                  <View style={[styles.sideAccent, on && { backgroundColor: item.accent }]} />
-                  <Ionicons name={on ? item.icon : `${item.icon}-outline`} size={17} color={on ? item.accent : COLORS.textMuted} />
-                  <Text style={[styles.sideItemText, on && styles.sideItemTextActive]}>{item.label}</Text>
-                </TouchableOpacity>
-              );
-            })}
-            <View style={styles.flex} />
-            <View style={styles.sideFooter}>
-              <Text style={styles.sideFooterLabel}>TODAY'S SHIFT</Text>
-              <Text style={styles.sideFooterValue}>
-                {completedCount}/{totalCount} tasks · {pct}%
-              </Text>
-              <View style={styles.sideTrack}>
-                <View style={[styles.sideFill, { width: `${pct}%` }]} />
-              </View>
-              <Text style={styles.sideFooterMeta}>{SCREEN_COUNT.toLocaleString()} RealPage screens indexed</Text>
-            </View>
-          </View>
-        )}
-
-        <View
-          style={[
-            styles.main,
-            { paddingTop: insets.top, paddingLeft: isDesktop ? 0 : insets.left, paddingRight: insets.right },
-          ]}
-        >
-          <View style={[styles.column, isDesktop && styles.columnDesktop]}>
-            {/* Global Executive Header */}
-            <HeaderBar
-              hideBrand={isDesktop}
-              selectedProperty={selectedProperty}
-              onOpenPropertyPicker={() => setPropertyPickerVisible(true)}
-              activeSoftware={activeSoftware}
-              onToggleSoftware={handleToggleSoftware}
-              completedCount={completedCount}
-              totalCount={totalCount}
-            />
-
-            {/* MAIN BODY AREA SWITCHED BY TAB */}
-            <View style={styles.body}>
-              {/* TAB 1: DAILY TASK COMMAND HUB */}
-              {activeTab === 'tasks' && (
-                <View style={styles.tasksContainer}>
-                  {/* Phase Switcher Horizontal Scroll */}
-                  <View style={styles.phaseBar}>
-                    <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.phaseScroll}>
-                      {TASK_PHASES.map((ph) => {
-                        const isSelected = selectedPhase === ph;
-                        const count = ph === 'All' ? ALL_TASKS.length : ALL_TASKS.filter((t) => t.phase === ph).length;
-                        return (
-                          <TouchableOpacity
-                            key={ph}
-                            style={[styles.phaseChip, isSelected && styles.phaseChipActive]}
-                            onPress={() => {
-                              triggerHaptic('light');
-                              setSelectedPhase(ph);
-                            }}
-                          >
-                            <Text style={[styles.phaseChipText, isSelected && styles.phaseChipTextActive]}>
-                              {ph}
-                            </Text>
-                            <View style={[styles.phaseCountPill, isSelected && styles.phaseCountPillActive]}>
-                              <Text style={[styles.phaseCountText, isSelected && styles.phaseCountTextActive]}>
-                                {count}
-                              </Text>
-                            </View>
-                          </TouchableOpacity>
-                        );
-                      })}
-                    </ScrollView>
-                  </View>
-
-                  {/* Priority Filter & Phase Title Row */}
-                  <View style={styles.subFilterRow}>
-                    <Text style={styles.listHeading}>
-                      {selectedPhase === 'All' ? `All ${ALL_TASKS.length} Offshore Tasks` : selectedPhase}
-                      <Text style={styles.listHeadingCount}> ({filteredTasks.length})</Text>
-                    </Text>
-
-                    <View style={styles.priorityFilterGroup}>
-                      {['All', 'High', 'Medium'].map((prio) => {
-                        const isSelected = selectedPriority === prio;
-                        return (
-                          <TouchableOpacity
-                            key={prio}
-                            style={[styles.prioButton, isSelected && styles.prioButtonActive]}
-                            onPress={() => {
-                              triggerHaptic('light');
-                              setSelectedPriority(prio);
-                            }}
-                          >
-                            <Text style={[styles.prioText, isSelected && styles.prioTextActive]}>
-                              {prio}
-                            </Text>
-                          </TouchableOpacity>
-                        );
-                      })}
-                    </View>
-                  </View>
-
-                  {/* Tasks List (virtualized) */}
-                  <FlatList
-                    style={styles.tasksScroll}
-                    contentContainerStyle={styles.tasksListContent}
-                    data={filteredTasks}
-                    keyExtractor={(t) => t.id}
-                    renderItem={renderTask}
-                    extraData={`${completedTaskIds.length}|${bookmarkedIds.length}|${activeSoftware}|${Object.keys(taskNotes).length}`}
-                    initialNumToRender={8}
-                    maxToRenderPerBatch={8}
-                    windowSize={7}
-                    removeClippedSubviews={Platform.OS === 'android'}
-                    ListEmptyComponent={
-                      <View style={styles.emptyTasksBox}>
-                        <Ionicons name="filter-outline" size={36} color={COLORS.textMuted} />
-                        <Text style={styles.emptyTasksTitle}>No tasks match this filter</Text>
-                        <Text style={styles.emptyTasksSub}>Try switching the priority or phase filter above.</Text>
-                      </View>
-                    }
-                  />
+    <GaapNavContext.Provider value={gaapNav}>
+      <View style={styles.root}>
+        <StatusBar barStyle="light-content" backgroundColor={COLORS.surface} />
+        <View style={styles.frame}>
+          {isDesktop && (
+            <View style={[styles.sidebar, { paddingTop: insets.top + 18, paddingBottom: insets.bottom + 16 }]}>
+              <View style={styles.sideBrand}>
+                <View style={styles.sideLogo}>
+                  <Ionicons name="business" size={18} color="#FFFFFF" />
                 </View>
-              )}
-
-              {/* TAB 2: MONTH-END CLOSE COCKPIT */}
-              {activeTab === 'close' && <CloseCockpit onOpenScreen={openScreen} />}
-
-              {/* TAB 3: REALPAGE SYSTEM TWIN EXPLORER */}
-              {activeTab === 'explorer' && <RealPageExplorer focus={explorerFocus} />}
-
-              {/* TAB 3: COMMAND SEARCH & EXCEPTION TRIAGE */}
-              {activeTab === 'search' && (
-                <CommandSearch
-                  onSelectTask={openMastery}
-                  onOpenScreen={openScreen}
-                />
-              )}
-
-              {/* TAB 4: YARDI COMPARISON & GLOSSARY */}
-              {activeTab === 'tools' && (
-                <YardiAndTools
-                  bookmarkedIds={bookmarkedIds}
-                  taskNotes={taskNotes}
-                  onSelectTask={openMastery}
-                  onOpenScreen={openScreen}
-                  onOpenModule={openModule}
-                />
-              )}
-            </View>
-          </View>
-
-          {/* BOTTOM TAB BAR (phones / tablets) — clears the home indicator */}
-          {!isDesktop && (
-            <View style={[styles.bottomNav, { paddingBottom: Math.max(insets.bottom, 8) }]}>
+                <View style={styles.flex}>
+                  <Text style={styles.sideTitle}>RealPage Master</Text>
+                  <Text style={styles.sideSubtitle}>US Offshore Property Accounting</Text>
+                </View>
+              </View>
+              <Text style={styles.sideSection}>WORKSPACE</Text>
               {NAV_ITEMS.map((item) => {
                 const on = activeTab === item.key;
                 return (
                   <TouchableOpacity
                     key={item.key}
-                    style={styles.navItem}
+                    style={[styles.sideItem, on && styles.sideItemActive]}
                     onPress={() => selectTab(item.key)}
                     accessibilityRole="tab"
                     accessibilityState={{ selected: on }}
-                    accessibilityLabel={item.label}
                   >
-                    <View style={[styles.navIconWrap, on && { backgroundColor: `${item.accent}1F` }]}>
-                      <Ionicons name={on ? item.icon : `${item.icon}-outline`} size={20} color={on ? item.accent : COLORS.textMuted} />
+                    <View style={[styles.sideAccent, on && { backgroundColor: item.accent }]} />
+                    <Ionicons name={on ? item.icon : `${item.icon}-outline`} size={17} color={on ? item.accent : COLORS.textMuted} />
+                    <Text style={[styles.sideItemText, on && styles.sideItemTextActive]}>{item.label}</Text>
+                  </TouchableOpacity>
+                );
+              })}
+              <View style={styles.flex} />
+              <View style={styles.sideFooter}>
+                <Text style={styles.sideFooterLabel}>TODAY'S SHIFT</Text>
+                <Text style={styles.sideFooterValue}>
+                  {completedCount}/{totalCount} tasks · {pct}%
+                </Text>
+                <View style={styles.sideTrack}>
+                  <View style={[styles.sideFill, { width: `${pct}%` }]} />
+                </View>
+                <Text style={styles.sideFooterMeta}>{SCREEN_COUNT.toLocaleString()} RealPage screens indexed</Text>
+              </View>
+            </View>
+          )}
+
+          <View
+            style={[
+              styles.main,
+              { paddingTop: insets.top, paddingLeft: isDesktop ? 0 : insets.left, paddingRight: insets.right },
+            ]}
+          >
+            <View style={[styles.column, isDesktop && styles.columnDesktop]}>
+              {/* Global Executive Header */}
+              <HeaderBar
+                hideBrand={isDesktop}
+                selectedProperty={selectedProperty}
+                onOpenPropertyPicker={() => setPropertyPickerVisible(true)}
+                activeSoftware={activeSoftware}
+                onToggleSoftware={handleToggleSoftware}
+                completedCount={completedCount}
+                totalCount={totalCount}
+              />
+
+              {/* MAIN BODY AREA SWITCHED BY TAB */}
+              <View style={styles.body}>
+                {/* TAB 1: DAILY TASK COMMAND HUB */}
+                {activeTab === 'tasks' && (
+                  <View style={styles.tasksContainer}>
+                    {/* Phase Switcher Horizontal Scroll */}
+                    <View style={styles.phaseBar}>
+                      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.phaseScroll}>
+                        {TASK_PHASES.map((ph) => {
+                          const isSelected = selectedPhase === ph;
+                          const count = ph === 'All' ? ALL_TASKS.length : ALL_TASKS.filter((t) => t.phase === ph).length;
+                          return (
+                            <TouchableOpacity
+                              key={ph}
+                              style={[styles.phaseChip, isSelected && styles.phaseChipActive]}
+                              onPress={() => {
+                                triggerHaptic('light');
+                                setSelectedPhase(ph);
+                              }}
+                            >
+                              <Text style={[styles.phaseChipText, isSelected && styles.phaseChipTextActive]}>
+                                {ph}
+                              </Text>
+                              <View style={[styles.phaseCountPill, isSelected && styles.phaseCountPillActive]}>
+                                <Text style={[styles.phaseCountText, isSelected && styles.phaseCountTextActive]}>
+                                  {count}
+                                </Text>
+                              </View>
+                            </TouchableOpacity>
+                          );
+                        })}
+                      </ScrollView>
                     </View>
-                    <Text style={[styles.navLabel, on && { color: COLORS.text }]} numberOfLines={1}>
-                      {item.short || item.label}
+
+                    {/* Priority Filter & Phase Title Row */}
+                    <View style={styles.subFilterRow}>
+                      <Text style={styles.listHeading}>
+                        {selectedPhase === 'All' ? `All ${ALL_TASKS.length} Offshore Tasks` : selectedPhase}
+                        <Text style={styles.listHeadingCount}> ({filteredTasks.length})</Text>
+                      </Text>
+
+                      <View style={styles.priorityFilterGroup}>
+                        {['All', 'High', 'Medium'].map((prio) => {
+                          const isSelected = selectedPriority === prio;
+                          return (
+                            <TouchableOpacity
+                              key={prio}
+                              style={[styles.prioButton, isSelected && styles.prioButtonActive]}
+                              onPress={() => {
+                                triggerHaptic('light');
+                                setSelectedPriority(prio);
+                              }}
+                            >
+                              <Text style={[styles.prioText, isSelected && styles.prioTextActive]}>
+                                {prio}
+                              </Text>
+                            </TouchableOpacity>
+                          );
+                        })}
+                      </View>
+                    </View>
+
+                    {/* Tasks List (virtualized) */}
+                    <FlatList
+                      style={styles.tasksScroll}
+                      contentContainerStyle={styles.tasksListContent}
+                      data={filteredTasks}
+                      keyExtractor={(t) => t.id}
+                      renderItem={renderTask}
+                      extraData={`${completedTaskIds.length}|${bookmarkedIds.length}|${activeSoftware}|${Object.keys(taskNotes).length}`}
+                      initialNumToRender={8}
+                      maxToRenderPerBatch={8}
+                      windowSize={7}
+                      removeClippedSubviews={Platform.OS === 'android'}
+                      ListEmptyComponent={
+                        <View style={styles.emptyTasksBox}>
+                          <Ionicons name="filter-outline" size={36} color={COLORS.textMuted} />
+                          <Text style={styles.emptyTasksTitle}>No tasks match this filter</Text>
+                          <Text style={styles.emptyTasksSub}>Try switching the priority or phase filter above.</Text>
+                        </View>
+                      }
+                    />
+                  </View>
+                )}
+
+                {/* TAB 2: MONTH-END CLOSE COCKPIT */}
+                {activeTab === 'close' && <CloseCockpit onOpenScreen={openScreen} />}
+
+                {/* TAB 3: REALPAGE SYSTEM TWIN EXPLORER */}
+                {activeTab === 'explorer' && <RealPageExplorer focus={explorerFocus} />}
+
+                {/* TAB 3: COMMAND SEARCH & EXCEPTION TRIAGE */}
+                {activeTab === 'search' && (
+                  <CommandSearch
+                    onSelectTask={openMastery}
+                    onOpenScreen={openScreen}
+                  />
+                )}
+
+                {/* TAB 4: YARDI COMPARISON & GLOSSARY */}
+                {activeTab === 'tools' && (
+                  <YardiAndTools
+                    bookmarkedIds={bookmarkedIds}
+                    taskNotes={taskNotes}
+                    onSelectTask={openMastery}
+                    onOpenScreen={openScreen}
+                    onOpenModule={openModule}
+                  />
+                )}
+
+                {/* TAB 6: US GAAP CODEX (99 ASC Topics, cards and text lazy-loaded) */}
+                {activeTab === 'codex' && <GaapCodex focus={codexFocus} />}
+              </View>
+            </View>
+
+            {/* BOTTOM TAB BAR (phones / tablets) — clears the home indicator */}
+            {!isDesktop && (
+              <View style={[styles.bottomNav, { paddingBottom: Math.max(insets.bottom, 8) }]}>
+                {NAV_ITEMS.map((item) => {
+                  const on = activeTab === item.key;
+                  return (
+                    <TouchableOpacity
+                      key={item.key}
+                      style={styles.navItem}
+                      onPress={() => selectTab(item.key)}
+                      accessibilityRole="tab"
+                      accessibilityState={{ selected: on }}
+                      accessibilityLabel={item.label}
+                    >
+                      <View style={[styles.navIconWrap, on && { backgroundColor: `${item.accent}1F` }]}>
+                        <Ionicons name={on ? item.icon : `${item.icon}-outline`} size={20} color={on ? item.accent : COLORS.textMuted} />
+                      </View>
+                      <Text style={[styles.navLabel, on && { color: COLORS.text }]} numberOfLines={1}>
+                        {item.short || item.label}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            )}
+          </View>
+        </View>
+
+        {/* CLICK-BY-CLICK SCREEN SOP MODAL */}
+        <ScreenSopModal
+          screenId={sopScreen ? sopScreen.id : null}
+          contextLabel={sopScreen ? sopScreen.context : null}
+          onClose={() => setSopScreen(null)}
+          onOpenInExplorer={openInExplorer}
+        />
+
+        {/* 5-POINT MASTERY DEEP DIVE MODAL */}
+        <MasteryModal
+          visible={Boolean(selectedTaskForMastery)}
+          task={selectedTaskForMastery}
+          onClose={() => setSelectedTaskForMastery(null)}
+          isCompleted={selectedTaskForMastery ? completedTaskIds.includes(selectedTaskForMastery.id) : false}
+          isBookmarked={selectedTaskForMastery ? bookmarkedIds.includes(selectedTaskForMastery.id) : false}
+          onToggleComplete={handleToggleComplete}
+          onToggleBookmark={handleToggleBookmark}
+          currentNote={selectedTaskForMastery ? taskNotes[selectedTaskForMastery.id] : ''}
+          onSaveNote={handleSaveNote}
+        />
+
+        {/* PROPERTY PICKER MODAL */}
+        <Modal
+          visible={propertyPickerVisible}
+          transparent
+          animationType="fade"
+          onRequestClose={() => setPropertyPickerVisible(false)}
+        >
+          <TouchableOpacity
+            style={styles.modalOverlay}
+            activeOpacity={1}
+            onPress={() => setPropertyPickerVisible(false)}
+          >
+            <View style={styles.modalContent}>
+              <View style={styles.modalHeader}>
+                <Ionicons name="business" size={18} color={COLORS.primaryLight} />
+                <Text style={styles.modalTitle}>Select Portfolio / Property</Text>
+              </View>
+
+              {PROPERTIES.map((prop) => {
+                const isSelected = selectedProperty === prop;
+                return (
+                  <TouchableOpacity
+                    key={prop}
+                    style={[styles.propItem, isSelected && styles.propItemActive]}
+                    onPress={() => handleSelectProperty(prop)}
+                  >
+                    <Text style={[styles.propItemText, isSelected && styles.propItemTextActive]}>
+                      {prop}
                     </Text>
+                    {isSelected && <Ionicons name="checkmark" size={18} color={COLORS.success} />}
                   </TouchableOpacity>
                 );
               })}
             </View>
-          )}
-        </View>
+          </TouchableOpacity>
+        </Modal>
       </View>
-
-      {/* CLICK-BY-CLICK SCREEN SOP MODAL */}
-      <ScreenSopModal
-        screenId={sopScreen ? sopScreen.id : null}
-        contextLabel={sopScreen ? sopScreen.context : null}
-        onClose={() => setSopScreen(null)}
-        onOpenInExplorer={openInExplorer}
-      />
-
-      {/* 5-POINT MASTERY DEEP DIVE MODAL */}
-      <MasteryModal
-        visible={Boolean(selectedTaskForMastery)}
-        task={selectedTaskForMastery}
-        onClose={() => setSelectedTaskForMastery(null)}
-        isCompleted={selectedTaskForMastery ? completedTaskIds.includes(selectedTaskForMastery.id) : false}
-        isBookmarked={selectedTaskForMastery ? bookmarkedIds.includes(selectedTaskForMastery.id) : false}
-        onToggleComplete={handleToggleComplete}
-        onToggleBookmark={handleToggleBookmark}
-        currentNote={selectedTaskForMastery ? taskNotes[selectedTaskForMastery.id] : ''}
-        onSaveNote={handleSaveNote}
-      />
-
-      {/* PROPERTY PICKER MODAL */}
-      <Modal
-        visible={propertyPickerVisible}
-        transparent
-        animationType="fade"
-        onRequestClose={() => setPropertyPickerVisible(false)}
-      >
-        <TouchableOpacity
-          style={styles.modalOverlay}
-          activeOpacity={1}
-          onPress={() => setPropertyPickerVisible(false)}
-        >
-          <View style={styles.modalContent}>
-            <View style={styles.modalHeader}>
-              <Ionicons name="business" size={18} color={COLORS.primaryLight} />
-              <Text style={styles.modalTitle}>Select Portfolio / Property</Text>
-            </View>
-
-            {PROPERTIES.map((prop) => {
-              const isSelected = selectedProperty === prop;
-              return (
-                <TouchableOpacity
-                  key={prop}
-                  style={[styles.propItem, isSelected && styles.propItemActive]}
-                  onPress={() => handleSelectProperty(prop)}
-                >
-                  <Text style={[styles.propItemText, isSelected && styles.propItemTextActive]}>
-                    {prop}
-                  </Text>
-                  {isSelected && <Ionicons name="checkmark" size={18} color={COLORS.success} />}
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-        </TouchableOpacity>
-      </Modal>
-    </View>
+    </GaapNavContext.Provider>
   );
 }
 

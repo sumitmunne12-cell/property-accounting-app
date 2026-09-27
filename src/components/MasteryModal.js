@@ -16,6 +16,8 @@ import { LAYOUT } from '../theme/layout';
 import { PDF_CATALOG } from '../data/pdfCatalogData';
 import { TASK_GUARDRAILS } from '../data/taskGuardrails';
 import RegulatoryGuardrailCard from './RegulatoryGuardrailCard';
+import GaapButton from './gaap/GaapButton';
+import { ascLinksForCitation } from '../utils/ascLinks';
 import { LedgerText } from './Ledger';
 import { triggerHaptic } from '../utils/haptics';
 
@@ -474,6 +476,7 @@ export default function MasteryModal({
                 <Text style={styles.sectionTitle}>Legal & Audit Guardrails</Text>
               </View>
               <RegulatoryGuardrailCard guardrail={guardrail} compact />
+              <GaapButton links={guardrail ? ascLinksForCitation(guardrail.regulationCode) : []} contextLabel={task.name} />
             </View>
           )}
 
