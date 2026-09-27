@@ -11,7 +11,7 @@ import { useAscText, useAscGlossary } from '../../utils/useAscData';
 import { buildTermMatcher, splitByTerms, findGlossaryTerm } from '../../utils/ascGlossary';
 import { getAscEntry } from '../../utils/ascIndex';
 import useDebouncedValue from '../../utils/useDebouncedValue';
-import { ModuleLoading } from '../ui';
+import { ModuleLoading, BackButton } from '../ui';
 import { GlossaryTermCard } from './GlossaryTerm';
 
 const TABLE_PREVIEW_ROWS = 40;
@@ -143,7 +143,14 @@ function CoverageNote({ entry }) {
   );
 }
 
-export default function OfficialTextReader({ topic, color = COLORS.info, targetParagraph = null, targetNonce = 0 }) {
+export default function OfficialTextReader({
+  topic,
+  color = COLORS.info,
+  targetParagraph = null,
+  targetNonce = 0,
+  onReturnToSummary,
+  returnLabel,
+}) {
   const { text, loading, error, retry } = useAscText(topic, true);
   const entry = getAscEntry(topic);
   const [pos, setPos] = useState({ sub: 0, sec: 0 });
@@ -286,6 +293,17 @@ export default function OfficialTextReader({ topic, color = COLORS.info, targetP
   return (
     <View style={styles.flex}>
       <View style={styles.controls}>
+        {onReturnToSummary ? (
+          <View style={styles.returnRow}>
+            <BackButton
+              label={returnLabel || 'Return to Topic Summary'}
+              onPress={onReturnToSummary}
+              variant="pill"
+              accent={color}
+              style={styles.returnBtn}
+            />
+          </View>
+        ) : null}
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.chipRow}>
           {text.subtopics.map((s, i) => {
             const on = i === pos.sub;
@@ -440,6 +458,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: COLORS.border,
     backgroundColor: COLORS.surface,
+  },
+  returnRow: {
+    paddingHorizontal: 14,
+    paddingBottom: 8,
+    flexDirection: 'row',
+  },
+  returnBtn: {
+    backgroundColor: COLORS.surfaceLight,
+    borderColor: COLORS.border,
   },
   chipRow: { paddingHorizontal: 14, paddingBottom: 6 },
   chip: {

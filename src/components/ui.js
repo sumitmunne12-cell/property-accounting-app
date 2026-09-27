@@ -223,3 +223,7 @@ const styles = StyleSheet.create({
   },
   retryText: { fontSize: 12, fontWeight: '700', color: COLORS.text },
 });
+
+export { default as BackButton } from './BackButton';
+export { default as SwipeBackView } from './SwipeBackView';
+

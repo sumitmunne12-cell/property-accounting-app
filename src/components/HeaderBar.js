@@ -8,7 +8,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../theme/colors';
 import { triggerHaptic } from '../utils/haptics';
-import { SegmentedToggle } from './ui';
+import { SegmentedToggle, BackButton } from './ui';
 
 export default function HeaderBar({
   hideBrand = false,
@@ -18,14 +18,26 @@ export default function HeaderBar({
   onToggleSoftware,
   completedCount,
   totalCount,
+  canGoBack = false,
+  onGoBack,
+  backLabel = 'Back',
 }) {
   const percentComplete = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
 
   return (
     <View style={styles.container}>
-      {/* Top row: Branding & Software Switcher */}
+      {/* Top row: Branding / Back Navigation & Software Switcher */}
       <View style={styles.topRow}>
-        {hideBrand ? (
+        {canGoBack && onGoBack ? (
+          <View style={styles.backContainer}>
+            <BackButton
+              label={backLabel}
+              onPress={onGoBack}
+              style={styles.headerBackBtn}
+              accessibilityLabel={`Go back to ${backLabel}`}
+            />
+          </View>
+        ) : hideBrand ? (
           <Text style={styles.deskTitle}>Command Center</Text>
         ) : (
           <View style={styles.brandContainer}>
@@ -105,6 +117,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 10,
+  },
+  backContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    marginRight: 10,
+  },
+  headerBackBtn: {
+    backgroundColor: COLORS.surfaceLight,
+    borderColor: COLORS.border,
   },
   brandContainer: {
     flexDirection: 'row',

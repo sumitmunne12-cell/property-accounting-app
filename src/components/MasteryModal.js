@@ -20,6 +20,7 @@ import GaapButton from './gaap/GaapButton';
 import { ascLinksForCitation } from '../utils/ascLinks';
 import { LedgerText } from './Ledger';
 import { triggerHaptic } from '../utils/haptics';
+import { BackButton, SwipeBackView } from './ui';
 
 export default function MasteryModal({
   visible,
@@ -86,19 +87,18 @@ export default function MasteryModal({
       transparent={false}
       onRequestClose={onClose}
     >
-      <View style={[styles.container, { paddingHorizontal: gutter }]}>
+      <SwipeBackView enabled={Boolean(visible)} onBack={onClose} allowSwipeDown={true} style={[styles.container, { paddingHorizontal: gutter }]}>
         {/* Modal Top Header */}
         <View style={[styles.header, { paddingTop: Math.max(insets.top, 12) + 4, paddingLeft: 16 + insets.left, paddingRight: 16 + insets.right }]}>
-          <TouchableOpacity
-            style={styles.closeButton}
+          <BackButton
+            label="Back"
             onPress={() => {
               triggerHaptic('light');
               onClose();
             }}
-            hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-          >
-            <Ionicons name="close" size={24} color={COLORS.text} />
-          </TouchableOpacity>
+            style={styles.closeButton}
+            accessibilityLabel="Close 5-point mastery deep dive"
+          />
 
           <View style={styles.headerCenter}>
             <Text style={styles.headerSubtitle} numberOfLines={1}>
@@ -610,7 +610,7 @@ export default function MasteryModal({
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </SwipeBackView>
     </Modal>
   );
 }
@@ -631,7 +631,7 @@ const styles = StyleSheet.create({
     borderBottomColor: COLORS.border,
   },
   closeButton: {
-    padding: 4,
+    padding: 0,
   },
   headerCenter: {
     alignItems: 'center',

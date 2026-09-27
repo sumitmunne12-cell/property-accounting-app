@@ -6,6 +6,7 @@ import { COLORS } from '../theme/colors';
 import { LAYOUT, RADII } from '../theme/layout';
 import { getScreenEntry } from '../utils/screenIndex';
 import { LazyScreenDetail } from './ScreenDetail';
+import { BackButton, SwipeBackView } from './ui';
 
 // Full-screen click-by-click SOP for any catalog screen, opened by screenId from the
 // Close Cockpit, exception playbooks, the Rosetta Stone, glossary cross-references and search.
@@ -16,12 +17,10 @@ export default function ScreenSopModal({ screenId, onClose, onOpenInExplorer, co
 
   return (
     <Modal visible={Boolean(screenId)} animationType="slide" onRequestClose={onClose} transparent={false}>
-      <View style={styles.container}>
+      <SwipeBackView enabled={Boolean(screenId)} onBack={onClose} allowSwipeDown={true} style={styles.container}>
         <View style={[styles.header, { paddingTop: Math.max(insets.top, 12) + 6 }]}>
           <View style={[styles.headerInner, { paddingLeft: insets.left, paddingRight: insets.right }]}>
-            <TouchableOpacity onPress={onClose} style={styles.closeBtn} accessibilityLabel="Close SOP" hitSlop={10}>
-              <Ionicons name="close" size={20} color={COLORS.text} />
-            </TouchableOpacity>
+            <BackButton label="Back" onPress={onClose} style={styles.backBtn} accessibilityLabel="Close SOP" />
             <View style={styles.headerText}>
               {contextLabel ? <Text style={styles.contextLabel}>{contextLabel}</Text> : null}
               <Text style={styles.title} numberOfLines={2}>
@@ -64,7 +63,7 @@ export default function ScreenSopModal({ screenId, onClose, onOpenInExplorer, co
             )}
           </View>
         </ScrollView>
-      </View>
+      </SwipeBackView>
     </Modal>
   );
 }
@@ -85,15 +84,7 @@ const styles = StyleSheet.create({
     maxWidth: LAYOUT.READING_MAX,
     alignSelf: 'center',
   },
-  closeBtn: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: COLORS.surfaceLight,
-    borderWidth: 1,
-    borderColor: COLORS.border,
+  backBtn: {
     marginRight: 12,
   },
   headerText: { flex: 1 },

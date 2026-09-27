@@ -17,6 +17,7 @@ import { triggerHaptic } from '../utils/haptics';
 import { MODULES, getModuleMeta, getScreenEntry, getSubmoduleEntries, searchScreens } from '../utils/screenIndex';
 import useDebouncedValue from '../utils/useDebouncedValue';
 import { LazyScreenDetail } from './ScreenDetail';
+import { SwipeBackView } from './ui';
 
 const MAX_FILTER_RESULTS = 100;
 // Master/detail split once the content column is wide enough for both panes.
@@ -213,9 +214,25 @@ export default function RealPageExplorer({ focus }) {
   );
 
   const selectedEntry = split && expandedScreenId ? getScreenEntry(expandedScreenId) : null;
+  const canGoBack = Boolean(expandedScreenId || pinnedScreenId || filterText);
+
+  const handleBack = () => {
+    if (expandedScreenId) {
+      setExpandedScreenId(null);
+      return;
+    }
+    if (pinnedScreenId) {
+      setPinnedScreenId(null);
+      return;
+    }
+    if (filterText) {
+      setFilterText('');
+      return;
+    }
+  };
 
   return (
-    <View style={styles.container}>
+    <SwipeBackView enabled={canGoBack} onBack={handleBack} style={styles.container}>
       <View style={styles.moduleSelectorBar}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.moduleScroll}>
           {MODULES.map((m) => {
@@ -290,7 +307,7 @@ export default function RealPageExplorer({ focus }) {
           </ScrollView>
         ) : null}
       </View>
-    </View>
+    </SwipeBackView>
   );
 }
 

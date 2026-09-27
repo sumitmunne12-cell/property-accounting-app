@@ -11,7 +11,7 @@ import { loadSeries, getLoadedCard } from '../../data/asc/ascLoader';
 import { buildDeck, progressFor, trapId, todayIso, MASTERED_BOX, MAX_BOX, INTERVALS } from '../../utils/studyEngine';
 import useStudy from '../../utils/useStudy';
 import { triggerHaptic } from '../../utils/haptics';
-import { GaugeBar, ModuleLoading } from '../ui';
+import { GaugeBar, ModuleLoading, BackButton, SwipeBackView } from '../ui';
 import { TopicBadge } from './AscCardView';
 
 const SESSION_SIZE = 20;
@@ -104,11 +104,17 @@ export default function StudySession({ initialTopic = null, onClose, onOpenTopic
     setIndex((i) => i + 1);
   };
 
+  const handleBack = deck ? () => setDeck(null) : onClose;
+  const backLabel = deck ? 'Overview' : 'Exit';
+
   const header = (
     <View style={styles.header}>
-      <TouchableOpacity onPress={deck ? () => setDeck(null) : onClose} style={styles.backBtn} hitSlop={8} accessibilityLabel="Back">
-        <Ionicons name="chevron-back" size={18} color={COLORS.text} />
-      </TouchableOpacity>
+      <BackButton
+        label={backLabel}
+        onPress={handleBack}
+        style={styles.backBtn}
+        accessibilityLabel={deck ? 'Back to study overview' : 'Exit study mode'}
+      />
       <Ionicons name="school" size={17} color={COLORS.gold} />
       <Text style={styles.headerTitle}>Study mode</Text>
       {deck && index < deck.length ? (
@@ -125,7 +131,7 @@ export default function StudySession({ initialTopic = null, onClose, onOpenTopic
     const entry = getAscEntry(item.topic);
     const rec = study.cards[item.id];
     return (
-      <View style={styles.flex}>
+      <SwipeBackView enabled={Boolean(handleBack)} onBack={handleBack} style={styles.flex}>
         {header}
         <View style={styles.progressWrap}>
           <GaugeBar pct={(index / deck.length) * 100} color={COLORS.gold} height={4} />
@@ -175,14 +181,14 @@ export default function StudySession({ initialTopic = null, onClose, onOpenTopic
             </TouchableOpacity>
           </View>
         ) : null}
-      </View>
+      </SwipeBackView>
     );
   }
 
   // ── Session summary ──
   if (deck) {
     return (
-      <View style={styles.flex}>
+      <SwipeBackView enabled={Boolean(handleBack)} onBack={handleBack} style={styles.flex}>
         {header}
         <ScrollView contentContainerStyle={styles.body}>
           <View style={styles.reading}>
@@ -196,7 +202,7 @@ export default function StudySession({ initialTopic = null, onClose, onOpenTopic
             </TouchableOpacity>
           </View>
         </ScrollView>
-      </View>
+      </SwipeBackView>
     );
   }
 
@@ -204,7 +210,7 @@ export default function StudySession({ initialTopic = null, onClose, onOpenTopic
   const scopeLabel = scope.topic ? `ASC ${scope.topic} · ${getAscEntry(scope.topic).title}` : SCOPES.find((s) => s.key === scope.key).label;
   const available = stats ? stats.due + stats.fresh : 0;
   return (
-    <View style={styles.flex}>
+    <SwipeBackView enabled={Boolean(handleBack)} onBack={handleBack} style={styles.flex}>
       {header}
       <ScrollView contentContainerStyle={styles.body}>
         <View style={styles.reading}>
@@ -268,7 +274,7 @@ export default function StudySession({ initialTopic = null, onClose, onOpenTopic
           )}
         </View>
       </ScrollView>
-    </View>
+    </SwipeBackView>
   );
 }
 
@@ -294,14 +300,6 @@ const styles = StyleSheet.create({
     borderBottomColor: COLORS.border,
   },
   backBtn: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: COLORS.surfaceLight,
-    borderWidth: 1,
-    borderColor: COLORS.border,
     marginRight: 10,
   },
   headerTitle: { flex: 1, fontSize: 15, fontWeight: '800', color: COLORS.text, marginLeft: 7 },

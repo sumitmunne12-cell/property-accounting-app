@@ -10,7 +10,7 @@ import { COLORS } from '../../theme/colors';
 import { MONO, RADII, LAYOUT } from '../../theme/layout';
 import { useAscCard } from '../../utils/useAscData';
 import { JournalTable } from '../Ledger';
-import { SectionLabel, ModuleLoading } from '../ui';
+import { SectionLabel, ModuleLoading, BackButton, SwipeBackView } from '../ui';
 import OfficialTextReader from './OfficialTextReader';
 import useStudy from '../../utils/useStudy';
 import { isMastered, trapId } from '../../utils/studyEngine';
@@ -272,6 +272,7 @@ export default function AscCardView({ topic, initialTab = 'principle', paragraph
   const { entry, card, error, retry } = useAscCard(topic);
   const { study, toggleBookmark } = useStudy();
   const [tab, setTab] = useState(paragraph ? 'text' : initialTab);
+  const [prevTab, setPrevTab] = useState(null);
   const [target, setTarget] = useState({ id: paragraph, nonce });
 
   useEffect(() => {
@@ -282,19 +283,37 @@ export default function AscCardView({ topic, initialTab = 'principle', paragraph
   if (!entry) return <Text style={styles.missing}>ASC {topic} is not in the Codex index.</Text>;
 
   const openParagraph = (id) => {
+    setPrevTab(tab);
     setTarget({ id, nonce: Date.now() });
     setTab('text');
   };
   const saved = study.bookmarks.includes(entry.topic);
 
+  const handleCardBack = () => {
+    if (tab === 'text' && prevTab) {
+      setTab(prevTab);
+      setPrevTab(null);
+      return;
+    }
+    if (onBack) {
+      onBack();
+    }
+  };
+
+  const canGoBack = Boolean(onBack || (tab === 'text' && prevTab));
+  const backLabel = tab === 'text' && prevTab ? 'Summary' : 'Topics';
+
   return (
-    <View style={styles.flex}>
+    <SwipeBackView enabled={canGoBack} onBack={handleCardBack} style={styles.flex}>
       <View style={styles.header}>
         <View style={styles.headerRow}>
-          {onBack ? (
-            <TouchableOpacity onPress={onBack} style={styles.backBtn} accessibilityLabel="Back to the Codex list" hitSlop={8}>
-              <Ionicons name="chevron-back" size={18} color={COLORS.text} />
-            </TouchableOpacity>
+          {canGoBack ? (
+            <BackButton
+              label={backLabel}
+              onPress={handleCardBack}
+              style={styles.backBtn}
+              accessibilityLabel={tab === 'text' && prevTab ? 'Back to topic summary' : 'Back to Codex topics'}
+            />
           ) : null}
           <TopicBadge entry={entry} size="lg" />
           <View style={styles.headerText}>
@@ -325,7 +344,10 @@ export default function AscCardView({ topic, initialTab = 'principle', paragraph
               <TouchableOpacity
                 key={t.key}
                 style={[styles.tabBtn, on && { backgroundColor: `${entry.color}22`, borderColor: `${entry.color}99` }]}
-                onPress={() => setTab(t.key)}
+                onPress={() => {
+                  if (t.key !== tab && tab !== 'text') setPrevTab(tab);
+                  setTab(t.key);
+                }}
                 accessibilityRole="tab"
                 accessibilityState={{ selected: on }}
               >
@@ -338,7 +360,14 @@ export default function AscCardView({ topic, initialTab = 'principle', paragraph
       </View>
 
       {tab === 'text' ? (
-        <OfficialTextReader topic={entry.topic} color={entry.color} targetParagraph={target.id} targetNonce={target.nonce} />
+        <OfficialTextReader
+          topic={entry.topic}
+          color={entry.color}
+          targetParagraph={target.id}
+          targetNonce={target.nonce}
+          onReturnToSummary={prevTab ? () => { setTab(prevTab); setPrevTab(null); } : undefined}
+          returnLabel={prevTab === 'mechanics' ? 'Mechanics & DR/CR' : prevTab === 'audit' ? 'Audit Defense' : 'Topic Summary'}
+        />
       ) : !card ? (
         <ModuleLoading label={`${entry.series}s series cards`} error={error} onRetry={retry} color={entry.color} />
       ) : (
@@ -351,7 +380,7 @@ export default function AscCardView({ topic, initialTab = 'principle', paragraph
           </View>
         </ScrollView>
       )}
-    </View>
+    </SwipeBackView>
   );
 }
 
@@ -366,16 +395,8 @@ const styles = StyleSheet.create({
   },
   headerRow: { flexDirection: 'row', alignItems: 'flex-start', paddingHorizontal: 14 },
   backBtn: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: COLORS.surfaceLight,
-    borderWidth: 1,
-    borderColor: COLORS.border,
     marginRight: 10,
-    marginTop: 6,
+    marginTop: 2,
   },
   headerText: { flex: 1, marginLeft: 12 },
   starBtn: { width: 34, height: 34, alignItems: 'center', justifyContent: 'center', marginLeft: 4, marginTop: 2 },

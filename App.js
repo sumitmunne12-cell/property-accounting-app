@@ -9,6 +9,7 @@ import {
   Modal,
   Platform,
   StatusBar,
+  BackHandler,
   useWindowDimensions,
 } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -46,6 +47,16 @@ import ScreenSopModal from './src/components/ScreenSopModal';
 import GaapCodex from './src/components/gaap/GaapCodex';
 import { GaapNavContext } from './src/components/gaap/GaapNavContext';
 import { MODULE_FILE_TO_ID, SCREEN_COUNT } from './src/utils/screenIndex';
+import SwipeBackView from './src/components/SwipeBackView';
+
+const TAB_TITLES = {
+  tasks: 'Daily Hub',
+  close: 'Close',
+  explorer: 'Explorer',
+  search: 'Triage',
+  tools: 'Yardi',
+  codex: 'Codex',
+};
 
 const NAV_ITEMS = [
   { key: 'tasks', label: 'Daily Hub', icon: 'checkbox', accent: COLORS.success },
@@ -71,6 +82,7 @@ function AppShell() {
   const { width } = useWindowDimensions();
   const isDesktop = width >= LAYOUT.DESKTOP_MIN;
   const [activeTab, setActiveTab] = useState('tasks'); // 'tasks' | 'close' | 'explorer' | 'search' | 'tools' | 'codex'
+  const [navHistory, setNavHistory] = useState(['tasks']);
   const [selectedPhase, setSelectedPhase] = useState('All');
   const [selectedPriority, setSelectedPriority] = useState('All');
   const [selectedProperty, setSelectedProperty] = useState('All Properties');
@@ -91,11 +103,67 @@ function AppShell() {
   // Deep link into the GAAP Codex: { topic, paragraph, nonce }
   const [codexFocus, setCodexFocus] = useState(null);
 
+  const navigateToTab = useCallback((tabKey, replace = false) => {
+    triggerHaptic('light');
+    setActiveTab(tabKey);
+    setNavHistory((prev) => {
+      if (replace) {
+        const next = [...prev];
+        next[next.length - 1] = tabKey;
+        return next;
+      }
+      if (prev[prev.length - 1] === tabKey) return prev;
+      return [...prev, tabKey];
+    });
+  }, []);
+
+  const handleGoBack = useCallback(() => {
+    if (propertyPickerVisible) {
+      setPropertyPickerVisible(false);
+      return true;
+    }
+    if (selectedTaskForMastery) {
+      setSelectedTaskForMastery(null);
+      return true;
+    }
+    if (sopScreen) {
+      setSopScreen(null);
+      return true;
+    }
+    if (navHistory.length > 1) {
+      triggerHaptic('light');
+      const nextHistory = [...navHistory];
+      nextHistory.pop();
+      const prevTab = nextHistory[nextHistory.length - 1];
+      setNavHistory(nextHistory);
+      setActiveTab(prevTab);
+      return true;
+    }
+    if (activeTab !== 'tasks') {
+      triggerHaptic('light');
+      setNavHistory(['tasks']);
+      setActiveTab('tasks');
+      return true;
+    }
+    return false;
+  }, [propertyPickerVisible, selectedTaskForMastery, sopScreen, navHistory, activeTab]);
+
+  useEffect(() => {
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      return handleGoBack();
+    });
+    return () => sub.remove();
+  }, [handleGoBack]);
+
+  const canGoBack = navHistory.length > 1 || activeTab !== 'tasks';
+  const previousTabKey = navHistory.length > 1 ? navHistory[navHistory.length - 2] : 'tasks';
+  const backLabel = TAB_TITLES[previousTabKey] || 'Daily Hub';
+
   const openScreen = (screenId, context) => setSopScreen({ id: screenId, context });
   const openInExplorer = (moduleId, screenId) => {
     setSopScreen(null);
     setExplorerFocus({ moduleId, screenId, nonce: Date.now() });
-    setActiveTab('explorer');
+    navigateToTab('explorer');
   };
   // Any "📖 First-Principles GAAP" pop-up can hand off to the Codex tab.
   const gaapNav = useMemo(
@@ -104,15 +172,15 @@ function AppShell() {
         setSopScreen(null);
         setSelectedTaskForMastery(null);
         setCodexFocus({ topic, paragraph, nonce: Date.now() });
-        setActiveTab('codex');
+        navigateToTab('codex');
       },
     }),
-    []
+    [navigateToTab]
   );
   const openModule = (moduleFile) => {
     const moduleId = MODULE_FILE_TO_ID[moduleFile] || moduleFile;
     setExplorerFocus({ moduleId, screenId: null, nonce: Date.now() });
-    setActiveTab('explorer');
+    navigateToTab('explorer');
   };
 
   useEffect(() => {
@@ -173,8 +241,7 @@ function AppShell() {
   );
 
   const selectTab = (key) => {
-    triggerHaptic('light');
-    setActiveTab(key);
+    navigateToTab(key);
   };
 
   const renderTask = ({ item: task }) => (
@@ -258,10 +325,19 @@ function AppShell() {
                 onToggleSoftware={handleToggleSoftware}
                 completedCount={completedCount}
                 totalCount={totalCount}
+                canGoBack={canGoBack}
+                onGoBack={handleGoBack}
+                backLabel={backLabel}
               />
 
               {/* MAIN BODY AREA SWITCHED BY TAB */}
-              <View style={styles.body}>
+              <SwipeBackView
+                enabled={canGoBack}
+                onBack={handleGoBack}
+                edgeOnly={true}
+                edgeWidth={50}
+                style={styles.body}
+              >
                 {/* TAB 1: DAILY TASK COMMAND HUB */}
                 {activeTab === 'tasks' && (
                   <View style={styles.tasksContainer}>
@@ -372,7 +448,7 @@ function AppShell() {
 
                 {/* TAB 6: US GAAP CODEX (99 ASC Topics, cards and text lazy-loaded) */}
                 {activeTab === 'codex' && <GaapCodex focus={codexFocus} />}
-              </View>
+              </SwipeBackView>
             </View>
 
             {/* BOTTOM TAB BAR (phones / tablets) — clears the home indicator */}
