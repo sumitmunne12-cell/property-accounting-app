@@ -231,7 +231,7 @@ C(
         ("Where did the old 'cost method' go?", "Most equity investments moved to ASC 321 (fair value or the measurement alternative)."),
         ("How are changes in expected cash flows of a beneficial interest recognized?", "Favorable changes adjust yield prospectively; adverse credit-related changes go through the ASC 326 allowance."),
     ],
-    cites=[],
+    cites=["325-10-05-1", "325-30-25-1", "325-30-35-1"],
 )
 
 C(

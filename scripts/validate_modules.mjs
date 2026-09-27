@@ -4,9 +4,9 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
-const ROOT = path.dirname(path.dirname(new URL(import.meta.url).pathname));
+const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const DIR = path.join(ROOT, 'src', 'data', 'modules');
 const EXPECTED = {
   '01_general_ledger.js': 'glModule',

@@ -1188,7 +1188,7 @@ C(
     ],
     traps=[
         ("Is there still a steamship tax exception?", "No — ASU 2017-15 eliminated it."),
-        ("Where is the guidance now?", "ASC 740."),
+        ("Where is the guidance now?", "General accounting under ASC 740 (Income Taxes) now applies; the industry-specific exception was completely eliminated."),
         ("Why keep the Topic number?", "For historical references; the library shows the status table for 995-740."),
     ],
     cites=["995-740-00-1"],

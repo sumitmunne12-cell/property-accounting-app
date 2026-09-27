@@ -397,7 +397,7 @@ C(
         ("What is a purchasing-power gain on net monetary liabilities?", "In inflation, owing fixed-dollar debt is a gain in real terms because you repay with cheaper dollars — a key point for leveraged real estate."),
         ("Does inflation-adjusted information replace GAAP amounts?", "No — it is supplementary; historical cost remains the basis of the primary statements."),
     ],
-    cites=[],
+    cites=["255-10-05-1", "255-10-15-3", "255-10-50-1"],
 )
 
 C(
