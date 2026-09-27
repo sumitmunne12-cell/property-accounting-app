@@ -10,5 +10,6 @@ import p07 from './ar/07.json';
 import p08 from './ar/08.json';
 import p09 from './ar/09.json';
 import p10 from './ar/10.json';
+import p11 from './ar/11.json';
 
-export default Object.assign({}, p01, p02, p03, p04, p05, p06, p07, p08, p09, p10);
+export default Object.assign({}, p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11);

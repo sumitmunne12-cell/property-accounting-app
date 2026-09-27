@@ -107,7 +107,7 @@
     "ifSkipped": "Due dates, discounts and revenue coding vary by user and aging is unreliable.",
     "glAccounts": [
       "1210 Resident/Tenant A/R",
-      "4010 Commercial Base Rent",
+      "4010 Gross Potential Rent (commercial base rent)",
       "4100 Other Income"
     ],
     "gaap": [
@@ -207,7 +207,7 @@
     "rootCause": "Site and offshore staff billing charges should not choose raw GL numbers; labels constrain choices to the right revenue accounts and keep recovery income separate from base rent.",
     "ifSkipped": "Charges are coded to wrong revenue accounts, distorting NOI lines and CAM reconciliations.",
     "glAccounts": [
-      "4010 Commercial Base Rent",
+      "4010 Gross Potential Rent (commercial base rent)",
       "4020 CAM Recovery",
       "4030 Real Estate Tax Recovery",
       "4100 Other Income"
@@ -259,7 +259,7 @@
     "ifSkipped": "Owner-requested segment reporting has to be rebuilt manually every month.",
     "glAccounts": [
       "1210 Resident/Tenant A/R",
-      "4010 Commercial Base Rent"
+      "4010 Gross Potential Rent (commercial base rent)"
     ],
     "gaap": [
       "ASC 280 — segment information (where applicable)"
@@ -303,7 +303,7 @@
     "ifSkipped": "Needed features are missing and staff post workarounds outside the subledger.",
     "glAccounts": [
       "1210 Resident/Tenant A/R",
-      "2310 Prepaid Rent"
+      "2120 Prepaid Rent"
     ],
     "gaap": [
       "COSO 2013"
@@ -327,8 +327,8 @@
     "ifSkipped": "The aging no longer ties to 1210 and prepaid rent is misclassified.",
     "glAccounts": [
       "1210 Resident/Tenant A/R",
-      "2310 Prepaid Rent",
-      "6810 Bad Debt Expense"
+      "2120 Prepaid Rent",
+      "4050 Bad Debt"
     ],
     "gaap": [
       "ASC 326",
@@ -404,8 +404,8 @@
     "rootCause": "Shared payroll, insurance and software are often paid by one entity; without formal bill-backs, costs sit in the wrong property's P&L and intercompany balances do not eliminate on consolidation.",
     "ifSkipped": "Shared costs stay with the paying entity and intercompany accounts do not net to zero.",
     "glAccounts": [
-      "1410 Due From Affiliates",
-      "2410 Due To Affiliates",
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates",
       "6410 Administrative"
     ],
     "gaap": [
@@ -430,8 +430,8 @@
     "rootCause": "Bill-backs are an optional subscription; until it is enabled, staff resort to manual intercompany journal entries that are harder to reconcile and eliminate.",
     "ifSkipped": "Intercompany charges are posted by manual JEs with no matching A/R and A/P.",
     "glAccounts": [
-      "1410 Due From Affiliates",
-      "2410 Due To Affiliates"
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
     ],
     "gaap": [
       "ASC 810"
@@ -453,8 +453,8 @@
     "rootCause": "Bill-backs shift expenses between ownership groups; unrestricted access lets costs be moved to entities with different investors, a related-party and fiduciary risk.",
     "ifSkipped": "Anyone can shift costs between owners, creating disputes and fiduciary exposure.",
     "glAccounts": [
-      "1410 Due From Affiliates",
-      "2410 Due To Affiliates"
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
     ],
     "gaap": [
       "ASC 850",
@@ -478,8 +478,8 @@
     "rootCause": "Bill-backs generate a real invoice and bill; without dedicated intercompany vendor and customer records they post against outside parties and cannot be eliminated.",
     "ifSkipped": "Intercompany charges mix with third-party balances and eliminations fail.",
     "glAccounts": [
-      "1410 Due From Affiliates",
-      "2410 Due To Affiliates"
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
     ],
     "gaap": [
       "ASC 810"
@@ -502,8 +502,8 @@
     "rootCause": "The association tells RealPage which entity a customer or vendor represents; missing links mean the matching payable is never created on the other side.",
     "ifSkipped": "One side of the bill-back posts and the intercompany balance never mirrors.",
     "glAccounts": [
-      "1410 Due From Affiliates",
-      "2410 Due To Affiliates"
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
     ],
     "gaap": [
       "ASC 810"
@@ -526,7 +526,7 @@
     "ifSkipped": "Each bill-back is coded differently and property P&Ls are inconsistent.",
     "glAccounts": [
       "6410 Administrative",
-      "6210 Payroll",
+      "6010 Payroll",
       "4100 Other Income"
     ],
     "gaap": [
@@ -623,7 +623,7 @@
     "rootCause": "Owners with multiple buildings or funds in one entity need results by segment; this report provides it from posted data instead of manual allocation.",
     "ifSkipped": "Segment results are estimated offline and may not tie to the GL.",
     "glAccounts": [
-      "4010 Commercial Base Rent",
+      "4010 Gross Potential Rent (commercial base rent)",
       "1210 Resident/Tenant A/R"
     ],
     "gaap": [
@@ -647,7 +647,7 @@
     "rootCause": "Asset managers ask different questions each month; customizing a GL-tied report beats building one-off spreadsheets that drift from the books.",
     "ifSkipped": "One-off spreadsheets answer owner questions with numbers that do not tie.",
     "glAccounts": [
-      "4010 Commercial Base Rent"
+      "4010 Gross Potential Rent (commercial base rent)"
     ],
     "gaap": [
       "COSO 2013"
@@ -796,7 +796,7 @@
     "rootCause": "Credits and concessions reduce revenue and are high-risk; attaching approval at the time of entry is the simplest evidence of authorization.",
     "ifSkipped": "Concessions cannot be proven as approved during audit.",
     "glAccounts": [
-      "4010 Commercial Base Rent",
+      "4010 Gross Potential Rent (commercial base rent)",
       "1210 Resident/Tenant A/R"
     ],
     "gaap": [
@@ -963,7 +963,7 @@
     "rootCause": "Defaults reduce errors on repetitive billing but also propagate a wrong code everywhere if set incorrectly, so they must be chosen and reviewed deliberately.",
     "ifSkipped": "Users key codes manually each time and coding varies.",
     "glAccounts": [
-      "4010 Commercial Base Rent",
+      "4010 Gross Potential Rent (commercial base rent)",
       "4100 Other Income"
     ],
     "gaap": [
@@ -1287,7 +1287,7 @@
     "ifSkipped": "One user can post cash and write off the related receivable, enabling concealed theft.",
     "glAccounts": [
       "1210 Resident/Tenant A/R",
-      "6810 Bad Debt Expense"
+      "4050 Bad Debt"
     ],
     "gaap": [
       "COSO 2013 — segregation of duties",

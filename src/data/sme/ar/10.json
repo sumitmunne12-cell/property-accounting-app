@@ -450,7 +450,7 @@
     "glAccounts": [
       "1210 Resident/Tenant A/R",
       "1110 Operating Cash",
-      "2310 Prepaid Rent"
+      "2120 Prepaid Rent"
     ],
     "gaap": [
       "COSO 2013 — IT general controls"
@@ -494,7 +494,7 @@
     "ifSkipped": "Uncontrolled changes alter A/R behaviour portfolio-wide.",
     "glAccounts": [
       "1210 Resident/Tenant A/R",
-      "2310 Prepaid Rent"
+      "2120 Prepaid Rent"
     ],
     "gaap": [
       "COSO 2013 — change management",
@@ -544,8 +544,8 @@
     "ifSkipped": "Large credits post without approval, a common revenue manipulation risk.",
     "glAccounts": [
       "1210 Resident/Tenant A/R",
-      "4010 Commercial Base Rent",
-      "6810 Bad Debt Expense"
+      "4010 Gross Potential Rent (commercial base rent)",
+      "4050 Bad Debt"
     ],
     "gaap": [
       "COSO 2013 — authorization controls"
@@ -569,8 +569,8 @@
     "rootCause": "Discounts reduce revenue; applying them automatically only when earned prevents both overcharging customers and giving unearned discounts.",
     "ifSkipped": "Discounts are applied inconsistently and revenue is misstated.",
     "glAccounts": [
-      "4010 Commercial Base Rent",
-      "4190 Sales Discounts"
+      "4010 Gross Potential Rent (commercial base rent)",
+      "4045 Early-Payment Discounts (contra revenue)"
     ],
     "gaap": [
       "ASC 606 — variable consideration"
@@ -592,8 +592,8 @@
     "rootCause": "Shared-service charges between entities must mirror exactly to eliminate on consolidation and to be defensible to separate ownership groups.",
     "ifSkipped": "Intercompany balances do not mirror and eliminations fail.",
     "glAccounts": [
-      "1410 Due From Affiliates",
-      "2410 Due To Affiliates"
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
     ],
     "gaap": [
       "ASC 810",
@@ -617,7 +617,7 @@
     "rootCause": "A separate sequence lets reviewers and consolidators isolate intercompany documents quickly and test completeness of eliminations.",
     "ifSkipped": "Intercompany invoices mix with third-party billing and are hard to eliminate.",
     "glAccounts": [
-      "1410 Due From Affiliates"
+      "1230 Due From Affiliates"
     ],
     "gaap": [
       "ASC 810"
@@ -639,8 +639,8 @@
     "rootCause": "Automating the payable side removes the risk that the billed entity never records the charge, which is the main cause of intercompany out-of-balance.",
     "ifSkipped": "Billed entities miss charges and intercompany balances diverge.",
     "glAccounts": [
-      "1410 Due From Affiliates",
-      "2410 Due To Affiliates"
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
     ],
     "gaap": [
       "ASC 810"
@@ -704,7 +704,7 @@
     "rootCause": "Owner and property reporting filter on location and department; if A/R lines lack them, revenue drops out of property-level P&Ls.",
     "ifSkipped": "Revenue is missing from property P&Ls because lines lack a location.",
     "glAccounts": [
-      "4010 Commercial Base Rent",
+      "4010 Gross Potential Rent (commercial base rent)",
       "1210 Resident/Tenant A/R"
     ],
     "gaap": [
@@ -729,7 +729,7 @@
     "ifSkipped": "Reserve calculations and delinquency reports use the wrong buckets.",
     "glAccounts": [
       "1210 Resident/Tenant A/R",
-      "1290 Allowance for Doubtful Accounts"
+      "1215 Allowance for Doubtful Accounts"
     ],
     "gaap": [
       "ASC 326"
@@ -777,7 +777,7 @@
     "ifSkipped": "Payments are misapplied and the aging shows false delinquencies.",
     "glAccounts": [
       "1210 Resident/Tenant A/R",
-      "1410 Due From Affiliates"
+      "1230 Due From Affiliates"
     ],
     "gaap": [
       "COSO 2013"
@@ -800,7 +800,7 @@
     "ifSkipped": "Receipts post to the wrong bank account and bank recs break.",
     "glAccounts": [
       "1110 Operating Cash",
-      "1150 Security Deposit Cash"
+      "1115 Security Deposit Trust Cash"
     ],
     "gaap": [
       "COSO 2013"
@@ -847,8 +847,8 @@
     "rootCause": "Without the subscription enabled, bill-back templates cannot be used and staff fall back on manual intercompany entries that are harder to reconcile.",
     "ifSkipped": "Shared costs are recovered via manual JEs with no audit trail between entities.",
     "glAccounts": [
-      "1410 Due From Affiliates",
-      "2410 Due To Affiliates"
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
     ],
     "gaap": [
       "ASC 810"
@@ -870,8 +870,8 @@
     "rootCause": "Bill-backs post a customer invoice in one entity and a vendor bill in another; both records must exist and be clearly flagged as affiliates.",
     "ifSkipped": "Bill-backs cannot be created or post against external parties.",
     "glAccounts": [
-      "1410 Due From Affiliates",
-      "2410 Due To Affiliates"
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
     ],
     "gaap": [
       "ASC 850"
@@ -917,7 +917,7 @@
     "rootCause": "Labels are the main control over revenue classification in A/R; a clean list keeps base rent, recoveries and other income separated as owners and ASC 842 disclosures require.",
     "ifSkipped": "Revenue classification drifts and owner reports misstate categories.",
     "glAccounts": [
-      "4010 Commercial Base Rent",
+      "4010 Gross Potential Rent (commercial base rent)",
       "4020 CAM Recovery",
       "4100 Other Income"
     ],
@@ -944,7 +944,7 @@
     "rootCause": "Periodic review of the label list catches labels mapped to wrong accounts before they misclassify a month of billing.",
     "ifSkipped": "Mis-mapped labels continue to misclassify revenue unnoticed.",
     "glAccounts": [
-      "4010 Commercial Base Rent",
+      "4010 Gross Potential Rent (commercial base rent)",
       "4020 CAM Recovery"
     ],
     "gaap": [
@@ -967,7 +967,7 @@
     "rootCause": "Changing a label's account changes coding for every future invoice but not past ones; edits need approval and may require reclassifying history.",
     "ifSkipped": "Wrong mappings persist; or edits made carelessly split history across accounts.",
     "glAccounts": [
-      "4010 Commercial Base Rent",
+      "4010 Gross Potential Rent (commercial base rent)",
       "4100 Other Income"
     ],
     "gaap": [
@@ -1030,7 +1030,7 @@
     "rootCause": "Auditors and controllers review revenue coding controls; an exported label map is the evidence of how revenue is classified.",
     "ifSkipped": "Revenue coding controls cannot be evidenced.",
     "glAccounts": [
-      "4010 Commercial Base Rent"
+      "4010 Gross Potential Rent (commercial base rent)"
     ],
     "gaap": [
       "COSO 2013"
@@ -1073,7 +1073,7 @@
     "rootCause": "Every invoice line using the label inherits this definition; completeness here prevents miscoding across all future billings.",
     "ifSkipped": "Incomplete labels cause inconsistent line coding.",
     "glAccounts": [
-      "4010 Commercial Base Rent",
+      "4010 Gross Potential Rent (commercial base rent)",
       "4030 Real Estate Tax Recovery"
     ],
     "gaap": [
@@ -1136,8 +1136,8 @@
     "rootCause": "Templates remove the chance of users picking different accounts on each side, which is what causes intercompany mismatches.",
     "ifSkipped": "Intercompany entries use inconsistent accounts and do not mirror.",
     "glAccounts": [
-      "1410 Due From Affiliates",
-      "2410 Due To Affiliates"
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
     ],
     "gaap": [
       "ASC 810"
@@ -1159,7 +1159,7 @@
     "rootCause": "Periodic review of templates ensures intercompany charges still reflect current cost-sharing agreements between entities.",
     "ifSkipped": "Outdated templates continue charging entities under old agreements.",
     "glAccounts": [
-      "1410 Due From Affiliates"
+      "1230 Due From Affiliates"
     ],
     "gaap": [
       "ASC 850"
@@ -1181,8 +1181,8 @@
     "rootCause": "Cost-sharing agreements change (new allocation bases, new entities); templates must be updated to reflect them.",
     "ifSkipped": "Bill-backs keep posting under an outdated cost-sharing mapping.",
     "glAccounts": [
-      "1410 Due From Affiliates",
-      "2410 Due To Affiliates"
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates"
     ],
     "gaap": [
       "ASC 850"
@@ -1224,8 +1224,8 @@
     "rootCause": "The template is the single definition of both halves of the intercompany entry; completeness ensures the two sides always mirror.",
     "ifSkipped": "Incomplete templates create one-sided intercompany entries.",
     "glAccounts": [
-      "1410 Due From Affiliates",
-      "2410 Due To Affiliates",
+      "1230 Due From Affiliates",
+      "2130 Due To Affiliates",
       "6410 Administrative"
     ],
     "gaap": [
@@ -1268,7 +1268,7 @@
     "rootCause": "Some customers or charges need non-default revenue accounts (e.g., affiliated tenant rent to a related-party revenue account for ASC 850 disclosure); overrides provide this in a controlled way.",
     "ifSkipped": "Exceptional coding is done by manual JEs outside the subledger.",
     "glAccounts": [
-      "4010 Commercial Base Rent",
+      "4010 Gross Potential Rent (commercial base rent)",
       "4015 Related-Party Rent"
     ],
     "gaap": [
@@ -1420,7 +1420,7 @@
     "rootCause": "Unexpected coding usually comes from precedence rules; understanding them lets reviewers explain and fix why a line hit a particular account.",
     "ifSkipped": "Coding surprises cannot be explained or corrected at the source.",
     "glAccounts": [
-      "4010 Commercial Base Rent",
+      "4010 Gross Potential Rent (commercial base rent)",
       "4015 Related-Party Rent"
     ],
     "gaap": [
@@ -1445,7 +1445,7 @@
     "ifSkipped": "Aging and late-fee eligibility vary arbitrarily between properties.",
     "glAccounts": [
       "1210 Resident/Tenant A/R",
-      "1290 Allowance for Doubtful Accounts"
+      "1215 Allowance for Doubtful Accounts"
     ],
     "gaap": [
       "ASC 326"

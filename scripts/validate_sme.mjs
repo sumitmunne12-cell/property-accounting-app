@@ -17,6 +17,22 @@ const TEXT_FIELDS = { purpose: 80, outcome: 30, rootCause: 80, ifSkipped: 40 };
 const LIST_FIELDS = ['glAccounts', 'gaap', 'stakeholders', 'reports', 'redFlags'];
 const REQUIRED_LISTS = ['stakeholders', 'redFlags'];
 const PLACEHOLDER = /(\btodo\b|\btbd\b|lorem ipsum|\[placeholder\]|same as above|see previous)/i;
+// The illustrative chart of accounts from scripts/rp_kb.py (COA_LEGEND). A GL account that uses one of
+// these numbers must carry the same name (a parenthetical qualifier is fine), so numbers mean one thing.
+const COA = {
+  1110: 'Operating Cash', 1115: 'Security Deposit Trust Cash', 1120: 'Petty Cash', 1130: 'Undeposited Funds',
+  1210: 'Resident/Tenant A/R', 1215: 'Allowance for Doubtful Accounts', 1230: 'Due From Affiliates',
+  1250: 'Input VAT/Tax Recoverable', 1310: 'Prepaid Expenses', 1330: 'Tax & Insurance Escrow',
+  1340: 'Replacement Reserve Escrow', 1410: 'Construction in Progress', 1520: 'Buildings', 1530: 'Building Improvements',
+  1540: 'FF&E', 1590: 'Accumulated Depreciation', 2010: 'Accounts Payable', 2015: 'Retainage Payable',
+  2020: 'Accrued Expenses', 2110: 'Resident Security Deposits', 2120: 'Prepaid Rent', 2130: 'Due To Affiliates',
+  2140: 'Credit Card Payable', 2150: 'Employee Reimbursements Payable', 2160: 'Sales Tax/VAT Payable',
+  2170: 'Unclaimed Property Payable', 2210: 'Mortgage/Construction Loan Payable', 3010: "Partners' Capital",
+  3020: 'Distributions', 3100: 'Retained Earnings', 4010: 'Gross Potential Rent', 4040: 'Concessions', 4050: 'Bad Debt',
+  4100: 'Other Income', 4110: 'Utility Reimbursement', 6010: 'Payroll', 6110: 'Repairs & Maintenance', 6210: 'Utilities',
+  6310: 'Marketing', 6410: 'Administrative', 6420: 'Bank Charges', 6510: 'Management Fees', 6610: 'Insurance',
+  6620: 'Real Estate Taxes', 7010: 'Interest Expense', 7110: 'Depreciation Expense',
+};
 
 const errors = [];
 const err = (m) => errors.push(m);
@@ -53,6 +69,10 @@ for (const moduleId of MODULE_IDS) {
       if (!Array.isArray(a[k]) || a[k].some((x) => typeof x !== 'string' || !x.trim())) err(`${where}: ${k} must be a list of strings`);
     }
     for (const k of REQUIRED_LISTS) if (!a[k]?.length) err(`${where}: ${k} is empty`);
+    for (const acct of a.glAccounts || []) {
+      const [, num, name] = /^(\d{4}) (.*)$/.exec(acct) || [];
+      if (COA[num] && !name.startsWith(COA[num])) err(`${where}: "${acct}" should be "${num} ${COA[num]}"`);
+    }
     if (a.yardi !== undefined && (typeof a.yardi !== 'string' || !a.yardi.trim())) err(`${where}: yardi must be a non-empty string`);
     if (!['high', 'medium'].includes(a.confidence)) err(`${where}: confidence must be "high" or "medium"`);
     for (const k of ['purpose', 'rootCause']) {

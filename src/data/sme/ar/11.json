@@ -1,0 +1,1527 @@
+{
+  "scr_ar_editing_and_viewing_an_a_r_term": {
+    "purpose": "Views or edits an existing A/R term — due-day rule, discount percent and window, penalty linkage — noting that changes affect invoices created afterwards, not ones already posted.",
+    "outcome": "A term corrected for future invoices with a clear record of what changed.",
+    "rootCause": "Terms are shared by many customers, so one edit shifts due dates and late-fee eligibility portfolio-wide; editing deliberately (and knowing posted invoices keep their old due dates) avoids surprise aging swings.",
+    "ifSkipped": "Wrong terms keep generating misdated invoices; or careless edits move hundreds of customers' due dates at once.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income (late fees)"
+    ],
+    "gaap": [
+      "ASC 326 — aging inputs",
+      "COSO 2013 — change management"
+    ],
+    "stakeholders": [
+      "Controller",
+      "System administrator"
+    ],
+    "reports": [
+      "Terms list",
+      "A/R aging",
+      "Audit trail"
+    ],
+    "redFlags": [
+      "Term edited during the close window",
+      "Grace days lengthened without a lease basis"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_assigning_a_term_to_a_customer": {
+    "purpose": "Assigns a default A/R term on the customer record (Additional Information > Invoicing) so every new invoice for that tenant calculates its due date from the agreed contract terms.",
+    "outcome": "Each tenant's invoices due on the dates their lease or agreement specifies.",
+    "rootCause": "A lease may say rent is due on the 1st with a five-day grace, while a vendor bill-back agreement says Net 30; putting the right term on each customer is what makes aging, statements and late fees follow the contract rather than a system default.",
+    "ifSkipped": "Customers inherit a default term and late fees fire against invoices that are not yet late under the lease.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R",
+      "4100 Other Income (late fees)"
+    ],
+    "gaap": [
+      "Lease payment provisions",
+      "ASC 326"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Lease administrator"
+    ],
+    "reports": [
+      "Customers list",
+      "A/R aging"
+    ],
+    "redFlags": [
+      "Commercial tenants with no term assigned",
+      "Term on customer contradicts the abstracted lease"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_a_r_terms_information_page": {
+    "purpose": "The A/R term definition page — name, description, due-date calculation (days from invoice or fixed day of month), discount percent and days, and status.",
+    "outcome": "A precise, reusable definition of when customer invoices fall due.",
+    "rootCause": "Rent is typically due on a fixed day of the month rather than 'N days after invoice'; the page must be configured with the right basis or every recurring rent invoice ages from the wrong date.",
+    "ifSkipped": "Rent invoices age from the invoice date instead of the lease due day and delinquency is misreported.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 326"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Terms list",
+      "A/R aging"
+    ],
+    "redFlags": [
+      "Rent terms defined as 'days after invoice' instead of a fixed due day"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_a_r_term_details": {
+    "purpose": "Prints an A/R term record to PDF so the due-date and discount rules can be filed with credit-policy approvals or attached to an audit request.",
+    "outcome": "Paper evidence of the configured credit terms.",
+    "rootCause": "Auditors testing late-fee and aging logic ask how due dates are computed; a printed term record answers that directly from the system configuration.",
+    "ifSkipped": "Aging logic cannot be evidenced to auditors from the source configuration.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — control documentation"
+    ],
+    "stakeholders": [
+      "External auditor",
+      "Controller"
+    ],
+    "reports": [
+      "Term detail printout"
+    ],
+    "redFlags": [
+      "Credit terms with no documented approval"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_exporting_terms_details": {
+    "purpose": "Exports an A/R term record as XML (for round-trip import into another company) or PDF, used when replicating terms across RealPage companies or tenancies.",
+    "outcome": "Identical term definitions reused across companies without re-keying.",
+    "rootCause": "Management companies often run several RealPage companies for different owners; exporting terms keeps due-date rules identical so delinquency is measured the same way for every client.",
+    "ifSkipped": "Terms are retyped per company and small differences distort cross-portfolio delinquency comparisons.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Term XML export"
+    ],
+    "redFlags": [
+      "Same-named terms with different rules across companies"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_taxes": {
+    "purpose": "Chapter on configuring simple sales taxes in A/R — tax authorities, tax details (rates), schedules, schedule maps and account label tax groups — for charges that are taxable in the property's jurisdiction.",
+    "outcome": "Taxable tenant charges billed with the correct tax and the liability tracked for remittance.",
+    "rootCause": "Some US jurisdictions tax rent or ancillary charges — for example Hawaii general excise tax on rental income and Arizona city transaction privilege tax on commercial leases; the landlord must bill, collect and remit that tax, so A/R has to compute it on the invoice.",
+    "ifSkipped": "Tax is not billed to tenants, so the owner remits it out of pocket or under-remits and incurs penalties.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "ASC 842-10-15-39A — lessor election to exclude sales taxes from lease consideration",
+      "ASC 606-10-32-2A"
+    ],
+    "stakeholders": [
+      "Tax department",
+      "Controller",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Sales tax report",
+      "Tax liability reconciliation"
+    ],
+    "redFlags": [
+      "Taxable jurisdictions with no tax setup",
+      "2160 balance not cleared by monthly remittances"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_about_sales_tax": {
+    "purpose": "Explains when the landlord must collect and remit sales or similar taxes on A/R charges, and how RealPage calculates tax on invoice lines from the configured setup.",
+    "outcome": "Users know which charges need tax and how it is computed.",
+    "rootCause": "Taxability depends on jurisdiction and charge type — rent may be exempt while parking, storage or short-stay furnished units are taxed; misunderstanding this leads either to over-billing tenants or to uncollected tax the owner must absorb.",
+    "ifSkipped": "Charges are taxed inconsistently, triggering tenant disputes or state audit assessments.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable",
+      "4100 Other Income"
+    ],
+    "gaap": [
+      "ASC 606-10-32-2A — sales taxes presented net"
+    ],
+    "stakeholders": [
+      "Tax department",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Sales tax report"
+    ],
+    "redFlags": [
+      "Tax charged on exempt residential rent",
+      "Stays under 30 days billed without occupancy tax"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_calculating_tax": {
+    "purpose": "Overview of the chain RealPage uses to calculate tax on an A/R line — customer tax group and account label tax group map to a tax schedule, whose tax details supply the rates.",
+    "outcome": "Users can trace why a given invoice line received a particular tax amount.",
+    "rootCause": "Tax is not keyed on the invoice; it is derived through several setup objects, so a wrong rate is usually a mapping problem, and tracing the chain is the only way to fix it at the source.",
+    "ifSkipped": "Wrong tax amounts are corrected invoice by invoice while the faulty mapping keeps producing more.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013 — application controls"
+    ],
+    "stakeholders": [
+      "Tax department",
+      "System administrator"
+    ],
+    "reports": [
+      "Sales tax report",
+      "Invoice register"
+    ],
+    "redFlags": [
+      "Manual tax overrides on invoices"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_account_label_tax_groups": {
+    "purpose": "Lists account label tax groups — sets of A/R account labels that share tax treatment, such as 'Taxable Parking' or 'Exempt Residential Rent'.",
+    "outcome": "Charge types grouped by how they are taxed.",
+    "rootCause": "Tax treatment follows the type of charge, not the customer alone; grouping labels (rent, parking, storage) is how RealPage knows which invoice lines are taxable.",
+    "ifSkipped": "Taxable and exempt charges are treated the same and tax is wrong on one or the other.",
+    "glAccounts": [
+      "4010 Gross Potential Rent",
+      "4100 Other Income",
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "ASC 842-30 — lease vs non-lease components"
+    ],
+    "stakeholders": [
+      "Tax department",
+      "System administrator"
+    ],
+    "reports": [
+      "Account label tax groups list"
+    ],
+    "redFlags": [
+      "New account labels not assigned to any tax group"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_an_account_label_tax_group": {
+    "purpose": "Creates an account label tax group and assigns the account labels (e.g., parking, storage, furnished-unit rent) that should receive the same tax treatment.",
+    "outcome": "New charge categories taxed correctly from their first invoice.",
+    "rootCause": "When a property adds a taxable income stream such as paid parking, its label must join a taxable group or invoices go out untaxed while the owner still owes the tax.",
+    "ifSkipped": "New taxable income streams bill without tax and the owner absorbs the liability.",
+    "glAccounts": [
+      "4100 Other Income",
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Tax department"
+    ],
+    "reports": [
+      "Account label tax groups list"
+    ],
+    "redFlags": [
+      "Parking or storage labels outside a taxable group in taxing jurisdictions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_and_editing_account_label_tax_groups": {
+    "purpose": "Views or edits which account labels belong to a tax group, for example moving a label out of the taxable group after a jurisdiction exempts that charge.",
+    "outcome": "Tax groupings kept current with tax law changes.",
+    "rootCause": "Tax law changes — Florida, for example, repealed its sales tax on commercial rent effective October 1, 2024 — and the label grouping is where that change has to be reflected so invoices stop (or start) carrying tax.",
+    "ifSkipped": "Tenants keep being charged a repealed tax, or a newly taxable charge is billed untaxed.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable",
+      "4010 Gross Potential Rent"
+    ],
+    "gaap": [
+      "COSO 2013 — change management"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Audit trail"
+    ],
+    "redFlags": [
+      "Florida commercial rent still taxed after October 1, 2024"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deleting_an_account_label_tax_group": {
+    "purpose": "Deletes an account label tax group that is no longer used, once no labels or schedule maps depend on it.",
+    "outcome": "Obsolete tax groupings removed from setup.",
+    "rootCause": "Stale tax groups referenced by schedule maps can keep applying an outdated rate; removing them only after un-mapping prevents orphaned tax logic.",
+    "ifSkipped": "Obsolete groups linger and confuse whoever maintains tax setup next.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Account label tax groups list"
+    ],
+    "redFlags": [
+      "Deleting a group still referenced by a schedule map"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_account_label_tax_group_information": {
+    "purpose": "The account label tax group record page — group name, description and member account labels — used when adding, viewing or editing a group.",
+    "outcome": "A clear definition of which charge types share a tax treatment.",
+    "rootCause": "Tax reviewers need to see at a glance which labels are taxable; a well-described group record makes the tax logic auditable.",
+    "ifSkipped": "Tax treatment of charge types cannot be reviewed without tracing individual invoices.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Account label tax groups list"
+    ],
+    "redFlags": [
+      "Groups with no description of their tax basis"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_an_account_label_tax_groups_details": {
+    "purpose": "Prints an account label tax group's details for the tax file or a state sales tax audit showing which charges were treated as taxable.",
+    "outcome": "Documentation of taxable charge categories for audits.",
+    "rootCause": "State sales tax auditors ask how the landlord decided which charges were taxable; a printed group record is contemporaneous evidence of that decision.",
+    "ifSkipped": "The landlord cannot show auditors how taxability was determined.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "State sales tax audit requirements"
+    ],
+    "stakeholders": [
+      "Tax department",
+      "State auditor"
+    ],
+    "reports": [
+      "Tax group printout"
+    ],
+    "redFlags": [
+      "No taxability documentation in the tax file"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_tax_authorities_list": {
+    "purpose": "Lists tax authorities — the states, counties and cities that levy taxes the landlord collects (e.g., Hawaii Department of Taxation, an Arizona city for commercial lease TPT).",
+    "outcome": "A register of every jurisdiction the company must file and remit to.",
+    "rootCause": "Each authority has its own rate, filing frequency and return; tracking tax by authority is what lets the 2160 liability be split into the separate remittances each jurisdiction requires.",
+    "ifSkipped": "Collected tax cannot be split by jurisdiction and returns are filed with wrong amounts.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable",
+      "1110 Operating Cash"
+    ],
+    "gaap": [
+      "State and local tax filing requirements"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Sales tax report by authority"
+    ],
+    "redFlags": [
+      "Properties in taxing jurisdictions with no authority record"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_viewing_your_list_of_tax_authorities": {
+    "purpose": "Opens the tax authorities list from A/R setup to review which jurisdictions are configured before adding rates or schedules.",
+    "outcome": "Confirmation that a jurisdiction exists before building its tax setup.",
+    "rootCause": "Creating a second record for the same city or state splits its collected tax across two authorities and makes the return reconciliation fail.",
+    "ifSkipped": "Duplicate authorities split tax collections and returns do not reconcile.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax authorities list"
+    ],
+    "redFlags": [
+      "Two authority records for the same jurisdiction"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_tax_authorities": {
+    "purpose": "Adds a tax authority record when the company acquires or begins managing a property in a jurisdiction that taxes rent or ancillary charges.",
+    "outcome": "The new jurisdiction available for tax details and remittance tracking.",
+    "rootCause": "Acquisitions bring new tax obligations from day one; the authority must exist before invoices can be taxed, or the first months' tax is never billed.",
+    "ifSkipped": "Tax on a newly acquired property goes unbilled until someone notices at the first return.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "State and local tax registration requirements"
+    ],
+    "stakeholders": [
+      "Tax department",
+      "Transition team"
+    ],
+    "reports": [
+      "Tax authorities list"
+    ],
+    "redFlags": [
+      "New acquisitions in taxing jurisdictions with no tax setup"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_and_editing_tax_authority_details": {
+    "purpose": "Views or edits a tax authority's name, description and identifiers such as the landlord's registration or license number with that jurisdiction.",
+    "outcome": "Authority records carry the details needed to file returns.",
+    "rootCause": "Returns and payments must quote the right account or license number; keeping it on the authority record avoids misapplied payments at the tax agency.",
+    "ifSkipped": "Remittances are misapplied by the agency and penalty notices follow.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax authorities list"
+    ],
+    "redFlags": [
+      "Authorities missing registration numbers"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deleting_tax_authorities": {
+    "purpose": "Deletes a tax authority that was created in error or is no longer relevant after a property is sold and all its tax has been remitted.",
+    "outcome": "Only active jurisdictions remain in setup.",
+    "rootCause": "An authority should only be removed once its final return is filed and its liability cleared; deleting earlier loses the ability to report the tax still owed.",
+    "ifSkipped": "Obsolete authorities remain selectable and new tax can be mapped to them.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax authorities list"
+    ],
+    "redFlags": [
+      "Authority deleted while its tax payable balance is non-zero"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_tax_authority_information_page": {
+    "purpose": "The tax authority record page used to add, view or edit a jurisdiction's name, description and filing identifiers.",
+    "outcome": "A complete record for each taxing jurisdiction.",
+    "rootCause": "Tax details and schedules hang off the authority; an accurate authority record is the anchor for rate setup and for splitting the liability by jurisdiction.",
+    "ifSkipped": "Rate setup has no reliable anchor and liabilities cannot be split correctly.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax authorities list"
+    ],
+    "redFlags": [
+      "Vague authority names such as 'City tax'"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_duplicating_a_tax_authority": {
+    "purpose": "Creates a new tax authority by duplicating an existing one, for example adding a second Arizona city after setting up the first.",
+    "outcome": "Similar jurisdictions set up quickly.",
+    "rootCause": "Duplication saves keying but copies identifiers such as the license number, which must be changed or the new city's remittances are filed under the wrong account.",
+    "ifSkipped": "Similar authorities are keyed from scratch with inconsistent naming.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax authorities list"
+    ],
+    "redFlags": [
+      "Duplicated authorities sharing one license number"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_a_tax_authority_records_details": {
+    "purpose": "Prints a tax authority record for the jurisdiction's tax file, alongside registration certificates and filing calendars.",
+    "outcome": "Complete jurisdiction documentation kept together.",
+    "rootCause": "When staff change, the tax file is how the next person learns each jurisdiction's registration and filing details; the printed record keeps it complete.",
+    "ifSkipped": "Filing knowledge leaves with departing staff and returns are missed.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax authority printout"
+    ],
+    "redFlags": [
+      "Tax files missing for active jurisdictions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_tax_details_list": {
+    "purpose": "Lists tax details — each a specific rate for one authority and tax type (e.g., Hawaii GET pass-on rate, a city commercial lease TPT rate) — with status and effective settings.",
+    "outcome": "A reviewable list of every tax rate the system applies.",
+    "rootCause": "Rates change, often on January 1 or July 1; reviewing the details list against published jurisdiction rates is the control that stops invoices going out at an old rate.",
+    "ifSkipped": "Outdated rates are billed and the difference becomes the owner's liability.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — periodic review"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax details list"
+    ],
+    "redFlags": [
+      "Rates not reviewed after a jurisdiction's published change date"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_tax_details": {
+    "purpose": "Adds a tax detail — rate, authority, tax type and the GL account where collected tax posts — for a newly taxable charge or jurisdiction.",
+    "outcome": "A rate ready to use in tax schedules, posting to the tax liability account.",
+    "rootCause": "The tax detail decides both the rate and the account; pointing it at 2160 rather than a revenue account is what keeps collected tax out of income, as the ASC 606 and ASC 842 net-presentation elections require.",
+    "ifSkipped": "Collected tax posts to revenue, overstating income and understating the liability.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "ASC 606-10-32-2A",
+      "ASC 842-10-15-39A"
+    ],
+    "stakeholders": [
+      "Tax department",
+      "Controller"
+    ],
+    "reports": [
+      "Tax details list"
+    ],
+    "redFlags": [
+      "Tax details posting to revenue accounts"
+    ],
+    "confidence": "high"
+  },
+  "scr_ar_editing_and_viewing_tax_details": {
+    "purpose": "Views or edits a tax detail's rate, account or status, typically when a jurisdiction changes its rate.",
+    "outcome": "Rates updated in step with jurisdiction changes.",
+    "rootCause": "Editing the rate in place changes all future invoices using it; timing the edit to the effective date avoids billing the new rate early or the old rate late.",
+    "ifSkipped": "Invoices around the change date carry the wrong rate.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — change management"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Audit trail",
+      "Sales tax report"
+    ],
+    "redFlags": [
+      "Rate edits not aligned to effective dates"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deleting_tax_details": {
+    "purpose": "Deletes a tax detail that is no longer used, or inactivates it when historical invoices reference it.",
+    "outcome": "Retired rates can no longer be applied.",
+    "rootCause": "A repealed or superseded rate left active can still be mapped into schedules; retiring it closes that door while keeping history intact.",
+    "ifSkipped": "Retired rates remain selectable and can be billed again.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax details list"
+    ],
+    "redFlags": [
+      "Repealed taxes still active"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_tax_detail_information_page": {
+    "purpose": "The tax detail record page — ID, description, tax authority, rate, tax type, liability GL account and status.",
+    "outcome": "A complete definition of one tax rate and where it posts.",
+    "rootCause": "Every taxed invoice line draws its rate and liability account from this record, so accuracy here is what keeps the 2160 balance equal to what is owed on the next return.",
+    "ifSkipped": "The tax payable balance drifts away from what the returns show as owed.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax details list",
+      "Tax liability reconciliation"
+    ],
+    "redFlags": [
+      "2160 not reconciling to return totals"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_a_tax_detail_records_details": {
+    "purpose": "Prints a tax detail record as evidence of the rate and liability account configured for a jurisdiction during a given period.",
+    "outcome": "Rate evidence available for audits and return support.",
+    "rootCause": "Sales tax audits cover several years; printed rate records show what the system charged at the time, supporting the landlord's position.",
+    "ifSkipped": "Historical rates cannot be evidenced during multi-year tax audits.",
+    "glAccounts": [],
+    "gaap": [
+      "State sales tax audit requirements"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax detail printout"
+    ],
+    "redFlags": [
+      "No rate history retained"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_tax_schedules": {
+    "purpose": "Opens the tax schedules list, where one or more tax details are combined into the total tax applied in a location (e.g., state rate plus county surcharge).",
+    "outcome": "Combined tax rates for each location available for mapping.",
+    "rootCause": "Many locations levy stacked taxes; a schedule bundles them so each component is still posted and reported to its own authority.",
+    "ifSkipped": "Stacked taxes are keyed as one rate and cannot be remitted separately.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "State and local tax requirements"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax schedules list"
+    ],
+    "redFlags": [
+      "Single combined rate for multi-authority locations"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_about_tax_schedules": {
+    "purpose": "Explains tax schedules as containers of one or more tax details that together make the tax charged for a given combination of customer and charge type.",
+    "outcome": "Users understand how component rates combine into invoice tax.",
+    "rootCause": "Understanding that schedules hold components (state, county, city) explains how one invoice line can create separate liabilities for different authorities.",
+    "ifSkipped": "Users misread tax totals and cannot reconcile per-authority liabilities.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Tax schedules list"
+    ],
+    "redFlags": [
+      "Per-authority liability not reconciled"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_your_list_of_tax_schedules": {
+    "purpose": "Views the list of tax schedules to confirm which combined rates exist before creating or mapping a new one.",
+    "outcome": "Existing schedules reused rather than duplicated.",
+    "rootCause": "Near-identical schedules for the same location split tax reporting and make rate updates error-prone, since a change must then be made twice.",
+    "ifSkipped": "Duplicate schedules exist and a rate change is applied to only one of them.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax schedules list"
+    ],
+    "redFlags": [
+      "Duplicate schedules for one location"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_tax_schedules_list": {
+    "purpose": "The tax schedules list page with schedule IDs, descriptions and status, and actions to add, edit or delete schedules.",
+    "outcome": "Central management of combined tax rates.",
+    "rootCause": "Schedules are the bridge between rates and invoices; keeping the list clean and descriptive makes it clear which schedule applies to which property.",
+    "ifSkipped": "Nobody can tell which schedule covers which property.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax schedules list"
+    ],
+    "redFlags": [
+      "Schedules without location in their description"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_a_tax_schedule": {
+    "purpose": "Creates a tax schedule and adds its component tax details, for example Hawaii state GET plus the Oahu county surcharge for a Honolulu property.",
+    "outcome": "A combined tax ready to map to customers and charge types.",
+    "rootCause": "Each location's total tax must be built from its components so that every authority's share is posted and remitted correctly.",
+    "ifSkipped": "The location's tax is incomplete or lumped together.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "State and local tax requirements"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax schedules list"
+    ],
+    "redFlags": [
+      "County surcharge missing from schedule"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_and_editing_tax_schedule_details": {
+    "purpose": "Views or edits a tax schedule's component tax details, adding or removing components when a jurisdiction adds or repeals a tax.",
+    "outcome": "Schedules reflect the current set of taxes in each location.",
+    "rootCause": "When a surcharge is added or repealed, the schedule is where the component must be changed so invoices charge the right combination.",
+    "ifSkipped": "Invoices omit a new surcharge or keep charging a repealed one.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — change management"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Audit trail"
+    ],
+    "redFlags": [
+      "Schedule changes without effective-date documentation"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deleting_a_tax_schedule": {
+    "purpose": "Deletes a tax schedule that is no longer mapped or needed, for example after disposing of the only property in that jurisdiction.",
+    "outcome": "Unused tax schedules removed from the setup.",
+    "rootCause": "Removing unused schedules prevents accidental mapping of a sold property's rates to a new property with a different tax profile.",
+    "ifSkipped": "Old schedules can be mapped to new properties by mistake.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax schedules list"
+    ],
+    "redFlags": [
+      "Deleting schedules still used by schedule maps"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_tax_schedule_information_page": {
+    "purpose": "The tax schedule record page — ID, description, status and the list of component tax details — used when adding, viewing or editing a schedule.",
+    "outcome": "A complete definition of the combined tax for a location.",
+    "rootCause": "Reviewers use this page to confirm that a location's total rate equals the sum of published component rates; it is the check that billing matches law.",
+    "ifSkipped": "Total rates are never checked against the sum of published component rates.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax schedules list"
+    ],
+    "redFlags": [
+      "Component sum differing from published total rate"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_tax_schedule_details": {
+    "purpose": "Prints a tax schedule's details to PDF to document the combined rate charged at a location for audits or tenant inquiries.",
+    "outcome": "A clear record of the taxes charged in a location.",
+    "rootCause": "Commercial tenants sometimes challenge tax on their invoices; a printed schedule shows exactly which taxes and rates were applied.",
+    "ifSkipped": "Tenant tax inquiries cannot be answered with system evidence.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department",
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Tax schedule printout"
+    ],
+    "redFlags": [
+      "Tenant tax disputes unresolved"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_tax_schedule_maps_list": {
+    "purpose": "Lists tax schedule maps — rules that pick the tax schedule for an invoice line based on the customer's tax group and the account label's tax group.",
+    "outcome": "Visibility of the rules that decide which tax each line gets.",
+    "rootCause": "The map is the decision table for tax; reviewing it is the fastest way to confirm that every taxable combination has a rule and exempt ones do not.",
+    "ifSkipped": "Gaps in the decision table leave taxable charges untaxed.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — application controls"
+    ],
+    "stakeholders": [
+      "Tax department",
+      "System administrator"
+    ],
+    "reports": [
+      "Tax schedule maps list"
+    ],
+    "redFlags": [
+      "Taxable label groups with no map rule"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_tax_schedule_map_overview": {
+    "purpose": "Explains how a tax schedule map pairs a customer tax group (e.g., 'Exempt nonprofit tenant') with an account label tax group to select the schedule applied.",
+    "outcome": "Users understand how exemptions and taxable charges interact.",
+    "rootCause": "Exempt tenants (such as government or qualifying nonprofits) need taxable charges billed without tax; the two-sided map is how that exemption is applied automatically.",
+    "ifSkipped": "Exempt tenants are charged tax, or exemptions are applied manually and inconsistently.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable",
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "State exemption certificate requirements"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax schedule maps list"
+    ],
+    "redFlags": [
+      "Exempt customers without exemption certificates on file"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_a_tax_schedule_map": {
+    "purpose": "Adds a tax schedule map rule linking a customer tax group and an account label tax group to the schedule that should apply.",
+    "outcome": "A new taxable (or exempt) combination handled automatically.",
+    "rootCause": "Without a rule, the combination gets no tax at all; adding the map is the step that actually switches tax on for a new charge type or customer class.",
+    "ifSkipped": "The new customer and charge combination bills with no tax at all.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department",
+      "System administrator"
+    ],
+    "reports": [
+      "Tax schedule maps list"
+    ],
+    "redFlags": [
+      "Rules added without a test invoice"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_and_editing_a_schedule_map": {
+    "purpose": "Views or edits a tax schedule map rule, for example pointing a combination to a new schedule after a rate change.",
+    "outcome": "Tax decisions updated without rebuilding the setup.",
+    "rootCause": "Re-pointing a map changes tax for every matching invoice line going forward; it must be done deliberately and tested on a sample invoice.",
+    "ifSkipped": "Rules keep pointing to outdated schedules.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013 — change management"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Audit trail"
+    ],
+    "redFlags": [
+      "Map changes without review"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deleting_a_schedule_map": {
+    "purpose": "Deletes a tax schedule map rule that is no longer needed, for example when a charge becomes exempt.",
+    "outcome": "Tax stops applying to combinations that are no longer taxable.",
+    "rootCause": "Removing the rule is how an exemption or repeal takes effect in billing; leaving it keeps charging tenants tax that is not owed.",
+    "ifSkipped": "Tenants keep being taxed on exempt charges and refunds become due.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax schedule maps list"
+    ],
+    "redFlags": [
+      "Rules deleted that still cover taxable combinations"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_tax_schedule_map_information_page": {
+    "purpose": "The tax schedule map record page — customer tax group, account label tax group, resulting schedule and status.",
+    "outcome": "A clear record of one tax decision rule.",
+    "rootCause": "Auditing tax logic means reading each rule; a complete record lets a reviewer confirm the rule matches the jurisdiction's taxability of that charge.",
+    "ifSkipped": "Individual tax rules cannot be reviewed for correctness.",
+    "glAccounts": [
+      "2160 Sales Tax/VAT Payable"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax schedule maps list"
+    ],
+    "redFlags": [
+      "Rules with blank customer tax group matching all customers"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_a_tax_schedule_map_records_details": {
+    "purpose": "Prints a tax schedule map rule's details as documentation of how a customer and charge combination is taxed.",
+    "outcome": "Documented tax decision rules for the tax file.",
+    "rootCause": "A complete printed rule set lets the tax department and auditors review the whole tax decision table offline in one pass.",
+    "ifSkipped": "The tax decision table is never reviewed as a whole.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax map printout"
+    ],
+    "redFlags": [
+      "No annual review of tax map rules"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_button": {
+    "purpose": "The Close button on the print-to-PDF view of a tax schedule map record, returning the user to the record without saving or printing anything further.",
+    "outcome": "The user leaves the print preview and returns to the tax map record.",
+    "rootCause": "This is a navigation control only; it matters because users sometimes assume closing the preview saved or filed the printout, leaving the tax file without the evidence they meant to keep.",
+    "ifSkipped": "Users may believe documentation was saved when the PDF was never downloaded.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013 — documentation"
+    ],
+    "stakeholders": [
+      "Tax department"
+    ],
+    "reports": [
+      "Tax map printout"
+    ],
+    "redFlags": [
+      "Tax file missing printouts users believed were saved"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_territories_and_territory_groups": {
+    "purpose": "Chapter on territories (e.g., regions or regional-manager portfolios) and territory groups that roll territories up for A/R reporting and collections accountability.",
+    "outcome": "Receivables reportable and assignable by region.",
+    "rootCause": "Delinquency accountability sits with regional managers; tagging customers with territories lets aging and collection reports be cut by region straight from the system.",
+    "ifSkipped": "Regional delinquency is rebuilt manually in spreadsheets each month.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Regional manager",
+      "Collections",
+      "Asset manager"
+    ],
+    "reports": [
+      "A/R aging by territory"
+    ],
+    "redFlags": [
+      "Territory assignments not updated after portfolio reorganizations"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_reports_that_use_territories": {
+    "purpose": "Lists the A/R reports that can be filtered or grouped by territory, such as aging and customer activity reports.",
+    "outcome": "Users know which reports support regional cuts.",
+    "rootCause": "Knowing which reports honour territories avoids building regional delinquency packs from reports that silently ignore the territory filter.",
+    "ifSkipped": "Regional packs are built from reports that ignore territories and show portfolio totals.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Regional manager"
+    ],
+    "reports": [
+      "A/R aging by territory",
+      "Customer activity report"
+    ],
+    "redFlags": [
+      "Regional totals not summing to portfolio totals"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_territories_list": {
+    "purpose": "The territories list page for adding, editing, inactivating and exporting territory records used on customers.",
+    "outcome": "A maintained list of regions available for customer tagging.",
+    "rootCause": "Territories must mirror the current regional structure; a stale list tags customers to regions that no longer exist and breaks regional accountability.",
+    "ifSkipped": "Customers are tagged to obsolete regions.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Territories list"
+    ],
+    "redFlags": [
+      "Territories not matching the current org chart"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_territories": {
+    "purpose": "Adds a territory — for example 'Southeast – RM Johnson' — so customers in that region can be tagged for reporting and collections ownership.",
+    "outcome": "A new region ready for customer assignment.",
+    "rootCause": "When a new region or regional manager is created, the territory must exist before customers can be assigned, or their delinquency falls outside every regional report.",
+    "ifSkipped": "New-region customers appear in no regional report.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator",
+      "Regional manager"
+    ],
+    "reports": [
+      "Territories list"
+    ],
+    "redFlags": [
+      "Customers with blank territory"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_editing_and_viewing_territories": {
+    "purpose": "Views or edits a territory's name, description or manager when regional responsibilities change.",
+    "outcome": "Territory records reflect current regional ownership.",
+    "rootCause": "Renaming or reassigning a territory when managers change keeps delinquency accountability pointed at the right person.",
+    "ifSkipped": "Delinquency reports name managers who no longer own the region.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Regional manager"
+    ],
+    "reports": [
+      "Territories list"
+    ],
+    "redFlags": [
+      "Territories naming departed managers"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_making_a_territory_inactive": {
+    "purpose": "Inactivates a territory that should no longer be assigned to customers while keeping its history for past reports.",
+    "outcome": "Retired regions unavailable for new assignments.",
+    "rootCause": "Inactivating rather than deleting preserves historical regional reporting while stopping new customers from being tagged to a retired region.",
+    "ifSkipped": "Retired regions keep receiving new customers.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Territories list"
+    ],
+    "redFlags": [
+      "Active customers still tagged to inactive territories"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deleting_territories": {
+    "purpose": "Deletes territory records that were created in error and never assigned to customers.",
+    "outcome": "Erroneous territories removed.",
+    "rootCause": "Territories used on customers should be inactivated, not deleted; deletion is only safe for records that never carried history.",
+    "ifSkipped": "Erroneous territories clutter selection lists and get used by mistake.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Territories list"
+    ],
+    "redFlags": [
+      "Deletion attempts on territories with assigned customers"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_exporting_the_territories_list": {
+    "purpose": "Exports the territories list to CSV or Excel to reconcile regions against the HR or property management org chart.",
+    "outcome": "An offline list for org-chart reconciliation.",
+    "rootCause": "Comparing territories with the current org chart periodically is the practical way to catch stale regions and missing managers.",
+    "ifSkipped": "Territory drift from the org chart goes unnoticed.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Territories export"
+    ],
+    "redFlags": [
+      "No periodic territory reconciliation"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_territory_information_page": {
+    "purpose": "The territory record page — ID, name, description, parent territory and status — used to add, view or edit a territory.",
+    "outcome": "A complete territory definition, including hierarchy.",
+    "rootCause": "Parent-child territory links drive roll-ups; getting the hierarchy right is what makes regional totals roll up correctly to divisions.",
+    "ifSkipped": "Regional totals roll up to the wrong divisions.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Territories list"
+    ],
+    "redFlags": [
+      "Circular or missing parent territories"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_exporting_territory_details": {
+    "purpose": "Exports a single territory record (XML or PDF) for documentation or to replicate the territory in another RealPage company.",
+    "outcome": "Territory definitions portable across companies.",
+    "rootCause": "Management companies running multiple RealPage companies need identical regional definitions to compare delinquency consistently.",
+    "ifSkipped": "Regions are defined differently in each company.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Territory export"
+    ],
+    "redFlags": [
+      "Mismatched territory codes across companies"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_a_territorys_details": {
+    "purpose": "Prints a territory's record for documentation or management review of regional structure.",
+    "outcome": "A printable record of a region's definition.",
+    "rootCause": "Printed territory definitions support periodic management review of who is accountable for which customers.",
+    "ifSkipped": "Regional accountability is not reviewed or documented.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Regional manager"
+    ],
+    "reports": [
+      "Territory printout"
+    ],
+    "redFlags": [
+      "No documented regional ownership"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_territory_groups_list": {
+    "purpose": "Lists territory groups — named collections of territories such as 'East Division' — used to report A/R across several regions together.",
+    "outcome": "Multi-region reporting without selecting territories one by one.",
+    "rootCause": "Division leaders review delinquency across several regions; groups make that view repeatable and consistent month to month.",
+    "ifSkipped": "Division views are assembled by hand and vary each month.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Division leader",
+      "Asset manager"
+    ],
+    "reports": [
+      "A/R aging by territory group"
+    ],
+    "redFlags": [
+      "Territories belonging to no group"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_adding_a_territory_group": {
+    "purpose": "Creates a territory group and selects its member territories for divisional A/R reporting.",
+    "outcome": "A reusable divisional reporting set.",
+    "rootCause": "A defined group guarantees the same regions are included in every divisional delinquency report.",
+    "ifSkipped": "Divisional reports include different regions each time.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Territory groups list"
+    ],
+    "redFlags": [
+      "Territories in two groups that are summed together"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_editing_territory_group_details": {
+    "purpose": "Edits a territory group's name, description or member territories when regions move between divisions in a reorganization.",
+    "outcome": "Divisional groupings reflect the current organization.",
+    "rootCause": "Reorganizations move regions between divisions; updating groups keeps divisional delinquency comparable to the new structure.",
+    "ifSkipped": "Divisional reports reflect an outdated organization.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Audit trail"
+    ],
+    "redFlags": [
+      "Group changes mid-quarter without restating comparatives"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_territory_group_details": {
+    "purpose": "Views a territory group's members to confirm which regions a divisional report will include.",
+    "outcome": "Confidence in the scope of divisional reports.",
+    "rootCause": "Checking membership before running a divisional pack prevents presenting totals that silently omit a region.",
+    "ifSkipped": "Divisional totals omit regions without anyone noticing.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Territory groups list"
+    ],
+    "redFlags": [
+      "Group totals not matching the sum of member regions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_exporting_territory_group_details": {
+    "purpose": "Exports a territory group's details for documentation or replication in another company.",
+    "outcome": "Group definitions available offline.",
+    "rootCause": "Documenting group definitions supports consistent divisional reporting across companies and reorganizations.",
+    "ifSkipped": "Group definitions differ between companies.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Territory group export"
+    ],
+    "redFlags": [
+      "Undocumented group changes"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_deleting_a_territory_group": {
+    "purpose": "Deletes a territory group that is no longer used for reporting, such as after a division is dissolved.",
+    "outcome": "Obsolete divisional groupings removed.",
+    "rootCause": "Removing dissolved divisions stops reports from being run against groupings that no longer reflect accountability.",
+    "ifSkipped": "Obsolete groups are used to run misleading divisional reports.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Territory groups list"
+    ],
+    "redFlags": [
+      "Saved reports referencing deleted groups"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_territory_groups_information": {
+    "purpose": "The territory group record page showing group ID, name, description and member territories.",
+    "outcome": "A clear definition of each divisional grouping.",
+    "rootCause": "A well-described group record tells report readers exactly which regions a divisional delinquency figure covers.",
+    "ifSkipped": "Readers cannot tell which regions a divisional figure includes.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Division leader"
+    ],
+    "reports": [
+      "Territory groups list"
+    ],
+    "redFlags": [
+      "Groups without descriptions"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_duplicating_a_territory_group": {
+    "purpose": "Duplicates a territory group to create a similar grouping, for example a new division that shares most regions with an existing one.",
+    "outcome": "Similar groupings created quickly.",
+    "rootCause": "Duplicating then editing membership is faster than rebuilding, but the copied membership must be reviewed so regions are not double-counted across divisions.",
+    "ifSkipped": "Similar groups are rebuilt manually with inconsistent membership.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Territory groups list"
+    ],
+    "redFlags": [
+      "Regions double-counted across duplicated groups"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_exporting_a_territory_groups_details": {
+    "purpose": "Exports the details of a territory group in XML or PDF for round-trip import or audit documentation.",
+    "outcome": "A portable copy of the group definition.",
+    "rootCause": "Round-trip XML lets administrators move a group definition between companies without retyping memberships.",
+    "ifSkipped": "Memberships are retyped and errors creep in.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Territory group XML"
+    ],
+    "redFlags": [
+      "Imported groups with missing members"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_printing_a_territory_groups_details": {
+    "purpose": "Prints a territory group's details for management review of divisional structure.",
+    "outcome": "A printable divisional structure for review.",
+    "rootCause": "Divisional structures should be reviewed when leadership changes; a printed record supports that review.",
+    "ifSkipped": "Divisional structures go unreviewed after leadership changes.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Division leader"
+    ],
+    "reports": [
+      "Territory group printout"
+    ],
+    "redFlags": [
+      "No review after reorganization"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_shipping_methods": {
+    "purpose": "Chapter on shipping methods — the delivery method recorded on A/R documents, which in property accounting is mostly how invoices and notices were sent (mail, email, certified mail, courier).",
+    "outcome": "A record of how each billing document reached the customer.",
+    "rootCause": "Commercial leases often specify how notices and billings must be delivered (e.g., certified mail to a named address); recording the method supports enforceability of late fees and default remedies.",
+    "ifSkipped": "The landlord cannot prove billings were delivered as the lease requires.",
+    "glAccounts": [
+      "1210 Resident/Tenant A/R"
+    ],
+    "gaap": [
+      "Lease notice provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant",
+      "Legal"
+    ],
+    "reports": [
+      "Invoice register"
+    ],
+    "redFlags": [
+      "Reconciliation billings to tenants requiring certified mail sent by email only"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_shipping_methods_overview": {
+    "purpose": "Explains what a shipping method is in RealPage A/R and how it is selected on invoices and customer records as a default delivery method.",
+    "outcome": "Users understand how delivery method defaults work.",
+    "rootCause": "Defaulting the delivery method per customer ensures tenants with special notice clauses always get billings the required way.",
+    "ifSkipped": "Delivery methods are chosen ad hoc and lease notice clauses are missed.",
+    "glAccounts": [],
+    "gaap": [
+      "Lease notice provisions"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Customers list"
+    ],
+    "redFlags": [
+      "Customers with notice clauses but no default method"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_viewing_the_list_of_shipping_methods": {
+    "purpose": "Views the list of configured shipping methods before assigning one to a customer or invoice.",
+    "outcome": "The right delivery method selected from existing options.",
+    "rootCause": "Checking existing methods avoids creating near-duplicates such as 'Certified' and 'Certified Mail', which fragment delivery reporting.",
+    "ifSkipped": "Duplicate methods fragment delivery records.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "Offshore property accountant"
+    ],
+    "reports": [
+      "Shipping methods list"
+    ],
+    "redFlags": [
+      "Near-duplicate method names"
+    ],
+    "confidence": "medium"
+  },
+  "scr_ar_shipping_methods_list": {
+    "purpose": "The shipping methods list page for adding, editing, inactivating and exporting delivery methods used on A/R documents.",
+    "outcome": "A clean set of delivery methods for A/R billing.",
+    "rootCause": "A short, controlled list keeps delivery evidence consistent so legal and collections can filter for invoices sent by a specific method.",
+    "ifSkipped": "Delivery evidence cannot be filtered reliably when a dispute arises.",
+    "glAccounts": [],
+    "gaap": [
+      "COSO 2013"
+    ],
+    "stakeholders": [
+      "System administrator"
+    ],
+    "reports": [
+      "Shipping methods list"
+    ],
+    "redFlags": [
+      "Free-text delivery notes instead of methods"
+    ],
+    "confidence": "medium"
+  }
+}
