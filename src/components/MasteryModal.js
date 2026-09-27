@@ -145,6 +145,21 @@ export default function MasteryModal({
                 {task.rpModule} Module
               </Text>
             </View>
+            {task.isCore49 === false || Boolean(task.isCustom) ? (
+              <View style={[styles.metaBadge, { backgroundColor: 'rgba(245, 158, 11, 0.16)', borderColor: 'rgba(245, 158, 11, 0.45)', borderWidth: 1 }]}>
+                <Ionicons name="sparkles" size={12} color="#F59E0B" />
+                <Text style={[styles.metaBadgeText, { color: '#F59E0B', fontWeight: '700' }]}>
+                  Outside 49 Tasks
+                </Text>
+              </View>
+            ) : (
+              <View style={[styles.metaBadge, { backgroundColor: 'rgba(124, 108, 246, 0.14)', borderColor: 'rgba(124, 108, 246, 0.3)', borderWidth: 1 }]}>
+                <Ionicons name="shield-checkmark" size={12} color={COLORS.primaryLight} />
+                <Text style={[styles.metaBadgeText, { color: COLORS.primaryLight, fontWeight: '700' }]}>
+                  Core 49 Task
+                </Text>
+              </View>
+            )}
           </View>
           {guardrail ? (
             <TouchableOpacity

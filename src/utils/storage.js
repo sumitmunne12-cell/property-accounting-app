@@ -11,7 +11,7 @@ const STORAGE_KEYS = {
   ASC_STUDY: '@rp_asc_study_v1',
   COMPASS_PROGRESS: '@rp_compass_progress_v1',
   PROPERTIES: '@rp_properties_v1',
-  CUSTOM_DAILY_TASKS: '@rp_custom_daily_tasks_v2',
+  CUSTOM_DAILY_TASKS: '@rp_custom_daily_tasks_v3',
   CUSTOM_CLOSE_PHASES: '@rp_custom_close_phases_v1',
 };
 

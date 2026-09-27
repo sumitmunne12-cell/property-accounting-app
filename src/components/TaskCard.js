@@ -63,9 +63,15 @@ function TaskCard({
     }
   };
 
+  const isOutside49 = task.isCore49 === false || Boolean(task.isCustom);
+
   return (
     <TouchableOpacity
-      style={[styles.card, isCompleted && styles.cardCompleted]}
+      style={[
+        styles.card,
+        isCompleted && styles.cardCompleted,
+        isOutside49 && styles.cardOutside49,
+      ]}
       onPress={() => {
         triggerHaptic('light');
         onOpenMastery(task);
@@ -112,6 +118,18 @@ function TaskCard({
               {task.priority}
             </Text>
           </View>
+
+          {isOutside49 ? (
+            <View style={styles.outside49Badge}>
+              <Ionicons name="sparkles" size={10} color="#F59E0B" style={{ marginRight: 3 }} />
+              <Text style={styles.outside49BadgeText}>Outside 49</Text>
+            </View>
+          ) : (
+            <View style={styles.core49Badge}>
+              <Ionicons name="shield-checkmark" size={10} color={COLORS.primaryLight} style={{ marginRight: 3 }} />
+              <Text style={styles.core49BadgeText}>Core 49</Text>
+            </View>
+          )}
         </View>
 
         <View style={styles.actionGroup}>
@@ -441,5 +459,40 @@ const styles = StyleSheet.create({
   },
   manageBtnTextDisabled: {
     color: COLORS.textMuted,
+  },
+  cardOutside49: {
+    borderLeftWidth: 3.5,
+    borderLeftColor: '#F59E0B',
+  },
+  outside49Badge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 7,
+    paddingVertical: 2,
+    borderRadius: 6,
+    backgroundColor: 'rgba(245, 158, 11, 0.16)',
+    borderWidth: 1,
+    borderColor: 'rgba(245, 158, 11, 0.45)',
+  },
+  outside49BadgeText: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: '#F59E0B',
+    letterSpacing: 0.2,
+  },
+  core49Badge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 6,
+    backgroundColor: 'rgba(124, 108, 246, 0.12)',
+    borderWidth: 1,
+    borderColor: 'rgba(124, 108, 246, 0.28)',
+  },
+  core49BadgeText: {
+    fontSize: 10,
+    fontWeight: '600',
+    color: COLORS.primaryLight,
   },
 });

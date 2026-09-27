@@ -116,6 +116,7 @@ function AppShell() {
   const [navHistory, setNavHistory] = useState(['tasks']);
   const [selectedPhase, setSelectedPhase] = useState('All');
   const [selectedPriority, setSelectedPriority] = useState('All');
+  const [selectedScope, setSelectedScope] = useState('all'); // 'all' | 'core' | 'outside'
   // User-managed properties, each with its own close timeline (utils/propertyTimeline).
   const [properties, setProperties] = useState([]);
   const [selectedPropertyId, setSelectedPropertyId] = useState(ALL_PROPERTIES);
@@ -373,15 +374,17 @@ function AppShell() {
     await saveStoredClosePhases(nextPhases);
   }, []);
 
-  // Filter Tasks based on Phase and Priority
+  // Filter Tasks based on Phase, Priority, and Scope
   const filteredTasks = useMemo(
     () =>
       dailyTasks.filter((t) => {
         if (selectedPhase !== 'All' && t.phase !== selectedPhase) return false;
         if (selectedPriority !== 'All' && t.priority !== selectedPriority) return false;
+        if (selectedScope === 'core' && (t.isCore49 === false || t.isCustom)) return false;
+        if (selectedScope === 'outside' && t.isCore49 !== false && !t.isCustom) return false;
         return true;
       }),
-    [dailyTasks, selectedPhase, selectedPriority]
+    [dailyTasks, selectedPhase, selectedPriority, selectedScope]
   );
 
   const selectTab = (key) => {
@@ -536,6 +539,75 @@ function AppShell() {
                       </ScrollView>
                     </View>
 
+                    {/* Scope Selector: All Tasks (78) | Core 49 (49) | Outside 49 (29) */}
+                    <View style={styles.scopeBar}>
+                      {[
+                        { key: 'all', label: 'All Tasks', count: dailyTasks.length },
+                        { key: 'core', label: 'Core 49', count: dailyTasks.filter((t) => t.isCore49 !== false && !t.isCustom).length },
+                        { key: 'outside', label: 'Outside 49', count: dailyTasks.filter((t) => t.isCore49 === false || Boolean(t.isCustom)).length },
+                      ].map((item) => {
+                        const isSel = selectedScope === item.key;
+                        const isOutsideItem = item.key === 'outside';
+                        return (
+                          <TouchableOpacity
+                            key={item.key}
+                            style={[
+                              styles.scopeChip,
+                              isSel && styles.scopeChipActive,
+                              isSel && isOutsideItem && styles.scopeChipActiveOutside,
+                            ]}
+                            onPress={() => {
+                              triggerHaptic('light');
+                              setSelectedScope(item.key);
+                            }}
+                            accessibilityLabel={`Filter by ${item.label}`}
+                          >
+                            {isOutsideItem ? (
+                              <Ionicons
+                                name="sparkles"
+                                size={11}
+                                color={isSel ? '#F59E0B' : COLORS.textMuted}
+                                style={{ marginRight: 4 }}
+                              />
+                            ) : item.key === 'core' ? (
+                              <Ionicons
+                                name="shield-checkmark"
+                                size={11}
+                                color={isSel ? COLORS.primaryLight : COLORS.textMuted}
+                                style={{ marginRight: 4 }}
+                              />
+                            ) : null}
+                            <Text
+                              style={[
+                                styles.scopeChipText,
+                                isSel && styles.scopeChipTextActive,
+                                isSel && isOutsideItem && { color: '#F59E0B' },
+                              ]}
+                            >
+                              {item.label}
+                            </Text>
+                            <View
+                              style={[
+                                styles.scopeCountPill,
+                                isSel && styles.scopeCountPillActive,
+                                isSel && isOutsideItem && { backgroundColor: 'rgba(245, 158, 11, 0.25)' },
+                              ]}
+                            >
+                              <Text
+                                style={[
+                                  styles.scopeCountText,
+                                  isSel && styles.scopeCountTextActive,
+                                  isSel && isOutsideItem && { color: '#F59E0B' },
+                                ]}
+                              >
+                                {item.count}
+                              </Text>
+                            </View>
+                          </TouchableOpacity>
+                        );
+                      })}
+                    </View>
+
                     {/* Priority Filter & Phase Title Row */}
                     <View style={styles.subFilterRow}>
                       <Text style={styles.listHeading}>
@@ -616,7 +688,7 @@ function AppShell() {
                       data={filteredTasks}
                       keyExtractor={(t) => t.id}
                       renderItem={renderTask}
-                      extraData={`${completedTaskIds.length}|${bookmarkedIds.length}|${activeSoftware}|${isManageDailyMode}|${dailyTasks.length}|${Object.keys(taskNotes).length}`}
+                      extraData={`${completedTaskIds.length}|${bookmarkedIds.length}|${activeSoftware}|${isManageDailyMode}|${dailyTasks.length}|${selectedScope}|${Object.keys(taskNotes).length}`}
                       initialNumToRender={8}
                       maxToRenderPerBatch={8}
                       windowSize={7}
@@ -1004,6 +1076,60 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 10,
     backgroundColor: COLORS.background,
+  },
+  scopeBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    paddingHorizontal: 16,
+    paddingTop: 8,
+    paddingBottom: 2,
+  },
+  scopeChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 8,
+    backgroundColor: COLORS.surface,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+  },
+  scopeChipActive: {
+    backgroundColor: `${COLORS.primary}20`,
+    borderColor: COLORS.primaryLight,
+  },
+  scopeChipActiveOutside: {
+    backgroundColor: 'rgba(245, 158, 11, 0.18)',
+    borderColor: '#F59E0B',
+  },
+  scopeChipText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: COLORS.textSecondary,
+  },
+  scopeChipTextActive: {
+    color: '#FFFFFF',
+    fontWeight: '700',
+  },
+  scopeCountPill: {
+    backgroundColor: COLORS.surfaceLight,
+    paddingHorizontal: 5,
+    paddingVertical: 1,
+    borderRadius: 6,
+    marginLeft: 6,
+  },
+  scopeCountPillActive: {
+    backgroundColor: `${COLORS.primary}40`,
+  },
+  scopeCountText: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: COLORS.textMuted,
+  },
+  scopeCountTextActive: {
+    color: '#FFFFFF',
+    fontWeight: '700',
   },
   listHeading: {
     fontSize: 13,

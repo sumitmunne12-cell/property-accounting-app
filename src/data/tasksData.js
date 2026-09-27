@@ -1,5 +1,5 @@
 // Generated 5-Point Mastery Task Database for RealPage & Yardi Property Accounting
-// Total Tasks: 78 ordered with core 49 offshore workflow tasks first
+// Total Tasks: 78 (49 Core Workflow Tasks + 29 Supplementary Tasks)
 
 export const ALL_TASKS = [
   {
@@ -54,7 +54,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Manually overriding an exception without documenting supporting approval from the Regional PM."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_10512",
@@ -105,7 +106,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Letting ROG queues age past Friday cut-off, delaying essential vendor payments."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_83512",
@@ -158,7 +160,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Voiding with an old date in a closed month, which will alter historical retained earnings and tie-outs."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_74973",
@@ -211,7 +214,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Lumping multiple unexplained variances into miscellaneous expense instead of investigating root causes."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_08998",
@@ -265,7 +269,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Releasing payments for vendors with expired compliance or unverified tax IDs."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_74086",
@@ -317,7 +322,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_02263",
@@ -369,7 +375,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_13913",
@@ -421,7 +428,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Failing to log unmapped bank sweep entries, causing fictitious book overdrafts."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_28877",
@@ -473,7 +481,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Failing to log unmapped bank sweep entries, causing fictitious book overdrafts."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_71431",
@@ -525,7 +534,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Failing to log unmapped bank sweep entries, causing fictitious book overdrafts."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_73647",
@@ -577,7 +587,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_14366",
@@ -629,7 +640,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_95601",
@@ -681,7 +693,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_83731",
@@ -734,7 +747,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Forgetting to flag entry as auto-reversing, resulting in duplicate expenses when the actual invoice arrives."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_39088",
@@ -787,7 +801,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Forgetting to flag entry as auto-reversing, resulting in duplicate expenses when the actual invoice arrives."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_28457",
@@ -843,7 +858,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Publishing reports before confirming that all late reclassification entries have been posted to the general ledger."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_57292",
@@ -899,7 +915,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Publishing reports before confirming that all late reclassification entries have been posted to the general ledger."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_17346",
@@ -951,7 +968,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_77265",
@@ -1005,7 +1023,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Including capital contribution proceeds or insurance recovery checks in eligible revenue for fee calculations."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_72229",
@@ -1057,7 +1076,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_53151",
@@ -1110,7 +1130,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Directly writing off resident balances to Bad Debt Expense instead of booking through the Allowance contra-asset account."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_11914",
@@ -1162,7 +1183,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_84125",
@@ -1216,7 +1238,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Including capital contribution proceeds or insurance recovery checks in eligible revenue for fee calculations."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_77893",
@@ -1268,7 +1291,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_03061",
@@ -1320,7 +1344,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_11233",
@@ -1372,7 +1397,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_48356",
@@ -1424,7 +1450,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_46621",
@@ -1477,7 +1504,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Posting the billback without verifying if prior month accrual needs to be reversed, causing double expense."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_23757",
@@ -1529,7 +1557,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_07176",
@@ -1581,7 +1610,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_30663",
@@ -1633,7 +1663,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_64896",
@@ -1689,7 +1720,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Forcing a bank reconciliation balance with an unexplained plug entry instead of locating the exact missing transaction."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_66420",
@@ -1745,7 +1777,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Forcing a bank reconciliation balance with an unexplained plug entry instead of locating the exact missing transaction."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_26161",
@@ -1798,7 +1831,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Expensing insurance or taxes when the lender pays them, rather than reducing the prepaid/escrow asset account."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_40215",
@@ -1851,7 +1885,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Writing vague variance explanations like 'higher expenses due to timing' without investigating specific invoices."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_65595",
@@ -1904,7 +1939,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Writing vague variance explanations like 'higher expenses due to timing' without investigating specific invoices."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_55747",
@@ -1957,7 +1993,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Writing vague variance explanations like 'higher expenses due to timing' without investigating specific invoices."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_33817",
@@ -2013,7 +2050,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Publishing reports before confirming that all late reclassification entries have been posted to the general ledger."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_42656",
@@ -2065,7 +2103,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_87327",
@@ -2117,7 +2156,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_71645",
@@ -2169,7 +2209,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_15097",
@@ -2221,7 +2262,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_91803",
@@ -2273,7 +2315,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_68460",
@@ -2325,7 +2368,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_98909",
@@ -2377,7 +2421,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_17794",
@@ -2433,7 +2478,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Publishing reports before confirming that all late reclassification entries have been posted to the general ledger."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_48224",
@@ -2485,7 +2531,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_42587",
@@ -2537,7 +2584,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_24884",
@@ -2590,7 +2638,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Posting the billback without verifying if prior month accrual needs to be reversed, causing double expense."
-    ]
+    ],
+    "isCore49": true
   },
   {
     "id": "task_duplicate_je",
@@ -2648,7 +2697,8 @@ export const ALL_TASKS = [
     "commonPitfalls": [
       "Leaving the original prior-month date on the duplicated entry, causing it to post into a closed historical period.",
       "Duplicating an entry that was already auto-reversed, causing duplicate reverse entries."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_07881",
@@ -2702,7 +2752,8 @@ export const ALL_TASKS = [
     "commonPitfalls": [
       "Approving an invoice where the job cost code does not tie out to an approved PO revision.",
       "Approving invoices dated in a closed accounting month without adjusting posting date."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_59726",
@@ -2755,7 +2806,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Failing to follow up prior to weekly payment run cut-off, causing missed discount terms."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_47539",
@@ -2808,7 +2860,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Posting the billback without verifying if prior month accrual needs to be reversed, causing double expense."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_38917",
@@ -2861,7 +2914,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Forgetting to flag entry as auto-reversing, resulting in duplicate expenses when the actual invoice arrives."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_40265",
@@ -2914,7 +2968,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Posting GPR without matching current month market rent changes made by the leasing office."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_02170",
@@ -2966,7 +3021,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_58454",
@@ -3018,7 +3074,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_97179",
@@ -3070,7 +3127,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_64339",
@@ -3122,7 +3180,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_05117",
@@ -3175,7 +3234,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Submitting routine repair and maintenance (R&M) operating expenses as capital reserve draws, which will be rejected by lender auditors."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_06302",
@@ -3227,7 +3287,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_83192",
@@ -3283,7 +3344,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Forcing a bank reconciliation balance with an unexplained plug entry instead of locating the exact missing transaction."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_82702",
@@ -3336,7 +3398,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Submitting routine repair and maintenance (R&M) operating expenses as capital reserve draws, which will be rejected by lender auditors."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_19530",
@@ -3388,7 +3451,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_34399",
@@ -3440,7 +3504,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_90224",
@@ -3493,7 +3558,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Directly writing off resident balances to Bad Debt Expense instead of booking through the Allowance contra-asset account."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_43955",
@@ -3545,7 +3611,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_79508",
@@ -3597,7 +3664,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_88787",
@@ -3650,7 +3718,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Lumping multiple unexplained variances into miscellaneous expense instead of investigating root causes."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_67196",
@@ -3703,7 +3772,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Submitting routine repair and maintenance (R&M) operating expenses as capital reserve draws, which will be rejected by lender auditors."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_01402",
@@ -3759,7 +3829,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Forcing a bank reconciliation balance with an unexplained plug entry instead of locating the exact missing transaction."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_53127",
@@ -3811,7 +3882,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Failing to log unmapped bank sweep entries, causing fictitious book overdrafts."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_49051",
@@ -3863,7 +3935,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Failing to log unmapped bank sweep entries, causing fictitious book overdrafts."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_48357",
@@ -3919,7 +3992,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Forcing a bank reconciliation balance with an unexplained plug entry instead of locating the exact missing transaction."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_78318",
@@ -3971,7 +4045,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_53597",
@@ -4023,7 +4098,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Failing to log unmapped bank sweep entries, causing fictitious book overdrafts."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_89413",
@@ -4076,7 +4152,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Lumping multiple unexplained variances into miscellaneous expense instead of investigating root causes."
-    ]
+    ],
+    "isCore49": false
   },
   {
     "id": "task_12639",
@@ -4128,7 +4205,8 @@ export const ALL_TASKS = [
     ],
     "commonPitfalls": [
       "Skipping self-review before submitting task completion status."
-    ]
+    ],
+    "isCore49": false
   }
 ];
 
